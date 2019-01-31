@@ -11,8 +11,6 @@ import {
 } from 'graphql';
 import GraphQLJSON from 'graphql-type-json';
 import CommentsElement from './types/comments_element_type';
-import FinanceGraph from './types/finance/finance_graph_type';
-import FinanceAsset from './types/finance/finance_asset_type';
 import Footer from './types/footer_type';
 import NavMenu from './types/navMenu_type';
 import List from './types/list_type';
@@ -193,61 +191,6 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parentValue, { path, userId, hasFacebookToken, }, { dataSources, }) {
         return dataSources.PurchasePageAPI.getPage(path, userId, hasFacebookToken);
-      },
-    },
-
-    asset: {
-      type: FinanceAsset,
-      args: {
-        assetId: { type: new GraphQLNonNull(GraphQLString), },
-      },
-      resolve(parentValue, { assetId, }, { dataSources, }) {
-        return dataSources.FinanceAPI.getAsset(assetId);
-      },
-    },
-
-    financeSearch: {
-      type: new GraphQLList(FinanceAsset),
-      args: {
-        query: { type: new GraphQLNonNull(GraphQLString), },
-        sortingOrder: { type: new GraphQLNonNull(new GraphQLList(GraphQLString)), },
-      },
-      resolve(parentValue, { query, sortingOrder, }, { dataSources, }) {
-        return dataSources.FinanceAPI.getSearchList(query, sortingOrder);
-      },
-    },
-
-    assetsList: {
-      type: new GraphQLList(FinanceAsset),
-      args: {
-        assetsId: { type: new GraphQLList(GraphQLString), },
-        parentId: { type: GraphQLString, },
-        assetSubSection: { type: GraphQLString, },
-        assetId: { type: GraphQLString, },
-        expirationBenchmarkDate: { type: GraphQLString, },
-        mtfCategory: { type: GraphQLString, },
-        mtfCategoryExposure: { type: GraphQLString, },
-        etfCategory: { type: GraphQLString, },
-        etfCategoryPosition: { type: GraphQLString, },
-        count: { type: GraphQLInt, },
-        sortBy: { type: GraphQLString, },
-        sortOrder: { type: GraphQLString, },
-        offset: { type: GraphQLInt, },
-      },
-      resolve(parentValue, args, { dataSources, }) {
-        return dataSources.FinanceAPI.getAssetsList(args);
-      },
-    },
-
-    financeGraph: {
-      type: FinanceGraph,
-      args: {
-        type: { type: GraphQLString, },
-        time: { type: GraphQLString, },
-        assetId: { type: GraphQLString, },
-      },
-      resolve(parentValue, { type, time, assetId, }, { dataSources, }) {
-        return dataSources.FinanceAPI.getGraph(type, time, assetId);
       },
     },
 
