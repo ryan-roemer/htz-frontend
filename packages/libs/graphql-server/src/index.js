@@ -1,13 +1,6 @@
 import { schema, } from '@haaretz/app-utils';
-import { HttpLink, } from 'apollo-link-http';
-import fetch from 'node-fetch';
 import config from 'config';
-import {
-  ApolloServer,
-  makeRemoteExecutableSchema,
-  introspectSchema,
-  mergeSchemas,
-} from 'apollo-server';
+import { ApolloServer, mergeSchemas, } from 'apollo-server';
 // Even though this isn't used directly in this package, this file acts as the
 // server entry point, so it should make any environment adjustments (like
 // adding this `fetch` global) here. That way they'll be available to any
@@ -15,6 +8,7 @@ import {
 import 'isomorphic-fetch';
 import createContext from './createContext';
 import dataSources from './dataSources';
+import createRemoteSchema from './createRemoteSchema';
 
 const port = parseInt(
   process.env.GRAPHQL_PORT || (config.has('graphQLPort') ? config.get('graphQLPort') : '4000'),
@@ -23,18 +17,12 @@ const port = parseInt(
 const userInfoUri = config.get('service.userInfoUri');
 
 async function run() {
-  const createRemoteSchema = async (uri, fetch) => {
-    const fetcher = new HttpLink({ uri, fetch, });
-    return makeRemoteExecutableSchema({
-      schema: await introspectSchema(fetcher),
-      link: fetcher,
-    });
-  };
   let schemas = [ schema, ];
   let userInfo;
   let fbInstantSubscribe;
+  let predicta;
   try {
-    userInfo = await createRemoteSchema(userInfoUri, fetch);
+    userInfo = await createRemoteSchema(userInfoUri);
     schemas.push(userInfo);
   }
   catch (err) {
@@ -42,13 +30,21 @@ async function run() {
   }
   try {
     fbInstantSubscribe = await createRemoteSchema(
-      'https://ms-apps.haaretz.co.il/ms-fb-instant/subscribe',
-      fetch
+      'https://ms-apps.haaretz.co.il/ms-fb-instant/subscribe'
     );
     schemas.push(fbInstantSubscribe);
   }
   catch (err) {
     console.log(`ms-fb-instant error  / : ${err}`);
+  }
+  try {
+    predicta = await createRemoteSchema(
+      'http://172.21.1.95:5000/'
+    );
+    schemas.push(predicta);
+  }
+  catch (err) {
+    console.log(`Predicta error  / : ${err}`);
   }
 
   schemas = mergeSchemas({
