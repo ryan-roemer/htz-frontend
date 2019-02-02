@@ -12,7 +12,7 @@ import StockStats from '../AssetStats/AssetStats';
 
 type Asset = {
   name: string,
-  change: string,
+  change?: string,
   id: string,
 };
 
@@ -34,27 +34,25 @@ type GraphData = Array<{
 }>;
 
 type State = {
-  ...Asset,
-  period: number,
-  graphData: GraphData,
+  graphData: ?GraphData,
+  selectedIndex: number,
 };
 
 class HotMoneyGraph extends React.Component<Props, State> {
-  state: State;
+  state = {
+    graphData: null,
+    selectedIndex: 0,
+  };
 
-  shouldComponentUpdate(nextProps: Props, nextState: State) {
-    return (
-      !this.state
-      || (nextProps.period !== this.props.period
-        || nextState.period !== this.state.period)
-    );
+  componentDidUpdate() {
+    if (this.props.assets.length && !this.state.graphData) this.changeAsset(0);
   }
 
-  changeAsset: Asset => void = stockData => {
-    const { period, part, } = this.props;
+  changeAsset: number => void = selectedIndex => {
+    const { period, part, assets, } = this.props;
     fetch(
-      `https://cors-escape.herokuapp.com/http://apifinance.themarker.com/TheMarkerApi/HotMoneyCharts?indexId=${
-        stockData.id
+      `https://apifinance.themarker.com/TheMarkerApi/HotMoneyCharts?indexId=${
+        assets[selectedIndex].id
       }&part=${part}&period=${period}`,
       {
         method: 'GET',
@@ -70,17 +68,14 @@ class HotMoneyGraph extends React.Component<Props, State> {
           })
         );
         this.setState({
-          ...stockData,
-          period,
-          // eslint-disable-next-line react/no-unused-state
           graphData,
+          selectedIndex,
         });
       })
       .catch(err => console.log(err));
   };
 
   render(): Node {
-    const { graphData, } = this.state || {};
     const { assets, headers, period, } = this.props;
     const time = period === 2 ? 'month' : period === 3 ? 'year1' : 'quarterly';
     return (
@@ -107,6 +102,7 @@ class HotMoneyGraph extends React.Component<Props, State> {
                 changeAsset={this.changeAsset}
                 assets={assets}
                 headers={headers}
+                selectedIndex={selectedIndex}
                 miscStyles={{
                   direction: 'rtl',
                   position: 'absolute',
@@ -127,8 +123,7 @@ class HotMoneyGraph extends React.Component<Props, State> {
                     height={250}
                     margin={{ top: 34, right: 10, bottom: 15, left: 50, }}
                   />
-                ) : null)
-                }
+                ) : null)}
               />
             </GridItem>
           </Grid>
