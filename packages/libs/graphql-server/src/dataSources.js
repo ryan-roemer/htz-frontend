@@ -320,6 +320,25 @@ class PurchasePageAPI extends RESTDataSource {
   }
 }
 
+class StaticD3API extends RESTDataSource {
+  get baseURL() {
+    return this.context.staticD3;
+  }
+
+  async getLineGraph(assetId, period, type) {
+    console.log(`get static ${period} ${type} graph for: ${assetId}, from: ${this.context.staticD3}/finance/line`);
+
+    return fetch(`${this.context.staticD3}/finance/${type}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ assetId, time: period, }),
+    })
+      .then(response => response.text());
+  }
+}
+
 class FinanceAPI extends RESTDataSource {
   get baseURL() {
     return this.context.preview || this.context.serviceBase;
@@ -536,5 +555,6 @@ const dataSources = () => ({
   NewSsoOperationsAPI: new NewSsoOperationsAPI(),
   HtzFunctionOperationsAPI: new HtzFunctionOperationsAPI(),
   TableScoreAPI: new TableScoreAPI(),
+  StaticD3API: new StaticD3API(),
 });
 export default dataSources;

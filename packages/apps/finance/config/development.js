@@ -26,7 +26,7 @@ module.exports = {
     d3: defer(function () {
       return `http${
         this.d3useSSL ? 's' : ''
-      }://${this.appFQDN}${this.d3exposedPort && this.d3Port ? `:${this.d3Port}` : ''}/`;
+      }://${this.appFQDN}${this.d3exposedPort && this.d3Port ? `:${this.d3Port}` : ''}`;
     }),
     alerts: 'https://dev-alerts.haaretz.co.il',
   },
