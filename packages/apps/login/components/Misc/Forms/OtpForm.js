@@ -15,11 +15,13 @@ import {
   retrieveHash,
   isLoginSuccess,
   saveLoginSuccess,
+  getUserProducts,
 } from '../../../pages/queryutil/userDetailsOperations';
 import { getHost, handleGenerateOtpIO, } from '../../../util/requestUtil';
 import { getFacebookLoginUrl, getFacebookParams, } from '../../../util/facebookLoginUtil';
 import { sendTrackingEvents, } from '../../../util/trackingEventsUtil';
 import { getReferrerUrl, } from '../../../util/referrerUtil';
+import { getDebtReferrer, checkUserDebt, } from '../../../util/debtCheckUtil';
 
 // Styling Components -----------------
 const { FormWrapper, ItemCenterer, } = LoginContentStyles;
@@ -40,6 +42,10 @@ const getFacebookLogin = user => {
     : false);
 };
 
+const getProducts = (client, ssoId) => {
+  return getUserProducts(client)({ id: ssoId, });
+}
+
 const login = ({ client, host, showError, hideError, setPreloader, eventsTrackers, eventCategory = 'How to login? SMS', loginWithMobile, }) => ({ smsCode, termsChk, otpHash, user, flow, }) => {
   setPreloader(true);
   hideError();
@@ -48,10 +54,25 @@ const login = ({ client, host, showError, hideError, setPreloader, eventsTracker
     .then(
       // eslint-disable-next-line no-undef
       () => {
+        const hasDebt = checkUserDebt(client);
         sendTrackingEvents(eventsTrackers, { page: eventCategory, flowNumber: flow, label: 'connectSMS', })(() => {
-          const referrerUrl = getReferrerUrl(client);
-          window.location.href = getFacebookLogin(user) || (referrerUrl || `https://www.${host}`);
-        });
+          if(hasDebt) {
+            getProducts(client, user.ssoId)
+            .then(
+              (res) => {
+                window.location.href = getDebtReferrer(res) || `https://www.${host}`;
+              },
+              (res) => {
+                console.log("debt - err");
+                window.location.href = `https://www.${host}`;
+              },
+            );
+          } else {
+            const referrerUrl = getReferrerUrl(client);
+            window.location.href = getFacebookLogin(user) || (referrerUrl || `https://www.${host}`);
+          }
+        }
+        );
       },
       reason => {
         saveLoginSuccess(client)(false);
