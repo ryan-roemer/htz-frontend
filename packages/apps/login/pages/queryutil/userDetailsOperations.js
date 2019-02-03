@@ -8,6 +8,7 @@ import INSPECT_EMAIL, {
   HOSTNAME,
   REFERRER,
   PHONE_EMAIL_CONFIRMATION,
+  USER_PRODUCTS,
   RETRIEVE_HASH,
   IS_SMS_ENTER,
   IS_LOGIN_SUCCESS,
@@ -83,6 +84,11 @@ const retrieveHash = client => emailSsoObj => client.query({
   query: RETRIEVE_HASH,
 });
 
+const getUserProducts = client => ssoIdObj => client.query({
+  variables: ssoIdObj,
+  query: USER_PRODUCTS,
+});
+
 const connectMailWithPhone = client => ({ email, paramString, url, userName, phone, }) => client.mutate({
   variables: {
     email,
@@ -154,6 +160,7 @@ export {
   sendMailConfirmation,
   validateMailConfirmation,
   retrieveHash,
+  getUserProducts,
   isEnterWithSms,
   saveIsEnterWithSms,
   saveLoginSuccess,
