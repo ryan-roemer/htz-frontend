@@ -25,6 +25,7 @@ import tableScore from './types/table_score_type';
 import tags from './types/tags_type';
 import video from './types/video_type';
 import rssFeed from './types/rss_feed_type';
+import StyleWrapper from './types/style_wrapper_type';
 
 const types = new Map([
   [ 'com.htz.MagazineArticleQuote', quote, ],
@@ -58,9 +59,14 @@ const types = new Map([
   [ 'paragraph', paragraph, ],
   [ 'relatedArticleSeries', seriesOrBlockArticles, ],
   [ 'relatedArticles', relatedArticles, ],
+  [ 'com.tm.styleWrapper', StyleWrapper, ],
   [ 'tagsElement', tags, ],
   [ 'video', video, ],
 ]);
+
+export const allTypes = [ ...types.values(), ].filter((type, index, types) => (
+  types.indexOf(type) === index
+));
 
 // What the fucking fuck?!
 // types.get('com.tm.element.List') doesn't get the map item

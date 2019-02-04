@@ -43,6 +43,10 @@ export function isMobileListWrapper(item: TestObject): %checks {
   return item.inputTemplate === 'com.polobase.whtzMobileSiteListsWrapper';
 }
 
+export function isStyleWrapper(item: TestObject): %checks {
+  return item.inputTemplate === 'com.tm.styleWrapper';
+}
+
 export function isTeaser(item: TestObject): %checks {
   return item.inputTemplate === 'com.tm.TeaserData';
 }
@@ -83,5 +87,6 @@ export default {
   isEmbed,
   isGallery,
   isMiddleRuller,
+  isStyleWrapper,
   isRssFeed,
 };
