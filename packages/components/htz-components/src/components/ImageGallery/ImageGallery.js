@@ -137,6 +137,7 @@ const captionWrapperStyle = ({
     position: isFullScreen ? 'static' : 'absolute',
     textAlign: 'start',
     top: '1rem',
+    left: '0',
     display: 'flex',
     transform: `translateX(${position + positionChange}%)`,
     width: '100%',
@@ -363,7 +364,9 @@ const Gallery = ({
                     >
                       <FelaComponent
                         style={{
-                          height: '100%',
+                          // *** This next comment-out seems to fix a display bug in Safari 10 and earlier,
+                          // *** but its affects should be tested more thoroughly, as this component has many display modes.
+                          // height: '100%',
                           display: 'flex',
                           flexWrap: 'nowrap',
                           position: 'relative',
