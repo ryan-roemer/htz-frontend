@@ -10,6 +10,7 @@ const PanucciQuery = gql`
   query PanucciQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
       title
+      isLazyloadImages
       url
       commercialLinks {
         ...Link

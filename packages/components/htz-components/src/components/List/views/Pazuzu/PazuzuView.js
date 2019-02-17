@@ -27,7 +27,7 @@ import getPictureAssets from '../../../../utils/getPictureAssets';
 
 type Props = {
   gutter: ?number,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
   isStackedOnXl: boolean,
   /**
    * The width of the underlying Component.
@@ -57,7 +57,7 @@ type Props = {
 Pazuzu.defaultProps = {
   gutter: null,
   isStackedOnXl: false,
-  lazyLoadImages: false,
+  isLazyLoadImages: false,
   width: null,
 };
 
@@ -66,7 +66,7 @@ export default function Pazuzu({
   gutter,
   width,
   list,
-  lazyLoadImages,
+  isLazyLoadImages,
   biAction,
 }: Props): React.Node {
   const { items = [], } = list || {};
@@ -81,7 +81,7 @@ export default function Pazuzu({
       <ListView disableWrapper gutter={0} marginTop={0}>
         {items && items[0] ? (
           <PazuzuTeaser
-            lazyLoadImages={lazyLoadImages}
+            isLazyLoadImages={isLazyLoadImages}
             isStackedOnXl={isStackedOnXl}
             isSecondItem={false}
             item={items[0]}
@@ -92,7 +92,7 @@ export default function Pazuzu({
         )}
         {items && items[1] ? (
           <PazuzuTeaser
-            lazyLoadImages={lazyLoadImages}
+            isLazyLoadImages={isLazyLoadImages}
             isStackedOnXl={isStackedOnXl}
             isSecondItem
             item={items[1]}
@@ -110,16 +110,16 @@ type PazuzuTeaserPropTypes = {
   item: TeaserDataType,
   isStackedOnXl: boolean,
   isSecondItem: boolean,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
   biAction: ?ListBiActionType,
 };
 
-PazuzuTeaser.defaultProps = { lazyLoadImages: false, };
+PazuzuTeaser.defaultProps = { isLazyLoadImages: false, };
 function PazuzuTeaser({
   item,
   isStackedOnXl,
   isSecondItem,
-  lazyLoadImages,
+  isLazyLoadImages,
   biAction,
 }: PazuzuTeaserPropTypes): React.Node {
   const stackingSettings = isStackedOnXl
@@ -168,7 +168,7 @@ function PazuzuTeaser({
             >
               {isStackedOnXl ? (
                 <Picture
-                  lazyLoad={lazyLoadImages}
+                  lazyLoad={isLazyLoadImages}
                   {...getPictureAssets({
                     bps: theme.bps,
                     imgData: item.image,
@@ -194,7 +194,7 @@ function PazuzuTeaser({
                 />
               ) : (
                 <Image
-                  lazyLoad={lazyLoadImages}
+                  lazyLoad={isLazyLoadImages}
                   data={item.image}
                   imgOptions={getImageAssets({
                     bps: theme.bps,

@@ -247,12 +247,12 @@ Please use the "<Picture />" component`
 
   return hasWrapper ? (
     <StyledImgWrapper width={width} height={height} bgc={bgcolor} miscStyles={miscStyles}>
-      <Observer triggerOnce rootMargin="500px">
+      <Observer triggerOnce rootMargin="1000px">
         {inView => (inView ? Sources : null)}
       </Observer>
     </StyledImgWrapper>
   ) : (
-    <Observer triggerOnce rootMargin="500px">
+    <Observer triggerOnce rootMargin="1000px">
       {inView => (inView ? Sources : null)}
     </Observer>
   );

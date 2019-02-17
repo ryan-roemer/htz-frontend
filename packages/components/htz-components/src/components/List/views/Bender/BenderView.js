@@ -54,14 +54,14 @@ type Props = {
   /**
    * Determine if the component images should be lazyloaded.
    */
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
 };
 
 Bender.defaultProps = {
-  lazyLoadImages: true,
+  isLazyLoadImages: true,
 };
 
-export default function Bender({ list, lazyLoadImages, gaAction, biAction, }: Props): Node {
+export default function Bender({ list, isLazyLoadImages, gaAction, biAction, }: Props): Node {
   const imgOptions: Object = {
     transforms: {
       aspect: 'vertical',
@@ -90,7 +90,7 @@ export default function Bender({ list, lazyLoadImages, gaAction, biAction, }: Pr
                 const { title, } = theme.benderStyle;
                 return (
                   <div className={className}>
-                    <Image data={item.image} imgOptions={imgOptions} lazyLoad={lazyLoadImages} />
+                    <Image data={item.image} imgOptions={imgOptions} lazyLoad={isLazyLoadImages} />
 
                     <FelaComponent
                       style={{

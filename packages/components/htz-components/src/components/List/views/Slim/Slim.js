@@ -9,6 +9,7 @@ import type { ListDataType, } from '../../../../flowTypes/ListDataType';
 const SlimQuery = gql`
   query SlimQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
+      isLazyloadImages
       items {
         ... on TeaserInList {
           ...ImageInTeaser

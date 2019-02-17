@@ -106,9 +106,10 @@ const componentType: Object = new Map([
 
 type Props = {
   main: MainSlotType,
+  globalLazyload: number,
 };
 
-function HomePageSlotsLayout({ main, }: Props): React.Node {
+function HomePageSlotsLayout({ main, globalLazyload, }: Props): React.Node {
   return (
     <FelaComponent
       style={theme => ({
@@ -133,7 +134,7 @@ function HomePageSlotsLayout({ main, }: Props): React.Node {
         return getComponent
           ? element.loadPriority && element.loadPriority === 'lazy'
             ? (
-              <Observer triggerOnce rootMargin="500px">
+              <Observer triggerOnce rootMargin={`${globalLazyload}px`}>
                 {inView => (inView ? getComponent(element) : null)}
               </Observer>
             )

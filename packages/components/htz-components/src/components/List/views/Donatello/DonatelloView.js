@@ -24,22 +24,22 @@ import TeaserHeader from '../../../TeaserHeader/TeaserHeader';
 type Props = {
   list: ListDataType,
   biAction: ?ListBiActionType,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
 };
 
 type ItemProps = {
   item: ClickTrackerBannerWrapperType,
   index: number,
   biAction: ?ListBiActionType,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
 };
 
 Donatello.defaultProps = {
-  lazyLoadImages: true,
+  isLazyLoadImages: true,
   biAction: null,
 };
 
-export default function Donatello({ list, biAction, lazyLoadImages = true, }: Props): Node {
+export default function Donatello({ list, biAction, isLazyLoadImages = true, }: Props): Node {
   const items: ?Array<ClickTrackerBannerWrapperType> = list.clickTrackers
     ? list.clickTrackers.slice(0, 5)
     : null;
@@ -83,7 +83,7 @@ export default function Donatello({ list, biAction, lazyLoadImages = true, }: Pr
                         item={item}
                         biAction={biAction}
                         index={index}
-                        lazyLoadImages={lazyLoadImages}
+                        isLazyLoadImages={isLazyLoadImages}
                       />
                     </GridItem>
                   );
@@ -102,11 +102,11 @@ export default function Donatello({ list, biAction, lazyLoadImages = true, }: Pr
 }
 
 Item.defaultProps = {
-  lazyLoadImages: true,
+  isLazyLoadImages: true,
   biAction: null,
 };
 
-function Item({ item, biAction, index, lazyLoadImages, }: ItemProps): Node {
+function Item({ item, biAction, index, isLazyLoadImages, }: ItemProps): Node {
   return (
     <ClickTracker
       {...item}
@@ -151,7 +151,7 @@ function Item({ item, biAction, index, lazyLoadImages, }: ItemProps): Node {
                   <TeaserMedia data={banner} width={1} isClickTracker>
                     <Image
                       data={clicktrackerimage}
-                      lazyLoad={lazyLoadImages}
+                      lazyLoad={isLazyLoadImages}
                       imgOptions={{
                         transforms: {
                           width: '180',

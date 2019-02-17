@@ -30,10 +30,10 @@ type Props = {
   /**
    * Determine if the component should be lazyload images
    */
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
 };
 
-function Farnsworth({ list, lazyLoadImages, gaAction, biAction, }: Props): Node {
+function Farnsworth({ list, isLazyLoadImages, gaAction, biAction, }: Props): Node {
   const { title, items, } = list;
   return (
     <FelaComponent
@@ -62,7 +62,7 @@ function Farnsworth({ list, lazyLoadImages, gaAction, biAction, }: Props): Node 
               }
           >
             <FelaComponent style={{ marginBottom: '2rem', }}>
-              <Image data={item.image} imgOptions={imgOptions} lazyLoad={lazyLoadImages} />
+              <Image data={item.image} imgOptions={imgOptions} lazyLoad={isLazyLoadImages} />
 
               <FelaComponent
                 style={theme => ({

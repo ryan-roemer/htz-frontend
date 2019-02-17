@@ -9,8 +9,8 @@ function HomePage() {
   return (
     <GetComponentProvider value={getElements}>
       <HomePageLayout
-        render={({ slots, }) => (
-          <SlotsLayout slots={slots} />
+        render={({ slots, globalLazyload, }) => (
+          <SlotsLayout slots={slots} globalLazyload={globalLazyload} />
         )}
       />
     </GetComponentProvider>

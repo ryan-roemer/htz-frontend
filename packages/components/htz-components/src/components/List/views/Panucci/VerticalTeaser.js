@@ -28,7 +28,7 @@ const headerType = [
 
 export default function VerticlaTeaser({
   itemData,
-  lazyLoadImages,
+  isLazyLoadImages,
   displayFlags,
   biAction,
 }: Props): React.Node {

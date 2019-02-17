@@ -9,6 +9,7 @@ import type { ListDataType, } from '../../../../flowTypes/ListDataType';
 const BenderQuery = gql`
   query BenderQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
+      isLazyloadImages
       title
       items {
         ... on TeaserInList {

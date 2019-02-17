@@ -10,18 +10,18 @@ import type { ListBiActionType, } from '../../../../flowTypes/ListBiActionType';
 
 type VogelViewPropTypes = {
   list: ListDataType,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
   gaAction: () => void,
   biAction: ?ListBiActionType,
 };
 
 VogelView.defaultProps = {
-  lazyLoadImages: false,
+  isLazyLoadImages: false,
 };
 
 export default function VogelView({
   list,
-  lazyLoadImages,
+  isLazyLoadImages,
   gaAction,
   biAction,
 }: VogelViewPropTypes): React.Node {
@@ -57,7 +57,7 @@ export default function VogelView({
               <VogelItem
                 data={list.items[0]}
                 hideImageOnMobile
-                lazyLoadImages={lazyLoadImages}
+                isLazyLoadImages={isLazyLoadImages}
                 index={0}
                 biAction={biAction}
               />

@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import gql from 'graphql-tag';
-import { image, link, dfpBanner, } from '@haaretz/app-utils';
+import { image, dfpBanner, } from '@haaretz/app-utils';
 import MorboView from './MorboView.js';
 import ListDataGetter from '../../ListDataGetter';
 import type { ListDataType, } from '../../../../flowTypes/ListDataType';
@@ -9,13 +9,7 @@ import type { ListDataType, } from '../../../../flowTypes/ListDataType';
 const MorboQuery = gql`
   query MorboQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
-      # commercialLinks {
-      #   ...Link
-      # }
-      # extraLinks {
-      #   ...Link
-      # }
-      # marketingTeaser
+      isLazyloadImages
       contentName
       title
       url
@@ -41,7 +35,6 @@ const MorboQuery = gql`
     }
   }
   ${image}
-  ${link}
   ${dfpBanner}
 `;
 

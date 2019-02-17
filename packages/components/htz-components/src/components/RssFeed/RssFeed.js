@@ -85,7 +85,7 @@ export default function RssFeed(props: RssFeedType) {
     <SalView
       {...{
         list: dataAsList,
-        lazyLoadImages: dataAsList.isLazyloadImages,
+        isLazyLoadImages: dataAsList.isLazyloadImages,
         biAction: null,
         gaAction: null,
       }}

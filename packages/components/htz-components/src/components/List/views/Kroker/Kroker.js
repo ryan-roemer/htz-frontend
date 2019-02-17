@@ -13,6 +13,7 @@ const KrokerQuery = gql`
     list(listId: $listId, history: $history) {
       title
       url
+      isLazyloadImages
       commercialLinks {
         ...Link
       }

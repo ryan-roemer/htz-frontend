@@ -13,6 +13,7 @@ export default gql`
   query HomePageLayout {
     homePage {
       pageType
+      globalLazyload
       seoData {
         metaTitle
         metaDescription
@@ -96,6 +97,7 @@ export default gql`
             contentName
             contentId
             inputTemplate
+            loadPriority
             lists {
               ... on Content {
                 ...Content
@@ -107,6 +109,7 @@ export default gql`
           }
           ... on RssFeed {
             inputTemplate
+            loadPriority
             title
             items {
               title
@@ -224,6 +227,7 @@ export default gql`
     contentName
     contentId
     title
+    loadPriority
     items {
       width {
         from
@@ -255,6 +259,7 @@ export default gql`
     title
     type
     viewMode
+    loadPriority
     elements {
       ... on ClickTrackerBannersWrapper {
         ...ClickTrackerBannersWrapper

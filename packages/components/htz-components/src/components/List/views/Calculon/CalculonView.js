@@ -27,7 +27,7 @@ import getPictureAssets from '../../../../utils/getPictureAssets';
 
 type CalculonPropsType = {
   list: ListDataType,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
   biAction: ?ListBiActionType,
   gaAction: ?() => void,
 };
@@ -35,12 +35,12 @@ type CalculonPropsType = {
 Calculon.defaultProps = {
   biAction: null,
   gaAction: null,
-  lazyLoadImages: true,
+  isLazyLoadImages: true,
 };
 
 export default function Calculon({
   list,
-  lazyLoadImages,
+  isLazyLoadImages,
   biAction,
   gaAction,
 }: CalculonPropsType): React.Node {
@@ -160,12 +160,12 @@ export default function Calculon({
 
 type TeaserPropsType = {
   data: TeaserDataType,
-  lazyLoadImages?: boolean,
+  isLazyLoadImages?: boolean,
   biAction: ?ListBiActionType,
 };
 
 const teaserDefaultProps = {
-  lazyLoadImages: true,
+  isLazyLoadImages: true,
   biAction: null,
 };
 
@@ -173,7 +173,7 @@ Teaser1.defaultProps = teaserDefaultProps;
 
 function Teaser1({
   data,
-  lazyLoadImages,
+  isLazyLoadImages,
   biAction,
 }: TeaserPropsType): React.Node {
   return (
@@ -199,7 +199,7 @@ function Teaser1({
           >
             <Image
               data={data.image}
-              lazyLoad={lazyLoadImages}
+              lazyLoad={isLazyLoadImages}
               imgOptions={getImageAssets({
                 bps: theme.bps,
                 aspect: 'headline',
@@ -273,7 +273,7 @@ function Teaser1({
 Teaser2.defaultProps = teaserDefaultProps;
 function Teaser2({
   data,
-  lazyLoadImages,
+  isLazyLoadImages,
   biAction,
 }: TeaserPropsType): React.Node {
   return (
@@ -310,7 +310,7 @@ function Teaser2({
             }
           >
             <Picture
-              lazyLoad={lazyLoadImages}
+              lazyLoad={isLazyLoadImages}
               {...getPictureAssets({
                 bps: theme.bps,
                 imgData: data.image,
@@ -390,7 +390,7 @@ function Teaser2({
 Teaser3.defaultProps = teaserDefaultProps;
 function Teaser3({
   data,
-  lazyLoadImages,
+  isLazyLoadImages,
   biAction,
 }: TeaserPropsType): React.Node {
   return (
@@ -421,7 +421,7 @@ function Teaser3({
             }
           >
             <Picture
-              lazyLoad={lazyLoadImages}
+              lazyLoad={isLazyLoadImages}
               {...getPictureAssets({
                 bps: theme.bps,
                 imgData: data.image,
@@ -501,13 +501,13 @@ function Teaser3({
         </Teaser>
       )}
     />
-);
+	);
 }
 
 Teaser4.defaultProps = teaserDefaultProps;
 function Teaser4({
   data,
-  lazyLoadImages,
+  isLazyLoadImages,
   biAction,
 }: TeaserPropsType): React.Node {
   return (
@@ -533,7 +533,7 @@ function Teaser4({
       >
         <Image
           data={data.image}
-          lazyLoad={lazyLoadImages}
+          lazyLoad={isLazyLoadImages}
           imgOptions={{
             transforms: { aspect: 'regular', width: 189, },
           }}
@@ -587,7 +587,7 @@ function Teaser4({
 Teaser5.defaultProps = teaserDefaultProps;
 function Teaser5({
   data,
-  lazyLoadImages,
+  isLazyLoadImages,
   biAction,
 }: TeaserPropsType): React.Node {
   return (

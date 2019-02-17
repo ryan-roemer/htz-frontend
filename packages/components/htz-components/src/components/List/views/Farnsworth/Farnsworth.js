@@ -9,6 +9,7 @@ import type { ListDataType, } from '../../../../flowTypes/ListDataType';
 const FarnsworthQuery = gql`
   query FarnsworthQuery($listId: String!, $history: [ID], $section: String) {
     list(listId: $listId, history: $history, section: $section) {
+      isLazyloadImages
       title
       items {
         ... on TeaserInList {

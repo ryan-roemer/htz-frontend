@@ -36,11 +36,12 @@ function HomePageLayout({ render, }: { render: Function, }): React.Node {
         if (loading) return null;
         if (error) console.error(error);
         const {
-          homePage: { slots, seoData, pageDateTimeString, pageType, },
+          homePage: { slots, seoData, pageDateTimeString, pageType, globalLazyload, },
         } = data;
 
         client.writeData({
           data: {
+            globalLazyload,
             title: seoData.metaTitle,
             pageDateTimeString,
             pageType,
@@ -106,7 +107,7 @@ catch (err) {console.log(err)}`,
                     minHeight: '100vh',
                   }}
                 >
-                  {render({ slots, })}
+                  {render({ slots, globalLazyload, })}
                 </FelaComponent>
                 {/* <WelcomePage /> */}
               </React.Fragment>

@@ -10,6 +10,7 @@ import {
 import Content from './content_type';
 import List from './list_type';
 import getSchema from '../getSchema';
+import LoadPriority from './load_priority_type';
 
 const MobileListWrapper = new GraphQLObjectType({
   name: 'MobileListWrapper',
@@ -17,6 +18,7 @@ const MobileListWrapper = new GraphQLObjectType({
     contentName: { type: GraphQLString, },
     contentId: { type: GraphQLID, },
     inputTemplate: { type: GraphQLString, },
+    loadPriority: { type: LoadPriority, },
     lists: {
       type: new GraphQLList(
         new GraphQLUnionType({

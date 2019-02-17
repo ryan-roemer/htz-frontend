@@ -17,18 +17,18 @@ import type { TeaserDataType, } from '../../../../flowTypes/TeaserDataType';
 
 type Props = {
   itemData: TeaserDataType,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
   biAction: ?ListBiActionType,
 };
 
 MainTeaser.defaultProps = {
-  lazyLoadImages: true,
+  isLazyLoadImages: true,
   biAction: null,
 };
 
 const headerType = [ { until: 'xl', value: 1, }, { from: 'xl', value: 0, }, ];
 
-export default function MainTeaser({ itemData, lazyLoadImages, biAction, }: Props): React.Node {
+export default function MainTeaser({ itemData, isLazyLoadImages, biAction, }: Props): React.Node {
   return (
     <FelaTheme
       render={theme => (
@@ -44,7 +44,7 @@ export default function MainTeaser({ itemData, lazyLoadImages, biAction, }: Prop
           >
             <Image
               data={itemData.image}
-              lazyLoad={lazyLoadImages}
+              lazyLoad={isLazyLoadImages}
               imgOptions={getImageAssets({
                 bps: theme.bps,
                 aspect: 'headline',

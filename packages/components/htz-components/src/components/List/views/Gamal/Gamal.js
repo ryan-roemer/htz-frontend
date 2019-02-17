@@ -10,6 +10,7 @@ const GamalQuery = gql`
   query GamalQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
       title
+      isLazyloadImages
       url
       urlDescription
       items {

@@ -102,11 +102,11 @@ type Props = {
   /**
    * Determine if the images should be lazyloaded.
    */
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
 };
 
 // eslint-disable-next-line react/prop-types
-function Leela({ list, lazyLoadImages, gaAction, biAction, }: Props): Node {
+function Leela({ list, isLazyLoadImages, gaAction, biAction, }: Props): Node {
   return (
     <FelaComponent
       style={{

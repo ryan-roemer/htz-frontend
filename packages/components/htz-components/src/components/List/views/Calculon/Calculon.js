@@ -9,6 +9,7 @@ import type { ListDataType, } from '../../../../flowTypes/ListDataType';
 const CalculonQuery = gql`
   query CalculonQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
+      isLazyloadImages
       commercialLinks {
         ...Link
       }

@@ -10,7 +10,7 @@ const VogelQuery = gql`
   query VogelQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
       title
-
+      isLazyloadImages
       items {
         ... on TeaserInList {
           inputTemplate

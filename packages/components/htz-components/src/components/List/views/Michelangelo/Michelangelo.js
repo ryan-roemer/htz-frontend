@@ -9,6 +9,7 @@ import type { ListDataType, } from '../../../../flowTypes/ListDataType';
 const MichelangeloQuery = gql`
   query MichelangeloQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
+      isLazyloadImages
       title
       clickTrackers {
         ...ClickTrackerBannersWrapper

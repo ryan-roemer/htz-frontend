@@ -13,6 +13,7 @@ import TeaserInListType from './teaser_in_list_type';
 import LinkType from './link_type';
 import ClickTrackerWrapperType from './click_tracker_banner_wrapper_type';
 import MarketingTeaserType from './marketing_teaser_type';
+import LoadPriority from './load_priority_type';
 
 const type = new Map([
   [ 'com.polobase.ClickTrackerBannersWrapper', 'clickTracker', ],
@@ -79,7 +80,7 @@ const List = new GraphQLObjectType({
         }, [])
       ),
     },
-    loadPriority: { type: GraphQLString, },
+    loadPriority: { type: LoadPriority, },
     isLazyloadImages: { type: GraphQLBoolean, },
   }),
 });

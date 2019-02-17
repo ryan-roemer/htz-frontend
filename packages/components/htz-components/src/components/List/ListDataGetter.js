@@ -25,7 +25,7 @@ type ListComponentProps = {
   listId: string,
   gaAction: () => void,
   biAction: ?ListBiActionType,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
 };
 export type ListContentRendererProps = {
   children: ListComponentProps => Node,
@@ -46,7 +46,7 @@ function ListContentRenderer({
   viewProps,
   listData,
 }: ListContentRendererProps): Node {
-  const { title, items, lazyLoadImages, contentId, ...restList } = listData;
+  const { title, items, contentId, ...restList } = listData;
   items && updateListDuplication(items);
   return (
     <EventTracker>
@@ -65,7 +65,6 @@ function ListContentRenderer({
           listId: contentId,
           gaAction,
           biAction: clickAction,
-          lazyLoadImages,
           ...viewProps,
         });
       }}

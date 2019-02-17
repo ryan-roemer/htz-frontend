@@ -151,16 +151,16 @@ type Props = {
    * Determine if the component should be lazyloaded. Defaults to `false`.
    * If lazyloaded, indicates how many pixels before entering the screen
    * should the image be loaded.
-   * For example, when `{lazyLoadImages: true}`, the image will be
-   * lazyloaded as soon as it enters the screen. When `{lazyLoadImages: '400px'}`
+   * For example, when `{isLazyLoadImages: true}`, the image will be
+   * lazyloaded as soon as it enters the screen. When `{isLazyLoadImages: '400px'}`
    * the image will be lazyloaded 400px before entering the screen.
    * Strings should be in css length units.
    */
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
 };
 
 // eslint-disable-next-line react/prop-types
-function Zoidberg({ list, lazyLoadImages, biAction, }: Props): Node {
+function Zoidberg({ list, isLazyLoadImages, biAction, }: Props): Node {
   const { title, items, clickTrackers, dfp, } = list;
 
   const stdItemsLength: number = items.length;

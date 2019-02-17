@@ -10,6 +10,7 @@ import type { ListDataType, } from '../../../../flowTypes/ListDataType';
 const LeonardoQuery = gql`
   query LeonardoQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
+      isLazyloadImages
       clickTrackers {
         ...ClickTrackerBannersWrapper
       }

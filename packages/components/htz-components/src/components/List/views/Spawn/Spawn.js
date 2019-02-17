@@ -10,6 +10,7 @@ const SpawnQuery = gql`
   query SpawnQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
       title
+      isLazyloadImages
       url
       extraLinks {
         ...Link

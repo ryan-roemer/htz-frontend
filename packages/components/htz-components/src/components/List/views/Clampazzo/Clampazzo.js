@@ -10,6 +10,7 @@ const ClampazzoQuery = gql`
   query BenderQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
       title
+      isLazyloadImages
       items {
         ... on TeaserInList {
           ...TeaserForClampazzo

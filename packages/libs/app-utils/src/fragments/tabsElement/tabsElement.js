@@ -13,6 +13,7 @@ export default gql`
     title
     type
     viewMode
+    loadPriority
     elements {
       ... on ClickTrackerBannersWrapper {
         ...ClickTrackerBannersWrapper

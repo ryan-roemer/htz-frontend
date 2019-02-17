@@ -13,6 +13,7 @@ import MainSlot from './MainSlot';
 import getElements from '../../utils/getHomePageElements';
 
 type Props = {
+  globalLazyload: number,
   slots: {
     preHeader: {
       inputTemplate: string,
@@ -29,6 +30,7 @@ type Props = {
 
 function HomePageSlotsLayout({
   slots: { preHeader, header, postHeader, postMain, footer, main, },
+  globalLazyload,
 }: Props): React.Node {
   const extractElements = slot => slot.map(element => {
     const Element = getElements(element.inputTemplate);
@@ -65,7 +67,7 @@ function HomePageSlotsLayout({
         </LayoutRow>
       ) : null}
       <LayoutRow tagName="main" id="pageRoot" miscStyles={{ flexGrow: 1, }}>
-        <MainSlot main={main} />
+        <MainSlot main={main} globalLazyload={globalLazyload} />
       </LayoutRow>
       {postMain ? (
         <LayoutRow miscStyles={{ display: [ { until: 's', value: 'none', }, ], }}>

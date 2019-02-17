@@ -10,6 +10,7 @@ export default gql`
     inputTemplate
     contentName
     contentId
+    loadPriority
     title
     items {
       width {

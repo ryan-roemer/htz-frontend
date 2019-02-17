@@ -10,6 +10,7 @@ const SlugsQuery = gql`
   query SlugsQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
       title
+      isLazyloadImages
       items {
         commentsCounts
         contentId

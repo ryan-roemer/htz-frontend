@@ -19,20 +19,20 @@ import type { TeaserDataType, } from '../../../../flowTypes/TeaserDataType';
 
 type ZappItemProps = {
   data: TeaserDataType,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
   hideImageOnMobile: boolean,
   index: number,
   biAction: ?ListBiActionType,
 };
 
 ZappItem.defaultProps = {
-  lazyLoadImages: true,
+  isLazyLoadImages: true,
   hideImageOnMobile: false,
 };
 
 export default function ZappItem({
   data,
-  lazyLoadImages,
+  isLazyLoadImages,
   hideImageOnMobile,
   index,
   biAction,
@@ -57,7 +57,7 @@ export default function ZappItem({
         <FelaTheme
           render={theme => (
             <Picture
-              lazyLoad={lazyLoadImages}
+              lazyLoad={isLazyLoadImages}
               {...getPictureAssets({
                 bps: theme.bps,
                 imgData: data.image,

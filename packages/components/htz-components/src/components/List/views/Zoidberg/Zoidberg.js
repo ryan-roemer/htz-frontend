@@ -10,6 +10,7 @@ const ZoidbergQuery = gql`
   query ZoidbergQuery($listId: String!, $history: [ID], $section: String) {
     list(listId: $listId, history: $history, section: $section) {
       title
+      isLazyloadImages
       items {
         ...TeaserForLeftElement
       }

@@ -15,6 +15,7 @@ import dfpBanner from './dfp_banner_type';
 import list from './list_type';
 import tabsElement from './tab_view_element_type';
 import getSchema from '../getSchema';
+import LoadPriority from './load_priority_type';
 
 const GridElementGroup = new GraphQLObjectType({
   name: 'GridElementGroup',
@@ -23,6 +24,7 @@ const GridElementGroup = new GraphQLObjectType({
     contentName: { type: GraphQLString, },
     title: { type: GraphQLString, },
     contentId: { type: GraphQLID, },
+    loadPriority: { type: LoadPriority, },
     items: {
       type: new GraphQLList(
         new GraphQLObjectType({

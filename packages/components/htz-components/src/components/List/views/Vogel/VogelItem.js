@@ -13,7 +13,7 @@ import type { TeaserDataType, } from '../../../../flowTypes/TeaserDataType';
 
 type VogelItemPropTypes = {
   data: TeaserDataType,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
   hideImage: boolean,
   hideImageOnMobile: boolean,
   hideSeparator: boolean,
@@ -29,13 +29,13 @@ VogelItem.defaultProps = {
   hideSeparator: false,
   hideSeparatorOnMobile: false,
   hideOnMobile: false,
-  lazyLoadImages: false,
+  isLazyLoadImages: false,
   biAction: null,
 };
 
 function VogelItem({
   data,
-  lazyLoadImages,
+  isLazyLoadImages,
   hideImage,
   hideImageOnMobile,
   hideSeparator,
@@ -78,7 +78,7 @@ function VogelItem({
               isStacked
             >
               <Image
-                lazyLoad={lazyLoadImages}
+                lazyLoad={isLazyLoadImages}
                 data={data.image}
                 imgOptions={getImageAssets({
                   aspect: 'headline',

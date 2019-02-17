@@ -11,6 +11,7 @@ const HawkingQuery = gql`
   query HawkingQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
       title
+      isLazyloadImages
       extraLinks {
         href
         contentName

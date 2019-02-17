@@ -19,7 +19,7 @@ import type { TeaserDataType, } from '../../../../flowTypes/TeaserDataType';
 type Props = {
   list: ListDataType,
   listId: string,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
   gaAction: ?() => void,
   biAction: ?ListBiActionType,
 };
@@ -27,7 +27,7 @@ type Props = {
 export default function KrokerView({
   list,
   listId,
-  lazyLoadImages,
+  isLazyLoadImages,
   gaAction,
   biAction,
 }: Props): React.Node {
@@ -77,7 +77,7 @@ export default function KrokerView({
             <ListItems
               items={items}
               dfp={dfp}
-              lazyLoadImages={lazyLoadImages}
+              isLazyLoadImages={isLazyLoadImages}
               biAction={biAction}
               gaAction={gaAction}
             />
@@ -91,11 +91,11 @@ export default function KrokerView({
 type ListItemsProps = {
   items: Array<TeaserDataType>,
   dfp: ?Array<DfpBannerType>,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
   gaAction: ?() => void,
   biAction: ?ListBiActionType,
 };
-function ListItems({ items, dfp, lazyLoadImages, gaAction, biAction, }: ListItemsProps): React.Node {
+function ListItems({ items, dfp, isLazyLoadImages, gaAction, biAction, }: ListItemsProps): React.Node {
   return (
     <Grid
       rowSpacing={[
@@ -113,7 +113,7 @@ function ListItems({ items, dfp, lazyLoadImages, gaAction, biAction, }: ListItem
             miscStyles={{ display: 'flex', }}
           >
             {/* item 1 */}
-            <MainTeaser itemData={items[0]} lazyLoadImages={lazyLoadImages} biAction={biAction} />
+            <MainTeaser itemData={items[0]} isLazyLoadImages={isLazyLoadImages} biAction={biAction} />
           </GridItem>
           <GridItem
             width={[ { until: 's', value: 1, }, { from: 's', value: 2 / 5, }, ]}
@@ -122,7 +122,7 @@ function ListItems({ items, dfp, lazyLoadImages, gaAction, biAction, }: ListItem
             {/* item 2 */}
             <VerticalImageTeaser
               itemData={items[1]}
-              lazyLoadImages={lazyLoadImages}
+              isLazyLoadImages={isLazyLoadImages}
               biAction={biAction}
               displayFlags={{ commentsCount: true, }}
             />

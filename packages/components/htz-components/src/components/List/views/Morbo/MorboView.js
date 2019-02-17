@@ -23,7 +23,7 @@ import GeneralAdSlot from '../../../Ads/GeneralAdSlot';
 
 type MorboPropsType = {
   list: ListDataType,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
   biAction: ?ListBiActionType,
   gaAction: ?() => void,
 };
@@ -31,12 +31,12 @@ type MorboPropsType = {
 Morbo.defaultProps = {
   biAction: null,
   gaAction: null,
-  lazyLoadImages: true,
+  isLazyLoadImages: true,
 };
 
 export default function Morbo({
   list,
-  lazyLoadImages,
+  isLazyLoadImages,
   biAction,
   gaAction,
 }: MorboPropsType): React.Node {
@@ -129,18 +129,22 @@ export default function Morbo({
 
 type TeaserPropsType = {
   data: TeaserDataType,
-  lazyLoadImages?: boolean,
+  isLazyLoadImages?: boolean,
   biAction: ?ListBiActionType,
 };
 
 const teaserDefaultProps = {
-  lazyLoadImages: true,
+  isLazyLoadImages: true,
   biAction: null,
 };
 
 Teaser1.defaultProps = teaserDefaultProps;
 
-function Teaser1({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.Node {
+function Teaser1({
+  data,
+  isLazyLoadImages,
+  biAction,
+}: TeaserPropsType): React.Node {
   return (
     <FelaTheme
       render={theme => (
@@ -165,7 +169,7 @@ function Teaser1({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.No
             }
           >
             <Picture
-              lazyLoad={lazyLoadImages}
+              lazyLoad={isLazyLoadImages}
               {...getPictureAssets({
                 bps: theme.bps,
                 imgData: data.image,
@@ -218,7 +222,11 @@ function Teaser1({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.No
 }
 
 Teaser234.defaultProps = teaserDefaultProps;
-function Teaser234({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.Node {
+function Teaser234({
+  data,
+  isLazyLoadImages,
+  biAction,
+}: TeaserPropsType): React.Node {
   return (
     <Teaser
       data={data}

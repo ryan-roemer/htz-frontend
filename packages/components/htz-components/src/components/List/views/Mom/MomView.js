@@ -28,7 +28,7 @@ type Props = {
   list: ListDataType,
   gaAction: () => void,
   biAction: ?ListBiActionType,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
 };
 
 const headerTypeScale = [
@@ -37,8 +37,8 @@ const headerTypeScale = [
   { from: 'l', value: 0, },
 ];
 
-Mom.defaultProps = { lazyLoadImages: true, };
-export default function Mom({ list, gaAction, biAction, lazyLoadImages, }: Props): React.Node {
+Mom.defaultProps = { isLazyLoadImages: true, };
+export default function Mom({ list, gaAction, biAction, isLazyLoadImages, }: Props): React.Node {
   const { title, description, items, url, urlDescription, } = list;
   const listViewPadding = [ { until: 's', value: '2rem', }, { from: 's', value: '4rem', }, ];
 
@@ -150,7 +150,7 @@ export default function Mom({ list, gaAction, biAction, lazyLoadImages, }: Props
                 data={items[0]}
                 index={0}
                 biAction={biAction}
-                lazyLoadImages={lazyLoadImages}
+                isLazyLoadImages={isLazyLoadImages}
               />
             ) : (
               <Debug>There is no data for the first teaser in this list</Debug>
@@ -217,7 +217,7 @@ export default function Mom({ list, gaAction, biAction, lazyLoadImages, }: Props
                 data={items[3]}
                 index={3}
                 biAction={biAction}
-                lazyLoadImages={lazyLoadImages}
+                isLazyLoadImages={isLazyLoadImages}
               />
             ) : (
               <Debug>This is no data for the fourth teaser in this list</Debug>
@@ -278,13 +278,13 @@ export default function Mom({ list, gaAction, biAction, lazyLoadImages, }: Props
 type TeaserProps = {
   data: TeaserDataType,
   index: number,
-  lazyLoadImages?: boolean,
+  isLazyLoadImages?: boolean,
   biAction: ?ListBiActionType,
 };
 
-TeaserWithImg1.defaultProps = { lazyLoadImages: true, };
+TeaserWithImg1.defaultProps = { isLazyLoadImages: true, };
 
-function TeaserWithImg1({ data, index, lazyLoadImages, biAction, }: TeaserProps): React.Node {
+function TeaserWithImg1({ data, index, isLazyLoadImages, biAction, }: TeaserProps): React.Node {
   const itemId = data.representedContent == null ? data.contentId : data.representedContent;
   return (
     <Teaser
@@ -309,7 +309,7 @@ function TeaserWithImg1({ data, index, lazyLoadImages, biAction, }: TeaserProps)
         <FelaTheme
           render={theme => (
             <Picture
-              lazyLoad={lazyLoadImages}
+              lazyLoad={isLazyLoadImages}
               {...getPictureAssets({
                 bps: theme.bps,
                 imgData: data.image,
@@ -378,8 +378,8 @@ function TeaserWithImg1({ data, index, lazyLoadImages, biAction, }: TeaserProps)
   );
 }
 
-TeaserWithImg2.defaultProps = { lazyLoadImages: true, };
-function TeaserWithImg2({ data, index, lazyLoadImages, biAction, }: TeaserProps): React.Node {
+TeaserWithImg2.defaultProps = { isLazyLoadImages: true, };
+function TeaserWithImg2({ data, index, isLazyLoadImages, biAction, }: TeaserProps): React.Node {
   const itemId = data.representedContent == null ? data.contentId : data.representedContent;
   return (
     <Teaser
@@ -397,7 +397,7 @@ function TeaserWithImg2({ data, index, lazyLoadImages, biAction, }: TeaserProps)
         <FelaTheme
           render={theme => (
             <Image
-              lazyLoad={lazyLoadImages}
+              lazyLoad={isLazyLoadImages}
               data={data.image}
               imgOptions={getImageAssets({
                 bps: theme.bps,
@@ -459,7 +459,7 @@ function TeaserWithImg2({ data, index, lazyLoadImages, biAction, }: TeaserProps)
 type TextualTeaserPropTypes = TeaserProps & { isLargeText: boolean, };
 
 // eslint-disable-next-line react/default-props-match-prop-types
-TextualTeaser.defaultProps = { lazyLoadImages: undefined, isLargeText: false, };
+TextualTeaser.defaultProps = { isLazyLoadImages: undefined, isLargeText: false, };
 function TextualTeaser({ data, index, biAction, isLargeText, }: TextualTeaserPropTypes): React.Node {
   return (
     <Teaser

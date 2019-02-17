@@ -12,6 +12,7 @@ import ListDataGetter from '../../ListDataGetter';
 const MousepadQuery = gql`
   query MousepadQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
+      isLazyloadImages
       items {
         ... on TeaserInList {
           commentsCounts

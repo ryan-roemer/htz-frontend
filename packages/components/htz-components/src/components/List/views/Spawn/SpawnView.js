@@ -30,7 +30,7 @@ import getImageAssets from '../../../../utils/getImageAssets';
 
 type SpawnPropsType = {
   list: ListDataType,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
   biAction: ?ListBiActionType,
   gaAction: ?() => void,
 };
@@ -38,12 +38,12 @@ type SpawnPropsType = {
 Spawn.defaultProps = {
   biAction: null,
   gaAction: null,
-  lazyLoadImages: true,
+  isLazyLoadImages: true,
 };
 
 export default function Spawn({
   list,
-  lazyLoadImages,
+  isLazyLoadImages,
   biAction,
   gaAction,
 }: SpawnPropsType): React.Node {
@@ -77,7 +77,7 @@ export default function Spawn({
         <Section isFragment>
           {/* COMIC (mobile only) */}
           {comicData ? (
-            <Comic data={comicData} lazyLoadImages={lazyLoadImages} />
+            <Comic data={comicData} isLazyLoadImages={isLazyLoadImages} />
           ) : (
             <Debug>There is no data for the comic teaser</Debug>
           )}
@@ -117,7 +117,7 @@ export default function Spawn({
                   data={teaser1Data}
                   index={2}
                   isStackedFromS
-                  lazyLoadImages={lazyLoadImages}
+                  isLazyLoadImages={isLazyLoadImages}
                   isFooterBottom
                 />
               ) : (
@@ -138,7 +138,7 @@ export default function Spawn({
                   data={teaser2Data}
                   index={3}
                   isStackedFromS
-                  lazyLoadImages={lazyLoadImages}
+                  isLazyLoadImages={isLazyLoadImages}
                   isFooterBottom
                 />
               ) : (
@@ -159,7 +159,7 @@ export default function Spawn({
                   data={teaser3Data}
                   index={4}
                   isStackedFromS
-                  lazyLoadImages={lazyLoadImages}
+                  isLazyLoadImages={isLazyLoadImages}
                   isFooterBottom
                 />
               ) : (
@@ -198,7 +198,7 @@ export default function Spawn({
                       biAction={biAction}
                       data={teaser4Data}
                       index={5}
-                      lazyLoadImages={lazyLoadImages}
+                      isLazyLoadImages={isLazyLoadImages}
                     />
                   ) : (
                     <Debug>There is no data for this teaser</Debug>
@@ -211,7 +211,7 @@ export default function Spawn({
                       data={teaser5Data}
                       // hasMarginTop
                       index={6}
-                      lazyLoadImages={lazyLoadImages}
+                      isLazyLoadImages={isLazyLoadImages}
                     />
                   ) : (
                     <Debug>There is no data for this teaser</Debug>
@@ -248,11 +248,11 @@ export default function Spawn({
 
 type ComicPropTypes = {
   data: TeaserDataType,
-  lazyLoadImages: ?boolean,
+  isLazyLoadImages: ?boolean,
 };
 
-Comic.defaultProps = { lazyLoadImages: true, };
-function Comic({ data, lazyLoadImages, }: ComicPropTypes): React.Node {
+Comic.defaultProps = { isLazyLoadImages: true, };
+function Comic({ data, isLazyLoadImages, }: ComicPropTypes): React.Node {
   return (
     <FelaTheme
       render={theme => (
@@ -270,7 +270,7 @@ function Comic({ data, lazyLoadImages, }: ComicPropTypes): React.Node {
           <FelaComponent style={{ padding: '1rem', }}>
             <Image
               data={data.image}
-              lazyLoad={lazyLoadImages}
+              lazyLoad={isLazyLoadImages}
               miscStyles={{ width: '100%', }}
               imgOptions={getImageAssets({
                 bps: theme.bps,
@@ -306,13 +306,13 @@ function Comic({ data, lazyLoadImages, }: ComicPropTypes): React.Node {
 
 type TeaserPropTypes = {
   data: TeaserDataType,
-  lazyLoadImages?: boolean,
+  isLazyLoadImages?: boolean,
   biAction: ?ListBiActionType,
   index: number,
 };
 
-Editorial.defaultProps = { lazyLoadImages: true, index: 1, };
-function Editorial({ data, lazyLoadImages, index, biAction, }: TeaserPropTypes): React.Node {
+Editorial.defaultProps = { isLazyLoadImages: true, index: 1, };
+function Editorial({ data, isLazyLoadImages, index, biAction, }: TeaserPropTypes): React.Node {
   return (
     <FelaTheme
       render={theme => (
@@ -450,7 +450,7 @@ function Editorial({ data, lazyLoadImages, index, biAction, }: TeaserPropTypes):
   );
 }
 
-QuoteTeaser.defaultProps = { lazyLoadImages: true, index: 7, };
+QuoteTeaser.defaultProps = { isLazyLoadImages: true, index: 7, };
 function QuoteTeaser({ data, biAction, index, }: TeaserPropTypes): React.Node {
   return (
     <Teaser
@@ -536,7 +536,7 @@ type OpEdTeaserPropTypes = TeaserPropTypes & {
 
 // eslint-disable-next-line react/default-props-match-prop-types
 OpEdTeaser.defaultProps = {
-  lazyLoadImages: true,
+  isLazyLoadImages: true,
   isStackedFromS: false,
   hasMarginTop: false,
   isFooterBottom: false,
@@ -549,7 +549,7 @@ function OpEdTeaser({
   index,
   isStackedFromS,
   isFooterBottom,
-  lazyLoadImages,
+  isLazyLoadImages,
 }: OpEdTeaserPropTypes): React.Node {
   return (
     <FelaTheme
@@ -575,14 +575,6 @@ function OpEdTeaser({
               : '2rem',
             paddingInlineEnd: '2rem',
             paddingInlineStart: '2rem',
-            // paddingInlineEnd: [
-            //   { until: 'l', value: '2rem', },
-            //   { from: 'l', value: '1rem', },
-            // ],
-            // paddingInlineStart: [
-            //   { until: 'l', value: '2rem', },
-            //   { from: 'l', value: '1rem', },
-            // ],
             paddingTop: '2rem',
           }}
         >
@@ -638,7 +630,7 @@ function OpEdTeaser({
                     sizes: [ { size: '119px', }, ],
                     widths: [ 180, 119, ],
                   })}
-                  lazyLoad={lazyLoadImages}
+                  lazyLoad={isLazyLoadImages}
                 />
               ) : (
                 <IconAvatar

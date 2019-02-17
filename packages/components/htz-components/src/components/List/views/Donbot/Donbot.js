@@ -1,5 +1,5 @@
 // @flow
-import { imageInTeaser, clickTrackerBannersWrapper, dfpBanner, } from '@haaretz/app-utils';
+import { imageInTeaser, } from '@haaretz/app-utils';
 import * as React from 'react';
 import gql from 'graphql-tag';
 import type { ListDataType, } from '../../../../flowTypes/ListDataType';
@@ -9,6 +9,7 @@ import ListDataGetter from '../../ListDataGetter';
 const DonbotQuery = gql`
   query DonbotQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
+      isLazyloadImages
       title
       commercialLinks {
         href
@@ -50,8 +51,6 @@ const DonbotQuery = gql`
     }
   }
   ${imageInTeaser}
-  ${clickTrackerBannersWrapper}
-  ${dfpBanner}
 `;
 
 type Props = {

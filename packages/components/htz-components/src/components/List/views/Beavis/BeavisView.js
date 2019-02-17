@@ -13,7 +13,7 @@ import GeneralAdSlot from '../../../Ads/GeneralAdSlot';
 
 type BeavisPropsType = {
   list: ListDataType,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
   biAction: ?ListBiActionType,
   gaAction: ?() => void,
 };
@@ -21,12 +21,12 @@ type BeavisPropsType = {
 Beavis.defaultProps = {
   biAction: null,
   gaAction: null,
-  lazyLoadImages: true,
+  isLazyLoadImages: true,
 };
 
 function Beavis({
   list,
-  lazyLoadImages,
+  isLazyLoadImages,
   biAction,
   gaAction,
 }: BeavisPropsType): Node {

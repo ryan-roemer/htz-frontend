@@ -10,6 +10,7 @@ const ZombieQuery = gql`
   query ZombieQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
       title
+      isLazyloadImages
       url
       extraLinks {
         contentId

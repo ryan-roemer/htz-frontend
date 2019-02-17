@@ -10,6 +10,7 @@ const MomQuery = gql`
   query MomQuery($listId: String!, $history: [ID]) {
     list(listId: $listId, history: $history) {
       title
+      isLazyloadImages
       description
       url
       urlDescription

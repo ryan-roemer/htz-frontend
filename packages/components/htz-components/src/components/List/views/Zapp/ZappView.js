@@ -14,17 +14,17 @@ const width = [ { until: 'l', value: 1, }, { from: 'l', value: 1 / 4, }, ];
 
 type ZappPropTypes = {
   list: ListDataType,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
   gaAction: () => void,
   biAction: ?ListBiActionType,
 };
 
 Zapp.defaultProps = {
-  lazyLoadImages: false,
+  isLazyLoadImages: false,
 };
 
 export default function Zapp({
-  lazyLoadImages,
+  isLazyLoadImages,
   list,
   gaAction,
   biAction,
@@ -51,7 +51,7 @@ export default function Zapp({
         >
           <ZappItem
             data={list.items[0]}
-            lazyLoadImages={lazyLoadImages}
+            isLazyLoadImages={isLazyLoadImages}
             index={0}
             biAction={biAction}
           />
@@ -90,7 +90,7 @@ export default function Zapp({
         >
           <ZappItem
             data={list.items[1]}
-            lazyLoadImages={lazyLoadImages}
+            isLazyLoadImages={isLazyLoadImages}
             index={1}
             biAction={biAction}
           />
@@ -103,7 +103,7 @@ export default function Zapp({
         >
           <ZappItem
             data={list.items[2]}
-            lazyLoadImages={lazyLoadImages}
+            isLazyLoadImages={isLazyLoadImages}
             index={2}
             biAction={biAction}
           />
@@ -116,7 +116,7 @@ export default function Zapp({
         >
           <ZappItem
             data={list.items[3]}
-            lazyLoadImages={lazyLoadImages}
+            isLazyLoadImages={isLazyLoadImages}
             hideImageOnMobile
             index={3}
             biAction={biAction}

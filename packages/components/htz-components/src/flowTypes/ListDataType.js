@@ -29,6 +29,6 @@ export type ListDataType = {
   url?: string,
   description?: string,
   urlDescription?: string,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
   loadPriority?: "ssr" | "client" | "lazy",
 };

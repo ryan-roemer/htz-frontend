@@ -18,13 +18,13 @@ import type { ListBiActionType, } from '../../../../flowTypes/ListBiActionType';
 type Props = {
   list: ListDataType,
   listId: string,
-  lazyLoadImages: boolean,
+  isLazyLoadImages: boolean,
   gaAction: ?() => void,
   biAction: ?ListBiActionType,
 };
 
 Panucci.defaultProps = {
-  lazyLoadImages: true,
+  isLazyLoadImages: true,
   gaAction: null,
   biAction: null,
 };
@@ -34,7 +34,7 @@ export default function Panucci({
   listId,
   gaAction,
   biAction,
-  lazyLoadImages,
+  isLazyLoadImages,
 }: Props): React.Node {
   const { items, dfp, extraLinks, ...restOfList } = list;
   return (
@@ -87,7 +87,7 @@ export default function Panucci({
               >
                 <MainTeaser
                   itemData={items[0]}
-                  lazyLoadImages={lazyLoadImages}
+                  isLazyLoadImages={isLazyLoadImages}
                   biAction={biAction}
                 />
               </GridItem>
@@ -104,7 +104,7 @@ export default function Panucci({
               >
                 <VerticalImageTeaser
                   itemData={items[1]}
-                  lazyLoadImages
+                  isLazyLoadImages
                   biAction={biAction}
                   displayFlags={{
                     authors: true,
@@ -134,7 +134,7 @@ export default function Panucci({
               >
                 <VerticalTeaser
                   itemData={items[2]}
-                  lazyLoadImages
+                  isLazyLoadImages
                   biAction={biAction}
                   displayFlags={{
                     authors: true,
@@ -161,7 +161,7 @@ export default function Panucci({
                   <GridItem width={1}>
                     <HorizontalTeaser
                       itemData={items[3]}
-                      lazyLoadImages
+                      isLazyLoadImages
                       biAction={biAction}
                       displayFlags={{ commentsCount: true, }}
                       index={3}
@@ -171,7 +171,7 @@ export default function Panucci({
                   <GridItem width={1}>
                     <HorizontalTeaser
                       itemData={items[4]}
-                      lazyLoadImages
+                      isLazyLoadImages
                       biAction={biAction}
                       displayFlags={{ commentsCount: true, }}
                       index={4}
