@@ -10,6 +10,7 @@ import IconClose from '../../Icon/icons/IconClose';
 import IconAlefLogoTransparent from '../../Icon/icons/IconAlefLogoTransparent';
 import useScrollYPosition from '../../../hooks/useScrollYPosition';
 import ClickArea from '../../ClickArea/ClickArea';
+import BlockLink from '../../BlockLink/BlockLink';
 
 type Props = {
   buttonText: ?string,

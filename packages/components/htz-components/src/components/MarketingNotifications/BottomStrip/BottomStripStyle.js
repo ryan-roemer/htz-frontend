@@ -1,6 +1,7 @@
 export function wrapper({ theme, isSmall, color, }) {
   return {
     backgroundImage: color(theme).background,
+    cursor: 'pointer',
     color: theme.color('black'),
     position: 'fixed',
     bottom: 0,
@@ -46,6 +47,7 @@ export function text2({ theme, isSmall, color, }) {
 export function closeButton(theme, isSmall) {
   return {
     position: 'absolute',
+    zIndex: theme.getZIndex('above'),
     color: theme.color('primary'),
     top: '2rem',
     end: '2rem',
