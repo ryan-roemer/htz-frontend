@@ -4,7 +4,7 @@ module.exports = {
   },
   domain: 'themarker.com',
   hostname: process.env.HOSTNAME,
-  baseHref: 'https://www.haaretz.co.il',
+  baseHref: 'https://finance.themarker.com',
   logLevel: 'debug',
   enableHttpLogging: false,
 };

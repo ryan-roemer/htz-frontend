@@ -37,21 +37,21 @@ switch (connectionPreset) {
   }
 
   // Added for verbosity: this should be the same as 'NODE_ENV=development'
-  case 'dev2stage': {
-    const baseConfigOverride = require('./staging');
-    presetOverride = Object.assign(presetOverride, baseConfigOverride, {
-      useSSL: true,
-      graphQLuseSSL: false,
-      graphQLexposedPort: true,
-      connectionPreset,
-    });
-    break;
-  }
+  // case 'dev2stage': {
+  //   const baseConfigOverride = require('./staging');
+  //   presetOverride = Object.assign(presetOverride, baseConfigOverride, {
+  //     useSSL: true,
+  //     graphQLuseSSL: false,
+  //     graphQLexposedPort: true,
+  //     connectionPreset,
+  //   });
+  //   break;
+  // }
 
   case 'dev2prod': {
     const baseConfigOverride = require('./production');
     presetOverride = Object.assign(presetOverride, baseConfigOverride, {
-      appPort: presetOverride.appPort,
+      appPort: baseConfigOverride.appPort,
       graphQLPort: baseConfigOverride.graphQLPort,
       graphQLSubDomain: process.env.HOSTNAME,
       d3Port: baseConfigOverride.d3Port,

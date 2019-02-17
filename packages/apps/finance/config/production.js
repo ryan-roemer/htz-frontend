@@ -31,6 +31,7 @@ module.exports = {
     return `www.${this.domain}`;
   }),
   useSSL: true,
+  thisIsATest: 'test',
   graphQLuseSSL: true,
   graphQLexposedPort: false,
   graphQLSubDomain: 'graphql',
@@ -39,7 +40,7 @@ module.exports = {
   d3SubDomain: 'graphql',
   domain: 'themarker.com',
   hostname: process.env.HOSTNAME,
-  port: process.env.PORT || '2004',
+  appPort: process.env.APP_PORT || '2004',
   graphQLPort: process.env.GRAPHQL_PORT || '4004',
   d3Port: process.env.D3_PORT || '6004',
   logLevel: 'error',

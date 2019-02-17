@@ -71,13 +71,6 @@
         ]
       }
     },
-    "@haaretz/d3-server": {
-      "^0.1.0": {
-        "packages/apps/*": [
-          "devDependencies"
-        ]
-      }
-    },
     "@haaretz/graphql-server": {
       "^0.1.0": {
         "packages/apps/*": [
@@ -93,7 +86,7 @@
       }
     },
     "@haaretz/htz-react-base": {
-      "^1.0.0": {
+      "^1.1.0": {
         "[\"packages/{apps,components,libs}/*\", \"!packages/libs/htz-react-base\"]": [
           "devDependencies"
         ]
@@ -308,7 +301,7 @@
       }
     },
     "next": {
-      "^7.0.2": {
+      "^8.0.1": {
         "packages/apps/*": [
           "dependencies"
         ],
@@ -344,7 +337,7 @@
       }
     },
     "react": {
-      "^16.4.2": {
+      "^16.8.2": {
         "packages/{libs/htz-react-base,libs/app-utils,libs/fela-utils,components/*}": [
           "devDependencies",
           "peerDependencies"
@@ -366,7 +359,7 @@
       }
     },
     "react-dom": {
-      "^16.4.2": {
+      "^16.8.2": {
         "packages/{libs/htz-react-base,libs/fela-utils,components/*}": [
           "devDependencies",
           "peerDependencies"
@@ -395,7 +388,7 @@
       }
     },
     "react-test-renderer": {
-      "^16.4.2": {
+      "^16.8.2": {
         "packages/{libs/htz-react-base,libs/fela-utils,components/htz-components}": [
           "dependencies"
         ]

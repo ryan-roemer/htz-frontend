@@ -37,9 +37,9 @@
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
     "isomorphic-unfetch": "^2.1.1",
-    "next": "^7.0.2",
+    "next": "^8.0.1",
     "prop-types": "^15.6.1",
-    "react": "^16.4.2",
+    "react": "^16.8.2",
     "react-apollo": "^2.2.4",
     "rimraf": "^2.6.2"
   },
@@ -54,9 +54,9 @@
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
     "isomorphic-unfetch": "^2.1.1",
-    "next": "^7.0.2",
+    "next": "^8.0.1",
     "prop-types": "^15.6.1",
-    "react": "^16.4.2",
+    "react": "^16.8.2",
     "react-apollo": "^2.2.4"
   },
   "dependencies": {

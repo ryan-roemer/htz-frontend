@@ -50,22 +50,22 @@
     "inline-style-prefixer": "^5.0.3",
     "lodash": "^4.17.5",
     "prop-types": "^15.6.1",
-    "react-test-renderer": "^16.4.2"
+    "react-test-renderer": "^16.8.2"
   },
   "devDependencies": {
     "@haaretz/htz-react-base": "^1.1.0",
     "babel-loader": "^8.0.0-beta.4",
     "documentation": "^8.1.2",
     "fela": "^6.1.7",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
     "react-fela": "^7.2.0",
     "rimraf": "^2.6.2"
   },
   "peerDependencies": {
     "fela": "^6.1.7",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
     "react-fela": "^7.2.0"
   }
 }
