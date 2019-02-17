@@ -31,10 +31,7 @@ export default function Boxy({ list, }: Props): Node {
   const item: TeaserDataType = list.items[0];
   const media: ?MediaType = item ? item.media : null;
   const mediaKind: ?string = media ? media.kind : null;
-  const MediaComponent: React.ComponentType<any> = getMediaComponent(
-    mediaKind,
-    Picture
-  );
+  const MediaComponent: React.ComponentType<any> = getMediaComponent(mediaKind, Picture);
   const mediaProps: ?Object = media ? getMediaProps(media) : null;
   return item && MediaComponent && mediaProps ? (
     <FelaTheme
@@ -60,12 +57,11 @@ export default function Boxy({ list, }: Props): Node {
                     render={({ className: headerClass, }) => (
                       // We use an offset here, because the title should be the same level
                       // as a header inside a section, no the same as a section's title
-                      <H className={headerClass} offset={1}>
-                        <TeaserResponsiveText
-                          text={item.title}
-                          mobileText={item.titleMobile}
-                        />
-                      </H>
+                      <BlockLink href={item.path}>
+                        <H className={headerClass} offset={1}>
+                          <TeaserResponsiveText text={item.title} mobileText={item.titleMobile} />
+                        </H>
+                      </BlockLink>
                     )}
                   />
                 )}
@@ -95,7 +91,7 @@ export default function Boxy({ list, }: Props): Node {
 
 type SourceOptions = {
   sizes: string,
-  transforms: Array<{ width: string, aspect: "vertical" | "landscape", }>,
+  transforms: Array<{ width: string, aspect: 'vertical' | 'landscape', }>,
 };
 
 function getSourceOptions(isMobile: boolean) {
@@ -121,12 +117,12 @@ type ImageProps = {
   },
   sources: [
     {
-      until: "s",
+      until: 's',
       sourceOptions: SourceOptions,
       data: ImageDataType,
     },
     {
-      from: "s",
+      from: 's',
       sourceOptions: SourceOptions,
       data: ImageDataType,
     },
