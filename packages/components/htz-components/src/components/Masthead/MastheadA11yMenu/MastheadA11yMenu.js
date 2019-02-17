@@ -2,6 +2,7 @@ import React, { Fragment, } from 'react';
 import { FelaComponent, FelaTheme, } from 'react-fela';
 import gql from 'graphql-tag';
 import Query from '../../ApolloBoundary/Query';
+import VisuallyHidden from '../../VisuallyHidden/VisuallyHidden';
 import Button from '../../Button/Button';
 import ClickArea from '../../ClickArea/ClickArea';
 import hoverableButtonRule from '../../ClickArea/hoverableButtonRule';
@@ -76,11 +77,20 @@ class MastheadA11yMenu extends React.Component {
                     <FelaComponent
                       rule={hoverableButtonRule}
                       isOpen={isOpen}
-                      render={({ theme, className, }) => (
-                        <button type="button" className={className} ref={this.buttonRef} onClick={toggleState}>
+                      render={({ className, theme: { a11yMenuI18n, }, }) => (
+                        <button
+                          aria-describedby="masthead-a11y-dropdown-button"
+                          type="button"
+                          className={className}
+                          ref={this.buttonRef}
+                          onClick={toggleState}
+                        >
                           <ClickArea tagName="span" size={6}>
                             <IconAccessibility size={3.5} />
                           </ClickArea>
+                          <VisuallyHidden id="masthead-a11y-dropdown-button">
+                            {a11yMenuI18n.a11yTitle}
+                          </VisuallyHidden>
                         </button>
                       )}
                     />

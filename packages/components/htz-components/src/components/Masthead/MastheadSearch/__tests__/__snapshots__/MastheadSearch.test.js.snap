@@ -8,6 +8,7 @@ Object {
       onSubmit={[Function]}
     >
       <button
+        aria-describedby="masthead-search-open-or-close"
         aria-expanded={false}
         className="htz-g htz-h htz-a htz-i htz-j htz-k htz-l htz-m htz-n htz-o htz-p htz-q htz-r htz-d htz-e htz-s htz-t"
         onBlur={[Function]}

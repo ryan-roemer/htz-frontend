@@ -5,6 +5,7 @@ import { type StyleProps, type ComponentPropResponsiveObject, } from '@haaretz/h
 import IconHaaretzLogo from '../Icon/icons/IconHaaretzLogo';
 import PageDateTime from './PageDateTime';
 import HtzLink from '../HtzLink/HtzLink';
+import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 
 type LogoAndDateProps = {
   logoMiscStyles: ?StyleProps,
@@ -32,14 +33,18 @@ export default function LogoAndDate({
         flexDirection: 'column',
         alignItems: 'center',
       }}
-    >
-      {Logo ? (
-        <HtzLink href="/" attrs={{ tabIndex, }}>
-          <Logo size={logoSize} miscStyles={logoMiscStyles} />
-        </HtzLink>
-      ) : null}
-      {disableDatetime ? null : <PageDateTime miscStyles={datetimeMiscStyles} />}
-    </FelaComponent>
+      render={({ className, theme: { homepageLogoLink, }, }) => (
+        <div className={className}>
+          {Logo ? (
+            <HtzLink href="/" attrs={{ tabIndex, }}>
+              <Logo size={logoSize} miscStyles={logoMiscStyles} />
+              <VisuallyHidden>{homepageLogoLink.a11yText}</VisuallyHidden>
+            </HtzLink>
+          ) : null}
+          {disableDatetime ? null : <PageDateTime miscStyles={datetimeMiscStyles} />}
+        </div>
+      )}
+    />
   );
 }
 

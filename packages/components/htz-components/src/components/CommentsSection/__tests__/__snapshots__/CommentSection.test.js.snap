@@ -327,7 +327,7 @@ exports[`<CommentsSection> DOM element renders correctly with minimum required p
                   />
                 </svg>
                 <span
-                  className="htz-in htz-io htz-ip htz-iq htz-ir htz-is htz-hz htz-hv htz-et htz-it htz-aw"
+                  className="htz-im htz-in htz-io htz-ip htz-iq htz-ir htz-hy htz-hu htz-et htz-is htz-aw"
                 >
                   אהבתי
                 </span>
@@ -356,7 +356,7 @@ exports[`<CommentsSection> DOM element renders correctly with minimum required p
                   />
                 </svg>
                 <span
-                  className="htz-in htz-io htz-ip htz-iq htz-ir htz-is htz-hz htz-hv htz-et htz-it htz-aw"
+                  className="htz-im htz-in htz-io htz-ip htz-iq htz-ir htz-hy htz-hu htz-et htz-is htz-aw"
                 >
                   לא אהבתי
                 </span>

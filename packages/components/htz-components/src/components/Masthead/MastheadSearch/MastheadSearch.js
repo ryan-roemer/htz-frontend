@@ -3,6 +3,7 @@ import React, { Fragment, } from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
 import { FelaComponent, } from 'react-fela';
+import VisuallyHidden from '../../VisuallyHidden/VisuallyHidden';
 import IconClose from '../../Icon/icons/IconClose';
 import IconSearch from '../../Icon/icons/IconSearch';
 import HtzLink from '../../HtzLink/HtzLink';
@@ -85,7 +86,7 @@ class HeaderSearch extends React.Component {
             getDuration,
             getTimingFunction,
             getTransition,
-            headerSearchI18n: { buttonText, placeHolder, queryUrl, },
+            headerSearchI18n: { buttonText, placeHolder, queryUrl, a11yTexts, },
             type,
           },
         }) => (
@@ -134,6 +135,7 @@ class HeaderSearch extends React.Component {
                     this.searchButton = el;
                   }}
                   aria-expanded={this.state.isSearchOpen}
+                  aria-describedby="masthead-search-open-or-close"
                   onMouseEnter={this.handleMouseEnter}
                   onMouseLeave={this.handleMouseLeave}
                   onFocus={this.handleMouseEnter}
@@ -141,7 +143,10 @@ class HeaderSearch extends React.Component {
                   type="button"
                 >
                   {this.state.isSearchOpen ? (
-                    <IconClose size={3.5} color="white" fill="primary" />
+                    <Fragment>
+                      <IconClose size={3.5} color="white" fill="primary" />
+                      <VisuallyHidden id="masthead-search-open-or-close">{a11yTexts.close}</VisuallyHidden>
+                    </Fragment>
                   ) : (
                     <Fragment>
                       <IconSearch
@@ -214,14 +219,17 @@ class HeaderSearch extends React.Component {
                           }}
                           render={({ className, }) => (
                             <HtzLink
+                              attrs={{ 'aria-describedby': 'masthead-execute-search', }}
                               // TODO: Change to Next link.
                               href={queryUrl(this.state.query) || '#'}
                               refFunc={linkRef => {
                                 this.linkRef = linkRef;
                               }}
                               className={className}
-                              content={<IconSearch size={3.5} color="primary" />}
-                            />
+                            >
+                              <IconSearch size={3.5} color="primary" />
+                              <VisuallyHidden id="masthead-execute-search">{a11yTexts.execSearch}</VisuallyHidden>
+                            </HtzLink>
                           )}
                         />
                       </div>

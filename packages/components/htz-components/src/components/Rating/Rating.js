@@ -1,19 +1,8 @@
 import React, { Component, Fragment, } from 'react';
 import PropTypes from 'prop-types';
-import { FelaComponent, } from 'react-fela';
-import { visuallyHidden, } from '@haaretz/htz-css-tools';
+import { FelaComponent, FelaTheme, } from 'react-fela';
 import IconStar from '../IconStar/IconStar';
 import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
-
-const AriaHidden = ({ children, }) => (
-  <FelaComponent
-    style={visuallyHidden()}
-    render={({ className, }) => (
-      <span className={className}>{children}</span>
-    )}
-  />
-);
-AriaHidden.propTypes = { children: PropTypes.node.isRequired, };
 
 class Rating extends Component {
   static propTypes = {
@@ -59,9 +48,8 @@ class Rating extends Component {
             ':hover': { outline: 'none', },
             ':focus': { outline: 'none', },
           }}
-          render={({ className, }) => (
+          render={({ className, theme: { ratingI18n: { a11yTexts, }, }, }) => (
             <button
-              aria-describedby={`star${starNumber}rating`}
               key={`star${starNumber}`}
               type="button"
               className={className}
@@ -87,9 +75,7 @@ class Rating extends Component {
                 leftColor={this.starColor(false, starNumber)}
               />
               <VisuallyHidden>
-                לחץ כדי לדרג ב
-                {starNumber}
-                כוכבים
+                {a11yTexts.rateAction(starNumber)}
               </VisuallyHidden>
             </button>
           )}
@@ -97,14 +83,16 @@ class Rating extends Component {
       );
     }
     return (
-      <Fragment>
-        <AriaHidden>
-          {rating}
-          {' '}
-          כוכבים
-        </AriaHidden>
-        {starArr}
-      </Fragment>
+      <FelaTheme
+        render={({ ratingI18n: { a11yTexts, }, }) => (
+          <Fragment>
+            <VisuallyHidden>
+              {a11yTexts.rating(rating)}
+            </VisuallyHidden>
+            {starArr}
+          </Fragment>
+        )}
+      />
     );
   }
 }

@@ -119,7 +119,7 @@ exports[`<Comment> DOM element renders correctly as a first subComment 1`] = `
               />
             </svg>
             <span
-              className="htz-ei htz-ej htz-ek htz-el htz-em htz-en htz-au htz-ao htz-dv htz-eo htz-ar"
+              className="htz-x htz-y htz-z htz-ab htz-ac htz-ae htz-af htz-ag htz-ah htz-ai htz-aj"
             >
               אהבתי
             </span>
@@ -148,12 +148,7 @@ exports[`<Comment> DOM element renders correctly as a first subComment 1`] = `
               />
             </svg>
             <span
-<<<<<<< HEAD
               className="htz-x htz-y htz-z htz-ab htz-ac htz-ae htz-af htz-ag htz-ah htz-ai htz-aj"
-              id="dislike"
-=======
-              className="htz-ei htz-ej htz-ek htz-el htz-em htz-en htz-au htz-ao htz-dv htz-eo htz-ar"
->>>>>>> refactor(aria-description cmp): change name from AriaDescription to VisuallyHidden
             >
               לא אהבתי
             </span>

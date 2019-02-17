@@ -6,10 +6,12 @@ import type { Node, ChildrenArray, } from 'react';
 
 import { FelaComponent, } from 'react-fela';
 import IconZoomIn from '../Icon/icons/IconZoomIn';
+import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 
 type Props = {
   children: ChildrenArray<Node> | Node,
   onClick?: ?() => void,
+  iconText: string,
 };
 
 type State = {
@@ -32,15 +34,19 @@ const iconStyle = ({ theme, hide, }: { theme: Object, hide: ?boolean, }): Object
     theme.getDuration('transition', 0),
     theme.getTimingFunction('transition', 'linear'),
   ],
+  ':focus': {
+    opacity: '1',
+  },
 });
 
-function Icon({ hide, }: { hide: ?boolean, }): Node {
+function Icon({ hide, iconText, }: { hide: ?boolean, iconText: string, }): Node {
   return (
     <FelaComponent
       rule={iconStyle}
       hide={hide}
       render={({ className, }) => (
-        <span className={className}>
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+        <button type="button" className={className}>
           <IconZoomIn
             color={[ 'neutral', '-10', ]}
             size={2.5}
@@ -49,7 +55,8 @@ function Icon({ hide, }: { hide: ?boolean, }): Node {
               margin: '0 auto',
             }}
           />
-        </span>
+          <VisuallyHidden>{iconText}</VisuallyHidden>
+        </button>
       )}
     />
   );
@@ -58,6 +65,7 @@ function Icon({ hide, }: { hide: ?boolean, }): Node {
 class EnlargementWrapper extends React.Component<Props, State> {
   static defaultProps = {
     onClick: null,
+    iconText: 'לחצו להגדלה',
   };
 
   state = {
@@ -69,7 +77,7 @@ class EnlargementWrapper extends React.Component<Props, State> {
   });
 
   render(): Node {
-    const { children, onClick, } = this.props;
+    const { children, onClick, iconText, } = this.props;
     return (
       <FelaComponent
         style={{
@@ -85,7 +93,7 @@ class EnlargementWrapper extends React.Component<Props, State> {
             onMouseEnter={() => this.toggleHide(false)}
             onMouseLeave={() => this.toggleHide(true)}
           >
-            <Icon isFullScreen={false} hide={this.state.hide} />
+            <Icon isFullScreen={false} hide={this.state.hide} iconText={iconText} />
             {children}
           </div>
         )}

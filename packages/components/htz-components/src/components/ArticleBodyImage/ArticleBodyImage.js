@@ -322,6 +322,7 @@ function ArticleBodyImage({
         className,
         theme: {
           creditPrefixI18n: { imageCreditPrefix, },
+          galleryI18n,
         },
       }) => (
         <figure className={className}>
@@ -330,8 +331,8 @@ function ArticleBodyImage({
               {client => (
                 <EnlargementWrapper
                   isFullScreen={isFullScreen}
-                  onClick={() => openGallery({ client, contentId: image.contentId, })
-                  }
+                  onClick={() => openGallery({ client, contentId: image.contentId, })}
+                  iconText={galleryI18n.open}
                 >
                   <ImageElement
                     imgOptions={imgOptions}

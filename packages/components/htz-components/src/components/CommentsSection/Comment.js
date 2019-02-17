@@ -1,6 +1,6 @@
 import React, { Fragment, } from 'react';
 import PropTypes from 'prop-types';
-import { borderBottom, getRemFromPx, visuallyHidden, } from '@haaretz/htz-css-tools';
+import { borderBottom, getRemFromPx, } from '@haaretz/htz-css-tools';
 import { FelaComponent, } from 'react-fela';
 import Recaptcha from 'react-google-invisible-recaptcha';
 import Button from '../Button/Button'; // eslint-disable-line import/no-named-as-default
@@ -11,6 +11,7 @@ import IconReply from '../Icon/icons/IconReply';
 import Like from './Like'; // eslint-disable-line import/no-named-as-default
 import H from '../AutoLevels/H';
 import Section from '../AutoLevels/Section';
+import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 
 import decodeCommonHTMLEntities from '../../utils/decodeCommonHTMLEntities';
 
@@ -74,18 +75,6 @@ const CommentHeaderContStyle = ({ theme, truncate, }) => ({
   ...(truncate ? {} : { flexWrap: 'wrap', }),
   extend: [ theme.mq({ until: 's', }, { flexWrap: 'wrap', }), ],
 });
-
-const AriaTextContStyle = visuallyHidden();
-
-const AriaText = ({ children, }) => (
-  <FelaComponent
-    style={AriaTextContStyle}
-    render={({ className, }) => (
-      <span className={className}>{children}</span>
-    )}
-  />
-);
-AriaText.propTypes = { children: PropTypes.node.isRequired, };
 
 // eslint-disable-next-line react/prop-types
 const StyledCommentAuthor = ({ truncate, children, ...props }) => (
@@ -420,7 +409,7 @@ class Comment extends React.Component {
                   {isSubComment ? (
                     isFirstSubComment ? (
                       <Fragment>
-                        <AriaText>{subCommentTxt}</AriaText>
+                        <VisuallyHidden>{subCommentTxt}</VisuallyHidden>
                         <IconReply color={[ 'comments', 'replyIcon', ]} />
                       </Fragment>
                     ) : (
