@@ -51,7 +51,6 @@ exports[`<Footer />  Mobile view DOM elements  Render mobile Footer element corr
           </svg>
           <span
             className="htz-ao htz-ap htz-aq htz-ar htz-as htz-at htz-au htz-av htz-aw htz-ax htz-ay"
-            id="footerhaaretzLogo"
           >
             הארץ
           </span>
@@ -69,7 +68,6 @@ exports[`<Footer />  Mobile view DOM elements  Render mobile Footer element corr
             >
               <span
                 className="htz-ao htz-ap htz-aq htz-ar htz-as htz-at htz-au htz-av htz-aw htz-ax htz-ay"
-                id="footerfacebookIcon"
               >
                 facebook
               </span>
@@ -97,7 +95,6 @@ exports[`<Footer />  Mobile view DOM elements  Render mobile Footer element corr
             >
               <span
                 className="htz-ao htz-ap htz-aq htz-ar htz-as htz-at htz-au htz-av htz-aw htz-ax htz-ay"
-                id="footertwitterIcon"
               >
                 Twitter
               </span>
@@ -125,7 +122,6 @@ exports[`<Footer />  Mobile view DOM elements  Render mobile Footer element corr
             >
               <span
                 className="htz-ao htz-ap htz-aq htz-ar htz-as htz-at htz-au htz-av htz-aw htz-ax htz-ay"
-                id="footerandroidIcon"
               >
                 Android
               </span>
@@ -153,7 +149,6 @@ exports[`<Footer />  Mobile view DOM elements  Render mobile Footer element corr
             >
               <span
                 className="htz-ao htz-ap htz-aq htz-ar htz-as htz-at htz-au htz-av htz-aw htz-ax htz-ay"
-                id="footerappleIcon"
               >
                 Apple
               </span>
@@ -181,7 +176,6 @@ exports[`<Footer />  Mobile view DOM elements  Render mobile Footer element corr
             >
               <span
                 className="htz-ao htz-ap htz-aq htz-ar htz-as htz-at htz-au htz-av htz-aw htz-ax htz-ay"
-                id="footergoogleplus"
               >
                 Google Plus
               </span>
@@ -209,7 +203,6 @@ exports[`<Footer />  Mobile view DOM elements  Render mobile Footer element corr
             >
               <span
                 className="htz-ao htz-ap htz-aq htz-ar htz-as htz-at htz-au htz-av htz-aw htz-ax htz-ay"
-                id="footermail"
               >
                 Email
               </span>
@@ -237,7 +230,6 @@ exports[`<Footer />  Mobile view DOM elements  Render mobile Footer element corr
             >
               <span
                 className="htz-ao htz-ap htz-aq htz-ar htz-as htz-at htz-au htz-av htz-aw htz-ax htz-ay"
-                id="footerrss"
               >
                 RSS
               </span>

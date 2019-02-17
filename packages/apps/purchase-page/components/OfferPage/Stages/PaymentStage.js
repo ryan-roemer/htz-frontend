@@ -11,7 +11,7 @@ import {
   IconPaypal,
   EventTracker,
   H,
-  AriaDescription,
+  VisuallyHidden,
   ApolloConsumer,
 } from '@haaretz/htz-components';
 import { parseComponentProp, } from '@haaretz/htz-css-tools';
@@ -477,9 +477,9 @@ class PaymentStage extends Component {
                                             {payVia}
                                             {' '}
                                             <br />
-                                            <AriaDescription id="paypal">
+                                            <VisuallyHidden>
                                               Paypal
-                                            </AriaDescription>
+                                            </VisuallyHidden>
                                             <IconPaypal
                                               size={[
                                                 { until: 's', value: 3.5, },

@@ -20,7 +20,7 @@ import ActionButtons from './components/ActionButtons/ActionButtons';
 import Astronaut from './components/illustrations/Astronaut/Astronaut';
 
 import ApolloConsumer from './components/ApolloBoundary/ApolloConsumer';
-import AriaDescription from './components/AriaDescription/AriaDescription';
+import VisuallyHidden from './components/VisuallyHidden/VisuallyHidden';
 import AriaLive from './components/AriaLive/AriaLive';
 import ArticleBody from './components/ArticleBody/ArticleBody';
 import BlockLink from './components/BlockLink/BlockLink';
@@ -261,7 +261,7 @@ export {
   ActionButtons,
   Astronaut,
   ApolloConsumer,
-  AriaDescription,
+  VisuallyHidden,
   AriaLive,
   ArticleBody,
   BlockLink,

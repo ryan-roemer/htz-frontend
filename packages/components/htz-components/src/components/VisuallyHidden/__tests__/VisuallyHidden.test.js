@@ -1,13 +1,13 @@
 import React from 'react';
 import felaSnapshotter from '../../../test-helpers/felaSnapshotter';
-import AriaDescription from '../AriaDescription';
+import VisuallyHidden from '../VisuallyHidden';
 
-describe('AriaDescription component', () => {
+describe('VisuallyHidden component', () => {
   it('renders correctly', () => {
     const snapshot = felaSnapshotter(
-      <AriaDescription id="my-div-description">
+      <VisuallyHidden id="my-div-description">
         This text describes the container
-      </AriaDescription>
+      </VisuallyHidden>
     );
     expect(snapshot).toMatchSnapshot();
   });

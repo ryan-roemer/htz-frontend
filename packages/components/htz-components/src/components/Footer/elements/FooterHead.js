@@ -10,7 +10,7 @@ import IconRss from '../../Icon/icons/IconRss';
 import IconMail from '../../Icon/icons/IconMail';
 import IconApple from '../../Icon/icons/IconApple';
 import IconAndroid from '../../Icon/icons/IconAndroid';
-import AriaDescription from '../../AriaDescription/AriaDescription';
+import VisuallyHidden from '../../VisuallyHidden/VisuallyHidden';
 
 const IconMiscStyle = {
   marginTop: [ { until: 's', value: '1.5rem', }, ],
@@ -121,7 +121,7 @@ export default function FooterHead() {
             render={({ className, }) => (
               <div className={className}>
                 <IconHaaretzLogo size={6} miscStyles={LogoMiscStyle} />
-                <AriaDescription id="footerhaaretzLogo">הארץ</AriaDescription>
+                <VisuallyHidden>הארץ</VisuallyHidden>
               </div>
             )}
           />
@@ -136,9 +136,9 @@ export default function FooterHead() {
                       <HtzLink
                         content={(
                           <Fragment>
-                            <AriaDescription id="footerfacebookIcon">
+                            <VisuallyHidden>
                               facebook
-                            </AriaDescription>
+                            </VisuallyHidden>
                             <IconFaceBookLogo miscStyles={IconMiscStyle} />
                           </Fragment>
 )}
@@ -154,9 +154,9 @@ export default function FooterHead() {
                       <HtzLink
                         content={(
                           <Fragment>
-                            <AriaDescription id="footertwitterIcon">
+                            <VisuallyHidden>
                               Twitter
-                            </AriaDescription>
+                            </VisuallyHidden>
                             <IconTwitter miscStyles={IconMiscStyle} />
                           </Fragment>
 )}
@@ -173,9 +173,9 @@ export default function FooterHead() {
                       <HtzLink
                         content={(
                           <Fragment>
-                            <AriaDescription id="footerandroidIcon">
+                            <VisuallyHidden>
                               Android
-                            </AriaDescription>
+                            </VisuallyHidden>
                             <IconAndroid />
                           </Fragment>
 )}
@@ -192,9 +192,9 @@ export default function FooterHead() {
                       <HtzLink
                         content={(
                           <Fragment>
-                            <AriaDescription id="footerappleIcon">
+                            <VisuallyHidden>
                               Apple
-                            </AriaDescription>
+                            </VisuallyHidden>
                             <IconApple />
                           </Fragment>
 )}
@@ -210,9 +210,9 @@ export default function FooterHead() {
                       <HtzLink
                         content={(
                           <Fragment>
-                            <AriaDescription id="footergoogleplus">
+                            <VisuallyHidden>
                               Google Plus
-                            </AriaDescription>
+                            </VisuallyHidden>
                             <IconGPlus miscStyles={IconMiscStyle} />
                           </Fragment>
 )}
@@ -229,9 +229,9 @@ export default function FooterHead() {
                       <HtzLink
                         content={(
                           <Fragment>
-                            <AriaDescription id="footermail">
+                            <VisuallyHidden>
                               Email
-                            </AriaDescription>
+                            </VisuallyHidden>
                             <IconMail />
                           </Fragment>
 )}
@@ -249,9 +249,9 @@ export default function FooterHead() {
                       <HtzLink
                         content={(
                           <Fragment>
-                            <AriaDescription id="footerrss">
+                            <VisuallyHidden>
                               RSS
-                            </AriaDescription>
+                            </VisuallyHidden>
                             <IconRss />
                           </Fragment>
 )}

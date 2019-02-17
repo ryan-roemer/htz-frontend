@@ -22,7 +22,6 @@ exports[`<Like> DOM element renders correctly with custom iconsColor 1`] = `
     </svg>
     <span
       className="htz-j htz-k htz-l htz-m htz-n htz-o htz-p htz-q htz-r htz-s htz-t"
-      id="like"
     >
       אהבתי
     </span>
@@ -59,7 +58,6 @@ exports[`<Like> DOM element renders correctly with minimal required props 1`] = 
     </svg>
     <span
       className="htz-j htz-k htz-l htz-m htz-n htz-o htz-p htz-q htz-r htz-s htz-t"
-      id="like"
     >
       אהבתי
     </span>

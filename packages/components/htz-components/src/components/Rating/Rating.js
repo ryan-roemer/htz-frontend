@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FelaComponent, } from 'react-fela';
 import { visuallyHidden, } from '@haaretz/htz-css-tools';
 import IconStar from '../IconStar/IconStar';
-import AriaDescription from '../AriaDescription/AriaDescription';
+import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 
 const AriaHidden = ({ children, }) => (
   <FelaComponent
@@ -86,11 +86,11 @@ class Rating extends Component {
                 rightColor={this.starColor(true, starNumber)}
                 leftColor={this.starColor(false, starNumber)}
               />
-              <AriaDescription id={`star${starNumber}rating`}>
+              <VisuallyHidden>
                 לחץ כדי לדרג ב
                 {starNumber}
                 כוכבים
-              </AriaDescription>
+              </VisuallyHidden>
             </button>
           )}
         />

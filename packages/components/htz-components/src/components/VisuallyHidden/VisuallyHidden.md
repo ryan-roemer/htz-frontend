@@ -15,8 +15,8 @@ This is used for Accessibility.
 >
   This div element is described by an invisble element.<br />
   Look at page-source to see div description.
-  <AriaDescription id="my-div-description">
+  <VisuallyHidden id="my-div-description">
     This text describes the container
-  </AriaDescription>
+  </VisuallyHidden>
 </div>
 ```

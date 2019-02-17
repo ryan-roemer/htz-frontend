@@ -15,7 +15,7 @@ import {
   GridItem,
   H,
   EventTracker,
-  AriaDescription,
+  VisuallyHidden,
   ApolloConsumer,
 } from '@haaretz/htz-components';
 import PositiveCircle from './PositiveCircle';
@@ -454,17 +454,17 @@ function DesktopView({
                           ))
                         ) : cellData ? (
                           <React.Fragment>
-                            <AriaDescription id={`Description${idx + rowNum}`}>
+                            <VisuallyHidden id={`Description${idx + rowNum}`}>
                               כלול ב-
                               {tHeadData[idx - 1].heading}
-                            </AriaDescription>
+                            </VisuallyHidden>
                             <PositiveCircle />
                           </React.Fragment>
                         ) : (
-                          <AriaDescription id={`Description${idx + rowNum}`}>
+                          <VisuallyHidden id={`Description${idx + rowNum}`}>
                               לא כלול ב
                             {tHeadData[idx - 1].heading}
-                          </AriaDescription>
+                          </VisuallyHidden>
                         )}
                       </StyledTdInnerCont>
                     </GridItem>

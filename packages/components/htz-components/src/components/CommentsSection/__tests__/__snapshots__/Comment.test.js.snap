@@ -119,8 +119,7 @@ exports[`<Comment> DOM element renders correctly as a first subComment 1`] = `
               />
             </svg>
             <span
-              className="htz-x htz-y htz-z htz-ab htz-ac htz-ae htz-af htz-ag htz-ah htz-ai htz-aj"
-              id="like"
+              className="htz-ei htz-ej htz-ek htz-el htz-em htz-en htz-au htz-ao htz-dv htz-eo htz-ar"
             >
               אהבתי
             </span>
@@ -149,8 +148,12 @@ exports[`<Comment> DOM element renders correctly as a first subComment 1`] = `
               />
             </svg>
             <span
+<<<<<<< HEAD
               className="htz-x htz-y htz-z htz-ab htz-ac htz-ae htz-af htz-ag htz-ah htz-ai htz-aj"
               id="dislike"
+=======
+              className="htz-ei htz-ej htz-ek htz-el htz-em htz-en htz-au htz-ao htz-dv htz-eo htz-ar"
+>>>>>>> refactor(aria-description cmp): change name from AriaDescription to VisuallyHidden
             >
               לא אהבתי
             </span>
@@ -288,7 +291,6 @@ exports[`<Comment> DOM element renders correctly as a last subComment 1`] = `
             </svg>
             <span
               className="htz-eg htz-eh htz-ei htz-ej htz-ek htz-el htz-an htz-ah htz-dt htz-em htz-ak"
-              id="like"
             >
               אהבתי
             </span>
@@ -318,7 +320,6 @@ exports[`<Comment> DOM element renders correctly as a last subComment 1`] = `
             </svg>
             <span
               className="htz-eg htz-eh htz-ei htz-ej htz-ek htz-el htz-an htz-ah htz-dt htz-em htz-ak"
-              id="dislike"
             >
               לא אהבתי
             </span>
@@ -439,7 +440,6 @@ exports[`<Comment> DOM element renders correctly as a last subComment 3`] = `
             </svg>
             <span
               className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-              id="like"
             >
               אהבתי
             </span>
@@ -469,7 +469,6 @@ exports[`<Comment> DOM element renders correctly as a last subComment 3`] = `
             </svg>
             <span
               className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-              id="dislike"
             >
               לא אהבתי
             </span>
@@ -617,7 +616,6 @@ exports[`<Comment> DOM element renders correctly as a last subComment 3`] = `
                     </svg>
                     <span
                       className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-                      id="like"
                     >
                       אהבתי
                     </span>
@@ -647,7 +645,6 @@ exports[`<Comment> DOM element renders correctly as a last subComment 3`] = `
                     </svg>
                     <span
                       className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-                      id="dislike"
                     >
                       לא אהבתי
                     </span>
@@ -772,7 +769,6 @@ exports[`<Comment> DOM element renders correctly with commentText prop 1`] = `
             </svg>
             <span
               className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-              id="like"
             >
               אהבתי
             </span>
@@ -802,7 +798,6 @@ exports[`<Comment> DOM element renders correctly with commentText prop 1`] = `
             </svg>
             <span
               className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-              id="dislike"
             >
               לא אהבתי
             </span>
@@ -923,7 +918,6 @@ exports[`<Comment> DOM element renders correctly with comments plus rate and min
             </svg>
             <span
               className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-              id="like"
             >
               אהבתי
             </span>
@@ -953,7 +947,6 @@ exports[`<Comment> DOM element renders correctly with comments plus rate and min
             </svg>
             <span
               className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-              id="dislike"
             >
               לא אהבתי
             </span>
@@ -1074,7 +1067,6 @@ exports[`<Comment> DOM element renders correctly with comments plus rate and min
             </svg>
             <span
               className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-              id="like"
             >
               אהבתי
             </span>
@@ -1104,7 +1096,6 @@ exports[`<Comment> DOM element renders correctly with comments plus rate and min
             </svg>
             <span
               className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-              id="dislike"
             >
               לא אהבתי
             </span>
@@ -1231,7 +1222,6 @@ exports[`<Comment> DOM element renders correctly with isEditorPick true 1`] = `
             </svg>
             <span
               className="htz-eg htz-eh htz-ei htz-ej htz-ek htz-el htz-ar htz-al htz-dr htz-em htz-ao"
-              id="like"
             >
               אהבתי
             </span>
@@ -1261,7 +1251,6 @@ exports[`<Comment> DOM element renders correctly with isEditorPick true 1`] = `
             </svg>
             <span
               className="htz-eg htz-eh htz-ei htz-ej htz-ek htz-el htz-ar htz-al htz-dr htz-em htz-ao"
-              id="dislike"
             >
               לא אהבתי
             </span>
@@ -1382,7 +1371,6 @@ exports[`<Comment> DOM element renders correctly with minimum required props 1`]
             </svg>
             <span
               className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-              id="like"
             >
               אהבתי
             </span>
@@ -1412,7 +1400,6 @@ exports[`<Comment> DOM element renders correctly with minimum required props 1`]
             </svg>
             <span
               className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-              id="dislike"
             >
               לא אהבתי
             </span>
@@ -1533,7 +1520,6 @@ exports[`<Comment> DOM element renders correctly with title prop 1`] = `
             </svg>
             <span
               className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-              id="like"
             >
               אהבתי
             </span>
@@ -1563,7 +1549,6 @@ exports[`<Comment> DOM element renders correctly with title prop 1`] = `
             </svg>
             <span
               className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-              id="dislike"
             >
               לא אהבתי
             </span>
@@ -1702,7 +1687,6 @@ exports[`<Comment> DOM element renders correctly with truncated comment 1`] = `
             </svg>
             <span
               className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-              id="like"
             >
               אהבתי
             </span>
@@ -1732,7 +1716,6 @@ exports[`<Comment> DOM element renders correctly with truncated comment 1`] = `
             </svg>
             <span
               className="htz-ef htz-eg htz-eh htz-ei htz-ej htz-ek htz-ar htz-al htz-dq htz-el htz-ao"
-              id="dislike"
             >
               לא אהבתי
             </span>

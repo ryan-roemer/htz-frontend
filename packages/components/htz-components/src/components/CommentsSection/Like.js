@@ -5,7 +5,7 @@ import { parseStyleProps, } from '@haaretz/htz-css-tools';
 import IconDislike from '../Icon/icons/IconDislike';
 import IconLike from '../Icon/icons/IconLike';
 import { stylesPropType, } from '../../propTypes/stylesPropType';
-import AriaDescription from '../AriaDescription/AriaDescription';
+import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 
 const propTypes = {
   /**
@@ -101,16 +101,16 @@ export function Like({
           {isDisLike ? (
             <Fragment>
               <IconDislike size={3.5} color={computedIconColor} />
-              <AriaDescription id="dislike">
+              <VisuallyHidden>
                 {commentsSectionI18n.likes.dislike}
-              </AriaDescription>
+              </VisuallyHidden>
             </Fragment>
           ) : (
             <Fragment>
               <IconLike size={3.5} color={computedIconColor} />
-              <AriaDescription id="like">
+              <VisuallyHidden>
                 {commentsSectionI18n.likes.like}
-              </AriaDescription>
+              </VisuallyHidden>
             </Fragment>
           )}
 

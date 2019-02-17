@@ -1,6 +1,6 @@
 import React, { Component, } from 'react';
 import PropTypes from 'prop-types';
-import AriaDescription from '../AriaDescription/AriaDescription';
+import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 
 const alertButtonPropTypes = {
   /**
@@ -51,11 +51,11 @@ class AlertsButton extends Component {
         onClick={this.toggleExpanded}
         aria-describedby="alerts_btn_description"
       >
-        <AriaDescription id="alerts_btn_description">
+        <VisuallyHidden id="alerts_btn_description">
           קבל התראות בתיבת הדואר האלקטרוני שלך עבור כתבות מ
           {' '}
           {author.name}
-        </AriaDescription>
+        </VisuallyHidden>
         {children}
       </button>
     );

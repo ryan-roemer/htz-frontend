@@ -10,7 +10,7 @@ import {
   IconHaaretzLogo,
   IconLock,
   EventTracker,
-  AriaDescription,
+  VisuallyHidden,
 } from '@haaretz/htz-components';
 
 const propTypes = {
@@ -183,7 +183,7 @@ function PurchaseHeader({ host, router, displayBackButton, stage, }) {
                     attrs={{ role: 'img', 'aria-hidden': true, }}
                     miscStyles={{ marginTop: '2rem', }}
                   />
-                  <AriaDescription id="theMarkerLogo">דה מרקר</AriaDescription>
+                  <VisuallyHidden>דה מרקר</VisuallyHidden>
                 </div>
               ) : (
                 <div>
@@ -193,7 +193,7 @@ function PurchaseHeader({ host, router, displayBackButton, stage, }) {
                     attrs={{ role: 'image', 'aria-hidden': true, }}
                     miscStyles={{ marginTop: '2rem', }}
                   />
-                  <AriaDescription id="haaretzLogo">הארץ</AriaDescription>
+                  <VisuallyHidden>הארץ</VisuallyHidden>
                 </div>
               )}
             </a>

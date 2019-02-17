@@ -9,6 +9,7 @@ import {
   TextInput,
   TextLink,
   ApolloConsumer,
+  VisuallyHidden,
 } from '@haaretz/htz-components';
 import gql from 'graphql-tag';
 import { visuallyHidden, } from '@haaretz/htz-css-tools';
@@ -67,22 +68,12 @@ const couponButtonsMiscStyles = {
   // width: '11rem',
 };
 
-const A11yText = ({ children, }) => (
-  <FelaComponent
-    style={visuallyHidden()}
-    render={({ className, }) => (
-      <span className={className}>{children}</span>
-    )}
-  />
-);
-A11yText.propTypes = { children: PropTypes.node.isRequired, };
-
 const regularProductsContentIds = { 7.7504259: 1, 7.7602297: 1, };
 const AltPricingOption = ({ productContentId, productTitle, optionButtons, }) => {
   const specialOffer = !(productContentId in regularProductsContentIds);
   return (
     <Fragment>
-      {specialOffer && <A11yText>{optionButtons.a11yTexts.prefix}</A11yText>}
+      {specialOffer && <VisuallyHidden>{optionButtons.a11yTexts.prefix}</VisuallyHidden>}
       {specialOffer ? productTitle : optionButtons.regular}
     </Fragment>
   );

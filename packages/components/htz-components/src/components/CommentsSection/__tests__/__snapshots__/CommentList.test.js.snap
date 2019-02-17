@@ -96,7 +96,6 @@ exports[`<Comment> DOM element renders correctly with required props 1`] = `
               </svg>
               <span
                 className="htz-eh htz-ei htz-ej htz-ek htz-el htz-em htz-as htz-am htz-ds htz-en htz-ap"
-                id="like"
               >
                 אהבתי
               </span>
@@ -126,7 +125,6 @@ exports[`<Comment> DOM element renders correctly with required props 1`] = `
               </svg>
               <span
                 className="htz-eh htz-ei htz-ej htz-ek htz-el htz-em htz-as htz-am htz-ds htz-en htz-ap"
-                id="dislike"
               >
                 לא אהבתי
               </span>

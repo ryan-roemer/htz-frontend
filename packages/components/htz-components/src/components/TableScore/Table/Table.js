@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import type { Node, } from 'react';
-import AriaDescription from '../../AriaDescription/AriaDescription';
+import VisuallyHidden from '../../VisuallyHidden/VisuallyHidden';
 import Header from './Header';
 import Body from './Body';
 
@@ -25,9 +25,9 @@ function Table(props: Props): Node {
   return (
     <table aria-describedby={tableType} style={{ width: '100%', }} dir="rtl">
 
-      <AriaDescription id={tableType}>
+      <VisuallyHidden id={tableType}>
         <caption>{tableType}</caption>
-      </AriaDescription>
+      </VisuallyHidden>
 
       <Header headers={headers} />
       <Body tableData={tableData} isOpen={isOpen} borders={borders} />

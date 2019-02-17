@@ -40,7 +40,7 @@ import IconReading from '../Icon/icons/IconReading';
 import IconTwitter from '../Icon/icons/IconTwitter';
 import IconWhatsapp from '../Icon/icons/IconWhatsapp';
 import IconZen from '../Icon/icons/IconZen';
-import AriaDescription from '../AriaDescription/AriaDescription';
+import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 // import Tooltip from '../Tooltip/Tooltip';
 import Media from '../Media/Media';
 import ClickArea from '../ClickArea/ClickArea';
@@ -160,7 +160,7 @@ export const Button: StatelessFunctionalComponent<ButtonProps> = ({
           ...props,
         }}
       >
-        <AriaDescription id={title}>{title}</AriaDescription>
+        <VisuallyHidden>{title}</VisuallyHidden>
         {children}
       </ClickArea>
     )}
@@ -222,7 +222,7 @@ const Comments: StatelessFunctionalComponent<CommentButtonProps> = ({
             ) : null;
           }}
         </ApolloConsumer>
-        <AriaDescription id="writeCommand">כתוב תגובה</AriaDescription>
+        <VisuallyHidden>כתוב תגובה</VisuallyHidden>
         <IconComment size={size} miscStyles={iconStyles} />
       </Button>
     )}
@@ -410,7 +410,7 @@ const Mail: StatelessFunctionalComponent<MailButtonProps> = ({
           });
         }}
       >
-        <AriaDescription id="sendByEmail">שליחת הכתבה באימייל</AriaDescription>
+        <VisuallyHidden>שליחת הכתבה באימייל</VisuallyHidden>
         <IconMail size={size} miscStyles={iconStyles} />
       </Button>
     )}

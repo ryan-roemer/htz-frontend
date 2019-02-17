@@ -10,7 +10,7 @@ import { FelaComponent, FelaTheme, } from 'react-fela';
 import * as React from 'react';
 
 import type { attrFlowType, } from '../../flowTypes/attrTypes';
-import AriaDescription from '../AriaDescription/AriaDescription';
+import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 import IconStar from '../IconStar/IconStar';
 
 type ColorPropType =
@@ -95,9 +95,9 @@ export default function TeaserRank({
           <span aria-hidden="true">{stars}</span>
           <FelaTheme
             render={theme => (theme.teaserI18n ? (
-              <AriaDescription>
+              <VisuallyHidden>
                 {`${rank} ${theme.teaserI18n.ratingDescription}`}
-              </AriaDescription>
+              </VisuallyHidden>
             ) : null)
             }
           />

@@ -1,6 +1,6 @@
 import React from 'react';
 import FelaComponent from 'react-fela/lib/FelaComponent';
-import { AriaDescription, } from '@haaretz/htz-components';
+import { VisuallyHidden, } from '@haaretz/htz-components';
 import PropTypes from 'prop-types';
 
 const circleStyle = theme => ({
@@ -14,9 +14,9 @@ function circle({ headers, }) {
   return (
     <div>
       <FelaComponent id={id} style={circleStyle} />
-      <AriaDescription id={`Description${id}`} headers={headers}>
+      <VisuallyHidden id={`Description${id}`} headers={headers}>
         כלול
-      </AriaDescription>
+      </VisuallyHidden>
     </div>
   );
 }

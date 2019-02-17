@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AriaDescription component renders correctly 1`] = `
+exports[`VisuallyHidden component renders correctly 1`] = `
 Object {
   "component": <div>
     <span
