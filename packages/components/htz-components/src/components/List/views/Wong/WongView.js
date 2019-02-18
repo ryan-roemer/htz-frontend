@@ -394,7 +394,6 @@ function getMediaProps(
   theme: Object
 ): ?Object {
   if (media) {
-    console.log(media);
     if (isImage(media)) return getImageProps(media, isConrad, theme);
     if (isEmbed(media)) return getEmbedProps(media);
     if (isGallery(media)) return { ...media, disableFullScreen: true, };

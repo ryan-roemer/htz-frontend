@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import gql from 'graphql-tag';
+import { withRouter, } from 'next/router';
 
 import type { Node, } from 'react';
 import type { DocumentNode, } from 'graphql/language/ast';
@@ -26,25 +27,25 @@ type ListComponentProps = {
   biAction: ?ListBiActionType,
   lazyLoadImages: boolean,
 };
-export type ListDataGetterProps = {
+export type ListContentRendererProps = {
   children: ListComponentProps => Node,
   updateListDuplication: Function,
   view: string,
-  viewProps?: Object,
+  viewProps: Object,
   listData: ListDataType,
 };
 
-ListDataGetter.defaultProps = {
+ListContentRenderer.defaultProps = {
   viewProps: {},
 };
 
-function ListDataGetter({
+function ListContentRenderer({
   children,
   updateListDuplication,
   view,
   viewProps,
   listData,
-}: ListDataGetterProps): Node {
+}: ListContentRendererProps): Node {
   const { title, items, lazyLoadImages, contentId, ...restList } = listData;
   items && updateListDuplication(items);
   return (
@@ -72,13 +73,75 @@ function ListDataGetter({
   );
 }
 
-type Props = ListDataGetterProps & {
+type ListDataGetterProps = ListContentRendererProps & {
   query: DocumentNode,
   variables: Object,
+  router: Object,
 }
 
-export default function ({ listData, variables, query, children, ...restOfProps }: Props): Node {
+type ListRendererProps = ListDataGetterProps & {
+  section: string,
+  isSsr: boolean,
+}
+
+function ListRenderer({
+  listData,
+  variables,
+  query,
+  children,
+  section,
+  isSsr,
+  ...restOfProps
+}: ListRendererProps): Node {
+  return (
+    isSsr
+      ? (
+        <ListContentRenderer listData={listData} section={section} {...restOfProps}>
+          {children}
+        </ListContentRenderer>
+      )
+      : (
+        <div>
+          <Query query={query} variables={{ ...variables, section, }} fetchPolicy="network-only">
+            {({ data, loading: listLoading, error: listError, }) => {
+              if (listLoading) return null;
+              if (listError) return null;
+              return (
+                <ListContentRenderer listData={data.list} section={section} {...restOfProps}>
+                  {children}
+                </ListContentRenderer>
+              );
+            }}
+          </Query>
+        </div>
+      )
+  );
+}
+
+
+ListDataGetter.section = null;
+
+function ListDataGetter(props: ListDataGetterProps): Node {
+  const { router, children, listData, viewProps, } = props;
   const isSsr = listData && listData.loadPriority === 'ssr';
+
+  if (isSsr || ListDataGetter.section) {
+    const section = isSsr
+      ? router.asPath
+      : ListDataGetter.section;
+    return (
+      <ListRenderer
+        {...props}
+        viewProps={viewProps || {}}
+        listData={listData}
+        section={section || '/'}
+        isSsr={isSsr}
+      >
+        {children}
+      </ListRenderer>
+    );
+  }
+
   return (
     <Query
       query={GET_SECTION}
@@ -87,30 +150,24 @@ export default function ({ listData, variables, query, children, ...restOfProps 
         if (loading) return null;
         if (error) return null;
         const { url, } = sectionData.articleSection || {};
-        return (
-          isSsr
-            ? (
-              <ListDataGetter listData={listData} section={url || '/'} {...restOfProps}>
-                {children}
-              </ListDataGetter>
-            )
-            : (
-              <div>
-                <Query query={query} variables={{ ...variables, section: url || '/', }} fetchPolicy="network-only">
-                  {({ data, loading: listLoading, error: listError, }) => {
-                    if (listLoading) return null;
-                    if (listError) return null;
-                    return (
-                      <ListDataGetter listData={data.list} section={url || '/'} {...restOfProps}>
-                        {children}
-                      </ListDataGetter>
-                    );
-                  }}
-                </Query>
-              </div>
-            )
-        );
+        if (url) {
+          ListDataGetter.section = url || '/';
+          return (
+            <ListRenderer
+              {...props}
+              viewProps={viewProps || {}}
+              listData={listData}
+              section={ListDataGetter.section}
+              isSsr={isSsr}
+            >
+              {children}
+            </ListRenderer>
+          );
+        }
+        return null;
       }}
     </Query>
   );
 }
+
+export default withRouter(ListDataGetter);

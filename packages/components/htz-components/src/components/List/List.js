@@ -1,11 +1,13 @@
 // @flow
-import * as React from 'react';
+import React from 'react';
 import gql from 'graphql-tag';
+
+import type { ComponentType, Node, } from 'react';
+import type { ListDataType, } from '../../flowTypes/ListDataType';
+
 import Mutation from '../ApolloBoundary/Mutation';
 import ApolloConsumer from '../ApolloBoundary/ApolloConsumer';
-import DynamicListView from './DynamicListView';
 import ReadingHistoryProvider from '../ReadingHistory/ReadingHistoryProvider';
-import type { ListDataType, } from '../../flowTypes/ListDataType';
 
 const UPDATE_LIST_DUPLICATION = gql`
   mutation UpdateDuplicationList($ids: [String]) {
@@ -43,7 +45,7 @@ type ListProps = {
   client: {
     readQuery: Function,
   },
-  listData: ListDataType,
+  listData: ListDataType & { View: ComponentType<any>, },
   /** A function that updates the apollo store with the itemsRepresentedContent ids  */
   updateListDuplication: Function,
   viewProps: ?Object,
@@ -93,13 +95,13 @@ class List extends React.Component<ListProps, State> {
     }
   };
 
-  render() {
-    const { listData, viewProps, } = this.props;
+  render(): Node {
+    const { listData: { View, }, listData, viewProps, } = this.props;
     const { listDuplicationIds, } = this.state;
-    return (
+    return View ? (
       <ReadingHistoryProvider>
         {readingHistory => (
-          <DynamicListView
+          <View
             listData={listData}
             viewProps={viewProps}
             updateListDuplication={this.updateListDuplication}
@@ -110,7 +112,7 @@ class List extends React.Component<ListProps, State> {
           />
         )}
       </ReadingHistoryProvider>
-    );
+    ) : <p>{listData.view}</p>;
   }
 }
 

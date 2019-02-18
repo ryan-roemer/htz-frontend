@@ -210,6 +210,7 @@ import Boxy from './components/List/views/Boxy/Boxy';
 import Butthead from './components/List/views/Butthead/Butthead';
 import Conrad from './components/List/views/Conrad/Conrad';
 import Calculon from './components/List/views/Calculon/Calculon';
+import Clampazzo from './components/List/views/Clampazzo/Clampazzo';
 import Donatello from './components/List/views/Donatello/Donatello';
 import Donbot from './components/List/views/Donbot/Donbot';
 import Farnsworth from './components/List/views/Farnsworth/Farnsworth';
@@ -440,6 +441,7 @@ export {
   Butthead,
   Conrad,
   Calculon,
+  Clampazzo,
   Donatello,
   Donbot,
   Farnsworth,

@@ -19,7 +19,6 @@ import ImageGallery from '../components/ImageGallery/ImageGallery';
 import Interactive from '../components/Interactive/Interactive';
 
 import LinksBlock from '../components/RelatedArticles/LinksBlock';
-import List from '../components/List/List';
 // import Masthead from '../components/Masthead/Masthead';
 import Masthead from '../components/Masthead/Masthead';
 import MobileListWrapper from '../components/MobileListWrapper/MobileListWrapper';
@@ -37,6 +36,7 @@ import Video from '../components/Video/Video';
 import withDfpSideEffect from '../components/Dfp/withDfpSideEffect';
 import TableScore from '../components/TableScore/TableScore';
 import RssFeed from '../components/RssFeed/RssFeed';
+import ArticlePageList from '../components/List/ArticlePageList';
 
 const tagsFromTagElement = ({ tagsList, }) => tagsList.map(x => x.contentName);
 
@@ -91,7 +91,7 @@ const inputTemplateToComponent = new Map([
   [ 'com.tm.HtmlElement', HtmlElement, ],
   [ 'com.tm.newsLetterQuickRegistrationRespAuto', Newsletter, ],
   [ 'com.tm.ListElement', () => <Debug><p>Old list, NOT SUPPORTED</p></Debug>, ],
-  [ 'com.tm.element.List', List, ],
+  [ 'com.tm.element.List', ArticlePageList, ],
   [ 'com.polobase.whtzMobileSiteListsWrapper', MobileListWrapper, ],
   [ 'com.tm.element.group', ChangeableElementGroup, ],
   [ 'com.tm.HeaderNewsGroup', TopNews, ],

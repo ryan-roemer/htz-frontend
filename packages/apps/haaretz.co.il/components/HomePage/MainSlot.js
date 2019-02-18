@@ -14,11 +14,12 @@ import {
   MarketingNotification,
   MobileListWrapper,
   RssFeed,
-  List,
 } from '@haaretz/htz-components';
 import { parseComponentProp, } from '@haaretz/htz-css-tools';
 
 import type { MainSlotElement, MainSlotType, } from '../../flowTypes/MainSlotType';
+
+import HomePageList from '../List/HomePageList';
 
 const {
   isDfp,
@@ -37,12 +38,12 @@ const {
 const componentType: Object = new Map([
   [ 'com.htz.PageMainBlockElement', (element: MainSlotElement) => (
     isMainBlock(element)
-      ? <MainBlock key={element.contentId} List={List} data={element} />
+      ? <MainBlock key={element.contentId} List={HomePageList} data={element} />
       : null
   ), ],
   [ 'com.tm.element.List', (element: MainSlotElement) => (
     isList(element)
-      ? <List key={element.contentId} {...element} />
+      ? <HomePageList key={element.contentId} {...element} />
       : null
   ), ],
   [ 'com.polobase.ClickTrackerBannersWrapper', (element: MainSlotElement) => (
@@ -57,12 +58,12 @@ const componentType: Object = new Map([
   ), ],
   [ 'com.tm.TabViewElement', (element: MainSlotElement) => (
     isTabElement(element)
-      ? <TabElement key={element.contentId} List={List} {...element} />
+      ? <TabElement key={element.contentId} List={HomePageList} {...element} />
       : null
   ), ],
   [ 'com.tm.GridElementGroup', (element: MainSlotElement) => (
     isGridElement(element)
-      ? <GridElement key={element.contentId} List={List} {...element} />
+      ? <GridElement key={element.contentId} List={HomePageList} {...element} />
       : null
   ), ],
   [ 'com.tm.HeaderNewsGroup', (element: MainSlotElement) => (
