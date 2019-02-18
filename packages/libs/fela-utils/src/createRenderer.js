@@ -9,11 +9,11 @@ import { prefix, } from 'inline-style-prefixer';
 import placeholderPrefixer from 'fela-plugin-placeholder-prefixer';
 import unit from 'fela-plugin-unit';
 // Plugins used only during development
-import validator from 'fela-plugin-validator';
+// import validator from 'fela-plugin-validator';
 
 // Fela enhancers
 // Enhancers used only during development:
-import beautifier from 'fela-beautifier';
+// import beautifier from 'fela-beautifier';
 // import perf from 'fela-perf';
 // import statistics from 'fela-statistics';
 
@@ -63,8 +63,8 @@ export default function createRenderer({
   const enhancers = [];
 
   if (isDev) {
-    plugins.push(validator());
-    enhancers.push(beautifier({ autosemicolon: true, }));
+    // plugins.push(validator());
+    // enhancers.push(beautifier({ autosemicolon: true, }));
   }
   else {
     // prod-only plugins
