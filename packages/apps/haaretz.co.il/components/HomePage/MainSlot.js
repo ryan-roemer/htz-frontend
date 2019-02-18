@@ -14,12 +14,11 @@ import {
   MarketingNotification,
   MobileListWrapper,
   RssFeed,
+  List,
 } from '@haaretz/htz-components';
 import { parseComponentProp, } from '@haaretz/htz-css-tools';
 
 import type { MainSlotElement, MainSlotType, } from '../../flowTypes/MainSlotType';
-
-import List from './List/List';
 
 const {
   isDfp,
