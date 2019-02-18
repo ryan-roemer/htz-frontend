@@ -1,7 +1,7 @@
 /* global window */
 import React from 'react';
 import { FelaComponent, } from 'react-fela';
-import _ from 'lodash';
+import orderBy from 'lodash/orderBy';
 import gql from 'graphql-tag';
 import Observer from 'react-intersection-observer';
 import Query from '../ApolloBoundary/Query';
@@ -59,7 +59,7 @@ export default class Survey extends React.Component {
         unsortedItems.map(v => this.partiesValues[v].push(parseInt(item[v], 10)));
       });
 
-      this.items = _.orderBy(
+      this.items = orderBy(
         unsortedItems,
         v => this.partiesValues[v][1] + this.partiesValues[v][0],
         [ 'desc', ]
