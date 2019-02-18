@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Debug from '../Debug/Debug';
-import logger from '../../componentsLogger';
 
 export default class ErrorBoundary extends React.Component {
   static propTypes = {
@@ -21,7 +20,7 @@ export default class ErrorBoundary extends React.Component {
 
   componentDidCatch(error, errorInfo) {
     this.setState({ error, errorInfo, });
-    logger.error(error, errorInfo);
+    console.error(error, errorInfo);
   }
 
   render() {

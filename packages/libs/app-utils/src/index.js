@@ -3,7 +3,6 @@ import pagePropTypes from './apollo/pagePropTypes';
 import schema from './schema/schema';
 import breakUrl from './utils/breakUrl';
 import switchToDomain from './utils/switchToDomain';
-import createLogger from './utils/createLogger';
 import jsonGenerator from './jsonGenerator/jsonGenerator';
 import intersperse from './utils/intersperse';
 import { b64EncodeUnicode, b64DecodeUnicode, } from './utils/base64Handler';
@@ -115,5 +114,4 @@ export {
   video,
   switchToDomain,
   breakUrl,
-  createLogger,
 };

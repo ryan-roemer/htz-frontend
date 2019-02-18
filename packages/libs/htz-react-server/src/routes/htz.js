@@ -1,11 +1,6 @@
-import { createLogger, } from '@haaretz/app-utils';
 import path from 'path';
 
 export default function htz(app, server, DEV) {
-  const logger = createLogger({
-    name: 'htz-router',
-  });
-
   // send robots.txt file
   const options = {
     root: path.join(
@@ -35,7 +30,7 @@ export default function htz(app, server, DEV) {
   /* Article Page */
   server.get([ /^.*(1\.\d+){1}$/, ], (req, res) => {
     if (DEV) {
-      logger.trace(
+      console.trace(
         'captured an article at  req.path: ',
         req.path,
         ' req.params[0]: ',

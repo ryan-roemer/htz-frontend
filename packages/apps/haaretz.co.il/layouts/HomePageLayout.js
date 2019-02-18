@@ -4,7 +4,6 @@ import { FelaComponent, } from 'react-fela';
 import { StyleProvider, } from '@haaretz/fela-utils';
 import dynamic from 'next/dynamic';
 import { htzTheme, } from '@haaretz/htz-theme';
-import { createLogger, } from '@haaretz/app-utils';
 import Head from 'next/head';
 import {
   AriaLive,
@@ -17,8 +16,6 @@ import {
 
 import styleRenderer from '../components/styleRenderer/styleRenderer';
 import HOMEPAGE_LAYOUT from './queries/homepage_layout';
-
-const logger = createLogger();
 
 const DfpInjector = dynamic(import('../components/Dfp/DfpInjector'), {
   loading: () => null,
@@ -34,7 +31,7 @@ function HomePageLayout({ render, }: { render: Function, }): React.Node {
     <Query query={HOMEPAGE_LAYOUT}>
       {({ loading, error, data, client, }) => {
         if (loading) return null;
-        if (error) logger.error(error);
+        if (error) console.error(error);
         const {
           homePage: { slots, seoData, pageDateTimeString, pageType, },
         } = data;

@@ -3,13 +3,9 @@ import { getDataFromTree, } from 'react-apollo';
 import Head from 'next/head';
 import createClient from './createClient';
 import pagePropTypes from './pagePropTypes';
-import createLogger from '../utils/createLogger';
 
 export default (App, appDefaultState) => {
   const componentName = App.displayName || App.name || 'Unknown';
-  const logger = createLogger({
-    name: componentName,
-  });
 
   return class WithData extends React.Component {
     static displayName = `WithData(${componentName})`;
@@ -75,7 +71,7 @@ export default (App, appDefaultState) => {
         // Prevent Apollo Client GraphQL errors from crashing SSR.
         // Handle them in components via the data.error prop:
         // http://dev.apollodata.com/react/api-queries.html#graphql-query-data-error
-        logger.error('Error while running `getDataFromTree`', error);
+        console.error('Error while running `getDataFromTree`', error);
       }
 
       if (!process.browser) {

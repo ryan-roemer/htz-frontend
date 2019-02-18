@@ -14,7 +14,6 @@ import config from 'config';
 import 'isomorphic-fetch';
 import morgan from 'morgan';
 import morganJson from 'morgan-json';
-import { createLogger, } from '@haaretz/app-utils';
 import userAgent from 'express-useragent';
 
 import htz from './routes/htz';
@@ -26,9 +25,6 @@ import login from './routes/login';
 
 // To satisfy Extend peer dependencies
 
-const logger = createLogger({
-  name: 'htz-react-server',
-});
 const enableHttpLogging = config.has('enableHttpLogging')
   ? config.get('enableHttpLogging') === true
   : false;
@@ -50,7 +46,7 @@ const sitesRouting = new Map([
 
 // Fail-fast in case of missing routing argument
 if (!(selectedRoute && sitesRouting.has(selectedRoute))) {
-  logger.fatal(new Error('Missing required routing argument!'));
+  console.error(new Error('Missing required routing argument!'));
   process.exit(1);
 }
 
@@ -132,16 +128,16 @@ async function run() {
       // Fallback to tomcat via proxy
       // server.all('*', tomcatProxy);
       // For Zones
-      logger.warn(`assetPrefix set to ${assetPrefix}`);
+      console.warn(`assetPrefix set to ${assetPrefix}`);
       app.setAssetPrefix(assetPrefix);
 
       server.listen(PORT, err => {
         if (err) throw err;
-        logger.info(`> Ready on your ${config.get('hostIp')}:${PORT}`);
+        console.info(`> Ready on your ${config.get('hostIp')}:${PORT}`);
       });
     })
     .catch(err => {
-      logger.error(err);
+      console.error(err);
       process.exit(1);
     });
 }

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import DFP, { dfpTargeting, } from '@haaretz/dfp';
 import Query from '../ApolloBoundary/Query';
-import logger from '../../componentsLogger';
 import UserDispenser from '../User/UserDispenser';
 import getSectionPairFromLineage from './utils/getSectionsFromLineage';
 
@@ -30,7 +29,7 @@ const initDfpScript = (pageType, dfpConfig = {}, DEBUG = false) => {
     const displayHighPrioritySlots = () => {
       q.initGoogleTag().then(() => {
         DEBUG
-          && logger.info(
+          && console.info(
             `4. Display slots - calling for display for all ${
               adPriorities.high
             } priority slots`
@@ -42,7 +41,7 @@ const initDfpScript = (pageType, dfpConfig = {}, DEBUG = false) => {
     const displayNormalPrioritySlots = () => {
       q.initGoogleTag().then(() => {
         DEBUG
-          && logger.info(
+          && console.info(
             `4. Display slots - calling for display for all ${
               adPriorities.normal
             } priority slots`
@@ -147,7 +146,7 @@ class DfpInjector extends Component {
         window.tomer = true;
       }
       catch (e) {
-        logger.error(e);
+        console.error(e);
       }
     }
   }
@@ -166,7 +165,7 @@ class DfpInjector extends Component {
         return null;
       }
       if (error) {
-        logger.error(error);
+        console.error(error);
         return null;
       }
       return null;
@@ -189,7 +188,7 @@ function DfpInjectorWrapper({ path, pageType, }) {
       <Query query={GET_AD_MANAGER} variables={{ path, }}>
         {({ loading, error, data, client, }) => {
           if (loading) return null;
-          if (error) logger.error(error);
+          if (error) console.error(error);
           const { dfpConfig, lineage, } = data.page;
           const [ section, subSection, ] = getSectionPairFromLineage(lineage);
           return (

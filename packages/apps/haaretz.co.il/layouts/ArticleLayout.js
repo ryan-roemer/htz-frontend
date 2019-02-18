@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { FelaComponent, } from 'react-fela';
 import { StyleProvider, } from '@haaretz/fela-utils';
 import { htzTheme, } from '@haaretz/htz-theme';
-import { createLogger, } from '@haaretz/app-utils';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import {
@@ -23,8 +22,6 @@ import {
 import styleRenderer from '../components/styleRenderer/styleRenderer';
 import ArticleChartbeatConfig from '../components/ChartBeat/ArticleChartbeatConfig';
 import ArticleInitQuery from './queries/article_layout';
-
-const logger = createLogger();
 
 const DfpInjector = dynamic(import('../components/Dfp/DfpInjector'), {
   loading: () => null,
@@ -115,7 +112,7 @@ class ArticleLayout extends React.Component {
       <Query query={ArticleInitQuery} variables={{ path: url.query.path, }}>
         {({ loading, error, data, client, }) => {
           if (loading) return null;
-          if (error) logger.error(error);
+          if (error) console.error(error);
           if (data && data.page) {
             const {
               page: { pageType, slots, lineage, jsonld, pageDateTimeString, },

@@ -5,7 +5,6 @@ import Mutation from '../ApolloBoundary/Mutation';
 import Query from '../ApolloBoundary/Query';
 import { UPDATE_USER, GET_USER, } from './UserInjector';
 import ImageCookies from './ImageCookies';
-import logger from '../../componentsLogger';
 
 export const userScheme = {
   type: null,
@@ -29,7 +28,7 @@ class UserDispenser extends Component {
     images: [],
   };
 
-  handleImgOnload = () => Promise.resolve(logger.debug('onload handleImgOnload resolved'));
+  handleImgOnload = () => Promise.resolve(console.log('onload handleImgOnload resolved'));
 
   plantImages = images => new Promise((resolve, reject) => {
     this.setState((prevState, props) => ({ ...prevState, images, }));

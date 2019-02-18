@@ -34,7 +34,6 @@ import SpecialPromotions from '../components/SpecialPromotions/SpecialPromotions
 import Tags from '../components/Tags/Tags';
 import TopNews from '../components/TopNews/TopNews';
 import Video from '../components/Video/Video';
-import logger from '../componentsLogger';
 import withDfpSideEffect from '../components/Dfp/withDfpSideEffect';
 import TableScore from '../components/TableScore/TableScore';
 import RssFeed from '../components/RssFeed/RssFeed';
@@ -108,7 +107,7 @@ const inputTemplateToComponent = new Map([
 
 // eslint-disable-next-line react/prop-types
 const DefaultComponent = ({ inputTemplate, contentId, kind, }) => {
-  logger.trace(`
+  console.log(`
     Element of type: '${kind || inputTemplate}' is not supported and
     we don't have any component fot it yet.
     The id of the element you tried to render on this page is: ${contentId}.

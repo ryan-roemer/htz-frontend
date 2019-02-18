@@ -3,7 +3,7 @@ import path from 'path';
 import express from 'express';
 import querystring from 'querystring';
 import { CookieUtils, } from '@haaretz/htz-user-utils';
-import { switchToDomain, createLogger, } from '@haaretz/app-utils';
+import { switchToDomain, } from '@haaretz/app-utils';
 import Cookies from 'universal-cookie';
 import config from 'config';
 
@@ -33,13 +33,13 @@ let isRedirect = false;
  * @param {boolean} DEV is in development mode
  * @returns {string} a stage to render, one of [ stage1, stage2, thankYou ]
  */
-async function getPageToRender(req, logger, DEV = false) {
+async function getPageToRender(req, DEV = false) {
   // Path of promotions page in Polopoly CM
   const baseService = switchToDomain(req.hostname, config.get('service.base'));
 
-  DEV && logger.debug('promo from getPageToRender', req.params.promo);
+  DEV && console.log('promo from getPageToRender', req.params.promo);
   const promoPath = req.params.promo ? `/${req.params.promo}` : null;
-  DEV && logger.debug('hostname from getPageToRender', req.hostname);
+  DEV && console.log('hostname from getPageToRender', req.hostname);
   const cookies = new Cookies(req.headers.cookie);
   const userId = CookieUtils.stringToMap(cookies.get('tmsso') || '', {
     separator: /:\s?/,
@@ -47,7 +47,7 @@ async function getPageToRender(req, logger, DEV = false) {
   const fetchUrl = `${baseService}/papi${
     polopolyPromotionsPage.startsWith('/') ? '' : '/'
   }${polopolyPromotionsPage}${promoPath || ''}?userId=${userId} `;
-  DEV && logger.debug('path from getPageToRender', fetchUrl);
+  DEV && console.log('path from getPageToRender', fetchUrl);
   try {
     const fetchData = await fetch(fetchUrl);
     const { pageNumber, } = await fetchData.json();
@@ -55,25 +55,21 @@ async function getPageToRender(req, logger, DEV = false) {
       ? 'thankYou'
       : Math.floor(pageNumber) === 3 ? 'stage2' : 'stage1';
 
-      console.log(`TEST ${stageToRender}`);
+    console.log(`TEST ${stageToRender}`);
     globalStageToRender = stageToRender;
-    DEV && logger.debug('pageNumber from async await', pageNumber);
-    DEV && logger.debug('stageToRender ', stageToRender);
-    DEV && logger.debug('location@@@@', friendlyRoutes[stageToRender]);
+    DEV && console.log('pageNumber from async await', pageNumber);
+    DEV && console.log('stageToRender ', stageToRender);
+    DEV && console.log('location@@@@', friendlyRoutes[stageToRender]);
 
     return stageToRender;
   }
   catch (err) {
-    logger.error(err, 'error from getPageToRender, defaulting to stage1');
+    console.error(err, 'error from getPageToRender, defaulting to stage1');
     return 'stage1';
   }
 }
 
 export default function purchase(app, server, DEV = false) {
-  const logger = createLogger({
-    name: 'purchase-page-router',
-  });
-
   function render(req, res, stageToRender) {
     isRedirect = false;
     return app.render(req, res, `${folderPrefix}/${stageToRender}`, req.query);
@@ -114,11 +110,11 @@ export default function purchase(app, server, DEV = false) {
     [ `${appPrefix}/${friendlyRoutes.stage1}`, `${appPrefix}/stage1`, ],
     async (req, res) => {
       DEV
-        && logger.debug('globalStageToRender from stage 1', globalStageToRender);
-      DEV && logger.debug('isRedirect from stage 1', isRedirect);
+        && console.log('globalStageToRender from stage 1', globalStageToRender);
+      DEV && console.log('isRedirect from stage 1', isRedirect);
       const pageToRender = isRedirect && globalStageToRender
         ? globalStageToRender
-        : await getPageToRender(req, logger, DEV);
+        : await getPageToRender(req, DEV);
 
       if (pageToRender === 'stage1') {
         return render(req, res, 'stage1');
@@ -132,15 +128,15 @@ export default function purchase(app, server, DEV = false) {
     [ `${appPrefix}/${friendlyRoutes.stage2}`, `${appPrefix}/stage2`, ],
     async (req, res) => {
       DEV
-        && logger.debug(
+        && console.log(
           'globalStageToRender from stage 2 before fetch',
           globalStageToRender
         );
-      DEV && logger.debug('isRedirect from stage 2', isRedirect);
+      DEV && console.log('isRedirect from stage 2', isRedirect);
 
       const pageToRender = isRedirect && globalStageToRender
         ? globalStageToRender
-        : await getPageToRender(req, logger, DEV);
+        : await getPageToRender(req, DEV);
 
       if (pageToRender === 'stage2') {
         return render(req, res, 'stage2');
@@ -152,14 +148,14 @@ export default function purchase(app, server, DEV = false) {
   /* Offers thankYou */
   server.get(`${appPrefix}/thankYou`, async (req, res) => {
     DEV
-      && logger.debug(
+      && console.log(
         'globalStageToRender from stage thankYou before fetch',
         globalStageToRender
       );
-    DEV && logger.debug('isRedirect from stage thankYou', isRedirect);
+    DEV && console.log('isRedirect from stage thankYou', isRedirect);
     const pageToRender = isRedirect && globalStageToRender
       ? globalStageToRender
-      : await getPageToRender(req, logger, DEV);
+      : await getPageToRender(req, DEV);
     if (pageToRender === 'thankYou' || req.query.msg === 'thank_user') {
       return render(req, res, 'thankYou');
     }
@@ -169,14 +165,14 @@ export default function purchase(app, server, DEV = false) {
   /* Offers thankYou */
   server.get(`${appPrefix}/errorOccurred`, async (req, res) => {
     DEV
-    && logger.debug(
+    && console.log(
       'globalStageToRender from stage thankYou before fetch',
       globalStageToRender
     );
-    DEV && logger.debug('isRedirect from stage errorOccurred', isRedirect);
+    DEV && console.log('isRedirect from stage errorOccurred', isRedirect);
     const pageToRender = isRedirect && globalStageToRender
       ? globalStageToRender
-      : await getPageToRender(req, logger, DEV);
+      : await getPageToRender(req, DEV);
     if (pageToRender === 'errorOccurred') {
       return render(req, res, 'errorOccurred');
     }
@@ -194,7 +190,7 @@ export default function purchase(app, server, DEV = false) {
       `${appPrefix}/debt`,
     ],
     async (req, res) => {
-      const pageToRender = await getPageToRender(req, logger, DEV);
+      const pageToRender = await getPageToRender(req, DEV);
       return redirect(req, res, pageToRender);
     }
   );
@@ -216,12 +212,12 @@ export default function purchase(app, server, DEV = false) {
       offer: req.params.promo,
     });
     DEV
-      && logger.debug(
+      && console.log(
         'promo from /:promo redirect req.param.promo',
         req.params.promo
       );
     const promoQuery = `offer=${encodeURIComponent(req.params.promo)}`;
-    const pageToRender = await getPageToRender(req, logger, DEV);
+    const pageToRender = await getPageToRender(req, DEV);
     isRedirect = true;
     return res.redirect(
       `${appPrefix}/${friendlyRoutes[pageToRender]}?${promoQuery}`
@@ -234,14 +230,14 @@ export default function purchase(app, server, DEV = false) {
       offer: req.params.promo,
     });
     DEV
-      && logger.debug(
+      && console.log(
         'promo from /:promo/:subPromo redirect req.param.promo',
         req.params.promo
       );
     const promoQuery = `offer=${encodeURIComponent(req.params.promo)}/${
       req.params.subPromo
     }`;
-    const pageToRender = await getPageToRender(req, logger, DEV);
+    const pageToRender = await getPageToRender(req, DEV);
     isRedirect = true;
     return res.redirect(
       `${appPrefix}/${friendlyRoutes[pageToRender]}?${promoQuery}`

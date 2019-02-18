@@ -8,7 +8,6 @@ import { attrsPropType, } from '../../propTypes/attrsPropType';
 import { buildURLs, buildUrl, } from '../../utils/buildImgURLs';
 import ImgSource from './elements/ImgSource';
 import DefaultImage from '../DefaultImage/DefaultImage';
-import logger from '../../componentsLogger';
 import setColor from '../../utils/setColor';
 
 const ImgWrapperStyle = ({ bgc, height, theme, width, miscStyles, }) => ({
@@ -160,7 +159,7 @@ function Image(props) {
 
   const isPicture = data.imgArray.length > 1;
   if (isPicture) {
-    logger.error(
+    console.error(
       `The data structure of the "${data.contentId}" image is of a picture element, not an image.
 Please use the "<Picture />" component`
     );
@@ -169,7 +168,7 @@ Please use the "<Picture />" component`
   }
 
   if (isPresentational && (attrs && (!!attrs.role || !!attrs['aria-hidden']))) {
-    logger.warn(
+    console.warn(
       'When "isPresentational" prop value is true, "role" and "aria-hidden" are set automatically'
     );
   }
