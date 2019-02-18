@@ -4,7 +4,13 @@
 //   Next Plugins   //
 // //////////////// //
 
+const webpack = require('webpack');
+
 const withTranspiledModules = require('next-plugin-transpile-modules');
+
+const StatsPlugin = require('stats-webpack-plugin');
+
+const BundleAnalyzerPlugin = require('@zeit/next-bundle-analyzer');
 
 // Replace this with official npm version when an up to date version is released.
 // Depends on https://github.com/zeit/next-plugins/issues/309
@@ -43,6 +49,9 @@ const config = {
     //   'babel-plugin-transform-react-remove-prop-types',
     //   'babel-plugin-transform-flow-strip-types',
     // ];
+
+    config.profile = true;
+    config.stats = 'verbose';
 
     config.module.rules.push(
       // Correctly generate source maps for @haaretz packages
@@ -88,8 +97,41 @@ const config = {
       'source-map-support': emptyShim,
     };
 
+    config.plugins.push(
+      new webpack.IgnorePlugin(/csslint|bunyan/),
+    );
+
+    if (process.env.BUNDLE_ANALYZE) {
+      config.plugins.push(
+        new StatsPlugin(`${__dirname}/stats.json`, {
+          chunkModules: true,
+          exclude: [ /node_modules[\\\/]react/, ],
+        })
+      );
+    }
+
     return config;
   },
   // })
 };
-module.exports = process.env.NODE_ENV === 'development' ? withSourceMaps(config): withSourceMaps(withTranspiledModules(config));
+
+const analyzerConfig = {
+  analyzeServer: [ 'server', 'both', ].includes(process.env.BUNDLE_ANALYZE),
+  analyzeBrowser: [ 'browser', 'both', ].includes(process.env.BUNDLE_ANALYZE),
+  bundleAnalyzerConfig: {
+    server: {
+      analyzerMode: 'static',
+      reportFilename: '../bundles/server.html',
+    },
+    browser: {
+      analyzerMode: 'static',
+      reportFilename: '../bundles/client.html',
+    },
+  },
+};
+module.exports = process.env.BUNDLE_ANALYZE
+  // prod build with webpack analyzer
+  ? BundleAnalyzerPlugin(withSourceMaps(withTranspiledModules({ ...config, ...analyzerConfig, })))
+  : process.env.NODE_ENV === 'development'
+    ? withSourceMaps(config)
+    : withSourceMaps(withTranspiledModules(config));

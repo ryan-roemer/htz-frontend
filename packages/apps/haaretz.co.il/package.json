@@ -20,6 +20,9 @@
     "styleguide": "htz-scripts styleguide",
     "styleguide:build": "htz-scripts styleguide:build",
     "test": "htz-scripts test",
+    "analyze": "BUNDLE_ANALYZE=both htz-scripts build",
+    "analyze:server": "BUNDLE_ANALYZE=server htz-scripts build",
+    "analyze:browser": "BUNDLE_ANALYZE=browser htz-scripts build",
     "update-scripts": "htz-scripts update-scripts",
     "watchExternals": "cross-env concurrently \"yarn workspace @haaretz/htz-components watch\" \"yarn workspace @haaretz/htz-components watch:lib\" \"yarn workspace @haaretz/htz-components watch:esnext\" \"yarn workspace @haaretz/htz-theme watch\" \"yarn workspace @haaretz/app-utils watch\" \"yarn workspace @haaretz/htz-react-server watch\"",
     "dev:watch": "cross-env concurrently \"yarn workspace @haaretz/haaretz.co.il dev\" \"yarn workspace @haaretz/haaretz.co.il watchExternals\"",
@@ -43,6 +46,7 @@
     "@haaretz/htz-css-tools": "^1.0.1",
     "@haaretz/htz-react-server": "^0.0.0",
     "@haaretz/htz-theme": "^0.1.0",
+    "@zeit/next-bundle-analyzer": "^0.1.2",
     "apollo-cache-inmemory": "^1.2.7",
     "apollo-client": "^2.3.8",
     "apollo-link": "^1.2.2",
@@ -77,6 +81,6 @@
     "babel-plugin-lodash": "^3.3.4",
     "enzyme-to-json": "^3.3.4",
     "rimraf": "^2.6.2",
-    "webpack-bundle-analyzer": "^3.0.4"
+    "stats-webpack-plugin": "^0.7.0"
   }
 }

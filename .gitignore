@@ -232,3 +232,6 @@ dist/
 # Jest cache
 .jest/
 .tern-port
+
+# Webpack generated bundle
+packages/apps/*/bundles/

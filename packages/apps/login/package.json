@@ -16,6 +16,9 @@
     "gc": "htz-scripts commitizen",
     "lint": "htz-scripts lint",
     "prepare": "npm run build",
+    "analyze": "BUNDLE_ANALYZE=both htz-scripts build",
+    "analyze:server": "BUNDLE_ANALYZE=server htz-scripts build",
+    "analyze:browser": "BUNDLE_ANALYZE=browser htz-scripts build",
     "dev": "cross-env concurrently \"cross-env NODE_ENV=development graphql-server\" \"cross-env NODE_ENV=development htz-react-server login | bunyan -L\"",
     "dev:next": "cross-env NODE_ENV=development htz-react-server login | bunyan -L",
     "dev:2prod": "cross-env concurrently \"cross-env NODE_ENV=production graphql-server\" \"cross-env NODE_ENV=development CONNECTION_PRESET=dev2prod htz-react-server login | bunyan -L\"",
@@ -37,6 +40,7 @@
     "@haaretz/htz-react-server": "^0.0.0",
     "@haaretz/htz-theme": "^0.1.0",
     "@haaretz/htz-user-utils": "0.1.0",
+    "@zeit/next-bundle-analyzer": "^0.1.2",
     "apollo-cache-inmemory": "^1.2.7",
     "apollo-client": "^2.3.8",
     "apollo-link": "^1.2.2",
@@ -67,6 +71,7 @@
     "babel-loader": "^8.0.0-beta.4",
     "babel-plugin-lodash": "^3.3.4",
     "enzyme-to-json": "^3.3.4",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "stats-webpack-plugin": "^0.7.0"
   }
 }
