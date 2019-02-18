@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FelaComponent, } from 'react-fela';
-import { rgba, } from 'polished';
-import { parseStyleProps, } from '@haaretz/htz-css-tools';
+import { parseStyleProps, rgba, } from '@haaretz/htz-css-tools';
 
 import ArticleImage from '../ArticleBodyImage/ArticleBodyImage';
 import { buildUrl, } from '../../utils/buildImgURLs';

@@ -2,8 +2,7 @@
 import React, { Fragment, } from 'react';
 import PropTypes from 'prop-types';
 import { FelaComponent, } from 'react-fela';
-import { parseComponentProp, } from '@haaretz/htz-css-tools';
-import { rgba, } from 'polished';
+import { parseComponentProp, rgba, } from '@haaretz/htz-css-tools';
 
 import ToolBar from './elements/ToolBar';
 import IconArrow from '../Icon/icons/IconArrow';

@@ -1,7 +1,7 @@
 import React, { Fragment, } from 'react';
 import { FelaComponent, } from 'react-fela';
 import { parseComponentProp, } from '@haaretz/htz-css-tools';
-import { rgba, } from 'polished';
+import rgba from 'polished/lib/color/rgba';
 
 import ActionButtons from '../../ActionButtons/ActionButtons';
 import FlippingArrow from '../../Animations/FlippingArrow';

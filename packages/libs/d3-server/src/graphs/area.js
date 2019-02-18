@@ -1,6 +1,6 @@
 import D3Node, { d3, } from 'd3-node';
 import { tmTheme as theme, } from '@haaretz/tm-theme';
-import { rgba, } from 'polished';
+import rgba from 'polished/lib/color/rgba';
 
 export default (data, timeSpan, {
   width = 680,

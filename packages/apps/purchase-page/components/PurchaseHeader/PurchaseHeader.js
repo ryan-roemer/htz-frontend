@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { borderBottom, } from '@haaretz/htz-css-tools';
+import { borderBottom, rgba, } from '@haaretz/htz-css-tools';
 import { FelaComponent, } from 'react-fela';
 import Router, { withRouter, } from 'next/router';
-import { rgba, } from 'polished';
 import {
   IconBack,
   IconMarkerLogo,
