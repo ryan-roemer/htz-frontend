@@ -66,7 +66,7 @@ export default function Slugs({
       {/* TEASERS */}
       <GridItem
         width={[ { until: 'xl', value: 1, }, { from: 'xl', value: 10 / 12, }, ]}
-        miscStyle={{ display: 'flex', }}
+        miscStyles={{ display: 'flex', }}
       >
         <Grid
           gutter={4}
@@ -352,10 +352,16 @@ function TwoUp({ data1, data2, lazyLoadImages, biAction, }: TwoUpProps): React.N
         marginTop: [ { from: 's', until: 'l', value: '4rem', }, ],
       }}
     >
-      <GridItem width={[ { until: 's', value: 1 / 2, }, { from: 's', value: 1, }, ]}>
+      <GridItem
+        width={[ { until: 's', value: 1 / 2, }, { from: 's', value: 1, }, ]}
+        miscStyles={{ display: 'flex', }}
+      >
         <TwoUpTeaser data={data1} index={1} {...{ lazyLoadImages, biAction, }} />
       </GridItem>
-      <GridItem width={[ { until: 's', value: 1 / 2, }, { from: 's', value: 1, }, ]}>
+      <GridItem
+        width={[ { until: 's', value: 1 / 2, }, { from: 's', value: 1, }, ]}
+        miscStyles={{ display: 'flex', }}
+      >
         <TwoUpTeaser data={data2} index={2} {...{ lazyLoadImages, biAction, }} />
       </GridItem>
     </Grid>

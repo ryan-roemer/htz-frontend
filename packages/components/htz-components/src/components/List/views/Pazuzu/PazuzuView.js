@@ -132,6 +132,7 @@ function PazuzuTeaser({
         <GridItem
           gutter={0}
           miscStyles={{
+            display: 'flex',
             [isSecondItem ? 'paddingInlineStart' : 'paddingInlineEnd']: [
               { until: 's', value: '1rem', },
               { from: 's', value: '2rem', },
