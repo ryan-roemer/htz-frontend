@@ -6,6 +6,9 @@
 
 const withTranspiledModules = require('next-plugin-transpile-modules');
 
+
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 // Replace this with official npm version when an up to date version is released.
 // Depends on https://github.com/zeit/next-plugins/issues/309
 const withSourceMaps = require('./withSourceMaps')();
