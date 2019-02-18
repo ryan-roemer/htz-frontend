@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { format as formatFn, parse, isValid, } from 'date-fns';
+import isValid from 'date-fns/is_valid';
+import parse from 'date-fns/parse';
+import formatFn from 'date-fns/format';
 
 const timePropTypes = {
   tagName: PropTypes.string,
