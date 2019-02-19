@@ -49,13 +49,14 @@ export default class MastheadUserMenu extends React.Component {
                       : null
                   }
                 />
-)}
+              )}
             />
           )}
         />
       );
     }
 
+    const buttonRef = React.createRef();
     return (
       <FelaTheme
         render={theme => {
@@ -114,7 +115,10 @@ export default class MastheadUserMenu extends React.Component {
             <DropdownList
               mainMenuStyle={{ position: 'relative', }}
               onLogout={() => this.changeState()}
-              render={({ renderButton, ListWrapper, isOpen, }) => (
+              onClose={() => {
+                buttonRef.current.focus();
+              }}
+              render={({ renderButton, ListWrapper, isOpen, closeList, }) => (
                 <Fragment>
                   {renderButton(({ toggleState, }) => (
                     <UserButton
@@ -129,6 +133,7 @@ export default class MastheadUserMenu extends React.Component {
                       }
                       userName={this.props.userName}
                       role="button"
+                      buttonRef={buttonRef}
                     />
                   ))}
                   {isOpen && !!this.props.userName ? (
@@ -140,6 +145,7 @@ export default class MastheadUserMenu extends React.Component {
                             end: '0',
                           }}
                           itemStyle={dropdownItemStyle(theme)}
+                          closeList={closeList}
                         >
                           {combinedItems}
                         </ListWrapper>

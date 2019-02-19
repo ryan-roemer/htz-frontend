@@ -7,12 +7,12 @@ exports[`<MastheadA11yMenu DOM element renders correctly with no props 1`] = `
   >
     <button
       aria-describedby="masthead-a11y-dropdown-button"
-      className="htz-b htz-c htz-d htz-e htz-f htz-g htz-h htz-i htz-j htz-k htz-l htz-m"
+      className="htz-b htz-c htz-d htz-e htz-f htz-g htz-h htz-i htz-j htz-k htz-l htz-m htz-n"
       onClick={[Function]}
       type="button"
     >
       <span
-        className="htz-n htz-o htz-p htz-a htz-q htz-r htz-s htz-t htz-u htz-v htz-w htz-x htz-y htz-z htz-i htz-ab htz-ac htz-ae htz-af"
+        className="htz-o htz-p htz-q htz-a htz-r htz-s htz-t htz-u htz-v htz-w htz-x htz-y htz-z htz-ab htz-j htz-ac htz-ae htz-af htz-ag"
         id={null}
         onBlur={[Function]}
         onFocus={[Function]}
@@ -21,7 +21,7 @@ exports[`<MastheadA11yMenu DOM element renders correctly with no props 1`] = `
         type="button"
       >
         <svg
-          className="htz-ag htz-ah htz-ai htz-aj"
+          className="htz-ah htz-ai htz-aj htz-ak"
           height="1em"
           viewBox="0 0 256 256"
           width="1em"
@@ -33,15 +33,15 @@ exports[`<MastheadA11yMenu DOM element renders correctly with no props 1`] = `
           />
         </svg>
         <span
-          className="htz-ak"
+          className="htz-al"
         >
           <div
-            className="htz-al htz-am htz-an htz-ao htz-ap htz-aq htz-ar htz-as htz-at htz-au htz-av htz-aw"
+            className="htz-am htz-an htz-ao htz-ap htz-aq htz-ar htz-as htz-at htz-au htz-av htz-aw htz-ax"
           />
         </span>
       </span>
       <span
-        className="htz-ax htz-ay htz-az htz-ba htz-bb htz-bc htz-bd htz-be htz-al htz-bf htz-r"
+        className="htz-ay htz-az htz-ba htz-bb htz-bc htz-bd htz-be htz-bf htz-am htz-bg htz-s"
         id="masthead-a11y-dropdown-button"
       >
         תפריט נגישות
@@ -51,4 +51,4 @@ exports[`<MastheadA11yMenu DOM element renders correctly with no props 1`] = `
 </div>
 `;
 
-exports[`<MastheadA11yMenu DOM element renders correctly with no props 2`] = `".htz-a{position:relative}.htz-b{color:#0B7EB5}.htz-c{background-color:transparent}.htz-d{transition-property:all}.htz-j{transition-duration:.3s}.htz-k{transition-timing-function:cubic-bezier(0, 0, .2, 0)}.htz-l{-webkit-transition-property:all}.htz-m{-moz-transition-property:all}.htz-n{align-items:center}.htz-o{display:-webkit-inline-box;display:-moz-inline-box;display:-ms-inline-flexbox;display:-webkit-inline-flex;display:inline-flex}.htz-p{justify-content:center}.htz-q{text-align:center}.htz-r{white-space:nowrap}.htz-s{text-decoration:none}.htz-t{cursor:pointer}.htz-u::moz-focus-inner{border:0}.htz-v::moz-focus-inner{padding:0}.htz-ab{min-height:6rem}.htz-ac{min-width:6rem}.htz-ae{-webkit-box-align:center}.htz-af{-webkit-box-pack:center}.htz-ag{vertical-align:-0.15em}.htz-ah{color:inherit}.htz-ai{fill:#FFF}.htz-aj{font-size:3.5rem}.htz-ak{font-size:3rem}.htz-al{position:absolute}.htz-am{height:3.5em}.htz-an{width:3.5em}.htz-ao{left:50%}.htz-ap{top:50%}.htz-aq{border-radius:50%}.htz-ar{background-color:#0B7EB5}.htz-as{display:block}.htz-at{opacity:0}.htz-au{pointer-events:none}.htz-av{animation-direction:alternate}.htz-aw{animation-duration:.3s}.htz-ax{border:0}.htz-ay{clip:rect(0 0 0 0)}.htz-az{-webkit-clip-path:inset(50%)}.htz-ba{clip-path:inset(50%)}.htz-bb{height:1px}.htz-bc{margin:-1px}.htz-bd{overflow:hidden}.htz-be{padding:0}.htz-bf{width:1px}.htz-e:hover{color:#FFF}.htz-f:hover{background-color:#0B7EB5}.htz-w:hover{text-decoration:none}.htz-g:focus{color:#FFF}.htz-h:focus{background-color:#0B7EB5}.htz-i:focus{outline:none}.htz-z:focus{text-decoration:none}.htz-x:active{text-decoration:none}.htz-y:active{outline:none}"`;
+exports[`<MastheadA11yMenu DOM element renders correctly with no props 2`] = `".htz-a{position:relative}.htz-b{transition-property:all}.htz-c{color:#0B7EB5}.htz-d{background-color:transparent}.htz-k{transition-duration:.3s}.htz-l{transition-timing-function:cubic-bezier(0, 0, .2, 0)}.htz-m{-webkit-transition-property:all}.htz-n{-moz-transition-property:all}.htz-o{align-items:center}.htz-p{display:-webkit-inline-box;display:-moz-inline-box;display:-ms-inline-flexbox;display:-webkit-inline-flex;display:inline-flex}.htz-q{justify-content:center}.htz-r{text-align:center}.htz-s{white-space:nowrap}.htz-t{text-decoration:none}.htz-u{cursor:pointer}.htz-v::moz-focus-inner{border:0}.htz-w::moz-focus-inner{padding:0}.htz-ac{min-height:6rem}.htz-ae{min-width:6rem}.htz-af{-webkit-box-align:center}.htz-ag{-webkit-box-pack:center}.htz-ah{vertical-align:-0.15em}.htz-ai{color:inherit}.htz-aj{fill:#FFF}.htz-ak{font-size:3.5rem}.htz-al{font-size:3rem}.htz-am{position:absolute}.htz-an{height:3.5em}.htz-ao{width:3.5em}.htz-ap{left:50%}.htz-aq{top:50%}.htz-ar{border-radius:50%}.htz-as{background-color:#0B7EB5}.htz-at{display:block}.htz-au{opacity:0}.htz-av{pointer-events:none}.htz-aw{animation-direction:alternate}.htz-ax{animation-duration:.3s}.htz-ay{border:0}.htz-az{clip:rect(0 0 0 0)}.htz-ba{-webkit-clip-path:inset(50%)}.htz-bb{clip-path:inset(50%)}.htz-bc{height:1px}.htz-bd{margin:-1px}.htz-be{overflow:hidden}.htz-bf{padding:0}.htz-bg{width:1px}.htz-e:hover{color:#FFF}.htz-f:hover{background-color:#0B7EB5}.htz-g:hover{outline:none}.htz-x:hover{text-decoration:none}.htz-h:focus{color:#FFF}.htz-i:focus{background-color:#0B7EB5}.htz-j:focus{outline:none}.htz-ab:focus{text-decoration:none}.htz-y:active{text-decoration:none}.htz-z:active{outline:none}"`;

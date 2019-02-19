@@ -16,193 +16,6 @@ import { responsivePropBaseType, } from '../../propTypes/responsivePropBaseType'
 import { stylesPropType, } from '../../propTypes/stylesPropType';
 
 // ////////////////////////////////////////////////////////////////// //
-//                             PROP-TYPES                             //
-// ////////////////////////////////////////////////////////////////// //
-const btnVariants = PropTypes.oneOf([
-  'primary',
-  'primaryOpaque',
-  'secondary',
-  'secondaryOpaque',
-  'neutral',
-  'neutralOpaque',
-  'negative',
-  'negativeOpaque',
-  'positive',
-  'positiveOpaque',
-  'inverse',
-  'inverseOpaque',
-  'facebook',
-  'facebookOpaque',
-  'twitter',
-  'twitterOpaque',
-  'sales',
-  'salesOpaque',
-  'secondary',
-  'whatsapp',
-  'whatsappOpaque',
-  'formattingOpaque',
-]);
-
-/**
- * Properties of a `<StyledButton />`
- */
-Button.propTypes = {
-  // Underlying component props //
-  /**
-   * An object of attrbutes to set on the DOM element.
-   * Passed to the underlying react element
-   */
-  attrs: attrsPropType,
-  /**
-   * Nodes rendered inside `Button`.
-   * Passed to the underlying react element
-   */
-  children: PropTypes.node,
-  /**
-   * A url to be assigned to the DOM element, converts the button to an `'<a>'`
-   * DOM element inside a Wrapped Next JS `<HtzLink />`
-   */
-  href: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.string,
-    PropTypes.shape({ pathname: PropTypes.string, asPath: PropTypes.string, }),
-  ]),
-  asPath: PropTypes.string,
-  /**
-   * A value for the `button`s `id` attribute.
-   * Passed to the underlying react element
-   */
-  id: PropTypes.string,
-  /**
-   * Indicates if a button is currently amid an operation (e.g., loading, posting, etc.).
-   * Passed to the underlying react element
-   */
-  isBusy: PropTypes.bool,
-  /**
-   * Indicates if a button is currently disabled.
-   * Passed to the underlying react element
-   */
-  isDisabled: PropTypes.bool,
-  /**
-   * Indicates if a button is a `reset` button.
-   * Passed to the underlying react element
-   */
-  isReset: PropTypes.bool,
-  /**
-   * Indicates if a button is a `submit` button.
-   * Passed to the underlying react element
-   */
-  isSubmit: PropTypes.bool,
-  /**
-   * A callback that get called when the user clicks on the button.
-   * Passed to the underlying react element
-   *
-   * @param {SyntheticEvent} event -
-   *   The react [`SyntheticEvent`](https://reactjs.org/docs/events.html) that initiated
-   *   the callback
-   * @param {Object} allProps - All the properties of this `Button`
-   */
-  onClick: PropTypes.func,
-  /** Indicates if a link should be perfetched (only relevant when `href` prop is defined) */
-  prefetch: PropTypes.bool,
-  /** The HTML tag to render the `<Button />` as */
-  tagName: PropTypes.string,
-
-  // Styling props //
-  /**
-   * Either an object of vertical and horizontal padding inside the button,
-   * and its placement within a `<ButtonGroup>`, when relevant, or an array
-   * of responsive options objects, with the above object as its value property.
-   */
-  boxModel: PropTypes.oneOfType([
-    buttonBoxModelType,
-    PropTypes.arrayOf(
-      PropTypes.shape({
-        ...responsivePropBaseType,
-        value: buttonBoxModelType,
-      })
-    ),
-  ]),
-  /**
-   * Set the button's font-size based on the pre-defined
-   * typographic scale.
-   */
-  fontSize: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.arrayOf(
-      PropTypes.shape({
-        ...responsivePropBaseType,
-        value: PropTypes.number.isRequired,
-      })
-    ),
-  ]),
-  /**
-   * When inside a `<ButtonGroup>` component, indicates the stacking
-   * order of the `<Buttons>` inside the group. The parent `<ButtonGroup>`
-   * component will automatically augment its children with this prop,
-   * is should never be set directly by the component itself.
-   */
-  isColumn: PropTypes.bool,
-  /** Is the button flat (trumps theme border-color to 'transparent') */
-  isFlat: PropTypes.bool,
-  /** Does the Button fill the entire width of its container */
-  isFull: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.arrayOf(
-      PropTypes.shape({
-        ...responsivePropBaseType,
-        value: PropTypes.bool.isRequired,
-      })
-    ),
-  ]),
-  /** Is the button hard edged (trumps theme border-radius settings with `0`) */
-  isHard: PropTypes.bool,
-  /** Is the button round (trumps theme border-radius settings with `50%`) */
-  isRound: PropTypes.bool,
-  /**
-   * A special property holding miscellaneous CSS values that
-   * trump all default values. Processed by
-   * [`parseStyleProps`](https://Haaretz.github.io/htz-frontend/htz-css-tools#parsestyleprops)
-   */
-  miscStyles: stylesPropType,
-  /** A button's stylistic variant */
-  variant: PropTypes.oneOfType([
-    btnVariants,
-    PropTypes.arrayOf(
-      PropTypes.shape({
-        ...responsivePropBaseType,
-        value: btnVariants.isRequired,
-      })
-    ),
-  ]),
-};
-
-/** The default values of a `<StyledButton>`'s props */
-Button.defaultProps = {
-  attrs: null,
-  children: null,
-  href: null,
-  asPath: null,
-  id: null,
-  isBusy: false,
-  isDisabled: false,
-  isSubmit: false,
-  isReset: false,
-  onClick: null,
-  prefetch: false,
-  tagName: null,
-  boxModel: null,
-  fontSize: null,
-  isColumn: null,
-  isFlat: false,
-  isFull: false,
-  isHard: false,
-  isRound: false,
-  miscStyles: null,
-  variant: 'primary',
-};
-
-// ////////////////////////////////////////////////////////////////// //
 //                               STYLES                               //
 // ////////////////////////////////////////////////////////////////// //
 const buttonStyles = ({
@@ -517,70 +330,263 @@ function radiusRules(value, isColumn, groupPlacement, isHard, isRound) {
 // ////////////////////////////////////////////////////////////////// //
 
 /* A generic, stylable button component */
-export default function Button({
-  attrs,
-  children,
-  href,
-  asPath,
-  id,
-  isBusy,
-  isDisabled,
-  isReset,
-  isSubmit,
-  onClick,
-  prefetch,
-  tagName,
-  boxModel,
-  fontSize,
-  isColumn,
-  isFlat,
-  isFull,
-  isHard,
-  isRound,
-  miscStyles,
-  variant,
-}) {
-  return (
-    <FelaComponent
-      {...{
-        boxModel,
-        fontSize,
-        isBusy,
-        isColumn,
-        isDisabled,
-        isFlat,
-        isFull,
-        isHard,
-        isRound,
-        miscStyles,
-        variant,
-      }}
-      rule={buttonStyles}
-      render={({ className, theme, }) => (
-        <ButtonCore
-          {...{
-            attrs,
-            className,
-            href,
-            asPath,
-            id,
-            isBusy,
-            isDisabled,
-            isReset,
-            isSubmit,
-            onClick,
-            prefetch,
-            tagName,
-          }}
-        >
-          <React.Fragment>
-            <FelaComponent isBusy={isBusy} rule={contentRule} render="span">
-              {children}
-            </FelaComponent>
-            <FelaComponent isBusy={isBusy} rule={progressRule} render="span" />
-          </React.Fragment>
-        </ButtonCore>
-      )}
-    />
-  );
-}
+const Button = React.forwardRef(
+  // eslint-disable-next-line prefer-arrow-callback
+  function Button({
+    attrs,
+    children,
+    href,
+    asPath,
+    id,
+    isBusy,
+    isDisabled,
+    isReset,
+    isSubmit,
+    onClick,
+    prefetch,
+    tagName,
+    boxModel,
+    fontSize,
+    isColumn,
+    isFlat,
+    isFull,
+    isHard,
+    isRound,
+    miscStyles,
+    variant,
+  }, ref) {
+    return (
+      <FelaComponent
+        {...{
+          boxModel,
+          fontSize,
+          isBusy,
+          isColumn,
+          isDisabled,
+          isFlat,
+          isFull,
+          isHard,
+          isRound,
+          miscStyles,
+          variant,
+        }}
+        rule={buttonStyles}
+        render={({ className, theme, }) => (
+          <ButtonCore
+            {...{
+              attrs,
+              className,
+              href,
+              asPath,
+              id,
+              isBusy,
+              isDisabled,
+              isReset,
+              isSubmit,
+              onClick,
+              prefetch,
+              tagName,
+              ref,
+            }}
+          >
+            <React.Fragment>
+              <FelaComponent isBusy={isBusy} rule={contentRule} render="span">
+                {children}
+              </FelaComponent>
+              <FelaComponent isBusy={isBusy} rule={progressRule} render="span" />
+            </React.Fragment>
+          </ButtonCore>
+        )}
+      />
+    );
+  }
+);
+
+// ////////////////////////////////////////////////////////////////// //
+//                             PROP-TYPES                             //
+// ////////////////////////////////////////////////////////////////// //
+const btnVariants = PropTypes.oneOf([
+  'primary',
+  'primaryOpaque',
+  'secondary',
+  'secondaryOpaque',
+  'neutral',
+  'neutralOpaque',
+  'negative',
+  'negativeOpaque',
+  'positive',
+  'positiveOpaque',
+  'inverse',
+  'inverseOpaque',
+  'facebook',
+  'facebookOpaque',
+  'twitter',
+  'twitterOpaque',
+  'sales',
+  'salesOpaque',
+  'secondary',
+  'whatsapp',
+  'whatsappOpaque',
+  'formattingOpaque',
+]);
+
+/**
+ * Properties of a `<StyledButton />`
+ */
+Button.propTypes = {
+  // Underlying component props //
+  /**
+   * An object of attrbutes to set on the DOM element.
+   * Passed to the underlying react element
+   */
+  attrs: attrsPropType,
+  /**
+   * Nodes rendered inside `Button`.
+   * Passed to the underlying react element
+   */
+  children: PropTypes.node,
+  /**
+   * A url to be assigned to the DOM element, converts the button to an `'<a>'`
+   * DOM element inside a Wrapped Next JS `<HtzLink />`
+   */
+  href: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.string,
+    PropTypes.shape({ pathname: PropTypes.string, asPath: PropTypes.string, }),
+  ]),
+  asPath: PropTypes.string,
+  /**
+   * A value for the `button`s `id` attribute.
+   * Passed to the underlying react element
+   */
+  id: PropTypes.string,
+  /**
+   * Indicates if a button is currently amid an operation (e.g., loading, posting, etc.).
+   * Passed to the underlying react element
+   */
+  isBusy: PropTypes.bool,
+  /**
+   * Indicates if a button is currently disabled.
+   * Passed to the underlying react element
+   */
+  isDisabled: PropTypes.bool,
+  /**
+   * Indicates if a button is a `reset` button.
+   * Passed to the underlying react element
+   */
+  isReset: PropTypes.bool,
+  /**
+   * Indicates if a button is a `submit` button.
+   * Passed to the underlying react element
+   */
+  isSubmit: PropTypes.bool,
+  /**
+   * A callback that get called when the user clicks on the button.
+   * Passed to the underlying react element
+   *
+   * @param {SyntheticEvent} event -
+   *   The react [`SyntheticEvent`](https://reactjs.org/docs/events.html) that initiated
+   *   the callback
+   * @param {Object} allProps - All the properties of this `Button`
+   */
+  onClick: PropTypes.func,
+  /** Indicates if a link should be perfetched (only relevant when `href` prop is defined) */
+  prefetch: PropTypes.bool,
+  /** The HTML tag to render the `<Button />` as */
+  tagName: PropTypes.string,
+
+  // Styling props //
+  /**
+   * Either an object of vertical and horizontal padding inside the button,
+   * and its placement within a `<ButtonGroup>`, when relevant, or an array
+   * of responsive options objects, with the above object as its value property.
+   */
+  boxModel: PropTypes.oneOfType([
+    buttonBoxModelType,
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        ...responsivePropBaseType,
+        value: buttonBoxModelType,
+      })
+    ),
+  ]),
+  /**
+   * Set the button's font-size based on the pre-defined
+   * typographic scale.
+   */
+  fontSize: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        ...responsivePropBaseType,
+        value: PropTypes.number.isRequired,
+      })
+    ),
+  ]),
+  /**
+   * When inside a `<ButtonGroup>` component, indicates the stacking
+   * order of the `<Buttons>` inside the group. The parent `<ButtonGroup>`
+   * component will automatically augment its children with this prop,
+   * is should never be set directly by the component itself.
+   */
+  isColumn: PropTypes.bool,
+  /** Is the button flat (trumps theme border-color to 'transparent') */
+  isFlat: PropTypes.bool,
+  /** Does the Button fill the entire width of its container */
+  isFull: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        ...responsivePropBaseType,
+        value: PropTypes.bool.isRequired,
+      })
+    ),
+  ]),
+  /** Is the button hard edged (trumps theme border-radius settings with `0`) */
+  isHard: PropTypes.bool,
+  /** Is the button round (trumps theme border-radius settings with `50%`) */
+  isRound: PropTypes.bool,
+  /**
+   * A special property holding miscellaneous CSS values that
+   * trump all default values. Processed by
+   * [`parseStyleProps`](https://Haaretz.github.io/htz-frontend/htz-css-tools#parsestyleprops)
+   */
+  miscStyles: stylesPropType,
+  /** A button's stylistic variant */
+  variant: PropTypes.oneOfType([
+    btnVariants,
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        ...responsivePropBaseType,
+        value: btnVariants.isRequired,
+      })
+    ),
+  ]),
+};
+
+/** The default values of a `<StyledButton>`'s props */
+Button.defaultProps = {
+  attrs: null,
+  children: null,
+  href: null,
+  asPath: null,
+  id: null,
+  isBusy: false,
+  isDisabled: false,
+  isSubmit: false,
+  isReset: false,
+  onClick: null,
+  prefetch: false,
+  tagName: null,
+  boxModel: null,
+  fontSize: null,
+  isColumn: null,
+  isFlat: false,
+  isFull: false,
+  isHard: false,
+  isRound: false,
+  miscStyles: null,
+  variant: 'primary',
+};
+
+export default Button;

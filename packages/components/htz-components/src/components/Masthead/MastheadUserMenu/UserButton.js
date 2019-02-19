@@ -9,12 +9,17 @@ class UserButton extends React.Component {
     userName: PropTypes.string,
     onClick: PropTypes.func,
     role: PropTypes.string,
+    buttonRef: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({ current: PropTypes.object, }),
+    ]),
   };
 
   static defaultProps = {
     userName: null,
     onClick: null,
     role: null,
+    buttonRef: null,
   };
 
   state = { isHovered: false, };
@@ -25,7 +30,7 @@ class UserButton extends React.Component {
 
   render() {
     const { isHovered, } = this.state;
-    const { isOpen, userName, onClick, role, } = this.props;
+    const { isOpen, userName, onClick, role, buttonRef, } = this.props;
     return (
       <FelaComponent
         style={theme => ({
@@ -52,6 +57,7 @@ class UserButton extends React.Component {
         })}
         render={({ className, theme, }) => (
           <button
+            ref={buttonRef}
             type="button"
             className={className}
             onClick={onClick}

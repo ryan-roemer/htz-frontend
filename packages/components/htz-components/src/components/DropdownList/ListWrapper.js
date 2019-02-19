@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FocusLock from 'react-focus-lock';
 import { FelaComponent, } from 'react-fela';
 import ListItem from './ListItem';
 import { attrsPropType, } from '../../propTypes/attrsPropType';
@@ -30,11 +29,13 @@ ListWrapper.propTypes = {
    */
   attrs: attrsPropType,
   closeList: PropTypes.func,
+  preventDefaultOnTabOut: PropTypes.bool,
 };
 
 ListWrapper.defaultProps = {
   attrs: null,
   closeList: () => {},
+  preventDefaultOnTabOut: true,
 };
 
 export default function ListWrapper({
@@ -43,28 +44,32 @@ export default function ListWrapper({
   itemStyle,
   attrs,
   closeList,
+  preventDefaultOnTabOut,
 }) {
   return (
     <FelaComponent
       rule={listStyle}
       render={({ className, }) => (
-        <FocusLock>
-          <ul className={className} {...attrs}>
-            {children.map(child => (
-              <ListItem
-                itemStyle={itemStyle}
-                key={child.key}
-                onBlur={e => {
-                  if (child === children.slice(-1)[0]) {
-                    closeList();
-                  }
-                }}
-              >
-                {child}
-              </ListItem>
-            ))}
-          </ul>
-        </FocusLock>
+        <ul className={className} {...attrs}>
+          {children.map(child => (
+            <ListItem
+              itemStyle={itemStyle}
+              key={child.key}
+              onTabNext={e => {
+                if (child === children.slice(-1)[0]) {
+                  closeList(preventDefaultOnTabOut ? e : null);
+                }
+              }}
+              onTabPrev={e => {
+                if (child === children[0]) {
+                  closeList(preventDefaultOnTabOut ? e : null);
+                }
+              }}
+            >
+              {child}
+            </ListItem>
+          ))}
+        </ul>
       )}
     />
   );

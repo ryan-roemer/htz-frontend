@@ -13,14 +13,16 @@ ListItem.propTypes = {
    */
   // eslint-disable-next-line react/forbid-prop-types
   itemStyle: PropTypes.object.isRequired,
-  onBlur: PropTypes.func,
+  onTabNext: PropTypes.func,
+  onTabPrev: PropTypes.func,
 };
 
 ListItem.defaultProps = {
-  onBlur: () => {},
+  onTabNext: () => {},
+  onTabPrev: () => {},
 };
 
-export default function ListItem({ children, itemStyle, onBlur, }) {
+export default function ListItem({ children, itemStyle, onTabNext, onTabPrev, }) {
   return (
     <FelaComponent
       style={itemStyle}
@@ -28,9 +30,9 @@ export default function ListItem({ children, itemStyle, onBlur, }) {
         <li // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
           className={className}
           onKeyDown={e => {
-            if (e.key === 'Tab' && !e.shiftKey) {
-              onBlur();
-            }
+            if (e.key !== 'Tab') return;
+            if (e.shiftKey) onTabPrev(e);
+            else onTabNext(e);
           }}
         >
           {children}

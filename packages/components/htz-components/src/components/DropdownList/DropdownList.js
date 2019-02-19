@@ -97,7 +97,8 @@ class DropdownList extends React.Component {
     });
   };
 
-  closeList = () => {
+  closeList = evToPrevent => {
+    evToPrevent && evToPrevent.preventDefault();
     this.setState({
       isOpen: false,
     });

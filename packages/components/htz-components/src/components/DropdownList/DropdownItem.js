@@ -6,6 +6,7 @@ import Button from '../Button/Button';
 import FlippingArrow from '../Animations/FlippingArrow';
 import DropdownList from './DropdownList';
 import EventTracker from '../../utils/EventTracker';
+import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 import { dropdownItemStyle, dropdownListStyle, } from '../Masthead/mastheadDropdownListStyle';
 
 Item.propTypes = {
@@ -66,6 +67,7 @@ export default function Item({ name, url, pages, variant, miscStyles, onClick, }
                   isLast
                   mainMenuStyle={{ width: '100%', display: 'flex', }}
                   render={({ renderButton, ListWrapper, isOpen, }) => {
+                    const buttonRef = React.createRef();
                     const combinedItems = pages.map(item => (
                       <Item
                         key={item.name}
@@ -135,6 +137,7 @@ export default function Item({ name, url, pages, variant, miscStyles, onClick, }
                               attrs={eventsAttrs(openList, closeList, list)}
                               aria-expanded={isOpen}
                               aria-label={`more ${name}`}
+                              ref={buttonRef}
                               miscStyles={{
                                 position: 'static',
                                 ...(isOpen
@@ -144,6 +147,9 @@ export default function Item({ name, url, pages, variant, miscStyles, onClick, }
                                   : {}),
                               }}
                             >
+                              <VisuallyHidden>
+                                {theme.navigationMenuI18n.a11yTexts.subMenu(name, isOpen)}
+                              </VisuallyHidden>
                               <FlippingArrow
                                 isOpen={isOpen}
                                 color={[ 'neutral', '-10', ]}
@@ -168,6 +174,10 @@ export default function Item({ name, url, pages, variant, miscStyles, onClick, }
                                     borderBottomStyle: 'solid',
                                     borderBottomWidth: '1px',
                                   },
+                                }}
+                                closeList={e => {
+                                  closeList(e);
+                                  buttonRef.current && buttonRef.current.focus();
                                 }}
                               >
                                 {combinedItems}

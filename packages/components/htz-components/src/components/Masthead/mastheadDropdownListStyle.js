@@ -18,6 +18,7 @@ export const dropdownListStyle = theme => ({
   minWidth: '100%',
   position: 'absolute',
   zIndex: '100',
+  top: '100%',
   '& *': {
     ':focus': {
       outline: 'none',

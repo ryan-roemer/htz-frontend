@@ -1,7 +1,7 @@
 import React from 'react';
 import { FelaComponent, } from 'react-fela';
 import ClickArea from '../ClickArea/ClickArea';
-import hoverableButtonRule from '../ClickArea/hoverableButtonRule';
+import hoverableButtonRule from './hoverableButtonRule';
 import IconReading from '../Icon/icons/IconReading';
 import HtzLink from '../HtzLink/HtzLink';
 import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';

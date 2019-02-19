@@ -5,7 +5,7 @@ import Query from '../../ApolloBoundary/Query';
 import VisuallyHidden from '../../VisuallyHidden/VisuallyHidden';
 import Button from '../../Button/Button';
 import ClickArea from '../../ClickArea/ClickArea';
-import hoverableButtonRule from '../../ClickArea/hoverableButtonRule';
+import hoverableButtonRule from '../hoverableButtonRule';
 import DropdownList from '../../DropdownList/DropdownList';
 import IconAccessibility from '../../Icon/icons/IconAccessibility';
 import Item from '../../DropdownList/DropdownItem';
@@ -28,11 +28,8 @@ class MastheadA11yMenu extends React.Component {
     return (
       <FelaTheme
         render={theme => {
-          const items = theme.a11yMenuI18n.menuItems;
-          const initialCombinedItems = items.map((item, index) => (
-            <Item key={item.name} {...item} />
-          ));
-          const combinedItems = [
+          const initialItems = theme.a11yMenuI18n.menuItems;
+          const combinedItems = closeList => ([
             <Query query={GET_A11Y_STATE} key="toggleA11y">
               {({ data, loading, client, }) => {
                 const { a11yToggle, } = data;
@@ -53,6 +50,7 @@ class MastheadA11yMenu extends React.Component {
                           a11yToggle: !a11yToggle,
                         },
                       });
+                      closeList();
                     }}
                   >
                     <span>{theme.a11yMenuI18n.a11yToggle(a11yToggle)}</span>
@@ -60,16 +58,16 @@ class MastheadA11yMenu extends React.Component {
                 );
               }}
             </Query>,
-            ...initialCombinedItems,
-          ];
+            ...initialItems.map((item, index) => (
+              <Item key={item.name} onClick={closeList} {...item} />
+            )),
+          ]);
 
           return (
             <DropdownList
               mainMenuStyle={{ position: 'relative', }}
               onClose={() => {
-                setImmediate(() => {
-                  this.buttonRef.current.focus();
-                });
+                this.buttonRef.current.focus();
               }}
               render={({ renderButton, ListWrapper, isOpen, closeList, }) => (
                 <Fragment>
@@ -103,7 +101,7 @@ class MastheadA11yMenu extends React.Component {
                           itemStyle={dropdownItemStyle(theme)}
                           closeList={closeList}
                         >
-                          {combinedItems}
+                          {combinedItems(closeList)}
                         </ListWrapper>
                       )}
                     />

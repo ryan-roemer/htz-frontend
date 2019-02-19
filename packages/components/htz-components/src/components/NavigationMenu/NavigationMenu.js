@@ -203,7 +203,7 @@ class NavigationMenu extends React.Component {
                 <DropdownList
                   mainMenuStyle={{ position: 'relative', }}
                   onClose={() => this.hamburgerEl.focus()}
-                  render={({ renderButton, ListWrapper, isOpen, focusButton, }) => (
+                  render={({ renderButton, ListWrapper, isOpen, closeList, }) => (
                     <Fragment>
                       {renderButton(({ toggleState, }) => (
                         <FelaComponent
@@ -263,6 +263,7 @@ class NavigationMenu extends React.Component {
                             minWidth: '29rem',
                           }}
                           itemStyle={dropdownItemStyle(theme)}
+                          closeList={closeList}
                         >
                           {combinedMenu}
                         </ListWrapper>

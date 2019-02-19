@@ -51,6 +51,9 @@ export const creditPrefixI18n = Object.freeze({
 
 export const navigationMenuI18n = Object.freeze({
   buttonText: 'ניווט',
+  a11yTexts: Object.freeze({
+    subMenu: (title, isOpen) => `${isOpen ? 'סגירת' : 'פתיחת'} תת-תפריט ${title}`,
+  }),
 });
 
 export const mobileNavigationMenuI18n = Object.freeze({
