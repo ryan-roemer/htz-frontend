@@ -431,3 +431,7 @@ export const btnOptions = Object.freeze({
     close: 270,
   },
 });
+
+export const survey = Object.freeze({
+  button: 'לכל הסקרים',
+});

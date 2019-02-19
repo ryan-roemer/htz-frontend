@@ -47,6 +47,7 @@ import {
   newsletterI18n,
   osakaI18n,
   ratingI18n,
+  survey,
   readingListMenuI18n,
   recipeIngredientsI18n,
   recipeInstructionsI18n,
@@ -154,6 +155,7 @@ const htzTheme = Object.freeze({
   zoomoutText,
   selectAriaLabel,
   marketingTools,
+  survey,
   // Methods
   color: getColor,
   getDelay,

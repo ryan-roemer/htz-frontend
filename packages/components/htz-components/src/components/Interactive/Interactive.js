@@ -23,7 +23,7 @@ const template = new Map([
 
 function InteractiveElement(props) {
   let Element;
-  if (props.contentName === 'surveys2019') {
+  if (props.contentName.includes('surveys2019')) {
     Element = Survey;
   }
   else {

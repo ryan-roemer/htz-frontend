@@ -1,6 +1,6 @@
 /* global window */
 import React from 'react';
-import { FelaComponent, } from 'react-fela';
+import { FelaComponent, FelaTheme, } from 'react-fela';
 import orderBy from 'lodash/orderBy';
 import gql from 'graphql-tag';
 import Observer from 'react-intersection-observer';
@@ -61,7 +61,7 @@ export default class Survey extends React.Component {
 
       this.items = orderBy(
         unsortedItems,
-        v => this.partiesValues[v][1] + this.partiesValues[v][0],
+        v => this.partiesValues[v][0],
         [ 'desc', ]
       );
     }
@@ -107,18 +107,25 @@ export default class Survey extends React.Component {
                 return (
                   <FelaComponent mode={mode} rule={style.wrapper}>
                     <FelaComponent style={style.legendsWrapper}>
-                      {this.xls.surveys.map((v, i) => (
-                        <FelaComponent style={style.legend} key={this.colors[i]}>
-                          <FelaComponent
-                            color={this.colors[i]}
-                            rule={style.legendcolor}
-                            render="span"
-                          />
-                          <FelaComponent style={style.legendLabel} render="span">
-                            {v.legend}
+                      {this.xls.surveys.map((v, i) => {
+                        const legend = v.legend.split(',').map(v => v.trim());
+                        if (legend[1]) {
+                          legend[0] += ', ';
+                        }
+                        return (
+                          <FelaComponent style={style.legend} key={this.colors[i]}>
+                            <FelaComponent
+                              color={this.colors[i]}
+                              rule={style.legendcolor}
+                              render="span"
+                            />
+                            <FelaComponent style={style.legendLabel} render="span">
+                              <span>{legend[0]}</span>
+                              <b>{legend[1]}</b>
+                            </FelaComponent>
                           </FelaComponent>
-                        </FelaComponent>
-                      ))}
+                        );
+                      })}
                     </FelaComponent>
                     <FelaComponent mode={mode} rule={style.surveyWrapper}>
                       {this.items.map(item => (
@@ -161,7 +168,7 @@ export default class Survey extends React.Component {
                         href="https://www.haaretz.co.il/EXT-INTERACTIVE-1.6826451"
                         style={style.button}
                       >
-                        לכל הסקרים
+                        <FelaTheme render={theme => theme.survey.button} />
                       </Button>
                     </FelaComponent>
 
