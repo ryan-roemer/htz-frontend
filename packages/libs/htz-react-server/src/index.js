@@ -14,7 +14,6 @@ import config from 'config';
 import 'isomorphic-fetch';
 import morgan from 'morgan';
 import morganJson from 'morgan-json';
-import userAgent from 'express-useragent';
 
 import htz from './routes/htz';
 import tm from './routes/tm';
@@ -103,7 +102,6 @@ async function run() {
       server.use(helmet({ frameguard: false, })); // Various security-minded settings.
       // cors allows querying the server from different ports and aliases.
       server.use(cors());
-      server.use(userAgent.express());
 
       server.get([ /^((\/_next\/).*)+$/, ], (req, res) => {
         const query = {

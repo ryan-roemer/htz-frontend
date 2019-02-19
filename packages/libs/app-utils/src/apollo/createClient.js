@@ -90,25 +90,6 @@ function create(initialState, appDefaultState, req) {
     includeExtensions: true,
   });
 
-  const userAgent = req
-    ? {
-      browser: req.useragent.browser,
-      os: req.useragent.os,
-      platform: req.useragent.platform,
-      version: req.useragent.version,
-      isMobile: req.useragent.isMobile,
-      isTablet: req.useragent.isTablet,
-      isDesktop: req.useragent.isDesktop,
-      deviceType: req.useragent.isMobile
-        ? 'mobile'
-        : req.useragent.isTablet
-          ? 'tablet'
-          : req.useragent.isDesktop
-            ? 'desktop'
-            : 'other',
-    }
-    : {};
-
   const errorLink = onError(({ response, operation, graphQLErrors, networkError, }) => {
     if (graphQLErrors) {
       console.log(`${'[GraphQL error]:'} Operation Name: ${operation.operationName}`);
@@ -160,10 +141,6 @@ function create(initialState, appDefaultState, req) {
         __typename: 'AriaLive',
       },
       hostname,
-      userAgent: {
-        ...userAgent,
-        __typename: 'UserAgent',
-      },
       scroll: {
         velocity: null,
         x: 0,
