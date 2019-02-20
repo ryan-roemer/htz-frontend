@@ -29,7 +29,6 @@ type ListComponentProps = {
 };
 export type ListContentRendererProps = {
   children: ListComponentProps => Node,
-  updateListDuplication: Function,
   view: string,
   viewProps: Object,
   listData: ListDataType,
@@ -41,25 +40,24 @@ ListContentRenderer.defaultProps = {
 
 function ListContentRenderer({
   children,
-  updateListDuplication,
   view,
   viewProps,
   listData,
 }: ListContentRendererProps): Node {
   const { title, items, lazyLoadImages, contentId, ...restList } = listData;
-  items && updateListDuplication(items);
   return (
     <EventTracker>
       {({ biAction, gaAction, HtzReactGA, }) => {
-        const clickAction = ({ index, articleId, }) => biAction && biAction({
-          actionCode: 109,
-          additionalInfo: {
-            ArticleId: articleId,
-            ListId: contentId,
-            NoInList: index + 1,
-            ViewName: view,
-          },
-        });
+        const clickAction = ({ index, articleId, }) => biAction
+          && biAction({
+            actionCode: 109,
+            additionalInfo: {
+              ArticleId: articleId,
+              ListId: contentId,
+              NoInList: index + 1,
+              ViewName: view,
+            },
+          });
         return children({
           list: { items, title, ...restList, },
           listId: contentId,
@@ -77,12 +75,12 @@ type ListDataGetterProps = ListContentRendererProps & {
   query: DocumentNode,
   variables: Object,
   router: Object,
-}
+};
 
 type ListRendererProps = ListDataGetterProps & {
   section: string,
   isSsr: boolean,
-}
+};
 
 function ListRenderer({
   listData,
@@ -93,31 +91,34 @@ function ListRenderer({
   isSsr,
   ...restOfProps
 }: ListRendererProps): Node {
-  return (
-    isSsr
-      ? (
-        <ListContentRenderer listData={listData} section={section} {...restOfProps}>
-          {children}
-        </ListContentRenderer>
-      )
-      : (
-        <div>
-          <Query query={query} variables={{ ...variables, section, }} fetchPolicy="network-only">
-            {({ data, loading: listLoading, error: listError, }) => {
-              if (listLoading) return null;
-              if (listError) return null;
-              return (
-                <ListContentRenderer listData={data.list} section={section} {...restOfProps}>
-                  {children}
-                </ListContentRenderer>
-              );
-            }}
-          </Query>
-        </div>
-      )
+  return isSsr ? (
+    <ListContentRenderer listData={listData} section={section} {...restOfProps}>
+      {children}
+    </ListContentRenderer>
+  ) : (
+    <div>
+      <Query
+        query={query}
+        variables={{ ...variables, section, }}
+        fetchPolicy="network-only"
+      >
+        {({ data, loading: listLoading, error: listError, }) => {
+          if (listLoading) return null;
+          if (listError) return null;
+          return (
+            <ListContentRenderer
+              listData={data.list}
+              section={section}
+              {...restOfProps}
+            >
+              {children}
+            </ListContentRenderer>
+          );
+        }}
+      </Query>
+    </div>
   );
 }
-
 
 ListDataGetter.section = null;
 
@@ -126,9 +127,7 @@ function ListDataGetter(props: ListDataGetterProps): Node {
   const isSsr = listData && listData.loadPriority === 'ssr';
 
   if (isSsr || ListDataGetter.section) {
-    const section = isSsr
-      ? router.asPath
-      : ListDataGetter.section;
+    const section = isSsr ? router.asPath : ListDataGetter.section;
     return (
       <ListRenderer
         {...props}
@@ -143,9 +142,7 @@ function ListDataGetter(props: ListDataGetterProps): Node {
   }
 
   return (
-    <Query
-      query={GET_SECTION}
-    >
+    <Query query={GET_SECTION}>
       {({ data: sectionData, loading, error, }) => {
         if (loading) return null;
         if (error) return null;
