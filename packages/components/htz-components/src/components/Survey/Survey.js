@@ -3,7 +3,6 @@ import React from 'react';
 import { FelaComponent, FelaTheme, } from 'react-fela';
 import orderBy from 'lodash/orderBy';
 import Observer from 'react-intersection-observer';
-
 import style from './style';
 import Button from '../Button/Button';
 
@@ -51,10 +50,7 @@ export default class Survey extends React.Component {
       });
 
       this.items = orderBy(unsortedItems, v => this.partiesValues[v][0], [ 'desc', ]);
-<<<<<<< HEAD
-=======
       this.showAnimation = showAnimationOnDesktop;
->>>>>>> fix(survey): make the b tag felacomponent
     }
   }
 
@@ -81,11 +77,7 @@ export default class Survey extends React.Component {
                       />
                       <FelaComponent style={style.legendLabel} render="span">
                         <span>{legend[0]}</span>
-<<<<<<< HEAD
-                        <b>{legend[1]}</b>
-=======
                         <FelaComponent style={style.legendDate}>{legend[1]}</FelaComponent>
->>>>>>> fix(survey): make the b tag felacomponent
                       </FelaComponent>
                     </FelaComponent>
                   );
