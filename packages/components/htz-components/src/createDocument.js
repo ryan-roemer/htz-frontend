@@ -42,7 +42,6 @@ const createDocument = ({
   fontStacks,
 }) => class HaaretzDocument extends Document {
   static getInitialProps({ renderPage, req, }) {
-    const isMobile = req.useragent.isMobile;
     const host = req.hostname.match(/^(?:.*?\.)?(.*)/i)[1];
     const validatedTheme = hasToggleableTheme ? theme(host) : theme;
     const varifiedStaticRules = hasToggleableTheme ? staticRules(host) : staticRules;
@@ -72,7 +71,6 @@ const createDocument = ({
       isRtl,
       lang,
       host,
-      isMobile,
       url: req.url,
       criticalFontElements,
     };
@@ -125,7 +123,7 @@ const createDocument = ({
               }`,
           }}
         /> */}
-        {!isMobile ? <script async src="//static.chartbeat.com/js/chartbeat_mab.js" /> : null}
+        <script async src="//static.chartbeat.com/js/chartbeat_mab.js" />
       </React.Fragment>
     );
 

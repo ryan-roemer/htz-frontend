@@ -145,7 +145,7 @@ export default function Teaser({
       >
         {children}
       </Grid>
-      <FelaComponent
+      {/* <FelaComponent
         style={{
           backgroundColor: 'transparent',
           bottom: '0',
@@ -167,7 +167,7 @@ export default function Teaser({
             }}
           />
         )}
-      />
+      /> */}
     </Card>
   );
 }
