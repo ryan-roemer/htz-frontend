@@ -42,14 +42,16 @@ const createDocument = ({
   fontStacks,
 }) => class HaaretzDocument extends Document {
   static getInitialProps({ renderPage, req, }) {
-    const isMobile = req.useragent.isMobile;
     const host = req.hostname.match(/^(?:.*?\.)?(.*)/i)[1];
     const validatedTheme = hasToggleableTheme ? theme(host) : theme;
-    const varifiedStaticRules = hasToggleableTheme ? staticRules(host) : staticRules;
+    const varifiedStaticRules = hasToggleableTheme
+      ? staticRules(host)
+      : staticRules;
 
     if (varifiedStaticRules) {
       Array.isArray(varifiedStaticRules)
-        ? varifiedStaticRules.forEach(rule => styleRenderer.renderStatic(rule))
+        ? varifiedStaticRules.forEach(rule => styleRenderer.renderStatic(rule)
+        )
         : styleRenderer.renderStatic(varifiedStaticRules);
     }
 
@@ -63,7 +65,10 @@ const createDocument = ({
     styleRenderer.clear();
 
     // console.log('[cretaeDocument] fontStacks: ', JSON.stringify(fontStacks));
-    const criticalFontElements = criticalFontLoader(fontStacks.criticalFont, fontStacks.base);
+    const criticalFontElements = criticalFontLoader(
+      fontStacks.criticalFont,
+      fontStacks.base
+    );
 
     return {
       ...page,
@@ -72,26 +77,27 @@ const createDocument = ({
       isRtl,
       lang,
       host,
-      isMobile,
       url: req.url,
       criticalFontElements,
     };
   }
 
   renderStyles() {
-    return this.props.sheetList.map(({ type, rehydration, support, media, css, }) => (
-      <style
-        dangerouslySetInnerHTML={{ __html: css, }}
-        data-fela-rehydration={rehydration}
-        data-fela-support={support}
-        data-fela-type={type}
-        key={`${type}-${media}`}
-        media={media}
-      />
-    ));
+    return this.props.sheetList.map(
+      ({ type, rehydration, support, media, css, }) => (
+        <style
+          dangerouslySetInnerHTML={{ __html: css, }}
+          data-fela-rehydration={rehydration}
+          data-fela-support={support}
+          data-fela-type={type}
+          key={`${type}-${media}`}
+          media={media}
+        />
+      )
+    );
   }
 
-    chartbeatConfig = isMobile => (
+    chartbeatConfig = () => (
       <React.Fragment>
         <script
           type="text/javascript"
@@ -125,7 +131,7 @@ const createDocument = ({
               }`,
           }}
         /> */}
-        {!isMobile ? <script async src="//static.chartbeat.com/js/chartbeat_mab.js" /> : null}
+        <script async src="//static.chartbeat.com/js/chartbeat_mab.js" />
       </React.Fragment>
     );
 
@@ -148,9 +154,14 @@ const createDocument = ({
           <Head>
             <meta charSet="utf-8" />
             <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1, minimum-scale=1"
+            />
             {/* dont add link to manifest on purchase-page app  */}
-            {hasToggleableTheme ? null : <link rel="manifest" href="/manifest.json" />}
+            {hasToggleableTheme ? null : (
+              <link rel="manifest" href="/manifest.json" />
+            )}
             {criticalFont.preload}
             {/* ************************* *
              *       STYLE ELEMENTS      *
@@ -174,7 +185,7 @@ const createDocument = ({
             {criticalFont.script}
 
             {/* ChartBeat scripts should only render on homepage */}
-            {path !== '/' ? null : this.chartbeatConfig(this.props.isMobile)}
+            {path !== '/' ? null : this.chartbeatConfig()}
 
             <SEO host={this.props.host} polyFillSrc={polyfillSrc} />
             {this.renderData()}

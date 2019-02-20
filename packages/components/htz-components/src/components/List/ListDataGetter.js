@@ -26,7 +26,6 @@ type ListComponentProps = {
 export type ListDataGetterProps = {
   children: ListComponentProps => React.Node,
   query: DocumentNode,
-  updateListDuplication: Function,
   variables: {},
   view: string,
   viewProps?: Object,
@@ -40,7 +39,6 @@ ListDataGetter.defaultProps = {
 export default function ListDataGetter({
   children,
   query,
-  updateListDuplication,
   variables,
   view,
   viewProps,
@@ -74,7 +72,6 @@ export default function ListDataGetter({
               const { title, items, lazyLoadImages, contentId, ...restList } = isSsr
                 ? listData
                 : data.list;
-              items && updateListDuplication(items);
               return (
                 <EventTracker>
                   {({ biAction, gaAction, HtzReactGA, }) => {
