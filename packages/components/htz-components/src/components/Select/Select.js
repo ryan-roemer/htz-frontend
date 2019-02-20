@@ -278,9 +278,7 @@ export class Select extends Component {
       .indexOf(selectedItem ? selectedItem.key || selectedItem.value : null);
 
     return (
-      <FelaComponent
-        style={{ position: 'relative', }}
-        render={({ className, theme, }) => (
+      <FelaComponent style={{ position: 'relative', }}>{({ className, theme, }) => (
           <div className={className}>
             <Downshift
               selectedItem={selectedItem}
@@ -332,10 +330,7 @@ export class Select extends Component {
                     </StyledSelectedItem>
                     <FelaComponent style={{ position: 'relative', }}>
                       {isOpen ? (
-                        <FelaComponent
-                          rule={dropDownMenuStyle}
-                          variant={variant}
-                          render={({ className, }) => (
+                        <FelaComponent style={dropDownMenuStyle} variant={variant}>{({ className, }) => (
                             <div
                               className={className}
                               data-test="dropdown-menu"
@@ -355,8 +350,7 @@ export class Select extends Component {
                                 </StyledItem>
                               ))}
                             </div>
-                          )}
-                        />
+                          )}</FelaComponent>
                       ) : null}
                     </FelaComponent>
                   </StyledSelectWrapper>
@@ -371,8 +365,7 @@ export class Select extends Component {
               />
             ) : null}
           </div>
-        )}
-      />
+        )}</FelaComponent>
     );
   }
 }

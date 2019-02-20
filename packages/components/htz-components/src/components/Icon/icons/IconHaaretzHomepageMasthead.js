@@ -16,8 +16,7 @@ const IconHaaretzHomepageMasthead = ({ size, fill, color, attrs, miscStyles, ...
     color={color}
     attrs={attrs}
     miscStyles={miscStyles}
-    rule={iconStyle}
-    render={({ className, }) => (
+    style={iconStyle}>{({ className, }) => (
       <svg width="3.65625em" height="1em" viewBox="0 0 1028 256" className={className} {...props} {...attrs}>
         <path
           fill="currentColor"
@@ -41,8 +40,7 @@ const IconHaaretzHomepageMasthead = ({ size, fill, color, attrs, miscStyles, ...
           C120.761,210.489,121.608,212.603,122.592,214.656z"
         />
       </svg>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 IconHaaretzHomepageMasthead.propTypes = iconPropTypes;

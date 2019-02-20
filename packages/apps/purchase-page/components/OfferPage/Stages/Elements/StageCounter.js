@@ -18,7 +18,7 @@ const defaultProps = {
   stage: null,
 };
 
-const stagesCounterStyle = theme => ({
+const stagesCounterStyle = ({ theme, }) => ({
   textAlign: 'center',
   paddingTop: '6rem',
   fontWeight: 'bold',
@@ -28,9 +28,8 @@ const stagesCounterStyle = theme => ({
 
 function StageCounter({ stage, }) {
   return (
-    <FelaComponent
-      style={stagesCounterStyle}
-      render={({
+    <FelaComponent style={stagesCounterStyle}>
+      {({
         className,
         theme: {
           offerPage: {
@@ -56,7 +55,7 @@ function StageCounter({ stage, }) {
           )}
         </Query>
       )}
-    />
+    </FelaComponent>
   );
 }
 

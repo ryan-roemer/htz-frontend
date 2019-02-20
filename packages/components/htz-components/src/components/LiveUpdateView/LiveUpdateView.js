@@ -4,16 +4,20 @@ import { FelaComponent, } from 'react-fela';
 function LiveUpdateView() {
   return (
     <FelaComponent
-      style={theme => ({
+      style={(
+        {
+          theme
+        }
+      ) => ({
         // marginTop: '3rem',
         display: 'inline-flex',
-        alignItems: 'center',
+
         // extend: [
         //   theme.mq({ from: 'l', }, { display: 'inline-flex', }),
         //   theme.mq({ until: 'l', }, { display: 'none', }),
         // ],
-      })}
-      render={({ className, theme, }) => (
+        alignItems: 'center'
+      })}>{({ className, theme, }) => (
         <span className={className}>
           <FelaComponent
             style={{
@@ -21,11 +25,9 @@ function LiveUpdateView() {
               margin: 'auto',
               fontWeight: 'bold',
               extend: [ theme.type(-3), ],
-            }}
-            render={({ className, }) => (
+            }}>{({ className, }) => (
               <span className={className}>{theme.liveBlogI18n.liveUpdate}</span>
-            )}
-          />
+            )}</FelaComponent>
           <FelaComponent
             style={{
               height: '1.3rem',
@@ -43,12 +45,9 @@ function LiveUpdateView() {
                 '50%': { opacity: '1', },
                 '100%': { opacity: '0', },
               },
-            }}
-            render={({ className, }) => <span className={className} />}
-          />
+            }}>{({ className, }) => <span className={className} />}</FelaComponent>
         </span>
-      )}
-    />
+      )}</FelaComponent>
   );
 }
 

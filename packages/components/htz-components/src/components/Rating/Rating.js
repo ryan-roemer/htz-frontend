@@ -25,14 +25,10 @@ class Rating extends Component {
 
   starColor = (isStarRightHalf, starNumber) => {
     if (this.state.hoveredStar) {
-      return this.state.hoveredStar >= starNumber
-        ? [ 'primary', ]
-        : [ 'neutral', '-5', ];
+      return this.state.hoveredStar >= starNumber ? [ 'primary', ] : [ 'neutral', '-5', ];
     }
     if (isStarRightHalf) {
-      return this.props.rating >= starNumber - 0.5
-        ? [ 'primary', ]
-        : [ 'neutral', '-5', ];
+      return this.props.rating >= starNumber - 0.5 ? [ 'primary', ] : [ 'neutral', '-5', ];
     }
     return this.props.rating >= starNumber ? [ 'primary', ] : [ 'neutral', '-5', ];
   };
@@ -48,7 +44,13 @@ class Rating extends Component {
             ':hover': { outline: 'none', },
             ':focus': { outline: 'none', },
           }}
-          render={({ className, theme: { ratingI18n: { a11yTexts, }, }, }) => (
+        >
+          {({
+            className,
+            theme: {
+              ratingI18n: { a11yTexts, },
+            },
+          }) => (
             <button
               key={`star${starNumber}`}
               type="button"
@@ -74,25 +76,21 @@ class Rating extends Component {
                 rightColor={this.starColor(true, starNumber)}
                 leftColor={this.starColor(false, starNumber)}
               />
-              <VisuallyHidden>
-                {a11yTexts.rateAction(starNumber)}
-              </VisuallyHidden>
+              <VisuallyHidden>{a11yTexts.rateAction(starNumber)}</VisuallyHidden>
             </button>
           )}
-        />
+        </FelaComponent>
       );
     }
     return (
-      <FelaTheme
-        render={({ ratingI18n: { a11yTexts, }, }) => (
+      <FelaTheme>
+        {({ ratingI18n: { a11yTexts, }, }) => (
           <Fragment>
-            <VisuallyHidden>
-              {a11yTexts.rating(rating)}
-            </VisuallyHidden>
+            <VisuallyHidden>{a11yTexts.rating(rating)}</VisuallyHidden>
             {starArr}
           </Fragment>
         )}
-      />
+      </FelaTheme>
     );
   }
 }

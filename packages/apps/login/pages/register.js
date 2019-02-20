@@ -222,8 +222,7 @@ class RegisterPage extends Component {
           return (
             <FSMLayout>
               {({ currentState, findRout, doTransition, }) => (
-                <FelaTheme
-                  render={theme => (
+                <FelaTheme>{theme => (
                     <Fragment>
                       <EventTracker>
                         {({ biAction, gaAction, gaMapper, }) => (
@@ -393,11 +392,10 @@ class RegisterPage extends Component {
                         )}
                       </EventTracker>
                     </Fragment>
-                  )}
-                />
+                  )}</FelaTheme>
               )}
             </FSMLayout>
-          )
+          );
         }}
       </ApolloConsumer>
     );

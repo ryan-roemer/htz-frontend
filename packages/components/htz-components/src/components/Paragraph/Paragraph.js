@@ -11,14 +11,16 @@ import { stylesPropType, } from '../../propTypes/stylesPropType';
 
 const Crosshead = ({ miscStyles, ...props }) => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       extend: [
         theme.type(2),
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ],
-    })}
-    render={({ className, }) => <H className={className} {...props} />}
-  />
+      ]
+    })}>{({ className, }) => <H className={className} {...props} />}</FelaComponent>
 );
 
 const paragraphStyle = ({ miscStyles, theme, }) => ({
@@ -33,10 +35,7 @@ const paragraphStyle = ({ miscStyles, theme, }) => ({
 
 // eslint-disable-next-line react/prop-types
 const P = ({ children, renderFirstImpression, miscStyles, ...props }) => (
-  <FelaComponent
-    miscStyles={miscStyles}
-    rule={paragraphStyle}
-    render={({ className, }) => (
+  <FelaComponent miscStyles={miscStyles} style={paragraphStyle}>{({ className, }) => (
       <Fragment>
         <p className={className} {...props}>
           {children}
@@ -47,31 +46,37 @@ const P = ({ children, renderFirstImpression, miscStyles, ...props }) => (
           </Zen>
         ) : null}
       </Fragment>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 // eslint-disable-next-line react/prop-types
 const Question = ({ children, ...props }) => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       fontWeight: '700',
+
       extend: [
         theme.type(1, { untilBp: 'xl', lines: 5, }),
         theme.type(0, { fromBp: 'xl', lines: 5, }),
-      ],
-    })}
-    render={({ className, }) => (
+      ]
+    })}>{({ className, }) => (
       <p className={className} {...props}>
         {children}
       </p>
-    )}
-  />
+    )}</FelaComponent>
 );
 // eslint-disable-next-line react/prop-types
 const Ul = ({ children, miscStyles, ...props }) => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       marginBottom: '3rem',
       listStylePosition: 'inside',
       listStyleType: 'disc',
@@ -79,23 +84,26 @@ const Ul = ({ children, miscStyles, ...props }) => (
       paddingBottom: '0',
       paddingInlineStart: '0',
       paddingInlineEnd: '0',
+
       extend: [
         theme.type(1, { untilBp: 'xl', lines: 5, }),
         theme.type(0, { fromBp: 'xl', lines: 5, }),
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ],
-    })}
-    render={({ className, }) => (
+      ]
+    })}>{({ className, }) => (
       <ul className={className} {...props}>
         {children}
       </ul>
-    )}
-  />
+    )}</FelaComponent>
 );
 // eslint-disable-next-line react/prop-types
 const Ol = ({ children, miscStyles, ...props }) => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       marginBottom: '3rem',
       listStylePosition: 'inside',
       listStyleType: 'decimal-leading-zero',
@@ -103,18 +111,17 @@ const Ol = ({ children, miscStyles, ...props }) => (
       paddingBottom: '0',
       paddingInlineStart: '0',
       paddingInlineEnd: '0',
+
       extend: [
         theme.type(1, { untilBp: 'xl', lines: 5, }),
         theme.type(0, { fromBp: 'xl', lines: 5, }),
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ],
-    })}
-    render={({ className, }) => (
+      ]
+    })}>{({ className, }) => (
       <ul className={className} {...props}>
         {children}
       </ul>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 // eslint-disable-next-line react/prop-types
@@ -122,13 +129,11 @@ const Strong = ({ children, ...props }) => (
   <FelaComponent
     style={{
       fontWeight: '700',
-    }}
-    render={({ className, }) => (
+    }}>{({ className, }) => (
       <strong className={className} {...props}>
         {children}
       </strong>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 // eslint-disable-next-line react/prop-types
@@ -136,13 +141,11 @@ const Em = ({ children, ...props }) => (
   <FelaComponent
     style={{
       fontStyle: 'italic',
-    }}
-    render={({ className, }) => (
+    }}>{({ className, }) => (
       <em className={className} {...props}>
         {children}
       </em>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 // eslint-disable-next-line react/prop-types
@@ -151,27 +154,27 @@ const UnderLine = ({ children, ...props }) => (
     style={{
       textDecoration: 'underline',
       textDecorationSkip: 'ink',
-    }}
-    render={({ className, }) => (
+    }}>{({ className, }) => (
       <span className={className} {...props}>
         {children}
       </span>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 // eslint-disable-next-line react/prop-types
 const Mark = ({ children, ...props }) => (
   <FelaComponent
-    style={theme => ({
-      backgroundColor: theme.color('primary', '-3'),
-    })}
-    render={({ className, }) => (
+    style={(
+      {
+        theme
+      }
+    ) => ({
+      backgroundColor: theme.color('primary', '-3')
+    })}>{({ className, }) => (
       <mark className={className} {...props}>
         {children}
       </mark>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 /* Util functions */

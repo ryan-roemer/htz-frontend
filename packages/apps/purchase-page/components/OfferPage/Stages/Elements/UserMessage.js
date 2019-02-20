@@ -14,10 +14,14 @@ function UserMessage({ userMessage, }) {
   if (userMessage) {
     return (
       <FelaComponent
-        style={theme => ({
+        style={(
+          {
+            theme
+          }
+        ) => ({
           fontWeight: 'bold',
           marginTop: '1rem',
-          extend: [ theme.type(1), ],
+          extend: [ theme.type(1), ]
         })}
       >
         {userMessage.map(line => <p key={line}>{line}</p>)}

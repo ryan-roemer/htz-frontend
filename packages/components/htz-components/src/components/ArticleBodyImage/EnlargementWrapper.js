@@ -41,10 +41,8 @@ const iconStyle = ({ theme, hide, }: { theme: Object, hide: ?boolean, }): Object
 
 function Icon({ hide, iconText, }: { hide: ?boolean, iconText: string, }): Node {
   return (
-    <FelaComponent
-      rule={iconStyle}
-      hide={hide}
-      render={({ className, }) => (
+    <FelaComponent style={iconStyle} hide={hide}>
+      {({ className, }) => (
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         <button type="button" className={className}>
           <IconZoomIn
@@ -58,7 +56,7 @@ function Icon({ hide, iconText, }: { hide: ?boolean, iconText: string, }): Node 
           <VisuallyHidden>{iconText}</VisuallyHidden>
         </button>
       )}
-    />
+    </FelaComponent>
   );
 }
 
@@ -84,8 +82,7 @@ class EnlargementWrapper extends React.Component<Props, State> {
           overflow: 'hidden',
           position: 'relative',
           cursor: 'zoom-in',
-        }}
-        render={({ className, }) => (
+        }}>{({ className, }) => (
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
           <div
             className={className}
@@ -96,9 +93,7 @@ class EnlargementWrapper extends React.Component<Props, State> {
             <Icon isFullScreen={false} hide={this.state.hide} iconText={iconText} />
             {children}
           </div>
-        )}
-      />
-
+        )}</FelaComponent>
     );
   }
 }

@@ -87,19 +87,15 @@ const MapCover = ({ onClick, }) => (
       position: 'absolute',
       zIndex: '1',
     }}
-    render={({ className, }) => (
+  >
+    {({ className, }) => (
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
       <div className={className} onClick={onClick} />
     )}
-  />
+  </FelaComponent>
 );
 
-function GoogleMap({
-  embedType: type,
-  source: address,
-  settings,
-  onLoadCallback,
-}) {
+function GoogleMap({ embedType: type, source: address, settings, onLoadCallback, }) {
   const key = 'AIzaSyBIAxVLUwr1Lls-usIxb0HxCRpCXMhJtlU';
 
   let waypoints;
@@ -109,9 +105,7 @@ function GoogleMap({
   let fov;
   let pitch;
 
-  const zoom = type !== 'streetView'
-    ? settings.zoom ? `&zoom=${settings.zoom}` : ''
-    : '';
+  const zoom = type !== 'streetView' ? (settings.zoom ? `&zoom=${settings.zoom}` : '') : '';
   const satellite = type !== 'streetView' && settings.satellite ? '&maptype=satellite' : '';
 
   const searchString = type === 'static'
@@ -125,16 +119,12 @@ function GoogleMap({
           : '';
 
   if (type === 'directions') {
-    waypoints = settings.waypoints
-      ? `&waypoints=("${settings.waypoints}")`
-      : '';
+    waypoints = settings.waypoints ? `&waypoints=("${settings.waypoints}")` : '';
     method = `&mode=${settings.mode}`;
     units = `&units=${settings.units}`;
   }
   else if (type === 'streetView') {
-    heading = settings.heading && settings.heading !== 'none'
-      ? `&heading=${settings.heading}`
-      : '';
+    heading = settings.heading && settings.heading !== 'none' ? `&heading=${settings.heading}` : '';
     fov = `&fov=${settings.fov}`;
     pitch = `&pitch=${settings.pitch}`;
   }
@@ -150,8 +140,8 @@ function GoogleMap({
         height="450"
         src={`https://www.google.com/maps/embed/v1/${searchString}&key=${key}&language=${
           settings.language
-        }${waypoints || ''}${method || ''}${units || ''}${satellite
-          || ''}${fov || ''}${heading || ''}${zoom || ''}${pitch || ''}`}
+        }${waypoints || ''}${method || ''}${units || ''}${satellite || ''}${fov || ''}${heading
+          || ''}${zoom || ''}${pitch || ''}`}
         frameBorder="0"
         allowFullScreen=""
         onLoad={onLoadCallback}

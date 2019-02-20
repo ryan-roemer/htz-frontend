@@ -43,14 +43,18 @@ function Article({ title, image, sourceName, }) {
         flexWrap: 'nowrap',
         paddingLeft: '1rem',
         paddingRight: '1rem',
-      }}
-      render={({ className, }) => (
+      }}>{({ className, }) => (
         <Section className={className}>
           {typeof image === 'string' || image.path ? (
             <FelaComponent
-              style={theme => ({
+              style={(
+                {
+                  theme
+                }
+              ) => ({
                 flexShrink: '0',
                 flexGrow: '0',
+
                 extend: [
                   parseComponentProp(
                     'width',
@@ -69,8 +73,9 @@ function Article({ title, image, sourceName, }) {
                     theme.mq
                   ),
                 ],
+
                 height: '',
-                width: '84px',
+                width: '84px'
               })}
             >
               <img
@@ -84,11 +89,15 @@ function Article({ title, image, sourceName, }) {
             <Image imgOptions={imgOptions} data={image} hasWrapper={false} />
           )}
           <FelaComponent
-            style={theme => ({
+            style={(
+              {
+                theme
+              }
+            ) => ({
               ...theme.type(-2),
               marginStart: '1rem',
               maxHeight: '9rem',
-              overflow: 'hidden',
+              overflow: 'hidden'
             })}
           >
             {sourceName ? (
@@ -101,16 +110,17 @@ function Article({ title, image, sourceName, }) {
               />
             ) : null}
             <FelaComponent
-              style={theme => ({
+              style={(
+                {
+                  theme
+                }
+              ) => ({
                 fontWeight: 'bold',
-                extend: [ theme.type(-2), ],
-              })}
-              render={({ className, }) => <H className={className}>{title}</H>}
-            />
+                extend: [ theme.type(-2), ]
+              })}>{({ className, }) => <H className={className}>{title}</H>}</FelaComponent>
           </FelaComponent>
         </Section>
-      )}
-    />
+      )}</FelaComponent>
   );
 }
 

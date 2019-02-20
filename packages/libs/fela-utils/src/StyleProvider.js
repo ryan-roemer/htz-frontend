@@ -1,6 +1,6 @@
 import React, { Children, isValidElement, cloneElement, } from 'react';
 import PropTypes from 'prop-types';
-import { Provider, ThemeProvider, } from 'react-fela';
+import { RendererProvider, ThemeProvider, } from 'react-fela';
 
 /**
  * @typedef {Object} StyleProviderPropTypes
@@ -40,10 +40,7 @@ StyleProvider.contextTypes = {
  *
  * @return {ReactElement}
  */
-export default function StyleProvider(
-  { children, renderer, theme, ...props },
-  context
-) {
+export default function StyleProvider({ children, renderer, theme, ...props }, context) {
   /* This allows us to pass down props */
   const child = Children.only(children);
   return context.renderer ? (
@@ -53,10 +50,10 @@ export default function StyleProvider(
       child
     )
   ) : (
-    <Provider renderer={renderer}>
+    <RendererProvider renderer={renderer}>
       <ThemeProvider theme={theme || {}}>
         {isValidElement(child) ? cloneElement(child, { ...props, }) : child}
       </ThemeProvider>
-    </Provider>
+    </RendererProvider>
   );
 }

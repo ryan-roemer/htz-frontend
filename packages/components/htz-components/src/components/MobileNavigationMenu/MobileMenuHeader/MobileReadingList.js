@@ -6,12 +6,15 @@ import Button from '../../Button/Button';
 export default function MobileReadingList() {
   return (
     <FelaComponent
-      style={theme => ({
+      style={(
+        {
+          theme
+        }
+      ) => ({
         display: 'flex',
         flexGrow: '1',
-        extend: [ borderEnd('1px', 'solid', theme.color('primary', '+1')), ],
-      })}
-      render={({ theme, className, }) => {
+        extend: [ borderEnd('1px', 'solid', theme.color('primary', '+1')), ]
+      })}>{({ theme, className, }) => {
         const { url, buttonText, } = theme.mobileReadingList;
 
         return (
@@ -27,7 +30,6 @@ export default function MobileReadingList() {
             </Button>
           </div>
         );
-      }}
-    />
+      }}</FelaComponent>
   );
 }

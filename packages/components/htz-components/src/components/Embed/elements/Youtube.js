@@ -84,22 +84,15 @@ Youtube.defaultProps = {
   onLoadCallback: null,
 };
 
-const verticalWrapperStyle = theme => ({
-  extend: [
-    theme.mq(
-      { until: 's', },
-      { maxWidth: '57rem', }
-    ),
-    theme.mq(
-      { from: 's', until: 'xl', },
-      { maxWidth: '55rem', }
-    ),
-    theme.mq(
-      { from: 'xl', },
-      { maxWidth: '47rem', }
-    ),
-  ],
-});
+const verticalWrapperStyle = ({ theme, isVertical, }) => (isVertical
+  ? {
+    extend: [
+      theme.mq({ from: 's', until: 'xl', }, { maxWidth: '55rem', }),
+      theme.mq({ until: 's', }, { maxWidth: '57rem', }),
+      theme.mq({ from: 'xl', }, { maxWidth: '47rem', }),
+    ],
+  }
+  : {});
 
 function Youtube({ embedType, settings, source, onLoadCallback, }) {
   const start = embedType === 'playlist' ? '&start=' : '?start=';
@@ -111,9 +104,7 @@ function Youtube({ embedType, settings, source, onLoadCallback, }) {
   const playlist = embedType !== 'playlist' && loop === '1' ? `&playlist=${source}` : ''; // must add playlist to enable looping
 
   return (
-    <FelaComponent
-      {...(isVertical ? { style: verticalWrapperStyle, } : {})}
-    >
+    <FelaComponent isVertical={isVertical} style={verticalWrapperStyle}>
       <VideoWrapper aspectRatio={isVertical ? '9/16' : '16/9'}>
         <VideoElement
           id={`yt_embed_${source}`}

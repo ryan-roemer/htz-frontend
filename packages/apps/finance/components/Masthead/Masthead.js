@@ -21,9 +21,14 @@ const getMenuId = () => {
 
 const Logo: StatelessFunctionalComponent<void> = () => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       marginLeft: 'auto',
       marginRight: 'auto',
+
       extend: [
         theme.mq(
           { from: 's', },
@@ -35,9 +40,8 @@ const Logo: StatelessFunctionalComponent<void> = () => (
             transform: 'translate(-50%,-50%)',
           }
         ),
-      ],
-    })}
-    render={({ className, }) => (
+      ]
+    })}>{({ className, }) => (
       <Link
         href={{
           pathname: '/index',
@@ -48,8 +52,7 @@ const Logo: StatelessFunctionalComponent<void> = () => (
           <IconMarkerLogo size={4} />
         </a>
       </Link>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 export default () => <Masthead contentId={getMenuId()} Logo={Logo} />;

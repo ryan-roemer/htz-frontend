@@ -26,10 +26,10 @@ class MastheadA11yMenu extends React.Component {
 
   render() {
     return (
-      <FelaTheme
-        render={theme => {
+      <FelaTheme>
+        {theme => {
           const initialItems = theme.a11yMenuI18n.menuItems;
-          const combinedItems = closeList => ([
+          const combinedItems = closeList => [
             <Query query={GET_A11Y_STATE} key="toggleA11y">
               {({ data, loading, client, }) => {
                 const { a11yToggle, } = data;
@@ -61,7 +61,7 @@ class MastheadA11yMenu extends React.Component {
             ...initialItems.map((item, index) => (
               <Item key={item.name} onClick={closeList} {...item} />
             )),
-          ]);
+          ];
 
           return (
             <DropdownList
@@ -72,10 +72,8 @@ class MastheadA11yMenu extends React.Component {
               render={({ renderButton, ListWrapper, isOpen, closeList, }) => (
                 <Fragment>
                   {renderButton(({ toggleState, }) => (
-                    <FelaComponent
-                      rule={hoverableButtonRule}
-                      isOpen={isOpen}
-                      render={({ className, theme: { a11yMenuI18n, }, }) => (
+                    <FelaComponent style={hoverableButtonRule} isOpen={isOpen}>
+                      {({ className, theme: { a11yMenuI18n, }, }) => (
                         <button
                           aria-describedby="masthead-a11y-dropdown-button"
                           type="button"
@@ -91,11 +89,11 @@ class MastheadA11yMenu extends React.Component {
                           </VisuallyHidden>
                         </button>
                       )}
-                    />
+                    </FelaComponent>
                   ))}
                   {isOpen ? (
-                    <FelaTheme
-                      render={theme => (
+                    <FelaTheme>
+                      {theme => (
                         <ListWrapper
                           listStyle={{ ...dropdownListStyle(theme), end: '0', }}
                           itemStyle={dropdownItemStyle(theme)}
@@ -104,14 +102,14 @@ class MastheadA11yMenu extends React.Component {
                           {combinedItems(closeList)}
                         </ListWrapper>
                       )}
-                    />
+                    </FelaTheme>
                   ) : null}
                 </Fragment>
               )}
             />
           );
         }}
-      />
+      </FelaTheme>
     );
   }
 }

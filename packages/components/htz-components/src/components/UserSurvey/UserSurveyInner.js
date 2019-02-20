@@ -129,9 +129,8 @@ class UserSurveyInner extends Component {
     };
 
     const radios = Object.keys(userOptions).map(option => (
-      <FelaComponent
-        style={{ display: 'flex', }}
-        render={({ className, }) => (
+      <FelaComponent style={{ display: 'flex', }}>
+        {({ className, }) => (
           <RadioButton
             key={option}
             label={userOptions[option]}
@@ -142,7 +141,7 @@ class UserSurveyInner extends Component {
             checked={this.state.userAnswer === option}
           />
         )}
-      />
+      </FelaComponent>
     ));
 
     let surveyContent;
@@ -153,19 +152,18 @@ class UserSurveyInner extends Component {
           <FelaComponent tagName="div" style={closeButton}>
             <IconClose onClick={this.onClose} />
           </FelaComponent>
-          <FelaComponent style={topWrapper} render="div">
-            <FelaComponent
-              style={thankYou}
-              render={({ className, }) => (
+          <FelaComponent style={topWrapper} as="div">
+            <FelaComponent style={thankYou}>
+              {({ className, }) => (
                 <H className={className}>
                   {'תודה '}
-                  <FelaComponent style={forHelpingUs} render="span">
+                  <FelaComponent style={forHelpingUs} as="span">
                     שעזרת לנו להיות טובים יותר
                   </FelaComponent>
                 </H>
               )}
-            />
-            <FelaComponent style={welcomeCartoon} render="div">
+            </FelaComponent>
+            <FelaComponent style={welcomeCartoon} as="div">
               <WelcomeCartoon size="25" />
             </FelaComponent>
           </FelaComponent>
@@ -179,34 +177,29 @@ class UserSurveyInner extends Component {
             {setArticlePageSurvey => (
               <div>
                 <FelaComponent tagName="div" style={closeButton}>
-                  <IconClose
-                    onClick={() => this.onClose(this.props.user, setArticlePageSurvey)
-                    }
-                  />
+                  <IconClose onClick={() => this.onClose(this.props.user, setArticlePageSurvey)} />
                 </FelaComponent>
-                <FelaComponent style={topWrapper} render="div">
-                  <FelaComponent
-                    style={surveyTitle}
-                    render={({ className, }) => (
+                <FelaComponent style={topWrapper} as="div">
+                  <FelaComponent style={surveyTitle}>
+                    {({ className, }) => (
                       <H className={className}>
                         {`היי ${this.props.user.firstName}, `}
-                        <FelaComponent style={whatYouThink} render="span">
+                        <FelaComponent style={whatYouThink} as="span">
                           מה דעתך על עמוד הכתבה החדש שלנו?
                         </FelaComponent>
                       </H>
                     )}
-                  />
-                  <FelaComponent style={welcomeCartoon} render="div">
+                  </FelaComponent>
+                  <FelaComponent style={welcomeCartoon} as="div">
                     <WelcomeCartoon size="25" />
                   </FelaComponent>
                 </FelaComponent>
                 <Form
-                  onSubmit={() => this.onSubmit(this.props.user, setArticlePageSurvey)
-                  }
+                  onSubmit={() => this.onSubmit(this.props.user, setArticlePageSurvey)}
                   render={({ handleSubmit, }) => (
                     <div>
-                      <FelaComponent render="div" style={surveyWrapper}>
-                        <FelaComponent render="div" style={radioWrapper}>
+                      <FelaComponent as="div" style={surveyWrapper}>
+                        <FelaComponent as="div" style={radioWrapper}>
                           {radios}
                         </FelaComponent>
                         <FelaComponent style={{ flex: '1', }}>
@@ -216,18 +209,14 @@ class UserSurveyInner extends Component {
                             isTextArea
                             labelHidden
                             placeholder="בחוויה שלי..."
-                            height={[
-                              { from: 's', value: 16, },
-                              { until: 's', value: 19, },
-                            ]}
+                            height={[ { from: 's', value: 16, }, { until: 's', value: 19, }, ]}
                             miscStyles={textArea}
-                            onChange={evt => this.setState({ userText: evt.target.value, })
-                            }
+                            onChange={evt => this.setState({ userText: evt.target.value, })}
                             value={this.state.userText}
                           />
                         </FelaComponent>
                       </FelaComponent>
-                      <FelaComponent style={buttonWrapper} render="div">
+                      <FelaComponent style={buttonWrapper} as="div">
                         <Button
                           variant="primary"
                           boxModel={{ hp: 3, vp: 1, }}
@@ -253,7 +242,8 @@ class UserSurveyInner extends Component {
           ...slopeWrapper,
           ...{ display: this.state.showSurvey ? 'block' : 'none', },
         }}
-        render={({ className, }) => (
+      >
+        {({ className, }) => (
           <Section tagName="aside" className={className}>
             {!this.state.didCount ? (
               <Mutation mutation={UPDATE_PAGE_COUNT}>
@@ -272,13 +262,13 @@ class UserSurveyInner extends Component {
                 }}
               </Mutation>
             ) : null}
-            <FelaComponent style={slopeElement} render="div" />
-            <FelaComponent style={contentWrapper} render="div">
+            <FelaComponent style={slopeElement} as="div" />
+            <FelaComponent style={contentWrapper} as="div">
               {surveyContent}
             </FelaComponent>
           </Section>
         )}
-      />
+      </FelaComponent>
     );
   }
 }

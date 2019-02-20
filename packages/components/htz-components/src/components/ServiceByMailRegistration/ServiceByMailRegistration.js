@@ -82,7 +82,11 @@ export default class ServiceByMailRegistration extends React.Component {
       <UserDispenser
         render={({ isLoggedIn, user, }) => (
           <FelaComponent
-            style={theme => ({
+            style={(
+              {
+                theme
+              }
+            ) => ({
               backgroundColor: theme.color('primary', '-6'),
               paddingTop: '1rem',
               paddingStart: '1rem',
@@ -90,6 +94,7 @@ export default class ServiceByMailRegistration extends React.Component {
               paddingEnd: '1rem',
               position: 'relative',
               textAlign: 'start',
+
               extend: [
                 theme.mq(
                   { from: 'l', },
@@ -100,14 +105,13 @@ export default class ServiceByMailRegistration extends React.Component {
                     paddingBottom: '4rem',
                   }
                 ),
-              ],
-            })}
-            render={({ className, theme, }) => (
+              ]
+            })}>{({ className, theme, }) => (
               <div className={className}>
                 {this.props.title ? (
                   <FelaComponent
                     style={{ fontWeight: 'bold', extend: [ theme.type(-1), ], }}
-                    render="p"
+                    as="p"
                   >
                     {this.props.title}
                   </FelaComponent>
@@ -204,8 +208,7 @@ export default class ServiceByMailRegistration extends React.Component {
                   )}
                 />
               </div>
-            )}
-          />
+            )}</FelaComponent>
         )}
       />
     );

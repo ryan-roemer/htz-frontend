@@ -138,8 +138,7 @@ export default function TeaserContent({
         </CardContent>
 
         {renderFooter && (
-          <FelaTheme
-            render={theme => (
+          <FelaTheme>{theme => (
               <CardFooter
                 tagName="footer"
                 attrs={footerAttrs}
@@ -156,8 +155,7 @@ export default function TeaserContent({
               >
                 {renderFooter(data)}
               </CardFooter>
-            )}
-          />
+            )}</FelaTheme>
         )}
       </GridItem>
     );

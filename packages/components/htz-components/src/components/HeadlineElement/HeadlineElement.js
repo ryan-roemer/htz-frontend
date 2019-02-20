@@ -54,11 +54,15 @@ function HeadlineElement({ captionMiscStyles, elementObj, forceAspect, imgOption
 
   return (
     <FelaComponent
-      style={theme => ({
+      style={(
+        {
+          theme
+        }
+      ) => ({
         extend: [
           // Trump all other styles with those defined in `miscStyles`
           ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-        ],
+        ]
       })}
     >
       <Element

@@ -6,13 +6,11 @@ import Section from '../AutoLevels/Section';
 
 const margineliaStyle = ({
   theme,
-  theme: { layoutStyle, },
+  // theme: { layoutStyle, },
   hideUnderLargeBreakPoint,
 }) => ({
   extend: [
-    ...(hideUnderLargeBreakPoint
-      ? [ theme.mq({ until: 'l', }, { display: 'none', }), ]
-      : []),
+    ...(hideUnderLargeBreakPoint ? [ theme.mq({ until: 'l', }, { display: 'none', }), ] : []),
     theme.mq(
       { from: 'l', },
       {
@@ -22,17 +20,17 @@ const margineliaStyle = ({
     theme.mq(
       { from: 'l', until: 'xl', },
       {
-        start: `${layoutStyle.startColumnPadding}rem`,
-        maxWidth: `${layoutStyle.startColumnWidthL
-          - layoutStyle.startColumnPadding}rem`,
+        start: `${theme.layoutStyle.startColumnPadding}rem`,
+        maxWidth: `${theme.layoutStyle.startColumnWidthL
+          - theme.layoutStyle.startColumnPadding}rem`,
       }
     ),
     theme.mq(
       { from: 'xl', },
       {
-        start: `${layoutStyle.startColumnPaddingXL}rem`,
-        maxWidth: `${layoutStyle.startColumnWidthXL
-          - layoutStyle.startColumnPaddingXL}rem`,
+        start: `${theme.layoutStyle.startColumnPaddingXL}rem`,
+        maxWidth: `${theme.layoutStyle.startColumnWidthXL
+          - theme.layoutStyle.startColumnPaddingXL}rem`,
       }
     ),
   ],
@@ -47,49 +45,41 @@ const ArticleLayoutRow = ({
   hideMargineliaComponentUnderLBp,
 }) => (
   <FelaComponent
-    style={theme => ({
+    style={({ theme, }) => ({
       marginTop: '3rem',
+
       // backgroundColor: 'white',
       extend: [ theme.mq({ from: 'xl', }, { marginTop: '4rem', }), ],
     })}
-    render={({ className, }) => (
+  >
+    {({ className, }) => (
       <Section className={className}>
         {title ? (
-          <SectionTitleA
-            isInMargin={!!(id === 'commentsSection')}
-            title={title}
-            id={id || null}
-          />
+          <SectionTitleA isInMargin={!!(id === 'commentsSection')} title={title} id={id || null} />
         ) : null}
         <FelaComponent
-          style={({ layoutStyle, mq, }) => ({
+          style={({ theme, }) => ({
             position: 'relative',
             extend: [
-              mq(
+              theme.mq(
                 { from: 'l', until: 'xl', },
-                { paddingInlineStart: `${layoutStyle.startColumnWidthL}rem`, }
+                { paddingInlineStart: `${theme.layoutStyle.startColumnWidthL}rem`, }
               ),
-              mq(
-                { from: 'xl', },
-                { paddingInlineStart: `${layoutStyle.startColumnWidthXL}rem`, }
-              ),
+              theme.mq({ from: 'xl', }, { paddingInlineStart: `${theme.layoutStyle.startColumnWidthXL}rem`, }),
             ],
           })}
         >
           <FelaComponent
-            rule={margineliaStyle}
             hideUnderLargeBreakPoint={hideMargineliaComponentUnderLBp}
+            style={margineliaStyle}
           >
             {margineliaComponent || null}
           </FelaComponent>
 
           <FelaComponent
-            style={theme => ({
+            style={({ theme, }) => ({
               extend: [
-                theme.mq(
-                  { until: 's', },
-                  { paddingInlineStart: '3rem', paddingInlineEnd: '3rem', }
-                ),
+                theme.mq({ until: 's', }, { paddingInlineStart: '3rem', paddingInlineEnd: '3rem', }),
                 theme.mq(
                   { from: 's', until: 'l', },
                   { paddingInlineStart: '2rem', paddingInlineEnd: '2rem', }
@@ -103,7 +93,7 @@ const ArticleLayoutRow = ({
         </FelaComponent>
       </Section>
     )}
-  />
+  </FelaComponent>
 );
 
 ArticleLayoutRow.propTypes = {

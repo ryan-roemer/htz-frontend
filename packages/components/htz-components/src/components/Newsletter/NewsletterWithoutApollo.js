@@ -120,11 +120,7 @@ export default class NewsletterWithoutApollo extends React.Component {
     } = this.props;
     return (
       <div>
-        <FelaComponent
-          variant={variant}
-          miscStyles={miscStyles}
-          rule={newsletterWrapperStyle}
-          render={({ className, theme, }) => (
+        <FelaComponent variant={variant} miscStyles={miscStyles} style={newsletterWrapperStyle}>{({ className, theme, }) => (
             <div className={className} id={id}>
               <NewsletterForm
                 buttonText={buttonText}
@@ -155,8 +151,7 @@ export default class NewsletterWithoutApollo extends React.Component {
               />
               <div id={`${id}DialogWrapper`} />
             </div>
-          )}
-        />
+          )}</FelaComponent>
       </div>
     );
   }

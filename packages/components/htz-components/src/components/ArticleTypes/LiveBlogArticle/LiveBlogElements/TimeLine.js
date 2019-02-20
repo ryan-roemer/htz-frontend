@@ -149,56 +149,60 @@ class TimeLine extends React.Component {
     if (!keyEvents) return <></>;
     return (
       <React.Fragment>
-        <FelaComponent
-          rule={wrapperStyle}
-          miscStyles={miscStyles}
-          render={({ className, theme, }) => (
+        <FelaComponent style={wrapperStyle} miscStyles={miscStyles}>{({ className, theme, }) => (
             <div className={className}>
               <FelaComponent
-                style={theme => ({
+                style={(
+                  {
+                    theme
+                  }
+                ) => ({
                   paddingBlockEnd: '5rem',
                   paddingBlockStart: '5rem',
                   paddingInlineStart: '2rem',
                   paddingInlineEnd: '2rem',
+
                   ...theme.mq(
                     { from: 'l', },
                     { paddingBlockStart: '3rem', paddingInlineEnd: '0rem', }
-                  ),
-                })}
-                render={({ className, }) => (
+                  )
+                })}>{({ className, }) => (
                   <ul className={className}>
                     {keyEvents.map((item, i) => (
                       <FelaComponent
                         isFirstItem={i === 0}
                         isLastItem={i === keyEvents.length - 1}
-                        rule={itemStyle}
-                        render={({ className, }) => (
+                        style={itemStyle}>{({ className, }) => (
                           <li key={`cardId-${item.cardId}`} className={className}>
                             <FelaComponent
                               isFirstItem={i === 0}
                               isLastItem={i === keyEvents.length - 1}
-                              rule={TimeHeadlineStyle}
+                              style={TimeHeadlineStyle}
                               active={this.state.activeItem}
-                              cardId={item.cardId}
-                              render={({ className, }) => (
+                              cardId={item.cardId}>{({ className, }) => (
                                 <Time time={item.pubDate} format="HH:mm" className={className} />
-                              )}
-                            />
+                              )}</FelaComponent>
                             <FelaComponent
-                              style={theme => ({
+                              style={(
+                                {
+                                  theme
+                                }
+                              ) => ({
                                 ...theme.mq(
                                   { from: 's', until: 'm', },
                                   { display: 'inline', marginInlineStart: '3rem', }
                                 ),
+
                                 color: theme.color('primary', '+1'),
+
                                 ':hover': {
                                   color: theme.color('primary', '+1'),
                                 },
+
                                 ':visited': {
                                   color: theme.color('primary', '+1'),
-                                },
-                              })}
-                              render={({ className, }) => (
+                                }
+                              })}>{({ className, }) => (
                                 <a
                                   className={className}
                                   href={`#${item.cardId}`}
@@ -206,18 +210,14 @@ class TimeLine extends React.Component {
                                 >
                                   {item.keyEvent}
                                 </a>
-                              )}
-                            />
+                              )}</FelaComponent>
                           </li>
-                        )}
-                      />
+                        )}</FelaComponent>
                     ))}
                   </ul>
-                )}
-              />
+                )}</FelaComponent>
             </div>
-          )}
-        />
+          )}</FelaComponent>
       </React.Fragment>
     );
   }

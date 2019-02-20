@@ -23,8 +23,7 @@ const propTypes = {
   /**
    * Should I use pagination, or just display the whole list ??
    */
-  usePagination: PropTypes.oneOfType([ PropTypes.string, PropTypes.bool, ])
-    .isRequired,
+  usePagination: PropTypes.oneOfType([ PropTypes.string, PropTypes.bool, ]).isRequired,
   /**
    * In case you choose to use pagination, how many article should be displayed ?
    */
@@ -76,10 +75,7 @@ const articleListWrapperStyle = ({ theme, }) => ({
   marginBottom: '3rem',
 });
 
-const ArticleListWrapper = createComponent(
-  articleListWrapperStyle,
-  'ul',
-  props => Object.keys(props)
+const ArticleListWrapper = createComponent(articleListWrapperStyle, 'ul', props => Object.keys(props)
 );
 
 const AriaHidden = createComponent(() => ({ display: 'none', }), 'span');
@@ -103,10 +99,7 @@ const articleWrapperStyle = ({ theme, lastItem, }) => ({
         top: '1.5em',
         height: 'calc(100%)',
         ...theme.mq({ until: 'm', }, { transform: 'translate(530%, 0)', }),
-        ...theme.mq(
-          { from: 'm', until: 'xl', },
-          { transform: 'translate(540%, -2%)', }
-        ),
+        ...theme.mq({ from: 'm', until: 'xl', }, { transform: 'translate(540%, -2%)', }),
         ...theme.mq({ from: 'xl', }, { transform: 'translate(600%, -7%)', }),
         borderWidth: '1px',
         borderStyle: 'solid',
@@ -136,9 +129,7 @@ export default class SeriesArticles extends React.Component {
       && !(!usePagination || (usePagination && usePagination === 'false'))
       && articles.length > +itemsPerPage;
     const perPage = +itemsPerPage || 3;
-    const articlesToDisplay = pagination
-      ? this.props.articles.slice(0, perPage)
-      : articles;
+    const articlesToDisplay = pagination ? this.props.articles.slice(0, perPage) : articles;
     const remainingArticlesCount = articles.length - itemsPerPage;
 
     this.setState({
@@ -163,14 +154,11 @@ export default class SeriesArticles extends React.Component {
     const { miscStyles, } = this.props;
     return (
       <FelaComponent
-        style={theme => ({
-          extend: [
-            ...(miscStyles
-              ? parseStyleProps(miscStyles, theme.mq, theme.type)
-              : []),
-          ],
+        style={({ theme, }) => ({
+          extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
         })}
-        render={({
+      >
+        {({
           className,
           theme: {
             seriesArticleI18n: { loadButton, titlePrefix, },
@@ -188,17 +176,13 @@ export default class SeriesArticles extends React.Component {
                   >
                     {this.state.isOpen && this.state.itemsPerPage === i ? (
                       <AriaHidden>
-                        {loadButton.ariaText(
-                          this.state.remainingArticlesCount
-                        )}
+                        {loadButton.ariaText(this.state.remainingArticlesCount)}
                       </AriaHidden>
                     ) : null}
                     <ArticleLink
                       article={article}
                       currentArticle={articleId === article.contentId}
-                      focus={
-                          this.state.isOpen && this.state.itemsPerPage === i
-                        }
+                      focus={this.state.isOpen && this.state.itemsPerPage === i}
                     />
                   </ArticleWrapper>
                 ))
@@ -218,7 +202,7 @@ export default class SeriesArticles extends React.Component {
             ) : null}
           </div>
         )}
-      />
+      </FelaComponent>
     );
   }
 }

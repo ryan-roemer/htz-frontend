@@ -15,17 +15,22 @@ import ArticleBody from '../../../ArticleBody/ArticleBody';
 // eslint-disable-next-line react/prop-types
 const Fade = ({ children, fadeText, }) => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       display: fadeText ? 'block' : 'none',
       height: '14rem',
       position: 'absolute',
       width: '100%',
       bottom: '8rem',
       margin: 'auto',
+
       backgroundImage:
-        'linear-gradient(0deg,#fff,#fff 0%,hsla(0,0%,100%,.8) 25%,hsla(0,0%,100%,0))',
+        'linear-gradient(0deg,#fff,#fff 0%,hsla(0,0%,100%,.8) 25%,hsla(0,0%,100%,0))'
     })}
-    render="span"
+    as="span"
   >
     {children}
   </FelaComponent>
@@ -99,8 +104,7 @@ class LiveBlogItem extends React.Component {
 
     return (
       <React.Fragment>
-        <FelaTheme
-          render={theme => (
+        <FelaTheme>{theme => (
             <React.Fragment>
               <Grid
                 tagName="article"
@@ -126,9 +130,14 @@ class LiveBlogItem extends React.Component {
                   }}
                 >
                   <FelaComponent
-                    style={theme => ({
+                    style={(
+                      {
+                        theme
+                      }
+                    ) => ({
                       ...theme.type(1),
                       fontWeight: 'bold',
+
                       ...theme.mq(
                         { until: 's', },
                         {
@@ -136,25 +145,25 @@ class LiveBlogItem extends React.Component {
                           color: theme.color('tertiary'),
                           ...theme.type(-1),
                         }
-                      ),
-                    })}
-                    render={({ className, }) => (
+                      )
+                    })}>{({ className, }) => (
                       <div className={className}>
                         <Time time={item.pubDate} format="HH:mm" />
                       </div>
-                    )}
-                  />
+                    )}</FelaComponent>
                   <FelaComponent
-                    style={theme => ({
+                    style={(
+                      {
+                        theme
+                      }
+                    ) => ({
                       ...theme.type(-2),
-                      ...theme.mq({ until: 's', }, { marginInlineEnd: '1rem', ...theme.type(-1), }),
-                    })}
-                    render={({ className, }) => (
+                      ...theme.mq({ until: 's', }, { marginInlineEnd: '1rem', ...theme.type(-1), })
+                    })}>{({ className, }) => (
                       <div className={className}>
                         <Time time={item.pubDate} format="DD.MM.YYYY" />
                       </div>
-                    )}
-                  />
+                    )}</FelaComponent>
                   {/* M/L/XL Action Buttons */}
                   <ActionButtons
                     shouldMainNavBarDisplay={false}
@@ -209,14 +218,11 @@ class LiveBlogItem extends React.Component {
                   // eslint-disable-next-line no-return-assign
                   attrs={{ ref: mainContainerEl => (this.mainContainerEl = mainContainerEl), }}
                 >
-                  <FelaComponent
-                    style={{ marginBottom: '2rem', extend: [ theme.type(2), ], }}
-                    render={({ className, }) => (
+                  <FelaComponent style={{ marginBottom: '2rem', extend: [ theme.type(2), ], }}>{({ className, }) => (
                       <H className={className}>
                         <a href={`#${item.cardId}`}>{item.title}</a>
                       </H>
-                    )}
-                  />
+                    )}</FelaComponent>
 
                   <ArticleBody body={item.body} />
                   {this.state.fadeText === true ? <Fade fadeText={this.state.fadeText} /> : null}
@@ -224,8 +230,13 @@ class LiveBlogItem extends React.Component {
 
                 {/* Mobile Action Buttons */}
                 <FelaComponent
-                  style={theme => ({
+                  style={(
+                    {
+                      theme
+                    }
+                  ) => ({
                     ...theme.mq({ from: 's', }, { display: 'none', }),
+
                     ...theme.mq(
                       { until: 's', },
                       {
@@ -238,9 +249,8 @@ class LiveBlogItem extends React.Component {
                         marginInlineEnd: '2rem',
                         ...borderTop('2px', 1, 'solid', theme.color('neutral', '-6')),
                       }
-                    ),
-                  })}
-                  render={({ className, }) => (
+                    )
+                  })}>{({ className, }) => (
                     <span className={className}>
                       <ActionButtons
                         shouldMainNavBarDisplay={false}
@@ -280,13 +290,11 @@ class LiveBlogItem extends React.Component {
                           </Button>
                         )}
                     </span>
-                  )}
-                />
+                  )}</FelaComponent>
                 {/* Mobile action buttons end */}
               </Grid>
             </React.Fragment>
-          )}
-        />
+          )}</FelaTheme>
       </React.Fragment>
     );
   }

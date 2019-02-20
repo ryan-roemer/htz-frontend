@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createComponent, FelaTheme, } from 'react-fela';
+import { FelaTheme, FelaComponent, } from 'react-fela';
 import Observer from 'react-intersection-observer';
 import { parseComponentProp, parseStyleProps, } from '@haaretz/htz-css-tools';
 import { stylesPropType, } from '../../propTypes/stylesPropType';
@@ -23,8 +23,9 @@ const ImgWrapperStyle = ({ bgc, height, theme, width, miscStyles, }) => ({
   ],
 });
 
-const StyledImgWrapper = createComponent(ImgWrapperStyle);
-
+// const StyledImgWrapper = createComponent(ImgWrapperStyle);
+// const StyledImgWrapper = () => <FelaComponent style={ImgWrapperStyle} as="div" />;
+//
 /** The shape of an `<Image />` component's transforms options */
 const ImgTransfromOptions = PropTypes.shape({
   /** The image's aspect ratio to use as base crop, default 'full' */
@@ -179,8 +180,8 @@ Please use the "<Picture />" component`
   const webpSources = isAnimatedGif ? getSources(props, true) : undefined;
 
   const Sources = (
-    <FelaTheme
-      render={theme => (isAnimatedGif ? (
+    <FelaTheme>
+      {theme => (isAnimatedGif ? (
         <picture>
           <ImgSource
             {...(sizes ? { sizes, } : {})}
@@ -232,25 +233,37 @@ Please use the "<Picture />" component`
         />
       ))
       }
-    />
+    </FelaTheme>
   );
 
   if (!lazyLoad) {
     return hasWrapper ? (
-      <StyledImgWrapper width={width} height={height} bgc={bgcolor} miscStyles={miscStyles}>
+      <FelaComponent
+        width={width}
+        height={height}
+        bgc={bgcolor}
+        miscStyles={miscStyles}
+        style={ImgWrapperStyle}
+      >
         {Sources}
-      </StyledImgWrapper>
+      </FelaComponent>
     ) : (
       Sources
     );
   }
 
   return hasWrapper ? (
-    <StyledImgWrapper width={width} height={height} bgc={bgcolor} miscStyles={miscStyles}>
+    <FelaComponent
+      width={width}
+      height={height}
+      bgc={bgcolor}
+      miscStyles={miscStyles}
+      style={ImgWrapperStyle}
+    >
       <Observer triggerOnce rootMargin={lazyLoad === true ? '1000px' : lazyLoad}>
         {inView => (inView ? Sources : null)}
       </Observer>
-    </StyledImgWrapper>
+    </FelaComponent>
   ) : (
     <Observer triggerOnce rootMargin={lazyLoad === true ? '1000px' : lazyLoad}>
       {inView => (inView ? Sources : null)}
@@ -275,7 +288,6 @@ export const aspectRatios = {
 function getDimensions({ data: { imgArray, }, imgOptions: { transforms, }, }) {
   const { aspect, } = Array.isArray(transforms) ? transforms[0] : transforms;
   const { height, width, } = imgArray[0].aspects[aspect] || aspectRatios[aspect];
-
   return { height, width, };
 }
 

@@ -21,8 +21,9 @@ const PlayBuzzWrapper = ({ children, }) => (
       marginLeft: 'auto',
       marginRight: 'auto',
     }}
-    render={({ className, }) => <div className={className}>{children}</div>}
-  />
+  >
+    {({ className, }) => <div className={className}>{children}</div>}
+  </FelaComponent>
 );
 
 export default class PlayBuzz extends React.Component {

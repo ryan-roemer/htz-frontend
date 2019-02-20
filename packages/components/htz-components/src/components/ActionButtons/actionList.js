@@ -138,8 +138,8 @@ export const Button: StatelessFunctionalComponent<ButtonProps> = ({
   href,
   ...props
 }): Node => (
-  <FelaTheme
-    render={(theme: Object) => (
+  <FelaTheme>
+    {(theme: Object) => (
       <ClickArea
         size={4}
         href={href}
@@ -164,7 +164,7 @@ export const Button: StatelessFunctionalComponent<ButtonProps> = ({
         {children}
       </ClickArea>
     )}
-  />
+  </FelaTheme>
 );
 
 const Comments: StatelessFunctionalComponent<CommentButtonProps> = ({
@@ -207,12 +207,12 @@ const Comments: StatelessFunctionalComponent<CommentButtonProps> = ({
                   });
                   return commentsNumber && commentsNumber > 0 ? (
                     <FelaComponent
-                      style={theme => ({
+                      style={({ theme, }) => ({
                         marginEnd: '1rem',
                         paddingBlockStart: '0.3rem',
                         color: theme.color('neutral', '-3'),
                       })}
-                      render="span"
+                      as="span"
                     >
                       {commentsNumber}
                     </FelaComponent>
@@ -260,7 +260,7 @@ const Facebook: StatelessFunctionalComponent<FacebookButtonProps> = ({
           }}
         >
           {buttonText ? (
-            <FelaComponent style={{ marginEnd: '1rem', }} render="span">
+            <FelaComponent style={{ marginEnd: '1rem', }} as="span">
               {buttonText}
             </FelaComponent>
           ) : null}
@@ -337,7 +337,7 @@ class FacebookLogo extends React.Component<FacebookLogoProps, FacebookLogoState>
               }}
             >
               {facebookCount ? (
-                <FelaComponent style={{ marginEnd: '1rem', paddingTop: '0.8rem', }} render="span">
+                <FelaComponent style={{ marginEnd: '1rem', paddingTop: '0.8rem', }} as="span">
                   {facebookCount}
                 </FelaComponent>
               ) : null}
@@ -376,7 +376,7 @@ const GooglePlus: StatelessFunctionalComponent<GooglePlusButtonProps> = ({
         }}
       >
         {buttonText ? (
-          <FelaComponent style={{ marginEnd: '1rem', }} render="span">
+          <FelaComponent style={{ marginEnd: '1rem', }} as="span">
             {buttonText}
           </FelaComponent>
         ) : null}
@@ -472,7 +472,7 @@ const Messenger: StatelessFunctionalComponent<MessengerButtonProps> = ({
         }}
       >
         {buttonText ? (
-          <FelaComponent style={{ marginEnd: '1rem', }} render="span">
+          <FelaComponent style={{ marginEnd: '1rem', }} as="span">
             {buttonText}
           </FelaComponent>
         ) : null}
@@ -539,12 +539,13 @@ const ReadingList: StatelessFunctionalComponent<CommentButtonProps> = ({
       >
         <IconReading size={size} miscStyles={iconStyles} />
         <FelaComponent
-          style={theme => ({
+          style={({ theme, }) => ({
             color: theme.color('neutral', '-2'),
             extend: [ theme.type(-2), ],
           })}
-          render={({ className, }) => <span className={className}>רשימת קריאה</span>}
-        />
+        >
+          {({ className, }) => <span className={className}>רשימת קריאה</span>}
+        </FelaComponent>
       </Button>
     )}
   />
@@ -591,8 +592,8 @@ const Whatsapp = ({
 }: WhatsappButtonProps): Node => (
   <ActionButton
     render={({ platform, biAction, biActionMapper, }) => (
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>
+        {theme => (
           <Media query={{ until: 'm', }}>
             {matches => (
               // <Tooltip
@@ -636,7 +637,7 @@ const Whatsapp = ({
             )}
           </Media>
         )}
-      />
+      </FelaTheme>
     )}
   />
 );
@@ -651,8 +652,8 @@ const Zen: StatelessFunctionalComponent<ZenButtonProps> = ({
 }): Node => (
   <Mutation mutation={TOGGLE_ZEN}>
     {toggleZen => (
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>
+        {theme => (
           <ActionButton
             render={({ platform, biAction, biActionMapper, zenMode, }) => (
               <Button
@@ -682,16 +683,17 @@ const Zen: StatelessFunctionalComponent<ZenButtonProps> = ({
                     paddingBlockStart: '0.3rem',
                     color: theme.color('neutral', '-3'),
                   }}
-                  render={({ className, theme: { zenTextI18n, }, }) => (
+                >
+                  {({ className, theme: { zenTextI18n, }, }) => (
                     <span className={className}>{zenTextI18n}</span>
                   )}
-                />
+                </FelaComponent>
                 <IconZen size={size} miscStyles={iconStyles} />
               </Button>
             )}
           />
         )}
-      />
+      </FelaTheme>
     )}
   </Mutation>
 );

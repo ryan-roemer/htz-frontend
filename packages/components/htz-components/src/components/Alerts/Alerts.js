@@ -8,9 +8,14 @@ const Alerts = React.forwardRef((props, ref) => {
   const { author, onToggle, } = props;
   return (
     <FelaComponent
-      style={theme => ({
+      style={(
+        {
+          theme
+        }
+      ) => ({
         color: theme.color('alerts', 'openButtonText'),
         fontWeight: 'bold',
+
         extend: [
           theme.type(-2, { fromBp: 'xl', }),
           theme.type(-1, { fromBp: 'l', untilBp: 'xl', }),
@@ -40,9 +45,8 @@ const Alerts = React.forwardRef((props, ref) => {
               textAlign: 'center',
             }
           ),
-        ],
-      })}
-      render={({
+        ]
+      })}>{({
         className,
         theme,
         theme: {
@@ -64,7 +68,7 @@ const Alerts = React.forwardRef((props, ref) => {
               style={{
                 extend: [ theme.mq({ until: 's', }, { display: 'none', }), ],
               }}
-              render="span"
+              as="span"
             >
               {desktopAlertsText}
             </FelaComponent>
@@ -73,14 +77,13 @@ const Alerts = React.forwardRef((props, ref) => {
                 display: 'block',
                 extend: [ theme.mq({ from: 's', }, { display: 'none', }), ],
               }}
-              render="span"
+              as="span"
             >
               {mobileAlertsText}
             </FelaComponent>
           </AlertsButton>
         </React.Fragment>
-      )}
-    />
+      )}</FelaComponent>
   );
 });
 

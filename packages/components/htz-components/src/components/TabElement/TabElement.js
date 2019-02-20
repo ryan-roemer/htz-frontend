@@ -37,30 +37,35 @@ type TabButtonProps = {
 export function TabButton({ isActive, children, ...props }: TabButtonProps) {
   return (
     <FelaComponent
-      style={theme => ({
+      style={(
+        {
+          theme
+        }
+      ) => ({
         ...(isActive
           ? {
             backgroundColor: theme.color('quaternary'),
             fontWeight: '700',
           }
           : {}),
+
         paddingTop: '0.5rem',
         paddingBottom: '0.5rem',
         paddingStart: '3rem',
         paddingEnd: '3rem',
         width: '100%',
+
         ':focus': {
           outline: 'none',
           backgroundColor: theme.color('quaternary'),
         },
-        extend: [ theme.type(0, { until: 'l', }), ],
-      })}
-      render={({ className, }) => (
+
+        extend: [ theme.type(0, { until: 'l', }), ]
+      })}>{({ className, }) => (
         <button type="button" className={className} {...props}>
           {children}
         </button>
-      )}
-    />
+      )}</FelaComponent>
   );
 }
 
@@ -81,8 +86,7 @@ function TabElement({
 }: TabsElementProps): Node {
   const List = SsrList || CsrList;
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Tabs
           activeTab={startAt}
           miscStyles={{
@@ -155,8 +159,7 @@ function TabElement({
             );
           }}
         </Tabs>
-      )}
-    />
+      )}</FelaTheme>
   );
 }
 

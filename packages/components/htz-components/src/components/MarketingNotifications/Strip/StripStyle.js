@@ -1,7 +1,7 @@
-export function wrapper(theme) {
+export function wrapper({ theme, }) {
   return {
     backgroundImage: 'radial-gradient(circle at 50% 50%, #169fd1, #0b7eb5)',
-    color: theme.color('white'),    
+    color: theme.color('white'),
     extend: [
       theme.type(-1),
       theme.mq(
@@ -27,7 +27,7 @@ export const innerWrapper = {
   height: '7rem',
 };
 
-export function text1(theme) {
+export function text1({ theme, }) {
   return {
     fontWeight: 'bold',
     extend: [ theme.mq({ until: 'm', }, { fontWeight: '400', }), ],

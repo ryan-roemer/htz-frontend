@@ -8,14 +8,12 @@ import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 
 export default function MastheadReadingList() {
   return (
-    <FelaComponent
-      rule={hoverableButtonRule}
-      render={({ theme, className, }) => {
+    <FelaComponent style={hoverableButtonRule}>
+      {({ theme, className, }) => {
         const { url, a11yText, } = theme.readingListMenuI18n;
         return (
-          <FelaComponent
-            rule={hoverableButtonRule}
-            render={({ theme, className, }) => (
+          <FelaComponent style={hoverableButtonRule}>
+            {({ theme, className, }) => (
               <HtzLink
                 attrs={{ 'aria-describedby': 'masthead-reading-list-link', }}
                 className={className}
@@ -27,9 +25,9 @@ export default function MastheadReadingList() {
                 <VisuallyHidden id="masthead-reading-list-link">{a11yText}</VisuallyHidden>
               </HtzLink>
             )}
-          />
+          </FelaComponent>
         );
       }}
-    />
+    </FelaComponent>
   );
 }

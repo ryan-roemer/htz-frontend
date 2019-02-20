@@ -32,5 +32,5 @@ function setAspect(prop, transforms) {
 }
 
 export default function DefaultImage({ transforms, }: Props) {
-  return <FelaComponent rule={style} transforms={transforms} />;
+  return <FelaComponent style={style} transforms={transforms} />;
 }

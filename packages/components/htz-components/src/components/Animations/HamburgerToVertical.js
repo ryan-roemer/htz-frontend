@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import { parseComponentProp, } from '@haaretz/htz-css-tools';
 import { responsivePropBaseType, } from '../../propTypes/responsivePropBaseType';
 
-const colorShape = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.arrayOf(PropTypes.string),
-]);
+const colorShape = PropTypes.oneOfType([ PropTypes.string, PropTypes.arrayOf(PropTypes.string), ]);
 
 const propTypes = {
   /**
@@ -99,11 +96,9 @@ const hamburgerStyle = ({ theme, isOpen, color, }) => ({
 function VerticalHamburger(props) {
   console.log(props);
   return (
-    <FelaComponent
-      {...props}
-      rule={hamburgerStyle}
-      render={({ className, }) => <i className={className} />}
-    />
+    <FelaComponent {...props} style={hamburgerStyle}>
+      {({ className, }) => <i className={className} />}
+    </FelaComponent>
   );
 }
 

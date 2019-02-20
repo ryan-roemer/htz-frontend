@@ -12,7 +12,7 @@ import DynamicSlotFromDfpConfig from '../Ads/DynamicAds/DynamicSlotFromDfpConfig
 const AD_SPACING = 5;
 const MAX_AD_SLOTS = 5;
 
-const wrapperStyle = theme => ({
+const wrapperStyle = ({ theme, }) => ({
   backgroundColor: theme.color('white'),
 });
 
@@ -42,11 +42,9 @@ const CommentAdSlot = ({ adSlotId, }) => (
 const placeAdSlot = commentIdx => {
   const adIdx = Math.floor(commentIdx / AD_SPACING) + 1;
   const isEnoughSpacing = (commentIdx + 1) % AD_SPACING === 0;
-  return (
-    isEnoughSpacing && adIdx <= MAX_AD_SLOTS
-      ? <CommentAdSlot adSlotId={adSlotIdFromIndex(adIdx)} />
-      : null
-  );
+  return isEnoughSpacing && adIdx <= MAX_AD_SLOTS ? (
+    <CommentAdSlot adSlotId={adSlotIdFromIndex(adIdx)} />
+  ) : null;
 };
 
 class CommentList extends Component {
@@ -115,8 +113,7 @@ class CommentList extends Component {
     signUpNotification: undefined,
   };
 
-  state = {
-  };
+  state = {};
 
   render() {
     const {
@@ -133,9 +130,8 @@ class CommentList extends Component {
     } = this.props;
 
     return (
-      <FelaComponent
-        style={wrapperStyle}
-        render={({ className, theme: { bps, typeConf, }, }) => (
+      <FelaComponent style={wrapperStyle}>
+        {({ className, theme: { bps, typeConf, }, }) => (
           <div className={className}>
             {comments.map((comment, idx) => (
               <Fragment key={comment.commentId}>
@@ -172,7 +168,7 @@ class CommentList extends Component {
             ))}
           </div>
         )}
-      />
+      </FelaComponent>
     );
   }
 }

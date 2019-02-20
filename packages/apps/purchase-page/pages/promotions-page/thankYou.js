@@ -5,12 +5,17 @@ import { pagePropTypes, } from '@haaretz/app-utils';
 import { FelaComponent, } from 'react-fela';
 import gql from 'graphql-tag';
 import ReactGA from 'react-ga';
-import { IconCheck, LayoutContainer, UserDispenser, Query, pixelEvent, } from '@haaretz/htz-components';
+import {
+  IconCheck,
+  LayoutContainer,
+  UserDispenser,
+  Query,
+  pixelEvent,
+} from '@haaretz/htz-components';
 import MainLayout from '../../layouts/MainLayout';
 import OfferPageDataGetter from '../../components/OfferPage/OfferPageDataGetter';
 import ThankYouStage from '../../components/OfferPage/Stages/ThankYouStage';
 import StageTransition from '../../components/OfferPage/StageTransition/StageTransition';
-
 
 const GET_HOSTNAME = gql`
   query {
@@ -50,11 +55,12 @@ const ThankYouElement = ({ product, userMessage, fbFullRedirectUri, }) => (
           <Fragment>
             <IconCheck color="positive" size={10} />
             <FelaComponent
-              style={theme => ({
+              style={({ theme, }) => ({
                 marginTop: '3rem',
                 extend: [ theme.type(3), ],
               })}
-              render={({
+            >
+              {({
                 className,
                 theme: {
                   thankYou: { afterPurchase, secondaryHeader, },
@@ -68,7 +74,7 @@ const ThankYouElement = ({ product, userMessage, fbFullRedirectUri, }) => (
                   ) : null}
                 </div>
               )}
-            />
+            </FelaComponent>
           </Fragment>
 )}
         stageElement={<ThankYouStage fbFullRedirectUri={fbFullRedirectUri} />}
@@ -76,7 +82,6 @@ const ThankYouElement = ({ product, userMessage, fbFullRedirectUri, }) => (
     </LayoutContainer>
   </FelaComponent>
 );
-
 
 class StageThankYou extends React.Component {
   componentDidMount() {

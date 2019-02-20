@@ -91,15 +91,9 @@ function SpecialPromotions({
 }) {
   return (
     <BlockLink href={href}>
-      <FelaComponent
-        miscStyles={miscStyles}
-        variant={variant}
-        rule={SpecialPromotionsStyle}
-        render={({ className, theme, }) => (
+      <FelaComponent miscStyles={miscStyles} variant={variant} style={SpecialPromotionsStyle}>{({ className, theme, }) => (
           <div className={className}>
-            <FelaComponent
-              rule={textStyle}
-              render={({ className, }) => {
+            <FelaComponent style={textStyle}>{({ className, }) => {
                 const LogoName = variant === 'primary' ? IconAlefLogo : IconTheMarker;
                 return (
                   <Section tagName="div" className={className}>
@@ -108,16 +102,12 @@ function SpecialPromotions({
                       size={3}
                       miscStyles={IconStyle}
                     />
-                    <FelaComponent
-                      rule={titleStyle}
-                      render={({ className, }) => (
+                    <FelaComponent style={titleStyle}>{({ className, }) => (
                         <H className={className}>{contentName}</H>
-                      )}
-                    />
+                      )}</FelaComponent>
                   </Section>
                 );
-              }}
-            />
+              }}</FelaComponent>
             <AboveBlockLink>
               {({ className, }) => (
                 <div className={className} style={{ display: 'flex', }}>
@@ -131,8 +121,7 @@ function SpecialPromotions({
               )}
             </AboveBlockLink>
           </div>
-        )}
-      />
+        )}</FelaComponent>
     </BlockLink>
   );
 }

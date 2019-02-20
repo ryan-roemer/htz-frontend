@@ -32,16 +32,16 @@ const numToString: (number | string) => string = value => (typeof value === 'num
 
 const QuoteAssetsTable = ({ assets, fields, miscStyles, }: Props): Node => (
   <FelaComponent
-    style={(theme: Object) => ({
+    style={({ theme, }) => ({
       ...theme.type(-2),
       tableLayout: 'fixed',
       whiteSpace: 'nowrap',
       width: '100%',
-      extend: [
-        ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ],
+
+      extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
     })}
-    render={({ className, theme, }) => (
+  >
+    {({ className, theme, }) => (
       <table className={className}>
         <thead>
           <tr>
@@ -67,12 +67,10 @@ const QuoteAssetsTable = ({ assets, fields, miscStyles, }: Props): Node => (
                 backgroundColor: theme.color('neutral', '-10'),
                 extend: [
                   borderBottom('2px', 1, 'solid', theme.color('neutral', '-6')),
-                  ...(miscStyles
-                    ? parseStyleProps(miscStyles, theme.mq, theme.type)
-                    : []),
+                  ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
                 ],
               }}
-              render="tr"
+              as="tr"
             >
               {fields.map((field: Field, index: number) => {
                 const isNumber: boolean = typeof asset[field.value] === 'number';
@@ -98,11 +96,7 @@ const QuoteAssetsTable = ({ assets, fields, miscStyles, }: Props): Node => (
                       allowTab={index === 0}
                       assetId={asset.id}
                       type={asset.type}
-                      content={
-                        isNumber
-                          ? numToString(asset[field.value])
-                          : asset[field.value]
-                      }
+                      content={isNumber ? numToString(asset[field.value]) : asset[field.value]}
                     />
                   </TdComponent>
                 );
@@ -112,7 +106,7 @@ const QuoteAssetsTable = ({ assets, fields, miscStyles, }: Props): Node => (
         </tbody>
       </table>
     )}
-  />
+  </FelaComponent>
 );
 
 QuoteAssetsTable.defaultProps = { miscStyles: null, };

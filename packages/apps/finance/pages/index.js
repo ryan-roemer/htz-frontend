@@ -32,8 +32,7 @@ function index({ url: { asPath, }, }: Props): Node {
       description="אתר פיננס דה מרקר מספק מידע מורחב ועדכני משוקי ההון בישראל, וול סטריט, אירופה ואסיה אודות מניות, אגרות חוב, קרנות נאמנות, תעודות סל, נגזרים, דולר, שוק המטבעות ובעלי עניין"
       path={asPath}
     >
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>{theme => (
           <Fragment>
             <PageRow miscStyles={{ marginBottom: '0', }}>
               <RowItem
@@ -497,8 +496,7 @@ function index({ url: { asPath, }, }: Props): Node {
               </Grid>
             </PageRow>
           </Fragment>
-        )}
-      />
+        )}</FelaTheme>
     </MainLayout>
   );
 }

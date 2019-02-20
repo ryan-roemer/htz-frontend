@@ -68,23 +68,26 @@ const articleWrapperStyle = ({ theme, lastItem, }) => ({
 
 const RelatedArticles = ({ articles, miscStyles, }) => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       extend: [
         parseComponentProp('marginBottom', '5rem', theme.mq),
         parseComponentProp('marginTop', '5rem', theme.mq),
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ],
+      ]
     })}
-    render="ul"
+    as="ul"
   >
     {articles.map((article, i) => (
       <EventTracker>
         {({ biAction, }) => (
           <FelaComponent
-            rule={articleWrapperStyle}
+            style={articleWrapperStyle}
             key={article.contentId}
-            lastItem={i === articles.length - 1}
-            render={({ className, theme, }) => (
+            lastItem={i === articles.length - 1}>{({ className, theme, }) => (
               // eslint-disable-next-line jsx-a11y/click-events-have-key-events
               <li // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
                 className={className}
@@ -101,8 +104,7 @@ const RelatedArticles = ({ articles, miscStyles, }) => (
               >
                 <ArticleLink article={article} />
               </li>
-            )}
-          />
+            )}</FelaComponent>
         )}
       </EventTracker>
     ))}

@@ -32,29 +32,28 @@ export default function MadorimNavigation({ contentId, }: Props) {
         } = data;
         return (
           <FelaComponent
-            style={theme => ({
+            style={({ theme, }) => ({
               textAlign: 'center',
               paddingTop: '1rem',
               paddingBottom: '1rem',
               maxWidth: '100%',
               whiteSpace: 'nowrap',
               overflow: 'hidden',
-              extend: [
-                borderTop('1px', 1, 'solid', theme.color('layout', 'rowBg')),
-              ],
+
+              extend: [ borderTop('1px', 1, 'solid', theme.color('layout', 'rowBg')), ],
             })}
           >
             {navigation.map((item, idx) => {
               const isLast = idx === navigation.length - 1;
               return (
                 <FelaComponent
-                  style={theme => ({
+                  style={({ theme, }) => ({
                     paddingInlineEnd: '.5rem',
                     paddingInlineStart: '.5rem',
                     fontWeight: 700,
                     extend: [ theme.type(-2), ],
                   })}
-                  render="span"
+                  as="span"
                 >
                   <HtzLink href={item.url} key={item.contentId}>
                     {item.name}

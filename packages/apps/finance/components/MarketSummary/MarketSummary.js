@@ -49,7 +49,7 @@ type ItemProps = {
 
 const Item = ({ children, title, miscStyles, }: ItemProps): Node => (
   <FelaComponent
-    style={theme => ({
+    style={({ theme, }) => ({
       alignItems: 'center',
       display: 'flex',
       flexBasis: '100%',
@@ -58,6 +58,7 @@ const Item = ({ children, title, miscStyles, }: ItemProps): Node => (
       flexShrink: '1',
       justifyContent: 'center',
       position: 'relative',
+
       ':not(:last-child)': {
         ':after': {
           backgroundColor: theme.color('neutral', '-4'),
@@ -73,26 +74,24 @@ const Item = ({ children, title, miscStyles, }: ItemProps): Node => (
     })}
   >
     <FelaComponent
-      style={theme => ({
+      style={({ theme, }) => ({
         fontWeight: '700',
         ...theme.type(-1),
       })}
-      render="span"
+      as="span"
     >
       {title}
     </FelaComponent>
     <FelaComponent
-      style={theme => ({
+      style={({ theme, }) => ({
         flexGrow: '1',
         ...theme.type(2),
-        extend: [
-          ...(miscStyles
-            ? parseStyleProps(miscStyles, theme.mq, theme.type)
-            : []),
-        ],
+
+        extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
       })}
-      render={({ className, }) => children(className)}
-    />
+    >
+      {({ className, }) => children(className)}
+    </FelaComponent>
   </FelaComponent>
 );
 
@@ -104,15 +103,11 @@ Item.defaultProps = {
 const MarketSummary = ({ asset, miscStyles, }: Props): Node => {
   const { name, value, changePercentage, id, type, } = asset;
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>
+      {theme => (
         <FelaComponent
           style={{
-            extend: [
-              ...(miscStyles
-                ? parseStyleProps(miscStyles, theme.mq, theme.type)
-                : []),
-            ],
+            extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
           }}
         >
           <FelaComponent
@@ -128,17 +123,16 @@ const MarketSummary = ({ asset, miscStyles, }: Props): Node => {
                 ...theme.type(1),
                 marginBottom: '1rem',
               }}
-              render={({ className, }) => <H className={className}>{name}</H>}
-            />
+            >
+              {({ className, }) => <H className={className}>{name}</H>}
+            </FelaComponent>
             <FelaComponent
               style={{
                 display: 'flex',
               }}
             >
               <Item title="שער">
-                {className => (
-                  <span className={className}>{numToString(value)}</span>
-                )}
+                {className => <span className={className}>{numToString(value)}</span>}
               </Item>
               <Item
                 title="% שינוי"
@@ -191,7 +185,7 @@ const MarketSummary = ({ asset, miscStyles, }: Props): Node => {
           </SectionLink>
         </FelaComponent>
       )}
-    />
+    </FelaTheme>
   );
 };
 
@@ -209,11 +203,7 @@ export default ({ miscStyles, }: { miscStyles: ?Object, }): Node => (
         <Grid>
           {assets.map((asset: Asset) => (
             <GridItem key={asset.id} width={1 / 3}>
-              <MarketSummary
-                key={asset.id}
-                miscStyles={miscStyles}
-                asset={asset}
-              />
+              <MarketSummary key={asset.id} miscStyles={miscStyles} asset={asset} />
             </GridItem>
           ))}
         </Grid>

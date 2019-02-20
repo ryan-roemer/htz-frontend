@@ -40,8 +40,7 @@ export default function VerticalImageTeaser({
   displayFlags,
 }: Props): React.Node {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Teaser
           gutter={1}
           data={itemData}
@@ -127,7 +126,6 @@ export default function VerticalImageTeaser({
             )}
           />
         </Teaser>
-      )}
-    />
+      )}</FelaTheme>
   );
 }

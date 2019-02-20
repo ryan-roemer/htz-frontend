@@ -30,7 +30,6 @@ const Dfp = dynamic(import('../components/Dfp/Dfp'), {
   ssr: false,
 });
 
-
 type Props = {
   children: ChildrenArray<Element<any>>,
   section: ?string,
@@ -50,19 +49,15 @@ function MainLayout({ children, section, assetId, title, description, path, }: P
   const hostname: string = config.get('hostname');
   const domain: string = config.get('domain');
   const port: ?string = config.get('appPort');
-  const canonicalUrl: string = `http${useSSL ? 's' : ''}://${hostname}.${domain}${port ? `:${port}` : ''}${path}`;
+  const canonicalUrl: string = `http${useSSL ? 's' : ''}://${hostname}.${domain}${
+    port ? `:${port}` : ''
+  }${path}`;
   return (
     <Fragment>
       <Head>
         <title>{title}</title>
-        <meta
-          name="description"
-          content={description}
-        />
-        <link
-          rel="canonical"
-          href={canonicalUrl}
-        />
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalUrl} />
       </Head>
       <ScrollListener />
       <RouteChangeListener />
@@ -75,7 +70,7 @@ function MainLayout({ children, section, assetId, title, description, path, }: P
           <DeviceTypeInjector />
           {/* <Masthead /> */}
           <FelaComponent
-            style={theme => ({
+            style={({ theme, }) => ({
               backgroundColor: theme.color('neutral', '-6'),
             })}
           >
@@ -95,32 +90,30 @@ function MainLayout({ children, section, assetId, title, description, path, }: P
               </FelaComponent>
               {children}
               <PageRow>
-                <RowItem
-                  title="הכתבות הנקראות היום באתר"
-                >
+                <RowItem title="הכתבות הנקראות היום באתר">
                   <Grid gutter={2}>
-                    <GridItem width={1 /4}>
+                    <GridItem width={1 / 4}>
                       <GeneralAdSlot
                         id="Finance.TheMarker.com.Native1"
                         contentName="Finance.TheMarker.com.Native1"
                         audianceTarget="all"
                       />
                     </GridItem>
-                    <GridItem width={1 /4}>
+                    <GridItem width={1 / 4}>
                       <GeneralAdSlot
                         id="Finance.TheMarker.com.Native2"
                         contentName="Finance.TheMarker.com.Native2"
                         audianceTarget="all"
                       />
                     </GridItem>
-                    <GridItem width={1 /4}>
+                    <GridItem width={1 / 4}>
                       <GeneralAdSlot
                         id="Finance.TheMarker.com.Native3"
                         contentName="Finance.TheMarker.com.Native3"
                         audianceTarget="all"
                       />
                     </GridItem>
-                    <GridItem width={1 /4}>
+                    <GridItem width={1 / 4}>
                       <GeneralAdSlot
                         id="Finance.TheMarker.com.Native4"
                         contentName="Finance.TheMarker.com.Native4"
@@ -131,11 +124,14 @@ function MainLayout({ children, section, assetId, title, description, path, }: P
                 </RowItem>
               </PageRow>
               <FelaComponent
-                style={theme => ({
+                style={({ theme, }) => ({
                   extend: [
-                    theme.mq({ from: 'l', }, {
-                      display: 'none',
-                    }),
+                    theme.mq(
+                      { from: 'l', },
+                      {
+                        display: 'none',
+                      }
+                    ),
                   ],
                 })}
               >

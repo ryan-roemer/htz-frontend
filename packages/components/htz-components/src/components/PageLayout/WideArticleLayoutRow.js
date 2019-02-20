@@ -7,8 +7,13 @@ import { stylesPropType, } from '../../propTypes/stylesPropType';
 
 const WideArticleLayoutRow = ({ children, hideDivider, miscStyles, showBorderTop, }) => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       marginTop: '3rem',
+
       extend: [
         showBorderTop ? borderTop('2px', 2, 'solid', hideDivider ? 'transparent' : theme.color('primary')) : {},
         theme.mq(
@@ -24,14 +29,12 @@ const WideArticleLayoutRow = ({ children, hideDivider, miscStyles, showBorderTop
           }
         ),
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ],
-    })}
-    render={({ className, }) => (
+      ]
+    })}>{({ className, }) => (
       <Section className={className}>
         {children}
       </Section>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 WideArticleLayoutRow.propTypes = {

@@ -3,10 +3,7 @@
 import React from 'react';
 import { FelaComponent, } from 'react-fela';
 import type { Node, ElementType, } from 'react';
-import type {
-  ComponentPropResponsiveObject,
-  StyleProps,
-} from '@haaretz/htz-css-tools';
+import type { ComponentPropResponsiveObject, StyleProps, } from '@haaretz/htz-css-tools';
 
 import cardStyle from './cardStyle';
 import type { attrFlowType, } from '../../flowTypes/attrTypes';
@@ -77,14 +74,12 @@ export default function Card({
 }: CardProps): Node {
   const Component = tagName;
   return (
-    <FelaComponent
-      {...{ backgroundColor, isElevated, fillHeight, miscStyles, }}
-      rule={cardStyle}
-      render={({ className, }) => (
+    <FelaComponent {...{ backgroundColor, isElevated, fillHeight, miscStyles, }} style={cardStyle}>
+      {({ className, }) => (
         <Component className={className} {...attrs}>
           {children}
         </Component>
       )}
-    />
+    </FelaComponent>
   );
 }

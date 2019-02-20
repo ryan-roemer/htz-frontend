@@ -106,8 +106,7 @@ function MagazineArticle({ articleId, slots, path, }) {
           } = magazineArticleElement;
 
           return (
-            <FelaTheme
-              render={theme => (
+            <FelaTheme>{theme => (
                 <article>
                   <Head>
                     <meta name="title" content={metaTitle} />
@@ -294,8 +293,7 @@ function MagazineArticle({ articleId, slots, path, }) {
                     );
                   })}
                 </article>
-              )}
-            />
+              )}</FelaTheme>
           );
         }}
       </Query>

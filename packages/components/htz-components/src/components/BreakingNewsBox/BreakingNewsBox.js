@@ -55,8 +55,7 @@ export default class BreakingNewsBox extends React.Component<Props, State> {
   render() {
     const { loop, speed, itemsTransitionDuration, } = this.props;
     return (
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>{theme => (
           <Grid
             gutter={0}
             miscStyles={{
@@ -97,7 +96,7 @@ export default class BreakingNewsBox extends React.Component<Props, State> {
                       miscStyles={{ flexGrow: 1, paddingInlineStart: '2rem', }}
                     >
                       <FelaComponent
-                        render="ul"
+                        as="ul"
                         style={{
                           alignItems: 'center',
                           display: 'flex',
@@ -132,8 +131,7 @@ export default class BreakingNewsBox extends React.Component<Props, State> {
               }}
             </Query>
           </Grid>
-        )}
-      />
+        )}</FelaTheme>
     );
   }
 }

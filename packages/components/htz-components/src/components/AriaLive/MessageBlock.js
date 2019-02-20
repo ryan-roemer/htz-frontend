@@ -19,8 +19,7 @@ function MessageBlock({ message, 'aria-live': ariaLive, }) {
         padding: '0',
         width: '1px',
         position: 'absolute',
-      }}
-      render={({ className, }) => (
+      }}>{({ className, }) => (
         <div
           className={className}
           role="log"
@@ -30,8 +29,7 @@ function MessageBlock({ message, 'aria-live': ariaLive, }) {
         >
           {message || ''}
         </div>
-      )}
-    />
+      )}</FelaComponent>
   );
 }
 

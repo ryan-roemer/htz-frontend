@@ -16,11 +16,9 @@ const IconMenu = ({ size, fill, color, attrs, miscStyles, ...props }) => (
     color={color}
     attrs={attrs}
     miscStyles={miscStyles}
-    rule={iconStyle}
-    render={({ className, }) => (
+    style={iconStyle}>{({ className, }) => (
       <svg width="1em" height="1em" viewBox="0 0 256 256" className={className} {...props} {...attrs} >  <path fill="currentColor" d="M209 62v22H47V62h162zM47 172v22h162v-22H47zm0-55v22h162v-22H47z" /></svg>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 IconMenu.propTypes = iconPropTypes;

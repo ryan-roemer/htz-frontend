@@ -73,13 +73,14 @@ class HeaderSearch extends React.Component {
     const { isHovered, } = this.state;
     return (
       <FelaComponent
-        style={theme => ({
+        style={({ theme, }) => ({
           display: 'flex',
           flexGrow: this.state.isSearchOpen ? '1' : '0',
           overflow: 'hidden',
           extend: [ theme.getTransition(1, 'swiftOut'), ],
         })}
-        render={({
+      >
+        {({
           className,
           theme: {
             color,
@@ -125,7 +126,8 @@ class HeaderSearch extends React.Component {
                   getTransition(1, 'swiftOut'),
                 ],
               }}
-              render={({ className, }) => (
+            >
+              {({ className, }) => (
                 <button
                   className={className}
                   onClick={() => {
@@ -145,7 +147,9 @@ class HeaderSearch extends React.Component {
                   {this.state.isSearchOpen ? (
                     <Fragment>
                       <IconClose size={3.5} color="white" fill="primary" />
-                      <VisuallyHidden id="masthead-search-open-or-close">{a11yTexts.close}</VisuallyHidden>
+                      <VisuallyHidden id="masthead-search-open-or-close">
+                        {a11yTexts.close}
+                      </VisuallyHidden>
                     </Fragment>
                   ) : (
                     <Fragment>
@@ -162,11 +166,10 @@ class HeaderSearch extends React.Component {
                   )}
                 </button>
               )}
-            />
+            </FelaComponent>
             {this.state.isSearchOpen ? (
-              <FelaComponent
-                style={{ display: 'flex', }}
-                render={({ className, }) => (
+              <FelaComponent style={{ display: 'flex', }}>
+                {({ className, }) => (
                   <FelaComponent
                     style={{
                       animationName: {
@@ -182,7 +185,8 @@ class HeaderSearch extends React.Component {
                       position: 'relative',
                       transform: 'translateX(-100%)',
                     }}
-                    render={({ className, }) => (
+                  >
+                    {({ className, }) => (
                       <div className={className}>
                         <FelaComponent style={{ flexGrow: 1, }}>
                           <TextInput
@@ -217,7 +221,8 @@ class HeaderSearch extends React.Component {
                             position: 'absolute',
                             top: '0',
                           }}
-                          render={({ className, }) => (
+                        >
+                          {({ className, }) => (
                             <HtzLink
                               attrs={{ 'aria-describedby': 'masthead-execute-search', }}
                               // TODO: Change to Next link.
@@ -228,19 +233,21 @@ class HeaderSearch extends React.Component {
                               className={className}
                             >
                               <IconSearch size={3.5} color="primary" />
-                              <VisuallyHidden id="masthead-execute-search">{a11yTexts.execSearch}</VisuallyHidden>
+                              <VisuallyHidden id="masthead-execute-search">
+                                {a11yTexts.execSearch}
+                              </VisuallyHidden>
                             </HtzLink>
                           )}
-                        />
+                        </FelaComponent>
                       </div>
                     )}
-                  />
+                  </FelaComponent>
                 )}
-              />
+              </FelaComponent>
             ) : null}
           </form>
         )}
-      />
+      </FelaComponent>
     );
   }
 }

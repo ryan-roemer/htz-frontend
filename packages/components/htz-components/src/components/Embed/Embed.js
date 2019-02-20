@@ -1,19 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createComponent, } from 'react-fela';
+import { FelaComponent, } from 'react-fela';
 
 import embedTypes from './utils/embedTypes';
 import Debug from '../Debug/Debug';
 import Caption from '../Caption/Caption';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
-const embedWrapper = ({ setHeight, }) => ({
+const embedWrapperStyle = {
   position: 'relative',
   width: '100%',
-  extend: [ ...(setHeight ? [ { height: '350px', }, ] : []), ],
-});
-
-const EmbedWrapper = createComponent(embedWrapper);
+};
 
 export default class Embed extends React.Component {
   static propTypes = {
@@ -52,9 +49,9 @@ export default class Embed extends React.Component {
     const { caption, credit, showCaption, } = this.props;
     return EmbedType ? (
       <ErrorBoundary>
-        <EmbedWrapper>
+        <FelaComponent style={embedWrapperStyle}>
           <EmbedType {...this.props} />
-        </EmbedWrapper>
+        </FelaComponent>
         {showCaption && (caption || credit) ? <Caption caption={caption} credit={credit} /> : null}
       </ErrorBoundary>
     ) : (

@@ -45,8 +45,7 @@ function money({ url: { query: { section, }, asPath, }, }: Props): Node {
       description="הכסף החם - למידע עדכני על תנועות ההון בבורסה, גיוסים ופדיונות בקרנות נאמנות ותעודות סל היכנס לאתר TheMarker Finance"
       path={asPath}
     >
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>{theme => (
           <Fragment>
             <PageRow>
               <RowItem
@@ -371,8 +370,7 @@ function money({ url: { query: { section, }, asPath, }, }: Props): Node {
               </Grid>
             </PageRow>
           </Fragment>
-        )}
-      />
+        )}</FelaTheme>
     </MainLayout>
   );
 }

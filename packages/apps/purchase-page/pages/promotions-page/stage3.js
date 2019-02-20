@@ -125,9 +125,7 @@ class Stage3 extends Component {
                     );
                   }
                   return (
-                    <FelaComponent
-                      style={{ textAlign: 'center', }}
-                      render={({
+                    <FelaComponent style={{ textAlign: 'center', }}>{({
                         className,
                         theme: {
                           stage3: { header, },
@@ -147,7 +145,7 @@ class Stage3 extends Component {
                                   headerElements={[
                                     <FelaComponent
                                       style={{ fontWeight: 'bold', }}
-                                      render="span"
+                                      as="span"
                                     >
                                       <span>{header.textBeforeChosen}</span>
                                       {' '}
@@ -193,8 +191,7 @@ class Stage3 extends Component {
                             />
                           </LayoutContainer>
                         </div>
-                      )}
-                    />
+                      )}</FelaComponent>
                   );
                 }}
               </Query>

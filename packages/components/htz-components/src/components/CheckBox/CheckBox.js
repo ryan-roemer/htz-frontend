@@ -1,6 +1,6 @@
 import React, { Component, } from 'react';
 import PropTypes from 'prop-types';
-import { createComponent, FelaComponent, } from 'react-fela';
+import { createComponent, FelaComponent, FelaTheme, } from 'react-fela';
 import { borderRight, parseStyleProps, } from '@haaretz/htz-css-tools';
 import { stylesPropType, } from '../../propTypes/stylesPropType';
 import { attrsPropType, } from '../../propTypes/attrsPropType';
@@ -11,9 +11,7 @@ import Ripple from '../Animations/Ripple';
 const styles = ({ miscStyles, theme, }) => ({
   display: 'flex',
   alignItems: 'baseline',
-  extend: [
-    ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-  ],
+  extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
 });
 
 const checkBoxStyle = ({ checked, isDisabled, isFocused, variant, theme, }) => ({
@@ -58,9 +56,7 @@ const StyledCheck = createComponent(checkStyle);
 
 const spanStyle = ({ theme, miscStyles, }) => ({
   marginInlineStart: '0.3em',
-  extend: [
-    ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-  ],
+  extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
 });
 
 export class CheckBox extends Component {
@@ -184,9 +180,7 @@ export class CheckBox extends Component {
 
   state = {
     checkBoxId: this.props.checkBoxId || Math.random().toString(),
-    ...(this.props.checked === null
-      ? { checked: this.props.defaultValue, }
-      : {}),
+    ...(this.props.checked === null ? { checked: this.props.defaultValue, } : {}),
     isFocused: false,
     noteId: this.props.noteId
       ? this.props.noteId
@@ -225,9 +219,7 @@ export class CheckBox extends Component {
         >
           <input
             type="checkbox"
-            {...(this.state.noteId
-              ? { 'aria-describedby': this.state.noteId, }
-              : {})}
+            {...(this.state.noteId ? { 'aria-describedby': this.state.noteId, } : {})}
             {...attrs}
             checked={controllingChecked}
             {...(isDisabled ? { disabled: true, } : {})}
@@ -263,17 +255,17 @@ export class CheckBox extends Component {
             isFocused={this.state.isFocused}
             variant={variant}
           >
-            <FelaComponent
-              render={({ theme, }) => (
+            <FelaTheme>
+              {theme => (
                 <Ripple
                   isActive={this.state.isFocused}
                   bgColor={theme.color('checkBox', `${variant}Ripple`)}
                 />
               )}
-            />
+            </FelaTheme>
             <StyledCheck checked={controllingChecked} variant={variant} />
           </StyledCheckBox>
-          <FelaComponent rule={spanStyle} miscStyles={labelStyle}>
+          <FelaComponent style={spanStyle} miscStyles={labelStyle}>
             {label}
           </FelaComponent>
         </label>

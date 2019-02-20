@@ -13,14 +13,19 @@ import ShareBar from '../../../ShareBar/ShareBar';
 // eslint-disable-next-line react/prop-types
 const HeaderElementCont = ({ children, miscStyles, }) => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       marginRight: 'auto',
       marginLeft: 'auto',
+
       extend: [
         theme.mq({ from: 'm', }, { maxWidth: '80%', }),
         theme.mq({ until: 'm', }, { paddingRight: '2rem', paddingLeft: '2rem', }),
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ],
+      ]
     })}
   >
     {children}
@@ -71,18 +76,22 @@ function Header({
 }) {
   return (
     <FelaComponent
-      style={theme => ({
+      style={(
+        {
+          theme
+        }
+      ) => ({
         marginRight: 'auto',
         marginLeft: 'auto',
         textAlign: 'center',
         paddingTop: '2rem',
+
         extend: [
           theme.mq({ from: 'xl', }, { maxWidth: '130rem', }),
           theme.mq({ from: 'l', until: 'xl', }, { maxWidth: '152rem', }),
           theme.mq({ until: 'm', }, { display: 'flex', flexDirection: 'column', }),
-        ],
-      })}
-      render={({ className, theme, }) => (
+        ]
+      })}>{({ className, theme, }) => (
         <header className={className}>
           <HeaderElementCont>
             {hasBreadCrumbs ? <Breadcrumbs articleId={articleId} /> : null}
@@ -97,16 +106,14 @@ function Header({
                     { marginRight: '2rem', marginLeft: '2rem', }
                   ),
                 ],
-              }}
-              render={({ className, }) => (
+              }}>{({ className, }) => (
                 <HeaderText
                   className={className}
                   kicker={exclusive}
                   subtitle={subtitle}
                   title={title}
                 />
-              )}
-            />
+              )}</FelaComponent>
           </HeaderElementCont>
           <HeaderElementCont
             miscStyles={{
@@ -209,8 +216,7 @@ function Header({
             />
           ) : null}
         </header>
-      )}
-    />
+      )}</FelaComponent>
   );
 }
 

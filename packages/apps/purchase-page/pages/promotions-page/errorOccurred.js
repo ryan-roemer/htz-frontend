@@ -50,14 +50,17 @@ const ErrorOccurredElement = ({ messageType, fbFullRedirectUri, }) => (
           <Fragment>
             <IconSadSmiley color="negative" size={10} />
             <FelaComponent
-              style={theme => ({
+              style={(
+                {
+                  theme
+                }
+              ) => ({
                 maxWidth: '70rem',
                 marginLeft: 'auto',
                 marginRight: 'auto',
                 marginTop: '3rem',
-                extend: [ theme.type(2), ],
-              })}
-              render={({
+                extend: [ theme.type(2), ]
+              })}>{({
                 className,
                 theme: {
                   generalError: { message: generalError, },
@@ -82,8 +85,7 @@ const ErrorOccurredElement = ({ messageType, fbFullRedirectUri, }) => (
                   </FelaComponent>
                 );
               }
-              }
-            />
+              }</FelaComponent>
           </Fragment>
         )}
         stageElement={<ThankYouStage fbFullRedirectUri={fbFullRedirectUri} />}

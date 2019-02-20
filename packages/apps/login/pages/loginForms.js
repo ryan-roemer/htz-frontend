@@ -30,21 +30,20 @@ const { ContentWrapper, FormWrapper, ItemCenterer, } = LoginContentStyles;
 const generateError = (name, order) => message => [ { name, order, errorText: message, }, ];
 const generateEmailError = message => generateError('email', 1)(message);
 
-const validateEmailInput = ({ email, }) =>
-  (!email
-    ? generateEmailError('אנא הזינו כתובת דוא”ל')
-    : !isEmail(email)
-      ? generateEmailError('אנא הזינו כתובת דוא”ל תקינה')
-      : []); // email is valid
+const validateEmailInput = ({ email, }) => (!email
+  ? generateEmailError('אנא הזינו כתובת דוא”ל')
+  : !isEmail(email)
+    ? generateEmailError('אנא הזינו כתובת דוא”ל תקינה')
+    : []); // email is valid
 
-const getUserFromApollo = (client) => {
+const getUserFromApollo = client => {
   try {
     return getUser(client);
   }
-  catch(e) {
+  catch (e) {
     return false;
   }
-}
+};
 
 // --------------------------
 
@@ -58,28 +57,26 @@ class LoginForms extends Component {
   };
 
   showDialog = () => {
-    this.setState({ showDialog: true, })
-  }
+    this.setState({ showDialog: true, });
+  };
 
   hideDialog = () => {
-    this.setState({ showDialog: false, })
-  }
+    this.setState({ showDialog: false, });
+  };
 
   setPreloader = isLoadingStatus => {
     this.setState({ isLoading: !!isLoadingStatus, });
-  }
+  };
 
-  getDialogState = () => {
-    return this.state.showDialog;
-  }
+  getDialogState = () => this.state.showDialog;
 
-  showError = (errorMsg) => {
+  showError = errorMsg => {
     this.setState({ showError: true, errorMessage: errorMsg, });
-  }
+  };
 
   hideError = () => {
-    this.setState({ showError: false, errorMessage: "", });
-  }
+    this.setState({ showError: false, errorMessage: '', });
+  };
 
   render() {
     return (
@@ -94,8 +91,8 @@ class LoginForms extends Component {
                   const activeTab = '2345'.includes(flow) ? 0 : 1;
                   const user = getUserFromApollo(client);
                   return (
-                    <FelaTheme
-                      render={theme => (
+                    <FelaTheme>
+                      {theme => (
                         <Fragment>
                           <EventTracker>
                             {({ biAction, gaAction, gaMapper, }) => (
@@ -106,34 +103,35 @@ class LoginForms extends Component {
                                   </ItemCenterer>
 
                                   {/* ----------- Forgot Password Modal ------------ */}
-                                  <LoginDialog show={this.getDialogState()} handleClose={this.hideDialog}>
-                                    {
-                                      (nextStage, closeModal, CloseButton) => (
+                                  <LoginDialog
+                                    show={this.getDialogState()}
+                                    handleClose={this.hideDialog}
+                                  >
+                                    {(nextStage, closeModal, CloseButton) => (
+                                      <div>
+                                        <ResetPasswordForm
+                                          nextStage={nextStage}
+                                          closeModal={closeModal}
+                                          CloseButton={CloseButton}
+                                          host={host}
+                                          theme={theme}
+                                          validateEmailInput={validateEmailInput}
+                                          client={client}
+                                          flow={flow}
+                                          eventsTrackers={{ biAction, gaAction, }}
+                                        />
                                         <div>
-                                          <ResetPasswordForm
-                                            nextStage={nextStage}
-                                            closeModal={closeModal}
-                                            CloseButton={CloseButton}
-                                            host={host}
-                                            theme={theme}
-                                            validateEmailInput={validateEmailInput}
-                                            client={client}
-                                            flow={flow}
-                                            eventsTrackers={{ biAction, gaAction, }}
-                                          />
-                                          <div>
-                                            <CloseButton />
-                                            <h4>החלפת סיסמה</h4>
-                                            <br />
-                                            <h5>הוראות לאיפוס הסיסמה נשלחו לתיבת הדוא”ל שלך</h5>
-                                            <ItemCenterer>
-                                              <Preloader isLoading={this.state.isLoading} />
-                                              <Button onClick={closeModal}>התחברות</Button>
-                                            </ItemCenterer>
-                                          </div>
+                                          <CloseButton />
+                                          <h4>החלפת סיסמה</h4>
+                                          <br />
+                                          <h5>הוראות לאיפוס הסיסמה נשלחו לתיבת הדוא”ל שלך</h5>
+                                          <ItemCenterer>
+                                            <Preloader isLoading={this.state.isLoading} />
+                                            <Button onClick={closeModal}>התחברות</Button>
+                                          </ItemCenterer>
                                         </div>
-                                      )
-                                    }
+                                      </div>
+                                    )}
                                   </LoginDialog>
 
                                   {/* ----------------- Tabs Frame ----------------- */}
@@ -181,10 +179,16 @@ class LoginForms extends Component {
                                       onClick={e => {
                                         e.preventDefault();
                                         const route = doTransition('registration');
-                                        sendTrackingEvents({ biAction, gaAction, }, { page: 'How to login?', flowNumber: flow, label: 'registrationPage', })(() => {
+                                        sendTrackingEvents(
+                                          { biAction, gaAction, },
+                                          {
+                                            page: 'How to login?',
+                                            flowNumber: flow,
+                                            label: 'registrationPage',
+                                          }
+                                        )(() => {
                                           Router.push(route);
-                                        }
-                                        );
+                                        });
                                       }}
                                     >
                                       הירשמו
@@ -196,7 +200,7 @@ class LoginForms extends Component {
                           </EventTracker>
                         </Fragment>
                       )}
-                    />
+                    </FelaTheme>
                   );
                 }}
               </ApolloConsumer>

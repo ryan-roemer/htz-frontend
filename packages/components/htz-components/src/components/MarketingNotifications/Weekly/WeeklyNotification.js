@@ -48,12 +48,10 @@ export default function WeeklyNotification({
         height: '71rem',
       }}
       render={({ isVisible, handleClose, isModal, }) => (
-        <FelaComponent
-          style={style.wrapper}
-          render={({ theme, className, }) => (
+        <FelaComponent style={style.wrapper}>{({ theme, className, }) => (
             <div className={className}>
-              <FelaComponent style={style.innerWrapper} render="span">
-                <FelaComponent style={style.icon} render="span">
+              <FelaComponent style={style.innerWrapper} as="span">
+                <FelaComponent style={style.icon} as="span">
                   <Astronaut size={style.icon().size} />
                 </FelaComponent>
                 <FelaComponent style={style.text1}>{text1}</FelaComponent>
@@ -70,28 +68,21 @@ export default function WeeklyNotification({
                 >
                   {buttonText}
                 </Button>
-                <FelaComponent
-                  style={style.footer}
-                  render={({ className, theme, }) => (
+                <FelaComponent style={style.footer}>{({ className, theme, }) => (
                     <span className={className}>
                       {theme.marketingTools.Weekly.weeklyLink}
-                      <FelaComponent
-                        style={style.link}
-                        render={({ className, }) => (
+                      <FelaComponent style={style.link}>{({ className, }) => (
                           <HtzLink
                             content="התחברו לאתר"
                             href="http://haaretz.co.il"
                             className={className}
                           />
-                        )}
-                      />
+                        )}</FelaComponent>
                     </span>
-                  )}
-                />
+                  )}</FelaComponent>
               </FelaComponent>
             </div>
-          )}
-        />
+          )}</FelaComponent>
       )}
     />
   );

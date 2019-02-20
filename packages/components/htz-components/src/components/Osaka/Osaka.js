@@ -49,8 +49,7 @@ const NextItem = createComponent(NextItemStyle, HtzLink, props => Object.keys(pr
 
 function Osaka({ nextArticleUrl, nextArticleText, lists, }) {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <FelaComponent
           style={{
             backgroundColor: theme.color('neutral', '-10'),
@@ -147,7 +146,7 @@ function Osaka({ nextArticleUrl, nextArticleText, lists, }) {
                       content={(
                         <FelaComponent
                           style={{ display: 'flex', alignItems: 'center', }}
-                          render="p"
+                          as="p"
                         >
                           <span>{nextArticleText}</span>
                           <span>
@@ -162,8 +161,7 @@ function Osaka({ nextArticleUrl, nextArticleText, lists, }) {
             )}
           />
         </FelaComponent>
-      )}
-    />
+      )}</FelaTheme>
   );
 }
 

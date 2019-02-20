@@ -1,5 +1,5 @@
 import React, { Component, } from 'react';
-import { createComponent, FelaComponent, } from 'react-fela';
+import { createComponent, FelaTheme, } from 'react-fela';
 import { parseStyleProps, } from '@haaretz/htz-css-tools';
 import { radioButtonPropType, } from './RadioButtonPropType';
 import Ripple from '../Animations/Ripple';
@@ -7,18 +7,10 @@ import Ripple from '../Animations/Ripple';
 const styles = ({ miscStyles, theme, }) => ({
   display: 'flex',
   alignItems: 'baseline',
-  extend: [
-    ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-  ],
+  extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
 });
 
-const radioButtonStyle = ({
-  checked,
-  isDisabled,
-  isFocused,
-  variant,
-  theme,
-}) => ({
+const radioButtonStyle = ({ checked, isDisabled, isFocused, variant, theme, }) => ({
   position: 'relative',
   top: '0.15em',
   height: '1em',
@@ -152,14 +144,14 @@ export class RadioButton extends Component {
           isFocused={this.state.isFocused}
           variant={variant}
         >
-          <FelaComponent
-            render={({ theme, }) => (
+          <FelaTheme>
+            {({ theme, }) => (
               <Ripple
                 isActive={this.state.isFocused}
                 bgColor={theme.color('checkBox', `${variant}Ripple`)}
               />
             )}
-          />
+          </FelaTheme>
           <StyledCheck checked={controllingChecked} variant={variant} />
         </StyledRadioButton>
         <StyledSpan>{label}</StyledSpan>

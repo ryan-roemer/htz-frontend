@@ -203,8 +203,7 @@ function HawkingMainTeaser({
   index,
 }: TeaserProps): Node {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Teaser
           onClick={
             biAction
@@ -281,7 +280,7 @@ function HawkingMainTeaser({
                   fontWeight: '700',
                   extend: [ theme.type(-3), ],
                 }}
-                render="span"
+                as="span"
               >
                 <TeaserAuthors authors={item.authors} />
                 <FelaComponent
@@ -291,7 +290,7 @@ function HawkingMainTeaser({
                     paddingInlineEnd: '1rem',
                     extend: [ theme.type(-3), ],
                   }}
-                  render="span"
+                  as="span"
                 >
                   {' | '}
                   <TeaserTime publishDate={item.publishDate && new Date(item.publishDate)} />
@@ -304,8 +303,7 @@ function HawkingMainTeaser({
             )}
           />
         </Teaser>
-      )}
-    />
+      )}</FelaTheme>
   );
 }
 
@@ -316,8 +314,7 @@ HawkingTeaser.defaultProps = {
 
 function HawkingTeaser({ item, index, biAction, }: TeaserProps): Node {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Teaser
           data={item}
           onClick={
@@ -366,7 +363,6 @@ function HawkingTeaser({ item, index, biAction, }: TeaserProps): Node {
             )}
           />
         </Teaser>
-      )}
-    />
+      )}</FelaTheme>
   );
 }

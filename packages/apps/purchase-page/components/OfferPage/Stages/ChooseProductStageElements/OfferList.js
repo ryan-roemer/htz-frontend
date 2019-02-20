@@ -31,7 +31,7 @@ const defaultProps = {
   fourDigits: null,
 };
 
-const contStyle = theme => ({
+const contStyle = ({ theme, }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -56,9 +56,8 @@ function OfferList({
   contentName,
 }) {
   return (
-    <FelaComponent
-      style={contStyle}
-      render={({ className, }) => (
+    <FelaComponent style={contStyle}>
+      {({ className, }) => (
         <div className={className} id="offerListWrapper">
           <UserDispenser
             render={({ isLoggedIn, }) => offerList.map((offer, idx) => (
@@ -81,7 +80,7 @@ function OfferList({
           />
         </div>
       )}
-    />
+    </FelaComponent>
   );
 }
 

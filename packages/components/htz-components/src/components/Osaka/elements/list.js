@@ -79,16 +79,14 @@ function List({ articles, promoted, outbrain, miscStyles, }) {
         display: 'flex',
         flexDirection: promoted || outbrain ? 'column' : 'row',
         extend: [ ...(miscStyles ? parseStyleProps(miscStyles) : []), ],
-      }}
-      render={({ className, theme, }) => (
+      }}>{({ className, theme, }) => (
         <div className={className}>
           {articles.map((article, i) => (
             <FelaComponent
               style={{
                 width: `${100 / articles.length}%`,
                 ...(promoted ? borderEnd('1px', 'solid', theme.color('neutral', '-4')) : {}),
-              }}
-              render={({ className: linkClass, }) => (
+              }}>{({ className: linkClass, }) => (
                 <EventTracker>
                   {({ biAction, gaAction, }) => (
                     <HtzLink
@@ -108,8 +106,7 @@ function List({ articles, promoted, outbrain, miscStyles, }) {
                     />
                   )}
                 </EventTracker>
-              )}
-            />
+              )}</FelaComponent>
           ))}
           {promoted ? <Promoted>{theme.osakaI18n.promotedContent}</Promoted> : null}
           {outbrain ? (
@@ -137,8 +134,7 @@ function List({ articles, promoted, outbrain, miscStyles, }) {
             </a>
           ) : null}
         </div>
-      )}
-    />
+      )}</FelaComponent>
   );
 }
 

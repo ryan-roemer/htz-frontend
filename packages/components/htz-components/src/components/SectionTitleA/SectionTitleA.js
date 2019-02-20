@@ -6,50 +6,57 @@ import H from '../AutoLevels/H';
 
 const SectionTitleA = ({ title, isInMargin, id, }) => (
   <FelaComponent
-    style={({ layoutStyle, ...theme }) => ({
+    style={({ theme, }) => ({
       color: theme.color('primary'),
       fontWeight: 'bold',
       position: 'relative',
-      paddingInlineStart: `${layoutStyle.startColumnPadding}rem`,
+      paddingInlineStart: `${theme.layoutStyle.startColumnPadding}rem`,
       extend: [
-        theme.mq({ until: 's', }, { paddingInlineStart: `${layoutStyle.contPaddingS}rem`, }),
-        theme.mq({ from: 'xl', }, { paddingInlineStart: `${layoutStyle.startColumnPaddingXL}rem`, }),
+        theme.mq({ until: 's', }, { paddingInlineStart: `${theme.layoutStyle.contPaddingS}rem`, }),
+        theme.mq(
+          { from: 'xl', },
+          { paddingInlineStart: `${theme.layoutStyle.startColumnPaddingXL}rem`, }
+        ),
         theme.type(3, { fromBp: 'l', }),
         theme.type(1, { untilBp: 'l', }),
         borderTop('2px', 2, 'solid', theme.color('primary')),
       ],
     })}
-    render={({ className, }) => (
+  >
+    {({ className, }) => (
       <H className={className} id={id}>
         {isInMargin ? (
           <FelaComponent
-            style={({ layoutStyle, ...theme }) => ({
-              extend: [
-                theme.mq(
-                  { from: 'l', },
-                  {
-                    position: 'absolute',
-                    overflow: 'hidden',
-                  }
-                ),
-                theme.mq(
-                  { from: 'l', until: 'xl', },
-                  {
-                    insetInlineStart: `${layoutStyle.startColumnPadding}rem`,
-                    maxWidth: `${layoutStyle.startColumnWidthL
-                      - layoutStyle.startColumnPadding}rem`,
-                  }
-                ),
-                theme.mq(
-                  { from: 'xl', },
-                  {
-                    insetInlineStart: `${layoutStyle.startColumnPaddingXL}rem`,
-                    maxWidth: `${layoutStyle.startColumnWidthXL
-                      - layoutStyle.startColumnPaddingXL}rem`,
-                  }
-                ),
-              ],
-            })}
+            style={({ theme, }) => {
+              const layoutStyle = theme.layoutStyle;
+              return {
+                extend: [
+                  theme.mq(
+                    { from: 'l', },
+                    {
+                      position: 'absolute',
+                      overflow: 'hidden',
+                    }
+                  ),
+                  theme.mq(
+                    { from: 'l', until: 'xl', },
+                    {
+                      insetInlineStart: `${layoutStyle.startColumnPadding}rem`,
+                      maxWidth: `${layoutStyle.startColumnWidthL
+                        - layoutStyle.startColumnPadding}rem`,
+                    }
+                  ),
+                  theme.mq(
+                    { from: 'xl', },
+                    {
+                      insetInlineStart: `${layoutStyle.startColumnPaddingXL}rem`,
+                      maxWidth: `${layoutStyle.startColumnWidthXL
+                        - layoutStyle.startColumnPaddingXL}rem`,
+                    }
+                  ),
+                ],
+              };
+            }}
           >
             <span>{title}</span>
           </FelaComponent>
@@ -58,7 +65,7 @@ const SectionTitleA = ({ title, isInMargin, id, }) => (
         )}
       </H>
     )}
-  />
+  </FelaComponent>
 );
 
 SectionTitleA.propTypes = {

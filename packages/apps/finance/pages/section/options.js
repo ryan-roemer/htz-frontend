@@ -52,8 +52,7 @@ function options({
       description="כל המידע על  אופציות נתוני מסחר, נתונים בזמן אמת, גרפים חדשות ועוד באתר TheMarker Finance"
       path={asPath}
     >
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>{theme => (
           <Fragment>
             <PageRow>
               <RowItem title="אופציות מעו״ף">
@@ -194,8 +193,7 @@ function options({
               </RowItem>
             </PageRow>
           </Fragment>
-        )}
-      />
+        )}</FelaTheme>
     </MainLayout>
   );
 }

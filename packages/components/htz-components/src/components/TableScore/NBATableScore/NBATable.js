@@ -111,34 +111,31 @@ export default class NBATable extends React.Component<Props, State> {
             : [ ...data.tableScore.data, ];
 
           return (
-
             <FelaComponent style={Container}>
               <FelaComponent style={CenteredElement}>
                 <CoastBar client={client} coastType={coastType} toggleCoast={this.toggleCoast} />
 
-                <FelaTheme render={theme => (
-                  <Table
-                    tableData={tableData}
-                    tableType="soccer-leagues"
-                    headers={theme.nbaHeaders.headers}
-                    isOpen={isOpen}
-                    borders={borders}
-                  />)}
-                />
+                <FelaTheme>{theme => (
+                    <Table
+                      tableData={tableData}
+                      tableType="soccer-leagues"
+                      headers={theme.nbaHeaders.headers}
+                      isOpen={isOpen}
+                      borders={borders}
+                    />)}</FelaTheme>
 
-                <FelaTheme render={theme => (
-                  <ToggleButton
-                    handleClick={this.handleToggle}
-                    rotateDeg={
-                      isOpen
-                        ? theme.btnOptions.degree.open : theme.btnOptions.degree.close
-                    }
-                    isOpen={isOpen}
-                  >
-                    {isOpen ? theme.btnOptions.title.open : theme.btnOptions.title.close}
-                  </ToggleButton>
-                )}
-                />
+                <FelaTheme>{theme => (
+                    <ToggleButton
+                      handleClick={this.handleToggle}
+                      rotateDeg={
+                        isOpen
+                          ? theme.btnOptions.degree.open : theme.btnOptions.degree.close
+                      }
+                      isOpen={isOpen}
+                    >
+                      {isOpen ? theme.btnOptions.title.open : theme.btnOptions.title.close}
+                    </ToggleButton>
+                  )}</FelaTheme>
 
               </FelaComponent>
             </FelaComponent>
@@ -152,26 +149,24 @@ export default class NBATable extends React.Component<Props, State> {
             <FelaComponent style={CenteredElement}>
               <CoastBar client={client} coastType={coastType} toggleCoast={this.toggleCoast} />
 
-              <FelaTheme render={theme => (
-                <Table
-                  tableData={tableData}
-                  tableType="soccer-leagues"
-                  headers={theme.nbaHeaders.headers}
-                  isOpen={isOpen}
-                  borders={borders}
-                />)}
-              />
+              <FelaTheme>{theme => (
+                  <Table
+                    tableData={tableData}
+                    tableType="soccer-leagues"
+                    headers={theme.nbaHeaders.headers}
+                    isOpen={isOpen}
+                    borders={borders}
+                  />)}</FelaTheme>
 
-              <FelaTheme render={theme => (
-                <ToggleButton
-                  handleClick={this.handleToggle}
-                  rotateDeg={isOpen ? theme.btnOptions.degree.open : theme.btnOptions.degree.close}
-                  isOpen={isOpen}
-                >
-                  {isOpen ? theme.btnOptions.title.open : theme.btnOptions.title.close}
-                </ToggleButton>
-              )}
-              />
+              <FelaTheme>{theme => (
+                  <ToggleButton
+                    handleClick={this.handleToggle}
+                    rotateDeg={isOpen ? theme.btnOptions.degree.open : theme.btnOptions.degree.close}
+                    isOpen={isOpen}
+                  >
+                    {isOpen ? theme.btnOptions.title.open : theme.btnOptions.title.close}
+                  </ToggleButton>
+                )}</FelaTheme>
 
             </FelaComponent>
           </FelaComponent>

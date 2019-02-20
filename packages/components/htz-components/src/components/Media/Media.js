@@ -94,14 +94,12 @@ Media.defaultProps = {
 // eslint-disable-next-line react/prop-types
 function MediaComponent({ query, matchOnServer, ...props }) {
   return (
-    <FelaTheme
-      render={theme => {
+    <FelaTheme>{theme => {
         const queryString = theme.getMqString(query, true);
         return (
           <M query={queryString} defaultMatches={matchOnServer} {...props} />
         );
-      }}
-    />
+      }}</FelaTheme>
   );
 }
 

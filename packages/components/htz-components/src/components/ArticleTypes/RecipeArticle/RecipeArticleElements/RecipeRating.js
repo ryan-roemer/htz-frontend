@@ -86,7 +86,11 @@ class RecipeRating extends Component {
     const cleanArticleId = cleanId(articleId);
     return (
       <FelaComponent
-        style={theme => ({
+        style={(
+          {
+            theme
+          }
+        ) => ({
           extend: [
             theme.mq(
               { from: 's', },
@@ -98,9 +102,8 @@ class RecipeRating extends Component {
             ),
             theme.mq({ until: 's', }, { paddingRight: '2rem', paddingLeft: '2rem', }),
             ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-          ],
-        })}
-        render={({
+          ]
+        })}>{({
           className,
           theme,
           theme: {
@@ -196,7 +199,7 @@ class RecipeRating extends Component {
                         marginInlineStart: '1rem',
                         color: theme.color('primary'),
                       }}
-                      render="span"
+                      as="span"
                     >
                       (
                       {this.state.userRating
@@ -232,13 +235,13 @@ class RecipeRating extends Component {
                         marginInlineEnd: '1rem',
                         extend: [ theme.type(2), ],
                       }}
-                      render="span"
+                      as="span"
                     >
                       {icon[row.icon]}
                     </FelaComponent>
                     <FelaComponent
                       style={{ fontWeight: 'bold', marginInlineEnd: '1rem', }}
-                      render="span"
+                      as="span"
                     >
                       {row.highLightedText}
 :
@@ -249,8 +252,7 @@ class RecipeRating extends Component {
               })}
             </div>
           );
-        }}
-      />
+        }}</FelaComponent>
     );
   }
 }

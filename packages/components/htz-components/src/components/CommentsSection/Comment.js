@@ -15,16 +15,8 @@ import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 
 import decodeCommonHTMLEntities from '../../utils/decodeCommonHTMLEntities';
 
-const wrapperStyle = ({
-  theme,
-  isSubComment,
-  isLastSubComment,
-  isHighlighted,
-}) => ({
-  backgroundColor: theme.color(
-    'comments',
-    isHighlighted ? 'highlightedCommentBg' : 'bg'
-  ),
+const wrapperStyle = ({ theme, isSubComment, isLastSubComment, isHighlighted, }) => ({
+  backgroundColor: theme.color('comments', isHighlighted ? 'highlightedCommentBg' : 'bg'),
   extend: [
     {
       condition: isSubComment === false,
@@ -32,12 +24,7 @@ const wrapperStyle = ({
     },
     {
       condition: isSubComment && !isLastSubComment,
-      style: borderBottom(
-        '1px',
-        2,
-        'solid',
-        theme.color('comments', 'subcommentBorder')
-      ),
+      style: borderBottom('1px', 2, 'solid', theme.color('comments', 'subcommentBorder')),
     },
   ],
 });
@@ -79,13 +66,15 @@ const CommentHeaderContStyle = ({ theme, truncate, }) => ({
 // eslint-disable-next-line react/prop-types
 const StyledCommentAuthor = ({ truncate, children, ...props }) => (
   <FelaComponent
-    style={theme => ({
+    style={({ theme, }) => ({
       color: theme.color('comments', 'authorName'),
       padding: '0',
       margin: '0',
+
       ':hover': {
         cursor: 'pointer',
       },
+
       ...(truncate
         ? {
           whiteSpace: 'nowrap',
@@ -95,24 +84,26 @@ const StyledCommentAuthor = ({ truncate, children, ...props }) => (
           textOverflow: 'ellipsis',
         }
         : {}),
+
       ...theme.type(0),
     })}
-    render={({ className, }) => (
+  >
+    {({ className, }) => (
       <H className={className} {...props}>
         {children}
       </H>
     )}
-  />
+  </FelaComponent>
 );
 
-const publishingDateStyle = theme => ({
+const publishingDateStyle = ({ theme, }) => ({
   color: theme.color('comments', 'date'),
   marginInlineEnd: '1rem',
   marginInlineStart: '1rem',
   extend: [ theme.type(-1), ],
 });
 
-const subCommentAuthorStyle = theme => ({
+const subCommentAuthorStyle = ({ theme, }) => ({
   color: theme.color('comments', 'subcommentAuthor'),
   fontStyle: 'italic',
 });
@@ -120,11 +111,11 @@ const subCommentAuthorStyle = theme => ({
 // eslint-disable-next-line react/prop-types
 const StyledEditorPickTag = ({ children, }) => (
   <FelaComponent
-    style={theme => ({
+    style={({ theme, }) => ({
       color: theme.color('comments', 'highlightStatus'),
       whiteSpace: 'nowrap',
     })}
-    render="span"
+    as="span"
   >
     {children}
   </FelaComponent>
@@ -133,10 +124,11 @@ const StyledEditorPickTag = ({ children, }) => (
 // eslint-disable-next-line react/prop-types
 const StyledCommentText = ({ fade, children, ...props }) => (
   <FelaComponent
-    style={theme => ({
+    style={({ theme, }) => ({
       color: theme.color('comments', 'text'),
       margin: 0,
       wordBreak: 'break-word',
+
       ...(fade
         ? {
           overflow: 'hidden',
@@ -144,20 +136,22 @@ const StyledCommentText = ({ fade, children, ...props }) => (
         }
         : {}),
     })}
-    render={({ className, }) => (
+  >
+    {({ className, }) => (
       <div className={className} {...props}>
         {children}
       </div>
     )}
-  />
+  </FelaComponent>
 );
 
 // eslint-disable-next-line react/prop-types
 const Fade = ({ isHighlighted, children, }) => (
   <FelaComponent
-    style={theme => ({
+    style={({ theme, }) => ({
       display: 'block',
       height: 0,
+
       ':after': {
         display: 'block',
         content: '""',
@@ -171,7 +165,7 @@ const Fade = ({ isHighlighted, children, }) => (
         )})`,
       },
     })}
-    render="span"
+    as="span"
   >
     {children}
   </FelaComponent>
@@ -208,8 +202,7 @@ class Comment extends React.Component {
     /** The Comment ID */
     commentId: PropTypes.string.isRequired,
     /** The Comment Number */
-    commentNumber: PropTypes.oneOfType([ PropTypes.number, PropTypes.string, ])
-      .isRequired,
+    commentNumber: PropTypes.oneOfType([ PropTypes.number, PropTypes.string, ]).isRequired,
     /**
      * An Object holding the Minus Rates of all the comments in the `CommentsElement`.
      * The Object has an id key for each comment that has at least one Minus vote.
@@ -343,7 +336,7 @@ class Comment extends React.Component {
       this.commentTextEl.tabIndex = '-1';
       this.commentTextEl.focus();
     }
-  }
+  };
 
   handleReplyClick = () => {
     this.state.displayReplyForm
@@ -388,8 +381,9 @@ class Comment extends React.Component {
         isSubComment={isSubComment}
         isLastSubComment={isLastSubComment}
         isHighlighted={isHighlighted}
-        rule={wrapperStyle}
-        render={({
+        style={wrapperStyle}
+      >
+        {({
           className,
           theme: {
             commentI18n: {
@@ -401,10 +395,7 @@ class Comment extends React.Component {
         }) => (
           <Section tagName="article" className={className}>
             <FelaComponent style={commentWrapperStyle}>
-              <FelaComponent
-                isSubComment={isSubComment}
-                rule={commentNumberContainerStyle}
-              >
+              <FelaComponent isSubComment={isSubComment} style={commentNumberContainerStyle}>
                 <span>
                   {isSubComment ? (
                     isFirstSubComment ? (
@@ -422,7 +413,7 @@ class Comment extends React.Component {
               </FelaComponent>
               <FelaComponent style={commentContainerStyle}>
                 <FelaComponent
-                  rule={CommentHeaderContStyle}
+                  style={CommentHeaderContStyle}
                   truncate={this.state.truncateAuthorName}
                 >
                   <StyledCommentAuthor
@@ -436,12 +427,12 @@ class Comment extends React.Component {
                     {author}
                   </StyledCommentAuthor>
 
-                  <FelaComponent style={publishingDateStyle} render="span">
+                  <FelaComponent style={publishingDateStyle} as="span">
                     {publishingDateForDisplay}
                   </FelaComponent>
 
                   {isSubComment ? (
-                    <FelaComponent style={subCommentAuthorStyle} render="span">
+                    <FelaComponent style={subCommentAuthorStyle} as="span">
                       <IconArrow />
                       {' '}
                       {parentAuthor}
@@ -451,7 +442,6 @@ class Comment extends React.Component {
                   )}
                   {isEditorPick === 'true' ? (
                     <StyledEditorPickTag>
-
 |
                       {editorsPick}
                     </StyledEditorPickTag>
@@ -460,7 +450,6 @@ class Comment extends React.Component {
                   )}
                   {this.isUsersChoice ? (
                     <StyledEditorPickTag>
-
 |
                       {usersPick}
                     </StyledEditorPickTag>
@@ -470,17 +459,14 @@ class Comment extends React.Component {
                 </FelaComponent>
                 <div
                   // eslint-disable-next-line
-                  ref={commentTextEl => (this.commentTextEl = commentTextEl)}>
-                  <StyledCommentText>
-                    {decodeCommonHTMLEntities(title)}
-                  </StyledCommentText>
+                  ref={commentTextEl => (this.commentTextEl = commentTextEl)}
+                >
+                  <StyledCommentText>{decodeCommonHTMLEntities(title)}</StyledCommentText>
                   <StyledCommentText
                     dangerouslySetInnerHTML={this.generateCommentMarkup()}
                     fade={this.state.fadeText}
                   />
-                  {this.state.fadeText ? (
-                    <Fade isHighlighted={isHighlighted} />
-                  ) : null}
+                  {this.state.fadeText ? <Fade isHighlighted={isHighlighted} /> : null}
                 </div>
                 <FelaComponent style={commentFooterStyle}>
                   <Button
@@ -575,8 +561,7 @@ class Comment extends React.Component {
                     commentsPlusRate={commentsPlusRate}
                     commentsMinusRate={commentsMinusRate}
                     reportAbuse={reportAbuse}
-                    openParentReplyForm={() => this.setState({ displayReplyForm: true, })
-                    }
+                    openParentReplyForm={() => this.setState({ displayReplyForm: true, })}
                   />
                 ) : null}
               </FelaComponent>
@@ -586,13 +571,12 @@ class Comment extends React.Component {
                 parentCommentId={commentId}
                 initNewComment={initNewComment}
                 signUpNotification={signUpNotification}
-                closeReplyForm={() => this.setState({ displayReplyForm: false, })
-                }
+                closeReplyForm={() => this.setState({ displayReplyForm: false, })}
               />
             ) : null}
           </Section>
         )}
-      />
+      </FelaComponent>
     );
   }
 }

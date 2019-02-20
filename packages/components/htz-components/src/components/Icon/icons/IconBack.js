@@ -16,11 +16,9 @@ const IconBack = ({ size, fill, color, attrs, miscStyles, ...props }) => (
     color={color}
     attrs={attrs}
     miscStyles={miscStyles}
-    rule={iconStyle}
-    render={({ className, }) => (
+    style={iconStyle}>{({ className, }) => (
       <svg width="0.8828125em" height="1em" viewBox="0 0 226 256" className={className} {...props} {...attrs} >  <path fill="currentColor" d="M138.4 226.4l-77.8-77.8-19.1-19.1 19.1-19.1 77.8-77.8 19.1 19.1-77.8 77.8 77.8 77.8-19.1 19.1z" /></svg>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 IconBack.propTypes = iconPropTypes;

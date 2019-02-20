@@ -25,7 +25,7 @@ const SelectionLabel = ({ content, }) => (
       fontWeight: '700',
       marginEnd: '2rem',
     }}
-    render="span"
+    as="span"
   >
     {content}
   </FelaComponent>
@@ -70,7 +70,11 @@ class ExpirationBenchmarkFilter extends React.Component<Props, State> {
       <Fragment>
         <FelaComponent style={{ position: 'relative', }}>
           <FelaComponent
-            style={theme => ({
+            style={(
+              {
+                theme
+              }
+            ) => ({
               ...theme.type(-2),
               alignItems: 'baseline',
               display: 'flex',
@@ -81,7 +85,7 @@ class ExpirationBenchmarkFilter extends React.Component<Props, State> {
               paddingEnd: '2rem',
               position: 'absolute',
               end: '0',
-              top: '0',
+              top: '0'
             })}
           >
             <SelectionLabel content="בחר נכס בסיס:" />

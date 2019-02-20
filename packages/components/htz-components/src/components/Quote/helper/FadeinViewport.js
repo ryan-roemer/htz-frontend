@@ -21,7 +21,7 @@ const FadeinViewport = ({ threshold, mediaQuery, children, }) => (
   <Observer threshold={threshold} triggerOnce>
     {
       inView => (
-        <FelaComponent rule={createRule(mediaQuery)} isActive={inView}>
+        <FelaComponent style={createRule(mediaQuery)} isActive={inView}>
           {children}
         </FelaComponent>
       )

@@ -56,21 +56,24 @@ export default function Mom({ list, gaAction, biAction, lazyLoadImages, }: Props
       {/* LIST TITLE */}
       <GridItem width={[ { until: 'l', value: 1, }, { from: 'l', value: 2 / 12, }, ]}>
         <FelaComponent
-          rule={({ theme, }) => ({
+          style={({ theme, }) => ({
             marginBottom: '2rem',
             display: 'flex',
             alignItems: 'baseline',
-          })}
-          render={({ className, }) => (
+          })}>{({ className, }) => (
             <HtzLink className={className} href={url}>
               <FelaComponent
-                style={theme => ({
+                style={(
+                  {
+                    theme
+                  }
+                ) => ({
                   paddingStart: '1rem',
                   paddingEnd: '1rem',
                   paddingTop: '0.5rem',
                   paddingBottom: '0.5rem',
                   backgroundColor: theme.color('neutral', '-1'),
-                  color: theme.color('quaternary'),
+                  color: theme.color('quaternary')
                 })}
               >
                 <IconArrowDiagonal
@@ -82,12 +85,15 @@ export default function Mom({ list, gaAction, biAction, lazyLoadImages, }: Props
                 />
               </FelaComponent>
               <FelaComponent
-                style={theme => ({
+                style={(
+                  {
+                    theme
+                  }
+                ) => ({
                   position: 'relative',
                   top: '1px',
-                  extend: [ theme.type(2, { untilBp: 'xl', }), theme.type(1, { fromBp: 'xl', }), ],
-                })}
-                render={({ className, theme, }) => (
+                  extend: [ theme.type(2, { untilBp: 'xl', }), theme.type(1, { fromBp: 'xl', }), ]
+                })}>{({ className, theme, }) => (
                   <H className={className}>
                     <FelaComponent
                       style={{
@@ -113,17 +119,22 @@ export default function Mom({ list, gaAction, biAction, lazyLoadImages, }: Props
                           ),
                         ],
                       }}
-                      render="span"
+                      as="span"
                     >
                       {title}
                     </FelaComponent>
                   </H>
-                )}
-              />
+                )}</FelaComponent>
             </HtzLink>
-          )}
-        />
-        <FelaComponent style={theme => ({ ...theme.type(-1), marginBottom: '3rem', })} render="p">
+          )}</FelaComponent>
+        <FelaComponent style={(
+          {
+            theme
+          }
+        ) => ({
+          ...theme.type(-1),
+          marginBottom: '3rem'
+        })} as="p">
           {description}
         </FelaComponent>
       </GridItem>
@@ -252,19 +263,21 @@ export default function Mom({ list, gaAction, biAction, lazyLoadImages, }: Props
           }}
         >
           <FelaComponent
-            style={theme => ({
+            style={(
+              {
+                theme
+              }
+            ) => ({
               marginInlineStart: 'auto',
               color: theme.color('secondary'),
               fontWeight: '700',
-              extend: [ theme.type(1), ],
-            })}
-            render={({ className, }) => (
+              extend: [ theme.type(1), ]
+            })}>{({ className, }) => (
               <HtzLink className={className} href={url}>
                 <span>{urlDescription}</span>
                 <IconBack />
               </HtzLink>
-            )}
-          />
+            )}</FelaComponent>
         </GridItem>
       ) : null}
     </ListView>
@@ -306,8 +319,7 @@ function TeaserWithImg1({ data, index, lazyLoadImages, biAction, }: TeaserProps)
           order: [ { from: 's', until: 'xl', value: '1', }, ],
         }}
       >
-        <FelaTheme
-          render={theme => (
+        <FelaTheme>{theme => (
             <Picture
               lazyLoad={lazyLoadImages}
               {...getPictureAssets({
@@ -333,8 +345,7 @@ function TeaserWithImg1({ data, index, lazyLoadImages, biAction, }: TeaserProps)
                 ],
               })}
             />
-          )}
-        />
+          )}</FelaTheme>
       </TeaserMedia>
       <TeaserContent
         data={data}
@@ -363,11 +374,15 @@ function TeaserWithImg1({ data, index, lazyLoadImages, biAction, }: TeaserProps)
         )}
         renderFooter={() => (
           <FelaComponent
-            style={theme => ({
+            style={(
+              {
+                theme
+              }
+            ) => ({
               color: theme.color('primary'),
-              fontWeight: '700',
+              fontWeight: '700'
             })}
-            render="span"
+            as="span"
           >
             {data.commentsCounts}
             <IconComment size={2} />
@@ -394,8 +409,7 @@ function TeaserWithImg2({ data, index, lazyLoadImages, biAction, }: TeaserProps)
         isStacked={[ { from: 's', until: 'l', value: true, }, { from: 'xl', value: true, }, ]}
         onClick={biAction ? () => biAction({ index, articleId: itemId, }) : null}
       >
-        <FelaTheme
-          render={theme => (
+        <FelaTheme>{theme => (
             <Image
               lazyLoad={lazyLoadImages}
               data={data.image}
@@ -412,8 +426,7 @@ function TeaserWithImg2({ data, index, lazyLoadImages, biAction, }: TeaserProps)
                 ],
               })}
             />
-          )}
-        />
+          )}</FelaTheme>
       </TeaserMedia>
 
       <TeaserContent
@@ -441,11 +454,15 @@ function TeaserWithImg2({ data, index, lazyLoadImages, biAction, }: TeaserProps)
         )}
         renderFooter={() => (
           <FelaComponent
-            style={theme => ({
+            style={(
+              {
+                theme
+              }
+            ) => ({
               color: theme.color('primary'),
-              fontWeight: '700',
+              fontWeight: '700'
             })}
-            render="span"
+            as="span"
           >
             {data.commentsCounts}
             <IconComment size={2} />
@@ -493,11 +510,15 @@ function TextualTeaser({ data, index, biAction, isLargeText, }: TextualTeaserPro
         )}
         renderFooter={() => (
           <FelaComponent
-            style={theme => ({
+            style={(
+              {
+                theme
+              }
+            ) => ({
               color: theme.color('primary'),
-              fontWeight: '700',
+              fontWeight: '700'
             })}
-            render="span"
+            as="span"
           >
             {data.commentsCounts}
             <IconComment size={2} />

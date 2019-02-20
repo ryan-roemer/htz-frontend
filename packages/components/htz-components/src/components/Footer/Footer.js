@@ -138,8 +138,7 @@ class Footer extends React.Component {
     return (
       <Fragment>
         <FirstImpressionPlaceHolder />
-        <FelaTheme
-          render={theme => {
+        <FelaTheme>{theme => {
             const {
               footerDesktopI18n: { ExpandedButton, Copyright, },
               color,
@@ -221,8 +220,7 @@ class Footer extends React.Component {
                 }}
               </Query>
             );
-          }}
-        />
+          }}</FelaTheme>
         <AccessListByIp />
         <ChartBeat shouldRender={shouldRenderScripts} />
         <UniversitiesPush />

@@ -108,9 +108,7 @@ class Stage5 extends Component {
                   const chosenPaymentArrangement = chosenOffer.type;
 
                   return (
-                    <FelaComponent
-                      style={{ textAlign: 'center', }}
-                      render={({
+                    <FelaComponent style={{ textAlign: 'center', }}>{({
                         className,
                         theme: {
                           stage5: { header, details, },
@@ -167,8 +165,7 @@ class Stage5 extends Component {
                             />
                           </LayoutContainer>
                         </div>
-                      )}
-                    />
+                      )}</FelaComponent>
                   );
                 }}
               </Query>

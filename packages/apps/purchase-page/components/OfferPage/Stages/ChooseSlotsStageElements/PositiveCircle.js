@@ -1,9 +1,9 @@
 import React from 'react';
-import FelaComponent from 'react-fela/lib/FelaComponent';
+import { FelaComponent, } from 'react-fela';
 import { VisuallyHidden, } from '@haaretz/htz-components';
 import PropTypes from 'prop-types';
 
-const circleStyle = theme => ({
+const circleStyle = ({ theme, }) => ({
   width: '2rem',
   height: '2rem',
   backgroundColor: '#2f872a',

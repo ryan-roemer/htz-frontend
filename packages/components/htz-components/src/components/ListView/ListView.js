@@ -200,19 +200,17 @@ function SectionComponent({
 }: SectionComponenType): React.Node {
   return disableWrapper && sectionMiscStyles ? (
     <FelaComponent
-      rule={({ theme, }) => ({
+      style={({ theme, }) => ({
         extend: [
           ...(sectionMiscStyles
             ? parseStyleProps(sectionMiscStyles, theme.mq, theme.type)
             : []),
         ],
-      })}
-      render={({ className, }) => (
+      })}>{({ className, }) => (
         <Section isFragment={false} className={className} {...attrs}>
           {children}
         </Section>
-      )}
-    />
+      )}</FelaComponent>
   ) : (
     <Section isFragment {...attrs}>
       {children}

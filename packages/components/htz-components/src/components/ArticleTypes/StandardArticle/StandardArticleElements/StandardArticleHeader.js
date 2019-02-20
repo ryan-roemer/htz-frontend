@@ -51,16 +51,20 @@ function Header({
 }) {
   return (
     <FelaComponent
-      style={theme => ({
+      style={(
+        {
+          theme
+        }
+      ) => ({
         textAlign: 'start',
+
         extend: [
           theme.mq(
             { until: 'm', },
             { display: 'flex', flexDirection: 'column', }
           ),
-        ],
-      })}
-      render={({ className, theme, }) => (
+        ]
+      })}>{({ className, theme, }) => (
         <header className={className}>
           {hasBreadCrumbs ? (
             <FelaComponent
@@ -84,14 +88,12 @@ function Header({
                     { order: -1, marginTop: '2rem', marginBottom: '3rem', }
                   ),
                 ],
-              }}
-              render={({ className, }) => (
+              }}>{({ className, }) => (
                 <Breadcrumbs
                   articleId={articleId}
                   className={className}
                 />
-              )}
-            />
+              )}</FelaComponent>
           ) : null}
           <FelaComponent
             style={{
@@ -112,16 +114,14 @@ function Header({
                 ),
                 theme.mq({ from: 'xl', }, { paddingInlineStart: '3rem', }),
               ],
-            }}
-            render={({ className, }) => (
+            }}>{({ className, }) => (
               <HeaderText
                 className={className}
                 kicker={exclusive}
                 subtitle={subtitle}
                 title={title}
               />
-            )}
-          />
+            )}</FelaComponent>
           <ArticleHeaderMeta
             authors={authors}
             publishDate={pubDate}
@@ -233,8 +233,7 @@ function Header({
             />
           ) : null}
         </header>
-      )}
-    />
+      )}</FelaComponent>
   );
 }
 

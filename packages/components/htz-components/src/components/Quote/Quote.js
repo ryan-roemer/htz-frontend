@@ -46,10 +46,9 @@ export default function Quote({ text, credit, imagesList, }) {
 
   return (
     <FadeinViewport threshold={1} mediaQuery={{ until: 'l', }}>
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>{theme => (
           <FelaComponent
-            render="blockquote"
+            as="blockquote"
             style={{
               fontWeight: '700',
               color: theme.color('primary', 'base'),
@@ -81,8 +80,7 @@ export default function Quote({ text, credit, imagesList, }) {
             <QuoteText>{text}</QuoteText>
             <Cite>{credit}</Cite>
           </FelaComponent>
-        )}
-      />
+        )}</FelaTheme>
     </FadeinViewport>
   );
 }
@@ -95,14 +93,18 @@ QuoteText.propTypes = { children: PropTypes.node.isRequired, };
 function QuoteText({ children, }) {
   return (
     <FelaComponent
-      style={theme => ({
+      style={(
+        {
+          theme
+        }
+      ) => ({
         extend: [
           theme.mq({ until: 'l', }, { ...theme.type(4, { lines: 7, }), }),
           theme.mq({ from: 'l', until: 'xl', }, { ...theme.type(1), }),
           theme.mq({ from: 'xl', }, { ...theme.type(2), }),
-        ],
+        ]
       })}
-      render="p"
+      as="p"
     >
       {children}
     </FelaComponent>
@@ -112,25 +114,28 @@ function QuoteText({ children, }) {
 Cite.propTypes = { children: PropTypes.node, };
 Cite.defaultProps = { children: null, };
 function Cite({ children, }) {
-  return (
-    children && (
-      <FelaComponent
-        style={theme => ({
-          backgroundColor: theme.color('quaternary', 'base'),
-          paddingBottom: '.5rem',
-          paddingInlineEnd: '1rem',
-          paddingInlineStart: '1rem',
-          paddingTop: '.5rem',
-          extend: [
-            theme.mq({ until: 'l', }, { ...theme.type(-1), }),
-            theme.mq({ from: 'l', until: 'xl', }, { ...theme.type(0), }),
-            theme.mq({ from: 'xl', }, { ...theme.type(-1), }),
-          ],
-        })}
-        render="span"
-      >
-        {children}
-      </FelaComponent>
-    )
+  return children && (
+    <FelaComponent
+      style={(
+        {
+          theme
+        }
+      ) => ({
+        backgroundColor: theme.color('quaternary', 'base'),
+        paddingBottom: '.5rem',
+        paddingInlineEnd: '1rem',
+        paddingInlineStart: '1rem',
+        paddingTop: '.5rem',
+
+        extend: [
+          theme.mq({ until: 'l', }, { ...theme.type(-1), }),
+          theme.mq({ from: 'l', until: 'xl', }, { ...theme.type(0), }),
+          theme.mq({ from: 'xl', }, { ...theme.type(-1), }),
+        ]
+      })}
+      as="span"
+    >
+      {children}
+    </FelaComponent>
   );
 }

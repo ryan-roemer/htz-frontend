@@ -127,8 +127,7 @@ function PazuzuTeaser({
     : [ { until: 'xl', value: true, }, { from: 'xl', value: false, }, ];
 
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <GridItem
           gutter={0}
           miscStyles={{
@@ -284,7 +283,6 @@ function PazuzuTeaser({
             />
           </Teaser>
         </GridItem>
-      )}
-    />
+      )}</FelaTheme>
   );
 }

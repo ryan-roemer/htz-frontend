@@ -37,30 +37,19 @@ const buttonStyles = ({
   appearance: 'none',
   cursor: isDisabled || isBusy ? 'not-allowed' : 'pointer',
   display: 'inline-flex',
-  ...(theme.btnStyle.fontWeight
-    ? { fontWeight: theme.btnStyle.fontWeight, }
-    : undefined),
+  ...(theme.btnStyle.fontWeight ? { fontWeight: theme.btnStyle.fontWeight, } : undefined),
   fontSize: 'inherit',
   justifyContent: 'center',
   ...(isDisabled ? { opacity: 0.4, } : undefined),
   // Allows for positioning the busy slider.
   position: 'relative',
   transform: isBusy ? 'scale(0.8, 0.4)' : 'scale(1)',
-  transition: `${theme.getTransitionString(
-    'all',
-    -1,
-    'swiftIn'
-  )}, ${theme.getTransitionString(
+  transition: `${theme.getTransitionString('all', -1, 'swiftIn')}, ${theme.getTransitionString(
     'transform',
     1,
     'swiftOut',
     1
-  )}, ${theme.getTransitionString(
-    'backgroundColor',
-    0,
-    'swiftIn',
-    isBusy ? 0 : undefined
-  )}`,
+  )}, ${theme.getTransitionString('backgroundColor', 0, 'swiftIn', isBusy ? 0 : undefined)}`,
   textDecoration: 'none',
   // `<a>` elements may not have a `disabled` attribute, so we
   // mimic its behavior to the extent possible.
@@ -79,40 +68,22 @@ const buttonStyles = ({
 
   ':hover': {
     textDecoration: 'none',
-    transition: `${theme.getTransitionString(
-      'all',
-      -1,
-      'swiftOut'
-    )}, ${theme.getTransitionString(
+    transition: `${theme.getTransitionString('all', -1, 'swiftOut')}, ${theme.getTransitionString(
       'transform',
       1,
       'swiftOut',
       1
-    )}, ${theme.getTransitionString(
-      'backgroundColor',
-      0,
-      'swiftOut',
-      isBusy ? 0 : undefined
-    )}`,
+    )}, ${theme.getTransitionString('backgroundColor', 0, 'swiftOut', isBusy ? 0 : undefined)}`,
   },
   ':focus': {
     outline: 'none',
     textDecoration: 'none',
-    transition: `${theme.getTransitionString(
-      'all',
-      -1,
-      'swiftOut'
-    )}, ${theme.getTransitionString(
+    transition: `${theme.getTransitionString('all', -1, 'swiftOut')}, ${theme.getTransitionString(
       'transform',
       1,
       'swiftOut',
       1
-    )}, ${theme.getTransitionString(
-      'backgroundColor',
-      0,
-      'swiftOut',
-      isBusy ? 0 : undefined
-    )}`,
+    )}, ${theme.getTransitionString('backgroundColor', 0, 'swiftOut', isBusy ? 0 : undefined)}`,
   },
   ':active': {
     outline: 'none',
@@ -135,20 +106,10 @@ const buttonStyles = ({
 
     // Set font-size
     // eslint-disable-next-line eqeqeq
-    ...(fontSize != undefined
-      ? [ parseTypographyProp(fontSize, theme.type), ]
-      : []),
+    ...(fontSize != undefined ? [ parseTypographyProp(fontSize, theme.type), ] : []),
     // Set width and display
     parseComponentProp(undefined, isFull, theme.mq, full),
-    parseComponentProp(
-      undefined,
-      variant,
-      theme.mq,
-      setVariant,
-      theme.color,
-      isFlat,
-      isBusy
-    ),
+    parseComponentProp(undefined, variant, theme.mq, setVariant, theme.color, isFlat, isBusy),
     // Trump all other styles with those defined in `miscStyles`
     ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
   ],
@@ -193,30 +154,22 @@ function setVariant(prop, variant, getColor, isFlat, isBusy) {
   const textColor = getColor('button', `${variant}Text`);
   return {
     backgroundColor: getColor('button', `${variant}${isBusy ? 'Focus' : ''}Bg`),
-    borderColor: isFlat
-      ? 'transparent'
-      : getColor('button', `${variant}Border`),
+    borderColor: isFlat ? 'transparent' : getColor('button', `${variant}Border`),
     color: textColor,
     ':visited': { color: textColor, },
     ':hover': {
       backgroundColor: getColor('button', `${variant}HoverBg`),
-      borderColor: isFlat
-        ? 'transparent'
-        : getColor('button', `${variant}HoverBorder`),
+      borderColor: isFlat ? 'transparent' : getColor('button', `${variant}HoverBorder`),
       color: getColor('button', `${variant}HoverText`),
     },
     ':active': {
       backgroundColor: getColor('button', `${variant}ActiveBg`),
-      borderColor: isFlat
-        ? 'transparent'
-        : getColor('button', `${variant}ActiveBorder`),
+      borderColor: isFlat ? 'transparent' : getColor('button', `${variant}ActiveBorder`),
       color: getColor('button', `${variant}ActiveText`),
     },
     ':focus': {
       backgroundColor: getColor('button', `${variant}FocusBg`),
-      borderColor: isFlat
-        ? 'transparent'
-        : getColor('button', `${variant}FocusBorder`),
+      borderColor: isFlat ? 'transparent' : getColor('button', `${variant}FocusBorder`),
       color: getColor('button', `${variant}FocusText`),
     },
   };
@@ -233,9 +186,7 @@ function full(prop, isFull) {
 
 function setBoxModel(prop, boxModel, isColumn, isHard, isRound, btnStyle) {
   if (isHard && isRound) {
-    throw new Error(
-      'A "<Button>" cannot be "hard" and "round" at the same time'
-    );
+    throw new Error('A "<Button>" cannot be "hard" and "round" at the same time');
   }
 
   const { groupPlacement, hp, vp, } = boxModel;
@@ -244,13 +195,7 @@ function setBoxModel(prop, boxModel, isColumn, isHard, isRound, btnStyle) {
   // eslint-disble-next-line eqeqeq
   const verticalPadding = vp != null ? vp : btnStyle.boxModel.vp;
   const ret = {
-    ...setBorder(
-      btnStyle,
-      isColumn,
-      groupPlacement,
-      horizontalPadding,
-      verticalPadding
-    ),
+    ...setBorder(btnStyle, isColumn, groupPlacement, horizontalPadding, verticalPadding),
     ...radiusRules(btnStyle.radius, isColumn, groupPlacement, isHard, isRound),
   };
 
@@ -332,29 +277,32 @@ function radiusRules(value, isColumn, groupPlacement, isHard, isRound) {
 /* A generic, stylable button component */
 const Button = React.forwardRef(
   // eslint-disable-next-line prefer-arrow-callback
-  function Button({
-    attrs,
-    children,
-    href,
-    asPath,
-    id,
-    isBusy,
-    isDisabled,
-    isReset,
-    isSubmit,
-    onClick,
-    prefetch,
-    tagName,
-    boxModel,
-    fontSize,
-    isColumn,
-    isFlat,
-    isFull,
-    isHard,
-    isRound,
-    miscStyles,
-    variant,
-  }, ref) {
+  function Button(
+    {
+      attrs,
+      children,
+      href,
+      asPath,
+      id,
+      isBusy,
+      isDisabled,
+      isReset,
+      isSubmit,
+      onClick,
+      prefetch,
+      tagName,
+      boxModel,
+      fontSize,
+      isColumn,
+      isFlat,
+      isFull,
+      isHard,
+      isRound,
+      miscStyles,
+      variant,
+    },
+    ref
+  ) {
     return (
       <FelaComponent
         {...{
@@ -370,8 +318,9 @@ const Button = React.forwardRef(
           miscStyles,
           variant,
         }}
-        rule={buttonStyles}
-        render={({ className, theme, }) => (
+        style={buttonStyles}
+      >
+        {({ className, theme, }) => (
           <ButtonCore
             {...{
               attrs,
@@ -390,14 +339,14 @@ const Button = React.forwardRef(
             }}
           >
             <React.Fragment>
-              <FelaComponent isBusy={isBusy} rule={contentRule} render="span">
+              <FelaComponent isBusy={isBusy} style={contentRule} as="span">
                 {children}
               </FelaComponent>
-              <FelaComponent isBusy={isBusy} rule={progressRule} render="span" />
+              <FelaComponent isBusy={isBusy} style={progressRule} as="span" />
             </React.Fragment>
           </ButtonCore>
         )}
-      />
+      </FelaComponent>
     );
   }
 );

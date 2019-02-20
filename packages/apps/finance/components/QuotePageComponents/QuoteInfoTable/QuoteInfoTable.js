@@ -39,32 +39,22 @@ type DisplayBodyProps = {
 };
 
 const getFields: (Array<Field>) => string = fields => fields
-  .map(
-    ({ name, display, type, fields, }: Field) => (fields ? `${name}\n { ${getFields(fields)} }` : `${name}\n`)
+  .map(({ name, display, type, fields, }: Field) => (fields ? `${name}\n { ${getFields(fields)} }` : `${name}\n`)
   )
   .join('\n');
 
 const DisplayBody = ({ fields, assets, }: DisplayBodyProps): Node => (
   <Fragment>
-    {fields.map(
-      ({ display, name, type, fields, }: Field) => (fields ? (
-        <DisplayBody fields={fields} assets={assets[0][name]} />
-      ) : (
-        <TrComponent
-          key={name}
-          title={display || ''}
-          value={assets[0][name]}
-          type={type}
-        />
-      ))
+    {fields.map(({ display, name, type, fields, }: Field) => (fields ? (
+      <DisplayBody fields={fields} assets={assets[0][name]} />
+    ) : (
+      <TrComponent key={name} title={display || ''} value={assets[0][name]} type={type} />
+    ))
     )}
   </Fragment>
 );
 
-const TradeStatsQuery = (
-  fields: Array<Field>,
-  tradingStatus: boolean
-): DocumentNode => gql`
+const TradeStatsQuery = (fields: Array<Field>, tradingStatus: boolean): DocumentNode => gql`
   query TradeStatsTable($assetsId: [String]){
     assetsList(assetsId: $assetsId){
       ${tradingStatus ? 'tradingStatus\n' : ''}
@@ -77,21 +67,17 @@ const numToString: number => string = num => num.toLocaleString('he', {
   maximumFractionDigits: 2,
 });
 
-const TrComponent = ({
-  miscStyles,
-  title,
-  value,
-  type,
-}: TrComponentProps): Node => (
+const TrComponent = ({ miscStyles, title, value, type, }: TrComponentProps): Node => (
   <FelaComponent
-    style={theme => ({
+    style={({ theme, }) => ({
       backgroundColor: theme.color('neutral', '-10'),
+
       extend: [
         borderBottom('2px', 1, 'solid', theme.color('neutral', '-6')),
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
       ],
     })}
-    render="tr"
+    as="tr"
   >
     <TdComponent
       miscStyles={{
@@ -127,48 +113,36 @@ TrComponent.defaultProps = {
   miscStyles: null,
 };
 
-const QuoteInfoTable = ({
-  id,
-  fields,
-  tradingStatus,
-  fixed,
-  miscStyles,
-}: Props): Node => (
-  <Query
-    query={TradeStatsQuery(fields, tradingStatus)}
-    variables={{ assetsId: [ id, ], }}
-  >
+const QuoteInfoTable = ({ id, fields, tradingStatus, fixed, miscStyles, }: Props): Node => (
+  <Query query={TradeStatsQuery(fields, tradingStatus)} variables={{ assetsId: [ id, ], }}>
     {({ error, loading, data: { assetsList, }, }) => {
       if (error) return null;
       if (loading) return null;
       const assets: Array<Asset> = assetsList;
       return (
         <FelaComponent
-          style={(theme: Object) => ({
+          style={({ theme, }) => ({
             ...theme.type(-2),
             ...(fixed ? { tableLayout: 'fixed', } : {}),
             whiteSpace: 'nowrap',
             width: '100%',
-            extend: [
-              ...(miscStyles
-                ? parseStyleProps(miscStyles, theme.mq, theme.type)
-                : []),
-            ],
+
+            extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
           })}
-          render="table"
+          as="table"
         >
           {tradingStatus ? (
             <FelaComponent
-              style={theme => ({
+              style={({ theme, }) => ({
                 color: theme.color('neutral', '-3'),
                 marginBottom: '1rem',
                 marginTop: '1rem',
                 textAlign: 'start',
               })}
-              render="caption"
+              as="caption"
             >
               <FelaComponent
-                render="span"
+                as="span"
                 style={{
                   ':after': {
                     content: '": "',

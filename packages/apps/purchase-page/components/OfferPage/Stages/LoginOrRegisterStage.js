@@ -1,7 +1,7 @@
 /* global window */
 import React, { Fragment, } from 'react';
 import PropTypes from 'prop-types';
-import { FelaComponent, } from 'react-fela';
+import { FelaComponent, FelaTheme, } from 'react-fela';
 import Router, { withRouter, } from 'next/router';
 import {
   A11yError,
@@ -24,7 +24,7 @@ import submitForm from './LoginOrRegisterElements/submitForm';
 import PasswordNote from './LoginOrRegisterElements/PasswordNote';
 import validateForm from './LoginOrRegisterElements/validateForm';
 
-const formContStyle = theme => ({
+const formContStyle = ({ theme, }) => ({
   marginTop: '4rem',
   marginBottom: '20rem',
   maxWidth: '85rem',
@@ -94,9 +94,8 @@ class LoginOrRegisterStage extends React.Component {
             render={({ login, }) => (
               <CheckEmailExists
                 render={({ checkEmailExists, }) => (
-                  <FelaComponent
-                    style={{ textAlign: 'center', }}
-                    render={({
+                  <FelaComponent style={{ textAlign: 'center', }}>
+                    {({
                       theme: {
                         stage3: { form, },
                       },
@@ -165,21 +164,23 @@ class LoginOrRegisterStage extends React.Component {
                                       || registerOrLoginStage === 'login' ? (
                                         <FelaComponent style={formHeaderStyle}>
                                           <FelaComponent
-                                            style={theme => ({
+                                            style={({ theme, }) => ({
                                               extend: [ theme.type(2), ],
                                             })}
-                                            render={({ className, }) => (
+                                          >
+                                            {({ className, }) => (
                                               <H className={className}>
                                                 {form.registerHeader.header[registerOrLoginStage]}
                                               </H>
                                             )}
-                                          />
+                                          </FelaComponent>
                                           <FelaComponent
-                                            style={theme => ({
+                                            style={({ theme, }) => ({
                                               color: theme.color('loginOrRegister', 'inFormText'),
                                               extend: [ theme.type(-1), ],
                                             })}
-                                            render={({ className, }) => (
+                                          >
+                                            {({ className, }) => (
                                               <button
                                                 type="button"
                                                 className={className}
@@ -210,7 +211,7 @@ class LoginOrRegisterStage extends React.Component {
                                                     fontWeight: 'bold',
                                                     textDecoration: 'underline',
                                                   }}
-                                                  render="span"
+                                                  as="span"
                                                 >
                                                   {
                                                     form.registerHeader.buttonTextBold[
@@ -220,7 +221,7 @@ class LoginOrRegisterStage extends React.Component {
                                                 </FelaComponent>
                                               </button>
                                             )}
-                                          />
+                                          </FelaComponent>
                                         </FelaComponent>
                                         ) : null}
 
@@ -318,8 +319,8 @@ class LoginOrRegisterStage extends React.Component {
                                                 </GridItem>
                                               </Grid>
                                             ) : null}
-                                            <FelaComponent
-                                              render={({ className, theme, }) => (
+                                            <FelaTheme>
+                                              {theme => (
                                                 <CheckBox
                                                   {...getInputProps({
                                                     name: 'terms',
@@ -341,7 +342,7 @@ class LoginOrRegisterStage extends React.Component {
                                                             }
                                                             {' '}
                                                             <FelaComponent
-                                                              style={theme => {
+                                                              style={({ theme, }) => {
                                                                 const color = theme.color(
                                                                   'loginOrRegister',
                                                                   'inFormText'
@@ -359,7 +360,8 @@ class LoginOrRegisterStage extends React.Component {
                                                                   },
                                                                 };
                                                               }}
-                                                              render={({ className, }) => (
+                                                            >
+                                                              {({ className, }) => (
                                                                 <a
                                                                   className={className}
                                                                   href={
@@ -375,7 +377,7 @@ class LoginOrRegisterStage extends React.Component {
                                                                   }
                                                                 </a>
                                                               )}
-                                                            />
+                                                            </FelaComponent>
                                                             {
                                                               form.terms.register
                                                                 .labelAfterTermsButton
@@ -392,7 +394,7 @@ class LoginOrRegisterStage extends React.Component {
                                                   })}
                                                 />
                                               )}
-                                            />
+                                            </FelaTheme>
                                           </Fragment>
                                         ) : null}
                                         <A11yError
@@ -442,7 +444,7 @@ class LoginOrRegisterStage extends React.Component {
                         </EventTracker>
                       </div>
                     )}
-                  />
+                  </FelaComponent>
                 )}
               />
             )}

@@ -52,10 +52,11 @@ export default class Instagram extends React.Component {
           position: 'relative',
           marginBottom: '-12px',
         }}
-        render={({ className, }) => (
+      >
+        {({ className, }) => (
           <div className={className} dangerouslySetInnerHTML={{ __html: this.props.source, }} />
         )}
-      />
+      </FelaComponent>
     );
   }
 }

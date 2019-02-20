@@ -82,8 +82,7 @@ function RecipeArticle({ articleId, slots, path, }) {
           } = recipeArticleElement;
 
           return (
-            <FelaTheme
-              render={theme => (
+            <FelaTheme>{theme => (
                 <LayoutContainer tagName="article">
                   <Head>
                     <meta name="title" content={metaTitle} />
@@ -243,8 +242,7 @@ function RecipeArticle({ articleId, slots, path, }) {
                           theme.mq({ until: 'l', }, { display: 'none', }),
                           theme.mq({ from: 'l', }, { width: 'calc(300px + 8rem)', }),
                         ],
-                      }}
-                      render={({ className, }) => (
+                      }}>{({ className, }) => (
                         <aside className={className}>
                           {aside ? (
                             <Zen animate>
@@ -262,13 +260,11 @@ function RecipeArticle({ articleId, slots, path, }) {
                             </Zen>
                           ) : null}
                         </aside>
-                      )}
-                    />
+                      )}</FelaComponent>
                   </FelaComponent>
                   <ArticleGallery path={path} />
                 </LayoutContainer>
-              )}
-            />
+              )}</FelaTheme>
           );
         }}
       </Query>

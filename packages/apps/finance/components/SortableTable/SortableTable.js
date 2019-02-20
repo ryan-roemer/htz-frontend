@@ -17,7 +17,7 @@ import SectionLink from '../SectionLink/SectionLink';
 type FieldType = {
   name: string,
   display: string,
-  sortingOrder: "ascend" | "descend",
+  sortingOrder: 'ascend' | 'descend',
   style?: (any => StyleProps) | null,
   value: Object => string,
 };
@@ -46,7 +46,7 @@ type Props = {
 
 type State = {
   sortBy: ?string,
-  sortOrder: ?("ascend" | "descend"),
+  sortOrder: ?('ascend' | 'descend'),
   parentId: ?string,
   expirationBenchmarkDate: ?string,
   mtfCategory: ?string,
@@ -57,7 +57,7 @@ type State = {
 
 type SortIconsProps = {
   active: boolean,
-  sortOrder: "ascend" | "descend",
+  sortOrder: 'ascend' | 'descend',
 };
 
 type TableLinkProps = {
@@ -111,7 +111,8 @@ export const SortIcons: SortIconsProps => Node = ({ active, sortOrder, }) => (
       fontSize: '1.5rem',
       marginEnd: '1rem',
     }}
-    render={({ theme, className, }) => {
+  >
+    {({ theme, className, }) => {
       const ascendFill: string = active && sortOrder === 'ascend'
         ? theme.color('neutral', '-2')
         : theme.color('neutral', '-4');
@@ -119,33 +120,24 @@ export const SortIcons: SortIconsProps => Node = ({ active, sortOrder, }) => (
         ? theme.color('neutral', '-2')
         : theme.color('neutral', '-4');
       return (
-        <svg
-          className={className}
-          viewBox="0 0 20 40"
-          width="0.5em"
-          height="1em"
-        >
+        <svg className={className} viewBox="0 0 20 40" width="0.5em" height="1em">
           <polygon fill={ascendFill} points="0,15 10,0 20,15" />
           <polygon fill={descendFill} points="0,25 10,40 20,25" />
         </svg>
       );
     }}
-  />
+  </FelaComponent>
 );
 
 // eslint-disable-next-line react/prop-types
-export const TableLink: TableLinkProps => Node = ({
-  content,
-  assetId,
-  type,
-  allowTab,
-}) => (
+export const TableLink: TableLinkProps => Node = ({ content, assetId, type, allowTab, }) => (
   <FelaComponent
     style={{
       display: 'inline-block',
       width: '100%',
     }}
-    render={({ className, }) => (
+  >
+    {({ className, }) => (
       <Link
         href={{
           pathname: `/asset/${type}`,
@@ -161,7 +153,7 @@ export const TableLink: TableLinkProps => Node = ({
         </a>
       </Link>
     )}
-  />
+  </FelaComponent>
 );
 
 const tdHeaderStyle: (Object, ?StyleProps) => Object = (theme, miscStyles) => ({
@@ -169,9 +161,7 @@ const tdHeaderStyle: (Object, ?StyleProps) => Object = (theme, miscStyles) => ({
   paddingBottom: '0.5rem',
   textAlign: 'start',
   backgroundColor: theme.color('neutral', '-6'),
-  extend: [
-    ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-  ],
+  extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
 });
 
 /* eslint-disable react/prop-types */
@@ -194,18 +184,15 @@ const Table = ({
 }) => (
   <Fragment>
     <FelaComponent
-      style={(theme: Object) => ({
+      style={({ theme, }) => ({
         ...theme.type(-2),
         tableLayout: 'fixed',
         whiteSpace: 'nowrap',
         width: '100%',
-        extend: [
-          ...(miscStyles
-            ? parseStyleProps(miscStyles, theme.mq, theme.type)
-            : []),
-        ],
+
+        extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
       })}
-      render="table"
+      as="table"
     >
       <thead>
         <tr>
@@ -219,16 +206,15 @@ const Table = ({
                 paddingBottom: '0',
               }}
             >
-              <FelaComponent
-                style={{ width: '100%', }}
-                render={({ className, }) => (
+              <FelaComponent style={{ width: '100%', }}>
+                {({ className, }) => (
                   <button
                     type="button"
                     className={className}
                     onClick={() => fetchData({ client, field, })}
                   >
                     <FelaComponent
-                      style={theme => ({
+                      style={({ theme, }) => ({
                         ...tdHeaderStyle(theme, headerMiscStyles),
                         display: 'flex',
                         alignItems: 'flex-end',
@@ -236,15 +222,12 @@ const Table = ({
                         fontWeight: sortBy === field.name ? '700' : '300',
                       })}
                     >
-                      <SortIcons
-                        active={sortBy === field.name}
-                        sortOrder={sortOrder}
-                      />
+                      <SortIcons active={sortBy === field.name} sortOrder={sortOrder} />
                       <span>{field.display}</span>
                     </FelaComponent>
                   </button>
                 )}
-              />
+              </FelaComponent>
             </TdComponent>
           ))}
         </tr>
@@ -253,13 +236,12 @@ const Table = ({
         {assets.map((asset: Asset) => (
           <FelaComponent
             key={asset.id}
-            style={theme => ({
+            style={({ theme, }) => ({
               backgroundColor: theme.color('neutral', '-10'),
-              extend: [
-                borderBottom('2px', 1, 'solid', theme.color('neutral', '-6')),
-              ],
+
+              extend: [ borderBottom('2px', 1, 'solid', theme.color('neutral', '-6')), ],
             })}
-            render="tr"
+            as="tr"
           >
             {fields.map((field: FieldType, index: number) => (
               <TdComponent
@@ -296,7 +278,7 @@ const Table = ({
     ) : null}
     {loadMore && assets.length <= count ? (
       <FelaComponent
-        style={theme => ({
+        style={({ theme, }) => ({
           ...theme.type(-2),
           backgroundColor: theme.color('neutral', '-5'),
           color: theme.color('neutral', '-1'),
@@ -307,7 +289,8 @@ const Table = ({
           textAlign: 'center',
           width: '100%',
         })}
-        render={({ className, }) => (
+      >
+        {({ className, }) => (
           <button
             type="button"
             className={className}
@@ -323,7 +306,7 @@ const Table = ({
             />
           </button>
         )}
-      />
+      </FelaComponent>
     ) : null}
   </Fragment>
 );
@@ -360,7 +343,7 @@ class SortableTable extends React.Component<Props, State> {
   };
 
   static getDerivedStateFromProps(nextProps: Props, prevState: State) {
-    const getSortOrder: () => ?("ascend" | "descend") = () => {
+    const getSortOrder: () => ?('ascend' | 'descend') = () => {
       const selectedField: ?FieldType = nextProps.fields.find(
         (field: FieldType) => field.name === nextProps.initialSort
       );
@@ -371,25 +354,11 @@ class SortableTable extends React.Component<Props, State> {
       sortOrder: prevState.sortOrder || getSortOrder(),
       parentId: nextProps.parentId || prevState.parentId || null,
       expirationBenchmarkDate:
-        nextProps.expirationBenchmarkDate
-        || prevState.expirationBenchmarkDate
-        || null,
-      mtfCategory:
-        nextProps.mtfCategory
-        || prevState.mtfCategory
-        || null,
-      mtfCategoryExposure:
-        nextProps.mtfCategoryExposure
-        || prevState.mtfCategoryExposure
-        || null,
-      etfCategory:
-        nextProps.etfCategory
-        || prevState.etfCategory
-        || null,
-      etfCategoryPosition:
-        nextProps.etfCategoryPosition
-        || prevState.etfCategoryPosition
-        || null,
+        nextProps.expirationBenchmarkDate || prevState.expirationBenchmarkDate || null,
+      mtfCategory: nextProps.mtfCategory || prevState.mtfCategory || null,
+      mtfCategoryExposure: nextProps.mtfCategoryExposure || prevState.mtfCategoryExposure || null,
+      etfCategory: nextProps.etfCategory || prevState.etfCategory || null,
+      etfCategoryPosition: nextProps.etfCategoryPosition || prevState.etfCategoryPosition || null,
     };
   }
 
@@ -485,25 +454,23 @@ class SortableTable extends React.Component<Props, State> {
             },
             updateQuery: (prev, { fetchMoreResult, }) => {
               const assets = fetchMoreResult
-                ? [ ...prev.assetsList, ...fetchMoreResult.assetsList, ].sort(
-                  (itemA, itemB) => {
-                    const valueA = typeof itemA[sortBy] === 'string'
-                      ? itemA[sortBy].toUpperCase()
-                      : itemA[sortBy]; // ignore upper and lowercase
-                    const valueB = typeof itemB[sortBy] === 'string'
-                      ? itemB[sortBy].toUpperCase()
-                      : itemB[sortBy]; // ignore upper and lowercase
-                    if (valueA < valueB) {
-                      return sortOrder === 'ascend' ? -1 : 1;
-                    }
-                    if (valueA > valueB) {
-                      return sortOrder === 'ascend' ? 1 : -1;
-                    }
-
-                    // values must be equal
-                    return 0;
+                ? [ ...prev.assetsList, ...fetchMoreResult.assetsList, ].sort((itemA, itemB) => {
+                  const valueA = typeof itemA[sortBy] === 'string'
+                    ? itemA[sortBy].toUpperCase()
+                    : itemA[sortBy]; // ignore upper and lowercase
+                  const valueB = typeof itemB[sortBy] === 'string'
+                    ? itemB[sortBy].toUpperCase()
+                    : itemB[sortBy]; // ignore upper and lowercase
+                  if (valueA < valueB) {
+                    return sortOrder === 'ascend' ? -1 : 1;
                   }
-                )
+                  if (valueA > valueB) {
+                    return sortOrder === 'ascend' ? 1 : -1;
+                  }
+
+                  // values must be equal
+                  return 0;
+                })
                 : null;
               return fetchMoreResult
                 ? Object.assign({}, prev, {
@@ -516,9 +483,7 @@ class SortableTable extends React.Component<Props, State> {
           if (error) return null;
           if (loading) return null;
 
-          const assets: Array<Asset> = extractData
-            ? extractData(data)
-            : data.assetsList;
+          const assets: Array<Asset> = extractData ? extractData(data) : data.assetsList;
           return (
             <Table
               assets={assets}

@@ -200,8 +200,7 @@ class ClickAreaInner extends Component<any, ClickAreaState> {
         size={size}
         isDisabled={isDisabled}
         miscStyles={miscStyles}
-        rule={clickAreaStyle}
-        render={({ className, theme, }) => (
+        style={clickAreaStyle}>{({ className, theme, }) => (
           <ButtonCore
             ref={buttonRef}
             className={className}
@@ -210,7 +209,7 @@ class ClickAreaInner extends Component<any, ClickAreaState> {
             {...props}
           >
             {children}
-            <FelaComponent style={{ fontSize: size / 2, }} render="span">
+            <FelaComponent style={{ fontSize: size / 2, }} as="span">
               <Ripple
                 time={1}
                 isActive={this.state.isActive}
@@ -219,8 +218,7 @@ class ClickAreaInner extends Component<any, ClickAreaState> {
               />
             </FelaComponent>
           </ButtonCore>
-        )}
-      />
+        )}</FelaComponent>
     );
   }
 }

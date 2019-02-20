@@ -18,13 +18,13 @@ const defaultProps = {
   hasIllustration: true,
 };
 
-const footerContStyle = theme => ({
+const footerContStyle = ({ theme, }) => ({
   position: 'relative',
   backgroundColor: theme.color('purchasePageFooter', 'bg'),
   color: theme.color('purchasePageFooter', 'text'),
   extend: [ theme.mq({ until: 'l', }, { flexDirection: 'row-reverse', }), ],
 });
-const footerLinkListContStyle = theme => ({
+const footerLinkListContStyle = ({ theme, }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -87,9 +87,8 @@ export function PurchasePageFooter({ host, hasIllustration, stage, }) {
   const isTheMarker = host === 'themarker.com';
   return (
     <FelaComponent style={footerContStyle}>
-      <FelaComponent
-        style={footerLinkListContStyle}
-        render={({
+      <FelaComponent style={footerLinkListContStyle}>
+        {({
           className,
           theme: {
             purchasePageFooter: { homePageLink, links, },
@@ -107,7 +106,8 @@ export function PurchasePageFooter({ host, hasIllustration, stage, }) {
                     marginTop: '1rem',
                     textAlign: 'center',
                   }}
-                  render={({ className, }) => (
+                >
+                  {({ className, }) => (
                     <a
                       className={className}
                       href={href[host]}
@@ -143,7 +143,7 @@ export function PurchasePageFooter({ host, hasIllustration, stage, }) {
                       </Fragment>
                     </a>
                   )}
-                />
+                </FelaComponent>
               )}
             </EventTracker>
             <StyledLinkList>
@@ -153,10 +153,11 @@ export function PurchasePageFooter({ host, hasIllustration, stage, }) {
                     {({ biAction, gaAction, }) => (
                       <Fragment>
                         <FelaComponent
-                          rule={linkStyle}
+                          style={linkStyle}
                           hide={link.text === 'שאלות ותשובות'}
                           onlyMobile
-                          render={({ className, }) => (
+                        >
+                          {({ className, }) => (
                             <a
                               className={className}
                               onClick={() => {
@@ -177,11 +178,9 @@ export function PurchasePageFooter({ host, hasIllustration, stage, }) {
                               {link.text}
                             </a>
                           )}
-                        />
-                        <FelaComponent
-                          rule={linkStyle}
-                          onlyDesktop
-                          render={({ className, }) => (
+                        </FelaComponent>
+                        <FelaComponent style={linkStyle} onlyDesktop>
+                          {({ className, }) => (
                             <a
                               className={className}
                               onClick={() => {
@@ -202,7 +201,7 @@ export function PurchasePageFooter({ host, hasIllustration, stage, }) {
                               {link.text}
                             </a>
                           )}
-                        />
+                        </FelaComponent>
                       </Fragment>
                     )}
                   </EventTracker>
@@ -211,14 +210,15 @@ export function PurchasePageFooter({ host, hasIllustration, stage, }) {
             </StyledLinkList>
           </div>
         )}
-      />
+      </FelaComponent>
       {hasIllustration && (
         <FelaComponent
-          style={theme => ({
+          style={({ theme, }) => ({
             position: 'absolute',
             bottom: '0',
             overflow: 'hidden',
             maxHeight: isTheMarker ? '200%' : '135%',
+
             extend: [
               theme.mq({ from: 'l', }, { left: '10rem', }),
               theme.mq({ from: 'm', until: 'l', }, { left: '0', }),

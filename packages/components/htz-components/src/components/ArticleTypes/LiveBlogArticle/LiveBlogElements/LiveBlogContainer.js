@@ -146,10 +146,7 @@ class LiveBlogContainer extends React.Component {
     return (
       <Fragment>
         {/* Wrapper */}
-        <FelaComponent
-          rule={wrapperStyle}
-          miscStyles={miscStyles}
-          render={({ className, theme, }) => (
+        <FelaComponent style={wrapperStyle} miscStyles={miscStyles}>{({ className, theme, }) => (
             <div className={className}>
               {keyEvents && keyEvents.length ? (
                 <TimeLine
@@ -168,28 +165,26 @@ class LiveBlogContainer extends React.Component {
                 />
               ) : null}
               {/* UpdateComponent */}
-              <FelaComponent
-                timeLine={keyEvents && keyEvents.length}
-                rule={updatesStyle}
-                render={({ className, theme, }) => (
+              <FelaComponent timeLine={keyEvents && keyEvents.length} style={updatesStyle}>{({ className, theme, }) => (
                   <div className={className}>
                     <FelaComponent
-                      style={theme => ({
+                      style={(
+                        {
+                          theme
+                        }
+                      ) => ({
                         color: theme.color('tertiary'),
                         fontWeight: 'bold',
                         ...theme.mq({ until: 's', }, { marginBottom: '3rem', }),
-                        ...theme.type(3),
-                      })}
-                      render={({ className, }) => (
+                        ...theme.type(3)
+                      })}>{({ className, }) => (
                         <div className={className}>{theme.liveBlogI18n.updatesTitle}</div>
-                      )}
-                    />
+                      )}</FelaComponent>
                     <FelaComponent
                       style={{
                         display: 'flex',
                         ...theme.mq({ until: 'm', }, { justifyContent: 'flex-start', }),
-                      }}
-                      render={({ className, }) => (
+                      }}>{({ className, }) => (
                         <div className={className}>
                           <RadioButton
                             label={theme.liveBlogI18n.lastToFirstLabel}
@@ -206,16 +201,12 @@ class LiveBlogContainer extends React.Component {
                             miscStyles={{ ...theme.type(-1), }}
                           />
                         </div>
-                      )}
-                    />
+                      )}</FelaComponent>
                   </div>
-                )}
-              />
+                )}</FelaComponent>
               {/* UpdateComponent End */}
               {/* Live blog item */}
-              <FelaComponent
-                rule={itemWrapperStyle}
-                render={({ className, theme, }) => (
+              <FelaComponent style={itemWrapperStyle}>{({ className, theme, }) => (
                   <div className={className}>
                     {items.map((item, i) => (
                       <LiveBlogItem
@@ -227,11 +218,9 @@ class LiveBlogContainer extends React.Component {
                       />
                     ))}
                   </div>
-                )}
-              />
+                )}</FelaComponent>
             </div>
-          )}
-        />
+          )}</FelaComponent>
       </Fragment>
     );
   }

@@ -91,7 +91,7 @@ function ExpandedList({ columnsArr, toolbox, showMe, }) {
                       {innerList.rows.map((link, linkIdx) => (
                         <FelaComponent
                           style={{ marginBottom: '1rem', }}
-                          render="li"
+                          as="li"
                           key={`${link.contentName}${link.value}`}
                         >
                           <StyledListLink
@@ -119,7 +119,7 @@ function ExpandedList({ columnsArr, toolbox, showMe, }) {
               {toolbox.map(link => (
                 <FelaComponent
                   style={{ marginBottom: '1rem', }}
-                  render="li"
+                  as="li"
                   key={`${link.text}${link.value}`}
                 >
                   <StyledListLink

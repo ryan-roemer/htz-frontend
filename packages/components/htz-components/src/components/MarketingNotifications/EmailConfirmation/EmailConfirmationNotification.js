@@ -52,14 +52,13 @@ export default class EmailConfirmation extends React.Component<Props, State> {
           width: '60%',
         }}
         render={({ isVisible, handleClose, isModal, }) => (
-          <FelaComponent
-            style={style.wrapper}
-            render={({ theme, className, }) => (
+          <FelaComponent style={style.wrapper}>
+            {({ theme, className, }) => (
               <UserDispenser
                 render={({ user, }) => (
                   <div className={className}>
-                    <FelaComponent style={style.innerWrapper} render="span">
-                      <FelaComponent style={style.icon} render="span">
+                    <FelaComponent style={style.innerWrapper} as="span">
+                      <FelaComponent style={style.icon} as="span">
                         <Astronaut size={style.icon().size} />
                       </FelaComponent>
                       <FelaComponent style={style.text1}>{text1}</FelaComponent>
@@ -93,7 +92,7 @@ export default class EmailConfirmation extends React.Component<Props, State> {
                 )}
               />
             )}
-          />
+          </FelaComponent>
         )}
       />
     );

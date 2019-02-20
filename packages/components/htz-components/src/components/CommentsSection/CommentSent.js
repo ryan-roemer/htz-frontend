@@ -77,8 +77,7 @@ class CommentSent extends React.Component {
       <FelaComponent
         displayThankYou={displayThankYou}
         isReplyForm={isReplyForm}
-        rule={contStyle}
-        render={({
+        style={contStyle}>{({
           className,
           theme,
           theme: {
@@ -103,8 +102,7 @@ class CommentSent extends React.Component {
                 <FelaComponent
                   style={{
                     fontWeight: 'bold',
-                  }}
-                  render={({ className, }) => (
+                  }}>{({ className, }) => (
                     <span
                       tabIndex={-1}
                       className={className}
@@ -112,13 +110,12 @@ class CommentSent extends React.Component {
                     >
                       {commentRecievedBoldTextThankYouPage}
                     </span>
-                  )}
-                />
+                  )}</FelaComponent>
                 <FelaComponent
                   style={{
                     marginBottom: '5rem',
                   }}
-                  render="p"
+                  as="p"
                 >
                   {commentRecievedTextThankYouPage}
                 </FelaComponent>
@@ -160,7 +157,7 @@ class CommentSent extends React.Component {
                         style={{
                           fontWeight: 'bold',
                         }}
-                        render="span"
+                        as="span"
                       >
                         {commentRecievedBoldText}
                       </FelaComponent>
@@ -213,8 +210,7 @@ class CommentSent extends React.Component {
               />
             )}
           </div>
-        )}
-      />
+        )}</FelaComponent>
     );
   }
 }

@@ -45,8 +45,7 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
       description="כל המידע על  תעודות סל: נתוני מסחר, נתונים בזמן אמת, גרפים חדשות ועוד באתר TheMarker Finance"
       path={asPath}
     >
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>{theme => (
           <Fragment>
             <PageRow>
               <RowItem
@@ -349,8 +348,7 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
               </RowItem>
             </PageRow>
           </Fragment>
-        )}
-      />
+        )}</FelaTheme>
     </MainLayout>
   );
 }

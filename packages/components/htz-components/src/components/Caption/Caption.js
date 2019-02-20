@@ -60,7 +60,7 @@ const CaptionWrapper = ({
     color={color}
     typeStyles={typeStyles}
     miscStyles={miscStyles}
-    rule={captionWrapperStyle}
+    style={captionWrapperStyle}
   >
     {children}
   </FelaComponent>
@@ -83,7 +83,7 @@ const creditRule = ({ theme, prefix, floatCredit, typeStyles, }) => {
 
 // eslint-disable-next-line react/prop-types
 const Credit = ({ floatCredit, children, typeStyles, }) => (
-  <FelaComponent floatCredit={floatCredit} rule={creditRule} typeStyles={typeStyles} render="span">
+  <FelaComponent floatCredit={floatCredit} style={creditRule} typeStyles={typeStyles} as="span">
     {children}
   </FelaComponent>
 );
@@ -116,14 +116,19 @@ const Caption = props => {
       miscStyles={miscStyles}
     >
       <FelaComponent
-        style={theme => ({
+        style={(
+          {
+            theme
+          }
+        ) => ({
           marginEnd: '1rem',
+
           extend: [
             // Trump all other styles with those defined in `miscStyles`
             ...(captionMiscStyles ? parseStyleProps(captionMiscStyles, theme.mq, theme.type) : []),
-          ],
+          ]
         })}
-        render="span"
+        as="span"
       >
         {caption}
       </FelaComponent>

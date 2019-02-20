@@ -96,8 +96,7 @@ function options({
             description={`${name} למידע עדכני על נתוני אופציות - נגזרים וכתבי אופציות, היכנסו לאתר TheMarker Finance`}
             path={asPath}
           >
-            <FelaTheme
-              render={theme => (
+            <FelaTheme>{theme => (
                 <Fragment>
                   <PageRow lines={2}>
                     <RowItem
@@ -341,8 +340,7 @@ function options({
                     </Grid>
                   </PageRow>
                 </Fragment>
-              )}
-            />
+              )}</FelaTheme>
           </MainLayout>
         );
       }}

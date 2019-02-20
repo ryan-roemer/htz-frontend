@@ -21,11 +21,7 @@ export default function MastheadButton(props: MastheadButtonProps) {
   return (
     <ClickArea>
       {Icon ? <Icon miscStyles={iconMiscStyles} /> : null}
-      <FelaComponent
-        rule={textRule}
-        miscStyles={textMiscStyles}
-        render={({ theme, className, }) => <div className={className}>{text}</div>}
-      />
+      <FelaComponent style={textRule} miscStyles={textMiscStyles}>{({ theme, className, }) => <div className={className}>{text}</div>}</FelaComponent>
     </ClickArea>
   );
 }

@@ -24,16 +24,20 @@ A11yError.defaultProps = {
 export function A11yError({ errorText, miscStyles, }) {
   return (
     <FelaComponent
-      style={theme => ({
+      style={(
+        {
+          theme
+        }
+      ) => ({
         color: theme.color('tertiary'),
         fontWeight: 'bold',
+
         extend: [
           ...(miscStyles
             ? parseStyleProps(miscStyles, theme.mq, theme.type)
             : []),
-        ],
-      })}
-      render={({ className, }) => (
+        ]
+      })}>{({ className, }) => (
         <div
           className={className}
           aria-live="assertive"
@@ -41,8 +45,7 @@ export function A11yError({ errorText, miscStyles, }) {
         >
           {errorText}
         </div>
-      )}
-    />
+      )}</FelaComponent>
   );
 }
 

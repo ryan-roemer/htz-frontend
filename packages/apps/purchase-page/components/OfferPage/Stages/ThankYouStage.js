@@ -82,9 +82,8 @@ class StageCompletion extends React.Component {
             : null;
           const device = userAgent && userAgent.length > 0 ? userAgent[0] : null;
           return (
-            <FelaComponent
-              rule={contStyle}
-              render={({
+            <FelaComponent style={contStyle}>
+              {({
                 className,
                 theme: {
                   thankYou: {
@@ -111,7 +110,7 @@ class StageCompletion extends React.Component {
                           <FelaComponent style={{ marginTop: '6rem', }}>
                             {loading || error ? null : (
                               <Fragment>
-                                <FelaComponent style={{ display: 'block', }} render="span">
+                                <FelaComponent style={{ display: 'block', }} as="span">
                                   {backToArticle}
                                 </FelaComponent>
                                 <TextLink href={data.articleLinkData.url} tagName="a">
@@ -123,7 +122,7 @@ class StageCompletion extends React.Component {
                         )}
                       </Query>
                     ) : (
-                      <FelaComponent>
+                      <div>
                         <TextLink
                           tagName="a"
                           miscStyles={{ fontWeight: 'bold', }}
@@ -131,7 +130,7 @@ class StageCompletion extends React.Component {
                         >
                           {fbFullRedirectUri ? fbBackToArticle : backToHomePage}
                         </TextLink>
-                      </FelaComponent>
+                      </div>
                     )}
                     <EventTracker>
                       {({ biAction, }) => (
@@ -143,7 +142,7 @@ class StageCompletion extends React.Component {
                         >
                           <BlockLink href={downloadAppHref[site][device]}>
                             <FelaComponent
-                              style={theme => ({
+                              style={({ theme, }) => ({
                                 backgroundColor: theme.color('neutral', '-6'),
                                 display: 'flex',
                                 justifyContent: 'space-between',
@@ -152,6 +151,7 @@ class StageCompletion extends React.Component {
                                 paddingInlineEnd: '2rem',
                                 paddingTop: '2rem',
                                 position: 'relative',
+
                                 ':after': {
                                   content: '""',
                                   position: 'absolute',
@@ -163,17 +163,18 @@ class StageCompletion extends React.Component {
                                     'primary'
                                   )} 50%, transparent 50%)`,
                                 },
+
                                 extend: [ theme.mq({ from: 's', }, { display: 'none', }), ],
                               })}
                             >
                               <FelaComponent
-                                style={theme => ({
+                                style={({ theme, }) => ({
                                   marginInlineEnd: '2rem',
                                   fontWeight: 'bold',
                                   extend: [ theme.type(1), ],
                                 })}
                               >
-                                <FelaComponent>{downloadAppText[site]}</FelaComponent>
+                                <div>{downloadAppText[site]}</div>
                                 <AboveBlockLink>
                                   {({ className, }) => (
                                     <span className={className}>
@@ -252,7 +253,7 @@ class StageCompletion extends React.Component {
                   </div>
                 );
               }}
-            />
+            </FelaComponent>
           );
         }}
       </Query>

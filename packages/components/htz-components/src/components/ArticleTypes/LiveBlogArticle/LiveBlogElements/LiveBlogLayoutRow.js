@@ -48,10 +48,7 @@ const LiveBlogLayoutRow = ({
   isCommentsSection,
   miscStyles,
 }) => (
-  <FelaComponent
-    miscStyles={miscStyles}
-    rule={wrapperStyle}
-    render={({ className, theme, }) => (
+  <FelaComponent miscStyles={miscStyles} style={wrapperStyle}>{({ className, theme, }) => (
       <Section className={className}>
         {title ? (
           <SectionTitleA isInMargin={!!(id === 'commentsSection')} title={title} id={id || null} />
@@ -70,14 +67,18 @@ const LiveBlogLayoutRow = ({
           })}
         >
           <FelaComponent
-            rule={margineliaStyle}
+            style={margineliaStyle}
             hideUnderLargeBreakPoint={hideMargineliaComponentUnderLBp}
           >
             {margineliaComponent || null}
           </FelaComponent>
 
           <FelaComponent
-            style={theme => ({
+            style={(
+              {
+                theme
+              }
+            ) => ({
               ...(isCommentsSection
                 ? {
                   ...theme.mq(
@@ -90,17 +91,17 @@ const LiveBlogLayoutRow = ({
                   ),
                 }
                 : {}),
+
               extend: [
                 theme.mq({ from: 'l', }, { marginInlineStart: '8rem', }),
-              ],
+              ]
             })}
           >
             {children}
           </FelaComponent>
         </FelaComponent>
       </Section>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 LiveBlogLayoutRow.propTypes = {

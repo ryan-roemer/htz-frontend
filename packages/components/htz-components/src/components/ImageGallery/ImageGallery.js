@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FelaComponent, } from 'react-fela';
+import { FelaComponent, FelaTheme, } from 'react-fela';
 import { parseStyleProps, rgba, } from '@haaretz/htz-css-tools';
 
 import ArticleImage from '../ArticleBodyImage/ArticleBodyImage';
@@ -117,7 +117,6 @@ const buildImgOptions = (aspect, isFullScreen) => ({
   ],
 });
 
-
 const captionWrapperStyle = ({
   theme,
   position,
@@ -157,32 +156,34 @@ const captionWrapperStyle = ({
 // eslint-disable-next-line react/prop-types
 const DotsElement = ({ images, displayItemNum, miscStyles, }) => (
   <FelaComponent
-    style={theme => ({
+    style={({ theme, }) => ({
       alignSelf: 'center',
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'center',
-      extend: [
-        ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ],
+      extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
     })}
   >
     {images.map((img, i) => (
-      <FelaComponent
-        style={theme => ({
-          backgroundColor:
-            i === displayItemNum
-              ? theme.color('quaternary')
-              : rgba(theme.color('neutral', '-6'), 0.5),
-          borderRadius: '50%',
-          display: 'inline-block',
-          height: '1.3rem',
-          marginStart: '1rem',
-          marginEnd: '1rem',
-          width: '1.3rem',
-        })}
-        render={({ className, }) => <span className={className} />}
-      />
+      <React.Fragment key={`DotElement${i + 1}`}>
+        <FelaComponent
+          style={({ theme, }) => ({
+            backgroundColor:
+              i === displayItemNum
+                ? theme.color('quaternary')
+                : rgba(theme.color('neutral', '-6'), 0.5),
+
+            borderRadius: '50%',
+            display: 'inline-block',
+            height: '1.3rem',
+            marginStart: '1rem',
+            marginEnd: '1rem',
+            width: '1.3rem',
+          })}
+        >
+          {({ className, }) => <span className={className} />}
+        </FelaComponent>
+      </React.Fragment>
     ))}
   </FelaComponent>
 );
@@ -204,7 +205,6 @@ export const CaptionElement = ({
   captionMiscStyles,
   prefixContent,
 }) => (
-  /* eslint-enable react/prop-types */
   <FelaComponent
     position={position}
     moving={moving}
@@ -212,8 +212,9 @@ export const CaptionElement = ({
     isFullScreen={isFullScreen}
     animationDuration={animationDuration}
     miscStyles={wrapperMiscStyles}
-    rule={captionWrapperStyle}
-    render={({ className, theme, }) => (
+    style={captionWrapperStyle}
+  >
+    {({ className, theme, }) => (
       <div className={className}>
         <FelaComponent
           style={{
@@ -223,7 +224,7 @@ export const CaptionElement = ({
             flexShrink: '0',
             marginEnd: '1rem',
           }}
-          render="span"
+          as="span"
         >
           {prefixContent || theme.galleryI18n.captionPrefix(index + 1, itemsLength)}
         </FelaComponent>
@@ -237,20 +238,21 @@ export const CaptionElement = ({
             display: isFullScreen ? 'static' : 'flex',
             ...(captionMiscStyles || {}),
           }}
-          captionMiscStyles={!isFullScreen
-            ? {
-              whiteSpace: 'nowrap',
-              textOverflow: 'ellipsis',
-              overflow: 'hidden',
-            }
-            : {}
+          captionMiscStyles={
+            !isFullScreen
+              ? {
+                whiteSpace: 'nowrap',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+              }
+              : {}
           }
           typeStyles={size}
           creditTypeStyles={creditSize}
         />
       </div>
     )}
-  />
+  </FelaComponent>
 );
 
 const Gallery = ({
@@ -266,8 +268,8 @@ const Gallery = ({
 }) => {
   // const renderCaption = false;
   const CarouselElement = () => (
-    <FelaComponent
-      render={({ theme, }) => (
+    <FelaTheme>
+      {theme => (
         <Carousel
           animationDuration={animationDuration}
           itemsLength={images.length}
@@ -317,7 +319,7 @@ const Gallery = ({
                     itemsLength={images.length}
                     size={-1}
                   />
-                )}
+)}
                 render={({ isFullScreen, toggleFullScreen, }) => {
                   const Image = imageProps => (isFullScreen ? (
                     <ArticleImage
@@ -412,7 +414,8 @@ const Gallery = ({
                                   outline: 'none',
                                 },
                               }}
-                              render={({ className, }) => (
+                            >
+                              {({ className, }) => (
                                 <button
                                   type="button"
                                   className={className}
@@ -431,7 +434,7 @@ const Gallery = ({
                                   />
                                 </button>
                               )}
-                            />
+                            </FelaComponent>
                           ))}
                           {renderButton(({ changeItem, }) => (
                             <FelaComponent
@@ -446,7 +449,8 @@ const Gallery = ({
                                   outline: 'none',
                                 },
                               }}
-                              render={({ className, }) => (
+                            >
+                              {({ className, }) => (
                                 <button
                                   type="button"
                                   className={className}
@@ -460,7 +464,7 @@ const Gallery = ({
                                   <IconBack size={2.5} />
                                 </button>
                               )}
-                            />
+                            </FelaComponent>
                           ))}
                         </FelaComponent>
                       </FelaComponent>
@@ -491,7 +495,8 @@ const Gallery = ({
                               ),
                             ],
                           }}
-                          render={({ className, }) => (isFullScreen ? (
+                        >
+                          {({ className, }) => (isFullScreen ? (
                             <div className={className}>
                               {renderButton(({ changeItem, }) => (
                                 <FelaComponent
@@ -503,7 +508,8 @@ const Gallery = ({
                                     backgroundColor: 'transparent',
                                     start: '0',
                                   }}
-                                  render={({ className, }) => (
+                                >
+                                  {({ className, }) => (
                                     <button
                                       type="button"
                                       className={className}
@@ -518,7 +524,7 @@ const Gallery = ({
                                       />
                                     </button>
                                   )}
-                                />
+                                </FelaComponent>
                               ))}
                               <DotsElement {...{ images, displayItemNum, }} />
                               {renderButton(({ changeItem, }) => (
@@ -531,7 +537,8 @@ const Gallery = ({
                                     color: theme.color('quaternary'),
                                     backgroundColor: 'transparent',
                                   }}
-                                  render={({ className, }) => (
+                                >
+                                  {({ className, }) => (
                                     <button
                                       type="button"
                                       className={className}
@@ -541,81 +548,80 @@ const Gallery = ({
                                       <IconBack size={2.5} />
                                     </button>
                                   )}
-                                />
+                                </FelaComponent>
                               ))}
                             </div>
-                          )
-                            : renderCaption
-                              ? renderCaption({
-                                isFullScreen,
-                                renderButton,
-                                previousImage,
-                                image,
-                                nextImage,
-                                displayItemNum,
-                                previousItemIndex,
-                                nextItemIndex,
-                                direction,
-                                moving,
-                                animationDuration,
-                                currentDisplaying,
-                                itemsLength: images.length,
-                              })
-                              : (
-                                <FelaComponent
-                                  style={{
-                                    backgroundColor: theme.color('neutral'),
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    padding: '1rem',
-                                    position: 'relative',
-                                    height: '13.5rem',
-                                  }}
-                                >
-                                  <CaptionElement
-                                    animationDuration={animationDuration}
-                                    caption={previousImage.title}
-                                    credit={previousImage.credit}
-                                    direction={direction}
-                                    index={previousItemIndex}
-                                    itemsLength={images.length}
-                                    moving={moving}
-                                    position={100}
-                                    size={-2}
-                                  />
-                                  <CaptionElement
-                                    animationDuration={animationDuration}
-                                    caption={image.title}
-                                    credit={image.credit}
-                                    direction={direction}
-                                    index={displayItemNum}
-                                    itemsLength={images.length}
-                                    moving={moving}
-                                    position={0}
-                                    size={-2}
-                                  />
-                                  <CaptionElement
-                                    animationDuration={animationDuration}
-                                    caption={nextImage.title}
-                                    credit={nextImage.credit}
-                                    direction={direction}
-                                    index={nextItemIndex}
-                                    itemsLength={images.length}
-                                    moving={moving}
-                                    position={-100}
-                                    size={-2}
-                                  />
-                                  <DotsElement
-                                    miscStyles={{
-                                      alignSelf: 'flex-end',
-                                      marginBottom: '1rem',
-                                    }}
-                                    {...{ images, displayItemNum, }}
-                                  />
-                                </FelaComponent>
-                              )
-                          )}
-                        />
+                          ) : renderCaption ? (
+                            renderCaption({
+                              isFullScreen,
+                              renderButton,
+                              previousImage,
+                              image,
+                              nextImage,
+                              displayItemNum,
+                              previousItemIndex,
+                              nextItemIndex,
+                              direction,
+                              moving,
+                              animationDuration,
+                              currentDisplaying,
+                              itemsLength: images.length,
+                            })
+                          ) : (
+                            <FelaComponent
+                              style={{
+                                backgroundColor: theme.color('neutral'),
+                                display: 'flex',
+                                justifyContent: 'center',
+                                padding: '1rem',
+                                position: 'relative',
+                                height: '13.5rem',
+                              }}
+                            >
+                              <CaptionElement
+                                animationDuration={animationDuration}
+                                caption={previousImage.title}
+                                credit={previousImage.credit}
+                                direction={direction}
+                                index={previousItemIndex}
+                                itemsLength={images.length}
+                                moving={moving}
+                                position={100}
+                                size={-2}
+                              />
+                              <CaptionElement
+                                animationDuration={animationDuration}
+                                caption={image.title}
+                                credit={image.credit}
+                                direction={direction}
+                                index={displayItemNum}
+                                itemsLength={images.length}
+                                moving={moving}
+                                position={0}
+                                size={-2}
+                              />
+                              <CaptionElement
+                                animationDuration={animationDuration}
+                                caption={nextImage.title}
+                                credit={nextImage.credit}
+                                direction={direction}
+                                index={nextItemIndex}
+                                itemsLength={images.length}
+                                moving={moving}
+                                position={-100}
+                                size={-2}
+                              />
+                              <DotsElement
+                                miscStyles={{
+                                  alignSelf: 'flex-end',
+                                  marginBottom: '1rem',
+                                }}
+                                {...{ images, displayItemNum, }}
+                              />
+                            </FelaComponent>
+                          ))
+                          }
+                        </FelaComponent>
                       ))}
                     </FelaComponent>
                   );
@@ -625,7 +631,7 @@ const Gallery = ({
           }}
         />
       )}
-    />
+    </FelaTheme>
   );
 
   return <CarouselElement />;

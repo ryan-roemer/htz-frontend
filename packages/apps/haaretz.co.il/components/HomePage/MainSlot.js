@@ -36,6 +36,7 @@ const {
 } = validateType;
 
 const componentType: Object = new Map([
+<<<<<<< HEAD
   [ 'com.htz.PageMainBlockElement', (element: MainSlotElement) => (
     isMainBlock(element)
       ? <MainBlock key={element.contentId} List={HomePageList} data={element} />
@@ -101,6 +102,68 @@ const componentType: Object = new Map([
       ? <Error key={element.contentId} {...element} />
       : null
   ), ],
+=======
+  [
+    'com.htz.PageMainBlockElement',
+    (element: MainSlotElement) => (isMainBlock(element) ? (
+      <MainBlock key={element.contentId} List={HomePageList} data={element} />
+    ) : null),
+  ],
+  [
+    'com.tm.element.List',
+    (element: MainSlotElement) => (isList(element) ? <HomePageList key={element.contentId} {...element} /> : null),
+  ],
+  [
+    'com.polobase.ClickTrackerBannersWrapper',
+    (element: MainSlotElement) => (isClickTrackerWrapper(element) ? <ClickTracker key={element.contentId} {...element} /> : null),
+  ],
+  [
+    'com.polobase.DfpBannerElement',
+    (element: MainSlotElement) => (isDfp(element) ? <GeneralAdSlot key={element.contentId} {...element} /> : null),
+  ],
+  [
+    'com.tm.TabViewElement',
+    (element: MainSlotElement) => (isTabElement(element) ? (
+      <TabElement key={element.contentId} List={HomePageList} {...element} />
+    ) : null),
+  ],
+  [
+    'com.tm.GridElementGroup',
+    (element: MainSlotElement) => (isGridElement(element) ? (
+      <GridElement key={element.contentId} List={HomePageList} {...element} />
+    ) : null),
+  ],
+  [
+    'com.tm.HeaderNewsGroup',
+    (element: MainSlotElement) => (isHeaderNewsGroup(element) ? <TopNews key={element.contentId} {...element} /> : null),
+  ],
+  [
+    'com.polobase.whtzMobileSiteListsWrapper',
+    (element: MainSlotElement) => (isMobileListWrapper(element) ? (
+      <MobileListWrapper key={element.contentId} {...element} />
+    ) : null),
+  ],
+  [
+    'com.tm.promotion.banner.MiddleRuler',
+    (element: MainSlotElement) => (isMiddleRuller(element) ? (
+      <MarketingNotification
+        key={element.contentId}
+        notificationType="MiddleRuller"
+        buttonText=""
+        text1={element.text}
+        buttonUrl={element.actionUrl}
+      />
+    ) : null),
+  ],
+  [
+    'com.tm.ExternalRssElement',
+    (element: MainSlotElement) => (isRssFeed(element) ? <RssFeed key={element.contentId} {...element} /> : null),
+  ],
+  [
+    'error',
+    (element: MainSlotElement) => (isError(element) ? <Error key={element.contentId} {...element} /> : null),
+  ],
+>>>>>>> chore(fela upgrade): upgrading all fela dependencies to the latest fela release
 ]);
 
 type Props = {
@@ -110,7 +173,7 @@ type Props = {
 function HomePageSlotsLayout({ main, }: Props): React.Node {
   return (
     <FelaComponent
-      style={theme => ({
+      style={({ theme, }) => ({
         backgroundColor: theme.color('primary', '-6'),
         extend: [
           parseComponentProp(
@@ -129,13 +192,14 @@ function HomePageSlotsLayout({ main, }: Props): React.Node {
     >
       {main.map(element => {
         const getComponent = componentType.get(element.kind || element.inputTemplate);
-        return getComponent
-          ? getComponent(element)
-          : (
-            <Debug key={element.contentId}>
-              {`Element of type '${element.kind || element.inputTemplate}' is not supported in HomePage`}
-            </Debug>
-          );
+        return getComponent ? (
+          getComponent(element)
+        ) : (
+          <Debug key={element.contentId}>
+            {`Element of type '${element.kind
+              || element.inputTemplate}' is not supported in HomePage`}
+          </Debug>
+        );
       })}
     </FelaComponent>
   );

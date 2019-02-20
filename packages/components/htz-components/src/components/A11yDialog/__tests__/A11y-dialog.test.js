@@ -40,8 +40,7 @@ class DialogExample extends React.Component {
                   style={{
                     backgroundColor: 'lightgreen',
                     padding: 10,
-                  }}
-                  render={({ className, }) => (
+                  }}>{({ className, }) => (
                     <div className={className}>
                       <div> this is Dialog content component </div>
                       <button type="button" onClick={handleClose}>
@@ -58,8 +57,7 @@ class DialogExample extends React.Component {
                         <h3> No Focus trap!</h3>
                       </div>
                     </div>
-                  )}
-                />
+                  )}</FelaComponent>
               )}
             />
           </div>

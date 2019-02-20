@@ -190,7 +190,7 @@ export default class MastheadWrapper extends React.Component<
       <FelaComponent
         isFullWidth={!this.state.isDisplayEndPanel}
         panelsResponsiveHiding={this.props.panelsResponsiveHiding}
-        rule={startPanelStyle}
+        style={startPanelStyle}
       >
         {renderFunc(toggleOther.bind(this), toggleMe.bind(this))}
       </FelaComponent>
@@ -208,7 +208,7 @@ export default class MastheadWrapper extends React.Component<
       <FelaComponent
         isFullWidth={!this.state.isDisplayStartPanel}
         panelsResponsiveHiding={this.props.panelsResponsiveHiding}
-        rule={endPanelStyle}
+        style={endPanelStyle}
       >
         {renderFunc(toggleOther.bind(this), toggleMe.bind(this))}
       </FelaComponent>
@@ -222,7 +222,7 @@ export default class MastheadWrapper extends React.Component<
     return (
       <FelaComponent
         panelsResponsiveHiding={this.props.panelsResponsiveHiding}
-        rule={bottomPanelStyle}
+        style={bottomPanelStyle}
       >
         {renderFunc()}
       </FelaComponent>
@@ -262,14 +262,14 @@ export default class MastheadWrapper extends React.Component<
     const showLogo = this.state.isDisplayStartPanel && this.state.isDisplayEndPanel;
 
     return (
-      <FelaComponent render="div" miscStyles={miscStyles} rule={wrapperStyle}>
-        <FelaComponent render="div" style={headerStyle}>
+      <FelaComponent as="div" miscStyles={miscStyles} style={wrapperStyle}>
+        <FelaComponent as="div" style={headerStyle}>
           {renderStartPanel && this.state.isDisplayStartPanel
             ? this.internalRenderStartPanel(renderStartPanel)
             : null}
           <FelaComponent
             showLogo={showLogo}
-            rule={logoWrapperStyle}
+            style={logoWrapperStyle}
           >
             <LogoAndDate
               logoComponent={logo}

@@ -7,7 +7,7 @@ import Router, { withRouter, } from 'next/router';
 import pathGenerator from '../OfferPage/Stages/utils/pathGenerator';
 import OfferPageDataGetter from '../OfferPage/OfferPageDataGetter';
 
-const userBannerStyle = theme => ({
+const userBannerStyle = ({ theme, }) => ({
   backgroundColor: theme.color('userBanner', 'bg'),
   paddingTop: '2rem',
   paddingBottom: '2.5rem',
@@ -47,20 +47,16 @@ function UserBanner({ router, ignoreQueryParam, }) {
       render={({ user, isLoggedIn, }) => (
         <Fragment>
           {isLoggedIn && (
-            <FelaComponent
-              style={userBannerStyle}
-              render={({ className, theme, }) => (
+            <FelaComponent style={userBannerStyle}>
+              {({ className, theme, }) => (
                 <div className={className}>
-                  <UserName>
-                    {theme.offerPage.userBanner.hello(user.firstName)}
-                  </UserName>
+                  <UserName>{theme.offerPage.userBanner.hello(user.firstName)}</UserName>
                   <OfferPageDataGetter
                     render={({ refetch, }) => (
                       <Logout
                         render={({ logout, }) => (
-                          <FelaComponent
-                            style={switchUserStyle}
-                            render={({ className, }) => (
+                          <FelaComponent style={switchUserStyle}>
+                            {({ className, }) => (
                               <button
                                 className={className}
                                 type="button"
@@ -82,14 +78,14 @@ function UserBanner({ router, ignoreQueryParam, }) {
                                 {theme.offerPage.userBanner.switch}
                               </button>
                             )}
-                          />
+                          </FelaComponent>
                         )}
                       />
                     )}
                   />
                 </div>
               )}
-            />
+            </FelaComponent>
           )}
         </Fragment>
       )}

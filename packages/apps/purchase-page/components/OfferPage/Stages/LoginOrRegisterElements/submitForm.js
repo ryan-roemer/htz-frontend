@@ -74,12 +74,10 @@ const submitForm = ({
         let displayError = error.message || 'שגיאה במערכת ההתחברות, אנא נסו שוב';
         if (displayError === 'הדואר האלקטרוני או הסיסמה שהוזנו אינם קיימים במערכת') {
           displayError = (
-            <FelaComponent style={{ fontWeight: 'normal', }} render="span">
+            <FelaComponent style={{ fontWeight: 'normal', }} as="span">
               הסיסמה שהזנתם שגויה, נסו שנית או -
               {' '}
-              <FelaComponent
-                style={{ fontWeight: 700, textDecoration: 'underline', }}
-                render={({ className, }) => (
+              <FelaComponent style={{ fontWeight: 700, textDecoration: 'underline', }}>{({ className, }) => (
                   <button
                     className={className}
                     type="button"
@@ -87,8 +85,7 @@ const submitForm = ({
                   >
                     החליפו סיסמה
                   </button>
-                )}
-              />
+                )}</FelaComponent>
             </FelaComponent>
           );
         }

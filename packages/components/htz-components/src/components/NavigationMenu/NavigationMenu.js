@@ -123,8 +123,7 @@ class NavigationMenu extends React.Component {
     return (
       <EventTracker>
         {({ biAction, }) => (
-          <FelaTheme
-            render={theme => {
+          <FelaTheme>{theme => {
               const { isHovered, } = this.state;
               const { items, sites, promotions, } = this.props.menuSections;
 
@@ -206,11 +205,7 @@ class NavigationMenu extends React.Component {
                   render={({ renderButton, ListWrapper, isOpen, closeList, }) => (
                     <Fragment>
                       {renderButton(({ toggleState, }) => (
-                        <FelaComponent
-                          rule={menuButtonStyle}
-                          isOpen={isOpen}
-                          isHovered={isHovered}
-                          render={({ className, }) => (
+                        <FelaComponent style={menuButtonStyle} isOpen={isOpen} isHovered={isHovered}>{({ className, }) => (
                             <button
                               className={className}
                               onClick={
@@ -239,7 +234,7 @@ class NavigationMenu extends React.Component {
                                   marginEnd: '3rem',
                                   position: 'relative',
                                 }}
-                                render="span"
+                                as="span"
                               >
                                 <Hamburger
                                   isOpen={isOpen}
@@ -253,8 +248,7 @@ class NavigationMenu extends React.Component {
                               </FelaComponent>
                               <span>{theme.navigationMenuI18n.buttonText}</span>
                             </button>
-                          )}
-                        />
+                          )}</FelaComponent>
                       ))}
                       {isOpen ? (
                         <ListWrapper
@@ -272,8 +266,7 @@ class NavigationMenu extends React.Component {
                   )}
                 />
               );
-            }}
-          />
+            }}</FelaTheme>
         )}
       </EventTracker>
     );

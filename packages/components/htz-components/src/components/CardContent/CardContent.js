@@ -50,12 +50,13 @@ export default function CardContent({
         seperator,
         miscStyles,
       }}
-      rule={cardContentStyle}
-      render={({ className, }) => (
+      style={cardContentStyle}
+    >
+      {({ className, }) => (
         <Component className={className} {...attrs}>
           {children}
         </Component>
       )}
-    />
+    </FelaComponent>
   );
 }

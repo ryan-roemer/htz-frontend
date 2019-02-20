@@ -51,9 +51,14 @@ export default function LayoutRow({
   const Tag = tagName;
   return (
     <FelaComponent
-      style={theme => ({
+      style={(
+        {
+          theme
+        }
+      ) => ({
         backgroundColor: bgc || theme.color('layout', 'rowBg'),
         width: '100%',
+
         extend: [
           ...[
             namedBgc
@@ -69,14 +74,12 @@ export default function LayoutRow({
           ...(miscStyles
             ? parseStyleProps(miscStyles, theme.mq, theme.type)
             : []),
-        ],
-      })}
-      render={({ className, }) => (
+        ]
+      })}>{({ className, }) => (
         <Tag className={className} id={id} {...attrs}>
           {children}
         </Tag>
-      )}
-    />
+      )}</FelaComponent>
   );
 }
 

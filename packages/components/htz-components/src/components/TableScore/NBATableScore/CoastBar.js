@@ -52,7 +52,7 @@ const singleTabRule: Object => Object = ({ theme, active, }) => ({
 
 function SingleTab({ text, active, }: SingleTabOptions): Node {
   return (
-    <FelaComponent active={active} rule={singleTabRule}>
+    <FelaComponent active={active} style={singleTabRule}>
       {text}
     </FelaComponent>
   );
@@ -100,9 +100,7 @@ class CoastBar extends React.Component<Props, State> {
 
   render(): Node {
     return (
-      <FelaComponent
-        rule={barRule}
-        render={({ className, }) => (
+      <FelaComponent style={barRule}>{({ className, }) => (
           <div className={className}>
             <ClickArea onClick={this.handleEast}>
               <SingleTab active={this.state.east} text="מזרח" />
@@ -112,8 +110,7 @@ class CoastBar extends React.Component<Props, State> {
               <SingleTab active={this.state.west} text="מערב" />
             </ClickArea>
           </div>
-        )}
-      />
+        )}</FelaComponent>
     );
   }
 }

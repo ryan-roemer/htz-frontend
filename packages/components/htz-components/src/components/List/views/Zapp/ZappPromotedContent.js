@@ -35,8 +35,7 @@ export default function ZappPromotedContent({
   biAction,
 }: ZappPromotedContentProps): React.Node {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <ClickTracker
           {...data}
           render={banner => (
@@ -120,7 +119,6 @@ export default function ZappPromotedContent({
             </Card>
           )}
         />
-      )}
-    />
+      )}</FelaTheme>
   );
 }

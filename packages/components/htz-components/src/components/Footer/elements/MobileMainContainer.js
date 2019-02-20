@@ -4,7 +4,7 @@ import { FelaComponent, } from 'react-fela';
 import HtzLink from '../../HtzLink/HtzLink';
 import Button from '../../Button/Button'; // eslint-disable-line import/no-named-as-default
 
-const mobileBodyWrapperStyle = theme => ({
+const mobileBodyWrapperStyle = ({ theme, }) => ({
   extend: [
     theme.mq({ from: 's', }, { display: 'none', }),
     theme.mq(
@@ -29,19 +29,20 @@ const mobileMainListStyle = ({ theme, }) => ({
 
 const StyledLink = props => (
   <FelaComponent
-    style={theme => ({
+    style={({ theme, }) => ({
       fontWeight: 'bold',
       extend: [ theme.type(0), ],
     })}
-    render={({ className, }) => <HtzLink className={className} {...props} />}
-  />
+  >
+    {({ className, }) => <HtzLink className={className} {...props} />}
+  </FelaComponent>
 );
 
 const liStyle = {
   marginBottom: '1rem',
 };
 
-const copyRightTextStyle = theme => ({
+const copyRightTextStyle = ({ theme, }) => ({
   marginTop: '1rem',
   marginBottom: '4rem',
   textAlign: 'center',
@@ -67,22 +68,17 @@ const MobileView = ({
   },
 }) => (
   <FelaComponent style={mobileBodyWrapperStyle}>
-    <FelaComponent
-      style={mobileMainListStyle}
-      render={({ className, }) => (
+    <FelaComponent style={mobileMainListStyle}>
+      {({ className, }) => (
         <ul className={className}>
           {MobileList.map(link => (
-            <FelaComponent style={liStyle} key={link.text} render="li">
-              <StyledLink
-                key={link.text}
-                content={link.text}
-                href={link.link}
-              />
+            <FelaComponent style={liStyle} key={link.text} as="li">
+              <StyledLink key={link.text} content={link.text} href={link.link} />
             </FelaComponent>
           ))}
         </ul>
       )}
-    />
+    </FelaComponent>
     <Button
       variant="inverse"
       boxModel={{ hp: 5, vp: 1, }}
@@ -91,7 +87,7 @@ const MobileView = ({
     >
       {ButtonName.text}
     </Button>
-    <FelaComponent style={copyRightTextStyle} render="span">
+    <FelaComponent style={copyRightTextStyle} as="span">
       {Copyright.text}
     </FelaComponent>
   </FelaComponent>

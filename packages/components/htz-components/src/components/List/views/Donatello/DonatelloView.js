@@ -45,8 +45,8 @@ export default function Donatello({ list, biAction, lazyLoadImages = true, }: Pr
     : null;
   return items ? (
     list.title ? (
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>
+        {theme => (
           <ListView
             innerBackgroundColor="transparent"
             padding={[ { until: 's', value: [ 0, 2, ], }, { from: 's', value: [ 0, 4, ], }, ]}
@@ -92,7 +92,7 @@ export default function Donatello({ list, biAction, lazyLoadImages = true, }: Pr
             </GridItem>
           </ListView>
         )}
-      />
+      </FelaTheme>
     ) : (
       <Debug>This element cannot be rendered without a title</Debug>
     )
@@ -113,8 +113,8 @@ function Item({ item, biAction, index, lazyLoadImages, }: ItemProps): Node {
       render={(banner: ClickTrackerBannerType) => {
         const { clicktrackerimage, link, contentId, text, linkTarget, } = banner;
         return (
-          <FelaTheme
-            render={theme => (
+          <FelaTheme>
+            {theme => (
               <BlockLink
                 miscStyles={{
                   flexGrow: '1',
@@ -129,11 +129,7 @@ function Item({ item, biAction, index, lazyLoadImages, }: ItemProps): Node {
                   border: [ '1px', 0.1, 'solid', theme.color('neutral', '-4'), ],
                 }}
                 href={link}
-                onClick={
-                  biAction
-                    ? () => biAction({ index, articleId: contentId, })
-                    : null
-                }
+                onClick={biAction ? () => biAction({ index, articleId: contentId, }) : null}
                 target={linkTarget}
               >
                 <Teaser
@@ -142,11 +138,7 @@ function Item({ item, biAction, index, lazyLoadImages, }: ItemProps): Node {
                   backgroundColor={[ 'neutral', '-7', ]}
                   gutter={2}
                   isRev={false}
-                  onClick={
-                    biAction
-                      ? () => biAction({ index, articleId: contentId, })
-                      : null
-                  }
+                  onClick={biAction ? () => biAction({ index, articleId: contentId, }) : null}
                 >
                   <TeaserMedia data={banner} width={1} isClickTracker>
                     <Image
@@ -159,11 +151,7 @@ function Item({ item, biAction, index, lazyLoadImages, }: ItemProps): Node {
                           quality: 'auto',
                         },
                       }}
-                      onClick={
-                        biAction
-                          ? () => biAction({ index, articleId: contentId, })
-                          : null
-                      }
+                      onClick={biAction ? () => biAction({ index, articleId: contentId, }) : null}
                     />
                   </TeaserMedia>
                   <TeaserContent
@@ -174,18 +162,14 @@ function Item({ item, biAction, index, lazyLoadImages, }: ItemProps): Node {
                         title={text || ''}
                         path={link}
                         typeScale={-1}
-                        onClick={
-                          biAction
-                            ? () => biAction({ index, articleId: contentId, })
-                            : null
-                        }
+                        onClick={biAction ? () => biAction({ index, articleId: contentId, }) : null}
                       />
                     )}
                   />
                 </Teaser>
               </BlockLink>
             )}
-          />
+          </FelaTheme>
         );
       }}
     />

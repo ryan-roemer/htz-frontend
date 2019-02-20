@@ -56,7 +56,7 @@ export default function PlayPauseIcon({
     <FelaComponent
       isPlay={isPlay}
       animationDuration={animationDuration}
-      rule={rule}
+      style={rule}
     />
   );
 }

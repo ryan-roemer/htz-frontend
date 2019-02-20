@@ -1,7 +1,7 @@
 import React, { Fragment, } from 'react';
 import PropTypes from 'prop-types';
 import { StyleProvider, } from '@haaretz/fela-utils';
-import { createComponent, FelaComponent, } from 'react-fela';
+import { FelaTheme, FelaComponent, } from 'react-fela';
 import Head from 'next/head';
 // import { UserInjector, appendScript, } from '@haaretz/htz-components';
 import { UserInjector, BIRequest, GoogleAnalytics, Query, } from '@haaretz/htz-components';
@@ -13,7 +13,6 @@ import PurchaseHeader from '../components/PurchaseHeader/PurchaseHeader';
 import PurchasePageFooter from '../components/PurchasePageFooter/PurchasePageFooter'; // eslint-disable-line import/no-named-as-default
 import UserBanner from '../components/UserBanner/UserBanner';
 import Scripts from '../components/Scripts/Scripts';
-
 
 const GET_HOST_NAME = gql`
   query {
@@ -68,19 +67,19 @@ const defaultProps = {
   footerHasIllustration: true,
 };
 
-const wrapperStyle = () => ({
+const wrapperStyle = {
   display: 'flex',
   flexDirection: 'column',
   minHeight: '100vh',
-});
+};
 
-const StyledWrapper = createComponent(wrapperStyle);
+// const StyledWrapper = createComponent(wrapperStyle);
 
-const contentWrapperStyle = () => ({
-  flexGrow: 1,
-});
+// const contentWrapperStyle = {
+//   flexGrow: 1,
+// };
 
-const StyledContentWrapper = createComponent(contentWrapperStyle);
+// const StyledContentWrapper = createComponent(contentWrapperStyle);
 
 function MainLayout({
   children,
@@ -106,12 +105,10 @@ function MainLayout({
             <GoogleAnalytics withEC />
             <UserInjector />
             <StyleProvider renderer={styleRenderer} theme={theme(host)}>
-              <FelaComponent
-                render={({
-                  theme: {
-                    seo: {
-                      [host]: { title, description, googleSiteVerification, },
-                    },
+              <FelaTheme>
+                {({
+                  seo: {
+                    [host]: { title, description, googleSiteVerification, },
                   },
                 }) => (
                   <Fragment>
@@ -121,7 +118,7 @@ function MainLayout({
                       <meta name="google-site-verification" content={googleSiteVerification} />
                     </Head>
                     <div id="pageRoot">
-                      <StyledWrapper>
+                      <FelaComponent style={wrapperStyle}>
                         {renderHeader && (
                           <Fragment>
                             <PurchaseHeader
@@ -132,18 +129,18 @@ function MainLayout({
                             <UserBanner ignoreQueryParam={isThankYou || isError} />
                           </Fragment>
                         )}
-                        <StyledContentWrapper>{children}</StyledContentWrapper>
+                        <FelaComponent style={{ flexGrow: 1, }}>{children}</FelaComponent>
                         <PurchasePageFooter
                           host={host}
                           hasIllustration={footerHasIllustration}
                           stage={stage}
                         />
-                      </StyledWrapper>
+                      </FelaComponent>
                     </div>
                     <div id="modalsRoot" />
                   </Fragment>
                 )}
-              />
+              </FelaTheme>
             </StyleProvider>
             <BIRequest />
             <Scripts />

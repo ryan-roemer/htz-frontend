@@ -13,15 +13,19 @@ MobileUserButton.propTypes = {
 export default function MobileUserButton({ isLoggedIn, }) {
   return (
     <FelaComponent
-      style={theme => ({
+      style={(
+        {
+          theme
+        }
+      ) => ({
         display: 'flex',
+
         ...(!isLoggedIn
           ? {
             extend: [ borderEnd('1px', 'solid', theme.color('primary', '+1')), ],
           }
-          : {}),
-      })}
-      render={({ theme, className, }) => {
+          : {})
+      })}>{({ theme, className, }) => {
         const { userLoggedIn, noUserData, url, } = theme.mobileUserMenuI18n;
 
         return (
@@ -44,7 +48,6 @@ export default function MobileUserButton({ isLoggedIn, }) {
             )}
           />
         );
-      }}
-    />
+      }}</FelaComponent>
   );
 }

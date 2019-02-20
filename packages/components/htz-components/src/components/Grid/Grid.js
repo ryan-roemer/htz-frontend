@@ -1,11 +1,7 @@
 import React, { Component, Children, } from 'react';
 import PropTypes from 'prop-types';
 import { FelaComponent, } from 'react-fela';
-import {
-  parseComponentProp,
-  parseStyleProps,
-  autospace,
-} from '@haaretz/htz-css-tools';
+import { parseComponentProp, parseStyleProps, autospace, } from '@haaretz/htz-css-tools';
 import debounce from 'lodash/debounce';
 import checkMatchMedia from '../../utils/hasMatchMedia';
 import mediaMatchesQuery from '../../utils/mediaMatchesQuery';
@@ -16,20 +12,8 @@ import { stylesPropType, } from '../../propTypes/stylesPropType';
 // ////////////////////////////////////////////////////////////////// //
 //                             PROP-TYPES                             //
 // ////////////////////////////////////////////////////////////////// //
-const alignOptions = PropTypes.oneOf([
-  'start',
-  'center',
-  'end',
-  'space-between',
-  'space-around',
-]);
-const vAlignOptions = PropTypes.oneOf([
-  'top',
-  'center',
-  'middle',
-  'bottom',
-  'stretch',
-]);
+const alignOptions = PropTypes.oneOf([ 'start', 'center', 'end', 'space-between', 'space-around', ]);
+const vAlignOptions = PropTypes.oneOf([ 'top', 'center', 'middle', 'bottom', 'stretch', ]);
 
 Grid.propTypes = {
   /**
@@ -130,15 +114,7 @@ Grid.defaultProps = {
 // ///////////////////////////////////////////////////////////////// ///
 //                               STYLES                               //
 // ///////////////////////////////////////////////////////////////// ///
-const gridStyles = ({
-  gutter,
-  align,
-  isRev,
-  rowSpacing,
-  vAlign,
-  miscStyles,
-  theme,
-}) => ({
+const gridStyles = ({ gutter, align, isRev, rowSpacing, vAlign, miscStyles, theme, }) => ({
   display: 'flex',
   flexWrap: 'wrap',
   // Lists can be grids
@@ -157,9 +133,7 @@ const gridStyles = ({
       theme.gridStyle.gutter
     ),
     parseComponentProp('direction', isRev, theme.mq, setDirection),
-    ...(rowSpacing
-      ? [ parseComponentProp('rowSpacing', rowSpacing, theme.mq, setRowSpacing), ]
-      : []),
+    ...(rowSpacing ? [ parseComponentProp('rowSpacing', rowSpacing, theme.mq, setRowSpacing), ] : []),
     parseComponentProp('vAlign', vAlign, theme.mq, setVerticalAlignment),
     // Trump all other styles with those defined in `miscStyles`
     ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
@@ -276,10 +250,7 @@ class GridComponent extends Component {
   }
 
   state = {
-    gutter: getInitialGutter(
-      this.props.gutter,
-      this.props.theme.gridStyle.gutterWidth
-    ),
+    gutter: getInitialGutter(this.props.gutter, this.props.theme.gridStyle.gutterWidth),
   };
 
   componentDidMount() {
@@ -313,9 +284,7 @@ class GridComponent extends Component {
   }
 
   getUpdatedGutter = () => {
-    const gutter = this.props.gutter === null
-      ? this.props.theme.gridStyle.gutterWidth
-      : this.props.gutter;
+    const gutter = this.props.gutter === null ? this.props.theme.gridStyle.gutterWidth : this.props.gutter;
     const gutterIsResponsive = typeof gutter === 'object';
     const defaultValue = gutterIsResponsive ? gutter.onServerRender : gutter;
 
@@ -346,13 +315,11 @@ class GridComponent extends Component {
     return (
       <GridElement className={className} id={id} {...attrs}>
         {/* Pass down `gutter` to children */}
-        {Children.map(
-          children,
-          (child, index) => (React.isValidElement(child)
-            ? React.cloneElement(child, {
-              gutter: this.state.gutter,
-            })
-            : child)
+        {Children.map(children, (child, index) => (React.isValidElement(child)
+          ? React.cloneElement(child, {
+            gutter: this.state.gutter,
+          })
+          : child)
         )}
       </GridElement>
     );
@@ -361,11 +328,10 @@ class GridComponent extends Component {
 
 export default function Grid({ children, ...props }) {
   return (
-    <FelaComponent
-      {...props}
-      rule={gridStyles}
-      render={({ className, theme, }) => {
+    <FelaComponent {...props} style={gridStyles}>
+      {({ className, theme, }) => {
         const { attrs, gutter, id, tagName, } = props;
+
         return (
           <GridComponent
             attrs={attrs}
@@ -379,7 +345,7 @@ export default function Grid({ children, ...props }) {
           </GridComponent>
         );
       }}
-    />
+    </FelaComponent>
   );
 }
 

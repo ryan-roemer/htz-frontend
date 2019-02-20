@@ -48,7 +48,7 @@ class ShareBar extends React.Component<Props, State> {
     } = this.state;
     return (
       <FelaComponent
-        style={(theme: Object) => ({
+        style={({ theme, }) => ({
           marginTop: '5rem',
           overflow: 'hidden',
           display: 'flex',
@@ -57,6 +57,7 @@ class ShareBar extends React.Component<Props, State> {
           marginRight: 'auto',
           marginLeft: 'auto',
           transitionProperty: 'width',
+
           extend: [
             theme.mq({ until: 's', }, { display: 'none', }),
             theme.mq({ from: 'l', until: 'xl', }, { marginTop: '8rem', }),
@@ -66,7 +67,8 @@ class ShareBar extends React.Component<Props, State> {
             ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
           ],
         })}
-        render={({ className, theme, }) => (
+      >
+        {({ className, theme, }) => (
           <div className={className}>
             <ActionButtons
               elementName={title}
@@ -117,7 +119,7 @@ class ShareBar extends React.Component<Props, State> {
             />
           </div>
         )}
-      />
+      </FelaComponent>
     );
   }
 }

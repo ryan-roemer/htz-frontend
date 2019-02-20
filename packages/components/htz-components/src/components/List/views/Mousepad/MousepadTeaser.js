@@ -34,8 +34,7 @@ export default function MousepadTeaser({
   isLast,
 }: Props): React.Node {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Teaser
           data={itemData}
           miscStyles={{
@@ -94,7 +93,6 @@ export default function MousepadTeaser({
             renderFooter={() => <CommentsCount commentsCount={itemData.commentsCounts} />}
           />
         </Teaser>
-      )}
-    />
+      )}</FelaTheme>
   );
 }

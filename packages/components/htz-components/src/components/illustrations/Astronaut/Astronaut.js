@@ -25,10 +25,8 @@ class Astronaut extends React.Component {
   render() {
     const { size, } = this.props;
     return (
-      <FelaComponent
-        size={size}
-        rule={style}
-        render={({ theme, className, }) => (
+      <FelaComponent size={size} style={style}>
+        {({ theme, className, }) => (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -55,10 +53,11 @@ class Astronaut extends React.Component {
                   '100%': { opacity: '0', },
                 },
               }}
-              render={({ className, theme, }) => (
+            >
+              {({ className, theme, }) => (
                 <circle className={className} fill="#3FA0CB" cx="492" cy="165.9" r="2.2" />
               )}
-            />
+            </FelaComponent>
             <FelaComponent
               style={{
                 animationDelay: '1s',
@@ -74,10 +73,11 @@ class Astronaut extends React.Component {
                   '100%': { opacity: '0', },
                 },
               }}
-              render={({ className, theme, }) => (
+            >
+              {({ className, theme, }) => (
                 <circle className={className} fill="#3FA0CB" cx="608.5" cy="277.5" r="3.5" />
               )}
-            />
+            </FelaComponent>
             <FelaComponent
               style={{
                 animationDelay: '1s',
@@ -92,10 +92,11 @@ class Astronaut extends React.Component {
                   '100%': { opacity: '0', },
                 },
               }}
-              render={({ className, theme, }) => (
+            >
+              {({ className, theme, }) => (
                 <circle className={className} fill="#BED3DE" cx="176" cy="171" r="4.6" />
               )}
-            />
+            </FelaComponent>
             <FelaComponent
               style={{
                 animationDelay: '2s',
@@ -112,10 +113,11 @@ class Astronaut extends React.Component {
                   '100%': { opacity: '0', },
                 },
               }}
-              render={({ className, theme, }) => (
+            >
+              {({ className, theme, }) => (
                 <circle className={className} fill="#3FA0CB" cx="106" cy="183" r="2" />
               )}
-            />
+            </FelaComponent>
             <FelaComponent
               style={{
                 animationDuration: '4.5s',
@@ -130,10 +132,11 @@ class Astronaut extends React.Component {
                   '100%': { opacity: '0', },
                 },
               }}
-              render={({ className, theme, }) => (
+            >
+              {({ className, theme, }) => (
                 <circle className={className} fill="#3FA0CB" cx="548.5" cy="181.5" r="1.5" />
               )}
-            />
+            </FelaComponent>
             <g className="astronaut-stars">
               <circle fill="#3FA0CB" cx="596.5" cy="261.5" r="2.5" />
               <circle fill="#3FA0CB" cx="555" cy="226" r="1" />
@@ -230,7 +233,8 @@ class Astronaut extends React.Component {
                     '100%': { transform: 'rotate(-1deg) translate(0,1%)', },
                   },
                 }}
-                render={({ className, theme, }) => (
+              >
+                {({ className, theme, }) => (
                   <g className={className}>
                     <circle fill="#087EB5" cx="610.7" cy="459.5" r="22.2" />
                     <path
@@ -239,7 +243,7 @@ class Astronaut extends React.Component {
                     />
                   </g>
                 )}
-              />
+              </FelaComponent>
               <circle fill="#96D4F1" cx="580.6" cy="483.2" r="0.5" />
               <circle fill="#96D4F1" cx="643.2" cy="461.3" r="0.4" />
               <circle fill="#96D4F1" cx="633.7" cy="432.1" r="2" />
@@ -458,7 +462,8 @@ class Astronaut extends React.Component {
                     },
                   },
                 }}
-                render={({ theme, className, }) => (
+              >
+                {({ theme, className, }) => (
                   <g className={className}>
                     <circle
                       id={`SVGID_3_${this.state.idSuffix}`}
@@ -480,7 +485,7 @@ class Astronaut extends React.Component {
                     />
                   </g>
                 )}
-              />
+              </FelaComponent>
               <polyline fill="#2F4856" points="87.5 215.9 87.6 215.9 88.3 216.1 87.3 217 " />
               <path
                 fill="#BED3DE"
@@ -531,7 +536,8 @@ class Astronaut extends React.Component {
                   '100%': { transform: 'translate(0,0) rotate(0deg)', },
                 },
               }}
-              render={({ className, }) => (
+            >
+              {({ className, }) => (
                 <g className={className}>
                   <g className="astronaut-planet">
                     <circle
@@ -1574,10 +1580,10 @@ class Astronaut extends React.Component {
                   </g>
                 </g>
               )}
-            />
+            </FelaComponent>
           </svg>
         )}
-      />
+      </FelaComponent>
     );
   }
 }

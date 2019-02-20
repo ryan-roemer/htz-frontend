@@ -13,7 +13,7 @@ class FirstImpression extends Component {
 
   getInnerHtml = () => `
   console.log('FIRST IMPRESSION MY ASS');
-  `;
+    `;
 
   render() {
     return null;

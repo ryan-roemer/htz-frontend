@@ -100,8 +100,7 @@ function LiveBlog({ articleId, slots, path, }) {
           );
 
           return (
-            <FelaTheme
-              render={theme => (
+            <FelaTheme>{theme => (
                 <LayoutContainer
                   tagName="article"
                   bgc={theme.color('primary', '-6')}
@@ -360,8 +359,7 @@ function LiveBlog({ articleId, slots, path, }) {
                           }
                         ),
                       ],
-                    }}
-                    render={({ className, }) => (
+                    }}>{({ className, }) => (
                       <aside className={className}>
                         {aside ? (
                           <Zen animate>
@@ -379,12 +377,10 @@ function LiveBlog({ articleId, slots, path, }) {
                           </Zen>
                         ) : null}
                       </aside>
-                    )}
-                  />
+                    )}</FelaComponent>
                   <ArticleGallery path={path} />
                 </LayoutContainer>
-              )}
-            />
+              )}</FelaTheme>
           );
         }}
       </Query>

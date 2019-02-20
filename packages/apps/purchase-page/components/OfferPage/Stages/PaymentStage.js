@@ -47,14 +47,14 @@ const defaultProps = {
   creditCardsDetails: null,
 };
 
-const formContStyle = theme => ({
+const formContStyle = ({ theme, }) => ({
   maxWidth: '82rem',
   marginInlineStart: 'auto',
   marginInlineEnd: 'auto',
   textAlign: 'center',
 });
 
-const formHeaderStyle = theme => ({
+const formHeaderStyle = ({ theme, }) => ({
   textAlign: 'start',
   marginTop: '4rem',
   extend: [ theme.type(0), theme.mq({ until: 's', }, { marginTop: '5rem', }), ],
@@ -76,7 +76,7 @@ const paymentButtonsContStyle = ({ theme, isFourDigits, }) => ({
 
 const radioButtonStyle = { marginTop: '3rem', marginInlineEnd: '4rem', };
 
-const securedPaymentStyle = theme => ({
+const securedPaymentStyle = ({ theme, }) => ({
   width: '80%',
   marginInlineStart: 'auto',
   marginInlineEnd: 'auto',
@@ -157,13 +157,7 @@ class PaymentStage extends Component {
                 },
               },
             });
-            return (
-              <Redirect
-                destination={hasDebt ? 'debt' : 'stage5'}
-                replace
-                router={router}
-              />
-            );
+            return <Redirect destination={hasDebt ? 'debt' : 'stage5'} replace router={router} />;
           }}
         </ApolloConsumer>
       );
@@ -219,7 +213,10 @@ class PaymentStage extends Component {
                     variant: `promotionNumber-${paymentData.promotionNumber}`,
                   };
                   window.sessionStorage.setItem('htz-paypal', `${paymentData.saleCode}`);
-                  window.sessionStorage.setItem('htz-revenue', `${paymentData.prices[0].toString()}`);
+                  window.sessionStorage.setItem(
+                    'htz-revenue',
+                    `${paymentData.prices[0].toString()}`
+                  );
                   window.sessionStorage.setItem('htz-add-product', JSON.stringify(addProductData));
                 }
                 ReactGA.ga('send', 'pageview');
@@ -249,10 +246,11 @@ class PaymentStage extends Component {
                 return errors;
               }}
               render={({ getInputProps, handleSubmit, }) => (
-                <FelaComponent
-                  style={formContStyle}
-                  render={({
-                    theme: { stage4: { headerPaymentMethod, form, }, },
+                <FelaComponent style={formContStyle}>
+                  {({
+                    theme: {
+                      stage4: { headerPaymentMethod, form, },
+                    },
                     className,
                   }) => (
                     <div className={className}>
@@ -265,24 +263,19 @@ class PaymentStage extends Component {
                               textAlign: 'start',
                             }}
                           >
-                            <FelaComponent
-                              style={formHeaderStyle}
-                              render={({ className, }) => (
-                                <H
-                                  ref={el => this.paymentHeaderEl}
-                                  className={className}
-                                >
+                            <FelaComponent style={formHeaderStyle}>
+                              {({ className, }) => (
+                                <H ref={el => this.paymentHeaderEl} className={className}>
                                   {headerPaymentMethod}
                                 </H>
                               )}
-                            />
+                            </FelaComponent>
                             <RadioGroup
                               {...getInputProps({
                                 name: 'paymentMethodIndex',
                                 onChange: evt => {
                                   this.setState({
-                                    displayPaymentButtons:
-                                      evt.target.value === '-1',
+                                    displayPaymentButtons: evt.target.value === '-1',
                                   });
                                 },
                                 radioButtons: [
@@ -297,11 +290,12 @@ class PaymentStage extends Component {
                                             fontWeight: 'bold',
                                             letterSpacing: '2px',
                                           }}
-                                          render={({ className, }) => (
+                                        >
+                                          {({ className, }) => (
                                             <Fragment>
                                               <FelaComponent
-                                                render="p"
-                                                style={theme => ({
+                                                as="p"
+                                                style={({ theme, }) => ({
                                                   ...theme.mq(
                                                     { from: 's', },
                                                     {
@@ -310,23 +304,17 @@ class PaymentStage extends Component {
                                                   ),
                                                 })}
                                               >
-                                                <span>
-                                                  {
-                                                    form.continueWithCreditCardText
-                                                  }
-                                                </span>
+                                                <span>{form.continueWithCreditCardText}</span>
                                                 {' '}
                                               </FelaComponent>
-                                              <span className={className}>
-                                                {fourDigits}
-                                              </span>
+                                              <span className={className}>{fourDigits}</span>
                                               {' '}
                                               <span className={className}>
                                                 {form.hiddenCreditCardDigits}
                                               </span>
                                             </Fragment>
                                           )}
-                                        />
+                                        </FelaComponent>
                                       ),
                                       miscStyles: radioButtonStyle,
                                     })
@@ -378,9 +366,12 @@ class PaymentStage extends Component {
                         <FelaComponent
                           style={paymentButtonsContStyle}
                           isFourDigits={!!creditCardsDetails}
-                          render={({
+                        >
+                          {({
                             className,
-                            theme: { payment: { payVia, creditCard, }, },
+                            theme: {
+                              payment: { payVia, creditCard, },
+                            },
                           }) => {
                             const buttonProps = {
                               variant: 'primary',
@@ -423,17 +414,11 @@ class PaymentStage extends Component {
                                           gaAction({
                                             category: 'promotions-step-4',
                                             action: `credit-guard-${
-                                              gaMapper.productId[
-                                                paymentData.productID
-                                              ]
+                                              gaMapper.productId[paymentData.productID]
                                             }`,
                                             label: `${
-                                              gaMapper.productId[
-                                                paymentData.productID
-                                              ]
-                                            }-salecode[${
-                                              paymentData.saleCode
-                                            }]`,
+                                              gaMapper.productId[paymentData.productID]
+                                            }-salecode[${paymentData.saleCode}]`,
                                           });
                                         }}
                                       >
@@ -460,17 +445,11 @@ class PaymentStage extends Component {
                                               gaAction({
                                                 category: 'promotions-step-4',
                                                 action: `paypal-${
-                                                  gaMapper.productId[
-                                                    paymentData.productID
-                                                  ]
+                                                  gaMapper.productId[paymentData.productID]
                                                 }`,
                                                 label: `${
-                                                  gaMapper.productId[
-                                                    paymentData.productID
-                                                  ]
-                                                }-salecode[${
-                                                  paymentData.saleCode
-                                                }]`,
+                                                  gaMapper.productId[paymentData.productID]
+                                                }-salecode[${paymentData.saleCode}]`,
                                               });
                                             }}
                                           >
@@ -500,14 +479,14 @@ class PaymentStage extends Component {
                               </EventTracker>
                             );
                           }}
-                        />
+                        </FelaComponent>
                       )}
                       <FelaComponent style={securedPaymentStyle}>
                         <SecurePaymentLine withLine={false} />
                       </FelaComponent>
                     </div>
                   )}
-                />
+                </FelaComponent>
               )}
             />
           )}

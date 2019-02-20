@@ -23,18 +23,20 @@ export default function VogelListTitle({ title, gutter, url, }: Props): React.No
       miscStyles={{ flexGrow: '0', flexShrink: '1', paddingBottom: [ { until: 's', value: 1, }, ], }}
     >
       <FelaComponent
-        style={theme => ({
-          color: theme.color('primary'),
-        })}
-        render={({ className, }) => (url ? (
+        style={(
+          {
+            theme
+          }
+        ) => ({
+          color: theme.color('primary')
+        })}>{({ className, }) => (url ? (
           <HtzLink href={url}>
             <H className={className}>{title}</H>
           </HtzLink>
         ) : (
           <H className={className}>{title}</H>
         ))
-        }
-      />
+        }</FelaComponent>
     </GridItem>
   );
 }

@@ -11,23 +11,23 @@ type Filter = {
     queryString: string | number,
     subFilters?: Filters,
   },
-}
+};
 
 type Filters = {
   title: string,
   value: string,
   fields: Array<Filter>,
-}
+};
 
 type Props = {
   filters: Filters,
   children: ({ filters: Array<{ key: string, value: string, }>, }) => Node,
-}
+};
 
 type State = {
   selectedFilters: Object,
   filters: Array<{ key: string, value: string, }>,
-}
+};
 
 const SelectionLabel = ({ content, }: { content: string, }) => (
   <FelaComponent
@@ -35,7 +35,7 @@ const SelectionLabel = ({ content, }: { content: string, }) => (
       fontWeight: '700',
       marginEnd: '1rem',
     }}
-    render="span"
+    as="span"
   >
     {content}
   </FelaComponent>
@@ -45,7 +45,7 @@ type DropDownProps = {
   items: Filters,
   changeFilter: (string, Filter) => void,
   selectedFilter: Object,
-}
+};
 
 const getFilters: Filters => Object = filters => {
   let results = {};
@@ -60,12 +60,13 @@ const getFilters: Filters => Object = filters => {
 
 const extractFilters: Object => Array<{ key: string, value: string, }> = selectedFilters => {
   const filters = [];
-  Object.keys(selectedFilters).forEach(key => (selectedFilters[key]
-    && filters.push({
-      key,
-      value: selectedFilters[key].value.queryString,
-    })
-  ));
+  Object.keys(selectedFilters).forEach(
+    key => selectedFilters[key]
+      && filters.push({
+        key,
+        value: selectedFilters[key].value.queryString,
+      })
+  );
   return filters;
 };
 
@@ -75,9 +76,7 @@ class AssetsFilter extends React.Component<Props, State> {
     const selectedFilters: Object = prevState
       ? prevState.selectedFilters
       : { ...getFilters(filters), };
-    return !prevState
-      ? { selectedFilters, filters: extractFilters(selectedFilters), }
-      : prevState;
+    return !prevState ? { selectedFilters, filters: extractFilters(selectedFilters), } : prevState;
   }
 
   updateSelection: (string, ?Filter) => void = (value, filter = null) => {
@@ -88,7 +87,7 @@ class AssetsFilter extends React.Component<Props, State> {
     });
   };
 
-  dropDown: (DropDownProps) => Node = ({ items, changeFilter, selectedFilter, }) => {
+  dropDown: DropDownProps => Node = ({ items, changeFilter, selectedFilter, }) => {
     const { selectedFilters, } = this.state;
     if (!selectedFilters[items.value]) {
       changeFilter(items.value, items.fields[0]);
@@ -111,19 +110,21 @@ class AssetsFilter extends React.Component<Props, State> {
             variant="graph"
             onUnMount={() => this.updateSelection(items.value)}
             controlledSelectedItem={{
-              value: selectedFilters[items.value] ? selectedFilters[items.value].value : items.fields[0].value,
-              display: selectedFilters[items.value] ? selectedFilters[items.value].display : items.fields[0].display,
-              key: selectedFilters[items.value] ? selectedFilters[items.value].value.queryString : items.fields[0].value.queryString,
+              value: selectedFilters[items.value]
+                ? selectedFilters[items.value].value
+                : items.fields[0].value,
+              display: selectedFilters[items.value]
+                ? selectedFilters[items.value].display
+                : items.fields[0].display,
+              key: selectedFilters[items.value]
+                ? selectedFilters[items.value].value.queryString
+                : items.fields[0].value.queryString,
             }}
-            items={
-              items.fields.map((item: Filter) => (
-                {
-                  value: item.value,
-                  display: item.display,
-                  key: item.value.queryString,
-                }
-              ))
-            }
+            items={items.fields.map((item: Filter) => ({
+              value: item.value,
+              display: item.display,
+              key: item.value.queryString,
+            }))}
             attrs={{ 'aria-hidden': true, }}
             buttonMiscStyles={{
               paddingBottom: '0.5rem',
@@ -133,15 +134,13 @@ class AssetsFilter extends React.Component<Props, State> {
             }}
           />
         </FelaComponent>
-        {
-          selectedFilter && selectedFilter.value.subFilters
-            ? this.dropDown({
-              items: selectedFilter.value.subFilters,
-              changeFilter: (value, selected) => this.updateSelection(value, selected),
-              selectedFilter: selectedFilters[selectedFilter.value.subFilters.value],
-            })
-            : null
-        }
+        {selectedFilter && selectedFilter.value.subFilters
+          ? this.dropDown({
+            items: selectedFilter.value.subFilters,
+            changeFilter: (value, selected) => this.updateSelection(value, selected),
+            selectedFilter: selectedFilters[selectedFilter.value.subFilters.value],
+          })
+          : null}
       </Fragment>
     );
   };
@@ -153,7 +152,7 @@ class AssetsFilter extends React.Component<Props, State> {
       <Fragment>
         <FelaComponent style={{ position: 'relative', }}>
           <FelaComponent
-            style={theme => ({
+            style={({ theme, }) => ({
               ...theme.type(-2),
               alignItems: 'baseline',
               display: 'flex',
@@ -179,7 +178,8 @@ class AssetsFilter extends React.Component<Props, State> {
               variant="primaryOpaque"
               onClick={() => this.setState({
                 filters: extractFilters(selectedFilters),
-              })}
+              })
+              }
               miscStyles={{
                 marginRight: 'auto',
               }}

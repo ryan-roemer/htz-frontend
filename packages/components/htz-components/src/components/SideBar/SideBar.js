@@ -31,7 +31,11 @@ function SideBar({ content, }) {
     <Query query={IS_OSAKA_DISPLAYED}>
       {({ data: { isOsakaDisplayed, }, }) => (
         <FelaComponent
-          style={theme => ({
+          style={(
+            {
+              theme
+            }
+          ) => ({
             position: 'sticky',
             width: '100%',
             top: isOsakaDisplayed ? '20rem' : '2rem',
@@ -40,11 +44,12 @@ function SideBar({ content, }) {
             paddingInlineEnd: '4rem',
             paddingBottom: '4rem',
             transitionProperty: 'top',
+
             extend: [
               theme.getDelay('transition', -1),
               theme.getDuration('transition', -1),
               theme.getTimingFunction('transition', 'linear'),
-            ],
+            ]
           })}
         >
           <WrappedScroll

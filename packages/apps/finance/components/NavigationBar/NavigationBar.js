@@ -22,12 +22,17 @@ type ListItemProps = {
 
 const ListItem = ({ name, as, href, selected, }: ListItemProps): Node => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       ...(selected ? { color: theme.color('primary'), } : {}),
       display: 'inline-block',
       marginEnd: '4rem',
       position: 'relative',
       textDecoration: 'underline',
+
       ':not(:last-child)': {
         ':after': {
           backgroundColor: theme.color('neutral', '-3'),
@@ -39,9 +44,9 @@ const ListItem = ({ name, as, href, selected, }: ListItemProps): Node => (
           transform: 'translate(-50%, 50%)',
           width: '2px',
         },
-      },
+      }
     })}
-    render="li"
+    as="li"
   >
     <Link href={href} as={as}>
       <a>{name}</a>
@@ -51,7 +56,11 @@ const ListItem = ({ name, as, href, selected, }: ListItemProps): Node => (
 
 const NavigationBar = ({ section, miscStyles, assetId, }: Props): Node => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       ...theme.type(-1),
       backgroundColor: theme.color('neutral', '-10'),
       color: theme.color('neutral', '-3'),
@@ -59,11 +68,12 @@ const NavigationBar = ({ section, miscStyles, assetId, }: Props): Node => (
       paddingBottom: '2rem',
       paddingTop: '2rem',
       textAlign: 'center',
+
       extend: [
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ],
+      ]
     })}
-    render="ul"
+    as="ul"
   >
     <ListItem
       selected={

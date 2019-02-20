@@ -236,7 +236,7 @@
       }
     },
     "fela": {
-      "^6.1.7": {
+      "^10.2.1": {
         "packages/{components/*,libs/fela-utils}": [
           "devDependencies",
           "peerDependencies"
@@ -370,7 +370,7 @@
       }
     },
     "react-fela": {
-      "^7.2.0": {
+      "^10.2.1": {
         "packages/{components/*,libs/fela-utils}": [
           "devDependencies",
           "peerDependencies"
@@ -446,6 +446,7 @@
     "concurrent": false
   },
   "devDependencies": {
+    "fela-codemods": "^10.2.1",
     "@babel/preset-flow": "^7.0.0",
     "@commitlint/cli": "^4.1.0",
     "@haaretz/commitlint-config": "^1.1.0",

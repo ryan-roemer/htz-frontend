@@ -12,8 +12,8 @@ export default {
         },
     ],
   }),
-  legendsWrapper: theme => ({ textAlign: 'center', marginBottom: '2rem', }),
-  legend: theme => ({
+  legendsWrapper: ({ theme, }) => ({ textAlign: 'center', marginBottom: '2rem', }),
+  legend: ({ theme, }) => ({
     margin: '2rem',
     display: 'inline-block',
     extend: [
@@ -23,7 +23,7 @@ export default {
       ),
     ],
   }),
-  legendLabel: theme => ({
+  legendLabel: ({ theme, }) => ({
     margin: '2rem',
   }),
   legendcolor: ({ theme, color, }) => ({
@@ -143,7 +143,7 @@ export default {
       opacity: '0.5',
     },
   }),
-  comment: theme => ({
+  comment: ({ theme, }) => ({
     ...theme.type(-1),
     marginTop: '3rem',
   }),
@@ -157,5 +157,5 @@ export default {
       : {}),
   }),
   legendDate: { fontWeight: '700', },
-  button: theme => ({}),
+  button: ({ theme, }) => ({}),
 };

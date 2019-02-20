@@ -21,7 +21,7 @@ const propTypes = {
 
 const defaultProps = {};
 
-const contStyle = theme => ({
+const contStyle = ({ theme, }) => ({
   textAlign: 'center',
   marginInlineStart: '2rem',
   marginInlineEnd: '2rem',

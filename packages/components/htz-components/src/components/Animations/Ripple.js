@@ -19,13 +19,7 @@ const rippleStyle = ({ isActive, theme, bgColor, bgNamedColor, time, }) => ({
     // Set background-color
     ...[
       bgNamedColor
-        ? parseComponentProp(
-          'backgroundColor',
-          bgNamedColor,
-          theme.mq,
-          setColor,
-          theme.color
-        )
+        ? parseComponentProp('backgroundColor', bgNamedColor, theme.mq, setColor, theme.color)
         : [],
     ],
     // eslint-disable-next-line eqeqeq
@@ -59,13 +53,11 @@ const rippleStyle = ({ isActive, theme, bgColor, bgNamedColor, time, }) => ({
 });
 
 export default React.forwardRef(({ children, ...props }, ref) => (
-  <FelaComponent
-    {...props}
-    rule={rippleStyle}
-    render={({ className, }) => (
+  <FelaComponent {...props} style={rippleStyle}>
+    {({ className, }) => (
       <div className={className} ref={ref}>
         {children}
       </div>
     )}
-  />
+  </FelaComponent>
 ));

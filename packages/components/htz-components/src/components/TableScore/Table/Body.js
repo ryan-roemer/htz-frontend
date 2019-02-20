@@ -75,8 +75,7 @@ function Body(props: BodyProps): Node {
                     ? (borders && borders[`${index}`] ? borders[`${index}`] : defaultBorder)
                     : defaultBorder
                 }
-                rule={AllRowsStyle}
-                render={({ className, }) => (
+                style={AllRowsStyle}>{({ className, }) => (
                   <tr className={className}>
                     {
               Object.entries(teamFixed)
@@ -85,18 +84,13 @@ function Body(props: BodyProps): Node {
                   const current: ?Node = (value === team.__typename || key === 'teamId') ? null
                     : (value === teamFixed.name)
                       ? (
-                        <FelaComponent
-                          key={team.teamId + key}
-                          textAlign="right"
-                          rule={FirstRowStyle}
-                          render={({ className: innerClassName, }) => (
+                        <FelaComponent key={team.teamId + key} textAlign="right" style={FirstRowStyle}>{({ className: innerClassName, }) => (
                             <th
                               className={innerClassName}
                             >
                               {String(value)}
                             </th>
-                          )}
-                        />
+                          )}</FelaComponent>
                       )
                       : (
                         <td key={team.teamId + key}>
@@ -107,8 +101,7 @@ function Body(props: BodyProps): Node {
                 })
             }
                   </tr>
-                )}
-              />
+                )}</FelaComponent>
             );
           }
         )

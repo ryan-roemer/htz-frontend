@@ -21,17 +21,14 @@ type Props = {
 function Slim({ list, listId, gaAction, biAction, }: Props) {
   const { items, } = list;
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>
+      {theme => (
         <Fragment>
           <ListView
             gutter={4}
             innerBackgroundColor={[ 'neutral', ]}
             outerBackgroundColor={[ 'neutral', '-1', ]}
-            padding={[
-              { until: 'xl', value: 0, },
-              { from: 'xl', value: [ 0, 4, ], },
-            ]}
+            padding={[ { until: 'xl', value: 0, }, { from: 'xl', value: [ 0, 4, ], }, ]}
             miscStyles={{
               display: [ { until: 's', value: 'none', }, ],
             }}
@@ -39,54 +36,42 @@ function Slim({ list, listId, gaAction, biAction, }: Props) {
               overflow: 'hidden',
             }}
           >
-            {
-              items && items[0]
-                ? (
-                  <Fragment>
-                    {/* Gallery Title */}
-                    <GridItem
-                      gutter={4}
-                      width={1}
-                      miscStyles={{
-                        paddingBottom: '1rem',
-                        paddingTop: '1rem',
-                      }}
-                    >
-                      <TeaserHeader
-                        {...items[0]}
-                        typeScale={0}
-                        color={[ 'neutral', '-10', ]}
-                        miscStyles={{
-                          paddingStart: [ { until: 'xl', value: '4rem', }, ],
-                        }}
-                      />
-                    </GridItem>
-                    {/* Main Gallery */}
-                    <GridItem
-                      gutter={4}
-                      width={[
-                        { until: 'xl', value: 1, },
-                        { from: 'xl', value: 9 / 12, },
-                      ]}
-                      miscStyles={{
-                        paddingBottom: [
-                          { until: 'xl', value: '2rem', },
-                        ],
-                      }}
-                    >
-                      <MainGallery item={items[0]} />
-                    </GridItem>
-                  </Fragment>
-                )
-                : null
-            }
+            {items && items[0] ? (
+              <Fragment>
+                {/* Gallery Title */}
+                <GridItem
+                  gutter={4}
+                  width={1}
+                  miscStyles={{
+                    paddingBottom: '1rem',
+                    paddingTop: '1rem',
+                  }}
+                >
+                  <TeaserHeader
+                    {...items[0]}
+                    typeScale={0}
+                    color={[ 'neutral', '-10', ]}
+                    miscStyles={{
+                      paddingStart: [ { until: 'xl', value: '4rem', }, ],
+                    }}
+                  />
+                </GridItem>
+                {/* Main Gallery */}
+                <GridItem
+                  gutter={4}
+                  width={[ { until: 'xl', value: 1, }, { from: 'xl', value: 9 / 12, }, ]}
+                  miscStyles={{
+                    paddingBottom: [ { until: 'xl', value: '2rem', }, ],
+                  }}
+                >
+                  <MainGallery item={items[0]} />
+                </GridItem>
+              </Fragment>
+            ) : null}
             {/* Related Galleries */}
             <GridItem
               gutter={4}
-              width={[
-                { until: 'xl', value: 1, },
-                { from: 'xl', value: 3 / 12, },
-              ]}
+              width={[ { until: 'xl', value: 1, }, { from: 'xl', value: 3 / 12, }, ]}
               stretchContent
               miscStyles={{
                 borderTop: [
@@ -106,10 +91,7 @@ function Slim({ list, listId, gaAction, biAction, }: Props) {
                   item={items[3]}
                   biAction={biAction}
                   miscStyles={{
-                    display: [
-                      { until: 'l', value: 'none', },
-                      { from: 'xl', value: 'none', },
-                    ],
+                    display: [ { until: 'l', value: 'none', }, { from: 'xl', value: 'none', }, ],
                   }}
                 />
               </Grid>
@@ -117,19 +99,14 @@ function Slim({ list, listId, gaAction, biAction, }: Props) {
           </ListView>
           <FelaComponent
             style={{
-              extend: [
-                theme.mq(
-                  { from: 's', },
-                  { display: 'none', },
-                ),
-              ],
+              extend: [ theme.mq({ from: 's', }, { display: 'none', }), ],
             }}
           >
             <MobileGalleryTeaser item={items[0]} biAction={biAction} />
           </FelaComponent>
         </Fragment>
       )}
-    />
+    </FelaTheme>
   );
 }
 

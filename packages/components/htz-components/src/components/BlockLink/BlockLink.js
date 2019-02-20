@@ -54,20 +54,10 @@ const blockLinkStyle = ({ theme, miscStyles, }) => ({
   ],
 });
 
-export default function BlockLink({
-  attrs,
-  children,
-  href,
-  onClick,
-  tagName,
-  target,
-  miscStyles,
-}) {
+export default function BlockLink({ attrs, children, href, onClick, tagName, target, miscStyles, }) {
   return (
-    <FelaComponent
-      miscStyles={miscStyles}
-      rule={blockLinkStyle}
-      render={({ theme, className, }) => {
+    <FelaComponent miscStyles={miscStyles} style={blockLinkStyle}>
+      {({ theme, className, }) => {
         const BlockLinkWrapper = tagName;
 
         return (
@@ -83,7 +73,8 @@ export default function BlockLink({
                 top: '0',
                 zIndex: '0',
               }}
-              render={({ className, }) => (
+            >
+              {({ className, }) => (
                 <HtzLink
                   className={className}
                   href={href}
@@ -96,10 +87,10 @@ export default function BlockLink({
                   }}
                 />
               )}
-            />
+            </FelaComponent>
           </BlockLinkWrapper>
         );
       }}
-    />
+    </FelaComponent>
   );
 }

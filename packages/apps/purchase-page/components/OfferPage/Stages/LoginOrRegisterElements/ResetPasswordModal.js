@@ -82,9 +82,7 @@ class ResetPasswordModal extends Component {
         closeOnOutsideClick
         overlayBgColor="rgba(22, 22, 22, 0.8)"
         render={({ handleClose, }) => (
-          <FelaComponent
-            style={modalStyle}
-            render={({
+          <FelaComponent style={modalStyle}>{({
               theme: {
                 stage3: {
                   form,
@@ -103,25 +101,31 @@ class ResetPasswordModal extends Component {
                   <CloseModalButton handleClose={handleClose} />
                 </FelaComponent>
                 <FelaComponent
-                  style={theme => ({
+                  style={(
+                    {
+                      theme
+                    }
+                  ) => ({
                     textAlign: 'center',
-                    extend: [ theme.type(1), ],
-                  })}
-                  render={({ className, }) => (
+                    extend: [ theme.type(1), ]
+                  })}>{({ className, }) => (
                     <H id="forgetPasswordDescription" className={className}>
                       {header}
                     </H>
-                  )}
-                />
+                  )}</FelaComponent>
                 {this.state.resetEmailSent ? (
                   <Fragment>
                     <FelaComponent
-                      style={theme => ({
+                      style={(
+                        {
+                          theme
+                        }
+                      ) => ({
                         color: theme.color('neutral', -3),
                         textAlign: 'center',
                         fontWeight: 'bold',
                         marginTop: '3rem',
-                        marginBottom: '2rem',
+                        marginBottom: '2rem'
                       })}
                     >
                       {successMessage}
@@ -221,8 +225,7 @@ class ResetPasswordModal extends Component {
                   </FelaComponent>
                 )}
               </div>
-            )}
-          />
+            )}</FelaComponent>
         )}
       />
     );

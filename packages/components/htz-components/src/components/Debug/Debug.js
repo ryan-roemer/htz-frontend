@@ -27,10 +27,14 @@ class Debug extends React.Component<Props, State> {
     const { children, } = this.props;
     return this.state.window && window.location.search.includes('debug') ? (
       <FelaComponent
-        style={theme => ({
+        style={(
+          {
+            theme
+          }
+        ) => ({
           fontSize: '20px',
           color: theme.color('input', 'primaryErrorTextLabel'),
-          textAlign: 'center',
+          textAlign: 'center'
         })}
       >
         {children}

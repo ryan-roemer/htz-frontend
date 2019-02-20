@@ -82,8 +82,7 @@ class Bonds extends React.Component<Props, State> {
         description='אגרות חוב: כל המידע על אג"ח, נתונים בזמן אמת, גרפים חדשות ועוד באתר TheMarker Finance'
         path={asPath}
       >
-        <FelaTheme
-          render={theme => (
+        <FelaTheme>{theme => (
             <Fragment>
               <PageRow>
                 <MarketSummary marketId="3" miscStyles={{ flexGrow: '1', }} />
@@ -116,8 +115,7 @@ class Bonds extends React.Component<Props, State> {
                       display: 'flex',
                       marginTop: '2rem',
                       ...theme.type(-1),
-                    }}
-                    render={({ className, }) => (
+                    }}>{({ className, }) => (
                       <Tabs
                         activeTab={index}
                       >
@@ -278,8 +276,7 @@ class Bonds extends React.Component<Props, State> {
                           />
                         </TabPanel>
                       </Tabs>
-                    )}
-                  />
+                    )}</FelaComponent>
                 </RowItem>
               </PageRow>
               <PageRow>
@@ -292,8 +289,7 @@ class Bonds extends React.Component<Props, State> {
                 </RowItem>
               </PageRow>
             </Fragment>
-          )}
-        />
+          )}</FelaTheme>
       </MainLayout>
     );
   }

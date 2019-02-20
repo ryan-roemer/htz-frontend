@@ -61,19 +61,23 @@ const CityIcon = ({ icon, ...props }) => {
 const ColoredLink = ({ crumb, }) => (
   <FelaComponent
     key={crumb.contentId}
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       fontWeight: '700',
       marginInlineEnd: '1rem',
+
       ':hover': {
         textDecoration: 'underline',
         underlineSkip: 'ink',
       },
-      extend: [ theme.type(-1), ],
-    })}
-    render={({ className, }) => (
+
+      extend: [ theme.type(-1), ]
+    })}>{({ className, }) => (
       <HtzLink className={className} content={crumb.name} href={crumb.url} />
-    )}
-  />
+    )}</FelaComponent>
 );
 
 class Breadcrumbs extends React.Component {
@@ -123,14 +127,13 @@ class Breadcrumbs extends React.Component {
     const crumbLinks = updatedCrumbs.map(crumb => <ColoredLink crumb={crumb} />);
 
     const cityIconWrapper = isLastOfLabelSection ? (
-      <FelaComponent style={{ float: 'left', }} render="span">
+      <FelaComponent style={{ float: 'left', }} as="span">
         <CityIcon icon={labelsSectionsIndex[lastCrumb.contentId]} height="4.5rem" />
       </FelaComponent>
     ) : null;
 
     return (
-      <FelaTheme
-        render={theme => {
+      <FelaTheme>{theme => {
           const {
             breadcrumbsI18n: { ariaLabel, },
           } = theme;
@@ -142,7 +145,7 @@ class Breadcrumbs extends React.Component {
                   return (
                     <Fragment key={elem.props.crumb.contentId + elem.props.crumb.pathSegment}>
                       <FelaComponent
-                        render="span"
+                        as="span"
                         style={{
                           color:
                             index === 0 ? theme.color('primary') : theme.color('neutral', '-2'),
@@ -179,7 +182,7 @@ class Breadcrumbs extends React.Component {
                               ),
                             ],
                           }}
-                          render="span"
+                          as="span"
                         >
                           {' | '}
                         </FelaComponent>
@@ -191,8 +194,7 @@ class Breadcrumbs extends React.Component {
               </nav>
             </Fragment>
           );
-        }}
-      />
+        }}</FelaTheme>
     );
   }
 }

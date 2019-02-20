@@ -67,22 +67,28 @@ export default class MobileMenuSection extends React.Component {
         {pages.map(
           (page, index) => (index < 2 || isOpen ? (
             <FelaComponent
-              style={theme => ({
+              style={(
+                {
+                  theme
+                }
+              ) => ({
                 ...indentedStyle,
-                extend: [ theme.type(typeSize), ],
-              })}
-              render={({ className, }) => (
+                extend: [ theme.type(typeSize), ]
+              })}>{({ className, }) => (
                 <li key={page.name} className={className}>
                   <MobileMenuLink {...page} />
                 </li>
-              )}
-            />
+              )}</FelaComponent>
           ) : null)
         )}
         {pages.length > 2 ? (
           <li>
             <FelaComponent
-              style={theme => ({
+              style={(
+                {
+                  theme
+                }
+              ) => ({
                 color: theme.color('neutral', '-10'),
                 display: 'flex',
                 justifyContent: 'flex-start',
@@ -91,12 +97,13 @@ export default class MobileMenuSection extends React.Component {
                 marginBottom: '1rem',
                 width: '100%',
                 extend: [ theme.type(typeSize - 1), ],
+
                 ':focus': {
                   outline: 'none',
                 },
-                ...indentedStyle,
-              })}
-              render={({ theme, className, }) => (
+
+                ...indentedStyle
+              })}>{({ theme, className, }) => (
                 <button
                   type="button"
                   className={className}
@@ -104,9 +111,7 @@ export default class MobileMenuSection extends React.Component {
                   aria-expanded={isOpen}
                   aria-label={`more ${sectionName}`}
                 >
-                  <FelaComponent
-                    style={{ color: theme.color('neutral', '-10'), }}
-                    render={({ className, }) => (
+                  <FelaComponent style={{ color: theme.color('neutral', '-10'), }}>{({ className, }) => (
                       <Fragment>
                         <span className={className}>
                           {isOpen
@@ -127,11 +132,9 @@ export default class MobileMenuSection extends React.Component {
                           />
                         </span>
                       </Fragment>
-                    )}
-                  />
+                    )}</FelaComponent>
                 </button>
-              )}
-            />
+              )}</FelaComponent>
           </li>
         ) : null}
       </ul>

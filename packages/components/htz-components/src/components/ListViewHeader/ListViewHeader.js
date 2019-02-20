@@ -126,8 +126,7 @@ export default function ListViewHeader({
       hasTitlePadding={hasTitlePadding}
       miscStyles={miscStyles}
       isCommercial={isCommercial}
-      rule={listViewHeaderStyle}
-      render={({ className, theme, }) => (
+      style={listViewHeaderStyle}>{({ className, theme, }) => (
         <header className={className}>
           {title && (
             <FelaComponent
@@ -156,13 +155,11 @@ export default function ListViewHeader({
                     ? parseStyleProps(titleMiscStyles, theme.mq, theme.type)
                     : []),
                 ],
-              }}
-              render={({ className: headerClass, }) => (url ? (
+              }}>{({ className: headerClass, }) => (url ? (
                 <FelaComponent
                   style={{
                     extend: [ theme.mq({ until: 's', }, { display: 'flex', width: '100%', }), ],
-                  }}
-                  render={({ className: linkClassName, }) => (
+                  }}>{({ className: linkClassName, }) => (
                     <HtzLink className={linkClassName} href={url}>
                       <H className={headerClass}>
                         {title}
@@ -178,13 +175,11 @@ export default function ListViewHeader({
                         />
                       </H>
                     </HtzLink>
-                  )}
-                />
+                  )}</FelaComponent>
               ) : (
                 <H className={headerClass}>{title}</H>
               ))
-              }
-            />
+              }</FelaComponent>
           )}
           {extraLinks && (
             <FelaComponent
@@ -204,14 +199,14 @@ export default function ListViewHeader({
                     : [ theme.mq({ until: 'l', }, { marginInlineStart: 'auto', }), ]),
                 ],
               }}
-              render="ul"
+              as="ul"
             >
               {extraLinks.map((item, idx) => (
                 <FelaComponent
                   style={{
                     extend: [ theme.mq({ until: 'l', }, { display: 'inline-block', }), ],
                   }}
-                  render="li"
+                  as="li"
                   key={item.contentId}
                 >
                   <FelaComponent
@@ -219,8 +214,7 @@ export default function ListViewHeader({
                       ':hover': {
                         color: theme.color('neutral', -1),
                       },
-                    }}
-                    render={({ className, }) => (
+                    }}>{({ className, }) => (
                       <HtzLink
                         href={item.href}
                         className={className}
@@ -235,8 +229,7 @@ export default function ListViewHeader({
                       >
                         {item.linkText || item.contentName}
                       </HtzLink>
-                    )}
-                  />
+                    )}</FelaComponent>
                   {idx !== extraLinks.length - 1 && (
                     <FelaComponent
                       style={{
@@ -245,7 +238,7 @@ export default function ListViewHeader({
                         marginLeft: '1rem',
                         extend: [ theme.mq({ from: 'l', }, { display: 'none', }), ],
                       }}
-                      render="span"
+                      as="span"
                     >
                       {'|'}
                     </FelaComponent>
@@ -270,12 +263,9 @@ export default function ListViewHeader({
                       return (
                         <Section>
                           <IconAlefLogoTransparent color="secondary" size={3} />
-                          <FelaComponent
-                            style={{ color: theme.color('secondary'), }}
-                            render={({ className: marketingHeaderClassName, }) => (
+                          <FelaComponent style={{ color: theme.color('secondary'), }}>{({ className: marketingHeaderClassName, }) => (
                               <H className={marketingHeaderClassName}>{marketingTeaser.title}</H>
-                            )}
-                          />
+                            )}</FelaComponent>
 
                           <FelaComponent
                             style={{
@@ -307,8 +297,7 @@ export default function ListViewHeader({
                       color: theme.color('commercial'),
                       extend: [ theme.type(-1), ],
                       fontFamily: theme.fontStacks ? theme.fontStacks.commercial : undefined,
-                    }}
-                    render={({ className: commercialHeaderClassName, }) => (
+                    }}>{({ className: commercialHeaderClassName, }) => (
                       <React.Fragment>
                         <H className={commercialHeaderClassName}>{theme.commercialListI18n.text}</H>
 
@@ -322,18 +311,21 @@ export default function ListViewHeader({
                               theme.type(-2, { fromBp: 'xl', lines: 4, }),
                             ],
                           }}
-                          render="ul"
+                          as="ul"
                         >
                           {commercialLinks.map((commercialLink, idx) => (
                             <FelaComponent
-                              style={theme => ({
+                              style={(
+                                {
+                                  theme
+                                }
+                              ) => ({
                                 marginBottom: idx < commercialLinks.length - 1 ? '1rem' : '0',
-
                                 '&:hover': { textDecoration: 'underline', },
-                                '&:focus': { textDecoration: 'underline', },
+                                '&:focus': { textDecoration: 'underline', }
                               })}
                               key={commercialLink.contentId}
-                              render="li"
+                              as="li"
                             >
                               <HtzLink
                                 href={commercialLink.href}
@@ -352,15 +344,13 @@ export default function ListViewHeader({
                           ))}
                         </FelaComponent>
                       </React.Fragment>
-                    )}
-                  />
+                    )}</FelaComponent>
                 )
               )}
             </FelaComponent>
           )}
         </header>
-      )}
-    />
+      )}</FelaComponent>
   );
 }
 

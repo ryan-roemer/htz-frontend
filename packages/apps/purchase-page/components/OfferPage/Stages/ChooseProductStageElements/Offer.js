@@ -265,8 +265,12 @@ const DesktopOffer = ({
                 </StyledBanner>
               ) : null}
               <FelaComponent
-                style={theme => ({
-                  extend: [ theme.mq({ until: 's', }, { textAlign: 'right', }), ],
+                style={(
+                  {
+                    theme
+                  }
+                ) => ({
+                  extend: [ theme.mq({ until: 's', }, { textAlign: 'right', }), ]
                 })}
               >
                 <StyledOfferTitle isRecommended={offer.isRecommended}>
@@ -294,7 +298,11 @@ const DesktopOffer = ({
                 />
               </FelaComponent>
               <FelaComponent
-                style={theme => ({
+                style={(
+                  {
+                    theme
+                  }
+                ) => ({
                   extend: [
                     theme.mq(
                       { until: 's', },
@@ -302,7 +310,7 @@ const DesktopOffer = ({
                         alignSelf: 'flex-end',
                       }
                     ),
-                  ],
+                  ]
                 })}
               >
                 <Button

@@ -83,8 +83,7 @@ export default function StickyListViewHeader({
   url,
 }: Props): React.Node {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <GridItem
           gutter={gutter}
           stretchContent
@@ -114,7 +113,6 @@ export default function StickyListViewHeader({
             miscStyles={innerMiscStyles}
           />
         </GridItem>
-      )}
-    />
+      )}</FelaTheme>
   );
 }

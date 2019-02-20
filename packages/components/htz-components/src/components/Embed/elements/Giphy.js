@@ -39,7 +39,8 @@ function Giphy({ settings: { src, height, width, }, onLoadCallback, }) {
         // prettier-ignore
         paddingBottom: `${(height / width) * 100}%`,
       }}
-      render={({ className, }) => (
+    >
+      {({ className, }) => (
         <div className={className}>
           <FelaComponent
             style={{
@@ -49,7 +50,8 @@ function Giphy({ settings: { src, height, width, }, onLoadCallback, }) {
               height: '100%',
               position: 'absolute',
             }}
-            render={({ className: iframeStyles, }) => (
+          >
+            {({ className: iframeStyles, }) => (
               <iframe
                 className={`${iframeStyles} 'giphy-embed'`}
                 title="Giphy"
@@ -59,10 +61,10 @@ function Giphy({ settings: { src, height, width, }, onLoadCallback, }) {
                 onLoad={onLoadCallback}
               />
             )}
-          />
+          </FelaComponent>
         </div>
       )}
-    />
+    </FelaComponent>
   );
 }
 

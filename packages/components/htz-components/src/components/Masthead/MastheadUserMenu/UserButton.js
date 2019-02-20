@@ -33,7 +33,11 @@ class UserButton extends React.Component {
     const { isOpen, userName, onClick, role, buttonRef, } = this.props;
     return (
       <FelaComponent
-        style={theme => ({
+        style={(
+          {
+            theme
+          }
+        ) => ({
           height: '100%',
           color: theme.color('userMenu', 'iconColor'),
           display: 'flex',
@@ -42,6 +46,7 @@ class UserButton extends React.Component {
           paddingBottom: '1rem',
           paddingInlineStart: '2rem',
           paddingInlineEnd: '1rem',
+
           extend: [
             theme.getTransition(1, 'swiftOut'),
             theme.type(-1),
@@ -53,9 +58,8 @@ class UserButton extends React.Component {
                 color: theme.color('userMenu', 'textOpenOrHover'),
               }
               : {},
-          ],
-        })}
-        render={({ className, theme, }) => (
+          ]
+        })}>{({ className, theme, }) => (
           <button
             ref={buttonRef}
             type="button"
@@ -69,7 +73,7 @@ class UserButton extends React.Component {
             onBlur={this.handleMouseLeave}
           >
             <FelaComponent
-              render="span"
+              as="span"
               style={{
                 paddingBlockStart: '0.4rem',
                 color:
@@ -81,7 +85,7 @@ class UserButton extends React.Component {
             >
               {userName ? (
                 <FelaComponent
-                  render="span"
+                  as="span"
                   style={{
                     fontWeight: '400',
                   }}
@@ -92,7 +96,7 @@ class UserButton extends React.Component {
                 </FelaComponent>
               ) : null}
               <FelaComponent
-                render="span"
+                as="span"
                 style={{
                   fontWeight: '700',
                 }}
@@ -102,8 +106,7 @@ class UserButton extends React.Component {
             </FelaComponent>
             <IconAvatar size={3.5} miscStyles={{ marginRight: '2rem', }} />
           </button>
-        )}
-      />
+        )}</FelaComponent>
     );
   }
 }

@@ -14,21 +14,24 @@ type Props = {
 // eslint-disable-next-line react/prop-types
 const RowItem = ({ title, children, miscStyles, }: Props): Node => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       ...theme.type(1),
       color: theme.color('neutral', '-1'),
+
       extend: [
         borderBottom('2px', 1, 'solid', theme.color('neutral', '-1')),
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ],
-    })}
-    render={({ className, }) => (
+      ]
+    })}>{({ className, }) => (
       <Fragment>
         { title && <H className={className}>{title}</H>}
         {children}
       </Fragment>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 RowItem.defaultProps = { miscStyles: null, children: null, };

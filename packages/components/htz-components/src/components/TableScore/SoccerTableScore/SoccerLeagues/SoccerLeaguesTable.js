@@ -87,7 +87,6 @@ export default class SoccerLeaguesTable extends React.Component<Props, State> {
     const { isOpen, league, } = this.state;
 
     return (
-
       <Query
         query={GET_LEAGUES_DATA}
         variables={{ identifier: league, }}
@@ -120,32 +119,29 @@ export default class SoccerLeaguesTable extends React.Component<Props, State> {
             : [ ...data.tableScore.data, ];
 
           return (
-
             <FelaComponent style={Container}>
               <FelaComponent style={CenteredElement}>
 
-                <FelaTheme render={theme => (
-                  <Table
-                    tableData={tableData}
-                    tableType="soccer-leagues"
-                    headers={theme.footballHeaders.headers}
-                    isOpen={isOpen}
-                    borders={borders}
-                  />)}
-                />
+                <FelaTheme>{theme => (
+                    <Table
+                      tableData={tableData}
+                      tableType="soccer-leagues"
+                      headers={theme.footballHeaders.headers}
+                      isOpen={isOpen}
+                      borders={borders}
+                    />)}</FelaTheme>
 
-                <FelaTheme render={theme => (
-                  <ToggleButton
-                    handleClick={this.handleToggle}
-                    rotateDeg={
-                      isOpen ? theme.btnOptions.degree.open
-                        : theme.btnOptions.degree.close}
-                    isOpen={isOpen}
-                  >
-                    {isOpen ? theme.btnOptions.title.open : theme.btnOptions.title.close}
-                  </ToggleButton>
-                )}
-                />
+                <FelaTheme>{theme => (
+                    <ToggleButton
+                      handleClick={this.handleToggle}
+                      rotateDeg={
+                        isOpen ? theme.btnOptions.degree.open
+                          : theme.btnOptions.degree.close}
+                      isOpen={isOpen}
+                    >
+                      {isOpen ? theme.btnOptions.title.open : theme.btnOptions.title.close}
+                    </ToggleButton>
+                  )}</FelaTheme>
 
               </FelaComponent>
             </FelaComponent>

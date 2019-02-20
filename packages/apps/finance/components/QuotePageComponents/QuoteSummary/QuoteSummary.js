@@ -31,8 +31,12 @@ const numToString: (number, number) => string = (num, decimal) => num.toLocaleSt
 
 const PaperItem = ({ title, value, }: PaperItemProps): Node => (
   <FelaComponent
-    render="p"
-    style={theme => ({
+    as="p"
+    style={(
+      {
+        theme
+      }
+    ) => ({
       alignItems: 'center',
       backgroundColor: theme.color('neutral', '-10'),
       display: 'flex',
@@ -40,13 +44,14 @@ const PaperItem = ({ title, value, }: PaperItemProps): Node => (
       flexGrow: '1',
       flexShrink: '1',
       paddingStart: '3.5rem',
+
       ':not(:last-child)': {
         marginBottom: '0.5rem',
-      },
+      }
     })}
   >
     <FelaComponent
-      render="span"
+      as="span"
       style={{
         marginEnd: '1rem',
       }}
@@ -54,7 +59,7 @@ const PaperItem = ({ title, value, }: PaperItemProps): Node => (
       {title}
     </FelaComponent>
     <FelaComponent
-      render="span"
+      as="span"
       style={{
         fontWeight: '700',
       }}
@@ -65,8 +70,7 @@ const PaperItem = ({ title, value, }: PaperItemProps): Node => (
 );
 
 const QuoteSummary = ({ valueData, date, assetInfo, }: Props): Node => (
-  <FelaTheme
-    render={theme => (
+  <FelaTheme>{theme => (
       <Grid
         gutter={2}
         miscStyles={{
@@ -134,7 +138,7 @@ const QuoteSummary = ({ valueData, date, assetInfo, }: Props): Node => (
             }}
           >
             <FelaComponent
-              render="span"
+              as="span"
               style={{
                 fontWeight: '700',
                 marginEnd: '1rem',
@@ -168,8 +172,7 @@ const QuoteSummary = ({ valueData, date, assetInfo, }: Props): Node => (
           ))}
         </GridItem>
       </Grid>
-    )}
-  />
+    )}</FelaTheme>
 );
 
 export default QuoteSummary;

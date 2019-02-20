@@ -48,11 +48,9 @@ export default function Popup2({
         padding: '5rem',
       }}
       render={({ isVisible, handleClose, isModal, }) => (
-        <FelaComponent
-          style={style.wrapper}
-          render={({ theme, className, }) => (
+        <FelaComponent style={style.wrapper}>{({ theme, className, }) => (
             <div className={className}>
-              <FelaComponent style={style.innerWrapper} render="span">
+              <FelaComponent style={style.innerWrapper} as="span">
                 <FelaComponent style={style.text1}>{text1}</FelaComponent>
                 <FelaComponent style={style.text2}>{text2}</FelaComponent>
                 <IconClose
@@ -69,8 +67,7 @@ export default function Popup2({
                 </Button>
               </FelaComponent>
             </div>
-          )}
-        />
+          )}</FelaComponent>
       )}
     />
   );

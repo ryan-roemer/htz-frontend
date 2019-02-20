@@ -36,7 +36,7 @@ const defaultProps = {
   accountLinkToken: null,
 };
 
-const contStyle = theme => ({
+const contStyle = ({ theme, }) => ({
   marginTop: '4rem',
   paddingInlineEnd: '2rem',
   paddingInlineStart: '2rem',
@@ -156,9 +156,8 @@ class MobileView extends Component {
     return (
       <ApolloConsumer>
         {cache => (
-          <FelaComponent
-            style={contStyle}
-            render={({
+          <FelaComponent style={contStyle}>
+            {({
               className,
               theme,
               theme: {
@@ -177,17 +176,19 @@ class MobileView extends Component {
                       color: theme.color('offerPage', 'buttonText'),
                       extend: [ theme.type(2), ],
                     }}
-                    render="p"
+                    as="p"
                   >
                     <a
-                      href={`${loginRedirect.url[host]}?account_linking_token=${accountLinkToken}&redirect_uri=${fbRedirectUri}`}
+                      href={`${
+                        loginRedirect.url[host]
+                      }?account_linking_token=${accountLinkToken}&redirect_uri=${fbRedirectUri}`}
                     >
                       <Fragment>
                         {loginRedirect.beforeLinkText}
                         {' '}
                         <FelaComponent
-                          render="span"
-                          style={theme => ({
+                          as="span"
+                          style={({ theme, }) => ({
                             textDecoration: 'underline',
                             textDecorationSkip: 'ink',
                           })}
@@ -310,12 +311,13 @@ class MobileView extends Component {
                                       theme.color('offerPage', 'borderHighlighted')
                                     ),
                                   }}
-                                  render={({ className, }) => (
+                                >
+                                  {({ className, }) => (
                                     <span className={className}>
                                       {staticTableData.mobileExpandBtn}
                                     </span>
                                   )}
-                                />
+                                </FelaComponent>
                               </Button>
                             </StyledItemEndCont>
                           </StyledItemMainCont>
@@ -366,7 +368,7 @@ class MobileView extends Component {
                 ))}
               </div>
             )}
-          />
+          </FelaComponent>
         )}
       </ApolloConsumer>
     );

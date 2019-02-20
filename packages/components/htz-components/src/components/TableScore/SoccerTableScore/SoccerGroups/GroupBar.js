@@ -11,11 +11,11 @@ type Props = {
   setGroup: (string, Object) => void,
   groupNumber: number,
   client: Object,
-}
+};
 
 type State = {
   activeTab: number,
-}
+};
 
 const barRule: Object => Object = ({ theme, }) => ({
   display: 'flex',
@@ -33,7 +33,6 @@ const barRule: Object => Object = ({ theme, }) => ({
       color: theme.color('primary', -6),
     }),
   ],
-
 });
 
 const singleTabRule: Object => Object = ({ theme, active, borderRightOut, }) => ({
@@ -44,10 +43,13 @@ const singleTabRule: Object => Object = ({ theme, active, borderRightOut, }) => 
   color: theme.color('button', 'primaryOpaqueHoverBg'),
   extend: [
     theme.mq({ from: 's', }, { padding: '1rem 1.8rem', }),
-    theme.mq({ until: 's', }, {
-      padding: '1rem 1.2rem',
-      ...theme.type(-3),
-    }),
+    theme.mq(
+      { until: 's', },
+      {
+        padding: '1rem 1.2rem',
+        ...theme.type(-3),
+      }
+    ),
     borderRight(borderRightOut),
   ],
 });
@@ -56,8 +58,7 @@ type SingleTabOptions = {
   text: string,
   active: boolean,
   index: number,
-}
-
+};
 
 function SingleTab({ text, active, index, }: SingleTabOptions): Node {
   const borderRightEmpty: Object = {
@@ -73,38 +74,29 @@ function SingleTab({ text, active, index, }: SingleTabOptions): Node {
     color: 'lightgrey',
   };
 
-  const singleTab: Node = index === 0
-    ? (
-      <FelaComponent
-        active={active}
-        borderRightOut={borderRightEmpty}
-        rule={singleTabRule}
-      >
-        {text}
-      </FelaComponent>
-    )
-    : (
-      <FelaComponent
-        active={active}
-        borderRightOut={borderRightFilled}
-        rule={singleTabRule}
-      >
-        {text}
-      </FelaComponent>
-    );
+  const singleTab: Node = index === 0 ? (
+    <FelaComponent active={active} borderRightOut={borderRightEmpty} style={singleTabRule}>
+      {text}
+    </FelaComponent>
+  ) : (
+    <FelaComponent active={active} borderRightOut={borderRightFilled} style={singleTabRule}>
+      {text}
+    </FelaComponent>
+  );
 
   return singleTab;
 }
 
-class GroupBar extends React.Component <Props, State> {
+class GroupBar extends React.Component<Props, State> {
   state = {
     activeTab: -1,
   };
 
   static getDerivedStateFromProps(props: Props, state: State) {
-    return state.activeTab === -1 ? {
-      activeTab: props.groupNumber - 1,
-    }
+    return state.activeTab === -1
+      ? {
+        activeTab: props.groupNumber - 1,
+      }
       : state;
   }
 
@@ -115,29 +107,24 @@ class GroupBar extends React.Component <Props, State> {
 
   render(): Node {
     return (
-      <FelaComponent
-        rule={barRule}
-        render={({ className, }) => (
-          <FelaTheme render={theme => (
-            <div className={className}>
-
-              {
-              theme.groupBarTabs.headers.map((h, index) => {
-                const active = this.state.activeTab === index;
-                return (
-                  <ClickArea onClick={() => this.handleClick(index)} key={h}>
-                    <SingleTab index={index} text={h} active={active} />
-                  </ClickArea>
-                );
-              })
-            }
-
-
-            </div>
-          )}
-          />
+      <FelaComponent style={barRule}>
+        {({ className, }) => (
+          <FelaTheme>
+            {theme => (
+              <div className={className}>
+                {theme.groupBarTabs.headers.map((h, index) => {
+                  const active = this.state.activeTab === index;
+                  return (
+                    <ClickArea onClick={() => this.handleClick(index)} key={h}>
+                      <SingleTab index={index} text={h} active={active} />
+                    </ClickArea>
+                  );
+                })}
+              </div>
+            )}
+          </FelaTheme>
         )}
-      />
+      </FelaComponent>
     );
   }
 }

@@ -48,18 +48,23 @@ const defaultProps = {
 // eslint-disable-next-line react/prop-types
 const RegistrationWrapper = ({ miscStyles, children, }) => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       position: 'relative',
       textAlign: 'center',
       marginTop: '4rem',
+
       extend: [
         borderVertical('1px', 4, 'solid', theme.color('primary')),
         ...(miscStyles
           ? parseStyleProps(miscStyles, theme.mq, theme.type)
           : []),
-      ],
+      ]
     })}
-    render="aside"
+    as="aside"
   >
     {children}
   </FelaComponent>
@@ -68,10 +73,14 @@ const RegistrationWrapper = ({ miscStyles, children, }) => (
 // eslint-disable-next-line react/prop-types
 const TeaserBody = ({ children, }) => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       color: theme.color('neutral', '-3'),
       marginBottom: '2rem',
-      extend: [ theme.type(5), ],
+      extend: [ theme.type(5), ]
     })}
   >
     {children}
@@ -81,16 +90,20 @@ const TeaserBody = ({ children, }) => (
 // eslint-disable-next-line react/prop-types
 const IconWrapper = ({ children, }) => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       position: 'absolute',
       transform: 'translate(-50%, -50%)',
       end: '50%',
       top: '0',
       backgroundColor: theme.color('neutral', '-10'),
       paddingLeft: '2rem',
-      paddingRight: '2rem',
+      paddingRight: '2rem'
     })}
-    render="span"
+    as="span"
   >
     {children}
   </FelaComponent>
@@ -117,8 +130,7 @@ class MobileQuickRegistration extends Component {
     } = this.props;
     const href = `mailto:${doubleOptIn}-${mailto}?subject=${mailSubject}&body=${mailBody}`;
     return (
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>{theme => (
           <Media
             query={{ until: 's', }}
             render={() => (
@@ -166,8 +178,7 @@ class MobileQuickRegistration extends Component {
               </ShouldRenderNewsletterProvider>
             )}
           />
-        )}
-      />
+        )}</FelaTheme>
     );
   }
 }

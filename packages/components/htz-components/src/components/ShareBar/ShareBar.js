@@ -53,11 +53,12 @@ class ShareBar extends React.Component<Props, State> {
 
     return (
       <FelaComponent
-        style={(theme: Object) => ({
+        style={({ theme, }) => ({
           marginTop: '3rem',
           display: 'flex',
           paddingInlineEnd: '1.5rem',
           justifyContent: 'space-between',
+
           extend: [
             borderTop({
               width: '1px',
@@ -69,7 +70,8 @@ class ShareBar extends React.Component<Props, State> {
             ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
           ],
         })}
-        render={({ className, theme, }) => (
+      >
+        {({ className, theme, }) => (
           <div className={className}>
             <ActionButtons
               elementName={title}
@@ -129,7 +131,7 @@ class ShareBar extends React.Component<Props, State> {
             </FelaComponent>
           </div>
         )}
-      />
+      </FelaComponent>
     );
   }
 }

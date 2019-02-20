@@ -25,9 +25,7 @@ const secureLineStyle = ({ theme, withLine, miscStyles, }) => ({
     borderTopColor: theme.color('offerPage', 'borderPositive'),
     borderTopStyle: 'solid',
   }),
-  extend: [
-    ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-  ],
+  extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
 });
 
 const iconContainerStyle = {
@@ -38,7 +36,7 @@ const iconContainerStyle = {
   paddingInlineStart: '1rem',
 };
 
-const underSecureIconStyle = theme => ({
+const underSecureIconStyle = ({ theme, }) => ({
   lineSpacing: '3px',
   display: 'block',
   letterSpacing: '3px',
@@ -52,21 +50,16 @@ const underSecureIconStyle = theme => ({
 
 function SecurePaymentLine({ withLine, size, miscStyles, }) {
   return (
-    <FelaComponent
-      rule={secureLineStyle}
-      withLine={withLine}
-      miscStyles={miscStyles}
-    >
+    <FelaComponent style={secureLineStyle} withLine={withLine} miscStyles={miscStyles}>
       <FelaComponent style={iconContainerStyle}>
         <IconSafePayment size={size} color={[ 'neutral', '+2', ]} />
       </FelaComponent>
 
-      <FelaComponent
-        style={underSecureIconStyle}
-        render={({ theme, className, }) => (
+      <FelaComponent style={underSecureIconStyle}>
+        {({ theme, className, }) => (
           <span className={className}>{theme.stage4.securePaymentText}</span>
         )}
-      />
+      </FelaComponent>
     </FelaComponent>
   );
 }

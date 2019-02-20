@@ -77,8 +77,8 @@ class TabbedTable extends React.Component<Props, State> {
     const { controls, selectedTab, index, } = this.state;
     const { panel, tabs, presentation, } = this.props;
     return (
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>
+        {theme => (
           <FelaComponent
             style={{
               color: theme.color('neutral', '-3'),
@@ -86,37 +86,34 @@ class TabbedTable extends React.Component<Props, State> {
               marginTop: '2rem',
               ...theme.type(-1),
             }}
-            render={({ className, }) => (
+          >
+            {({ className, }) => (
               <Tabs activeTab={index}>
                 <TabList className={className}>
-                  {tabs.map(
-                    ({ control, tabData, display, }: TabType, i: number) => (
-                      <Tab
-                        index={i}
-                        controls={`tab-${control}`}
-                        presentation={presentation}
-                        rule={tabRule}
-                        onClick={() => this.changeSelectedTab({
-                          controls: control,
-                          selectedTab: tabData,
-                          index: i,
-                        })
-                        }
-                        render={TabButton}
-                      >
-                        <span>{display}</span>
-                      </Tab>
-                    )
-                  )}
+                  {tabs.map(({ control, tabData, display, }: TabType, i: number) => (
+                    <Tab
+                      index={i}
+                      controls={`tab-${control}`}
+                      presentation={presentation}
+                      rule={tabRule}
+                      onClick={() => this.changeSelectedTab({
+                        controls: control,
+                        selectedTab: tabData,
+                        index: i,
+                      })
+                      }
+                      render={TabButton}
+                    >
+                      <span>{display}</span>
+                    </Tab>
+                  ))}
                 </TabList>
-                <TabPanel id={`tab-${controls}`}>
-                  {panel({ selectedTab, })}
-                </TabPanel>
+                <TabPanel id={`tab-${controls}`}>{panel({ selectedTab, })}</TabPanel>
               </Tabs>
             )}
-          />
+          </FelaComponent>
         )}
-      />
+      </FelaTheme>
     );
   }
 }

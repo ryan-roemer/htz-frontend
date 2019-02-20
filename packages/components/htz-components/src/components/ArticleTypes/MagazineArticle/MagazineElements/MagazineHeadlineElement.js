@@ -89,8 +89,7 @@ function MagazineHeadlineElement({ elementObj, isVariationB, miscStyles, }) {
   const creditPrefix = elementObj.inputTemplate === 'com.tm.Image' ? 'צילום' : null;
 
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <FelaComponent
           style={{
             extend: [
@@ -149,8 +148,7 @@ function MagazineHeadlineElement({ elementObj, isVariationB, miscStyles, }) {
             }}
           />
         </FelaComponent>
-      )}
-    />
+      )}</FelaTheme>
   );
 }
 

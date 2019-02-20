@@ -56,22 +56,18 @@ const HeadersStyle: Object = {
 function TableHeaderTab({ children, index, }: HeaderTabProps): Node {
   return index === 0 ? (
     <FelaComponent
-      rule={SingleTabStyle}
+      style={SingleTabStyle}
       borderWidth="0"
       minWidth="40px"
       textAlign="right"
       mediaPaddingRight="1.5rem"
-      mediaMinWidth="18rem"
-      render={({ className, }) => <th className={className}>{children}</th>}
-    />) : (
+      mediaMinWidth="18rem">{({ className, }) => <th className={className}>{children}</th>}</FelaComponent>) : (
       <FelaComponent
-        rule={SingleTabStyle}
+        style={SingleTabStyle}
         borderWidth="1px"
         minWidth="60px"
         textAlign="center"
-        mediaPaddingRight="0.9"
-        render={({ className, }) => <th className={className}>{children}</th>}
-      />);
+        mediaPaddingRight="0.9">{({ className, }) => <th className={className}>{children}</th>}</FelaComponent>);
 }
 
 

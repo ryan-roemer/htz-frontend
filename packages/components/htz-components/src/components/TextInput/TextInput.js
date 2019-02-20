@@ -426,7 +426,7 @@ class TextInput extends Component {
     maxLength: null,
     minLength: null,
     miscStyles: null,
-    wrapperStyle: {},
+    wrapperStyle: null,
     noteId: null,
     noteText: null,
     onBlur: null,

@@ -31,8 +31,7 @@ export default function VerticlaTeaser({
     { from: 'l', value: -1, },
   ];
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Teaser
           onClick={biAction ? () => biAction({ index: 2, articleId: itemData.representedContent, }) : null}
           miscStyles={{
@@ -69,7 +68,6 @@ export default function VerticlaTeaser({
             renderFooter={() => <TeaserFooter data={itemData} displayFlags={displayFlags} />}
           />
         </Teaser>
-      )}
-    />
+      )}</FelaTheme>
   );
 }

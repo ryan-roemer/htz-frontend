@@ -50,7 +50,7 @@ const defaultProps = {
   rate: 0,
 };
 
-const counterStyle = theme => ({
+const counterStyle = ({ theme, }) => ({
   color: theme.color('neutral', '-3'),
   verticalAlign: 'center',
   marginInlineStart: '1rem',
@@ -65,9 +65,7 @@ const styles = ({ theme, miscStyles, }) => ({
   ':disabled': {
     cursor: 'default',
   },
-  extend: [
-    ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-  ],
+  extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
 });
 
 export function Like({
@@ -88,10 +86,8 @@ export function Like({
   // todo: get actual disabled color from designer
   const computedIconColor = isDisabled ? [ 'neutral', '-3', ] : iconColor;
   return (
-    <FelaComponent
-      miscStyles={miscStyles}
-      rule={styles}
-      render={({ className, theme: { commentsSectionI18n, }, }) => (
+    <FelaComponent miscStyles={miscStyles} style={styles}>
+      {({ className, theme: { commentsSectionI18n, }, }) => (
         <button
           className={className}
           type="button"
@@ -114,12 +110,12 @@ export function Like({
             </Fragment>
           )}
 
-          <FelaComponent style={counterStyle} render="span">
+          <FelaComponent style={counterStyle} as="span">
             {rate}
           </FelaComponent>
         </button>
       )}
-    />
+    </FelaComponent>
   );
 }
 

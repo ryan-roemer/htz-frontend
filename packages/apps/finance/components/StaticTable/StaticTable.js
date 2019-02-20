@@ -22,16 +22,15 @@ type Props = {
 
 const StaticTable = ({ data, columns, miscStyles, }: Props): Node => (
   <FelaComponent
-    style={(theme: Object) => ({
+    style={({ theme, }) => ({
       ...theme.type(-2),
       tableLayout: 'fixed',
       whiteSpace: 'nowrap',
       width: '100%',
-      extend: [
-        ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ],
+
+      extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
     })}
-    render="table"
+    as="table"
   >
     <thead>
       <tr>
@@ -53,22 +52,18 @@ const StaticTable = ({ data, columns, miscStyles, }: Props): Node => (
       {data.map(asset => (
         <FelaComponent
           key={asset[Object.keys(asset)[0]]}
-          style={theme => ({
+          style={({ theme, }) => ({
             backgroundColor: theme.color('neutral', '-10'),
+
             extend: [
               borderBottom('2px', 1, 'solid', theme.color('neutral', '-6')),
-              ...(miscStyles
-                ? parseStyleProps(miscStyles, theme.mq, theme.type)
-                : []),
+              ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
             ],
           })}
-          render="tr"
+          as="tr"
         >
           {columns.map(({ name, styles, render, }: Column) => (
-            <TdComponent
-              key={`${name}-${asset[Object.keys(asset)[0]]}`}
-              miscStyles={styles}
-            >
+            <TdComponent key={`${name}-${asset[Object.keys(asset)[0]]}`} miscStyles={styles}>
               {render(asset[name])}
             </TdComponent>
           ))}

@@ -142,8 +142,7 @@ Teaser1.defaultProps = teaserDefaultProps;
 
 function Teaser1({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.Node {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Teaser
           data={data}
           gutter={1}
@@ -212,8 +211,7 @@ function Teaser1({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.No
             )}
           />
         </Teaser>
-      )}
-    />
+      )}</FelaTheme>
   );
 }
 

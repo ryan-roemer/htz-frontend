@@ -97,7 +97,7 @@ class ToggleFade extends React.Component {
     } = this.props;
     return (
       <FelaComponent
-        rule={({ theme, }) => ({
+        style={({ theme, }) => ({
           opacity: show ? '1' : '0',
           ...(!((show && durationIn === 0) || (!show && durationOut === 0))
             ? {
@@ -115,8 +115,7 @@ class ToggleFade extends React.Component {
               ? parseStyleProps(miscStyles, theme.mq, theme.type)
               : []),
           ],
-        })}
-        render={({ className, }) => (
+        })}>{({ className, }) => (
           <div
             className={className}
             // eslint-disable-next-line no-return-assign
@@ -132,8 +131,7 @@ class ToggleFade extends React.Component {
               render({ animating, })
             ) : null}
           </div>
-        )}
-      />
+        )}</FelaComponent>
     );
   }
 }

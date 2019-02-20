@@ -61,7 +61,7 @@ export default class Survey extends React.Component {
         {inView => {
           const load = this.showAnimation ? inView : true;
           return (
-            <FelaComponent mode={mode} rule={style.wrapper}>
+            <FelaComponent mode={mode} style={style.wrapper}>
               <FelaComponent style={style.legendsWrapper}>
                 {this.xls.surveys.map((v, i) => {
                   const legend = v.legend.split(',').map(v => v.trim());
@@ -72,10 +72,10 @@ export default class Survey extends React.Component {
                     <FelaComponent style={style.legend} key={this.colors[i]}>
                       <FelaComponent
                         color={this.colors[i]}
-                        rule={style.legendcolor}
-                        render="span"
+                        style={style.legendcolor}
+                        as="span"
                       />
-                      <FelaComponent style={style.legendLabel} render="span">
+                      <FelaComponent style={style.legendLabel} as="span">
                         <span>{legend[0]}</span>
                         <FelaComponent style={style.legendDate} render="span">{legend[1]}</FelaComponent>
                       </FelaComponent>
@@ -83,34 +83,34 @@ export default class Survey extends React.Component {
                   );
                 })}
               </FelaComponent>
-              <FelaComponent mode={mode} rule={style.surveyWrapper}>
+              <FelaComponent mode={mode} style={style.surveyWrapper}>
                 {this.items.map(item => (
                   <FelaComponent
                     itemsAmount={this.items.length}
                     mode={mode}
                     key={item}
-                    rule={style.chartWrapper}
+                    style={style.chartWrapper}
                   >
-                    <FelaComponent mode={mode} rule={style.labalWrapper} render="label">
-                      <FelaComponent mode={mode} rule={style.labal} render="label">
+                    <FelaComponent mode={mode} style={style.labalWrapper} as="label">
+                      <FelaComponent mode={mode} style={style.labal} as="label">
                         {item}
                       </FelaComponent>
                     </FelaComponent>
-                    <FelaComponent mode={mode} rule={style.barsWrapper}>
+                    <FelaComponent mode={mode} style={style.barsWrapper}>
                       {this.partiesValues[item].map((v, i) => (
                         <FelaComponent
                           mode={mode}
                           key={item + this.colors[i]}
-                          rule={style.barWrapper}
+                          style={style.barWrapper}
                         >
                           <FelaComponent
                             mode={mode}
                             barColor={this.colors[i]}
                             value={v}
                             load={load}
-                            rule={style.bar}
+                            style={style.bar}
                           />
-                          <FelaComponent mode={mode} rule={style.barValue}>
+                          <FelaComponent mode={mode} style={style.barValue}>
                             {v}
                           </FelaComponent>
                         </FelaComponent>
@@ -119,12 +119,12 @@ export default class Survey extends React.Component {
                   </FelaComponent>
                 ))}
               </FelaComponent>
-              <FelaComponent mode={mode} rule={style.buttonWrapper}>
+              <FelaComponent mode={mode} style={style.buttonWrapper}>
                 <Button
                   href="https://www.haaretz.co.il/EXT-INTERACTIVE-1.6826451"
                   style={style.button}
                 >
-                  <FelaTheme render={theme => theme.survey.button} />
+                  <FelaTheme>{theme => theme.survey.button}</FelaTheme>
                 </Button>
               </FelaComponent>
 

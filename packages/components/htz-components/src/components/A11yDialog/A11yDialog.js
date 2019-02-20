@@ -30,9 +30,7 @@ const dialogContentStyle = ({ theme, isModal, containerMiscStyles, }) => ({
   transform: 'translate(-50%,-50%)',
   zIndex: theme.getZIndex('modal', 1),
   extend: [
-    ...(containerMiscStyles
-      ? parseStyleProps(containerMiscStyles, theme.mq, theme.type)
-      : []),
+    ...(containerMiscStyles ? parseStyleProps(containerMiscStyles, theme.mq, theme.type) : []),
   ],
 });
 
@@ -122,25 +120,20 @@ class A11yDialog extends React.Component {
       }
     });
     if (Array.isArray(toggleRefs)) {
-      toggleRefs.forEach(id => buttonHandlers.setToggleHandler(id, this.toggleDialog)
-      );
+      toggleRefs.forEach(id => buttonHandlers.setToggleHandler(id, this.toggleDialog));
     }
   };
 
   componentWillReceiveProps = ({ isVisible, }) => {
     if (isVisible !== this.state.isVisible) {
-      this.setState(
-        { isVisible, },
-        () => (isVisible ? this.openDialog() : this.closeDialog())
-      );
+      this.setState({ isVisible, }, () => (isVisible ? this.openDialog() : this.closeDialog()));
     }
   };
 
   componentWillUnmount = () => {
     const { toggleRefs, } = this.props;
     if (Array.isArray(toggleRefs)) {
-      toggleRefs.forEach(id => buttonHandlers.clearHandler(id, this.toggleDialog)
-      );
+      toggleRefs.forEach(id => buttonHandlers.clearHandler(id, this.toggleDialog));
     }
   };
 
@@ -199,17 +192,15 @@ class A11yDialog extends React.Component {
             overlayAttrs,
             overlayBgColor,
           }}
-          rule={dialogOverlayStyle}
-          render={({ className, }) => (
+          style={dialogOverlayStyle}
+        >
+          {({ className, }) => (
             // eslint-disable-next-line jsx-a11y/no-static-element-interactions
             <div
               style={{ display: this.state.isVisible ? 'block' : 'none', }}
               onKeyDown={this.handleKeydown}
             >
-              <FocusLock
-                disabled={!(this.state.isVisible && isModal)}
-                autoFocus={false}
-              >
+              <FocusLock disabled={!(this.state.isVisible && isModal)} autoFocus={false}>
                 <div
                   className={className}
                   {...(closeOnOutsideClick
@@ -224,8 +215,9 @@ class A11yDialog extends React.Component {
                     isModal,
                     containerMiscStyles,
                   }}
-                  rule={dialogContentStyle}
-                  render={({ className, }) => (
+                  style={dialogContentStyle}
+                >
+                  {({ className, }) => (
                     <div
                       className={className}
                       role="dialog"
@@ -234,9 +226,7 @@ class A11yDialog extends React.Component {
                       ref={ref => {
                         this.container = ref;
                       }}
-                      {...(this.state.isVisible
-                        ? {}
-                        : { 'aria-hidden': 'true', })}
+                      {...(this.state.isVisible ? {} : { 'aria-hidden': 'true', })}
                     >
                       <div role="document">
                         {render({
@@ -247,11 +237,11 @@ class A11yDialog extends React.Component {
                       </div>
                     </div>
                   )}
-                />
+                </FelaComponent>
               </FocusLock>
             </div>
           )}
-        />
+        </FelaComponent>
       </Portal>
     ) : null;
   };

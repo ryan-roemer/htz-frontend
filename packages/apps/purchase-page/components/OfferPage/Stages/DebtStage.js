@@ -2,13 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FelaComponent, } from 'react-fela';
-import {
-  Button,
-  CheckBox,
-  Form,
-  BIAction,
-  ApolloConsumer,
-} from '@haaretz/htz-components';
+import { Button, CheckBox, Form, BIAction, ApolloConsumer, } from '@haaretz/htz-components';
 import Router, { withRouter, } from 'next/router';
 import pathGenerator from './utils/pathGenerator';
 
@@ -24,7 +18,7 @@ const propTypes = {
 
 const defaultProps = {};
 
-const contStyle = theme => ({
+const contStyle = ({ theme, }) => ({
   textAlign: 'center',
   paddingInlineStart: '2rem',
   paddingInlineEnd: '2rem',
@@ -44,24 +38,24 @@ const debtAmountStyle = {
   marginTop: '3rem',
 };
 
-const underDebtAmountStyle = theme => ({
+const underDebtAmountStyle = ({ theme, }) => ({
   display: 'block',
 });
 
-const mistakeStyle = theme => ({
+const mistakeStyle = ({ theme, }) => ({
   display: 'block',
   marginTop: '3rem',
   extend: [ theme.type(-1), ],
 });
 
-const linkStyle = theme => ({
+const linkStyle = ({ theme, }) => ({
   color: theme.color('offerPage', 'link'),
   ':visited': {
     color: theme.color('offerPage', 'link'),
   },
 });
 
-const formContStyle = theme => ({
+const formContStyle = ({ theme, }) => ({
   marginTop: '3rem',
   marginInlineStart: 'auto',
   marginInlineEnd: 'auto',
@@ -77,9 +71,8 @@ function StageDebt({ pastDebts, router, }) {
     .reduce((a, b) => a + b);
 
   return (
-    <FelaComponent
-      style={contStyle}
-      render={({
+    <FelaComponent style={contStyle}>
+      {({
         className,
         theme: {
           debt: {
@@ -98,25 +91,24 @@ function StageDebt({ pastDebts, router, }) {
       }) => (
         <div className={className}>
           <FelaComponent style={headerStyle}>{header}</FelaComponent>
-          <FelaComponent style={debtAmountStyle} render="span">
+          <FelaComponent style={debtAmountStyle} as="span">
             {amount(totalDebt)}
             {' '}
             {currency}
           </FelaComponent>
 
-          <FelaComponent style={underDebtAmountStyle} render="span">
+          <FelaComponent style={underDebtAmountStyle} as="span">
             {underAmount}
           </FelaComponent>
-          <FelaComponent style={mistakeStyle} render="span">
+          <FelaComponent style={mistakeStyle} as="span">
             {text}
-            <FelaComponent
-              style={linkStyle}
-              render={({ className, }) => (
+            <FelaComponent style={linkStyle}>
+              {({ className, }) => (
                 <a href={href} className={className}>
                   {content}
                 </a>
               )}
-            />
+            </FelaComponent>
           </FelaComponent>
           <ApolloConsumer>
             {cache => (
@@ -190,7 +182,7 @@ function StageDebt({ pastDebts, router, }) {
           </ApolloConsumer>
         </div>
       )}
-    />
+    </FelaComponent>
   );
 }
 

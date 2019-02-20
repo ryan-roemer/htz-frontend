@@ -177,8 +177,7 @@ function Teaser1({
   biAction,
 }: TeaserPropsType): React.Node {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Teaser
           data={data}
           gutter={0}
@@ -265,8 +264,7 @@ function Teaser1({
             renderFooter={() => <Footer data={data} showAuthor isRankOnTop />}
           />
         </Teaser>
-      )}
-    />
+      )}</FelaTheme>
   );
 }
 
@@ -277,8 +275,7 @@ function Teaser2({
   biAction,
 }: TeaserPropsType): React.Node {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Teaser
           data={data}
           gutter={1}
@@ -382,8 +379,7 @@ function Teaser2({
             renderFooter={() => <Footer data={data} />}
           />
         </Teaser>
-      )}
-    />
+      )}</FelaTheme>
   );
 }
 
@@ -394,8 +390,7 @@ function Teaser3({
   biAction,
 }: TeaserPropsType): React.Node {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Teaser
           data={data}
           gutter={1}
@@ -499,9 +494,8 @@ function Teaser3({
             renderFooter={() => <Footer data={data} />}
           />
         </Teaser>
-      )}
-    />
-);
+      )}</FelaTheme>
+  );
 }
 
 Teaser4.defaultProps = teaserDefaultProps;
@@ -659,7 +653,7 @@ function Footer({ data, showAuthor, isRankOnTop, }: FooterProps): React.Node {
                 content: '"\\20|\\20"',
               },
             }}
-            render="span"
+            as="span"
           >
             <TeaserAuthors
               authors={data.authors}
@@ -676,8 +670,13 @@ function Footer({ data, showAuthor, isRankOnTop, }: FooterProps): React.Node {
       {' '}
       {data.rank ? (
         <FelaComponent
-          style={theme => ({
+          style={(
+            {
+              theme
+            }
+          ) => ({
             flexBasis: 'auto',
+
             ...(isRankOnTop
               ? {
                 extend: [
@@ -687,9 +686,9 @@ function Footer({ data, showAuthor, isRankOnTop, }: FooterProps): React.Node {
                   ),
                 ],
               }
-              : {}),
+              : {})
           })}
-          render="div"
+          as="div"
         >
           <TeaserRank rank={data.rank} />
         </FelaComponent>

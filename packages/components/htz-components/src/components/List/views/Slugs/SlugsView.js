@@ -169,8 +169,8 @@ function MainTeaser({ data, lazyLoadImages, biAction, }: TeaserProps): React.Nod
   const articleId = data.contentId;
 
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>
+      {theme => (
         <Teaser
           data={data}
           gutter={0}
@@ -226,7 +226,7 @@ function MainTeaser({ data, lazyLoadImages, biAction, }: TeaserProps): React.Nod
           />
         </Teaser>
       )}
-    />
+    </FelaTheme>
   );
 }
 
@@ -235,8 +235,8 @@ function TwoUpTeaser({ data, lazyLoadImages, biAction, index, }: TeaserProps): R
   const articleId = data.contentId;
 
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>
+      {theme => (
         <Teaser
           data={data}
           gutter={0}
@@ -291,7 +291,7 @@ function TwoUpTeaser({ data, lazyLoadImages, biAction, index, }: TeaserProps): R
           />
         </Teaser>
       )}
-    />
+    </FelaTheme>
   );
 }
 

@@ -102,12 +102,16 @@ class ChangeableElementGroup extends React.Component<ElementGroupProps, State> {
           return (
             <FelaComponent
               key={element.contentId}
-              style={theme => ({
+              style={(
+                {
+                  theme
+                }
+              ) => ({
                 transform: `translateY(${show ? '0' : '8'}rem)`,
                 transitionProperty: 'transform',
                 ...theme.getDuration('transition', 1),
                 ...theme.getTimingFunction('transition', 'linear'),
-                ...theme.getDelay('transition', 0),
+                ...theme.getDelay('transition', 0)
               })}
             >
               <ToggleFade

@@ -12,7 +12,7 @@ const propTypes = {
 
 const defaultProps = {};
 
-const headerStyle = theme => ({
+const headerStyle = ({ theme, }) => ({
   fontWeight: 'normal',
   maxWidth: '80rem',
   marginInlineStart: 'auto',
@@ -31,9 +31,7 @@ const headerStyle = theme => ({
 function StageHeader({ headerElements, }) {
   return (
     <FelaComponent style={{ textAlign: 'center', }}>
-      <FelaComponent
-        style={headerStyle}
-        render={({ className, }) => (
+      <FelaComponent style={headerStyle}>{({ className, }) => (
           <h1 className={className}>
             {headerElements.map(element => (
               <FelaComponent style={{ display: 'block', }} key={Math.random()}>
@@ -41,8 +39,7 @@ function StageHeader({ headerElements, }) {
               </FelaComponent>
             ))}
           </h1>
-        )}
-      />
+        )}</FelaComponent>
     </FelaComponent>
   );
 }

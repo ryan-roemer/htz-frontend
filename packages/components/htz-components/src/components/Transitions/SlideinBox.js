@@ -54,7 +54,7 @@ export default class SlideinBox extends React.Component {
 
     return (
       <FelaComponent
-        rule={({ theme, }) => ({
+        style={({ theme, }) => ({
           overflow: 'hidden',
           position,
           left: 0,
@@ -81,18 +81,16 @@ export default class SlideinBox extends React.Component {
             transform: `logical translateX(${show ? 0 : -100}%)`,
             zIndex: 1,
           },
-        })}
-        render={({ className, }) => (
+        })}>{({ className, }) => (
           <div className={className} aria-expanded={show} aria-hidden={!show}>
             <FelaComponent
-              rule={({ theme, }) => ({
+              style={({ theme, }) => ({
                 transform: `logical translate${axis}(${tdir * (show ? 0 : 100)}%)`,
                 transitionProperty: 'transform',
                 ...theme.getDuration('transition', duration / 2),
                 ...theme.getDelay('transition', duration / 2),
                 ...theme.getTimingFunction('transition', 'linear'),
-              })}
-              render={({ className, }) => (
+              })}>{({ className, }) => (
                 <div
                   // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
                   tabIndex={show ? '0' : '-1'}
@@ -102,11 +100,9 @@ export default class SlideinBox extends React.Component {
                 >
                   {!show && !animating ? null : children}
                 </div>
-              )}
-            />
+              )}</FelaComponent>
           </div>
-        )}
-      />
+        )}</FelaComponent>
     );
   }
 }

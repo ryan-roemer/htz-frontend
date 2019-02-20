@@ -25,8 +25,7 @@ function Leonardo({ list, }: Props): Node {
     : null;
 
   return items ? (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <ListView
           innerBackgroundColor="white"
           gutter={0}
@@ -91,8 +90,7 @@ function Leonardo({ list, }: Props): Node {
             </Grid>
           </GridItem>
         </ListView>
-      )}
-    />
+      )}</FelaTheme>
   ) : (
     <Debug>There is not enough items to render this list view</Debug>
   );

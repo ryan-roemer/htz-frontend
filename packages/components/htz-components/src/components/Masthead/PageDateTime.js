@@ -31,42 +31,42 @@ function PageDateTime({ dateParts, miscStyles, }) {
 
   return dateParts.length === 4 ? (
     <FelaComponent
-      style={theme => ({
+      style={({ theme, }) => ({
         color: theme.color('neutral', '-3'),
+
         extend: [
           theme.type(-3),
           ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
         ],
       })}
-      render={({ className, }) => (
+    >
+      {({ className, }) => (
         <Time
           className={className}
           time={now}
           render={formattedTime => (
             <React.Fragment>
-              <FelaComponent render="span" style={stylePart(true)}>
+              <FelaComponent as="span" style={stylePart(true)}>
                 {dateParts[0]}
               </FelaComponent>
-              <FelaComponent render="span" style={stylePart(false)}>
+              <FelaComponent as="span" style={stylePart(false)}>
                 {dateParts[1]}
               </FelaComponent>
-              <FelaComponent
-                style={stylePart(true)}
-                render={({ className, }) => (
+              <FelaComponent style={stylePart(true)}>
+                {({ className, }) => (
                   <Time tagName="span" format="DD.MM.YYYY" time={now} className={className} />
                 )}
-              />
-              <FelaComponent
-                style={stylePart(false)}
-                render={({ className, }) => (
+              </FelaComponent>
+              <FelaComponent style={stylePart(false)}>
+                {({ className, }) => (
                   <Time tagName="span" format="HH:mm" time={now} className={className} />
                 )}
-              />
+              </FelaComponent>
             </React.Fragment>
           )}
         />
       )}
-    />
+    </FelaComponent>
   ) : null;
 }
 

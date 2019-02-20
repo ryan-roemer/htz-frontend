@@ -188,7 +188,7 @@ export default function TeaserHeader({
 }: TeaserHeaderProps): React.Node {
   return (
     <FelaComponent
-      rule={({ theme, }) => ({
+      style={({ theme, }) => ({
         extend: [
           ...[
             isCentered
@@ -199,7 +199,8 @@ export default function TeaserHeader({
           ...[ typeScale ? parseTypographyProp(typeScale, theme.type) : {}, ],
         ],
       })}
-      render={({ className: wrapperClassName, }) => (
+    >
+      {({ className: wrapperClassName, }) => (
         <AboveBlockLink>
           {({ className: AboveBlockLinkClassName, }) => (
             <div className={`${AboveBlockLinkClassName} ${wrapperClassName}`}>
@@ -219,19 +220,20 @@ export default function TeaserHeader({
                   color={color}
                   typeScale={typeScale}
                   miscStyles={miscStyles}
-                  rule={style}
-                  render={({ className, }) => (
+                  style={style}
+                >
+                  {({ className, }) => (
                     <H className={className} isH1={isH1} offset={offset} {...attrs || {}}>
                       <TeaserResponsiveText text={title} mobileText={titleMobile} />
                     </H>
                   )}
-                />
+                </FelaComponent>
               </HtzLink>
             </div>
           )}
         </AboveBlockLink>
       )}
-    />
+    </FelaComponent>
   );
 }
 

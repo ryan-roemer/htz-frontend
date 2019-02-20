@@ -11,7 +11,11 @@ import AdSlotBase from './AdSlotBase';
 function BillboardAdSlot(props: DfpBannerType): Node {
   return (
     <FelaComponent
-      style={theme => ({
+      style={(
+        {
+          theme
+        }
+      ) => ({
         extend: [
           theme.mq(
             { from: 's', },
@@ -21,7 +25,7 @@ function BillboardAdSlot(props: DfpBannerType): Node {
             { from: 'l', },
             { '&:not(:empty)': { paddingTop: '5rem', paddingBottom: '5rem', }, },
           ),
-        ],
+        ]
       })}
     >
       <AdSlotBase {...props} />

@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import { parseComponentProp, } from '@haaretz/htz-css-tools';
 import { responsivePropBaseType, } from '../../propTypes/responsivePropBaseType';
 
-const colorShape = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.arrayOf(PropTypes.string),
-]);
+const colorShape = PropTypes.oneOfType([ PropTypes.string, PropTypes.arrayOf(PropTypes.string), ]);
 
 const propTypes = {
   /**
@@ -95,8 +92,7 @@ const arrowDashStyle = (theme, isOpen, color, size, thickness) => ({
           setColor,
           theme.color
         ),
-      ]
-    ),
+      ]),
   ],
 });
 
@@ -127,7 +123,8 @@ const getDirections = (direction, size) => {
 
   const directionMap = new Map([
     [
-      'r', {
+      'r',
+      {
         rotation: {
           before: '45',
           after: '-45',
@@ -136,7 +133,8 @@ const getDirections = (direction, size) => {
       },
     ],
     [
-      'd', {
+      'd',
+      {
         rotation: {
           before: '45',
           after: '-45',
@@ -145,7 +143,8 @@ const getDirections = (direction, size) => {
       },
     ],
     [
-      'l', {
+      'l',
+      {
         rotation: {
           before: '-45',
           after: '45',
@@ -154,7 +153,8 @@ const getDirections = (direction, size) => {
       },
     ],
     [
-      'u', {
+      'u',
+      {
         rotation: {
           before: '-45',
           after: '45',
@@ -172,60 +172,34 @@ const getDirections = (direction, size) => {
 
 const arrowStyle = ({ theme, isOpen, color, size, thickness, direction, }) => {
   const { start, end, } = getDirections(direction, size);
-  return ({
+  return {
     display: 'inline-block',
     ':before': {
       ...arrowDashStyle(theme, isOpen, color, size, thickness),
-      bottom: `${50 + (size * 2.5)}%`,
+      bottom: `${50 + size * 2.5}%`,
       transform: `
-        translateY(${
-    isOpen
-      ? end.position.before.y
-      : start.position.before.y
-    }rem) translateX(${
-      isOpen
-        ? end.position.before.x
-        : start.position.before.x
-    }%) rotate(${
-      isOpen
-        ? end.rotation.before
-        : start.rotation.before
-    }deg)
+        translateY(${isOpen ? end.position.before.y : start.position.before.y}rem) translateX(${
+  isOpen ? end.position.before.x : start.position.before.x
+}%) rotate(${isOpen ? end.rotation.before : start.rotation.before}deg)
       `,
     },
     ':after': {
       ...arrowDashStyle(theme, isOpen, color, size, thickness),
-      top: `${50 + (size * 2.5)}%`,
+      top: `${50 + size * 2.5}%`,
       transform: `
-        translateY(${
-    isOpen
-      ? end.position.after.y
-      : start.position.after.y
-    }rem) translateX(${
-      isOpen
-        ? end.position.after.x
-        : start.position.after.x
-    }%) rotate(${
-      isOpen
-        ? end.rotation.after
-        : start.rotation.after
-    }deg)
+        translateY(${isOpen ? end.position.after.y : start.position.after.y}rem) translateX(${
+  isOpen ? end.position.after.x : start.position.after.x
+}%) rotate(${isOpen ? end.rotation.after : start.rotation.after}deg)
       `,
     },
-  });
+  };
 };
 
 function FlippingArrow(props) {
   return (
-    <FelaComponent
-      {...props}
-      rule={arrowStyle}
-      render={({ className, }) => (
-        <i
-          className={className}
-        />
-      )}
-    />
+    <FelaComponent {...props} style={arrowStyle}>
+      {({ className, }) => <i className={className} />}
+    </FelaComponent>
   );
 }
 

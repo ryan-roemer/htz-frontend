@@ -22,15 +22,14 @@ export default function PaymentChangePage(props) {
         <ChangePaymentCreditGuardIframe productId={productId} />
       ) : (
         <FelaComponent
-          style={theme => ({
+          style={({ theme, }) => ({
             marginTop: '3rem',
             textAlign: 'center',
             extend: [ theme.type(3), ],
           })}
-          render={({ theme, className, }) => (
-            <div className={className}>Ilegal product</div>
-          )}
-        />
+        >
+          {({ theme, className, }) => <div className={className}>Ilegal product</div>}
+        </FelaComponent>
       )}
     </MainLayout>
   );

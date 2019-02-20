@@ -62,13 +62,18 @@ class Zen extends React.Component {
           if (hide) {
             return (
               <FelaComponent
-                style={theme => ({
+                style={(
+                  {
+                    theme
+                  }
+                ) => ({
                   display: zenMode ? 'none' : 'block',
+
                   extend: [
                     ...(miscStyles
                       ? parseStyleProps(miscStyles, theme.mq, theme.type)
                       : []),
-                  ],
+                  ]
                 })}
               >
                 {children}
@@ -85,12 +90,16 @@ class Zen extends React.Component {
           if (!zenMode) {
             return (
               <FelaComponent
-                style={theme => ({
+                style={(
+                  {
+                    theme
+                  }
+                ) => ({
                   extend: [
                     ...(miscStyles
                       ? parseStyleProps(miscStyles, theme.mq, theme.type)
                       : []),
-                  ],
+                  ]
                 })}
               >
                 {children}

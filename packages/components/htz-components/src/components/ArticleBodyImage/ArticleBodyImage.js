@@ -311,14 +311,13 @@ function ArticleBodyImage({
 }) {
   return (
     <FelaComponent
-      rule={wrapperStyle}
+      style={wrapperStyle}
       viewMode={forceAspect || viewMode}
       lastItem={lastItem}
       isHeadline={isHeadline}
       className={className}
       miscStyles={miscStyles}
-      isFullScreen={isFullScreen}
-      render={({
+      isFullScreen={isFullScreen}>{({
         className,
         theme: {
           creditPrefixI18n: { imageCreditPrefix, },
@@ -364,8 +363,7 @@ function ArticleBodyImage({
             />
           ) : null}
         </figure>
-      )}
-    />
+      )}</FelaComponent>
   );
 }
 

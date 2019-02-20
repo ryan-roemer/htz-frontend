@@ -42,19 +42,21 @@ class Tabs extends React.Component<Props, State> {
     const TabTag: string = render || 'div';
     return (
       <FelaComponent
-        style={theme => ({
+        style={(
+          {
+            theme
+          }
+        ) => ({
           extend: [
             ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-          ],
-        })}
-        render={({ className, }) => (
+          ]
+        })}>{({ className, }) => (
           <TabTag className={className}>
             {
               children({ activeTab, setActiveTab: this.setActiveTab, })
             }
           </TabTag>
-        )}
-      />
+        )}</FelaComponent>
     );
   }
 }

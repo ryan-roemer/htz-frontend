@@ -2,12 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createComponent, FelaComponent, } from 'react-fela';
 import ReactGA from 'react-ga';
-import {
-  borderBottom,
-  borderEnd,
-  borderStart,
-  borderTop,
-} from '@haaretz/htz-css-tools';
+import { borderBottom, borderEnd, borderStart, borderTop, } from '@haaretz/htz-css-tools';
 
 import {
   Button,
@@ -53,29 +48,29 @@ const tableStyle = ({ theme, }) => ({
   extend: [ theme.mq({ until: 'l', }, { display: 'none', }), ],
 });
 
-const StyledTable = createComponent(tableStyle, 'div');
+// const StyledTable = createComponent(tableStyle, 'div');
 
-const theadStyle = () => ({
+const theadStyle = {
   display: 'table',
   width: '100%',
   textAlign: 'center',
   top: 0,
-});
+};
 
-const StyledThead = createComponent(theadStyle, 'div');
+// const StyledThead = createComponent(theadStyle, 'div');
 
-const tFootStyle = () => ({
+const tFootStyle = {
   display: 'table',
   width: '100%',
-});
+};
 
-const StyledTFoot = createComponent(tFootStyle, 'div');
+// const StyledTFoot = createComponent(tFootStyle, 'div');
 
-const tBodyStyle = () => ({
+const tBodyStyle = {
   display: 'table',
   width: '100%',
-});
-const StyledTBody = createComponent(tBodyStyle, 'div');
+};
+// const StyledTBody = createComponent(tBodyStyle, 'div');
 
 const thInnerContStyle = ({
   hasBorderTop = false,
@@ -86,9 +81,7 @@ const thInnerContStyle = ({
 }) => ({
   backgroundColor: 'white',
   cursor: 'pointer',
-  ...(isHighlighted
-    ? { backgroundColor: theme.color('offerPage', 'bgHighlighted'), }
-    : {}),
+  ...(isHighlighted ? { backgroundColor: theme.color('offerPage', 'bgHighlighted'), } : {}),
   extend: [
     borderBottom(
       theme.tableStyle.borderWidth,
@@ -133,7 +126,7 @@ const thInnerContStyle = ({
     },
   ],
 });
-const StyledThInnerCont = createComponent(thInnerContStyle, 'div', [ 'onClick', ]);
+// const StyledThInnerCont = createComponent(thInnerContStyle, 'div', [ 'onClick', ]);
 
 const tdFootInnerContStyle = ({
   hasBorderBottom = false,
@@ -146,9 +139,7 @@ const tdFootInnerContStyle = ({
   cursor: 'pointer',
   fontWeight: 'bold',
   paddingTop: '4rem',
-  ...(isHighlighted
-    ? { backgroundColor: theme.color('offerPage', 'bgHighlighted'), }
-    : {}),
+  ...(isHighlighted ? { backgroundColor: theme.color('offerPage', 'bgHighlighted'), } : {}),
   extend: [
     theme.type(-2),
     {
@@ -188,15 +179,9 @@ const tdFootInnerContStyle = ({
     },
   ],
 });
-const StyledTdFootInnerCont = createComponent(tdFootInnerContStyle, 'div', [
-  'onClick',
-]);
+const StyledTdFootInnerCont = createComponent(tdFootInnerContStyle, 'div', [ 'onClick', ]);
 
-const tdInnerContStyle = ({
-  isDescription = false,
-  isHighlighted = false,
-  theme,
-}) => ({
+const tdInnerContStyle = ({ isDescription = false, isHighlighted = false, theme, }) => ({
   height: '100%',
   display: 'flex',
   cursor: 'pointer',
@@ -213,9 +198,7 @@ const tdInnerContStyle = ({
       textAlign: 'inline-end',
     }
     : {}),
-  ...(isHighlighted
-    ? { backgroundColor: theme.color('offerPage', 'bgHighlighted'), }
-    : {}),
+  ...(isHighlighted ? { backgroundColor: theme.color('offerPage', 'bgHighlighted'), } : {}),
   extend: [
     theme.type(-1),
     borderBottom(
@@ -231,9 +214,9 @@ const tdInnerContStyle = ({
     ),
   ],
 });
-const StyledTdInnerCont = createComponent(tdInnerContStyle, 'div', [ 'onClick', ]);
+// const StyledTdInnerCont = createComponent(tdInnerContStyle, 'div', [ 'onClick', ]);
 
-const pricingHeadStyle = (isHighlighted = false) => theme => ({
+const pricingHeadStyle = ({ theme, isHighlighted, }) => ({
   color: theme.color('offerPage', isHighlighted ? 'pricingHeadTextHighlighted' : 'pricingHeadText'),
   marginTop: '1rem',
   extend: [ theme.type(-1), ],
@@ -244,7 +227,7 @@ const colHeadStyle = ({ theme, }) => ({
   marginTop: '2rem',
   extend: [ theme.type(2), ],
 });
-const StyledColHead = createComponent(colHeadStyle, H);
+// const StyledColHead = createComponent(colHeadStyle, H);
 
 function buildThead(dynamicData, staticTheadData) {
   return dynamicData.map(col => ({
@@ -282,13 +265,7 @@ function buildTbody(dynamicData, staticTbodyData, cols) {
   return [ ...processedStaticTbody, ...pricingRows, ];
 }
 
-function DesktopView({
-  continueToNextStage,
-  tableData,
-  sale,
-  staticTableData,
-  pathName,
-}) {
+function DesktopView({ continueToNextStage, tableData, sale, staticTableData, pathName, }) {
   const cols = {
     col1: tableData[0].subscriptionName,
     ...(tableData[1] ? { col2: tableData[1].subscriptionName, } : {}),
@@ -297,9 +274,7 @@ function DesktopView({
 
   const tHeadData = buildThead(tableData, staticTableData.thead);
 
-  const highlightedIndex = tHeadData
-    .map(col => col.subscriptionName)
-    .indexOf('BOTH');
+  const highlightedIndex = tHeadData.map(col => col.subscriptionName).indexOf('BOTH');
 
   const tBodyData = buildTbody(tableData, staticTableData.tbody, cols);
   return (
@@ -312,8 +287,8 @@ function DesktopView({
             marginInlineEnd: 'auto',
           }}
         >
-          <StyledTable>
-            <StyledThead>
+          <FelaComponent style={tableStyle}>
+            <FelaComponent style={theadStyle}>
               <Grid
                 tagName="div"
                 gutter={0}
@@ -322,17 +297,13 @@ function DesktopView({
                 miscStyles={{ backgroundColor: 'transparent', }}
               >
                 <GridItem width={1 / 4} tagName="div">
-                  <StyledThInnerCont />
+                  <FelaComponent style={thInnerContStyle} />
                 </GridItem>
                 {tHeadData.map((item, idx) => (
-                  <GridItem
-                    width={1 / 4}
-                    tagName="div"
-                    key={item.heading}
-                  >
+                  <GridItem width={1 / 4} tagName="div" key={item.heading}>
                     <EventTracker>
                       {({ biAction, gaAction, }) => (
-                        <StyledThInnerCont
+                        <FelaComponent
                           hasBorderTop
                           hasBorderStart
                           hasBorderEnd
@@ -375,15 +346,22 @@ function DesktopView({
                               routerPush: true,
                             });
                           }}
+                          style={thInnerContStyle}
                         >
                           <Phones
                             {...(sale ? { sale, } : {})}
                             subscription={item.subscriptionName}
                             size={7}
                           />
-                          <StyledColHead>{item.heading}</StyledColHead>
+                          <FelaComponent style={colHeadStyle} as={H}>
+                            {item.heading}
+                          </FelaComponent>
 
-                          <FelaComponent style={pricingHeadStyle(idx === highlightedIndex)} render="p">
+                          <FelaComponent
+                            style={pricingHeadStyle}
+                            isHighlighted={idx === highlightedIndex}
+                            as="p"
+                          >
                             {item.pricingHead}
                           </FelaComponent>
 
@@ -404,29 +382,20 @@ function DesktopView({
                           >
                             {item.btnText}
                           </Button>
-                        </StyledThInnerCont>
+                        </FelaComponent>
                       )}
                     </EventTracker>
                   </GridItem>
                 ))}
               </Grid>
-            </StyledThead>
-            <StyledTBody>
+            </FelaComponent>
+            <FelaComponent style={tBodyStyle}>
               {tBodyData.map((row, rowNum) => (
-                <Grid
-                  tagName="div"
-                  gutter={0}
-                  align="center"
-                  vAlign="stretch"
-                  key={Math.random()}
-                >
+                <Grid tagName="div" gutter={0} align="center" vAlign="stretch" key={Math.random()}>
                   {row.map((cellData, idx) => (
-                    <GridItem
-                      width={1 / 4}
-                      tagName="div"
-                      key={Math.random()}
-                    >
-                      <StyledTdInnerCont
+                    <GridItem width={1 / 4} tagName="div" key={Math.random()}>
+                      <FelaComponent
+                        style={tdInnerContStyle}
                         isHighlighted={highlightedIndex + 1 === idx}
                         isDescription={idx === 0}
                         onClick={() => {
@@ -462,17 +431,17 @@ function DesktopView({
                           </React.Fragment>
                         ) : (
                           <VisuallyHidden id={`Description${idx + rowNum}`}>
-                              לא כלול ב
+                            לא כלול ב
                             {tHeadData[idx - 1].heading}
                           </VisuallyHidden>
                         )}
-                      </StyledTdInnerCont>
+                      </FelaComponent>
                     </GridItem>
                   ))}
                 </Grid>
               ))}
-            </StyledTBody>
-            <StyledTFoot>
+            </FelaComponent>
+            <FelaComponent style={tFootStyle}>
               <Grid tagName="div" gutter={0} align="center" vAlign="top">
                 <GridItem width={1 / 4} tagName="div">
                   <StyledTdFootInnerCont />
@@ -493,8 +462,8 @@ function DesktopView({
                   </GridItem>
                 ))}
               </Grid>
-            </StyledTFoot>
-          </StyledTable>
+            </FelaComponent>
+          </FelaComponent>
         </FelaComponent>
       )}
     </ApolloConsumer>

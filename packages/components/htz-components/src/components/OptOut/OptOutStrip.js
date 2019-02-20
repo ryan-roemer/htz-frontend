@@ -97,8 +97,12 @@ class OptOutStrip extends React.PureComponent {
                     <Mutation mutation={OPT_OUT}>
                       {(optOutMutation, { data, }) => (
                         <FelaComponent
-                          style={theme => optOutStripStyle(theme)}
-                          render="div"
+                          style={(
+                            {
+                              theme
+                            }
+                          ) => optOutStripStyle(theme)}
+                          as="div"
                         >
                           <IconAlefLogoTransparent
                             size={3}
@@ -109,11 +113,14 @@ class OptOutStrip extends React.PureComponent {
                             }}
                           />
                           <FelaComponent
-                            style={theme => ({
+                            style={(
+                              {
+                                theme
+                              }
+                            ) => ({
                               color: theme.color('neutral', '-10'),
-                              marginInlineEnd: '2rem',
-                            })}
-                            render={({ theme, className, }) => (
+                              marginInlineEnd: '2rem'
+                            })}>{({ theme, className, }) => (
                               <span className={className}>
                                 <FelaComponent
                                   style={{
@@ -124,15 +131,14 @@ class OptOutStrip extends React.PureComponent {
                                       ),
                                     ],
                                   }}
-                                  render="span"
+                                  as="span"
                                 >
                                     התקדמנו מהר מדי?
                                   {' '}
                                 </FelaComponent>
                                   לחצו כאן כדי לחזור לגרסה הישנה
                               </span>
-                            )}
-                          />
+                            )}</FelaComponent>
                           <Button
                             onClick={() => this.optOut(user.id, optOutMutation)
                               }

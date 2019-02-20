@@ -39,8 +39,7 @@ function ClickTrackerItem({ item, index, biAction, }: ClickTrackerProps): Node {
       render={(banner: ClickTrackerBannerType) => {
         const { text, link, clicktrackerimage, } = banner;
         return (
-          <FelaTheme
-            render={theme => (
+          <FelaTheme>{theme => (
               <BlockLink
                 miscStyles={{
                   ...listItemStyle,
@@ -61,8 +60,7 @@ function ClickTrackerItem({ item, index, biAction, }: ClickTrackerProps): Node {
                   textType={-2}
                 />
               </BlockLink>
-            )}
-          />
+            )}</FelaTheme>
         );
       }}
     />
@@ -79,8 +77,7 @@ type ItemProps = {
 function Item({ data, index, biAction, listLength, }: ItemProps): Node {
 
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <BlockLink
           miscStyles={{
             ...listItemStyle,
@@ -99,8 +96,7 @@ function Item({ data, index, biAction, listLength, }: ItemProps): Node {
                 width: '18rem',
                 flexShrink: '0',
                 flexGrow: '0',
-              }}
-              render={({ className, }) => (
+              }}>{({ className, }) => (
                 <span className={className}>
                   <Image
                     data={data.image}
@@ -118,25 +114,21 @@ function Item({ data, index, biAction, listLength, }: ItemProps): Node {
                     }}
                   />
                 </span>
-              )}
-            />
+              )}</FelaComponent>
             <FelaComponent
               style={{
                 fontWeight: '700',
                 marginStart: '1rem',
                 flexGrow: '1',
                 extend: [ theme.type(-2), ],
-              }}
-              render={({ className, }) => (
+              }}>{({ className, }) => (
                 <H className={className}>
                   <HtzLink href={data.path}>{data.title}</HtzLink>
                 </H>
-              )}
-            />
+              )}</FelaComponent>
           </Section>
         </BlockLink>
-      )}
-    />
+      )}</FelaTheme>
   );
 }
 
@@ -174,15 +166,17 @@ function Zoidberg({ list, lazyLoadImages, biAction, }: Props): Node {
       }}
     >
       <FelaComponent
-        style={theme => ({
+        style={(
+          {
+            theme
+          }
+        ) => ({
           ...theme.type(1),
           fontWeight: '700',
           color: theme.color('primary'),
           ...borderBottom('2px', 1, 'solid', theme.color('primary')),
-          marginBottom: '2rem',
-        })}
-        render={({ className, }) => <H className={className}>{title}</H>}
-      />
+          marginBottom: '2rem'
+        })}>{({ className, }) => <H className={className}>{title}</H>}</FelaComponent>
       <Section>
         {items.map((item, index) => (
           <ListItem key={item.contentId}>

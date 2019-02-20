@@ -47,9 +47,8 @@ export default function ListWrapper({
   preventDefaultOnTabOut,
 }) {
   return (
-    <FelaComponent
-      rule={listStyle}
-      render={({ className, }) => (
+    <FelaComponent style={listStyle}>
+      {({ className, }) => (
         <ul className={className} {...attrs}>
           {children.map(child => (
             <ListItem
@@ -71,6 +70,6 @@ export default function ListWrapper({
           ))}
         </ul>
       )}
-    />
+    </FelaComponent>
   );
 }

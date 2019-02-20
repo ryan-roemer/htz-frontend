@@ -13,12 +13,20 @@ SubHeader.defaultProps = {};
 function SubHeader({ isTheMarker, }) {
   return (
     <FelaComponent
-      style={theme => ({
-        extend: [ theme.mq({ until: 'l', }, { marginBottom: '30rem', }), ],
+      style={(
+        {
+          theme
+        }
+      ) => ({
+        extend: [ theme.mq({ until: 'l', }, { marginBottom: '30rem', }), ]
       })}
     >
       <FelaComponent
-        style={theme => ({
+        style={(
+          {
+            theme
+          }
+        ) => ({
           top: 0,
           width: '100%',
           height: '42rem',
@@ -27,23 +35,30 @@ function SubHeader({ isTheMarker, }) {
           overflow: 'hidden',
           transformOrigin: 'top left',
           transform: 'skewY(-4deg)',
+
           extend: [
             theme.mq({ until: 'l', }, { height: '45rem', }),
             theme.mq({ from: 'xl', }, { height: '55rem', }),
-          ],
+          ]
         })}
       >
         <FelaComponent
-          style={theme => ({
+          style={(
+            {
+              theme
+            }
+          ) => ({
             background: isTheMarker
               ? 'linear-gradient(to bottom, #a9e5f3, #fbe7b4)'
               : 'linear-gradient(90deg, #FEE8AC, #FFF0D5)',
+
             width: '100%',
             height: '100% ',
             overflow: 'hidden',
             transformOrigin: 'top left',
             transform: 'skewY(4deg)',
             paddingTop: isTheMarker ? 0 : '5rem',
+
             extend: isTheMarker
               ? [
                 theme.mq({ from: 'xl', }, { paddingInlineStart: '28rem', }),
@@ -58,14 +73,19 @@ function SubHeader({ isTheMarker, }) {
                   { from: 'l', until: 'xl', },
                   { paddingInlineStart: '1rem', }
                 ),
-              ],
+              ]
           })}
         >
           <FelaComponent
-            style={theme => ({
+            style={(
+              {
+                theme
+              }
+            ) => ({
               maxWidth: '200rem',
               marginInlineStart: 'auto',
               marginInlineEnd: 'auto',
+
               extend: isTheMarker
                 ? [
                   theme.mq({ until: 'l', }, { textAlign: 'center', }),
@@ -76,7 +96,7 @@ function SubHeader({ isTheMarker, }) {
                   theme.mq({ until: 'l', }, { textAlign: 'center', }),
                   theme.mq({ from: 's', until: 'l', }, { marginTop: '12rem', }),
                   theme.mq({ until: 's', }, { marginTop: '17rem', }),
-                ],
+                ]
             })}
           >
             {isTheMarker ? (

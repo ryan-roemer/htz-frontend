@@ -41,16 +41,20 @@ export default function RespView282({
       target={linkTarget}
       content={(
         <FelaComponent
-          style={theme => ({
+          style={(
+            {
+              theme
+            }
+          ) => ({
             backgroundColor: theme.color('neutral', '-6'),
             width: '100%',
             height: '22rem',
             display: 'flex',
+
             extend: [
               borderBottom('2px', 0.0001, 'dashed', theme.color('primary')),
-            ],
-          })}
-          render={({ className, theme, }) => (
+            ]
+          })}>{({ className, theme, }) => (
             <div className={className}>
               <Image
                 data={{
@@ -101,8 +105,7 @@ export default function RespView282({
                 {theme.clickTrackerI18n.promotedContentLabel}
               </FelaComponent>
             </div>
-          )}
-        />
+          )}</FelaComponent>
 )}
     />
   );

@@ -113,9 +113,7 @@ class StageTransition extends Component {
     } = this.props;
 
     return (
-      <FelaComponent
-        style={{ textAlign: 'center', position: 'relative', }}
-        render={({ theme, className, }) => (
+      <FelaComponent style={{ textAlign: 'center', position: 'relative', }}>{({ theme, className, }) => (
           <div className={className}>
             {displayPhones && (
               <StyledPhonesCont transitionStarted={transitionStarted}>
@@ -150,8 +148,7 @@ class StageTransition extends Component {
               {stageElement}
             </StyledElementCont>
           </div>
-        )}
-      />
+        )}</FelaComponent>
     );
   }
 }

@@ -19,11 +19,14 @@ type Props = {
   },
 };
 
-const numToString: number => string = num => (
-  num.toLocaleString('he', { minimumFractionDigits: 2, maximumFractionDigits: 2, })
-);
+const numToString: number => string = num => num.toLocaleString('he', { minimumFractionDigits: 2, maximumFractionDigits: 2, });
 
-function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
+function indices({
+  url: {
+    query: { section, },
+    asPath,
+  },
+}: Props): Node {
   return (
     <MainLayout
       section={section}
@@ -31,12 +34,10 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
       description="כל המידע על  מדדים: נתוני מסחר, נתונים בזמן אמת, גרפים חדשות ועוד באתר TheMarker Finance"
       path={asPath}
     >
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>
+        {theme => (
           <PageRow>
-            <RowItem
-              title="מדדים"
-            >
+            <RowItem title="מדדים">
               <SortableTable
                 assetsId={[ '2', '142', '137', '-2000', '164', '143', '167', '145', '149', ]}
                 miscStyles={{ marginTop: '2rem', tableLayout: 'auto', }}
@@ -76,9 +77,8 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
                     display: '%שינוי',
                     sortingOrder: 'descend',
                     style: ({ changePercentage, }) => ({
-                      color: changePercentage < 0
-                        ? theme.color('negative')
-                        : theme.color('positive'),
+                      color:
+                        changePercentage < 0 ? theme.color('negative') : theme.color('positive'),
                       direction: 'ltr',
                       fontWeight: '700',
                       paddingEnd: '2rem',
@@ -95,9 +95,7 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
                     display: 'תשואה שבועית',
                     sortingOrder: 'descend',
                     style: ({ weeklyYield, }) => ({
-                      color: weeklyYield < 0
-                        ? theme.color('negative')
-                        : theme.color('positive'),
+                      color: weeklyYield < 0 ? theme.color('negative') : theme.color('positive'),
                       direction: 'ltr',
                       fontWeight: '700',
                       paddingEnd: '2rem',
@@ -114,9 +112,7 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
                     display: 'תשואה חודשית',
                     sortingOrder: 'descend',
                     style: ({ monthlyYield, }) => ({
-                      color: monthlyYield < 0
-                        ? theme.color('negative')
-                        : theme.color('positive'),
+                      color: monthlyYield < 0 ? theme.color('negative') : theme.color('positive'),
                       direction: 'ltr',
                       fontWeight: '700',
                       paddingEnd: '2rem',
@@ -133,9 +129,7 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
                     display: 'תשואה רבעונית',
                     sortingOrder: 'descend',
                     style: ({ quarterlyYield, }) => ({
-                      color: quarterlyYield < 0
-                        ? theme.color('negative')
-                        : theme.color('positive'),
+                      color: quarterlyYield < 0 ? theme.color('negative') : theme.color('positive'),
                       direction: 'ltr',
                       fontWeight: '700',
                       paddingEnd: '2rem',
@@ -152,9 +146,7 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
                     display: 'תשואה שנתית',
                     sortingOrder: 'descend',
                     style: ({ yearlyYield, }) => ({
-                      color: yearlyYield < 0
-                        ? theme.color('negative')
-                        : theme.color('positive'),
+                      color: yearlyYield < 0 ? theme.color('negative') : theme.color('positive'),
                       direction: 'ltr',
                       fontWeight: '700',
                       paddingEnd: '2rem',
@@ -171,9 +163,8 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
                     display: 'תשואה 3 שנים',
                     sortingOrder: 'descend',
                     style: ({ threeYearsYield, }) => ({
-                      color: threeYearsYield < 0
-                        ? theme.color('negative')
-                        : theme.color('positive'),
+                      color:
+                        threeYearsYield < 0 ? theme.color('negative') : theme.color('positive'),
                       direction: 'ltr',
                       fontWeight: '700',
                       paddingEnd: '2rem',
@@ -185,7 +176,6 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
                       ${numToString(Math.abs(threeYearsYield))}%
                      `,
                   },
-
                 ]}
                 initialSort="name"
                 count={11}
@@ -193,7 +183,7 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
             </RowItem>
           </PageRow>
         )}
-      />
+      </FelaTheme>
     </MainLayout>
   );
 }

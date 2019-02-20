@@ -33,19 +33,20 @@ class HeaderSearch extends React.Component {
   submitHandler = (event, searchUrl) => {
     event.preventDefault();
     Router.push(searchUrl || '#');
-  }
+  };
 
   render() {
     const { onClick, searchIsOpen, } = this.props;
     return (
       <FelaComponent
-        style={theme => ({
+        style={({ theme, }) => ({
           display: 'flex',
           flexGrow: searchIsOpen ? '1' : '0',
           overflow: 'hidden',
           extend: [ borderEnd('1px', 'solid', theme.color('primary', '+1')), ],
         })}
-        render={({
+      >
+        {({
           className,
           theme: {
             color,
@@ -100,7 +101,8 @@ class HeaderSearch extends React.Component {
                   position: 'relative',
                   transform: 'translateX(-100%)',
                 }}
-                render={({ className, }) => (
+              >
+                {({ className, }) => (
                   <form
                     className={className}
                     onSubmit={event => this.submitHandler(event, queryUrl(this.state.query))}
@@ -134,7 +136,8 @@ class HeaderSearch extends React.Component {
                         position: 'absolute',
                         top: '0',
                       }}
-                      render={({ className, }) => (
+                    >
+                      {({ className, }) => (
                         <Button
                           isSubmit
                           variant="primaryOpaque"
@@ -144,14 +147,14 @@ class HeaderSearch extends React.Component {
                           <IconSearch size={3} />
                         </Button>
                       )}
-                    />
+                    </FelaComponent>
                   </form>
                 )}
-              />
+              </FelaComponent>
             ) : null}
           </div>
         )}
-      />
+      </FelaComponent>
     );
   }
 }

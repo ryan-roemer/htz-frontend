@@ -80,7 +80,11 @@ export default class BottomStripNotification extends React.Component<Props, Stat
           : 0,
       shouldRender: true,
     });
-    ReactGA.ga('ec:addPromo', { name: 'Header - Blue Strip', id: 'hp-header-blue-strip', position: 'Header', });
+    ReactGA.ga('ec:addPromo', {
+      name: 'Header - Blue Strip',
+      id: 'hp-header-blue-strip',
+      position: 'Header',
+    });
   }
 
   render(): Node {
@@ -92,17 +96,14 @@ export default class BottomStripNotification extends React.Component<Props, Stat
         render={({ y, }) => {
           if (y > this.state.documentHeight - 1200) return null;
           return (
-            <FelaComponent
-              isSmall={isSmall}
-              color={colors[color]}
-              rule={style.wrapper}
-              render={({ theme, className, }) => (
+            <FelaComponent isSmall={isSmall} color={colors[color]} style={style.wrapper}>
+              {({ theme, className, }) => (
                 <div className={className}>
                   <FelaComponent
                     isSmall={isSmall}
                     color={colors[color]}
-                    rule={style.innerWrapper}
-                    render="span"
+                    style={style.innerWrapper}
+                    as="span"
                   >
                     {isSmall ? null : (
                       <ClickArea
@@ -112,25 +113,31 @@ export default class BottomStripNotification extends React.Component<Props, Stat
                         <IconClose />
                       </ClickArea>
                     )}
-                    <FelaComponent isSmall={isSmall} color={colors[color]}>
+                    {/* TODO: ADDED style prop, ask if this is correct */}
+                    <FelaComponent
+                      isSmall={isSmall}
+                      color={colors[color]}
+                      style={style.textWrapper}
+                    >
                       <IconAlefLogoTransparent
                         miscStyles={style.icon(theme, isSmall, colors[color])}
                       />
                     </FelaComponent>
-                    <FelaComponent isSmall={isSmall} color={colors[color]} rule={style.textWrapper}>
+                    <FelaComponent
+                      isSmall={isSmall}
+                      color={colors[color]}
+                      style={style.textWrapper}
+                    >
                       {isSmall ? null : (
-                        <FelaComponent isSmall={isSmall} color={colors[color]} rule={style.text1}>
+                        <FelaComponent isSmall={isSmall} color={colors[color]} style={style.text1}>
                           {text1}
                         </FelaComponent>
                       )}
-                      <FelaComponent
-                        isSmall={isSmall}
-                        color={colors[color]}
-                        rule={style.text2}
-                        render={({ className, }) => (
+                      <FelaComponent isSmall={isSmall} color={colors[color]} style={style.text2}>
+                        {({ className, }) => (
                           <div className={className} dangerouslySetInnerHTML={{ __html: text2, }} />
                         )}
-                      />
+                      </FelaComponent>
                       <Button
                         variant={style.buttonVariant}
                         href={buttonUrl}
@@ -143,7 +150,7 @@ export default class BottomStripNotification extends React.Component<Props, Stat
                   </FelaComponent>
                 </div>
               )}
-            />
+            </FelaComponent>
           );
         }}
       />

@@ -78,11 +78,13 @@ function StandardArticle({ articleId, slots, path, }) {
             // modDate,
           } = standardArticleElement;
           const header = standardArticleElement.header;
-          const dontDisplayComments = authors.filter(author => author.contentId && author.contentId === '1.758').length;
+          const dontDisplayComments = authors.filter(
+            author => author.contentId && author.contentId === '1.758'
+          ).length;
 
           return (
-            <FelaTheme
-              render={theme => (
+            <FelaTheme>
+              {theme => (
                 <LayoutContainer
                   tagName="article"
                   miscStyles={{
@@ -165,7 +167,6 @@ function StandardArticle({ articleId, slots, path, }) {
 
                           mouseDisclaimer = (
                             <FelaComponent style={disclaimerStyle}>
-
                               * התוכן נכתב על ידי מחלקת שיתופי הפעולה של הארץ/עכבר העיר, עבור עיריית
                               {` ${lineage[1].name}`}
                             </FelaComponent>
@@ -268,7 +269,8 @@ function StandardArticle({ articleId, slots, path, }) {
                         theme.mq({ from: 'l', }, { width: 'calc(300px + 8rem)', }),
                       ],
                     }}
-                    render={({ className, }) => (
+                  >
+                    {({ className, }) => (
                       <aside className={className}>
                         {aside ? (
                           <Zen animate>
@@ -287,11 +289,11 @@ function StandardArticle({ articleId, slots, path, }) {
                         ) : null}
                       </aside>
                     )}
-                  />
+                  </FelaComponent>
                   <ArticleGallery path={path} />
                 </LayoutContainer>
               )}
-            />
+            </FelaTheme>
           );
         }}
       </Query>

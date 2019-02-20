@@ -24,7 +24,11 @@ const viewsList = new Map([
 function ArticlePageList({ view, ...props }: ListDataType): Node {
   if ([ ...viewsList.keys(), ].includes(view)) {
     return (
-      <List View={viewsList.get(view)} {...props} />
+      <List
+        View={viewsList.get(view)}
+        {...props}
+        // {...(viewsList.get(view) === 'Bender' ? { isArticle: true, } : {})}
+      />
     );
   }
   return <Debug>{`${view} is not supported list view for ArticlePage`}</Debug>;

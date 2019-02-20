@@ -102,21 +102,10 @@ export default function Kicker({
 }) {
   return (
     <FelaComponent
-      rule={style}
+      style={style}
       isBlock={isBlock}
       fontSize={fontSize}
       divider={divider}
-      miscStyles={miscStyles}
-      render={tagName}
-    >
-      <FelaComponent
-        rule={innerStyle}
-        isBlock={isBlock}
-        innerMiscStyles={innerMiscStyles}
-        render="span"
-      >
-        {text || children}
-      </FelaComponent>
-    </FelaComponent>
+      miscStyles={miscStyles}>{tagName}</FelaComponent>
   );
 }

@@ -1,5 +1,5 @@
 import React, { Fragment, } from 'react';
-import { FelaComponent, } from 'react-fela';
+import { FelaComponent, FelaTheme, } from 'react-fela';
 import PropTypes from 'prop-types';
 import { borderBottom, borderTop, } from '@haaretz/htz-css-tools';
 import { stylesPropType, } from '../../../../propTypes/stylesPropType';
@@ -89,12 +89,13 @@ const CaptionElement = ({ credit, title, }) => (
       marginBottom: '3rem',
       textAlign: 'start',
     }}
-    render={({ className, theme, }) => (
+  >
+    {({ className, theme, }) => (
       <div className={className}>
         <Caption caption={title} credit={credit} color={[ 'neutral', ]} typeStyles={-2} floatCredit />
       </div>
     )}
-  />
+  </FelaComponent>
 );
 
 CaptionElement.propTypes = CaptionElementPropTypes;
@@ -123,10 +124,11 @@ const ImageElement = ({ imageData, imgIsHidden, }) => {
   };
   return (
     <FelaComponent
-      style={theme => ({
+      style={({ theme, }) => ({
         ...(imgIsHidden && { display: 'none', }),
         paddingTop: '5rem',
         maxWidth: '17.5rem',
+
         extend: [
           theme.mq(
             { from: 'l', },
@@ -149,7 +151,8 @@ const ImageElement = ({ imageData, imgIsHidden, }) => {
           ),
         ],
       })}
-      render={({ className, theme, }) => (
+    >
+      {({ className, theme, }) => (
         <div className={className}>
           <Image
             data={imgData}
@@ -159,7 +162,7 @@ const ImageElement = ({ imageData, imgIsHidden, }) => {
           <CaptionElement credit={credit} />
         </div>
       )}
-    />
+    </FelaComponent>
   );
 };
 
@@ -216,8 +219,8 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
 
   return (
     <Grid miscStyles={miscStyles}>
-      <FelaComponent
-        render={({ className, theme, }) => (
+      <FelaTheme>
+        {({ theme, }) => (
           <GridItem
             width={1}
             miscStyles={{
@@ -313,8 +316,9 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
                           || (!isAmenitiesDivisibleByTwo && displayItems.length !== i + 1)
                         }
                         itemBorderTop={i === 0}
-                        rule={itemStyle}
-                        render={({ className, }) => (
+                        style={itemStyle}
+                      >
+                        {({ className, }) => (
                           <div className={className}>
                             {anObjectMapped.type === 'link' ? (
                               <TextLink
@@ -330,10 +334,11 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
                                   style={{
                                     fontWeight: 'bold',
                                   }}
-                                  render={({ className, }) => (
+                                >
+                                  {({ className, }) => (
                                     <span className={className}>{`${anObjectMapped.label}: `}</span>
                                   )}
-                                />
+                                </FelaComponent>
                                 <FelaComponent
                                   style={{
                                     extend: [
@@ -341,15 +346,16 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
                                         && theme.mq({ from: 'l', }, { display: 'inline-block', }),
                                     ],
                                   }}
-                                  render={({ className, }) => (
+                                >
+                                  {({ className, }) => (
                                     <span className={className}>{anObjectMapped.value}</span>
                                   )}
-                                />
+                                </FelaComponent>
                               </Fragment>
                             )}
                           </div>
                         )}
-                      />
+                      </FelaComponent>
                     </GridItem>
                   ))}
                   {reviewStars > -1 && typeof reviewStars === 'number' ? (
@@ -361,23 +367,20 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
                         { from: 'l', value: 1, },
                       ]}
                     >
-                      <FelaComponent
-                        displayBorderInMBreak={false}
-                        rule={itemStyle}
-                        render={({ className, theme, }) => (
+                      <FelaComponent displayBorderInMBreak={false} style={itemStyle}>
+                        {({ className, theme, }) => (
                           <div className={className}>
-                            <FelaComponent
-                              style={{ fontWeight: 'bold', }}
-                              render={({ className, }) => (
+                            <FelaComponent style={{ fontWeight: 'bold', }}>
+                              {({ className, }) => (
                                 <span className={className}>
                                   {`${theme.reviewRatingI18n.ratingTitle}: `}
                                 </span>
                               )}
-                            />
+                            </FelaComponent>
                             <Rating rating={reviewStars} disabled />
                           </div>
                         )}
-                      />
+                      </FelaComponent>
                     </GridItem>
                   ) : null}
                 </Grid>
@@ -385,7 +388,7 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
             </Grid>
           </GridItem>
         )}
-      />
+      </FelaTheme>
     </Grid>
   );
 }

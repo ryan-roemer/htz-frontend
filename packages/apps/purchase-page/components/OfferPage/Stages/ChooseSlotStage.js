@@ -1,6 +1,6 @@
 import React, { Fragment, } from 'react';
 import PropTypes from 'prop-types';
-import { createComponent, FelaComponent, } from 'react-fela';
+import { FelaComponent, } from 'react-fela';
 import { withRouter, } from 'next/router';
 import ReactGA from 'react-ga';
 import { parseTypographyProp, } from '@haaretz/htz-css-tools';
@@ -39,7 +39,7 @@ const defaultProps = {
   accountLinkToken: null,
 };
 
-const contStyle = theme => ({
+const contStyle = ({ theme, }) => ({
   textAlign: 'center',
   marginBottom: '11rem',
   marginInlineStart: 'auto',
@@ -69,8 +69,6 @@ const moreOptionsContStyle = ({ theme, }) => ({
   ],
 });
 
-const StyledMoreOptionsCont = createComponent(moreOptionsContStyle);
-
 const headingStyle = ({ theme, }) => ({
   textAlign: 'center',
   fontWeight: 'normal',
@@ -79,8 +77,6 @@ const headingStyle = ({ theme, }) => ({
   marginTop: '2rem',
   extend: [ parseTypographyProp([ { until: 'l', value: 3, }, { from: 'l', value: 5, }, ], theme.type), ],
 });
-
-const StyledHeading = createComponent(headingStyle, 'h1');
 
 class ChooseSlotStage extends React.Component {
   componentDidMount() {
@@ -130,9 +126,8 @@ class ChooseSlotStage extends React.Component {
     };
 
     return (
-      <FelaComponent
-        style={contStyle}
-        render={({
+      <FelaComponent style={contStyle}>
+        {({
           className,
           theme: {
             stage1,
@@ -144,7 +139,9 @@ class ChooseSlotStage extends React.Component {
         }) => (
           <Fragment>
             <StageCounter stage={1} />
-            <StyledHeading>{headerText}</StyledHeading>
+            <FelaComponent style={headingStyle} as="h1">
+              {headerText}
+            </FelaComponent>
             <SubHeader isTheMarker={host === 'TM'} />
             <div className={className}>
               <UserMessage userMessage={userMessage} />
@@ -167,15 +164,15 @@ class ChooseSlotStage extends React.Component {
               />
               <EventTracker>
                 {({ biAction, gaAction, }) => (
-                  <StyledMoreOptionsCont>
+                  <FelaComponent style={moreOptionsContStyle}>
                     {subStage < 2 && (
                       <FelaComponent
-                        style={theme => ({
+                        style={({ theme, }) => ({
                           marginTop: '2rem',
                           fontWeight: '700',
                           extend: [ theme.type(-1), ],
                         })}
-                        render="p"
+                        as="p"
                       >
                         <a
                           href={entitlements.link}
@@ -193,8 +190,8 @@ class ChooseSlotStage extends React.Component {
                             {entitlements.beforeLinkText}
                             {' '}
                             <FelaComponent
-                              render="span"
-                              style={theme => ({
+                              as="span"
+                              style={({ theme, }) => ({
                                 textDecoration: 'underline',
                                 textDecorationSkip: 'ink',
                                 extend: [ theme.mq({ until: 's', }, { display: 'block', }), ],
@@ -207,7 +204,7 @@ class ChooseSlotStage extends React.Component {
                       </FelaComponent>
                     )}
                     <FelaComponent
-                      style={theme => ({
+                      style={({ theme, }) => ({
                         marginTop: '2rem',
                         extend: [ theme.type(-1), ],
                       })}
@@ -232,13 +229,13 @@ class ChooseSlotStage extends React.Component {
                         {organizationSubscription.text}
                       </TextLink>
                     </FelaComponent>
-                  </StyledMoreOptionsCont>
+                  </FelaComponent>
                 )}
               </EventTracker>
             </div>
           </Fragment>
         )}
-      />
+      </FelaComponent>
     );
   }
 }

@@ -110,13 +110,14 @@ class MobileNavigationMenu extends React.Component {
      * A boolean which indicate path location to render
      * the correct view on homepage or article page.
      */
-    isHomepage: PropTypes.bool.isRequired,
+    isHomepage: PropTypes.bool,
   };
 
   static defaultProps = {
     menuIsOpen: false,
     onClick: null,
     menuSections: {},
+    isHomepage: false,
   };
 
   state = {
@@ -141,14 +142,11 @@ class MobileNavigationMenu extends React.Component {
 
     this.menuIsOpen = menuIsOpen;
     return (
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>
+        {theme => (
           <Fragment>
-            <FelaComponent
-              isHomepage={isHomepage}
-              menuIsOpen={menuIsOpen}
-              rule={menuButtonStyle}
-              render={({ theme, className, }) => (
+            <FelaComponent isHomepage={isHomepage} menuIsOpen={menuIsOpen} style={menuButtonStyle}>
+              {({ theme, className, }) => (
                 <button
                   type="button"
                   className={className}
@@ -178,7 +176,7 @@ class MobileNavigationMenu extends React.Component {
                       marginEnd: '2rem',
                       position: 'relative',
                     }}
-                    render="span"
+                    as="span"
                   >
                     <Hamburger
                       isOpen={menuIsOpen}
@@ -192,7 +190,7 @@ class MobileNavigationMenu extends React.Component {
                   <span>{theme.mobileNavigationMenuI18n.buttonText}</span>
                 </button>
               )}
-            />
+            </FelaComponent>
             <A11yDialog
               appendTo="modalsRoot"
               elementToHide="pageRoot"
@@ -242,7 +240,7 @@ class MobileNavigationMenu extends React.Component {
             />
           </Fragment>
         )}
-      />
+      </FelaTheme>
     );
   }
 }

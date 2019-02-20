@@ -18,7 +18,7 @@ const iframeWrapperStyle = {
   textAlign: 'center',
 };
 
-const introStyle = theme => ({
+const introStyle = ({ theme, }) => ({
   paddingTop: '6rem',
   textAlign: 'center',
   extend: [ theme.type(0, { untilBp: 's', }), theme.type(1, { fromBp: 's', }), ],
@@ -27,12 +27,11 @@ const introStyle = theme => ({
 export default function ChangePaymentCreditGuardIframe({ productId, }) {
   return (
     <FelaComponent style={iframeWrapperStyle}>
-      <FelaComponent
-        style={introStyle}
-        render={({ theme, className, }) => (
+      <FelaComponent style={introStyle}>
+        {({ theme, className, }) => (
           <p className={className}>{theme.changePayment.userInstructions}</p>
         )}
-      />
+      </FelaComponent>
 
       <CreditCardIframe
         creditGuardSrc={buildCreditGuardSrc(productId)}

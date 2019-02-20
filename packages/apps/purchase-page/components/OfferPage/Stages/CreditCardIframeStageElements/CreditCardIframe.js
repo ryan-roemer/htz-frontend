@@ -124,11 +124,10 @@ class CreditCardIframe extends Component {
               ) : null}
               {this.state.error ? (
                 <FelaComponent
-                  rule={{
+                  style={{
                     color: 'red',
                     marginTop: '19rem',
-                  }}
-                  render={({ className, theme: { creditCardIframe, }, }) => (
+                  }}>{({ className, theme: { creditCardIframe, }, }) => (
                     <div>
                       <ArrayLinesToString
                         className={className}
@@ -146,14 +145,12 @@ class CreditCardIframe extends Component {
                         {creditCardIframe.tryAgain}
                       </Button>
                     </div>
-                  )}
-                />
+                  )}</FelaComponent>
               ) : (
                 <FelaComponent
                   iframeHeight={this.state.iframeHeight}
                   loading={this.state.loading}
-                  rule={styles}
-                  render={({ className, }) => (
+                  style={styles}>{({ className, }) => (
                     <iframe
                       className={className}
                       title="secure-credit-card-form"
@@ -165,8 +162,7 @@ class CreditCardIframe extends Component {
                         this.ifr = element;
                       }}
                     />
-                  )}
-                />
+                  )}</FelaComponent>
               )}
             </div>
           );

@@ -14,7 +14,11 @@ MobileMenuHeader.propTypes = {
 export default function MobileMenuHeader({ searchIsOpen, onClick, }) {
   return (
     <FelaComponent
-      style={theme => ({
+      style={(
+        {
+          theme
+        }
+      ) => ({
         height: '9rem',
         backgroundColor: theme.color('secondary'),
         display: 'flex',
@@ -23,9 +27,8 @@ export default function MobileMenuHeader({ searchIsOpen, onClick, }) {
         width: '100%',
         borderBottomColor: theme.color('primary', '+1'),
         borderBottomStyle: 'solid',
-        borderBottomWidth: '2px',
-      })}
-      render={({ theme, className, }) => (
+        borderBottomWidth: '2px'
+      })}>{({ theme, className, }) => (
         <div className={className}>
           <MobileSearch searchIsOpen={searchIsOpen} onClick={onClick} />
           <UserDispenser
@@ -37,7 +40,6 @@ export default function MobileMenuHeader({ searchIsOpen, onClick, }) {
             )}
           />
         </div>
-      )}
-    />
+      )}</FelaComponent>
   );
 }

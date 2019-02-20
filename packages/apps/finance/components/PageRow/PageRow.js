@@ -13,14 +13,19 @@ type Props = {
 // eslint-disable-next-line react/prop-types
 const PageRow: StatelessFunctionalComponent<Props> = ({ children, miscStyles, lines, }) => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       maxWidth: '127rem',
       marginBottom: `${lines || 4}rem`,
+
       extend: [
         ...(miscStyles
           ? parseStyleProps(miscStyles, theme.mq, theme.type)
           : []),
-      ],
+      ]
     })}
   >
     {children}

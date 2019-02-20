@@ -16,11 +16,9 @@ const IconPlus = ({ size, fill, color, attrs, miscStyles, ...props }) => (
     color={color}
     attrs={attrs}
     miscStyles={miscStyles}
-    rule={iconStyle}
-    render={({ className, }) => (
+    style={iconStyle}>{({ className, }) => (
       <svg width="1em" height="1em" viewBox="0 0 256 256" className={className} {...props} {...attrs} >  <path fill="currentColor" d="M220 140h-79v82h-26v-82H37v-26h78V35h26v79h79v26z" /></svg>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 IconPlus.propTypes = iconPropTypes;

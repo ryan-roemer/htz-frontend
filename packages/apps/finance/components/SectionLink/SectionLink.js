@@ -20,7 +20,11 @@ type Props = {
 
 const SectionLink = ({ href, as, children, miscStyles, }: Props): Node => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       ...theme.type(-2),
       backgroundColor: theme.color('neutral', '-5'),
       color: theme.color('neutral', '-1'),
@@ -29,19 +33,18 @@ const SectionLink = ({ href, as, children, miscStyles, }: Props): Node => (
       paddingBottom: '1rem',
       paddingTop: '1rem',
       textAlign: 'center',
+
       extend: [
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ],
-    })}
-    render={({ className, }) => (
+      ]
+    })}>{({ className, }) => (
       <Link href={href} as={as}>
         <a className={className}>
           {children}
           <IconBack size={-1} />
         </a>
       </Link>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 SectionLink.defaultProps = { miscStyles: null, };

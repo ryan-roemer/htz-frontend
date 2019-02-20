@@ -67,31 +67,31 @@ function CommentsCount({
   iconMiscStyles,
   textMiscStyles,
 }: Props): React.Node {
-  return (commentsCount && commentsCount >= minCount)
-    ? (
-      <FelaComponent
-        miscStyles={miscStyles}
-        rule={wrapperStyle}
-        render={({ theme, className, }) => (
-          <span className={className}>
-            {commentsCount ? (
-              <FelaComponent
-                color={color}
-                textMiscStyles={textMiscStyles}
-                rule={commentCountTextStyle}
-                render={({ theme, className, }) => <div className={className}>{commentsCount}</div>}
-              />
-            ) : null}
-            <IconComment color={color} miscStyles={{
+  return commentsCount && commentsCount >= minCount ? (
+    <FelaComponent miscStyles={miscStyles} style={wrapperStyle}>
+      {({ theme, className, }) => (
+        <span className={className}>
+          {commentsCount ? (
+            <FelaComponent
+              color={color}
+              textMiscStyles={textMiscStyles}
+              style={commentCountTextStyle}
+            >
+              {({ theme, className, }) => <div className={className}>{commentsCount}</div>}
+            </FelaComponent>
+          ) : null}
+          <IconComment
+            color={color}
+            miscStyles={{
               position: 'relative',
               top: '-.12em',
-              ...(iconMiscStyles || {})
-            }} />
-          </span>
-        )}
-      />
-    )
-    : null;
+              ...(iconMiscStyles || {}),
+            }}
+          />
+        </span>
+      )}
+    </FelaComponent>
+  ) : null;
 }
 
 export default CommentsCount;

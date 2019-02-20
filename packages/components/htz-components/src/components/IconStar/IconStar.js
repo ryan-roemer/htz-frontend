@@ -39,10 +39,7 @@ function setSize(size, value) {
 }
 function IconStar({ size, rightColor, leftColor, }) {
   return (
-    <FelaComponent
-      size={size}
-      rule={style}
-      render={({ theme, className, }) => (
+    <FelaComponent size={size} style={style}>{({ theme, className, }) => (
         <svg
           className={className}
           height="1em"
@@ -52,7 +49,7 @@ function IconStar({ size, rightColor, leftColor, }) {
         >
           <FelaComponent
             rightColor={rightColor}
-            rule={({ theme, rightColor, }) => ({
+            style={({ theme, rightColor, }) => ({
               extend: [
                 parseComponentProp(
                   'fill',
@@ -62,17 +59,15 @@ function IconStar({ size, rightColor, leftColor, }) {
                   theme.color
                 ),
               ],
-            })}
-            render={({ className: rightClassName, }) => (
+            })}>{({ className: rightClassName, }) => (
               <path
                 className={rightClassName}
                 d="M246.8 99.5c-.8-2.6-3.4-4.3-7.7-4.9L167 83.4 135 15c-1-1.8-2.1-3.3-3.3-4.4s-2.5-1.5-3.7-1.5V209.8l64.2 35.3 3.3 1.4c.9.3 1.9.5 2.8.5 2 0 3.7-.9 4.6-2.8.9-1.9 1.2-4.5.9-7.9l-12.6-74.7 52-53c3.2-3.4 4.4-6.5 3.6-9.1z"
               />
-            )}
-          />
+            )}</FelaComponent>
           <FelaComponent
             leftColor={leftColor}
-            rule={({ theme, leftColor, }) => ({
+            style={({ theme, leftColor, }) => ({
               extend: [
                 parseComponentProp(
                   'fill',
@@ -82,17 +77,14 @@ function IconStar({ size, rightColor, leftColor, }) {
                   theme.color
                 ),
               ],
-            })}
-            render={({ className: leftClassName, }) => (
+            })}>{({ className: leftClassName, }) => (
               <path
                 className={leftClassName}
                 d="M10.2 99.5c.8-2.6 3.4-4.3 7.7-4.9L90 83.4 122 15c1-1.8 2.1-3.3 3.3-4.4 1.2-1.1 2-1.7 3.7-1.4V209.8l-64.2 35.3-3.3 1.4c-.9.3-1.9.5-2.8.5-2.1 0-3.7-.9-4.6-2.8-.9-1.9-1.2-4.5-.9-7.9l12.6-74.7-52.1-53c-3.1-3.4-4.3-6.5-3.5-9.1z"
               />
-            )}
-          />
+            )}</FelaComponent>
         </svg>
-      )}
-    />
+      )}</FelaComponent>
   );
 }
 

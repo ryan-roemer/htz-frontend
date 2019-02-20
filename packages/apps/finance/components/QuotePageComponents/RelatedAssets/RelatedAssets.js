@@ -14,18 +14,24 @@ type Props = {
 
 const RelatedAssets = ({ assets, miscStyles, }: Props): Node => (
   <FelaComponent
-    style={theme => ({
+    style={(
+      {
+        theme
+      }
+    ) => ({
       ...theme.type(-2),
+
       ':before': {
         content: '"ני"ע קשורים:"',
         marginEnd: '1rem',
         fontWeight: '700',
       },
+
       extend: [
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ],
+      ]
     })}
-    render="ul"
+    as="ul"
   >
     {assets.map(({ name, id, type, }: Asset) => (
       <FelaComponent
@@ -40,7 +46,7 @@ const RelatedAssets = ({ assets, miscStyles, }: Props): Node => (
             },
           },
         }}
-        render="li"
+        as="li"
       >
         <Link
           href={{

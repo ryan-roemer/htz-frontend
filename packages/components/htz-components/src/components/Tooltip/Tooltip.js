@@ -242,15 +242,17 @@ class Tooltip extends Component {
 
     return (
       <FelaComponent
-        render="span"
-        style={theme => ({
+        as="span"
+        style={(
+          {
+            theme
+          }
+        ) => ({
           position: 'relative',
-          extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
+          extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ]
         })}
       >
-        <FelaComponent
-          style={{ display: 'flex', }}
-          render={({ className, }) => (
+        <FelaComponent style={{ display: 'flex', }}>{({ className, }) => (
             <span
               aria-describedby={this.id}
               ref={el => {
@@ -261,10 +263,13 @@ class Tooltip extends Component {
             >
               {children}
             </span>
-          )}
-        />
+          )}</FelaComponent>
         <FelaComponent
-          style={theme => {
+          style={(
+            {
+              theme
+            }
+          ) => {
             this.theme = theme; // make the theme available trou out the class
             const isDimentionsAvailable = this.tooltipPosition !== undefined;
             const hide = !isDimentionsAvailable || this.state.hide || this.props.hide;
@@ -277,8 +282,7 @@ class Tooltip extends Component {
               tooltipMiscStyles,
               openSide,
             });
-          }}
-          render={({ className, }) => (
+          }}>{({ className, }) => (
             <div
               className={className}
               ref={el => {
@@ -287,26 +291,24 @@ class Tooltip extends Component {
             >
               {this.props.openOnMouseOver ? null : (
                 <FelaComponent
-                  style={theme => close(theme, this.props.openSide)}
-                  render={({ className, }) => (
+                  style={(
+                    {
+                      theme
+                    }
+                  ) => close(theme, this.props.openSide)}>{({ className, }) => (
                     <button type="button" className={className} onClick={() => this.onClose()}>
                       <IconClose size={2} miscStyles={closeInner} />
                     </button>
-                  )}
-                />
+                  )}</FelaComponent>
               )}
 
-              <FelaComponent
-                style={tooltipInner}
-                render={({ className, }) => (
+              <FelaComponent style={tooltipInner}>{({ className, }) => (
                   <span className={className} id={this.id}>
                     {text}
                   </span>
-                )}
-              />
+                )}</FelaComponent>
             </div>
-          )}
-        />
+          )}</FelaComponent>
       </FelaComponent>
     );
   }

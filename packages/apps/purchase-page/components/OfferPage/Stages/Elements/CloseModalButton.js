@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FelaComponent, } from 'react-fela';
 import { VisuallyHidden, } from '@haaretz/htz-components';
 
-const closeButtonStyle = theme => ({
+const closeButtonStyle = ({ theme, }) => ({
   height: '100%',
   display: 'block',
   position: 'relative',
@@ -37,19 +37,14 @@ const defaultProps = {};
 
 function CloseModalButton({ handleClose, }) {
   return (
-    <FelaComponent
-      style={{ height: '2rem', width: '2rem', }}
-      render={({ className, }) => (
-        <button
-          type="button"
-          className={className}
-          onClick={() => handleClose()}
-        >
-          <FelaComponent style={closeButtonStyle} render="span" />
+    <FelaComponent style={{ height: '2rem', width: '2rem', }}>
+      {({ className, }) => (
+        <button type="button" className={className} onClick={() => handleClose()}>
+          <FelaComponent style={closeButtonStyle} as="span" />
           <VisuallyHidden>סגירה</VisuallyHidden>
         </button>
       )}
-    />
+    </FelaComponent>
   );
 }
 

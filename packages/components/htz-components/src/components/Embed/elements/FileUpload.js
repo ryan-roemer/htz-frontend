@@ -16,9 +16,10 @@ import IconDrive from '../../Icon/icons/IconDrive';
 // eslint-disable-next-line react/prop-types
 const LinkToFile = ({ href, target, children, }) => (
   <FelaComponent
-    style={theme => ({
+    style={({ theme, }) => ({
       color: theme.color('link'),
       textDecoration: 'none',
+
       ':hover': {
         color: theme.color('link'),
         borderBottom: '1px solid',
@@ -26,12 +27,13 @@ const LinkToFile = ({ href, target, children, }) => (
         outline: '0',
       },
     })}
-    render={({ className, }) => (
+  >
+    {({ className, }) => (
       <HtzLink className={className} href={href} target={target}>
         {children}
       </HtzLink>
     )}
-  />
+  </FelaComponent>
 );
 
 function FileUpload({ source, embedType, contentName, }) {
@@ -40,7 +42,7 @@ function FileUpload({ source, embedType, contentName, }) {
   return (
     <LinkToFile href={source} target="_blank">
       <Icon size={5.5} />
-      <FelaComponent style={{ marginStart: '1rem', }} render="span">
+      <FelaComponent style={{ marginStart: '1rem', }} as="span">
         {contentName}
       </FelaComponent>
     </LinkToFile>

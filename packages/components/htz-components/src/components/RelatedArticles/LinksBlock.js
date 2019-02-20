@@ -86,14 +86,17 @@ const ArticleWrapper = createComponent(articleWrapperStyle, 'li');
 function LinksBlock({ seriesTitle, articles, miscStyles, }) {
   return (
     <FelaComponent
-      style={theme => ({
+      style={(
+        {
+          theme
+        }
+      ) => ({
         extend: [
           ...(miscStyles
             ? parseStyleProps(miscStyles, theme.mq, theme.type)
             : []),
-        ],
-      })}
-      render={({
+        ]
+      })}>{({
         className,
         theme: {
           seriesArticleI18n: { titlePrefix, },
@@ -115,8 +118,7 @@ function LinksBlock({ seriesTitle, articles, miscStyles, }) {
             }
           </Query>
         </div>
-      )}
-    />
+      )}</FelaComponent>
   );
 }
 

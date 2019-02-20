@@ -25,7 +25,7 @@ HeaderText.defaultProps = {
   subtitle: null,
 };
 
-const titleStyle = theme => ({
+const titleStyle = ({ theme, }) => ({
   display: 'inline',
   extend: [
     theme.type(3, { untilBp: 'm', }),
@@ -35,7 +35,7 @@ const titleStyle = theme => ({
   ],
 });
 
-const subTitleStyle = theme => ({
+const subTitleStyle = ({ theme, }) => ({
   fontWeight: 'normal',
   marginTop: '1rem',
   extend: [ theme.type(1), ],
@@ -43,8 +43,8 @@ const subTitleStyle = theme => ({
 
 function HeaderText({ kicker, title, subtitle, className, }) {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>
+      {theme => (
         <div className={className}>
           {kicker ? (
             <Kicker
@@ -58,20 +58,17 @@ function HeaderText({ kicker, title, subtitle, className, }) {
               text={kicker}
             />
           ) : null}
-          <FelaComponent style={titleStyle} render="h1">
+          <FelaComponent style={titleStyle} as="h1">
             {title}
           </FelaComponent>
           {subtitle ? (
-            <FelaComponent
-              style={subTitleStyle}
-              render={({ className, }) => (
-                <p className={className}>{subtitle}</p>
-              )}
-            />
+            <FelaComponent style={subTitleStyle}>
+              {({ className, }) => <p className={className}>{subtitle}</p>}
+            </FelaComponent>
           ) : null}
         </div>
       )}
-    />
+    </FelaTheme>
   );
 }
 

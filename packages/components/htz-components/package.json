@@ -42,13 +42,13 @@
     "apollo-link-error": "^1.1.0",
     "apollo-link-http": "^1.5.4",
     "apollo-link-state": "^0.4.1",
-    "fela": "^6.1.7",
+    "fela": "^10.2.1",
     "graphql-tag": "^2.9.2",
     "next": "^8.0.1",
     "react": "^16.8.2",
     "react-apollo": "^2.4.1",
     "react-dom": "^16.8.2",
-    "react-fela": "^7.2.0"
+    "react-fela": "^10.2.1"
   },
   "dependencies": {
     "@haaretz/app-utils": "^0.1.0",
@@ -61,7 +61,7 @@
     "config": "^1.26.2",
     "date-fns": "^1.29.0",
     "downshift": "^1.22.5",
-    "fela-dom": "^7.0.7",
+    "fela-dom": "^10.2.0",
     "graphql": "^14.0.2",
     "graphql-tools": "^3.0.2",
     "graphql-type-json": "^0.2.1",
@@ -92,7 +92,7 @@
     "babel-loader": "^8.0.0-beta.4",
     "chalk": "^2.3.0",
     "enzyme-to-json": "^3.3.4",
-    "fela": "^6.1.7",
+    "fela": "^10.2.1",
     "graphql-tag": "^2.9.2",
     "md5": "^2.2.1",
     "mq-polyfill": "^1.1.8",
@@ -100,7 +100,7 @@
     "react": "^16.8.2",
     "react-apollo": "^2.4.1",
     "react-dom": "^16.8.2",
-    "react-fela": "^7.2.0",
+    "react-fela": "^10.2.1",
     "rimraf": "^2.6.2",
     "svgr": "^1.1.0"
   }

@@ -55,8 +55,7 @@ export default function VerticalList({
     : list && list.items && list.items.length > 1 && list.items.slice(1);
 
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <ListView
           disableWrapper
           marginTop={0}
@@ -144,8 +143,7 @@ export default function VerticalList({
               : null}
           </GridItem>
         </ListView>
-      )}
-    />
+      )}</FelaTheme>
   );
 }
 
@@ -167,8 +165,7 @@ function VerticalListFirstTeaser({
   biAction,
 }: FirstTeaserProps) {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Teaser
           fillHeight={false}
           data={itemData}
@@ -261,8 +258,7 @@ function VerticalListFirstTeaser({
             )}
           />
         </Teaser>
-      )}
-    />
+      )}</FelaTheme>
   );
 }
 
@@ -296,8 +292,7 @@ function VerticalListTeaser({
       gridMiscStyles={{ alignContent: 'stretch', flexDirection: 'column', }}
       isClickTracker={isClickTracker(itemData)}
     >
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>{theme => (
           <TeaserContent
             data={itemData}
             padding={[
@@ -355,8 +350,7 @@ function VerticalListTeaser({
               />
             )}
           />
-        )}
-      />
+        )}</FelaTheme>
     </Teaser>
   );
 }

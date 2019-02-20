@@ -5,7 +5,7 @@ import { borderVertical, } from '@haaretz/htz-css-tools';
 import Image from '../Image/Image';
 import Paragraph from '../Paragraph/Paragraph';
 
-const bloggerInfoWrapper = theme => ({
+const bloggerInfoWrapper = ({ theme, }) => ({
   display: 'flex',
   flexDirection: 'column',
   extend: [
@@ -13,7 +13,7 @@ const bloggerInfoWrapper = theme => ({
   ],
 });
 
-const bloggerBasicRow = theme => ({
+const bloggerBasicRow = ({ theme, }) => ({
   display: 'flex',
   alignItems: 'center',
   extend: [
@@ -27,19 +27,13 @@ const bloggerBasicRow = theme => ({
   ],
 });
 
-const bloggerImageWrapper = theme => ({
+const bloggerImageWrapper = ({ theme, }) => ({
   extend: [ theme.mq({ until: 's', }, { flex: '100%', textAlign: 'center', }), ],
 });
 
 const bloggerImage = {
-  width: [
-    { until: 'xl', value: '12rem', },
-    { from: 'xl', value: '8rem', },
-  ],
-  height: [
-    { until: 'xl', value: '12rem', },
-    { from: 'xl', value: '8rem', },
-  ],
+  width: [ { until: 'xl', value: '12rem', }, { from: 'xl', value: '8rem', }, ],
+  height: [ { until: 'xl', value: '12rem', }, { from: 'xl', value: '8rem', }, ],
   borderRadius: '50%',
   overflow: 'hidden',
   display: [ { until: 's', value: 'inline-block', }, { from: 'l', value: 'block', }, ],
@@ -54,24 +48,18 @@ const imgOption = {
   },
 };
 
-const bloggerName = theme => ({
+const bloggerName = ({ theme, }) => ({
   color: theme.color('primary', 'base'),
   fontWeight: 'bold',
-  extend: [
-    theme.type(1, { untilBp: 'xl', }),
-    theme.type(0, { fromBp: 'xl', }),
-  ],
+  extend: [ theme.type(1, { untilBp: 'xl', }), theme.type(0, { fromBp: 'xl', }), ],
 });
 
-const bloggerNickName = theme => ({
+const bloggerNickName = ({ theme, }) => ({
   color: theme.color('primary', 'base'),
-  extend: [
-    theme.type(1, { untilBp: 'xl', }),
-    theme.type(0, { fromBp: 'xl', }),
-  ],
+  extend: [ theme.type(1, { untilBp: 'xl', }), theme.type(0, { fromBp: 'xl', }), ],
 });
 
-const bloggerInfoText = theme => ({
+const bloggerInfoText = ({ theme, }) => ({
   marginTop: '2rem',
   extend: [ theme.type(-1), theme.mq({ from: 's', }), ],
 });
@@ -88,35 +76,26 @@ function BloggerInfo({ author, blogName, }) {
             miscStyles={bloggerImage}
           />
         </FelaComponent>
-        <FelaComponent style={bloggerName} render="span">
+        <FelaComponent style={bloggerName} as="span">
           {author.contentName}
         </FelaComponent>
 
-        <FelaComponent render="span" style={bloggerNickName}>
+        <FelaComponent as="span" style={bloggerNickName}>
           &nbsp;|
           {' '}
           {blogName}
         </FelaComponent>
       </FelaComponent>
       <FelaComponent style={bloggerInfoText}>
-        {
-          author.biography.map((p, i) => (
-            <Paragraph
-              {...p}
-              miscStyles={{
-                marginBottom: i === author.biography.length - 1
-                  ? 0
-                  : [
-                    { from: 'xl', value: 2, },
-                  ],
-                type: [
-                  { until: 'xl', value: 0, },
-                  { from: 'xl', value: -1, },
-                ],
-              }}
-            />
-          ))
-        }
+        {author.biography.map((p, i) => (
+          <Paragraph
+            {...p}
+            miscStyles={{
+              marginBottom: i === author.biography.length - 1 ? 0 : [ { from: 'xl', value: 2, }, ],
+              type: [ { until: 'xl', value: 0, }, { from: 'xl', value: -1, }, ],
+            }}
+          />
+        ))}
       </FelaComponent>
     </FelaComponent>
   );

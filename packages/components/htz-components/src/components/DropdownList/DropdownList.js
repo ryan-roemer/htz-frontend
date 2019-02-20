@@ -119,9 +119,7 @@ class DropdownList extends React.Component {
       openList: this.openList,
     });
     return (
-      <FelaComponent
-        style={mainMenuStyle}
-        render={({ className, }) => (
+      <FelaComponent style={mainMenuStyle}>{({ className, }) => (
           <div
             className={className}
             ref={wrapper => {
@@ -135,19 +133,14 @@ class DropdownList extends React.Component {
               closeList: this.closeList,
             })}
           </div>
-        )}
-      />
+        )}</FelaComponent>
     );
   }
 }
 /* eslint-enable react/prop-types */
 
 function ThemedDropdownList(props) {
-  return (
-    <FelaTheme
-      render={({ direction, }) => <DropdownList direction={direction} {...props} />}
-    />
-  );
+  return <FelaTheme>{({ direction, }) => <DropdownList direction={direction} {...props} />}</FelaTheme>;
 }
 
 export default ThemedDropdownList;

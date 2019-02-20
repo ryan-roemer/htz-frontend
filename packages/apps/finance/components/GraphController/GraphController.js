@@ -68,9 +68,7 @@ class GraphController extends React.Component<Props, State> {
   static getDerivedStateFromProps(nextProps: Props, prevState: State) {
     return {
       selectedPeriod: !prevState ? 'daily' : prevState.selectedPeriod,
-      selectedGraph: !prevState
-        ? { value: 'line', display: 'גרף קוי', }
-        : prevState.selectedGraph,
+      selectedGraph: !prevState ? { value: 'line', display: 'גרף קוי', } : prevState.selectedGraph,
     };
   }
 
@@ -93,23 +91,21 @@ class GraphController extends React.Component<Props, State> {
 
     return (
       <FelaComponent
-        style={theme => ({
-          extend: [
-            ...(miscStyles
-              ? parseStyleProps(miscStyles, theme.mq, theme.type)
-              : []),
-          ],
+        style={({ theme, }) => ({
+          extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
         })}
-        render={({ className, }) => (
+      >
+        {({ className, }) => (
           <TabPanel className={className} id={`stock-${selectedStockId}`}>
             <FelaComponent
-              style={theme => ({
+              style={({ theme, }) => ({
                 color: theme.color('neutral', '-5'),
                 display: 'flex',
                 marginBottom: '1rem',
                 ...theme.type(-1),
               })}
-              render={({ className, }) => (
+            >
+              {({ className, }) => (
                 <Tabs activeTab={selectedIndex}>
                   <TabList className={className}>
                     <Tab
@@ -117,8 +113,7 @@ class GraphController extends React.Component<Props, State> {
                       controls="graph-daily"
                       presentation
                       rule={tabRule}
-                      onClick={() => this.changeSelectedTime({ period: 'daily', index: 0, })
-                      }
+                      onClick={() => this.changeSelectedTime({ period: 'daily', index: 0, })}
                     >
                       <span>יומי</span>
                     </Tab>
@@ -127,8 +122,7 @@ class GraphController extends React.Component<Props, State> {
                       controls="graph-weekly"
                       presentation
                       rule={tabRule}
-                      onClick={() => this.changeSelectedTime({ period: 'weekly', index: 1, })
-                      }
+                      onClick={() => this.changeSelectedTime({ period: 'weekly', index: 1, })}
                     >
                       <span>שבועי</span>
                     </Tab>
@@ -137,8 +131,7 @@ class GraphController extends React.Component<Props, State> {
                       controls="graph-monthly"
                       presentation
                       rule={tabRule}
-                      onClick={() => this.changeSelectedTime({ period: 'monthly', index: 2, })
-                      }
+                      onClick={() => this.changeSelectedTime({ period: 'monthly', index: 2, })}
                     >
                       <span>חודשי</span>
                     </Tab>
@@ -147,8 +140,7 @@ class GraphController extends React.Component<Props, State> {
                       controls="graph-yearly"
                       presentation
                       rule={tabRule}
-                      onClick={() => this.changeSelectedTime({ period: 'yearly', index: 3, })
-                      }
+                      onClick={() => this.changeSelectedTime({ period: 'yearly', index: 3, })}
                     >
                       <span>שנתי</span>
                     </Tab>
@@ -170,8 +162,7 @@ class GraphController extends React.Component<Props, State> {
                       controls="graph-max"
                       presentation
                       rule={tabRule}
-                      onClick={() => this.changeSelectedTime({ period: 'max', index: 5, })
-                      }
+                      onClick={() => this.changeSelectedTime({ period: 'max', index: 5, })}
                     >
                       <span>מקסימום</span>
                     </Tab>
@@ -180,30 +171,28 @@ class GraphController extends React.Component<Props, State> {
                         flexGrow: '1',
                       }}
                     >
-                      {
-                        <Select
-                          onChange={selectedItem => {
-                            this.setState({ selectedGraph: selectedItem, });
-                          }}
-                          controlledSelectedItem={this.state.selectedGraph}
-                          variant="graph"
-                          items={[
-                            { value: 'line', display: 'גרף קוי', },
-                            { value: 'scatter', display: 'גרף פיזור', },
-                          ]}
-                          attrs={{ 'aria-hidden': true, }}
-                          miscStyles={{
-                            flexGrow: '1',
-                          }}
-                          buttonMiscStyles={{
-                            paddingBottom: '0.5rem',
-                            paddingTop: '0.5rem',
-                            whiteSpace: 'nowrap',
-                            minWidth: '15rem',
-                            width: '100%',
-                          }}
-                        />
-                      }
+                      <Select
+                        onChange={selectedItem => {
+                          this.setState({ selectedGraph: selectedItem, });
+                        }}
+                        controlledSelectedItem={this.state.selectedGraph}
+                        variant="graph"
+                        items={[
+                          { value: 'line', display: 'גרף קוי', },
+                          { value: 'scatter', display: 'גרף פיזור', },
+                        ]}
+                        attrs={{ 'aria-hidden': true, }}
+                        miscStyles={{
+                          flexGrow: '1',
+                        }}
+                        buttonMiscStyles={{
+                          paddingBottom: '0.5rem',
+                          paddingTop: '0.5rem',
+                          whiteSpace: 'nowrap',
+                          minWidth: '15rem',
+                          width: '100%',
+                        }}
+                      />
                     </FelaComponent>
                   </TabList>
                   <TabPanel id={`graph-${selectedPeriod}`}>
@@ -229,10 +218,10 @@ class GraphController extends React.Component<Props, State> {
                   </TabPanel>
                 </Tabs>
               )}
-            />
+            </FelaComponent>
           </TabPanel>
         )}
-      />
+      </FelaComponent>
     );
   }
 }

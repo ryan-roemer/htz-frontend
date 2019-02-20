@@ -154,8 +154,7 @@ export default function Teaser({
           right: '0',
           top: '0',
           zIndex: '0',
-        }}
-        render={({ className: linkClassName, }) => (
+        }}>{({ className: linkClassName, }) => (
           <HtzLink
             className={linkClassName}
             href={isClickTracker(data) ? data.link : data.path}
@@ -166,8 +165,7 @@ export default function Teaser({
               'aria-hidden': true,
             }}
           />
-        )}
-      />
+        )}</FelaComponent>
     </Card>
   );
 }

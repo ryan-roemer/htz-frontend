@@ -30,8 +30,7 @@ const headerType = [ { until: 'xl', value: 1, }, { from: 'xl', value: 0, }, ];
 
 export default function MainTeaser({ itemData, lazyLoadImages, biAction, }: Props): React.Node {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Teaser
           data={itemData}
           onClick={biAction ? () => biAction({ index: 0, articleId: itemData.representedContent, }) : null}
@@ -93,7 +92,6 @@ export default function MainTeaser({ itemData, lazyLoadImages, biAction, }: Prop
             )}
           />
         </Teaser>
-      )}
-    />
+      )}</FelaTheme>
   );
 }

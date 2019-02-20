@@ -174,15 +174,19 @@ class Volume extends React.Component<Props, State> {
     const { miscStyles, height, width, } = this.props;
     return (
       <FelaComponent
-        style={theme => ({
+        style={(
+          {
+            theme
+          }
+        ) => ({
           backgroundColor: theme.color('neutral', '-10'),
+
           extend: [
             ...(miscStyles
               ? parseStyleProps(miscStyles, theme.mq, theme.type)
               : []),
-          ],
-        })}
-        render={({ className, theme, }) => (
+          ]
+        })}>{({ className, theme, }) => (
           <svg
             ref={svgRef => {
               this.svgRef = svgRef;
@@ -203,8 +207,7 @@ class Volume extends React.Component<Props, State> {
                 fontWeight: '700',
                 textAnchor: 'start', // Todo: BUG!! at the client, this rule will be transcoded as "text-anchor: right;", which is an illegal value
                 fontFamily: theme.fontStacks.enhanced,
-              }}
-              render={({ className, }) => (
+              }}>{({ className, }) => (
                 <g
                   className={className}
                   ref={yAxisRef => {
@@ -214,11 +217,9 @@ class Volume extends React.Component<Props, State> {
                   fill={theme.color('neutral', '-3')}
                   style={{ textAnchor: 'start', }}
                 />
-              )}
-            />
+              )}</FelaComponent>
           </svg>
-        )}
-      />
+        )}</FelaComponent>
     );
   }
 }

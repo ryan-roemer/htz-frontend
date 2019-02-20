@@ -80,9 +80,7 @@ class Stage4 extends Component {
                   const chosenPaymentArrangement = chosenOffer.type;
 
                   return (
-                    <FelaComponent
-                      style={{ textAlign: 'center', }}
-                      render={({
+                    <FelaComponent style={{ textAlign: 'center', }}>{({
                         className,
                         theme: {
                           stage4: { header, details, },
@@ -115,7 +113,7 @@ class Stage4 extends Component {
                                         <Fragment>
                                           <FelaComponent
                                             style={{ fontWeight: 'bold', }}
-                                            render="span"
+                                            as="span"
                                           >
                                             {details.textBeforeChosen}
                                             {' '}
@@ -150,8 +148,7 @@ class Stage4 extends Component {
                             />
                           </LayoutContainer>
                         </div>
-                      )}
-                    />
+                      )}</FelaComponent>
                   );
                 }}
               </Query>

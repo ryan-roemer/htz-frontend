@@ -59,8 +59,7 @@ export default function Item({ name, url, pages, variant, miscStyles, onClick, }
   return (
     <EventTracker>
       {({ biAction, }) => (
-        <FelaTheme
-          render={theme => (
+        <FelaTheme>{theme => (
             <Fragment>
               {pages && pages.length > 0 ? (
                 <DropdownList
@@ -207,8 +206,7 @@ export default function Item({ name, url, pages, variant, miscStyles, onClick, }
                 </Button>
               )}
             </Fragment>
-          )}
-        />
+          )}</FelaTheme>
       )}
     </EventTracker>
   );

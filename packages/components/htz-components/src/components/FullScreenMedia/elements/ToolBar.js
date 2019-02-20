@@ -1,5 +1,5 @@
 import React, { Fragment, } from 'react';
-import { FelaComponent, } from 'react-fela';
+import { FelaComponent, FelaTheme, } from 'react-fela';
 import { parseComponentProp, } from '@haaretz/htz-css-tools';
 import rgba from 'polished/lib/color/rgba';
 
@@ -41,7 +41,7 @@ const toolBarWrapper = ({ theme, isOpen, }) => {
 
 const Separator = () => (
   <FelaComponent
-    style={theme => ({
+    style={({ theme, }) => ({
       backgroundColor: theme.color('neutral', '-3'),
       height: '1px',
       marginBottom: '2rem',
@@ -69,10 +69,8 @@ class ToolBar extends React.Component {
     const { closeButton, captionElement, itemName, itemUrl, } = this.props;
     return (
       <Fragment>
-        <FelaComponent
-          isOpen={this.state.isOpen}
-          rule={toolBarWrapper}
-          render={({ className, theme, }) => (
+        <FelaComponent isOpen={this.state.isOpen} style={toolBarWrapper}>
+          {({ className, theme, }) => (
             <FelaComponent style={{ display: 'flex', zIndex: 1, }}>
               <FelaComponent
                 style={{
@@ -107,14 +105,8 @@ class ToolBar extends React.Component {
                   style={{
                     display: 'none',
                     extend: [
-                      theme.mq(
-                        { from: 's', misc: 'portrait', },
-                        { display: 'block', }
-                      ),
-                      theme.mq(
-                        { from: 'm', misc: 'landscape', },
-                        { display: 'block', }
-                      ),
+                      theme.mq({ from: 's', misc: 'portrait', }, { display: 'block', }),
+                      theme.mq({ from: 'm', misc: 'landscape', }, { display: 'block', }),
                     ],
                   }}
                 >
@@ -132,10 +124,9 @@ class ToolBar extends React.Component {
                         backgroundColor: theme.color('neutral', '+1'),
                       },
                     }}
-                    onClick={
-                      () => this.setState(prevState => ({
-                        isOpen: !prevState.isOpen,
-                      }))
+                    onClick={() => this.setState(prevState => ({
+                      isOpen: !prevState.isOpen,
+                    }))
                     }
                   >
                     <IconInfo size={4} color={[ 'neutral', -10, ]} />
@@ -153,14 +144,8 @@ class ToolBar extends React.Component {
                               style={{
                                 width: '100%',
                                 extend: [
-                                  theme.mq(
-                                    { from: 's', misc: 'portrait', },
-                                    { display: 'none', }
-                                  ),
-                                  theme.mq(
-                                    { from: 'm', misc: 'landscape', },
-                                    { display: 'none', }
-                                  ),
+                                  theme.mq({ from: 's', misc: 'portrait', }, { display: 'none', }),
+                                  theme.mq({ from: 'm', misc: 'landscape', }, { display: 'none', }),
                                 ],
                               }}
                             >
@@ -199,9 +184,9 @@ class ToolBar extends React.Component {
               </div>
             </FelaComponent>
           )}
-        />
-        <FelaComponent
-          render={({ theme, }) => (
+        </FelaComponent>
+        <FelaTheme>
+          {({ theme, }) => (
             <Button
               isFlat
               boxModel={{ hp: 1, vp: 0.5, }}
@@ -220,10 +205,9 @@ class ToolBar extends React.Component {
                   (prop, value) => ({ [prop]: value, })
                 ),
               }}
-              onClick={
-                () => this.setState(prevState => ({
-                  isOpen: !prevState.isOpen,
-                }))
+              onClick={() => this.setState(prevState => ({
+                isOpen: !prevState.isOpen,
+              }))
               }
             >
               <FlippingArrow
@@ -234,7 +218,7 @@ class ToolBar extends React.Component {
               />
             </Button>
           )}
-        />
+        </FelaTheme>
       </Fragment>
     );
   }

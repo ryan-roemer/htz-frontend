@@ -24,9 +24,7 @@ ListItem.defaultProps = {
 
 export default function ListItem({ children, itemStyle, onTabNext, onTabPrev, }) {
   return (
-    <FelaComponent
-      style={itemStyle}
-      render={({ className, }) => (
+    <FelaComponent style={itemStyle}>{({ className, }) => (
         <li // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
           className={className}
           onKeyDown={e => {
@@ -37,7 +35,6 @@ export default function ListItem({ children, itemStyle, onTabNext, onTabPrev, })
         >
           {children}
         </li>
-      )}
-    />
+      )}</FelaComponent>
   );
 }

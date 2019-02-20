@@ -47,20 +47,16 @@ const numToString: number => string = num => num.toLocaleString('he', {
   maximumFractionDigits: 2,
 });
 
-export const TdComponent = ({
-  children,
-  miscStyles,
-}: TdComponentProps): Node => (
+export const TdComponent = ({ children, miscStyles, }: TdComponentProps): Node => (
   <FelaComponent
-    style={theme => ({
+    style={({ theme, }) => ({
       paddingTop: '1.5rem',
       paddingBottom: '1.5rem',
       verticalAlign: 'top',
-      extend: [
-        ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ],
+
+      extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
     })}
-    render="td"
+    as="td"
   >
     {children}
   </FelaComponent>
@@ -118,10 +114,7 @@ const tabRule = ({ theme, isActive, isPrevious, }) => ({
 class AssetsTable extends React.Component<AssetsTableProps, State> {
   state: State;
 
-  static getDerivedStateFromProps(
-    nextProps: AssetsTableProps,
-    prevState: State
-  ) {
+  static getDerivedStateFromProps(nextProps: AssetsTableProps, prevState: State) {
     return {
       ...(nextProps && prevState && nextProps.data !== prevState.assets
         ? {
@@ -146,10 +139,7 @@ class AssetsTable extends React.Component<AssetsTableProps, State> {
     this.props.changeAsset(this.state.asset);
   }
 
-  changeSelectedIndexId: (Asset | FeedAsset, number) => void = (
-    asset,
-    index
-  ) => {
+  changeSelectedIndexId: (Asset | FeedAsset, number) => void = (asset, index) => {
     this.setState({
       asset,
       selectedIndex: index,
@@ -163,17 +153,14 @@ class AssetsTable extends React.Component<AssetsTableProps, State> {
     } = this.state;
     return (
       <FelaComponent
-        style={(theme: Object) => ({
+        style={({ theme, }) => ({
           ...theme.type(-2),
           whiteSpace: 'nowrap',
           width: 'calc(100% - 1rem)',
-          extend: [
-            ...(miscStyles
-              ? parseStyleProps(miscStyles, theme.mq, theme.type)
-              : []),
-          ],
+
+          extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
         })}
-        render="table"
+        as="table"
       >
         <thead>
           <tr>
@@ -185,15 +172,13 @@ class AssetsTable extends React.Component<AssetsTableProps, State> {
                   paddingBottom: '0',
                 }}
               >
-                <FelaComponent style={header.style}>
-                  {header.display}
-                </FelaComponent>
+                <FelaComponent style={header.style}>{header.display}</FelaComponent>
               </TdComponent>
             ))}
           </tr>
         </thead>
-        <FelaTheme
-          render={theme => (
+        <FelaTheme>
+          {theme => (
             <Tabs activeTab={this.state.selectedIndex}>
               <TabList render="tbody">
                 {data.map((asset: Asset | FeedAsset, index: number) => {
@@ -231,13 +216,13 @@ class AssetsTable extends React.Component<AssetsTableProps, State> {
                                 : isLast
                                   ? {
                                     color:
-                                        Number(asset[header.value]) < 0
-                                          ? isActive
-                                            ? theme.color('negative', '-2')
-                                            : theme.color('negative')
-                                          : isActive
-                                            ? theme.color('positive', '-2')
-                                            : theme.color('positive'),
+                                      Number(asset[header.value]) < 0
+                                        ? isActive
+                                          ? theme.color('negative', '-2')
+                                          : theme.color('negative')
+                                        : isActive
+                                          ? theme.color('positive', '-2')
+                                          : theme.color('positive'),
                                     direction: 'ltr',
                                     fontWeight: '700',
                                     paddingEnd: '2rem',
@@ -250,7 +235,7 @@ class AssetsTable extends React.Component<AssetsTableProps, State> {
                                           content: '""',
                                           /* selected black arrow svg image */
                                           backgroundImage:
-                                                'url("data:image/svg+xml; utf8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%205%2010%27%3E%3Cpolygon%20fill%3D%27white%27%20points%3D%270%2C0%205%2C0%2C%200%2C5%205%2C10%200%2C10%27%2F%3E%3C%2Fsvg%3E")',
+                                              'url("data:image/svg+xml; utf8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%205%2010%27%3E%3Cpolygon%20fill%3D%27white%27%20points%3D%270%2C0%205%2C0%2C%200%2C5%205%2C10%200%2C10%27%2F%3E%3C%2Fsvg%3E")',
                                           end: '0',
                                           position: 'absolute',
                                           top: '50%',
@@ -276,10 +261,7 @@ class AssetsTable extends React.Component<AssetsTableProps, State> {
                               <FelaComponent
                                 style={{
                                   ':before': {
-                                    content:
-                                      Number(asset[header.value]) > 0
-                                        ? '"+"'
-                                        : '"-"',
+                                    content: Number(asset[header.value]) > 0 ? '"+"' : '"-"',
                                   },
                                   ...(header.percentage
                                     ? {
@@ -289,12 +271,10 @@ class AssetsTable extends React.Component<AssetsTableProps, State> {
                                     }
                                     : {}),
                                 }}
-                                render="span"
+                                as="span"
                               >
                                 {header.percentage
-                                  ? numToString(
-                                    Math.abs(Number(asset[header.value]))
-                                  )
+                                  ? numToString(Math.abs(Number(asset[header.value])))
                                   : Math.abs(Number(asset[header.value]))}
                               </FelaComponent>
                             ) : (
@@ -309,7 +289,7 @@ class AssetsTable extends React.Component<AssetsTableProps, State> {
               </TabList>
             </Tabs>
           )}
-        />
+        </FelaTheme>
       </FelaComponent>
     );
   }

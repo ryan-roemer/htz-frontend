@@ -40,9 +40,10 @@ class AuthorAlert extends React.Component {
   render() {
     return (
       <FelaComponent
-        style={theme => ({
+        style={({ theme, }) => ({
           color: theme.color('alerts', 'openButtonText'),
           fontWeight: 'bold',
+
           extend: [
             theme.type(-2, { fromBp: 'xl', }),
             theme.type(-1, { fromBp: 'l', untilBp: 'xl', }),
@@ -74,7 +75,8 @@ class AuthorAlert extends React.Component {
             ),
           ],
         })}
-        render={({
+      >
+        {({
           className,
           theme,
           theme: {
@@ -93,7 +95,7 @@ class AuthorAlert extends React.Component {
                     forwardedRef={this.props.innerRef}
                   >
                     <IconMailAlert size={2.5} miscStyles={{ marginEnd: '1rem', }} />
-                    <FelaComponent render="span">{desktopAlertsText}</FelaComponent>
+                    <span>{desktopAlertsText}</span>
                   </AlertsButton>
                   <A11yDialog
                     appendTo="modal-example-12"
@@ -108,39 +110,41 @@ class AuthorAlert extends React.Component {
                         style={{
                           textAlign: 'center',
                         }}
-                        render={({ className, }) => (
+                      >
+                        {({ className, }) => (
                           <div className={className}>
                             <FelaComponent
-                              rule={({ theme, }) => ({
-                                overflow: 'hidden',
-                                left: 0,
-                                right: 0,
-                                backgroundColor: theme.color('primary', '-5'),
-                                zIndex: theme.getZIndex('above'),
-                                ':before': {
-                                  position: 'absolute',
-                                  display: 'block',
-                                  content: '""',
-                                  height: '2px',
-                                  width: '100%',
-                                  backgroundColor: theme.color('primary', '-1'),
-                                  zIndex: 1,
-                                },
-                              })}
-                              render={({ className, }) => (
-                                <div className={className}>
-                                  <AuthorNotificationsRegistration
-                                    author={this.props.author}
-                                    platform={this.props.platform}
-                                    biAction={this.props.biAction}
-                                    onToggle={() => handleClose()}
-                                  />
-                                </div>
-                              )}
-                            />
+                              style={({ theme, }) => ({
+                                  overflow: 'hidden',
+                                  left: 0,
+                                  right: 0,
+                                  backgroundColor: theme.color('primary', '-5'),
+                                  zIndex: theme.getZIndex('above'),
+                                  ':before': {
+                                    position: 'absolute',
+                                    display: 'block',
+                                    content: '""',
+                                    height: '2px',
+                                    width: '100%',
+                                    backgroundColor: theme.color('primary', '-1'),
+                                    zIndex: 1,
+                                  },
+                                })}
+                            >
+                              {({ className, }) => (
+                                  <div className={className}>
+                                    <AuthorNotificationsRegistration
+                                      author={this.props.author}
+                                      platform={this.props.platform}
+                                      biAction={this.props.biAction}
+                                      onToggle={() => handleClose()}
+                                    />
+                                  </div>
+                                )}
+                            </FelaComponent>
                           </div>
                         )}
-                      />
+                      </FelaComponent>
                     )}
                   />
                 </React.Fragment>
@@ -159,7 +163,7 @@ class AuthorAlert extends React.Component {
                     style={{
                       display: 'block',
                     }}
-                    render="span"
+                    as="span"
                   >
                     {mobileAlertsText}
                   </FelaComponent>
@@ -169,7 +173,7 @@ class AuthorAlert extends React.Component {
             </Media>
           </React.Fragment>
         )}
-      />
+      </FelaComponent>
     );
   }
 }

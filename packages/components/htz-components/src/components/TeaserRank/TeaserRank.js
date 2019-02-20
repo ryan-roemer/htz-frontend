@@ -32,7 +32,7 @@ type TeaserRankPropsType = {
   enabledColor: ?ColorPropType,
   /** The color of an inactive star */
   disabledColor: ?ColorPropType,
-  direction: "rtl" | "ltr",
+  direction: 'rtl' | 'ltr',
   size: ?number | ComponentPropResponsiveObject<number>[],
   miscStyles: ?StyleProps,
 };
@@ -71,14 +71,12 @@ export default function TeaserRank({
         key={idx}
         size="inherit"
         rightColor={
-          idx < flooredRank
-          || (idx === flooredRank && hasHalfRank && direction === 'rtl')
+          idx < flooredRank || (idx === flooredRank && hasHalfRank && direction === 'rtl')
             ? enabledColor
             : disabledColor
         }
         leftColor={
-          idx < flooredRank
-          || (idx === flooredRank && hasHalfRank && direction === 'ltr')
+          idx < flooredRank || (idx === flooredRank && hasHalfRank && direction === 'ltr')
             ? enabledColor
             : disabledColor
         }
@@ -86,24 +84,19 @@ export default function TeaserRank({
     ));
 
   return (
-    <FelaComponent
-      size={size}
-      miscStyles={miscStyles}
-      rule={teaserRankStyle}
-      render={({ className, }) => (
+    <FelaComponent size={size} miscStyles={miscStyles} style={teaserRankStyle}>
+      {({ className, }) => (
         <span className={className} {...attrs}>
           <span aria-hidden="true">{stars}</span>
-          <FelaTheme
-            render={theme => (theme.teaserI18n ? (
-              <VisuallyHidden>
-                {`${rank} ${theme.teaserI18n.ratingDescription}`}
-              </VisuallyHidden>
+          <FelaTheme>
+            {theme => (theme.teaserI18n ? (
+              <VisuallyHidden>{`${rank} ${theme.teaserI18n.ratingDescription}`}</VisuallyHidden>
             ) : null)
             }
-          />
+          </FelaTheme>
         </span>
       )}
-    />
+    </FelaComponent>
   );
 }
 
@@ -116,11 +109,7 @@ type TeaserRankStyleOpts = {
   miscStyles: StyleProps,
   theme: Object,
 };
-function teaserRankStyle({
-  size,
-  miscStyles,
-  theme,
-}: TeaserRankStyleOpts): Object {
+function teaserRankStyle({ size, miscStyles, theme, }: TeaserRankStyleOpts): Object {
   return {
     position: 'relative',
     top: '-0.15em',
@@ -130,9 +119,7 @@ function teaserRankStyle({
       // set to 1em, and the "width" is set in ems based on the icon's aspect ratio.
       // "size" will set the "fontSize" of the icon to a number of vertical-rhythm units
       // and by so adjusting width and height in a manner that keeps the icon's aspect ratio.
-      ...(size
-        ? [ parseComponentProp('fontSize', size, theme.mq, setSize), ]
-        : []),
+      ...(size ? [ parseComponentProp('fontSize', size, theme.mq, setSize), ] : []),
       // Trump all other styles with those defined in `miscStyles`
       ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
     ],

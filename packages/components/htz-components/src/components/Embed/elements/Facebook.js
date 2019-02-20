@@ -84,11 +84,12 @@ export default class Facebook extends React.Component<Props> {
   };
 
   render() {
-    const { embedType: type, settings: { showText, width, height, }, } = this.props;
+    const {
+      embedType: type,
+      settings: { showText, width, height, },
+    } = this.props;
     return (
-      <Query
-        query={getFbStatus}
-      >
+      <Query query={getFbStatus}>
         {({ loading, error, data, client, }) => {
           if (loading) return null;
           if (error) return null;
@@ -105,20 +106,17 @@ export default class Facebook extends React.Component<Props> {
                     width: '100% !important',
                   },
                 }}
-                render={({ className, }) => (
+              >
+                {({ className, }) => (
                   <div
                     className={`fb-post ${className}`}
                     data-width="auto"
                     data-href={this.props.source}
                   />
                 )}
-              />
+              </FelaComponent>
             ) : type === 'comments' ? (
-              <div
-                className="fb-comment-embed"
-                data-width="auto"
-                data-href={this.props.source}
-              />
+              <div className="fb-comment-embed" data-width="auto" data-href={this.props.source} />
             ) : (
               <FelaComponent
                 style={{
@@ -128,7 +126,8 @@ export default class Facebook extends React.Component<Props> {
                   // in too large a width. (a Facebook given class makes the display inline)
                   display: 'inline-block !important',
                 }}
-                render={({ className, }) => (
+              >
+                {({ className, }) => (
                   <div
                     className={`fb-video ${className}`}
                     data-width="auto"
@@ -138,7 +137,7 @@ export default class Facebook extends React.Component<Props> {
                     data-show-text={showText}
                   />
                 )}
-              />
+              </FelaComponent>
             );
           }
           return null;

@@ -13,7 +13,7 @@ type Props = {
   rule?: Object,
   setActiveTab?: number => void,
   onClick?: Function,
-}
+};
 
 /* eslint-disable react/prop-types */
 const Tab: StatelessFunctionalComponent<Props> = ({
@@ -28,18 +28,18 @@ const Tab: StatelessFunctionalComponent<Props> = ({
   onClick,
   ...props
 }) => {
-/* eslint-enable react/prop-types */
+  /* eslint-enable react/prop-types */
   const TabTag: string | ComponentType<any> = render || 'button';
   return (
-    <FelaComponent
-      rule={rule}
-      isActive={isActive}
-      {...props}
-      render={({ className, }) => (presentation ? (
+    <FelaComponent {...props} style={rule} isActive={isActive}>
+      {({ className, }) => (presentation ? (
         <li role="presentation" className={className}>
           <TabTag
             {...(typeof TabTag !== 'string' ? { isActive, } : {})}
-            onClick={() => { if (setActiveTab) setActiveTab(index); if (onClick) onClick(); }}
+            onClick={() => {
+              if (setActiveTab) setActiveTab(index);
+              if (onClick) onClick();
+            }}
             tabIndex={isActive ? '0' : '-1'}
             role="tab"
             aria-controls={controls}
@@ -50,7 +50,10 @@ const Tab: StatelessFunctionalComponent<Props> = ({
         </li>
       ) : (
         <TabTag
-          onClick={() => { if (setActiveTab) setActiveTab(index); if (onClick) onClick(); }}
+          onClick={() => {
+            if (setActiveTab) setActiveTab(index);
+            if (onClick) onClick();
+          }}
           className={className}
           tabIndex={isActive ? '0' : '-1'}
           role="tab"
@@ -59,8 +62,9 @@ const Tab: StatelessFunctionalComponent<Props> = ({
         >
           {children}
         </TabTag>
-      ))}
-    />
+      ))
+      }
+    </FelaComponent>
   );
 };
 

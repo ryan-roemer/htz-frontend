@@ -1,152 +1,59 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { FelaComponent, } from 'react-fela';
+
 import { parseTypographyProp, borderTop, } from '@haaretz/htz-css-tools';
-
-import type { Node, } from 'react';
-import type { ListDataType, } from '../../../../flowTypes/ListDataType';
-import type { TeaserDataType, } from '../../../../flowTypes/TeaserDataType';
-import type { ListBiActionType, } from '../../../../flowTypes/ListBiActionType';
-
-import ListItem from '../../elements/ListItem';
-import Grid from '../../../Grid/Grid';
 import GridItem from '../../../Grid/GridItem';
-import HtzLink from '../../../HtzLink/HtzLink';
-import Media from '../../../Media/Media';
-import Image from '../../../Image/Image';
-import BlockLink from '../../../BlockLink/BlockLink';
-import AboveBlockLink from '../../../BlockLink/AboveBlockLink';
+import ListView from '../../../ListView/ListView';
+import BenderItem from './BenderItem';
 import H from '../../../AutoLevels/H';
 import Section from '../../../AutoLevels/Section';
 
-const benderWrapperRules: ({ theme: Object, }) => Object = ({ theme, }) => ({
+import type { ListBiActionType, } from '../../../../flowTypes/ListBiActionType';
+import type { ListDataType, } from '../../../../flowTypes/ListDataType';
+
+const width = [
+  { until: 'l', value: 1 / 3, },
+  { from: 'l', until: 'xl', value: 1 / 4, },
+  { from: 'xl', value: 1 / 6, },
+];
+
+const benderWrapperRules = ({ theme, }) => ({
   width: '100%',
   backgroundColor: theme.color('white'),
   paddingInlineStart: '2rem',
   paddingInlineEnd: '2rem',
   paddingBottom: '2rem',
+  // marginTop: '10rem',
   extend: [
     theme.mq({ until: 's', display: 'none', }),
     borderTop('2px', 1, 'solid', theme.color('primary')),
+    // theme.mq({ from: 's', until: 'l', marginTop: '8rem', }),
+    // theme.mq({ from: 'xl', marginTop: '9rem', }),
   ],
 });
 
-const itemRule: Object = {
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-};
-
-const authorRule: ({ theme: Object, }) => Object = ({ theme, }) => ({
-  color: theme.color('neutral', '-3'),
-  fontWeight: 'bold',
-  marginTop: 'auto',
-  extend: [ theme.type(-2), ],
-});
-
-type Props = {
+type BenderPropTypes = {
+  list: ListDataType,
+  lazyLoadImages: boolean,
   gaAction: () => void,
   biAction: ?ListBiActionType,
-  /**
-   * data object from polopoly
-   */
-  list: ListDataType,
-  /**
-   * Determine if the component images should be lazyloaded.
-   */
-  lazyLoadImages: boolean,
 };
 
 Bender.defaultProps = {
-  lazyLoadImages: true,
+  lazyLoadImages: false,
 };
 
-export default function Bender({ list, lazyLoadImages, gaAction, biAction, }: Props): Node {
-  const imgOptions: Object = {
-    transforms: {
-      aspect: 'vertical',
-      width: '500',
-    },
-  };
-
-  const BenderItem: (item: TeaserDataType, i: number, itemsToRender: number) => Node = (
-    item,
-    i,
-    itemsToRender
-  ) => (
-    <GridItem width={1 / itemsToRender} key={item.contentId}>
-      <ListItem>
-        <BlockLink
-          href={item.path}
-          miscStyles={itemRule}
-          onClick={
-            biAction ? () => biAction({ index: i, articleId: item.representedContent, }) : null
-          }
-        >
-          <Section isFragment>
-            <FelaComponent
-              render={({ className, theme, }) => {
-                // eslint-disable-next-line no-unused-vars
-                const { title, } = theme.benderStyle;
-                return (
-                  <div className={className}>
-                    <Image data={item.image} imgOptions={imgOptions} lazyLoad={lazyLoadImages} />
-
-                    <FelaComponent
-                      style={{
-                        fontWeight: 'bold',
-                        color: theme.color('neutral'),
-                        marginBottom: '1rem',
-                        marginTop: '1rem',
-                        extend: [ parseTypographyProp(title.fontSize, theme.type), ],
-                      }}
-                      render={({ className, }) => (
-                        <H className={className}>
-                          <HtzLink href={item.path}>{item.title}</HtzLink>
-                        </H>
-                      )}
-                    />
-                  </div>
-                );
-              }}
-            />
-            <FelaComponent
-              rule={authorRule}
-              render={({ className, }) => (
-                <footer className={className}>
-                  <AboveBlockLink>
-                    {({ className, }) => (
-                      <span className={className}>
-                        {item.authors
-                          ? item.authors.map(author => {
-                            if (author.url) {
-                              return <HtzLink href={author.url} content={author.contentName} />;
-                            }
-                            return <span key={author.contentName}>{author.contentName}</span>;
-                          })
-                          : null}
-                      </span>
-                    )}
-                  </AboveBlockLink>
-                </footer>
-              )}
-            />
-          </Section>
-        </BlockLink>
-      </ListItem>
-    </GridItem>
-  );
-
-  const { items, title, } = list;
-
-  const content: (?number) => Node = itemsToRender => (itemsToRender
-    ? items.slice(0, itemsToRender).map((item, i) => BenderItem(item, i, itemsToRender))
-    : null);
-
+export default function Bender({
+  lazyLoadImages,
+  list,
+  gaAction,
+  biAction,
+}: BenderPropTypes): React.Node {
+  const numOfItems = list && list.items ? list.items.length : 0;
   return (
-    <FelaComponent
-      rule={benderWrapperRules}
-      render={({ className, theme, }) => (
+    <FelaComponent style={benderWrapperRules}>
+      {({ className, theme, }) => (
         <Section className={className}>
           <FelaComponent
             style={{
@@ -158,32 +65,108 @@ export default function Bender({ list, lazyLoadImages, gaAction, biAction, }: Pr
                 theme.mq({ until: 's', }, { display: 'none', }),
               ],
             }}
-            render={({ className, }) => (
-              <H className={className}>{title || theme.benderStyle.mainTitle.text}</H>
+          >
+            {({ className, }) => (
+              <H className={className}>{list.title || theme.benderStyle.mainTitle.text}</H>
             )}
-          />
-          <Media query={{ from: 's', until: 'l', }}>
-            {renderThreeItems => (
-              <Media query={{ from: 'l', until: 'xl', }}>
-                {renderFourItems => (
-                  <Media query={{ from: 'xl', }}>
-                    {renderSixItems => {
-                      const itemsToRender: ?number = renderThreeItems
-                        ? 3
-                        : renderFourItems
-                          ? 4
-                          : renderSixItems
-                            ? 6
-                            : null;
-                      return <Grid gutter={4}>{content(itemsToRender)}</Grid>;
-                    }}
-                  </Media>
-                )}
-              </Media>
-            )}
-          </Media>
+          </FelaComponent>
+          <ListView
+            gutter={4}
+            innerBackgroundColor={[
+              { until: 's', value: 'transparent', },
+              { from: 's', value: 'white', },
+            ]}
+            // padding={[ { until: 's', value: [ 0, 2, ], }, { from: 's', value: [ 0, 1, 1, ], }, ]}
+            marginTop={[ { until: 's', value: 2, }, { from: 's', value: 0, }, ]}
+            // rowSpacing={[
+            //   { until: 's', value: { amount: 2, }, },
+            //   { from: 's', until: 'l', value: { amount: 4, }, },
+            // ]}
+
+            disableWrapper
+            miscStyles={{ display: [ { until: 's', value: 'none', }, ], }}
+          >
+            {numOfItems > 0 ? (
+              <GridItem width={width} miscStyles={{ display: 'flex', }}>
+                <BenderItem
+                  data={list.items[0]}
+                  lazyLoadImages={lazyLoadImages}
+                  index={0}
+                  biAction={biAction}
+                />
+              </GridItem>
+            ) : null}
+            {numOfItems > 1 ? (
+              <GridItem width={width} miscStyles={{ display: 'flex', }}>
+                <BenderItem
+                  data={list.items[1]}
+                  lazyLoadImages={lazyLoadImages}
+                  index={1}
+                  biAction={biAction}
+                />
+              </GridItem>
+            ) : null}
+            {numOfItems > 2 ? (
+              <GridItem width={width} miscStyles={{ display: 'flex', }}>
+                <BenderItem
+                  data={list.items[2]}
+                  lazyLoadImages={lazyLoadImages}
+                  index={2}
+                  biAction={biAction}
+                />
+              </GridItem>
+            ) : null}
+            {numOfItems > 3 ? (
+              <GridItem
+                width={width}
+                miscStyles={{
+                  display: [ { until: 'l', value: 'none', }, { from: 'l', value: 'flex', }, ],
+                }}
+              >
+                <BenderItem
+                  data={list.items[3]}
+                  lazyLoadImages={lazyLoadImages}
+                  hideImageOnMobile
+                  index={3}
+                  biAction={biAction}
+                />
+              </GridItem>
+            ) : null}
+            {numOfItems > 4 ? (
+              <GridItem
+                width={width}
+                miscStyles={{
+                  display: [ { until: 'xl', value: 'none', }, { from: 'xl', value: 'flex', }, ],
+                }}
+              >
+                <BenderItem
+                  data={list.items[4]}
+                  lazyLoadImages={lazyLoadImages}
+                  hideImageOnMobile
+                  index={3}
+                  biAction={biAction}
+                />
+              </GridItem>
+            ) : null}
+            {numOfItems > 5 ? (
+              <GridItem
+                width={width}
+                miscStyles={{
+                  display: [ { until: 'xl', value: 'none', }, { from: 'xl', value: 'flex', }, ],
+                }}
+              >
+                <BenderItem
+                  data={list.items[5]}
+                  lazyLoadImages={lazyLoadImages}
+                  hideImageOnMobile
+                  index={3}
+                  biAction={biAction}
+                />
+              </GridItem>
+            ) : null}
+          </ListView>
         </Section>
       )}
-    />
+    </FelaComponent>
   );
 }

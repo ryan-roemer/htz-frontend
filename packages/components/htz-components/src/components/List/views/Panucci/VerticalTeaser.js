@@ -33,8 +33,7 @@ export default function VerticlaTeaser({
   biAction,
 }: Props): React.Node {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Teaser
           onClick={
             biAction ? () => biAction({ index: 2, articleId: itemData.representedContent, }) : null
@@ -61,7 +60,6 @@ export default function VerticlaTeaser({
             renderFooter={() => <TeaserFooter data={itemData} displayFlags={displayFlags} />}
           />
         </Teaser>
-      )}
-    />
+      )}</FelaTheme>
   );
 }

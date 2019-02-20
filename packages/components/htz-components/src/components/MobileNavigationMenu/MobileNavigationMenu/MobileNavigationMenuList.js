@@ -55,16 +55,10 @@ export default function List({ menuSections, searchIsOpen, }) {
   const { items, sites, promotions, } = menuSections;
 
   const combinedItems = items
-    ? items.map(item => (
-      <MobileMenuLink key={`item ${item.name}`} isHeader {...item} />
-    ))
+    ? items.map(item => <MobileMenuLink key={`item ${item.name}`} isHeader {...item} />)
     : [];
 
-  const combinedSites = theme => (sites
-    ? sites.map(site => (
-      <MobileMenuLink key={`site ${site.name}`} isSite {...site} />
-    ))
-    : []);
+  const combinedSites = theme => (sites ? sites.map(site => <MobileMenuLink key={`site ${site.name}`} isSite {...site} />) : []);
 
   const combinedPromotions = promotions
     ? promotions.map(promotion => (
@@ -78,16 +72,20 @@ export default function List({ menuSections, searchIsOpen, }) {
 
   return (
     <FelaComponent
-      style={theme => ({ backgroundColor: theme.color('secondary'), })}
-      render={({ className, theme, }) => (
+      style={({ theme, }) => ({
+        backgroundColor: theme.color('secondary'),
+      })}
+    >
+      {({ className, theme, }) => (
         <ul className={className}>
           <FelaComponent
-            style={theme => ({
+            style={({ theme, }) => ({
               color: theme.color('neutral', '-10'),
               ...(searchIsOpen ? { visibility: 'hidden', } : {}),
               textIndent: '2rem',
             })}
-            render={({ className, }) => (
+          >
+            {({ className, }) => (
               <Fragment>
                 {combinedItems.map(item => (
                   <li key={item.key} className={className}>
@@ -107,9 +105,9 @@ export default function List({ menuSections, searchIsOpen, }) {
                 ))}
               </Fragment>
             )}
-          />
+          </FelaComponent>
         </ul>
       )}
-    />
+    </FelaComponent>
   );
 }

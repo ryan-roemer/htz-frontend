@@ -13,7 +13,7 @@ import { SortIcons, } from '../SortableTable/SortableTable';
 type FieldType = {
   name: string,
   display: string,
-  sortingOrder: "ascend" | "descend",
+  sortingOrder: 'ascend' | 'descend',
   style?: Object => StyleProps,
   value: Object => string,
 };
@@ -36,35 +36,22 @@ const tdHeaderStyle = (theme: Object, miscStyles: ?StyleProps): Object => ({
   paddingBottom: '0.5rem',
   textAlign: 'start',
   backgroundColor: theme.color('neutral', '-6'),
-  extend: [
-    ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-  ],
+  extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
 });
 
 /* eslint-disable react/prop-types */
-const Table = ({
-  miscStyles,
-  headerMiscStyles,
-  fields,
-  sortData,
-  sortOrder,
-  assets,
-  sortBy,
-}) => (
+const Table = ({ miscStyles, headerMiscStyles, fields, sortData, sortOrder, assets, sortBy, }) => (
   <Fragment>
     <FelaComponent
-      style={(theme: Object) => ({
+      style={({ theme, }) => ({
         ...theme.type(-2),
         tableLayout: 'fixed',
         whiteSpace: 'nowrap',
         width: '100%',
-        extend: [
-          ...(miscStyles
-            ? parseStyleProps(miscStyles, theme.mq, theme.type)
-            : []),
-        ],
+
+        extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
       })}
-      render="table"
+      as="table"
     >
       <thead>
         <tr>
@@ -78,16 +65,11 @@ const Table = ({
                 paddingBottom: '0',
               }}
             >
-              <FelaComponent
-                style={{ width: '100%', }}
-                render={({ className, }) => (
-                  <button
-                    type="button"
-                    className={className}
-                    onClick={() => sortData(field)}
-                  >
+              <FelaComponent style={{ width: '100%', }}>
+                {({ className, }) => (
+                  <button type="button" className={className} onClick={() => sortData(field)}>
                     <FelaComponent
-                      style={theme => ({
+                      style={({ theme, }) => ({
                         ...tdHeaderStyle(theme, headerMiscStyles),
                         display: 'flex',
                         alignItems: 'flex-end',
@@ -95,15 +77,12 @@ const Table = ({
                         fontWeight: sortBy === field.name ? '700' : '300',
                       })}
                     >
-                      <SortIcons
-                        active={sortBy === field.name}
-                        sortOrder={sortOrder}
-                      />
+                      <SortIcons active={sortBy === field.name} sortOrder={sortOrder} />
                       <span>{field.display}</span>
                     </FelaComponent>
                   </button>
                 )}
-              />
+              </FelaComponent>
             </TdComponent>
           ))}
         </tr>
@@ -112,13 +91,12 @@ const Table = ({
         {assets.map((asset: Asset) => (
           <FelaComponent
             key={asset.id}
-            style={theme => ({
+            style={({ theme, }) => ({
               backgroundColor: theme.color('neutral', '-10'),
-              extend: [
-                borderBottom('2px', 1, 'solid', theme.color('neutral', '-6')),
-              ],
+
+              extend: [ borderBottom('2px', 1, 'solid', theme.color('neutral', '-6')), ],
             })}
-            render="tr"
+            as="tr"
           >
             {fields.map((field: FieldType) => (
               <TdComponent
@@ -176,12 +154,8 @@ class StaticSortableTable extends React.Component<Props, State> {
         : prevState.sortOrder;
 
       data.sort((itemA, itemB) => {
-        const valueA = typeof itemA[name] === 'string'
-          ? itemA[name].toUpperCase()
-          : itemA[name]; // ignore upper and lowercase
-        const valueB = typeof itemB[name] === 'string'
-          ? itemB[name].toUpperCase()
-          : itemB[name]; // ignore upper and lowercase
+        const valueA = typeof itemA[name] === 'string' ? itemA[name].toUpperCase() : itemA[name]; // ignore upper and lowercase
+        const valueB = typeof itemB[name] === 'string' ? itemB[name].toUpperCase() : itemB[name]; // ignore upper and lowercase
         if (valueA < valueB) {
           return sortOrder === 'ascend' ? -1 : 1;
         }
@@ -206,14 +180,7 @@ class StaticSortableTable extends React.Component<Props, State> {
     const { data, ...props } = this.props;
 
     const { sortBy, sortOrder, } = this.state;
-    return (
-      <Table
-        assets={data}
-        sortData={this.sortData}
-        {...{ sortOrder, sortBy, }}
-        {...props}
-      />
-    );
+    return <Table assets={data} sortData={this.sortData} {...{ sortOrder, sortBy, }} {...props} />;
   }
 }
 

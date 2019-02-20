@@ -4,7 +4,7 @@ import { parseComponentProp, } from '@haaretz/htz-css-tools';
 
 const mediaQueryCallback = (prop, value) => ({ [prop]: value, });
 
-const secureLineStyle = theme => ({
+const secureLineStyle = ({ theme, }) => ({
   textAlign: 'center',
   borderTopWidth: '1px',
   borderTopColor: theme.color('neutral', '-3'),
@@ -33,7 +33,7 @@ const secureLineStyle = theme => ({
   ),
 });
 
-const iconContainerStyle = theme => ({
+const iconContainerStyle = ({ theme, }) => ({
   transform: 'translateY(-75%)',
   display: 'inline-block',
   color: theme.color('neutral', '-2'),

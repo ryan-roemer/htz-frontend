@@ -35,9 +35,7 @@ export function PromotedItem({
   textType,
 }: PromotedItemProps): Node {
   return (
-    /* eslint-enable react/prop-types */
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Fragment>
           <div>
             <Image
@@ -67,9 +65,7 @@ export function PromotedItem({
                 maxHeight: '12rem',
                 overflow: 'hidden',
                 extend: [ theme.type(textType || -1), paragraphHeight || {}, ],
-              }}
-              render={({ className, }) => <H className={className}>{title}</H>}
-            />
+              }}>{({ className, }) => <H className={className}>{title}</H>}</FelaComponent>
             {suffix ? (
               <FelaComponent
                 style={{
@@ -80,15 +76,14 @@ export function PromotedItem({
                   marginStart: '1rem',
                   position: 'relative',
                 }}
-                render="p"
+                as="p"
               >
                 {theme.osakaI18n.promotedContent}
               </FelaComponent>
             ) : null}
           </div>
         </Fragment>
-      )}
-    />
+      )}</FelaTheme>
   );
 }
 
@@ -116,15 +111,17 @@ function Leela({ list, lazyLoadImages, gaAction, biAction, }: Props): Node {
       }}
     >
       <FelaComponent
-        style={theme => ({
+        style={(
+          {
+            theme
+          }
+        ) => ({
           ...theme.type(1),
           fontWeight: '700',
           color: theme.color('neutral', '-2'),
           ...borderBottom('2px', 1, 'solid', theme.color('neutral', '-2')),
-          marginBottom: '2rem',
-        })}
-        render={({ className, }) => <H className={className}>{list.title}</H>}
-      />
+          marginBottom: '2rem'
+        })}>{({ className, }) => <H className={className}>{list.title}</H>}</FelaComponent>
       <Section>
         {list.items.map((item, index) => (isClickTrackerWrapper ? (
           <ListItem key={item.contentId}>
@@ -133,8 +130,7 @@ function Leela({ list, lazyLoadImages, gaAction, biAction, }: Props): Node {
               render={(banner: ClickTrackerBannerType) => {
                 const { text, link, clicktrackerimage, } = banner;
                 return (
-                  <FelaTheme
-                    render={theme => (
+                  <FelaTheme>{theme => (
                       <BlockLink
                         miscStyles={{
                           display: 'flex',
@@ -149,8 +145,7 @@ function Leela({ list, lazyLoadImages, gaAction, biAction, }: Props): Node {
                       >
                         <PromotedItem title={text} image={clicktrackerimage} path={link} />
                       </BlockLink>
-                    )}
-                  />
+                    )}</FelaTheme>
                 );
               }}
             />

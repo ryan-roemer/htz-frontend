@@ -26,8 +26,7 @@ function MobileBarActionButtons({ shouldMainNavBarDisplay, }) {
         display: 'flex',
         justifyContent: 'space-between',
         flexGrow: '1',
-      }}
-      render={({ theme, className, }) => (
+      }}>{({ theme, className, }) => (
         <div className={className}>
           <Query query={actionBarData}>
             {({ loading, error, data, }) => {
@@ -91,8 +90,7 @@ function MobileBarActionButtons({ shouldMainNavBarDisplay, }) {
             }}
           </Query>
         </div>
-      )}
-    />
+      )}</FelaComponent>
   );
 }
 

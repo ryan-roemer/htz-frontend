@@ -14,7 +14,7 @@ type TabType = {
   display: string,
   control: string,
   sortBy: string,
-  sortOrder: "ascend" | "descend",
+  sortOrder: 'ascend' | 'descend',
 };
 
 type Props = {
@@ -57,7 +57,7 @@ export const TabButton: StatelessFunctionalComponent<TabButtonProps> = ({
   ...props // eslint-disable-line react/prop-types
 }) => (
   <FelaComponent
-    style={theme => ({
+    style={({ theme, }) => ({
       ...(isActive
         ? {
           backgroundColor: theme.color('neutral', '-10'),
@@ -65,26 +65,25 @@ export const TabButton: StatelessFunctionalComponent<TabButtonProps> = ({
           fontWeight: '700',
         }
         : {}),
+
       paddingTop: '0.5rem',
       paddingBottom: '0.5rem',
       width: '100%',
-      ...borderTop(
-        3,
-        2,
-        'solid',
-        isActive ? theme.color('primary') : 'transparent'
-      ),
+
+      ...borderTop(3, 2, 'solid', isActive ? theme.color('primary') : 'transparent'),
+
       ':focus': {
         outline: 'none',
         backgroundColor: theme.color('neutral', '-10'),
       },
     })}
-    render={({ className, }) => (
+  >
+    {({ className, }) => (
       <button type="button" className={className} {...props}>
         {children}
       </button>
     )}
-  />
+  </FelaComponent>
 );
 
 class TabbedGraph extends React.Component<Props, State> {
@@ -112,13 +111,14 @@ class TabbedGraph extends React.Component<Props, State> {
     const { assetId, tabs, } = this.props;
     return (
       <FelaComponent
-        style={theme => ({
+        style={({ theme, }) => ({
           color: theme.color('neutral', '-3'),
           display: 'flex',
           marginTop: '2rem',
           ...theme.type(-1),
         })}
-        render={({ className, }) => (
+      >
+        {({ className, }) => (
           <Tabs activeTab={index}>
             <TabList className={className}>
               {tabs.map((tab: TabType, i: number) => (
@@ -140,15 +140,11 @@ class TabbedGraph extends React.Component<Props, State> {
               ))}
             </TabList>
             <TabPanel id={control}>
-              <TableGraphConnector
-                assetId={assetId}
-                sortBy={sortBy}
-                sortOrder={sortOrder}
-              />
+              <TableGraphConnector assetId={assetId} sortBy={sortBy} sortOrder={sortOrder} />
             </TabPanel>
           </Tabs>
         )}
-      />
+      </FelaComponent>
     );
   }
 }

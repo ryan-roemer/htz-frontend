@@ -22,7 +22,7 @@ const mediaQueryCallback = (prop, value) => ({ [prop]: value, });
 // eslint-disable-next-line react/prop-types
 const Figure = ({ lastItem, children, notFullWidth, }) => (
   <FelaComponent
-    style={theme => ({
+    style={({ theme, }) => ({
       ...(notFullWidth
         ? {
           marginRight: 'auto',
@@ -30,6 +30,7 @@ const Figure = ({ lastItem, children, notFullWidth, }) => (
           width: 'fit-content',
         }
         : {}),
+
       ...(!lastItem
         ? {
           ...parseComponentProp(
@@ -41,7 +42,7 @@ const Figure = ({ lastItem, children, notFullWidth, }) => (
         }
         : {}),
     })}
-    render="figure"
+    as="figure"
   >
     {children}
   </FelaComponent>
@@ -139,9 +140,8 @@ const buildComponent = (context, index, isLastItem, magazineLayout) => {
       );
     default:
       return (
-        <FelaTheme
-          key={context.contentId || uniqueId + index}
-          render={theme => (
+        <FelaTheme>
+          {theme => (
             <Component
               {...context}
               miscStyles={{
@@ -176,7 +176,7 @@ const buildComponent = (context, index, isLastItem, magazineLayout) => {
                 : {})}
             />
           )}
-        />
+        </FelaTheme>
       );
   }
 };
@@ -192,7 +192,7 @@ const MagazineContentWrapper = ({
   const InnerCont = !isAbsolutePosition ? Fragment : FelaComponent;
   return (
     <FelaComponent
-      style={theme => ({
+      style={({ theme, }) => ({
         ...(viewMode === 'landscapeView'
           ? {}
           : {
@@ -274,7 +274,7 @@ const MagazineContentWrapper = ({
       <InnerCont
         {...(isAbsolutePosition
           ? {
-            style: theme => ({
+            style: ({ theme, }) => ({
               zIndex: 1,
               paddingTop: '1rem',
               extend: [

@@ -16,11 +16,9 @@ const IconLevels = ({ size, fill, color, attrs, miscStyles, ...props }) => (
     color={color}
     attrs={attrs}
     miscStyles={miscStyles}
-    rule={iconStyle}
-    render={({ className, }) => (
+    style={iconStyle}>{({ className, }) => (
       <svg width="1em" height="1em" viewBox="0 0 256 256" className={className} {...props} {...attrs} >  <path fill="currentColor" d="M64 235c-12.4 0-22.5-10.1-22.5-22.5v-40c0-12.4 10.1-22.5 22.5-22.5s22.5 10.1 22.5 22.5v40c0 12.4-10.1 22.5-22.5 22.5zm84.5-22.5v-104c0-12.4-10.1-22.5-22.5-22.5s-22.5 10.1-22.5 22.5v104c0 12.4 10.1 22.5 22.5 22.5s22.5-10.1 22.5-22.5zm66 0v-169c0-12.4-10.1-22.5-22.5-22.5s-22.5 10.1-22.5 22.5v169c0 12.4 10.1 22.5 22.5 22.5s22.5-10.1 22.5-22.5z" /></svg>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 IconLevels.propTypes = iconPropTypes;

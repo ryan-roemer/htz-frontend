@@ -19,19 +19,21 @@ const DynamicSlotFromDfpConfig = ({ adSlotId, miscStyles, }) => (
           const [ section, subSection, ] = getSectionPairFromLineage(data.lineage)
             .map(s => s.toLowerCase());
           const adUnit = `${network}/${adUnitBase}/${adSlotId}/${sectionIndicator}/${sectionIndicator}.${section}/${sectionIndicator}.${section}.${subSection}`;
-          return (
-            miscStyles ? (
-              <FelaComponent
-                style={theme => ({
-                  extend: [
-                    ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-                  ],
-                })}
-              >
-                <DynamicAdSlot id={adSlotId} adUnit={adUnit} sizes={slotConfig.adSizeMapping} />
-              </FelaComponent>) : (
-                <DynamicAdSlot id={adSlotId} adUnit={adUnit} sizes={slotConfig.adSizeMapping} />
-            )
+          return miscStyles ? (
+            <FelaComponent
+              style={(
+                {
+                  theme
+                }
+              ) => ({
+                extend: [
+                  ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
+                ]
+              })}
+            >
+              <DynamicAdSlot id={adSlotId} adUnit={adUnit} sizes={slotConfig.adSizeMapping} />
+            </FelaComponent>) : (
+              <DynamicAdSlot id={adSlotId} adUnit={adUnit} sizes={slotConfig.adSizeMapping} />
           );
         }
         return null;

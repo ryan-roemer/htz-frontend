@@ -63,13 +63,13 @@ const timeStyle = ({ theme, mobileTime, }) => ({
   ],
 });
 
-const imageAuthorsAndMobileTimeContStyle = theme => ({
+const imageAuthorsAndMobileTimeContStyle = ({ theme, }) => ({
   display: 'flex',
   alignItems: 'center',
   extend: [ theme.mq({ from: 'l', }, { flexDirection: 'column', alignItems: 'flex-start', }), ],
 });
 
-const authorsAndTimeContStyle = theme => ({
+const authorsAndTimeContStyle = ({ theme, }) => ({
   extend: [ theme.mq({ from: 'l', }, { marginTop: '0.5rem', }), ],
 });
 
@@ -141,7 +141,7 @@ class LiveBlogHeaderMeta extends React.Component {
     const format = new Date().toDateString() === new Date(publishDate).toDateString() ? 'HH:mm' : 'DD.MM.YYYY';
     return (
       <FelaComponent
-        style={theme => ({
+        style={({ theme, }) => ({
           extend: [ theme.mq({ from: 's', until: 'l', }, { display: 'inline', }), ],
         })}
       >
@@ -157,16 +157,15 @@ class LiveBlogHeaderMeta extends React.Component {
     return (
       <EventTracker>
         {({ biAction, }) => (
-          <FelaComponent rule={outerStyle} miscStyles={miscStyles}>
+          <FelaComponent style={outerStyle} miscStyles={miscStyles}>
             <Query query={PLATFORM_QUERY}>
               {({ loading, error, data, client, }) => {
                 if (loading) return null;
                 if (error) console.log(error);
                 const { platform, } = data;
                 return (
-                  <FelaComponent
-                    rule={wrapperStyle}
-                    render={({ className, theme, }) => (
+                  <FelaComponent style={wrapperStyle}>
+                    {({ className, theme, }) => (
                       <Fragment>
                         <div className={className}>
                           <FelaComponent style={imageAuthorsAndMobileTimeContStyle}>
@@ -202,15 +201,13 @@ class LiveBlogHeaderMeta extends React.Component {
                                   }}
                                 />
                               ))}
-                              <FelaComponent
-                                rule={timeStyle}
-                                mobileTime
-                                render={({ className, }) => (
+                              <FelaComponent style={timeStyle} mobileTime>
+                                {({ className, }) => (
                                   <Fragment>
                                     {this.displayDates(publishDate, modifiedDate, className)}
                                   </Fragment>
                                 )}
-                              />
+                              </FelaComponent>
                             </FelaComponent>
                           </FelaComponent>
                           {isLiveUpdate ? (
@@ -222,7 +219,8 @@ class LiveBlogHeaderMeta extends React.Component {
                                   theme.mq({ until: 'l', }, { display: 'none', }),
                                 ],
                               }}
-                              render={({ className, theme, }) => (
+                            >
+                              {({ className, theme, }) => (
                                 <span className={className}>
                                   <FelaComponent
                                     style={{
@@ -231,12 +229,13 @@ class LiveBlogHeaderMeta extends React.Component {
                                       fontWeight: 'bold',
                                       extend: [ theme.type(-2), ],
                                     }}
-                                    render={({ className, }) => (
+                                  >
+                                    {({ className, }) => (
                                       <span className={className}>
                                         {theme.liveBlogI18n.liveUpdate}
                                       </span>
                                     )}
-                                  />
+                                  </FelaComponent>
                                   <FelaComponent
                                     style={{
                                       height: '1.5rem',
@@ -246,25 +245,24 @@ class LiveBlogHeaderMeta extends React.Component {
                                       marginInlineStart: '1rem',
                                       marginTop: '0.5rem',
                                     }}
-                                    render={({ className, }) => <span className={className} />}
-                                  />
+                                  >
+                                    {({ className, }) => <span className={className} />}
+                                  </FelaComponent>
                                 </span>
                               )}
-                            />
+                            </FelaComponent>
                           ) : null}
-                          <FelaComponent
-                            rule={timeStyle}
-                            mobileTime={false}
-                            render={({ className, }) => (
+                          <FelaComponent style={timeStyle} mobileTime={false}>
+                            {({ className, }) => (
                               <Fragment>
                                 {this.displayDates(publishDate, modifiedDate, className)}
                               </Fragment>
                             )}
-                          />
+                          </FelaComponent>
                         </div>
                       </Fragment>
                     )}
-                  />
+                  </FelaComponent>
                 );
               }}
             </Query>

@@ -64,7 +64,7 @@ class Masthead extends React.Component<MastheadProps, State> {
       <React.Fragment>
         <MastheadComponent {...this.props} isScrolled={isScrolled} shouldDisplay={shouldDisplay} />
         <FelaComponent
-          style={theme => ({
+          style={({ theme, }) => ({
             backgroundColor: 'transparent',
             transform: `translate(50%, ${shouldDisplay ? '0' : '110'}%)`,
             transitionProperty: 'transform',
@@ -74,6 +74,7 @@ class Masthead extends React.Component<MastheadProps, State> {
             width: '100%',
             zIndex: theme.getZIndex('modal', 1),
             display: 'none',
+
             extend: [
               theme.getDelay('transition', -1),
               theme.getDuration('transition', -1),

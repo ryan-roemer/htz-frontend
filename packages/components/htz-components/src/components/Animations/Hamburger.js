@@ -124,11 +124,9 @@ const hamburgerStyle = ({ theme, isOpen, color, size, thickness, isTransition, }
 
 function Hamburger(props) {
   return (
-    <FelaComponent
-      {...props}
-      rule={hamburgerStyle}
-      render={({ className, }) => <i className={className} />}
-    />
+    <FelaComponent {...props} style={hamburgerStyle}>
+      {({ className, }) => <i className={className} />}
+    </FelaComponent>
   );
 }
 

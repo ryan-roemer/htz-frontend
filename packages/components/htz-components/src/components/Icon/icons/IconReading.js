@@ -16,11 +16,9 @@ const IconReading = ({ size, fill, color, attrs, miscStyles, ...props }) => (
     color={color}
     attrs={attrs}
     miscStyles={miscStyles}
-    rule={iconStyle}
-    render={({ className, }) => (
+    style={iconStyle}>{({ className, }) => (
       <svg width="0.84375em" height="1em" viewBox="0 0 216 256" className={className} {...props} {...attrs} >  <path fill="currentColor" d="M164 215l-56-56-56 56V47h112v168z" /></svg>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 IconReading.propTypes = iconPropTypes;

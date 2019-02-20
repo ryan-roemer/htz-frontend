@@ -26,10 +26,7 @@ class Diver extends React.Component {
   render() {
     const { size, } = this.props;
     return (
-      <FelaComponent
-        size={size}
-        rule={style}
-        render={({ theme, className, }) => (
+      <FelaComponent size={size} style={style}>{({ theme, className, }) => (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -1227,14 +1224,12 @@ class Diver extends React.Component {
                     '95%': { opacity: '0.6', },
                     '100%': { opacity: '0', transform: 'translate(16%,-50%)', },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path
                     className={className}
                     d="M256 276s-5 1-3 5c1 4 3 5 6 3 3-1 5-8-3-8z"
                   />
-                )}
-              />
+                )}</FelaComponent>
 
               <FelaComponent
                 style={{
@@ -1252,14 +1247,12 @@ class Diver extends React.Component {
                     '95%': { opacity: '0.6', },
                     '100%': { opacity: '0', transform: 'translate(-11%,-50%)', },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path
                     className={className}
                     d="M255 282s-1 4 3 3c3-1-1-5-3-3z"
                   />
-                )}
-              />
+                )}</FelaComponent>
               <FelaComponent
                 style={{
                   opacity: '0',
@@ -1276,11 +1269,9 @@ class Diver extends React.Component {
                     '95%': { opacity: '0.6', },
                     '100%': { opacity: '0', transform: 'translate(2%,-50%)', },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path className={className} d="M254 279s-2 7 3 6 3-10-3-6z" />
-                )}
-              />
+                )}</FelaComponent>
               <FelaComponent
                 style={{
                   opacity: '0',
@@ -1297,11 +1288,9 @@ class Diver extends React.Component {
                     '95%': { opacity: '0.6', },
                     '100%': { opacity: '0', transform: 'translate(17%,-50%)', },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path className={className} d="M255 277s-5 8 2 8 2-10-2-8z" />
-                )}
-              />
+                )}</FelaComponent>
               <FelaComponent
                 style={{
                   opacity: '0',
@@ -1318,14 +1307,12 @@ class Diver extends React.Component {
                     '95%': { opacity: '0.6', },
                     '100%': { opacity: '0', transform: 'translate(-17%,-50%)', },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path
                     className={className}
                     d="M255 276s-7 7 0 9 11-11 0-9z"
                   />
-                )}
-              />
+                )}</FelaComponent>
               <FelaComponent
                 style={{
                   opacity: '0',
@@ -1341,14 +1328,12 @@ class Diver extends React.Component {
                     '95%': { opacity: '0.6', },
                     '100%': { opacity: '0', transform: 'translate(20%,-50%)', },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path
                     className={className}
                     d="M256 277c-4 3-5 8 1 8 7-1 5-12-1-8z"
                   />
-                )}
-              />
+                )}</FelaComponent>
               <FelaComponent
                 style={{
                   opacity: '0',
@@ -1365,14 +1350,12 @@ class Diver extends React.Component {
                     '95%': { opacity: '0.6', },
                     '100%': { opacity: '0', transform: 'translate(-19%,-50%)', },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path
                     className={className}
                     d="M256 282s-3 3 1 3c4-1 2-4-1-3z"
                   />
-                )}
-              />
+                )}</FelaComponent>
               <FelaComponent
                 style={{
                   opacity: '0',
@@ -1389,11 +1372,9 @@ class Diver extends React.Component {
                     '95%': { opacity: '0.6', },
                     '100%': { opacity: '0', transform: 'translate(2%,-50%)', },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path className={className} d="M256 280s-3 4 1 5 3-7-1-5z" />
-                )}
-              />
+                )}</FelaComponent>
               <FelaComponent
                 style={{
                   opacity: '0',
@@ -1410,14 +1391,12 @@ class Diver extends React.Component {
                     '95%': { opacity: '0.6', },
                     '100%': { opacity: '0', transform: 'translate(9%,-50%)', },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path
                     className={className}
                     d="M255 280s-3 4 1 5c5 1 6-7-1-5z"
                   />
-                )}
-              />
+                )}</FelaComponent>
               <FelaComponent
                 style={{
                   opacity: '0',
@@ -1434,14 +1413,12 @@ class Diver extends React.Component {
                     '95%': { opacity: '0.6', },
                     '100%': { opacity: '0', transform: 'translate(-7%,-50%)', },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path
                     className={className}
                     d="M257 279c-1 0-6 5-1 6s5-6 1-6z"
                   />
-                )}
-              />
+                )}</FelaComponent>
               <FelaComponent
                 style={{
                   opacity: '0',
@@ -1458,11 +1435,9 @@ class Diver extends React.Component {
                     '95%': { opacity: '0.6', },
                     '100%': { opacity: '0', transform: 'translate(2%,-50%)', },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path className={className} d="M255 280s-3 6 2 5 2-7-2-5z" />
-                )}
-              />
+                )}</FelaComponent>
               <FelaComponent
                 style={{
                   opacity: '0',
@@ -1481,14 +1456,12 @@ class Diver extends React.Component {
                       transform: 'translate(-17%,-45%)',
                     },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path
                     className={className}
                     d="M266 269c-4-4-8-6-14-3 0 0-6 3-5 11 1 9 10 9 15 7s7-12 4-15zm-5 1c-3 0-1-2-1-2 3 0 4 3 1 2z"
                   />
-                )}
-              />
+                )}</FelaComponent>
               <FelaComponent
                 style={{
                   opacity: '0',
@@ -1505,14 +1478,12 @@ class Diver extends React.Component {
                     '95%': { opacity: '0.6', },
                     '100%': { opacity: '0', transform: 'translate(2%,-50%)', },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path
                     className={className}
                     d="M266 269c-4-4-8-6-14-3 0 0-6 3-5 11 1 9 10 9 15 7s7-12 4-15zm-5 1c-3 0-1-2-1-2 3 0 4 3 1 2z"
                   />
-                )}
-              />
+                )}</FelaComponent>
               <FelaComponent
                 style={{
                   opacity: '0',
@@ -1529,14 +1500,12 @@ class Diver extends React.Component {
                     '95%': { opacity: '0.6', },
                     '100%': { opacity: '0', transform: 'translate(20%,-50%)', },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path
                     className={className}
                     d="M266 269c-4-4-8-6-14-3 0 0-6 3-5 11 1 9 10 9 15 7s7-12 4-15zm-5 1c-3 0-1-2-1-2 3 0 4 3 1 2z"
                   />
-                )}
-              />
+                )}</FelaComponent>
               <FelaComponent
                 style={{
                   opacity: '0',
@@ -1553,14 +1522,12 @@ class Diver extends React.Component {
                     '95%': { opacity: '0.6', },
                     '100%': { opacity: '0', transform: 'translate(2%,-50%)', },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path
                     className={className}
                     d="M253 273s-6 7 1 11c10 6 15-15-1-11zm8 5c-2 1-1-3-2-4 1 0 5 3 2 4z"
                   />
-                )}
-              />
+                )}</FelaComponent>
               <FelaComponent
                 style={{
                   opacity: '0',
@@ -1577,18 +1544,15 @@ class Diver extends React.Component {
                     '95%': { opacity: '0.6', },
                     '100%': { opacity: '0', transform: 'translate(2%,-50%)', },
                   },
-                }}
-                render={({ className, theme, }) => (
+                }}>{({ className, theme, }) => (
                   <path
                     className={className}
                     d="M255 276s-7 7 0 9c8 2 11-11 0-9zm4 4c-2 0 0-3 0-3 3-1 2 2 0 3z"
                   />
-                )}
-              />
+                )}</FelaComponent>
             </g>
           </svg>
-        )}
-      />
+        )}</FelaComponent>
     );
   }
 }

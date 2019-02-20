@@ -61,9 +61,7 @@ class Stage2 extends Component {
                     client.writeData({ data: { startFromStage2: true, }, });
                   }
                   return (
-                    <FelaComponent
-                      style={{ textAlign: 'center', }}
-                      render={({
+                    <FelaComponent style={{ textAlign: 'center', }}>{({
                         className,
                         theme: {
                           stage2: { header, },
@@ -99,7 +97,7 @@ class Stage2 extends Component {
                                                   style={{
                                                     fontWeight: 'bold',
                                                   }}
-                                                  render="span"
+                                                  as="span"
                                                 >
                                                   {header.isFirst.textBeforeChosen}
                                                   {' '}
@@ -119,7 +117,7 @@ class Stage2 extends Component {
                                                   style={{
                                                     fontWeight: 'bold',
                                                   }}
-                                                  render="span"
+                                                  as="span"
                                                 >
                                                   {header.notFirst.textBeforeChosen}
                                                   {' '}
@@ -156,8 +154,7 @@ class Stage2 extends Component {
                             </LayoutContainer>
                           </div>
                         );
-                      }}
-                    />
+                      }}</FelaComponent>
                   );
                 }}
               </Query>

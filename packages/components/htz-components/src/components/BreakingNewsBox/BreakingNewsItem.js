@@ -31,18 +31,28 @@ export default function BreakingNewsItem({
 }: BreakingNewsItemProps): React.Node {
   return (
     <FelaComponent
-      render="li"
-      style={theme => ({
+      as="li"
+      style={(
+        {
+          theme
+        }
+      ) => ({
         position: 'absolute',
         opacity: isVisible ? 1 : 0,
         visibility: isVisible ? 'visible' : 'hidden',
         zIndex: isVisible ? 1 : 0,
         transitionProperty: 'opacity, visibility',
         ...theme.getDuration('transition', animationDuration),
-        ...theme.getTimingFunction('transition', 'swiftOut'),
+        ...theme.getTimingFunction('transition', 'swiftOut')
       })}
     >
-      <FelaComponent style={theme => ({ ...theme.type(-1, { lines: 3, }), })} render="article">
+      <FelaComponent style={(
+        {
+          theme
+        }
+      ) => ({
+        ...theme.type(-1, { lines: 3, })
+      })} as="article">
         {url ? (
           <HtzLink href={url}>
             <BreakingNewsContent title={title} creationDateTime={creationDateTime} />
@@ -69,15 +79,10 @@ function BreakingNewsContent({ title, creationDateTime, }: BreakingNewsContentTy
         style={{
           fontWeight: 700,
           marginInlineEnd: '1rem',
-        }}
-        render={({ className, }) => (
+        }}>{({ className, }) => (
           <Time time={creationDateTime} format="HH:mm" className={className} />
-        )}
-      />
-      <FelaComponent
-        style={{ display: 'inline', fontWeight: 400, }}
-        render={({ className, }) => <H className={className}>{title}</H>}
-      />
+        )}</FelaComponent>
+      <FelaComponent style={{ display: 'inline', fontWeight: 400, }}>{({ className, }) => <H className={className}>{title}</H>}</FelaComponent>
     </React.Fragment>
   );
 }

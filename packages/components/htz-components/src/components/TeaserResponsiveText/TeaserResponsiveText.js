@@ -26,10 +26,10 @@ export default function TeaserResponsiveText({
 }: TextPropTypes): React.Node {
   return mobileText && text && text !== mobileText ? (
     <React.Fragment>
-      <FelaComponent rule={mobileStyle} render="span">
+      <FelaComponent style={mobileStyle} as="span">
         {mobileText}
       </FelaComponent>
-      <FelaComponent rule={aboveMobileStyle} render="span">
+      <FelaComponent style={aboveMobileStyle} as="span">
         {text}
       </FelaComponent>
     </React.Fragment>

@@ -77,7 +77,7 @@ export function MainGallery({ item, }: MainGalleryProps): Node {
           });
           return (
             <FelaComponent
-              style={theme => ({
+              style={({ theme, }) => ({
                 backgroundColor: theme.color('neutral'),
                 display: 'flex',
                 justifyContent: 'center',
@@ -179,8 +179,8 @@ export class MobileGalleryTeaser extends React.Component<MobileGalleryTeaserProp
     const { showGallery, } = this.state;
     return item.media && isGallery(item.media) ? (
       !showGallery ? (
-        <FelaTheme
-          render={theme => (
+        <FelaTheme>
+          {theme => (
             <Teaser
               data={item}
               gutter={2}
@@ -271,7 +271,7 @@ export class MobileGalleryTeaser extends React.Component<MobileGalleryTeaserProp
               />
             </Teaser>
           )}
-        />
+        </FelaTheme>
       ) : (
         <ImageGallery
           forceAspect="headline"

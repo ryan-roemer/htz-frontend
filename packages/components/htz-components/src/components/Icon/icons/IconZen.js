@@ -16,11 +16,9 @@ const IconZen = ({ size, fill, color, attrs, miscStyles, ...props }) => (
     color={color}
     attrs={attrs}
     miscStyles={miscStyles}
-    rule={iconStyle}
-    render={({ className, }) => (
+    style={iconStyle}>{({ className, }) => (
       <svg width="1em" height="1em" viewBox="0 0 256 256" className={className} {...props} {...attrs} >  <path fill="currentColor" d="M128 39c-49.2 0-89 39.8-89 89s39.8 89 89 89 89-39.8 89-89-39.8-89-89-89zm13 139h-25V77h25v101z" /></svg>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 IconZen.propTypes = iconPropTypes;

@@ -34,17 +34,21 @@ function TopNews({ newsItems, contentName, }: Props): React.Node {
         }}
       >
         <FelaComponent
-          style={theme => ({
+          style={(
+            {
+              theme
+            }
+          ) => ({
             paddingInlineEnd: '4rem',
             paddingInlineStart: '4rem',
+
             extend: [
               theme.mq({ until: 'l', }, { display: 'none', }),
               theme.type(-1, { untilBp: 'xl', lines: 4, }),
               theme.type(-2, { fromBp: 'xl', }),
               borderVertical('2px', 1, 'solid', theme.color('bg')),
-            ],
-          })}
-          render={({ theme, className, }) => (
+            ]
+          })}>{({ theme, className, }) => (
             <Section tagName="div" className={className}>
               <FelaComponent
                 style={{
@@ -52,14 +56,12 @@ function TopNews({ newsItems, contentName, }: Props): React.Node {
                   display: 'inline',
                   fontWeight: '700',
                   paddingInlineEnd: '1rem',
-                }}
-                render={({ className: headerClassName, }) => (
+                }}>{({ className: headerClassName, }) => (
                   <H className={headerClassName} offset={2}>
                     {contentName}
                   </H>
-                )}
-              />
-              <FelaComponent style={{ display: 'inline-block', }} render="ul">
+                )}</FelaComponent>
+              <FelaComponent style={{ display: 'inline-block', }} as="ul">
                 {newsItems
                   && newsItems.map((link, idx) => {
                     const isLast = idx === newsItems.length - 1;
@@ -71,7 +73,7 @@ function TopNews({ newsItems, contentName, }: Props): React.Node {
                       <FelaComponent
                         key={link.contentName}
                         style={{ display: 'inline-block', }}
-                        render="li"
+                        as="li"
                       >
                         <FelaComponent
                           style={{
@@ -81,21 +83,18 @@ function TopNews({ newsItems, contentName, }: Props): React.Node {
                             ),
                             '&:hover': hoverFocusStyle,
                             '&:focus': hoverFocusStyle,
-                          }}
-                          render={({ className: linkClassName, }) => (
+                          }}>{({ className: linkClassName, }) => (
                             <HtzLink href={link.href} className={linkClassName}>
                               {link.contentName}
                             </HtzLink>
-                          )}
-                        />
+                          )}</FelaComponent>
                         {isLast ? null : ' | '}
                       </FelaComponent>
                     );
                   })}
               </FelaComponent>
             </Section>
-          )}
-        />
+          )}</FelaComponent>
       </LayoutContainer>
     </LayoutRow>
   );

@@ -12,7 +12,7 @@ const propTypes = {
   nextPaymentAmount: PropTypes.number.isRequired,
 };
 
-const chosenDetailsBoxStyle = theme => ({
+const chosenDetailsBoxStyle = ({ theme, }) => ({
   paddingInlineStart: '2rem',
   paddingInlineEnd: '2rem',
   marginTop: '6rem',
@@ -114,9 +114,8 @@ function PaymentSummary({
   nextPaymentAmount,
 }) {
   return (
-    <FelaComponent
-      style={chosenDetailsBoxStyle}
-      render={({
+    <FelaComponent style={chosenDetailsBoxStyle}>
+      {({
         className,
         theme: {
           stage5: {
@@ -160,7 +159,7 @@ function PaymentSummary({
           </StyledDetailsCont>
         </div>
       )}
-    />
+    </FelaComponent>
   );
 }
 

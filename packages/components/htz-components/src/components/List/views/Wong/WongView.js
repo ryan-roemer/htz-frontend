@@ -81,8 +81,7 @@ export default function Wong({
   const MediaComponent = getMediaComponent(media && media.kind, isConrad ? Image : Picture);
   const relatedPadding = '2rem';
   return (
-    <FelaTheme
-      render={theme => {
+    <FelaTheme>{theme => {
         const mediaProps = getMediaProps(media, isConrad, theme);
         return (
           <GridItem
@@ -235,7 +234,7 @@ export default function Wong({
                           fontWeight: '700',
                           extend: [ theme.mq({ until: 's', }, { display: 'none', }), ],
                         }}
-                        render="ul"
+                        as="ul"
                       >
                         {item.relatedArticles.map(
                           // related articles should show up to
@@ -270,8 +269,7 @@ export default function Wong({
                                         theme.type(-1, { untilBp: 'xl', }),
                                         theme.type(-2, { fromBp: 'xl', }),
                                       ],
-                                    }}
-                                    render={({ className: linkClassName, }) => (
+                                    }}>{({ className: linkClassName, }) => (
                                       <HtzLink
                                         href={article.path}
                                         className={linkClassName}
@@ -296,8 +294,7 @@ export default function Wong({
                                         />
                                         {article.title}
                                       </HtzLink>
-                                    )}
-                                  />
+                                    )}</FelaComponent>
                                 </li>
                               )}
                             </AboveBlockLink>
@@ -311,8 +308,7 @@ export default function Wong({
             </Teaser>
           </GridItem>
         );
-      }}
-    />
+      }}</FelaTheme>
   );
 }
 

@@ -37,8 +37,7 @@ export default function MainTeaser({
   biAction,
 }: Props): React.Node {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Teaser
           data={itemData}
           isStacked
@@ -124,7 +123,6 @@ export default function MainTeaser({
             )}
           />
         </Teaser>
-      )}
-    />
+      )}</FelaTheme>
   );
 }

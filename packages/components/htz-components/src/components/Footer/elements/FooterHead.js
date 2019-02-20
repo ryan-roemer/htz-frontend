@@ -112,26 +112,17 @@ const IconsListStyle = ({ theme, isHiddenOnMobile, isLast, }) => ({
 
 export default function FooterHead() {
   return (
-    <FelaComponent
-      rule={desktopHeadStyle}
-      render={({ className, theme, }) => (
+    <FelaComponent style={desktopHeadStyle}>{({ className, theme, }) => (
         <div className={className}>
-          <FelaComponent
-            rule={LogoStyle}
-            render={({ className, }) => (
+          <FelaComponent style={LogoStyle}>{({ className, }) => (
               <div className={className}>
                 <IconHaaretzLogo size={6} miscStyles={LogoMiscStyle} />
                 <VisuallyHidden>הארץ</VisuallyHidden>
               </div>
-            )}
-          />
-          <FelaComponent
-            rule={IconsUlStyle}
-            render={({ className, }) => (
+            )}</FelaComponent>
+          <FelaComponent style={IconsUlStyle}>{({ className, }) => (
               <ul className={className}>
-                <FelaComponent
-                  rule={IconsListStyle}
-                  render={({ className, }) => (
+                <FelaComponent style={IconsListStyle}>{({ className, }) => (
                     <li className={className}>
                       <HtzLink
                         content={(
@@ -145,11 +136,8 @@ export default function FooterHead() {
                         href="https://www.facebook.com/haaretz"
                       />
                     </li>
-                  )}
-                />
-                <FelaComponent
-                  rule={IconsListStyle}
-                  render={({ className, }) => (
+                  )}</FelaComponent>
+                <FelaComponent style={IconsListStyle}>{({ className, }) => (
                     <li className={className}>
                       <HtzLink
                         content={(
@@ -163,12 +151,8 @@ export default function FooterHead() {
                         href="https://twitter.com/haaretz"
                       />
                     </li>
-                  )}
-                />
-                <FelaComponent
-                  isHiddenOnMobile
-                  rule={IconsListStyle}
-                  render={({ className, }) => (
+                  )}</FelaComponent>
+                <FelaComponent isHiddenOnMobile style={IconsListStyle}>{({ className, }) => (
                     <li className={className}>
                       <HtzLink
                         content={(
@@ -182,12 +166,8 @@ export default function FooterHead() {
                         href="https://play.google.com/store/apps/details?id=com.haaretz"
                       />
                     </li>
-                  )}
-                />
-                <FelaComponent
-                  isHiddenOnMobile
-                  rule={IconsListStyle}
-                  render={({ className, }) => (
+                  )}</FelaComponent>
+                <FelaComponent isHiddenOnMobile style={IconsListStyle}>{({ className, }) => (
                     <li className={className}>
                       <HtzLink
                         content={(
@@ -201,11 +181,8 @@ export default function FooterHead() {
                         href="https://itunes.apple.com/us/app/id521559643"
                       />
                     </li>
-                  )}
-                />
-                <FelaComponent
-                  rule={IconsListStyle}
-                  render={({ className, }) => (
+                  )}</FelaComponent>
+                <FelaComponent style={IconsListStyle}>{({ className, }) => (
                     <li className={className}>
                       <HtzLink
                         content={(
@@ -219,12 +196,8 @@ export default function FooterHead() {
                         href="https://plus.google.com/+haaretzcoil"
                       />
                     </li>
-                  )}
-                />
-                <FelaComponent
-                  isHiddenOnMobile
-                  rule={IconsListStyle}
-                  render={({ className, }) => (
+                  )}</FelaComponent>
+                <FelaComponent isHiddenOnMobile style={IconsListStyle}>{({ className, }) => (
                     <li className={className}>
                       <HtzLink
                         content={(
@@ -238,13 +211,8 @@ export default function FooterHead() {
                         href="https://www.haaretz.co.il/misc/redemail"
                       />
                     </li>
-                  )}
-                />
-                <FelaComponent
-                  isLast
-                  isHiddenOnMobile
-                  rule={IconsListStyle}
-                  render={({ className, }) => (
+                  )}</FelaComponent>
+                <FelaComponent isLast isHiddenOnMobile style={IconsListStyle}>{({ className, }) => (
                     <li className={className}>
                       <HtzLink
                         content={(
@@ -258,13 +226,10 @@ export default function FooterHead() {
                         href="https://www.haaretz.co.il/misc/rss"
                       />
                     </li>
-                  )}
-                />
+                  )}</FelaComponent>
               </ul>
-            )}
-          />
+            )}</FelaComponent>
         </div>
-      )} // The end of the first FelaComponent render method
-    />
+      )}</FelaComponent>
   );
 }

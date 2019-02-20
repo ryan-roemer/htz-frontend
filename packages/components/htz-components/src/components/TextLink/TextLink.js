@@ -51,13 +51,7 @@ TextLink.defaultProps = {
 
 function TextLink({ tagName, miscStyles, ...props }) {
   const Tag = tagName || HtzLink;
-  return (
-    <FelaComponent
-      miscStyles={miscStyles}
-      rule={inlineLinkStyle}
-      render={({ className, }) => <Tag className={className} {...props} />}
-    />
-  );
+  return <FelaComponent miscStyles={miscStyles} style={inlineLinkStyle}>{({ className, }) => <Tag className={className} {...props} />}</FelaComponent>;
 }
 
 export default TextLink;

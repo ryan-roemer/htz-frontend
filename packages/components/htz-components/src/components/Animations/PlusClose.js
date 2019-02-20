@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import { parseComponentProp, } from '@haaretz/htz-css-tools';
 import { responsivePropBaseType, } from '../../propTypes/responsivePropBaseType';
 
-const colorShape = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.arrayOf(PropTypes.string),
-]);
+const colorShape = PropTypes.oneOfType([ PropTypes.string, PropTypes.arrayOf(PropTypes.string), ]);
 
 const colorPropObj = PropTypes.oneOfType([
   colorShape,
@@ -106,10 +103,8 @@ const plusCloseStyle = ({ theme, isOpen, color, size, thickness, }) => ({
 
 export default function PlusClose(props) {
   return (
-    <FelaComponent
-      {...props}
-      rule={plusCloseStyle}
-      render={({ className, }) => <i className={className} />}
-    />
+    <FelaComponent {...props} style={plusCloseStyle}>
+      {({ className, }) => <i className={className} />}
+    </FelaComponent>
   );
 }

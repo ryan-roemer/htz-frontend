@@ -104,7 +104,6 @@ export default class SoccerLeaguesTable extends React.Component<Props, State> {
           }
 
           return (
-
             <FelaComponent style={Container}>
 
               <FelaComponent style={CenteredElement}>
@@ -114,14 +113,13 @@ export default class SoccerLeaguesTable extends React.Component<Props, State> {
                   groupNumber={Number(group) || 1}
                 />
 
-                <FelaTheme render={theme => (
-                  <Table
-                    tableData={data.tableScore.data}
-                    tableType="soccer-champions"
-                    headers={theme.footballHeaders.headers}
-                  />
-                )}
-                />
+                <FelaTheme>{theme => (
+                    <Table
+                      tableData={data.tableScore.data}
+                      tableType="soccer-champions"
+                      headers={theme.footballHeaders.headers}
+                    />
+                  )}</FelaTheme>
               </FelaComponent>
             </FelaComponent>
           );
@@ -140,14 +138,13 @@ export default class SoccerLeaguesTable extends React.Component<Props, State> {
                   groupNumber={Number(group) || 1}
                 />
 
-                <FelaTheme render={theme => (
-                  <Table
-                    tableData={tableData}
-                    tableType="soccer-champions"
-                    headers={theme.footballHeaders.headers}
-                  />
-                )}
-                />
+                <FelaTheme>{theme => (
+                    <Table
+                      tableData={tableData}
+                      tableType="soccer-champions"
+                      headers={theme.footballHeaders.headers}
+                    />
+                  )}</FelaTheme>
               </FelaComponent>
             </FelaComponent>
           )}

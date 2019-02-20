@@ -14,7 +14,7 @@ const GET_READING_LIST = gql`
   }
 `;
 
-const saveLabel = theme => ({
+const saveLabel = ({ theme, }) => ({
   color: theme.color('neutral', '-3'),
   paddingBlockStart: '0.3rem',
   display: 'none',
@@ -49,8 +49,8 @@ export default class ActionSave extends React.Component {
                 });
               }
               return (
-                <FelaTheme
-                  render={theme => (
+                <FelaTheme>
+                  {theme => (
                     <Button
                       title="שמירת כתבה"
                       {...props}
@@ -97,13 +97,13 @@ export default class ActionSave extends React.Component {
                           });
                       }}
                     >
-                      <FelaComponent style={saveLabel} render="span">
+                      <FelaComponent style={saveLabel} as="span">
                         {this.state.isArticleSaved ? 'הסר' : 'שמור'}
                       </FelaComponent>
                       <IconReading size={size} miscStyles={iconStyles} />
                     </Button>
                   )}
-                />
+                </FelaTheme>
               );
             }}
           </ApolloConsumer>

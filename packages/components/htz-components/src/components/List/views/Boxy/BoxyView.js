@@ -31,14 +31,11 @@ export default function Boxy({ list, }: Props): Node {
   const item: TeaserDataType = list.items[0];
   const media: ?MediaType = item ? item.media : null;
   const mediaKind: ?string = media ? media.kind : null;
-  const MediaComponent: React.ComponentType<any> = getMediaComponent(
-    mediaKind,
-    Picture
-  );
+  const MediaComponent: React.ComponentType<any> = getMediaComponent(mediaKind, Picture);
   const mediaProps: ?Object = media ? getMediaProps(media) : null;
   return item && MediaComponent && mediaProps ? (
-    <FelaTheme
-      render={theme => {
+    <FelaTheme>
+      {theme => {
         const { color, } = theme;
         return (
           <LayoutRow
@@ -55,19 +52,15 @@ export default function Boxy({ list, }: Props): Node {
             >
               <FelaComponent style={textWrapperStyle}>
                 {item.title && (
-                  <FelaComponent
-                    style={innerTextStyle}
-                    render={({ className: headerClass, }) => (
+                  <FelaComponent style={innerTextStyle}>
+                    {({ className: headerClass, }) => (
                       // We use an offset here, because the title should be the same level
                       // as a header inside a section, no the same as a section's title
                       <H className={headerClass} offset={1}>
-                        <TeaserResponsiveText
-                          text={item.title}
-                          mobileText={item.titleMobile}
-                        />
+                        <TeaserResponsiveText text={item.title} mobileText={item.titleMobile} />
                       </H>
                     )}
-                  />
+                  </FelaComponent>
                 )}
               </FelaComponent>
               {mediaKind === 'image' ? (
@@ -85,7 +78,7 @@ export default function Boxy({ list, }: Props): Node {
           </LayoutRow>
         );
       }}
-    />
+    </FelaTheme>
   ) : null;
 }
 
@@ -95,7 +88,7 @@ export default function Boxy({ list, }: Props): Node {
 
 type SourceOptions = {
   sizes: string,
-  transforms: Array<{ width: string, aspect: "vertical" | "landscape", }>,
+  transforms: Array<{ width: string, aspect: 'vertical' | 'landscape', }>,
 };
 
 function getSourceOptions(isMobile: boolean) {
@@ -121,12 +114,12 @@ type ImageProps = {
   },
   sources: [
     {
-      until: "s",
+      until: 's',
       sourceOptions: SourceOptions,
       data: ImageDataType,
     },
     {
-      from: "s",
+      from: 's',
       sourceOptions: SourceOptions,
       data: ImageDataType,
     },
@@ -199,7 +192,7 @@ function getMediaProps(media: MediaType): ?Object {
 //                               STYLE                                //
 // /////////////////////////////////////////////////////////////////////
 
-function textWrapperStyle(theme) {
+function textWrapperStyle({ theme, }) {
   return {
     position: 'absolute',
     right: '0',
@@ -218,7 +211,7 @@ function textWrapperStyle(theme) {
   };
 }
 
-function innerTextStyle(theme) {
+function innerTextStyle({ theme, }) {
   return {
     padding: '1rem',
     backgroundColor: theme.color('quaternary', 'base'),

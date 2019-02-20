@@ -38,8 +38,7 @@ export default function VerticalImageTeaser({
   displayFlags,
 }: Props): React.Node {
   return (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <Teaser
           data={itemData}
           onClick={biAction ? () => biAction({ index: 1, articleId: itemData.representedContent, }) : null}
@@ -96,7 +95,6 @@ export default function VerticalImageTeaser({
             renderFooter={() => <TeaserFooter data={itemData} displayFlags={displayFlags} />}
           />
         </Teaser>
-      )}
-    />
+      )}</FelaTheme>
   );
 }

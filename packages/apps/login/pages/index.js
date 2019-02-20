@@ -30,8 +30,7 @@ const Index = () => (
         const host = client.readQuery({ query: GET_HOST, }).hostname.match(/^(?:.*?\.)?(.*)/i)[1];
         return (
           <StyleProvider renderer={styleRenderer} theme={theme(host)}>
-            <FelaTheme
-              render={theme => (
+            <FelaTheme>{theme => (
                 <Fragment>
                   <UserDispenser
                     render={({ isLoggedIn, user, }) => (
@@ -62,8 +61,7 @@ const Index = () => (
                   />
                   
                 </Fragment>
-              )}
-            />
+              )}</FelaTheme>
           </StyleProvider>
         );
       }}

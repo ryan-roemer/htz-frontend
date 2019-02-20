@@ -18,13 +18,12 @@ const propTypes = {
   host: PropTypes.string.isRequired,
   router: PropTypes.shape().isRequired,
   /** passing stage from client promotionsPageState to EventTrackers */
-  stage: PropTypes.PropTypes.oneOfType([ PropTypes.string, PropTypes.number, ])
-    .isRequired,
+  stage: PropTypes.PropTypes.oneOfType([ PropTypes.string, PropTypes.number, ]).isRequired,
 };
 
 // const defaultProps = {};
 
-const contStyle = theme => ({
+const contStyle = ({ theme, }) => ({
   display: 'flex',
   justifyContent: 'space-around',
   alignItems: 'center',
@@ -38,14 +37,14 @@ const contStyle = theme => ({
   ],
 });
 
-const backLinkStyle = theme => ({
+const backLinkStyle = ({ theme, }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
   color: theme.color('header', 'backLinkText'),
 });
 
-const backLinkTextStyle = theme => ({
+const backLinkTextStyle = ({ theme, }) => ({
   extend: [ theme.mq({ until: 's', }, { display: 'none', }), ],
 });
 
@@ -54,13 +53,13 @@ const logoContStyle = {
   marginBottom: '1rem',
 };
 
-const underLogoStyle = theme => ({
+const underLogoStyle = ({ theme, }) => ({
   letterSpacing: '0.5rem',
   color: theme.color('header', 'underLogoText'),
   extend: [ theme.type(1), ],
 });
 
-const trustedBadgeContStyle = theme => ({
+const trustedBadgeContStyle = ({ theme, }) => ({
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',
@@ -74,7 +73,7 @@ const trustedBadgeContStyle = theme => ({
 const trustedBadgeSize = 10;
 const trustedBadgeSizeSBP = 8;
 
-const trustedBadgeCircleStyle = theme => ({
+const trustedBadgeCircleStyle = ({ theme, }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -101,12 +100,12 @@ const trustedBadgeCircleStyle = theme => ({
   ],
 });
 
-const backContainerStyle = theme => ({
+const backContainerStyle = ({ theme, }) => ({
   width: `${trustedBadgeSize}rem`,
   extend: [ theme.mq({ until: 's', }, { width: `${trustedBadgeSizeSBP}rem`, }), ],
 });
 
-const trustedBadgeContentStyle = theme => ({
+const trustedBadgeContentStyle = ({ theme, }) => ({
   textAlign: 'center',
   color: theme.color('header', 'badgeText'),
   extend: [
@@ -118,9 +117,8 @@ const trustedBadgeContentStyle = theme => ({
 function PurchaseHeader({ host, router, displayBackButton, stage, }) {
   const isTheMarker = host === 'themarker.com';
   return (
-    <FelaComponent
-      style={contStyle}
-      render={({
+    <FelaComponent style={contStyle}>
+      {({
         theme: {
           header: { backLinkText, underLogoText, trustedBadgeText, },
           linkToHomePage: { href, },
@@ -130,9 +128,8 @@ function PurchaseHeader({ host, router, displayBackButton, stage, }) {
         <div className={className}>
           <FelaComponent style={backContainerStyle}>
             {displayBackButton ? (
-              <FelaComponent
-                style={backLinkStyle}
-                render={({ className, }) => (
+              <FelaComponent style={backLinkStyle}>
+                {({ className, }) => (
                   <EventTracker>
                     {({ biAction, gaAction, }) => (
                       <button
@@ -159,14 +156,12 @@ function PurchaseHeader({ host, router, displayBackButton, stage, }) {
                             marginInlineEnd: '1.5rem',
                           }}
                         />
-                        <FelaComponent style={backLinkTextStyle}>
-                          {backLinkText}
-                        </FelaComponent>
+                        <FelaComponent style={backLinkTextStyle}>{backLinkText}</FelaComponent>
                       </button>
                     )}
                   </EventTracker>
                 )}
-              />
+              </FelaComponent>
             ) : (
               <div />
             )}
@@ -197,9 +192,7 @@ function PurchaseHeader({ host, router, displayBackButton, stage, }) {
               )}
             </a>
 
-            <FelaComponent style={underLogoStyle}>
-              {underLogoText[host]}
-            </FelaComponent>
+            <FelaComponent style={underLogoStyle}>{underLogoText[host]}</FelaComponent>
           </FelaComponent>
           <FelaComponent style={trustedBadgeContStyle}>
             <FelaComponent style={trustedBadgeCircleStyle}>
@@ -218,7 +211,7 @@ function PurchaseHeader({ host, router, displayBackButton, stage, }) {
           </FelaComponent>
         </div>
       )}
-    />
+    </FelaComponent>
   );
 }
 

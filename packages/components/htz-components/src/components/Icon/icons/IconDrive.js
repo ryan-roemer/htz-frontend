@@ -16,11 +16,9 @@ const IconDrive = ({ size, fill, color, attrs, miscStyles, ...props }) => (
     color={color}
     attrs={attrs}
     miscStyles={miscStyles}
-    rule={iconStyle}
-    render={({ className, }) => (
+    style={iconStyle}>{({ className, }) => (
       <svg width="1em" height="1em" viewBox="0 0 256 256" className={className} {...props} {...attrs} >  <path fill="currentColor" d="M98 43h66.4l64 108H162L98 43zM69.1 214h125.6l33.6-56H101.9l-32.8 56zM91.3 47.5l32.9 55.4-63.4 107.6-33.7-55.4L91.3 47.5z" /></svg>
-    )}
-  />
+    )}</FelaComponent>
 );
 
 IconDrive.propTypes = iconPropTypes;

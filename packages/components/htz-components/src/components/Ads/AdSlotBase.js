@@ -42,29 +42,30 @@ class AdSlotBase extends Component {
   render() {
     if (this.state.shouldRender) {
       const { audianceTarget, miscStyles, } = this.props;
+      const styleRule = this.props.styleRule ? this.props.styleRule : {};
+
       return (
         <React.Fragment>
           {this.state.debugJsx}
-          <FelaComponent
-            rule={this.props.styleRule}
-            render={({ className, }) => (
+          <FelaComponent style={styleRule}>
+            {({ className, }) => (
               <FelaComponent
-                style={theme => ({
+                style={({ theme, }) => ({
                   extend: [
                     ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
                   ],
                 })}
-                render={({ className: papiStyles, }) => (
+              >
+                {({ className: papiStyles, }) => (
                   <div
                     id={this.props.id}
                     data-audtarget={audianceTarget}
-                    className={`js-dfp-ad ${this.props.className
-                      || ''} ${className} ${papiStyles}`}
+                    className={`js-dfp-ad ${this.props.className || ''} ${className} ${papiStyles}`}
                   />
                 )}
-              />
+              </FelaComponent>
             )}
-          />
+          </FelaComponent>
         </React.Fragment>
       );
     }

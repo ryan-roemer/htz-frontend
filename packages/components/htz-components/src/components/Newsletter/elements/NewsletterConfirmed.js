@@ -9,16 +9,7 @@ import IconClose from '../../Icon/icons/IconClose';
 
 const NewsLetterConfirmedWrapperStyle = ({ theme, variant, }) => ({
   textAlign: 'center',
-  extend: [
-    parseComponentProp(
-      undefined,
-      variant,
-      theme.mq,
-      setWrapperVariant,
-      theme.color,
-      theme
-    ),
-  ],
+  extend: [ parseComponentProp(undefined, variant, theme.mq, setWrapperVariant, theme.color, theme), ],
 });
 
 function setWrapperVariant(prop, variant, getColor) {
@@ -82,17 +73,10 @@ NewsletterConfirmed.defaultProps = {
   variant: 'highlight',
 };
 
-export default function NewsletterConfirmed({
-  closeConfirmation,
-  variant,
-  host,
-  signUpStatus,
-}) {
+export default function NewsletterConfirmed({ closeConfirmation, variant, host, signUpStatus, }) {
   return (
-    <FelaComponent
-      variant={variant}
-      rule={NewsLetterConfirmedWrapperStyle}
-      render={({ className, theme, }) => {
+    <FelaComponent variant={variant} style={NewsLetterConfirmedWrapperStyle}>
+      {({ className, theme, }) => {
         const {
           buttons: { newsletterConfirmedButton, },
           texts: { newsletterConfirmedText, newsletterConfirmedTitleText, },
@@ -108,18 +92,10 @@ export default function NewsletterConfirmed({
             >
               <IconClose size={2} />
             </Button>
-            <FelaComponent
-              variant={variant}
-              rule={inputUpperNoteStyle}
-              render="p"
-            >
+            <FelaComponent variant={variant} style={inputUpperNoteStyle} as="p">
               <strong>{newsletterConfirmedTitleText[signUpStatus]}</strong>
             </FelaComponent>
-            <FelaComponent
-              variant={variant}
-              rule={inputUpperNoteStyle}
-              render="p"
-            >
+            <FelaComponent variant={variant} style={inputUpperNoteStyle} as="p">
               {newsletterConfirmedText[signUpStatus]}
             </FelaComponent>
             <Button
@@ -140,6 +116,6 @@ export default function NewsletterConfirmed({
           </div>
         );
       }}
-    />
+    </FelaComponent>
   );
 }

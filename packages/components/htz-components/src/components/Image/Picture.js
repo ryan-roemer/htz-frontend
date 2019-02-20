@@ -240,8 +240,7 @@ function Picture(props) {
   const media = getMedia(props);
 
   const Element = (
-    <FelaTheme
-      render={theme => (
+    <FelaTheme>{theme => (
         <picture>
           {sources.map((img, index) => (img.data.isAnimatedGif ? (
           // eslint-disable-next-line react/no-array-index-key
@@ -300,8 +299,7 @@ function Picture(props) {
             }
           />
         </picture>
-      )}
-    />
+      )}</FelaTheme>
   );
   if (lazyLoad) {
     return hasWrapper ? (

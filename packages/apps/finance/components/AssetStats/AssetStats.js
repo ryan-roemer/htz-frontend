@@ -17,7 +17,7 @@ const numToString: (number | string) => string = num => (typeof num === 'number'
 
 export const Stat = ({ children, title, miscStyles, }: any): Node => (
   <FelaComponent
-    style={theme => ({
+    style={({ theme, }) => ({
       alignItems: 'center',
       display: 'flex',
       flexBasis: '100%',
@@ -26,6 +26,7 @@ export const Stat = ({ children, title, miscStyles, }: any): Node => (
       flexShrink: '1',
       justifyContent: 'center',
       position: 'relative',
+
       ':not(:last-child)': {
         ':after': {
           backgroundColor: theme.color('neutral', '-4'),
@@ -40,31 +41,22 @@ export const Stat = ({ children, title, miscStyles, }: any): Node => (
       },
     })}
   >
-    <FelaComponent style={{ fontWeight: '700', }} render="span">
+    <FelaComponent style={{ fontWeight: '700', }} as="span">
       {title}
     </FelaComponent>
     <FelaComponent
-      style={theme => ({
+      style={({ theme, }) => ({
         ...theme.type(1),
-        extend: [
-          ...(miscStyles
-            ? parseStyleProps(miscStyles, theme.mq, theme.type)
-            : []),
-        ],
+
+        extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
       })}
-      render={({ className, }) => children(className)}
-    />
+    >
+      {({ className, }) => children(className)}
+    </FelaComponent>
   </FelaComponent>
 );
-export type GraphType = "line" | "scatter" | "hotMoney";
-export type Period =
-  | "daily"
-  | "weekly"
-  | "monthly"
-  | "quarterly"
-  | "yearly"
-  | "tripleYear"
-  | "max";
+export type GraphType = 'line' | 'scatter' | 'hotMoney';
+export type Period = 'daily' | 'weekly' | 'monthly' | 'quarterly' | 'yearly' | 'tripleYear' | 'max';
 type Props = {
   graphType: GraphType,
   period: Period,
@@ -84,10 +76,7 @@ class AssetStats extends React.Component<Props, State> {
     stats: [],
   };
 
-  getDateStat: (number, string) => { title: string, value: string, } = (
-    date,
-    time
-  ) => {
+  getDateStat: (number, string) => { title: string, value: string, } = (date, time) => {
     let title: string;
     let value: string;
     switch (time) {
@@ -127,10 +116,7 @@ class AssetStats extends React.Component<Props, State> {
     }
     else if (graphType === 'hotMoney') {
       const { time, value, }: LineAsset = stock || {};
-      stats = [
-        { ...this.getDateStat(time, period), },
-        { title: 'שער', value: value || '', },
-      ];
+      stats = [ { ...this.getDateStat(time, period), }, { title: 'שער', value: value || '', }, ];
     }
     this.setState({ stats, });
   };
@@ -139,8 +125,8 @@ class AssetStats extends React.Component<Props, State> {
     const { render, miscStyles, } = this.props;
     const { stats, } = this.state;
     return (
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>
+        {theme => (
           <Fragment>
             {render({ changeStats: this.changeStats, })}
             <FelaComponent
@@ -152,11 +138,7 @@ class AssetStats extends React.Component<Props, State> {
                 paddingBottom: '1rem',
                 paddingTop: '1rem',
                 ...theme.type(-1),
-                extend: [
-                  ...(miscStyles
-                    ? parseStyleProps(miscStyles, theme.mq, theme.type)
-                    : []),
-                ],
+                extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
               }}
             >
               {stats && stats.length > 0 ? (
@@ -202,7 +184,7 @@ class AssetStats extends React.Component<Props, State> {
             </FelaComponent>
           </Fragment>
         )}
-      />
+      </FelaTheme>
     );
   }
 }

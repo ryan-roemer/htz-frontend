@@ -33,8 +33,8 @@ export default class MastheadUserMenu extends React.Component {
   render() {
     if (!this.props.userName) {
       return (
-        <FelaTheme
-          render={theme => (
+        <FelaTheme>
+          {theme => (
             <HtzLink
               href={theme.userMenuI18n.loginUrl}
               content={(
@@ -49,17 +49,17 @@ export default class MastheadUserMenu extends React.Component {
                       : null
                   }
                 />
-              )}
+)}
             />
           )}
-        />
+        </FelaTheme>
       );
     }
 
     const buttonRef = React.createRef();
     return (
-      <FelaTheme
-        render={theme => {
+      <FelaTheme>
+        {theme => {
           const items = theme.userMenuI18n.menuItems;
           const initialCombinedItems = items.map(item => (
             <Item
@@ -98,8 +98,8 @@ export default class MastheadUserMenu extends React.Component {
                   }}
                 >
                   <FelaComponent
-                    render="span"
-                    style={theme => ({
+                    as="span"
+                    style={({ theme, }) => ({
                       marginInlineEnd: 'auto',
                       color: theme.color('neutral', '-10'),
                     })}
@@ -137,8 +137,8 @@ export default class MastheadUserMenu extends React.Component {
                     />
                   ))}
                   {isOpen && !!this.props.userName ? (
-                    <FelaTheme
-                      render={theme => (
+                    <FelaTheme>
+                      {theme => (
                         <ListWrapper
                           listStyle={{
                             ...dropdownListStyle(theme),
@@ -150,14 +150,14 @@ export default class MastheadUserMenu extends React.Component {
                           {combinedItems}
                         </ListWrapper>
                       )}
-                    />
+                    </FelaTheme>
                   ) : null}
                 </Fragment>
               )}
             />
           );
         }}
-      />
+      </FelaTheme>
     );
   }
 }

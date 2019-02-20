@@ -55,8 +55,7 @@ export default class AuthorNotificationsRegistration extends React.Component {
   render() {
     console.log(config);
     return (
-      <FelaTheme
-        render={theme => (
+      <FelaTheme>{theme => (
           <div>
             <div id={`${this.id}_form`}>
               <ServiceByMailRegistration
@@ -86,10 +85,9 @@ export default class AuthorNotificationsRegistration extends React.Component {
               }}
               render={({ isVisible, handleClose, isModal, }) => (
                 <FelaComponent
-                  rule={({ theme, }) => ({
+                  style={({ theme, }) => ({
                     textAlign: 'center',
-                  })}
-                  render={({ className, }) => (
+                  })}>{({ className, }) => (
                     <div className={className}>
                       <FelaComponent
                         style={{
@@ -107,14 +105,12 @@ export default class AuthorNotificationsRegistration extends React.Component {
                         {theme.serviceByMailI18n.btnCloseText}
                       </Button>
                     </div>
-                  )}
-                />
+                  )}</FelaComponent>
               )}
             />
             <div id={this.id} />
           </div>
-        )}
-      />
+        )}</FelaTheme>
     );
   }
 }
