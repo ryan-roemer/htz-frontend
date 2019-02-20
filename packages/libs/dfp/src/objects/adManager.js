@@ -561,8 +561,8 @@ export default class AdManager {
       const pubads = window.googletag.pubads();
       pubads.addEventListener('slotRenderEnded', event => {
         const id = event.slot.getAdUnitPath().split('/')[3];
-        // const isEmpty = event.isEmpty;
-        // const resolvedSize = event.size;
+        const isEmpty = event.isEmpty;
+        const resolvedSize = event.size;
         if (id.toLowerCase().indexOf('inread') >= 0) {
           const element = document.getElementById(id);
           if (element) {
@@ -581,6 +581,16 @@ export default class AdManager {
           const adSlot = this.adSlots.get(id);
           this.user.impressionManager.registerImpression(`${adSlot.id}${this.config.department}`);
           this.user.impressionManager.registerImpression(`${adSlot.id}_all`);
+          adSlot.lastResolvedSize = resolvedSize;
+          adSlot.lastResolvedWithBreakpoint = getBreakpoint(breakpoints);
+          if (isEmpty) {
+            adSlot.lastResolvedSize = ConflictResolver.EMPTY_SIZE;
+            adSlot.hide();
+            this.releaseSlotDependencies(adSlot);
+          }
+          else {
+            this.releaseSlotDependencies(adSlot, adSlot.lastResolvedSize);
+          }
         }
         // if (this.adSlots.has(id)) {
         //   const adSlot = this.adSlots.get(id);
