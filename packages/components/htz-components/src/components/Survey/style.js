@@ -156,5 +156,6 @@ export default {
       }
       : {}),
   }),
+  legendDate: { fontWeight: '700', },
   button: theme => ({}),
 };
