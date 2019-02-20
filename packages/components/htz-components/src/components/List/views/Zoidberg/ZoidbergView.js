@@ -11,7 +11,7 @@ import type { ClickTrackerBannerWrapperType, } from '../../../../flowTypes/Click
 import type { ClickTrackerBannerType, } from '../../../../flowTypes/ClickTrackerBannerType';
 
 import ListItem from '../../elements/ListItem';
-import GeneralAdSlot from '../../../Ads/GeneralAdSlot';
+import DynamicSlotFromDfpConfig from '../../../Ads/DynamicAds/DynamicSlotFromDfpConfig.js';
 import ClickTracker from '../../../ClickTracker/ClickTrackerWrapper';
 import Image from '../../../Image/Image';
 import { PromotedItem, } from '../Leela/LeelaView';
@@ -204,8 +204,8 @@ function Zoidberg({ list, lazyLoadImages, biAction, }: Props): Node {
           ? dfp.map(item => (
             <ListItem key={item.contentId}>
               {isDfp(item) ? (
-                <GeneralAdSlot
-                  {...item}
+                <DynamicSlotFromDfpConfig
+                  adSlotId={item.id}
                   miscStyles={{
                     ...listItemStyle,
                     marginTop: '1rem',
