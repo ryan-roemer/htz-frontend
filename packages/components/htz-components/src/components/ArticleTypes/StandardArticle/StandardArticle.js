@@ -156,7 +156,11 @@ function StandardArticle({ articleId, slots, path, }) {
                         let mouseDisclaimer = null;
 
                         if (labelsSections.includes(lineage[1].contentId)) {
+<<<<<<< HEAD
                           const disclaimerStyle = {
+=======
+                          const disclaimerStyle = ({ theme, }) => ({
+>>>>>>> chore(fela upgrade): upgrading all fela dependencies to the latest fela release
                             marginBottom: '3rem',
                             marginTop: '3rem',
                             extend: [
