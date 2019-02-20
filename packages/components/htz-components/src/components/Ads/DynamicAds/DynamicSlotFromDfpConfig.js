@@ -1,15 +1,17 @@
+import { parseStyleProps, } from '@haaretz/htz-css-tools';
 import React from 'react';
+import { FelaComponent, } from 'react-fela';
 import PropTypes from 'prop-types';
 import DfpConfProvider from './DfpConfProvider';
 import DynamicAdSlot from './DynamicAdSlot';
 import getSectionPairFromLineage from '../utils/getSectionsFromLineage.js';
 
-const DynamicSlotFromDfpConfig = ({ adSlotId, }) => (
+
+const DynamicSlotFromDfpConfig = ({ adSlotId, miscStyles, }) => (
   <DfpConfProvider>
     {
       data => {
         const slotConfig = data.dfpConfig.adSlotConfig[adSlotId];
-        console.log('[CommentList] %o dfpConfig: %o', adSlotId, slotConfig);
         if (slotConfig) {
           const network = data.dfpConfig.adManagerConfig.network;
           const adUnitBase = data.dfpConfig.adManagerConfig.adUnitBase;
@@ -18,7 +20,18 @@ const DynamicSlotFromDfpConfig = ({ adSlotId, }) => (
             .map(s => s.toLowerCase());
           const adUnit = `${network}/${adUnitBase}/${adSlotId}/${sectionIndicator}/${sectionIndicator}.${section}/${sectionIndicator}.${section}.${subSection}`;
           return (
-            <DynamicAdSlot id={adSlotId} adUnit={adUnit} sizes={slotConfig.adSizeMapping} />
+            miscStyles ? (
+              <FelaComponent
+                style={theme => ({
+                  extend: [
+                    ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
+                  ],
+                })}
+              >
+                <DynamicAdSlot id={adSlotId} adUnit={adUnit} sizes={slotConfig.adSizeMapping} />
+              </FelaComponent>) : (
+                <DynamicAdSlot id={adSlotId} adUnit={adUnit} sizes={slotConfig.adSizeMapping} />
+            )
           );
         }
         return null;
@@ -30,6 +43,12 @@ const DynamicSlotFromDfpConfig = ({ adSlotId, }) => (
 
 DynamicSlotFromDfpConfig.propTypes = {
   adSlotId: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  miscStyles: PropTypes.object,
+};
+
+DynamicSlotFromDfpConfig.defaultProps = {
+  miscStyles: null,
 };
 
 export default DynamicSlotFromDfpConfig;

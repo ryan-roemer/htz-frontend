@@ -12,6 +12,20 @@ const getSectionPairFromLineage = lineage => lineage
 // 3. leave only section and subSection
   .slice(1, 3)
 // 4. extract just the pathSegment
-  .map(x => x.pathSegment);
+  .map(x => {
+    if (x.pathSegment) {
+      return x.pathSegment;
+    }
+    if (x.url) { // if pathSegment property does not exist, use url to extract path segment
+      const urlArr = x.url.split('/').slice(1);
+      if (urlArr.length === 2) {
+        return urlArr[1];
+      }
+      if (urlArr.length === 1) {
+        return urlArr[0];
+      }
+    }
+    return '';
+  });
 
 export default getSectionPairFromLineage;
