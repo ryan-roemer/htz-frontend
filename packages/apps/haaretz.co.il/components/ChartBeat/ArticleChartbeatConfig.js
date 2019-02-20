@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default (section, author) => {
+const ArticleChartbeatConfig = (section, author) => {
   const safeSection = section.replace(/'/, '\\\'');
   const safeAuthor = author.replace(/'/, '\\\'');
   return (
@@ -77,3 +77,5 @@ export default (section, author) => {
     </React.Fragment>
   );
 };
+
+export default ArticleChartbeatConfig;
