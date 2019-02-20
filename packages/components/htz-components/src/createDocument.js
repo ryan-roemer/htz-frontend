@@ -4,7 +4,6 @@ import Document, { Head, Main, NextScript, } from 'next/document';
 import { renderToSheetList, } from 'fela-dom';
 import config from 'config';
 import serialize from 'serialize-javascript';
-import { breakUrl, } from '@haaretz/app-utils';
 import SEO from './components/SEO/SEO';
 import criticalFontLoader from './utils/criticalFontLoader';
 // import ChartBeat from './components/Scripts/ChartBeat';
@@ -89,108 +88,42 @@ const createDocument = ({
     ));
   }
 
-    chartbeatConfig = isMobile => (
-      <React.Fragment>
-        <script
-          type="text/javascript"
-          dangerouslySetInnerHTML={{
-            __html: `
-          var _sf_async_config = _sf_async_config || {};
-          /** ChartBeat CONFIGURATION START **/
-          _sf_async_config.uid = 5952;
-          _sf_async_config.domain = "haaretz.co.il";
-          _sf_async_config.flickerControl = false;
-          _sf_async_config.useCanonical = true;
-          _sf_async_config.useCanonicalDomain = true;
-          /** ChartBeat CONFIGURATION END **/
-        `,
-          }}
-        />
-        {/* <style
-          dangerouslySetInnerHTML={{ __html: 'body { visibility: hidden !important; }', }}
-          id="chartbeatFlickerControlStyle"
-        /> */}
-        {/* <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if (typeof window !== 'undefined') {
-                window.setTimeout(() => {
-                  const hider = document.getElementById('chartbeatFlickerControlStyle');
-                  if (hider) {
-                    hider.parentNode.removeChild(hider);
-                  }
-                }, 1000);
-              }`,
-          }}
-        /> */}
-        <script async src="//static.chartbeat.com/js/chartbeat_mab.js" />
-      </React.Fragment>
+  renderData() {
+    return (
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `__HTZ_DATA__=${serialize(this.props.appData)};`,
+        }}
+      />
     );
+  }
 
-    renderData() {
-      return (
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `__HTZ_DATA__=${serialize(this.props.appData)};`,
-          }}
-        />
-      );
-    }
-
-    render() {
-      const criticalFont = this.props.criticalFontElements;
-      const { path, } = breakUrl(this.props.url);
-
-      return (
-        <html lang={this.props.lang} dir={this.props.isRtl ? 'rtl' : 'ltr'}>
-          <Head>
-            <meta charSet="utf-8" />
-            <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-            {/* dont add link to manifest on purchase-page app  */}
-            {hasToggleableTheme ? null : <link rel="manifest" href="/manifest.json" />}
-            {criticalFont.preload}
-            {/* ************************* *
-             *       STYLE ELEMENTS      *
-             * ************************* */}
-            {criticalFont.style}
-            {this.renderStyles()}
-            {/* TODO: This should be in the theme's static rules */}
-            <style
-              dangerouslySetInnerHTML={{
-                __html: `
-                :-moz-focusring {
-                  outline: 2px dotted #0B7EB5;
-                }
-                `,
-              }}
+  render() {
+    return (
+      <html lang={this.props.lang} dir={this.props.isRtl ? 'rtl' : 'ltr'}>
+        <Head>
+          <meta charSet="utf-8" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+          {/* dont add link to manifest on purchase-page app  */}
+          {hasToggleableTheme ? null : <link rel="manifest" href="/manifest.json" />}
+          {this.renderStyles()}
+          <SEO host={this.props.host} polyFillSrc={polyfillSrc} />
+          {this.renderData()}
+          {process.env.CONNECTION_PRESET === 'stage' ? (
+            <meta
+              name="google-site-verification"
+              content="s8ANajgxerP2VtcnQ05TxVZjP0A9EhPp70_PLse_cBY"
             />
-
-            {/* ************************* *
-             *      SCRIPT ELEMENTS      *
-             * ************************* */}
-            {criticalFont.script}
-
-            {/* ChartBeat scripts should only render on homepage */}
-            {path !== '/' ? null : this.chartbeatConfig(this.props.isMobile)}
-
-            <SEO host={this.props.host} polyFillSrc={polyfillSrc} />
-            {this.renderData()}
-            {process.env.CONNECTION_PRESET === 'stage' ? (
-              <meta
-                name="google-site-verification"
-                content="s8ANajgxerP2VtcnQ05TxVZjP0A9EhPp70_PLse_cBY"
-              />
-            ) : null}
-          </Head>
-          <body>
-            <Main />
-            <script crossOrigin="anonymous" src={polyfillSrc} />
-            <NextScript />
-          </body>
-        </html>
-      );
-    }
+          ) : null}
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </html>
+    );
+  }
 };
 
 export default createDocument;

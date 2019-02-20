@@ -14,17 +14,6 @@ import FooterHead from './elements/FooterHead';
 import MobileView from './elements/MobileMainContainer';
 // ///////////////////////////////////////////////////////////////////
 import FirstImpressionPlaceHolder from '../Paragraph/FirstImpressionPlaceholder';
-import OutbrainPlaceholder from '../Paragraph/OutbrainPlaceholder';
-import AccessListByIp from '../Scripts/AccessListByIp';
-import UniversitiesPush from '../Scripts/UniversitiesPush';
-
-import FirstImpression from '../Scripts/FirstImpression';
-import GStat from '../Scripts/GStat';
-import IdxNielsen from '../Scripts/IdxNielsen';
-import CrazyEgg from '../Scripts/CrazyEgg';
-import OutbrainTVR from '../Scripts/OutbrainTVR';
-import ChartBeat from '../Scripts/ChartBeat';
-import NoSSR from '../NoSSR/NoSSR';
 
 const GET_FOOTER_ITEMS = gql`
   query FooterQuery($listId: String!) {
@@ -116,11 +105,6 @@ const StyledDesktopText = createComponent(optionalExtendedWrapper);
 class Footer extends React.Component {
   static propTypes = {
     contentId: PropTypes.string.isRequired,
-    shouldRenderScripts: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    shouldRenderScripts: false,
   };
 
   state = {
@@ -136,7 +120,7 @@ class Footer extends React.Component {
 
   render() {
     const { expanded, } = this.state;
-    const { contentId, shouldRenderScripts, } = this.props;
+    const { contentId, } = this.props;
     return (
       <Fragment>
         <FirstImpressionPlaceHolder />
@@ -225,18 +209,6 @@ class Footer extends React.Component {
             );
           }}
         />
-        <AccessListByIp />
-        <ChartBeat shouldRender={shouldRenderScripts} />
-        <UniversitiesPush />
-        <FirstImpression />
-        <NoSSR>
-          <GStat />
-        </NoSSR>
-        <FirstImpressionPlaceHolder />
-        <IdxNielsen shouldRender={shouldRenderScripts} />
-        <CrazyEgg shouldRender={shouldRenderScripts} />
-        <OutbrainTVR />
-        <OutbrainPlaceholder />
       </Fragment>
     );
   }

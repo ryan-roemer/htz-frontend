@@ -1,18 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { FelaComponent, } from 'react-fela';
 import type { ComponentPropResponsiveObject, StyleProps, } from '@haaretz/htz-css-tools';
 
-import type { FillHeightType, } from '../Card/cardStyle';
 import type { ClickTrackerBannerType, } from '../../flowTypes/ClickTrackerBannerType';
 import type { TeaserDataType, } from '../../flowTypes/TeaserDataType';
 import type { attrFlowType, } from '../../flowTypes/attrTypes';
-import { isClickTracker, } from '../../utils/validateType';
 import Card from '../Card/Card';
 import Debug from '../Debug/Debug';
 import Grid from '../Grid/Grid';
-import HtzLink from '../HtzLink/HtzLink';
 
 export type IsStackedType = boolean | ComponentPropResponsiveObject<boolean>[];
 
@@ -145,29 +141,6 @@ export default function Teaser({
       >
         {children}
       </Grid>
-      {/* <FelaComponent
-        style={{
-          backgroundColor: 'transparent',
-          bottom: '0',
-          left: '0',
-          position: 'absolute',
-          right: '0',
-          top: '0',
-          zIndex: '0',
-        }}
-        render={({ className: linkClassName, }) => (
-          <HtzLink
-            className={linkClassName}
-            href={isClickTracker(data) ? data.link : data.path}
-            target={data.linkTarget}
-            onClick={onClick}
-            attrs={{
-              tabIndex: '-1',
-              'aria-hidden': true,
-            }}
-          />
-        )}
-      /> */}
     </Card>
   );
 }
