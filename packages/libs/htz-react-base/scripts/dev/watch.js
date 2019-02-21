@@ -23,7 +23,6 @@ function buildLibrary() {
   const envScripts = {
     commonjs: require.resolve('./lib'),
     esm: require.resolve('./esm'),
-    esnext: require.resolve('./esnext'),
   };
 
   const { BABEL_ENV, } = process.env;

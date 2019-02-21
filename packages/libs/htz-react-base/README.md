@@ -63,6 +63,31 @@ after the script name to add arguments, for example:
 ```console
 $ yarn run test -- --verbose
 ```
+## Base Configs
+
+### Babel
+
+This package contains a babel present for internal use at @haaretz.
+
+packages using it should have a `.babelrc.js` file at their root with, in
+the most basic usecase:
+
+```js
+module.exports = {
+  presets: ["@haaretz/htz-react-base/babel.js"],
+}
+```
+
+plugins and presets can be added to individual packages as required.
+
+### Next Config (including webpack)
+
+The basic next configuration have been modularized and moved to
+htz-react-base/base-next-config. The entire base config can be imported 
+with `require('@haaretz/htz-react-base/base-next-config`.
+Additionaly, the config's different parts can be imported with
+`require('@haaretz/htz-react-base/base-next-config/<sub-module>`.
+
 
 ## Commands
 

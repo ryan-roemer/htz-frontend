@@ -66,16 +66,6 @@ switch (process.env.BABEL_ENV) {
       },
     ]);
     break;
-  // The `esnext` environment is used to generate `/dist/esnext` and will be
-  // used by advanced webpack setups that are specifically configured to
-  // handle syntax with as few transforms pre-applied as possible. Additional
-  // transpilation will be necessary (via `babel-loader`), but consuming apps
-  // can decide what to do for themselves.
-  // TODO: Consider concatenating to single file using rollup, for better
-  // tree-shaking by consumers (webpack 4 will probably fix this with the
-  // `side-effects` property in `package.json`, but until then, re-exports
-  // can't be tree-shaken that well)
-  case 'esnext':
   default:
     break;
 }
