@@ -57,7 +57,6 @@ const SingleTabStyle: Object => Object = (
 const HeadersStyle: Object = {
   minWidth: '100%',
   minHeight: '37px',
-  boxShadow: '0 1px 1px 0 rgba(162, 162, 162, 0.5)',
 };
 
 

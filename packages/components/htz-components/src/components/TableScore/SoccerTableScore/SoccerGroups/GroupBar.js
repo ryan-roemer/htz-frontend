@@ -28,28 +28,25 @@ const barRule: Object => Object = ({ theme, }) => ({
   overflowY: 'hidden',
   extend: [
     theme.type(0),
-    borderTop({
-      width: '2px',
-      lines: 0.1,
-      style: 'solid',
-      color: theme.color('primary', -6),
-    }),
   ],
 
 });
 
-const singleTabRule: Object => Object = ({ theme, active, borderRightOut, }) => ({
-  padding: '1rem 1.6rem',
+const singleTabRule: Object => Object = ({ theme, active, }) => ({
+  padding: '0.5 1.6rem',
+  ':active': {
+    outline: 'none',
+    border: 'none',
+  },
   background: active ? theme.color('quaternary', 'base') : theme.color('neutral', -10),
   fontWeight: active ? 700 : 500,
   color: theme.color('button', 'primaryOpaqueHoverBg'),
   extend: [
     theme.mq({ from: 's', }, { padding: '1rem 1.8rem', }),
     theme.mq({ until: 's', }, {
-      padding: '1rem 2.8rem',
+      padding: '0.5rem 2.8rem',
       ...theme.type(-1),
     }),
-    borderRight(borderRightOut),
   ],
 });
 
@@ -62,24 +59,10 @@ type SingleTabOptions = {
 
 
 function SingleTab({ text, active, index, handleClick, }: SingleTabOptions): Node {
-  const borderRightEmpty: Object = {
-    width: 0,
-    lines: 0,
-    style: 'none',
-    color: 'white',
-  };
-  const borderRightFilled: Object = {
-    width: '1px',
-    lines: 2.9,
-    style: 'solid',
-    color: 'lightgrey',
-  };
-
   const singleTab: Node = index === 0
     ? (
       <FelaComponent
         active={active}
-        borderRightOut={borderRightEmpty}
         rule={singleTabRule}
       >
         <ClickArea onClick={() => handleClick(index)}>
@@ -90,10 +73,13 @@ function SingleTab({ text, active, index, handleClick, }: SingleTabOptions): Nod
     : (
       <FelaComponent
         active={active}
-        borderRightOut={borderRightFilled}
         rule={singleTabRule}
       >
-        <ClickArea onClick={() => handleClick(index)}>
+        <ClickArea
+          miscStyles={{ width: '100%',
+            fontWeight: active ? 700 : 500, }}
+          onClick={() => handleClick(index)}
+        >
           {text}
         </ClickArea>
       </FelaComponent>
@@ -141,11 +127,24 @@ class GroupBar extends React.Component <Props, State> {
               {
               theme.groupBarTabs.headers.map((h, index) => {
                 const active = this.state.activeTab === index;
-                return (
+                return active ? (
                   <a
                     href="javascript:void(0)"
                     style={{ flexGrow: '1', }}
                     ref={activeTab => { this.activeTab = activeTab; }}
+                  >
+                    <SingleTab
+                      key={h}
+                      index={index}
+                      text={h}
+                      active={active}
+                      handleClick={this.handleClick}
+                    />
+                  </a>
+                ) : (
+                  <a
+                    href="javascript:void(0)"
+                    style={{ flexGrow: '1', }}
                   >
                     <SingleTab
                       key={h}

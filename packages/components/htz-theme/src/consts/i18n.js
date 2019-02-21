@@ -421,7 +421,6 @@ export const groupBarTabs = Object.freeze({
 });
 
 
-
 export const nbaHeaders = Object.freeze({
   desktop: [ 'קבוצה', 'ניצחונות', 'הפסדים', 'אחוז', ],
   mobile: [ 'קבוצה', 'נצ\'', 'הפ\'', 'אחוז', ],
