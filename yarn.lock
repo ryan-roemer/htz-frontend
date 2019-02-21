@@ -1917,6 +1917,11 @@
   dependencies:
     webpack-bundle-analyzer "2.13.1"
 
+"@zeit/next-source-maps@^0.0.4-canary.1":
+  version "0.0.4-canary.1"
+  resolved "https://registry.yarnpkg.com/@zeit/next-source-maps/-/next-source-maps-0.0.4-canary.1.tgz#5051ff8425e5f615da2d21dd08a99284fbb63d7d"
+  integrity sha512-SPQCLs7ToaqzQnqXqGSCoL7KTlnOAao+1F5hy7Hkuq85TjHsUC3eeLsmVrBIraIhXG/ARHmZ0JHOesPDtBfpzw==
+
 JSONStream@^1.0.3, JSONStream@^1.0.4:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/JSONStream/-/JSONStream-1.3.5.tgz#3208c1f08d3a4d99261ab64f92302bc15e111ca0"
@@ -10667,6 +10672,11 @@ netmask@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-1.0.6.tgz#20297e89d86f6f6400f250d9f4f6b4c1945fcd35"
 
+next-compose-plugins@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/next-compose-plugins/-/next-compose-plugins-2.1.1.tgz#7da0a3ce0c8ce267b5cb4164d2fb6e4aaf61bf86"
+  integrity sha512-4yLtmGjnBlzuYdL66+c/zi8ljl24sK9jtP31UsTG1ZAAHj+ybWfEG/S+HMwK+pD2fNmJ4xQyr4xOubzExcS+Lg==
+
 next-plugin-transpile-modules@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-plugin-transpile-modules/-/next-plugin-transpile-modules-1.0.0.tgz#435436ded5316cef76ed333af01bacc0806de414"
@@ -10683,6 +10693,18 @@ next-server@8.0.1:
     prop-types "15.6.2"
     send "0.16.1"
     url "0.11.0"
+
+next-size@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/next-size/-/next-size-2.0.1.tgz#8480789f4022ee79e5054831175349280c239d7f"
+  integrity sha512-0ooeclVKn/0oalrtzfKRpYyQQTLuiqyAPW9psAKzjEtmC5quCwt/I6JNB/V3CaK2x1Bb9J+Elh1hbB6tZvPauQ==
+  dependencies:
+    chalk "^2.4.1"
+
+next-transpile-modules@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/next-transpile-modules/-/next-transpile-modules-2.0.0.tgz#ecbac0a5ad97ec7c0f47326bcdb64b6e11cf445c"
+  integrity sha512-W+jV3Kg+bLmGbntYfrGBloiV+ABOXt+GMI2aIUcM29yaPVDsIn2vWoyH6PA2ZXXgILm7xmyPfi30/0idbAmsaA==
 
 next@^7.0.2:
   version "7.0.3"
@@ -12190,7 +12212,7 @@ react-addons-shallow-compare@^15.6.2:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
-react-apollo@^2.2.4, react-apollo@^2.4.1:
+react-apollo@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.4.1.tgz#89db63ebacf01c1603553bb476f089492aaeab2c"
   integrity sha512-fSaiwXzY5xRmqKuGCtkMON8paL4/rKf4pB2aSI/0Ot8tn+gJisFqZ0iz9Pxvl6MHnJm1/gjJD3X1J4KmbYN2Yw==

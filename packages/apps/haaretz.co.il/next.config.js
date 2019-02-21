@@ -1,20 +1,22 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable no-param-reassign,import/no-extraneous-dependencies,import/order */
 
-// //////////////// //
-//   Next Plugins   //
-// //////////////// //
+// //////////////////////////// //
+//   Next and Webpack Plugins   //
+// //////////////////////////// //
 
-const webpack = require('webpack');
+// const { withPlugins, optional, } = require('next-compose-plugins');
+const withTranspiledModules = require('next-transpile-modules');
+const withSourceMaps = require('@zeit/next-source-maps')();
+const withBundleAnalyzer = require('./buildConfig/bundleAnalyzerConfig');
+// const withSize = require('next-size');
 
-const withTranspiledModules = require('next-plugin-transpile-modules');
+// ////////////////// //
+//   Config and Env   //
+// ////////////////// //
 
-const StatsPlugin = require('stats-webpack-plugin');
-
-const BundleAnalyzerPlugin = require('@zeit/next-bundle-analyzer');
-
-// Replace this with official npm version when an up to date version is released.
-// Depends on https://github.com/zeit/next-plugins/issues/309
-const withSourceMaps = require('./withSourceMaps')();
+const { BUNDLE_ANALYZE, NEXT_BUILD_ID, NODE_ENV, } = process.env;
+const configWebpack = require('./buildConfig/webpack');
+const analyzerConfig = require('./buildConfig/bundleAnalyzerConfig');
 
 /**
  * NOTE: Next.js builds the output directory in a temporary location before
@@ -22,116 +24,75 @@ const withSourceMaps = require('./withSourceMaps')();
  * in any plugins in this config, you probably want to reference
  * `config.output.path` instead!
  */
-const emptyShim = require.resolve('@haaretz/htz-react-base/webpack/emptyShim');
-const config = {
-  // withTranspiledModules({
-  // TODO: For some reason next-plugin-transpile-modules doesn't seem to work for actually
-  //       transpiling modules, but it does force the use of the 'module' field instead of
-  //       the 'main' field in imported modules.
-  // transpileModules: [ '@haaretz', ],
+const nextConfig = {
+  // TODO: For some reason next-plugin-transpile-modules doesn't seem to
+  // work for actually transpiling modules, but it does force the use of
+  // the 'module' field instead of the 'main' field in imported modules.
+  transpileModules: [ '@haaretz', ],
 
-  // Dealing with multi-server deployment https://nextjs.org/docs/#customizing-webpack-config
-  generateBuildId: async () => {
-    // For example get the latest git commit hash here
-    // Since this is a production-only issue, provide this as an environment variable at prod
-    const revision = process.env.NEXT_BUILD_ID || 'LATEST';
-    console.log(`Next App BuildID is: ${revision}`);
-    return revision;
-  },
+  // Dealing with multi-server deployment
+  // https://nextjs.org/docs/#customizing-webpack-config
+  generateBuildId,
   pageExtensions: [ 'jsx', 'js', ],
 
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, }) => {
-    // defaultLoaders.babel.options.presets = [ '@babel/preset-flow', ];
-    // defaultLoaders.babel.options.plugins = [
-    //   '@babel/plugin-proposal-class-properties',
-    //   '@babel/plugin-proposal-object-rest-spread',
-    //   '@babel/plugin-syntax-dynamic-import',
-    //   'babel-plugin-transform-react-remove-prop-types',
-    //   'babel-plugin-transform-flow-strip-types',
-    // ];
+  ...(BUNDLE_ANALYZE ? analyzerConfig : {}),
 
-    config.profile = true;
-    config.stats = 'verbose';
-
-    config.module.rules.push(
-      // Correctly generate source maps for @haaretz packages
-      // the app depends on
-      {
-        test: /\.(mjs|jsx|js)$/,
-        use: [ 'source-map-loader', ],
-        enforce: 'pre',
-        // Only get source maps from haaretz packages
-        exclude: /node_modules(?!@haaretz)/,
-        type: 'javascript/auto',
-      },
-      // Fix compilation issue when building from ESM
-      // see https://github.com/graphql/graphql-js/issues/1272
-      {
-        test: /\.mjs$/,
-        include: /node_modules/,
-        type: 'javascript/auto',
-      }
-    );
-
-    if (!config.resolve) config.resolve = {};
-
-    // see https://github.com/graphql/graphql-js/issues/1272
-    // Fix compilation issue when building from ESM
-    config.resolve.extensions = [ '.webpack.js', '.web.js', '.mjs', '.js', '.jsx', '.json', ];
-
-    // Use source files by default in htz packages
-    // config.resolve.mainFiles = [ 'htzInternal', 'esnext', 'module', 'main', ];
-    // config.resolve.mainFiles = [ 'esnext', 'module', 'main', ];
-    // config.resolve.mainFiles = [ 'module', 'main', ];
-
-    if (!config.resolve.alias) config.resolve.alias = {};
-
-    // These shims are needed for bunyan (logging)
-    config.resolve.alias.config$ = require.resolve('@haaretz/htz-react-base/webpack/configShim');
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'dtrace-provider': emptyShim,
-      fs: emptyShim,
-      'safe-json-stringify': emptyShim,
-      mv: emptyShim,
-      'source-map-support': emptyShim,
-    };
-
-    config.plugins.push(
-      new webpack.IgnorePlugin(/csslint|bunyan/),
-    );
-
-    if (process.env.BUNDLE_ANALYZE) {
-      config.plugins.push(
-        new StatsPlugin(`${__dirname}/stats.json`, {
-          chunkModules: true,
-          exclude: [ /node_modules[\\\/]react/, ],
-        })
-      );
-    }
-
-    return config;
-  },
-  // })
+  webpack: configWebpack,
 };
 
-const analyzerConfig = {
-  analyzeServer: [ 'server', 'both', ].includes(process.env.BUNDLE_ANALYZE),
-  analyzeBrowser: [ 'browser', 'both', ].includes(process.env.BUNDLE_ANALYZE),
-  bundleAnalyzerConfig: {
-    server: {
-      analyzerMode: 'static',
-      reportFilename: '../bundles/server.html',
-    },
-    browser: {
-      analyzerMode: 'static',
-      reportFilename: '../bundles/client.html',
-    },
-  },
-};
-module.exports = process.env.BUNDLE_ANALYZE
-  // prod build with webpack analyzer
-  ? BundleAnalyzerPlugin(withSourceMaps(withTranspiledModules({ ...config, ...analyzerConfig, })))
-  : process.env.NODE_ENV === 'development'
-    ? withSourceMaps(config)
-    : withSourceMaps(withTranspiledModules(config));
+//
+//
+// ////////////////////////////
+
+// module.exports = withPlugins(
+//   [
+//     // Transpile internal modules. MUST ALWAYS BE FIRST
+//     [
+//       optional(() => ),
+//       {
+//         // TODO: For some reason next-plugin-transpile-modules doesn't seem to
+//         // work for actually transpiling modules, but it does force the use of
+//         // the 'module' field instead of the 'main' field in imported modules.
+//         //
+//         transpileModules: [ '@haaretz', ],
+//       },
+//       [ PHASE_PRODUCTION_BUILD, PHASE_PRODUCTION_SERVER, ],
+//     ],
+//
+//     // // Show bundle-size statisics
+//     // withSize,
+//
+//     // Generate source maps
+//     [
+//       optional(() => ),
+//       {},
+//       // Don't create source maps for server build
+//       [ PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD, ],
+//     ],
+//
+//     // Analyze webpack bundles
+//     [
+//       optional(() => require('@zeit/next-bundle-analyzer')),
+//       [ BUNDLE_ANALYZE, ],
+//     ],
+//   ],
+//   nextConfig
+// );
+
+module.exports = BUNDLE_ANALYZE
+  ? withBundleAnalyzer(withTranspiledModules(nextConfig))
+  : NODE_ENV === 'development'
+    ? withSourceMaps(nextConfig)
+  : withSourceMaps(withTranspiledModules(nextConfig));
+
+// //////////////////// //
+//   Helper Functions   //
+// //////////////////// //
+
+async function generateBuildId() {
+  // For example get the latest git commit hash here
+  // Since this is a production-only issue, provide this as an environment variable at prod
+  const revision = NEXT_BUILD_ID || 'LATEST';
+  console.log(`Next App BuildID is: ${revision}`);
+  return revision;
+}
