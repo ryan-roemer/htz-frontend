@@ -9,7 +9,7 @@ import LayoutContainer from '../../PageLayout/LayoutContainer';
 import WideArticleLayoutRow from '../../PageLayout/WideArticleLayoutRow';
 import ArticleLayoutRow from '../../PageLayout/ArticleLayoutRow';
 import ArticleLayout from '../../PageLayout/ArticleLayout';
-import getComponent from '../../../utils/componentFromInputTemplate';
+import useGetComponent from '../../../hooks/GetComponentContext/useGetComponent';
 import ArticleBody from '../../ArticleBody/ArticleBody';
 import ArticleHeaderMeta from '../../ArticleHeader/ArticleHeaderMeta';
 import StandardArticleHeader from './StandardArticleElements/StandardArticleHeader';
@@ -22,6 +22,7 @@ import StandardArticleQuery from './queries/standard_article';
 import ArticleGallery from '../../ArticleGallery/ArticleGallery';
 
 function StandardArticle({ articleId, slots, path, }) {
+  const getComponent = useGetComponent();
   return (
     <ArticleLayout articleId={articleId} slots={slots}>
       <Query query={StandardArticleQuery} partialRefetch variables={{ path, }}>
@@ -153,14 +154,14 @@ function StandardArticle({ articleId, slots, path, }) {
                         let mouseDisclaimer = null;
 
                         if (labelsSections.includes(lineage[1].contentId)) {
-                          const disclaimerStyle = theme => ({
+                          const disclaimerStyle = {
                             marginBottom: '3rem',
                             marginTop: '3rem',
                             extend: [
                               theme.type(-2, { untilBp: 'xl', lines: 3, }),
                               theme.type(-2, { fromBp: 'xl', lines: 3, }),
                             ],
-                          });
+                          };
 
                           mouseDisclaimer = (
                             <FelaComponent style={disclaimerStyle}>

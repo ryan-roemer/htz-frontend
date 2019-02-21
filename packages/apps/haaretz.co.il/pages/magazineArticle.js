@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MagazineArticle, } from '@haaretz/htz-components';
+import { MagazineArticle, GetComponentProvider, } from '@haaretz/htz-components';
+
 import ArticleLayout from '../layouts/ArticleLayout';
+import getElements from '../utils/getArticlePageElements';
 
 const propTypes = {
   /**
@@ -18,10 +20,14 @@ const propTypes = {
 
 function MagArticlePage({ url, }) {
   return (
-    <ArticleLayout
-      url={url}
-      render={({ articleId, slots, path, }) => <MagazineArticle articleId={articleId} slots={slots} path={path} />}
-    />
+    <GetComponentProvider value={getElements}>
+      <ArticleLayout
+        url={url}
+        render={({ articleId, slots, path, }) => (
+          <MagazineArticle articleId={articleId} slots={slots} path={path} />
+        )}
+      />
+    </GetComponentProvider>
   );
 }
 

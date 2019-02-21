@@ -4,14 +4,13 @@ import * as React from 'react';
 import {
   LayoutRow,
   LayoutContainer,
-  componentFromInputTemplate,
-  HeaderSlot,
   MarketingNotificationProvider,
   BIRequest,
-  IconHaaretzHomepageMasthead,
 } from '@haaretz/htz-components';
 
+import HeaderSlot from './HeaderSlot';
 import MainSlot from './MainSlot';
+import getElements from '../../utils/getHomePageElements';
 
 type Props = {
   slots: {
@@ -31,8 +30,8 @@ type Props = {
 function HomePageSlotsLayout({
   slots: { preHeader, header, postHeader, postMain, footer, main, },
 }: Props): React.Node {
-  const getElements = slot => slot.map(element => {
-    const Element = componentFromInputTemplate(element.inputTemplate);
+  const extractElements = slot => slot.map(element => {
+    const Element = getElements(element.inputTemplate);
     const { properties, ...elementWithoutProperties } = element;
     if (element.inputTemplate === 'com.tm.FooterElement') {
       return (
@@ -57,17 +56,12 @@ function HomePageSlotsLayout({
     <React.Fragment>
       <MarketingNotificationProvider />
       <BIRequest />
-      {preHeader ? <LayoutRow>{getElements(preHeader)}</LayoutRow> : null}
+      {preHeader ? <LayoutRow>{extractElements(preHeader)}</LayoutRow> : null}
       {/* Layout row is inside HeaderSlot Component because its miscStyles depend on state */}
-      <HeaderSlot
-        pageType="homepage"
-        rowBgc="transparent"
-        content={header}
-        logo={IconHaaretzHomepageMasthead}
-      />
+      <HeaderSlot content={header} />
       {postHeader ? (
         <LayoutRow>
-          <LayoutContainer>{getElements(postHeader)}</LayoutContainer>
+          <LayoutContainer>{extractElements(postHeader)}</LayoutContainer>
         </LayoutRow>
       ) : null}
       <LayoutRow tagName="main" id="pageRoot" miscStyles={{ flexGrow: 1, }}>
@@ -75,10 +69,10 @@ function HomePageSlotsLayout({
       </LayoutRow>
       {postMain ? (
         <LayoutRow miscStyles={{ display: [ { until: 's', value: 'none', }, ], }}>
-          <React.Fragment>{getElements(postMain)}</React.Fragment>
+          <React.Fragment>{extractElements(postMain)}</React.Fragment>
         </LayoutRow>
       ) : null}
-      {footer ? <LayoutRow>{getElements(footer)}</LayoutRow> : null}
+      {footer ? <LayoutRow>{extractElements(footer)}</LayoutRow> : null}
       <LayoutRow idName="modalsRoot" />
     </React.Fragment>
   );

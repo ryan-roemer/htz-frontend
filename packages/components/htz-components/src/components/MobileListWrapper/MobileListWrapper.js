@@ -4,13 +4,14 @@ import React from 'react';
 import type { ComponentType, } from 'react';
 
 import Media from '../Media/Media';
-import getComponent from '../../utils/componentFromInputTemplate';
+import useGetComponent from '../../hooks/GetComponentContext/useGetComponent';
 
 type Props = {
   lists: Array<Object>,
 };
 
 function MobileListWrapper({ lists, }: Props) {
+  const getComponent = useGetComponent();
   return (
     <Media
       query={{ until: 's', }}

@@ -2,7 +2,7 @@ import React, { Fragment, } from 'react';
 import PropTypes from 'prop-types';
 import { FelaTheme, FelaComponent, } from 'react-fela';
 import { parseComponentProp, } from '@haaretz/htz-css-tools';
-import getComponent from '../../../../utils/componentFromInputTemplate';
+import useGetComponent from '../../../../hooks/GetComponentContext/useGetComponent';
 import ArticleImage from '../../../ArticleBodyImage/ArticleBodyImage';
 import Caption from '../../../Caption/Caption';
 import NoSSR from '../../../NoSSR/NoSSR';
@@ -49,6 +49,7 @@ const Figure = ({ lastItem, children, notFullWidth, }) => (
 
 const buildComponent = (context, index, isLastItem, magazineLayout) => {
   const uniqueId = context.kind || context.inputTemplate || context.tag || null;
+  const getComponent = useGetComponent();
 
   if (uniqueId === 'image') {
     return (

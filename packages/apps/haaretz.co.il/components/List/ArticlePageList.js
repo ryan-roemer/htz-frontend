@@ -1,16 +1,18 @@
 // @flow
+
 import React from 'react';
+import {
+  List,
+  Debug,
+  Bender,
+  Farnsworth,
+  Leela,
+  Zoidberg,
+} from '@haaretz/htz-components';
 
 import type { Node, } from 'react';
-import type { ListDataType, } from '../../flowTypes/ListDataType';
+import type { ListDataType, } from '@haaretz/htz-components';
 
-import Debug from '../Debug/Debug';
-import List from './List';
-
-import Bender from './views/Bender/Bender';
-import Farnsworth from './views/Farnsworth/Farnsworth';
-import Leela from './views/Leela/Leela';
-import Zoidberg from './views/Zoidberg/Zoidberg';
 
 const viewsList = new Map([
   [ 'Bender', Bender, ],
@@ -25,7 +27,7 @@ function ArticlePageList({ view, ...props }: ListDataType): Node {
       <List View={viewsList.get(view)} {...props} />
     );
   }
-  return <Debug>{`${view} is not supported list view for the ArticlePage`}</Debug>;
+  return <Debug>{`${view} is not supported list view for ArticlePage`}</Debug>;
 }
 
 export default ArticlePageList;

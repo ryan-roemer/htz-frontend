@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import getComponent from '../../utils/componentFromInputTemplate';
+import useGetComponent from '../../hooks/GetComponentContext/useGetComponent';
 
 const propTypes = {
   contentLists: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -12,6 +12,7 @@ const propTypes = {
 };
 
 function ElementGroup({ contentLists, }) {
+  const getComponent = useGetComponent();
   return contentLists.map(element => {
     const Element = getComponent(element.inputTemplate);
     const { properties, ...elementWithoutProperties } = element;

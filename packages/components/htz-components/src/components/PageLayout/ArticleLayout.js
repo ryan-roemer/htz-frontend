@@ -8,11 +8,10 @@ import Query from '../ApolloBoundary/Query';
 import { extractAuthorsFromArticle, } from '../GoogleAnalytics/helpers/extractAuthorsFromArticle';
 import LayoutRow from './LayoutRow'; // eslint-disable-line import/no-named-as-default
 import LayoutContainer from './LayoutContainer'; // eslint-disable-line import/no-named-as-default
-import getComponent from '../../utils/componentFromInputTemplate';
+import useGetComponent from '../../hooks/GetComponentContext/useGetComponent';
 import HeaderSlot from './slots/Header';
 import ArticleBIQuery from './queries/article_bi';
 import GET_USER_TYPE from './queries/user_type';
-import UserDispenser from '../User/UserDispenser';
 import BIRequest from '../BI/BIRequest';
 import NoSSR from '../NoSSR/NoSSR';
 import IconHaaretzLogo from '../Icon/icons/IconHaaretzLogo';
@@ -69,6 +68,7 @@ const ArticlePageLayout = ({
   mastheadFullWidthBorder,
   renderPostHeader,
 }) => {
+  const getComponent = useGetComponent();
   const getElements = slot => slot.map(element => {
     const Element = getComponent(element.inputTemplate);
     const { properties, ...elementWithoutProperties } = element;

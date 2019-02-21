@@ -14,7 +14,7 @@ import WideArticleLayoutRow from '../../PageLayout/WideArticleLayoutRow';
 import ArticleLayoutRow from '../../PageLayout/ArticleLayoutRow';
 import LayoutContainer from '../../PageLayout/LayoutContainer';
 
-import getComponent from '../../../utils/componentFromInputTemplate';
+import useGetComponent from '../../../hooks/GetComponentContext/useGetComponent';
 import ArticleGallery from '../../ArticleGallery/ArticleGallery';
 
 const magazineLayout = {
@@ -47,7 +47,8 @@ const magazineLayout = {
   },
 };
 
-function MagazineArticle({ articleId, slots, path }) {
+function MagazineArticle({ articleId, slots, path, }) {
+  const getComponent = useGetComponent();
   return (
     <ArticleLayout
       articleId={articleId}
