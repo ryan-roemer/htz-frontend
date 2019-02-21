@@ -5,7 +5,7 @@ import {
   GeneralAdSlot,
   GridElement,
   MainBlock,
-  ClickTracker,
+  ClickTrackerWrapper,
   TabElement,
   TopNews,
   validateType,
@@ -48,7 +48,7 @@ const componentType: Object = new Map([
   ), ],
   [ 'com.polobase.ClickTrackerBannersWrapper', (element: MainSlotElement) => (
     isClickTrackerWrapper(element)
-      ? <ClickTracker key={element.contentId} {...element} />
+      ? <ClickTrackerWrapper key={element.contentId} {...element} />
       : null
   ), ],
   [ 'com.polobase.DfpBannerElement', (element: MainSlotElement) => (

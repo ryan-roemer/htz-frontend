@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StandardArticle, } from '@haaretz/htz-components';
+import { StandardArticle, GetComponentProvider, } from '@haaretz/htz-components';
+
 import ArticleLayout from '../layouts/ArticleLayout';
 import LegacyPrefixRedirect from '../components/Redirect/LegacyPrefixRedirect';
+import getElements from '../utils/getArticlePageElements';
 
 const propTypes = {
   /**
@@ -19,15 +21,17 @@ const propTypes = {
 
 function StandardArticlePage({ url, }) {
   return (
-    <ArticleLayout
-      url={url}
-      render={({ articleId, slots, pageType, path, }) => (pageType !== 'regularArticle' ? (
-        <LegacyPrefixRedirect pageType={pageType} />
-      ) : (
-        <StandardArticle articleId={articleId} slots={slots} path={path} />
-      ))
-      }
-    />
+    <GetComponentProvider value={getElements}>
+      <ArticleLayout
+        url={url}
+        render={({ articleId, slots, pageType, path, }) => (pageType !== 'regularArticle' ? (
+          <LegacyPrefixRedirect pageType={pageType} />
+        ) : (
+          <StandardArticle articleId={articleId} slots={slots} path={path} />
+        ))
+        }
+      />
+    </GetComponentProvider>
   );
 }
 

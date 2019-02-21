@@ -1,46 +1,45 @@
-/* global window */
 import React from 'react';
 import { dfpTargeting, } from '@haaretz/dfp';
 
-import ArticleBody from '../components/ArticleBody/ArticleBody';
-import GeneralAdSlot from '../components/Ads/GeneralAdSlot';
-import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs';
-import ChangeableElementGroup from '../components/ChangeableElementGroup/ChangeableElementGroup';
-import WrappedComments from '../components/CommentsSection/CommentsInViewWrapper';
-import ClickTrackerWrapper from '../components/ClickTracker/ClickTrackerWrapper';
-import Debug from '../components/Debug/Debug';
-import ElementGroup from '../components/ElementGroup/ElementGroup';
-import Embed from '../components/Embed/Embed';
-import Error from '../components/Error/Error';
-import Footer from '../components/Footer/Footer';
-import HtmlElement from '../components/Interactive/components/HtmlElement';
-import Image from '../components/Image/Image';
-import ImageGallery from '../components/ImageGallery/ImageGallery';
-import Interactive from '../components/Interactive/Interactive';
-
-import LinksBlock from '../components/RelatedArticles/LinksBlock';
-// import Masthead from '../components/Masthead/Masthead';
-import Masthead from '../components/Masthead/Masthead';
-import MobileListWrapper from '../components/MobileListWrapper/MobileListWrapper';
-import MobileQuickRegistration from '../components/MobileQuickRegistration/MobileQuickRegistration';
-import Newsletter from '../components/Newsletter/Newsletter';
-import Outbrain from '../components/Outbrain/Outbrain';
-import Paragraph from '../components/Paragraph/Paragraph';
-import Quote from '../components/Quote/Quote';
-import RelatedArticles from '../components/RelatedArticles/RelatedArticles';
-import SeriesArticles from '../components/RelatedArticles/SeriesArticles';
-import SpecialPromotions from '../components/SpecialPromotions/SpecialPromotions';
-import Tags from '../components/Tags/Tags';
-import TopNews from '../components/TopNews/TopNews';
-import Video from '../components/Video/Video';
-import withDfpSideEffect from '../components/Dfp/withDfpSideEffect';
-import TableScore from '../components/TableScore/TableScore';
-import RssFeed from '../components/RssFeed/RssFeed';
+import {
+  ArticleBody,
+  GeneralAdSlot,
+  Breadcrumbs,
+  ChangeableElementGroup,
+  WrappedComments,
+  ClickTrackerWrapper,
+  Debug,
+  ElementGroup,
+  Embed,
+  Error,
+  Footer,
+  HtmlElement,
+  Image,
+  ImageGallery,
+  Interactive,
+  LinksBlock,
+  Masthead,
+  MobileListWrapper,
+  MobileQuickRegistration,
+  Newsletter,
+  Outbrain,
+  Paragraph,
+  Quote,
+  RelatedArticles,
+  SeriesArticles,
+  SpecialPromotions,
+  Tags,
+  TopNews,
+  Video,
+  withDfpSideEffect,
+  TableScore,
+  RssFeed,
+} from '@haaretz/htz-components';
 import ArticlePageList from '../components/List/ArticlePageList';
 
 const tagsFromTagElement = ({ tagsList, }) => tagsList.map(x => x.contentName);
 
-const inputTemplateToComponent = new Map([
+const elements = new Map([
   /* HeaderSlots components */
   [ 'com.htz.EditableNavigationElement', Masthead, ],
   [ 'com.tm.PageTitle', Breadcrumbs, ],
@@ -119,4 +118,4 @@ const DefaultComponent = ({ inputTemplate, contentId, kind, }) => {
   );
 };
 
-export default inputTemplate => inputTemplateToComponent.get(inputTemplate) || DefaultComponent;
+export default inputTemplate => elements.get(inputTemplate) || DefaultComponent;

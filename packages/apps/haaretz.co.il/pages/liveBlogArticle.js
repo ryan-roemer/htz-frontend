@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LiveBlogArticle, } from '@haaretz/htz-components';
+import { LiveBlogArticle, GetComponentProvider, } from '@haaretz/htz-components';
+
 import ArticleLayout from '../layouts/ArticleLayout';
+import getElements from '../utils/getArticlePageElements';
 
 const propTypes = {
   /**
@@ -18,10 +20,14 @@ const propTypes = {
 
 function LiveBlogArticlePage({ url, }) {
   return (
-    <ArticleLayout
-      url={url}
-      render={({ articleId, slots, path, }) => <LiveBlogArticle articleId={articleId} slots={slots} path={path} />}
-    />
+    <GetComponentProvider value={getElements}>
+      <ArticleLayout
+        url={url}
+        render={({ articleId, slots, path, }) => (
+          <LiveBlogArticle articleId={articleId} slots={slots} path={path} />
+        )}
+      />
+    </GetComponentProvider>
   );
 }
 

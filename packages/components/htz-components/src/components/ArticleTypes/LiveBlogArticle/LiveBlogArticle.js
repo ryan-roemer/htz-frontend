@@ -9,7 +9,7 @@ import Query from '../../ApolloBoundary/Query';
 import LayoutContainer from '../../PageLayout/LayoutContainer';
 import WideArticleLayoutRow from '../../PageLayout/WideArticleLayoutRow';
 import ArticleLayout from '../../PageLayout/ArticleLayout';
-import getComponent from '../../../utils/componentFromInputTemplate';
+import useGetComponent from '../../../hooks/GetComponentContext/useGetComponent';
 import ArticleBody from '../../ArticleBody/ArticleBody';
 import Newsletter from '../../Newsletter/Newsletter';
 import NoSSR from '../../NoSSR/NoSSR';
@@ -34,6 +34,7 @@ const IS_OSAKA_DISPLAYED = gql`
 `;
 
 function LiveBlog({ articleId, slots, path, }) {
+  const getComponent = useGetComponent();
   return (
     <ArticleLayout articleId={articleId} slots={slots}>
       <Query query={LiveBlogQuery} partialRefetch variables={{ path, }}>

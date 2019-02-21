@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 
 import Query from '../ApolloBoundary/Query';
 import WrappedScroll from '../Scroll/Scroll';
-import getComponent from '../../utils/componentFromInputTemplate';
+import useGetComponent from '../../hooks/GetComponentContext/useGetComponent';
 
 const IS_OSAKA_DISPLAYED = gql`
   query IsOsakaDisplayed {
@@ -26,6 +26,7 @@ const propTypes = {
  * for how long (in pixels) the element should appear on the page.
  */
 function SideBar({ content, }) {
+  const getComponent = useGetComponent();
   return (
     <Query query={IS_OSAKA_DISPLAYED}>
       {({ data: { isOsakaDisplayed, }, }) => (

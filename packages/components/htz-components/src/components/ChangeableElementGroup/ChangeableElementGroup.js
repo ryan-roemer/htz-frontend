@@ -4,20 +4,46 @@ import React, { Fragment, } from 'react';
 import { FelaComponent, } from 'react-fela';
 
 import type { Node, ComponentType, } from 'react';
+import type { DfpBannerType, } from '../../flowTypes/DfpBannerType';
+import type { GridElementType, } from '../../flowTypes/GridElementType';
+import type { ListDataType, } from '../../flowTypes/ListDataType';
+import type { ContentType, } from '../../flowTypes/ContentType';
 
-import getComponent from '../../utils/componentFromInputTemplate';
+import useGetComponent from '../../hooks/GetComponentContext/useGetComponent';
 import ToggleFade from '../Transitions/ToggleFade';
 
-import type { PropTypes, StateTypes, ContentType, } from './types';
 
-class ChangeableElementGroup extends React.Component<PropTypes, StateTypes> {
+export type ItemType = {
+  displayDuration: number,
+  content: DfpBannerType | GridElementType | ListDataType | ContentType,
+};
+
+export type Props = {
+  scrollY: number,
+  velocity: number,
+  contentLists: Array<ItemType>,
+  totalDisplay: number,
+};
+
+export type State = {
+  elementIndex: ?number,
+  maxIndex: number,
+  someoneIsAnimating: boolean,
+};
+
+export type ElementGroupProps = Props & {
+  getComponent: string => ComponentType<any>,
+}
+
+
+class ChangeableElementGroup extends React.Component<ElementGroupProps, State> {
   state = {
     someoneIsAnimating: false,
     elementIndex: null,
     maxIndex: 0,
   };
 
-  static getDerivedStateFromProps(nextProps: PropTypes, prevState: StateTypes) {
+  static getDerivedStateFromProps(nextProps: ElementGroupProps, prevState: State) {
     const { scrollY, totalDisplay, contentLists, } = nextProps;
 
     const getElementIndex: () => ?number = () => {
@@ -25,7 +51,7 @@ class ChangeableElementGroup extends React.Component<PropTypes, StateTypes> {
       let prev: number = 0;
       for (const [ index, item, ]: [
         number,
-        ContentType,
+        ItemType,
       ] of contentLists.entries()) {
         if (posY > item.displayDuration + prev) {
           prev += item.displayDuration;
@@ -46,7 +72,7 @@ class ChangeableElementGroup extends React.Component<PropTypes, StateTypes> {
       : null;
   }
 
-  shouldComponentUpdate(nextProps: PropTypes, nextState: StateTypes) {
+  shouldComponentUpdate(nextProps: ElementGroupProps, nextState: State) {
     return (
       (!nextState.someoneIsAnimating
         && this.state.someoneIsAnimating !== nextState.someoneIsAnimating)
@@ -55,13 +81,12 @@ class ChangeableElementGroup extends React.Component<PropTypes, StateTypes> {
   }
 
   render(): Node {
-    const { contentLists, } = this.props;
+    const { contentLists, getComponent, } = this.props;
     const { elementIndex, someoneIsAnimating, maxIndex, } = this.state;
 
     return (
       <Fragment>
         {contentLists.map(({ content: element, }, index) => {
-          const { properties, ...elementWithoutProperties } = element;
           const Element: ComponentType<any> = getComponent(
             element.inputTemplate
           );
@@ -99,7 +124,7 @@ class ChangeableElementGroup extends React.Component<PropTypes, StateTypes> {
                       }}
                     >
                       {delayRender ? null : (
-                        <Element {...elementWithoutProperties} {...properties} />
+                        <Element {...element} />
                       )}
                     </FelaComponent>
                   );
@@ -113,4 +138,9 @@ class ChangeableElementGroup extends React.Component<PropTypes, StateTypes> {
   }
 }
 
-export default ChangeableElementGroup;
+export default (props: Props) => {
+  const getComponent = useGetComponent();
+  return (
+    <ChangeableElementGroup {...props} getComponent={getComponent} />
+  );
+};

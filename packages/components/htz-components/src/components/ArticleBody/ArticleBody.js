@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FelaTheme, FelaComponent, } from 'react-fela';
 import { parseComponentProp, parseStyleProps, } from '@haaretz/htz-css-tools';
 import { stylesPropType, } from '../../propTypes/stylesPropType';
-import getComponent from '../../utils/componentFromInputTemplate';
+import useGetComponent from '../../hooks/GetComponentContext/useGetComponent';
 import ArticleImage from '../ArticleBodyImage/ArticleBodyImage';
 import Tags from '../Tags/Tags';
 import Caption from '../Caption/Caption';
@@ -154,6 +154,7 @@ const buildImgOptions = (aspect, isFullScreen) => ({
 
 const buildComponent = (context, index, isLastItem, showNewsletter) => {
   const uniqueId = context.kind || context.inputTemplate || context.tag || null;
+  const getComponent = useGetComponent();
   if (uniqueId === 'image') {
     return (
       <ArticleImage

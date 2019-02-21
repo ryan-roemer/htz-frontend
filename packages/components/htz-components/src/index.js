@@ -26,6 +26,7 @@ import ArticleBody from './components/ArticleBody/ArticleBody';
 import BlockLink from './components/BlockLink/BlockLink';
 import Button from './components/Button/Button';
 import ButtonGroup from './components/Button/ButtonGroup';
+import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
 import Caption from './components/Caption/Caption';
 import Card from './components/Card/Card';
 import CardContent from './components/CardContent/CardContent';
@@ -33,12 +34,13 @@ import CardFooter from './components/CardFooter/CardFooter';
 import Carousel from './components/Carousel/Carousel';
 import ChangeableElementGroup from './components/ChangeableElementGroup/ChangeableElementGroup';
 import CheckBox from './components/CheckBox/CheckBox';
-import ClickTracker from './components/ClickTracker/ClickTrackerWrapper';
-import Comments from './components/CommentsSection/CommentsInViewWrapper';
+import ClickTrackerWrapper from './components/ClickTracker/ClickTrackerWrapper';
+import WrappedComments from './components/CommentsSection/CommentsInViewWrapper';
 import Debug from './components/Debug/Debug';
 import DeviceTypeInjector from './components/DeviceTypeInjector/DeviceTypeInjector';
 import Error from './components/Error/Error';
 import Embed from './components/Embed/Embed';
+import ElementGroup from './components/ElementGroup/ElementGroup';
 import Footer from './components/Footer/Footer';
 import Form from './components/Form/Form';
 import GaDimensions from './components/GoogleAnalytics/GaDimensions';
@@ -48,7 +50,6 @@ import Grid from './components/Grid/Grid';
 import GridElement from './components/GridElement/GridElement';
 import GridItem from './components/Grid/GridItem';
 import H from './components/AutoLevels/H';
-import HeaderSlot from './components/PageLayout/slots/Header';
 import HeadlineElement from './components/HeadlineElement/HeadlineElement';
 import HtmlElement from './components/Interactive/components/HtmlElement';
 import HtzLink from './components/HtzLink/HtzLink';
@@ -89,7 +90,9 @@ import ScrollListener from './components/EventListeners/ScrollListener';
 import Section from './components/AutoLevels/Section';
 import Select from './components/Select/Select';
 import SeriesArticles from './components/RelatedArticles/SeriesArticles';
+import SpecialPromotions from './components/SpecialPromotions/SpecialPromotions';
 import TabElement from './components/TabElement/TabElement';
+import TableScore from './components/TableScore/TableScore';
 import Tags from './components/Tags/Tags';
 import Teaser from './components/Teaser/Teaser';
 import TeaserContent from './components/TeaserContent/TeaserContent';
@@ -180,6 +183,7 @@ import UserInjector from './components/User/UserInjector';
 // DFP
 import DfpInjector from './components/Ads/DfpInjector';
 import GeneralAdSlot from './components/Ads/GeneralAdSlot';
+import withDfpSideEffect from './components/Dfp/withDfpSideEffect';
 
 /** ************************************ *
  *       U  T  I  L  I  T  I  E  S       *
@@ -190,7 +194,6 @@ import createDocument from './createDocument';
 import extractParamFromUrl from './components/BI/extractParamFromUrl';
 import setColor from './utils/setColor';
 import { stylesPropType, } from './propTypes/stylesPropType';
-import componentFromInputTemplate from './utils/componentFromInputTemplate';
 import validateType from './utils/validateType';
 
 // BI
@@ -200,6 +203,10 @@ import BIRequest from './components/BI/BIRequest';
 // Event tracker
 import EventTracker from './utils/EventTracker';
 import pixelEvent from './utils/pixelEvent';
+
+// Hooks
+
+import useGetComponent, { GetComponentProvider, GetComponentConsumer, } from './hooks/GetComponentContext/useGetComponent';
 
 // temp for ssr lists because of this bug with nextjs: https://github.com/zeit/next.js/issues/5511
 
@@ -266,6 +273,7 @@ export {
   AriaLive,
   ArticleBody,
   BlockLink,
+  Breadcrumbs,
   Button,
   ButtonGroup,
   Caption,
@@ -275,12 +283,12 @@ export {
   Carousel,
   ChangeableElementGroup,
   CheckBox,
-  Comments,
-  ClickTracker,
+  ClickTrackerWrapper,
   Debug,
   DeviceTypeInjector,
   Embed,
   Error,
+  ElementGroup,
   Footer,
   Form,
   GaDimensions,
@@ -290,7 +298,6 @@ export {
   GridElement,
   GridItem,
   H,
-  HeaderSlot,
   HeadlineElement,
   HtmlElement,
   HtzLink,
@@ -330,7 +337,9 @@ export {
   Section,
   Select,
   SeriesArticles,
+  SpecialPromotions,
   TabElement,
+  TableScore,
   Tags,
   Teaser,
   TeaserContent,
@@ -342,6 +351,7 @@ export {
   TextLink,
   TopNews,
   Video,
+  WrappedComments,
   // Icons
   IconAccessibility,
   IconAlef,
@@ -410,6 +420,7 @@ export {
   // DFP
   DfpInjector,
   GeneralAdSlot,
+  withDfpSideEffect,
   // User
   CheckEmailExists,
   Login,
@@ -422,7 +433,6 @@ export {
   createApp,
   createDocument,
   extractParamFromUrl,
-  componentFromInputTemplate,
   setColor,
   stylesPropType,
   validateType,
@@ -464,6 +474,10 @@ export {
   Zapp,
   Zoidberg,
   Zombie,
+  // Hooks
+  useGetComponent,
+  GetComponentProvider,
+  GetComponentConsumer,
 };
 
 // Flow Types

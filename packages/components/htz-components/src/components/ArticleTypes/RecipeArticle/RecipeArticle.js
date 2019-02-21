@@ -8,7 +8,7 @@ import LayoutContainer from '../../PageLayout/LayoutContainer';
 import WideArticleLayoutRow from '../../PageLayout/WideArticleLayoutRow';
 import ArticleLayoutRow from '../../PageLayout/ArticleLayoutRow';
 import ArticleLayout from '../../PageLayout/ArticleLayout';
-import getComponent from '../../../utils/componentFromInputTemplate';
+import useGetComponent from '../../../hooks/GetComponentContext/useGetComponent';
 import ArticleBody from '../../ArticleBody/ArticleBody';
 import ArticleHeaderMeta from '../../ArticleHeader/ArticleHeaderMeta';
 import RecipeArticleHeader from './RecipeArticleElements/RecipeArticleHeader';
@@ -23,6 +23,7 @@ import RecipeArticleQuery from './queries/recipe_article';
 import ArticleGallery from '../../ArticleGallery/ArticleGallery';
 
 function RecipeArticle({ articleId, slots, path, }) {
+  const getComponent = useGetComponent();
   return (
     <ArticleLayout articleId={articleId} slots={slots}>
       <Query query={RecipeArticleQuery} partialRefetch variables={{ path, }}>

@@ -2,7 +2,7 @@ import React, { Fragment, } from 'react';
 import PropTypes from 'prop-types';
 
 import Osaka from '../../Osaka/OsakaController';
-import getComponent from '../../../utils/componentFromInputTemplate';
+import useGetComponent from '../../../hooks/GetComponentContext/useGetComponent';
 
 const propTypes = {
   /**
@@ -28,7 +28,9 @@ const defaultProps = {
   rowBgc: null,
 };
 
+
 function Header({ pageType, content, articleId, rowBgc, logo, }) {
+  const getComponent = useGetComponent();
   return (
     <Fragment>
       {content

@@ -10,7 +10,7 @@ import LayoutContainer from '../../PageLayout/LayoutContainer';
 import WideArticleLayoutRow from '../../PageLayout/WideArticleLayoutRow';
 import ArticleLayoutRow from '../../PageLayout/ArticleLayoutRow';
 import ArticleLayout from '../../PageLayout/ArticleLayout';
-import getComponent from '../../../utils/componentFromInputTemplate';
+import useGetComponent from '../../../hooks/GetComponentContext/useGetComponent';
 import ArticleBody from '../../ArticleBody/ArticleBody';
 import ArticleHeaderMeta from '../../ArticleHeader/ArticleHeaderMeta';
 import ReviewArticleHeader from './ReviewArticleElements/ReviewArticleHeader';
@@ -22,6 +22,7 @@ import ReviewArticleQuery from './queries/review_article';
 import ArticleGallery from '../../ArticleGallery/ArticleGallery';
 
 function ReviewArticle({ articleId, slots, path, }) {
+  const getComponent = useGetComponent();
   return (
     <ArticleLayout articleId={articleId} slots={slots}>
       <Query query={ReviewArticleQuery} partialRefetch variables={{ path, }}>

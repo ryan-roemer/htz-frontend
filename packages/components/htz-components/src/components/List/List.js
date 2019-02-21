@@ -98,7 +98,7 @@ class List extends React.Component<ListProps, State> {
   render(): Node {
     const { listData: { View, }, listData, viewProps, } = this.props;
     const { listDuplicationIds, } = this.state;
-    return View ? (
+    return (
       <ReadingHistoryProvider>
         {readingHistory => (
           <View
@@ -112,7 +112,7 @@ class List extends React.Component<ListProps, State> {
           />
         )}
       </ReadingHistoryProvider>
-    ) : <p>{listData.view}</p>;
+    );
   }
 }
 
