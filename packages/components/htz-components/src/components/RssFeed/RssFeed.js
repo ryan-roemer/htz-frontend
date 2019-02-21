@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import MorboView from '../List/views/Morbo/MorboView';
+import SalView from '../List/views/Sal/SalView';
 
 import type { RssFeedType, } from '../../flowTypes/RssFeedType';
 import type { ListDataType, } from '../../flowTypes/ListDataType';
@@ -14,7 +14,7 @@ function rssDataToListData(rssData): ListDataType {
     inputTemplate: 'com.tm.ListElement',
     isLazyloadImages: false,
     lazyLoadImages: false,
-    view: 'Morbo',
+    view: 'Sal',
     items: rssItemsToTeaserData(rssData.items, rssData.contentId),
   };
 }
@@ -82,7 +82,7 @@ export default function RssFeed(props: RssFeedType) {
   const dataAsList: ListDataType = rssDataToListData(props);
 
   return (
-    <MorboView
+    <SalView
       {...{
         list: dataAsList,
         lazyLoadImages: dataAsList.isLazyloadImages,
