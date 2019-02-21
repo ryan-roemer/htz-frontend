@@ -6,7 +6,6 @@
   "keywords": [],
   "author": "",
   "license": "UNLICENSED",
-  "main": "dist/lib/index.js",
   "bin": "./bin/htz-react-server.js",
   "scripts": {
     "build": "htz-scripts build:lib",
@@ -18,6 +17,7 @@
     "gc": "htz-scripts commitizen",
     "lint": "htz-scripts lint",
     "prepare": "npm run build",
+    "postinstall": "htz-scripts fixStyledJsx",
     "styleguide": "htz-scripts styleguide",
     "styleguide:build": "htz-scripts styleguide:build",
     "test": "htz-scripts test",
