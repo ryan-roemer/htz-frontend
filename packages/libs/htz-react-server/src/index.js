@@ -21,6 +21,7 @@ import hdc from './routes/hdc';
 import purchase from './routes/purchase';
 import finance from './routes/finance';
 import login from './routes/login';
+import dashboard from './routes/dashboard';
 
 // To satisfy Extend peer dependencies
 
@@ -41,6 +42,7 @@ const sitesRouting = new Map([
   [ 'purchase', purchase, ],
   [ 'finance', finance, ],
   [ 'login', login, ],
+  [ 'dashboard', dashboard, ],
 ]);
 
 // Fail-fast in case of missing routing argument
