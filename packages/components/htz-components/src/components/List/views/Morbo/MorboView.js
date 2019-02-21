@@ -103,22 +103,19 @@ export default function Morbo({
             </GridItem>
 
             {/* DFP */}
-            {
-              (list.dfp instanceof Array && list.dfp.length > 0)
-                ? (
-                  <GridItem
-                    stretchContent
-                    miscStyles={{
-                      display: [ { until: 'xl', value: 'none', }, { from: 'xl', value: 'flex', }, ],
-                      justifyContent: [ { from: 'xl', value: 'center', }, ],
-                    }}
-                    width={4 / 12}
-                  >
-                    <GeneralAdSlot {...list.dfp[0]} />
-                  </GridItem>
-                )
-                : null
-            }
+            {list.dfp instanceof Array && list.dfp.length > 0 ? (
+              <GridItem
+                stretchContent
+                miscStyles={{
+                  display: [ { until: 'xl', value: 'none', }, { from: 'xl', value: 'flex', }, ],
+                  justifyContent: [ { from: 'xl', value: 'center', }, ],
+                  flexWrap: 'nowrap',
+                }}
+                width={4 / 12}
+              >
+                <GeneralAdSlot {...list.dfp[0]} />
+              </GridItem>
+            ) : null}
           </Grid>
         </Section>
       </GridItem>
@@ -143,21 +140,15 @@ const teaserDefaultProps = {
 
 Teaser1.defaultProps = teaserDefaultProps;
 
-function Teaser1({
-  data,
-  lazyLoadImages,
-  biAction,
-}: TeaserPropsType): React.Node {
+function Teaser1({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.Node {
   return (
     <FelaTheme
       render={theme => (
         <Teaser
           data={data}
-          gutter={0}
+          gutter={1}
           onClick={
-            biAction
-              ? () => biAction({ index: 0, articleId: data.representedContent, })
-              : null
+            biAction ? () => biAction({ index: 0, articleId: data.representedContent, }) : null
           }
           gridMiscStyles={{ flexWrap: 'nowrap', }}
         >
@@ -165,14 +156,12 @@ function Teaser1({
             data={data}
             width={[
               { until: 's', value: 18, },
-              { from: 's', until: 'l', value: 28, },
-              { from: 'l', until: 'xl', value: 2 / 7, },
-              { from: 'xl', value: 1 / 2, },
+              { from: 's', until: 'xl', value: 28, },
+              { from: 'l', until: 'xl', value: 21, },
+              { from: 'xl', value: 26, },
             ]}
             onClick={
-              biAction
-                ? () => biAction({ index: 0, articleId: data.representedContent, })
-                : null
+              biAction ? () => biAction({ index: 0, articleId: data.representedContent, }) : null
             }
           >
             <Picture
@@ -181,20 +170,20 @@ function Teaser1({
                 bps: theme.bps,
                 imgData: data.image,
                 defaultImgOptions: {
-                  sizes: [ { size: '108px', }, ],
+                  sizes: [ { size: '120px', }, ],
                   aspect: 'square',
-                  widths: [ 108, 216, ],
+                  widths: [ 120, ],
                 },
                 sources: [
                   {
                     aspect: 'regular',
                     from: 's',
                     sizes: [
-                      { from: 'xl', size: '192px', },
-                      { from: 'l', size: '160px', },
-                      { from: 's', size: '168px', },
+                      { from: 'xl', size: '177px', },
+                      { from: 'l', until: 'xl', size: '143px', },
+                      { from: 's', until: 'l', size: '220px', },
                     ],
-                    widths: [ 320, 192, 168, ],
+                    widths: [ 225, 180, 160, ],
                   },
                 ],
               })}
@@ -202,12 +191,8 @@ function Teaser1({
           </TeaserMedia>
           <TeaserContent
             data={data}
-            padding={[ 1, 1, 0, ]}
-            footerPadding={[ 1, 1, ]}
-            width={[
-              { from: 'l', until: 'xl', value: 5 / 7, },
-              { from: 'xl', value: 1 / 2, },
-            ]}
+            padding={[ 1, 0, 0, 1, ]}
+            footerPadding={[ 1, 0, 0, 1, ]}
             renderContent={() => (
               <TeaserHeader
                 onClick={
@@ -218,18 +203,12 @@ function Teaser1({
                     })
                     : null
                 }
-                typeScale={[
-                  { until: 'xl', value: 0, },
-                  { from: 'xl', value: -1, },
-                ]}
+                typeScale={[ { until: 'xl', value: 0, }, { from: 'xl', value: -1, }, ]}
                 {...data}
               />
             )}
             renderFooter={() => (
-              <CommentsCount
-                commentsCount={data.commentsCounts}
-                miscStyles={{ type: -3, }}
-              />
+              <CommentsCount commentsCount={data.commentsCounts} miscStyles={{ type: -3, }} />
             )}
           />
         </Teaser>
@@ -239,20 +218,13 @@ function Teaser1({
 }
 
 Teaser234.defaultProps = teaserDefaultProps;
-function Teaser234({
-  data,
-  lazyLoadImages,
-  biAction,
-}: TeaserPropsType): React.Node {
+function Teaser234({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.Node {
   return (
     <Teaser
       data={data}
       gutter={0}
-      onClick={
-        biAction
-          ? () => biAction({ index: 1, articleId: data.contentId, })
-          : null
-      }
+      onClick={biAction ? () => biAction({ index: 1, articleId: data.contentId, }) : null}
+      gridMiscStyles={{ flexWrap: 'nowrap', }}
     >
       <TeaserContent
         data={data}
@@ -260,12 +232,12 @@ function Teaser234({
         padding={[
           { until: 'l', value: [ 1, 2, 0, ], },
           { from: 'l', until: 'xl', value: [ 1, 1, 0, ], },
-          { from: 'xl', value: [ 2, 2, 0, ], },
+          { from: 'xl', value: [ 1, 1, 0, ], },
         ]}
         footerPadding={[
           { until: 'l', value: [ 1, 2, ], },
           { from: 'l', until: 'xl', value: [ 1, 1, ], },
-          { from: 'xl', value: [ 2, 2, ], },
+          { from: 'xl', value: [ 1, 1, ], },
         ]}
         footerMiscStyles={{
           type: [ { until: 'xl', value: -2, }, { from: 'xl', value: -3, }, ],
@@ -279,9 +251,7 @@ function Teaser234({
               { from: 'xl', value: -1, },
             ]}
             onClick={
-              biAction
-                ? () => biAction({ index: 1, articleId: data.representedContent, })
-                : null
+              biAction ? () => biAction({ index: 1, articleId: data.representedContent, }) : null
             }
             {...data}
           />
