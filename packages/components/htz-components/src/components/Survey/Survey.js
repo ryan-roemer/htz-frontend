@@ -1,21 +1,11 @@
 /* global window */
 import React from 'react';
-import { FelaComponent, } from 'react-fela';
-import _ from 'lodash';
-import gql from 'graphql-tag';
+import { FelaComponent, FelaTheme, } from 'react-fela';
+import orderBy from 'lodash/orderBy';
 import Observer from 'react-intersection-observer';
-import Query from '../ApolloBoundary/Query';
-
 import style from './style';
 import Button from '../Button/Button';
 
-const GET_USER_AGENT = gql`
-  query USER_AGENT {
-    userAgent {
-      deviceType
-    }
-  }
-`;
 // eslint-disable-next-line react/prop-types
 export default class Survey extends React.Component {
   constructor(props) {
@@ -32,7 +22,7 @@ export default class Survey extends React.Component {
     this.xls = properties.xls;
     this.partiesValues = {};
     let unsortedItems;
-    this.colors = [ [ 'primary', ], [ 'quaternary', '+2', ], [ 'primary', '-3', ], [ 'black', ], ];
+    this.colors = [ [ 'primary', ], [ 'primary', '-3', ], [ 'quaternary', '+2', ], [ 'black', ], ];
 
     const {
       comment,
@@ -46,7 +36,7 @@ export default class Survey extends React.Component {
       ...data
     } = this.xls.surveys ? this.xls.surveys[0] : this.xls.survey;
     this.comment = comment;
-
+    this.showAnimation = showAnimationOnDesktop;
     if (this.xls.surveys) {
       unsortedItems = Object.keys(data);
       // eslint-disable-next-line array-callback-return
@@ -59,126 +49,96 @@ export default class Survey extends React.Component {
         unsortedItems.map(v => this.partiesValues[v].push(parseInt(item[v], 10)));
       });
 
-      this.items = _.orderBy(
-        unsortedItems,
-        v => this.partiesValues[v][1] + this.partiesValues[v][0],
-        [ 'desc', ]
-      );
-    }
-  }
-
-  getDeviceMode(deviceType) {
-    const {
-      mobileMode,
-      tabletMode,
-      desktopMode,
-      showAnimationOnMobile,
-      showAnimationOnDesktop,
-      showAnimationOnTablet,
-    } = this.xls.surveys[0];
-    switch (deviceType) {
-      case 'mobile':
-        this.showAnimation = showAnimationOnMobile;
-        return mobileMode || 'horizental';
-      case 'tablet':
-        this.showAnimation = showAnimationOnTablet;
-        return tabletMode || 'horizental';
-      case 'desktop':
-        this.showAnimation = showAnimationOnDesktop;
-        return desktopMode || 'horizental';
-      default:
-        this.showAnimation = false;
-        return 'horizental';
+      this.items = orderBy(unsortedItems, v => this.partiesValues[v][0], [ 'desc', ]);
+      this.showAnimation = showAnimationOnDesktop;
     }
   }
 
   render() {
+    const mode = 'horizental';
     return (
-      <Query query={GET_USER_AGENT}>
-        {({ data, error, loading, }) => {
-          if (loading) return null;
-          if (error) return null;
-          let mode = 'horizental';
-          mode = this.getDeviceMode(data.userAgent.deviceType);
+      <Observer rootMargin="50px">
+        {inView => {
+          const load = this.showAnimation ? inView : true;
           return (
-            <Observer rootMargin="50px">
-              {inView => {
-                const load = this.showAnimation ? inView : true;
-                return (
-                  <FelaComponent mode={mode} rule={style.wrapper}>
-                    <FelaComponent style={style.legendsWrapper}>
-                      {this.xls.surveys.map((v, i) => (
-                        <FelaComponent style={style.legend} key={this.colors[i]}>
-                          <FelaComponent
-                            color={this.colors[i]}
-                            rule={style.legendcolor}
-                            render="span"
-                          />
-                          <FelaComponent style={style.legendLabel} render="span">
-                            {v.legend}
-                          </FelaComponent>
-                        </FelaComponent>
-                      ))}
-                    </FelaComponent>
-                    <FelaComponent mode={mode} rule={style.surveyWrapper}>
-                      {this.items.map(item => (
-                        <FelaComponent
-                          itemsAmount={this.items.length}
-                          mode={mode}
-                          key={item}
-                          rule={style.chartWrapper}
-                        >
-                          <FelaComponent mode={mode} rule={style.labalWrapper} render="label">
-                            <FelaComponent mode={mode} rule={style.labal} render="label">
-                              {item}
-                            </FelaComponent>
-                          </FelaComponent>
-                          <FelaComponent mode={mode} rule={style.barsWrapper}>
-                            {this.partiesValues[item].map((v, i) => (
-                              <FelaComponent
-                                mode={mode}
-                                key={item + this.colors[i]}
-                                rule={style.barWrapper}
-                              >
-                                <FelaComponent
-                                  mode={mode}
-                                  barColor={this.colors[i]}
-                                  value={v}
-                                  load={load}
-                                  rule={style.bar}
-                                />
-                                <FelaComponent mode={mode} rule={style.barValue}>
-                                  {v}
-                                </FelaComponent>
-                              </FelaComponent>
-                            ))}
-                          </FelaComponent>
-                        </FelaComponent>
-                      ))}
-                    </FelaComponent>
-                    <FelaComponent mode={mode} rule={style.buttonWrapper}>
-                      <Button
-                        href="https://www.haaretz.co.il/EXT-INTERACTIVE-1.6826451"
-                        style={style.button}
-                      >
-                        לכל הסקרים
-                      </Button>
-                    </FelaComponent>
-
-                    <FelaComponent style={style.comment}>
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: this.comment.replace('*', '<br>*'),
-                        }}
+            <FelaComponent mode={mode} rule={style.wrapper}>
+              <FelaComponent style={style.legendsWrapper}>
+                {this.xls.surveys.map((v, i) => {
+                  const legend = v.legend.split(',').map(v => v.trim());
+                  if (legend[1]) {
+                    legend[0] += ', ';
+                  }
+                  return (
+                    <FelaComponent style={style.legend} key={this.colors[i]}>
+                      <FelaComponent
+                        color={this.colors[i]}
+                        rule={style.legendcolor}
+                        render="span"
                       />
+                      <FelaComponent style={style.legendLabel} render="span">
+                        <span>{legend[0]}</span>
+                        <FelaComponent style={style.legendDate} render="span">{legend[1]}</FelaComponent>
+                      </FelaComponent>
+                    </FelaComponent>
+                  );
+                })}
+              </FelaComponent>
+              <FelaComponent mode={mode} rule={style.surveyWrapper}>
+                {this.items.map(item => (
+                  <FelaComponent
+                    itemsAmount={this.items.length}
+                    mode={mode}
+                    key={item}
+                    rule={style.chartWrapper}
+                  >
+                    <FelaComponent mode={mode} rule={style.labalWrapper} render="label">
+                      <FelaComponent mode={mode} rule={style.labal} render="label">
+                        {item}
+                      </FelaComponent>
+                    </FelaComponent>
+                    <FelaComponent mode={mode} rule={style.barsWrapper}>
+                      {this.partiesValues[item].map((v, i) => (
+                        <FelaComponent
+                          mode={mode}
+                          key={item + this.colors[i]}
+                          rule={style.barWrapper}
+                        >
+                          <FelaComponent
+                            mode={mode}
+                            barColor={this.colors[i]}
+                            value={v}
+                            load={load}
+                            rule={style.bar}
+                          />
+                          <FelaComponent mode={mode} rule={style.barValue}>
+                            {v}
+                          </FelaComponent>
+                        </FelaComponent>
+                      ))}
                     </FelaComponent>
                   </FelaComponent>
-                );
-              }}
-            </Observer>
+                ))}
+              </FelaComponent>
+              <FelaComponent mode={mode} rule={style.buttonWrapper}>
+                <Button
+                  href="https://www.haaretz.co.il/EXT-INTERACTIVE-1.6826451"
+                  style={style.button}
+                >
+                  <FelaTheme render={theme => theme.survey.button} />
+                </Button>
+              </FelaComponent>
+
+              <FelaComponent style={style.comment}>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: this.comment.replace('*', '<br>*'),
+                  }}
+                />
+              </FelaComponent>
+            </FelaComponent>
           );
         }}
-      </Query>
+      </Observer>
     );
   }
 }
