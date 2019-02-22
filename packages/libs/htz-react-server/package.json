@@ -6,7 +6,6 @@
   "keywords": [],
   "author": "",
   "license": "UNLICENSED",
-  "main": "dist/lib/index.js",
   "bin": "./bin/htz-react-server.js",
   "scripts": {
     "build": "htz-scripts build:lib",

@@ -17,7 +17,7 @@ fs.readFile(sourceFilePath, 'utf8', (err, contents) => {
 
   const replacedContents = contents.replace(/\.\//gm, '../../src/');
 
-  [ 'lib', 'esm', 'esnext', ].forEach(dir => {
+  [ 'lib', 'esm', ].forEach(dir => {
     const flowDefinitionsPath = path.join('dist', dir, flowDefinitionsFile);
     if (fs.existsSync(flowDefinitionsPath)) {
       console.log(`Old flow definitions file found: ${flowDefinitionsPath}`);

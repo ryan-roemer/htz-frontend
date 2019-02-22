@@ -6,7 +6,6 @@
   "author": "EranM6",
   "license": "UNLICENSED",
   "repository": "Haaretz/htz-frontend",
-  "main": "dist/lib/index.js",
   "private": true,
   "bin": "./bin/d3-server.js",
   "scripts": {

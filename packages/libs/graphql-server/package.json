@@ -6,7 +6,6 @@
   "author": "kedarguy",
   "license": "UNLICENSED",
   "repository": "Haaretz/htz-frontend",
-  "main": "dist/lib/index.js",
   "private": true,
   "bin": "./bin/graphql-server.js",
   "scripts": {

@@ -9,7 +9,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "index.js",
   "bin": {
     "htz-scripts": "./bin/htz-scripts.js"
   },
