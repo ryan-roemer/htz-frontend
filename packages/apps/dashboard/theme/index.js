@@ -19,6 +19,7 @@ import getZIndex from './methods/getZIndex';
 import pxToRem from './methods/pxToRem';
 import typesetter from './methods/typesetter';
 import mq from './methods/mq';
+import logoColors from './methods/logoColors';
 
 export { cssReset, };
 
@@ -42,6 +43,7 @@ const theme = Object.freeze({
   mq,
   pxToRem,
   type: typesetter,
+  logoColors,
 });
 
 export default theme;
