@@ -7,7 +7,7 @@
 // const { withPlugins, optional, } = require('next-compose-plugins');
 const withTranspiledModules = require('next-transpile-modules');
 const withSourceMaps = require('@zeit/next-source-maps')();
-const withBundleAnalyzer = require('./buildConfig/bundleAnalyzerConfig');
+const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
 // const withSize = require('next-size');
 
 // ////////////////// //
@@ -17,6 +17,7 @@ const withBundleAnalyzer = require('./buildConfig/bundleAnalyzerConfig');
 const { BUNDLE_ANALYZE, NEXT_BUILD_ID, NODE_ENV, } = process.env;
 const configWebpack = require('./buildConfig/webpack');
 const analyzerConfig = require('./buildConfig/bundleAnalyzerConfig');
+const getPackagesToTranspile = require('./buildConfig/getPackagesToTranpile');
 
 /**
  * NOTE: Next.js builds the output directory in a temporary location before
@@ -28,7 +29,10 @@ const nextConfig = {
   // TODO: For some reason next-plugin-transpile-modules doesn't seem to
   // work for actually transpiling modules, but it does force the use of
   // the 'module' field instead of the 'main' field in imported modules.
-  transpileModules: [ '@haaretz', ],
+  transpileModules: [
+    '@haaretz/haaretz.co.il',
+    ...getPackagesToTranspile({ exclude: 'commitlint-config', }),
+  ],
 
   // Dealing with multi-server deployment
   // https://nextjs.org/docs/#customizing-webpack-config
@@ -40,49 +44,13 @@ const nextConfig = {
   webpack: configWebpack,
 };
 
+// ////////////
 //
 //
 // ////////////////////////////
 
-// module.exports = withPlugins(
-//   [
-//     // Transpile internal modules. MUST ALWAYS BE FIRST
-//     [
-//       optional(() => ),
-//       {
-//         // TODO: For some reason next-plugin-transpile-modules doesn't seem to
-//         // work for actually transpiling modules, but it does force the use of
-//         // the 'module' field instead of the 'main' field in imported modules.
-//         //
-//         transpileModules: [ '@haaretz', ],
-//       },
-//       [ PHASE_PRODUCTION_BUILD, PHASE_PRODUCTION_SERVER, ],
-//     ],
-//
-//     // // Show bundle-size statisics
-//     // withSize,
-//
-//     // Generate source maps
-//     [
-//       optional(() => ),
-//       {},
-//       // Don't create source maps for server build
-//       [ PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD, ],
-//     ],
-//
-//     // Analyze webpack bundles
-//     [
-//       optional(() => require('@zeit/next-bundle-analyzer')),
-//       [ BUNDLE_ANALYZE, ],
-//     ],
-//   ],
-//   nextConfig
-// );
-
 module.exports = BUNDLE_ANALYZE
   ? withBundleAnalyzer(withTranspiledModules(nextConfig))
-  : NODE_ENV === 'development'
-    ? withSourceMaps(nextConfig)
   : withSourceMaps(withTranspiledModules(nextConfig));
 
 // //////////////////// //

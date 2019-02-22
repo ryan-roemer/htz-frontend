@@ -4,16 +4,16 @@
 //   Plugins   //
 // /////////// //
 
-const fs = require('fs');
-const path = require('path');
+// eslint-disable-next-line no-unused-vars
 const webpack = require('webpack');
+const path = require('path');
 const StatsPlugin = require('stats-webpack-plugin');
 
 // ////////////////// //
 //   Config and ENV   //
 // ////////////////// //
 
-const { BUNDLE_ANALYZE, NODE_ENV, } = process.env;
+const { BUNDLE_ANALYZE, } = process.env;
 
 const moduleRules = require('./moduleRules');
 
@@ -24,8 +24,12 @@ const modulesToRemoveFromClientBundle = new RegExp(
 
 module.exports = function configWebpack(
   config,
-  { buildId, dev, isServer, defaultLoaders, }
+  opts
+  // { buildId, dev, isServer, defaultLoaders, }
 ) {
+  // eslint-disable-next-line no-unused-vars
+  const { buildId, dev, isServer, defaultLoaders, } = opts;
+
   if (!config.module.rules) config.module.rules = [];
   config.module.rules.push(...moduleRules);
 
@@ -42,72 +46,18 @@ module.exports = function configWebpack(
     '.json',
   ];
 
-  // Transpile internal modules
-  if (NODE_ENV !== 'development') {
-    // Correctly resolve local packages
-    if (!config.resolve.alias) config.resolve.alias = {};
-    const treeToNodeModules = [
-      '..',
-      '..',
-      '..',
-      '..',
-      'node_modules',
-      '@haaretz',
-    ];
-    const htzPackagesPath = path.join(__dirname, ...treeToNodeModules);
-    const packageAliases = fs
-      .readdirSync(htzPackagesPath)
-      .filter(item => fs.statSync(path.join(htzPackagesPath, item)).isDirectory()
-      )
-      .reduce((result, pkg) => {
-        let alias;
-        try {
-          // Use custom `package.json` field to resolve source in
-          // internal packages
-          const scopedPkg = `@haaretz/${pkg}`;
-          const pkgPath = path.dirname(
-            require.resolve(`${scopedPkg}/package.json`)
-          );
-          const htzInternal = false;
-          // const htzInternal = require(`${scopedPkg}/package.json`).htzInternal;
-          const moduleBuild = require(`${scopedPkg}/package.json`).module;
-          alias = {
-            [scopedPkg]: htzInternal
-              ? path.join(pkgPath, htzInternal)
-              : moduleBuild
-                ? path.join(pkgPath, moduleBuild)
-                : require.resolve(scopedPkg),
-          };
-        }
-        catch (err) {
-          // console.log(err.message);
-          alias = {};
-        }
-
-        return {
-          ...result,
-          ...alias,
-        };
-      }, {});
-
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      ...(packageAliases || {}),
-    };
-  }
+  // Use untranspiled source in htz packages
+  config.resolve.mainFields.unshift('htzInternal');
 
   // packages to remove from the client side bundle
   // config.plugins.push(
   //   new webpack.IgnorePlugin(modulesToRemoveFromClientBundle)
   // );
 
-  if (BUNDLE_ANALYZE) setBundleAnalyze();
-  // console.log('\n\n\n\n\n', '\n\n\n\n\n');
+  if (BUNDLE_ANALYZE) setBundleAnalyze(config);
 
   shimForClientSideBuild(config);
 
-  // if (!isServer) console.log(JSON.stringify(config, null, 2));
-  // if (!isServer) console.log('\n\n\nentry: ', config.entry.toString());
   return config;
 };
 
@@ -121,7 +71,7 @@ function setBundleAnalyze(configToMutate) {
 
   // Generate a `stats` json
   configToMutate.plugins.push(
-    new StatsPlugin(`${__dirname}/stats.json`, {
+    new StatsPlugin(path.join(__dirname, 'stats.json'), {
       chunkModules: true,
       // exclude: [ /node_modules\\\/react/, ],
     })
@@ -130,7 +80,7 @@ function setBundleAnalyze(configToMutate) {
 
 // This is required for removing node core modules
 // from packages that use them and fail to
-// replace them in client build like bunyan and node-config
+// replace them in client build like `bunyan` and `node-config`
 function shimForClientSideBuild(configToMutate) {
   if (!configToMutate.resolve.alias) configToMutate.resolve.alias = {};
 

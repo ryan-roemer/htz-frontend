@@ -5,6 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "node scripts/fixStyledJsx",
     "bootstrap": "yarn run clean && yarn run update",
     "clean": "lerna exec -- yarn run clean",
     "commitmsg": "commitlint -e",

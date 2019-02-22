@@ -1,4 +1,7 @@
+const path = require('path');
+
 const { BUNDLE_ANALYZE, } = process.env;
+const reportsPath = path.join('..', 'bundles');
 
 module.exports = {
   analyzeServer: [ 'server', 'both', ].includes(BUNDLE_ANALYZE),
@@ -6,11 +9,11 @@ module.exports = {
   bundleAnalyzerConfig: {
     server: {
       analyzerMode: 'static',
-      reportFilename: '../bundles/server.html',
+      reportFilename: path.join(reportsPath, 'server.html'),
     },
     browser: {
       analyzerMode: 'static',
-      reportFilename: '../bundles/client.html',
+      reportFilename: path.join(reportsPath, 'client.html'),
     },
   },
 };
