@@ -1,7 +1,8 @@
 import React, { Fragment, } from 'react';
 import { FelaTheme, FelaComponent, } from 'react-fela';
-import { IconAlefLogoTransparent, IconTheMarker, } from '@haaretz/htz-components';
 import { parseComponentProp, parseStyleProps, } from '@haaretz/htz-css-tools';
+import IconTheMarker from '../Icons/IconTheMarker';
+import IconAlefLogoTransparent from '../Icons/IconAlefLogoTransparent';
 
 // eslint-disable-next-line react/prop-types
 function Item({ title, value, children, miscStyles, }) {
@@ -17,6 +18,8 @@ function Item({ title, value, children, miscStyles, }) {
             textAlign: 'center',
             flexDirection: 'column',
             justifyContent: 'center',
+            paddingTop: '2rem',
+            paddingBottom: '2rem',
             extend: [
               ...(miscStyles
                 ? parseStyleProps(miscStyles, theme.mq, theme.type)
@@ -31,6 +34,10 @@ function Item({ title, value, children, miscStyles, }) {
                   style={{
                     backgroundColor: theme.color('neutral', '-10'),
                     flex: '1',
+                    marginBottom: '1rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     ...theme.type(2),
                   }}
                 >
@@ -40,8 +47,11 @@ function Item({ title, value, children, miscStyles, }) {
                   style={{
                     backgroundColor: theme.color('neutral', '-10'),
                     flex: '1',
-                    ...theme.type(3),
                     fontWeight: '700',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    ...theme.type(3),
                   }}
                 >
                   {value}

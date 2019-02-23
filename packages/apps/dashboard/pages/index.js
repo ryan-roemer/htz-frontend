@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleProvider, } from '@haaretz/fela-utils';
-import { Grid, GridItem, } from '@haaretz/htz-components';
+// import { Grid, GridItem, } from '@haaretz/htz-components';
 
 import styleRenderer from '../components/styleRenderer/styleRenderer';
 import theme from '../theme';
 
 import DataGetter from '../components/DataGetter/DataGetter';
-import Subscription from '../components/Subscription';
+import Subscription from '../components/Subscription/Subscription';
+import Grid from '../components/Grid/Grid';
+import GridItem from '../components/GridItem/GridItem';
 
 function Dashboard() {
   return (
