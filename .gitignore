@@ -235,3 +235,6 @@ dist/
 
 # Webpack generated bundle
 packages/apps/*/bundles/
+
+# Electron generated minified JS
+packages/apps/*/*.min.js

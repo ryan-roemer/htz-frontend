@@ -84,6 +84,10 @@ const colors = {
     hdc: '#003147',
   },
 
+  transparent: 'rgba(0,0,0,0)',
+  black: '#000',
+  white: '#FFF',
+
   neutral: {
     '-10': 'white',
     '-7': '#F5F5F5',

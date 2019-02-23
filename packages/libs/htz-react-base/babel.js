@@ -1,6 +1,6 @@
 /**
  * Default Babel config for Haaretz component modules, which should have a
- * `.babelrc` file at their root like:
+ * `babel.config.js` file at their root like:
  *
  *   { "presets": ["@haaretz/htz-react-base/babel.js"] }
  *
