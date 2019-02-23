@@ -4,10 +4,9 @@
 //   Plugins   //
 // /////////// //
 
-// eslint-disable-next-line no-unused-vars
-const webpack = require('webpack');
 const path = require('path');
 const StatsPlugin = require('stats-webpack-plugin');
+const { DuplicatesPlugin, } = require('inspectpack/plugin');
 
 // ////////////////// //
 //   Config and ENV   //
@@ -16,11 +15,6 @@ const StatsPlugin = require('stats-webpack-plugin');
 const { BUNDLE_ANALYZE, } = process.env;
 
 const moduleRules = require('./moduleRules');
-
-// eslint-disable-next-line no-unused-vars
-const modulesToRemoveFromClientBundle = new RegExp(
-  [ /csslint/, /bunyan/, ].map(regex => regex.source).join('|')
-);
 
 module.exports = function configWebpack(
   config,
@@ -49,10 +43,15 @@ module.exports = function configWebpack(
   // Use untranspiled source in htz packages
   config.resolve.mainFields.unshift('htzInternal');
 
-  // packages to remove from the client side bundle
-  // config.plugins.push(
-  //   new webpack.IgnorePlugin(modulesToRemoveFromClientBundle)
-  // );
+  // Check for duplicate code from dependencies
+  if (!isServer) {
+    config.plugins.push(
+      new DuplicatesPlugin({
+        verbose: true,
+        emitHandler: report => console.log(report),
+      })
+    );
+  }
 
   if (BUNDLE_ANALYZE) setBundleAnalyze(config);
 
@@ -71,7 +70,7 @@ function setBundleAnalyze(configToMutate) {
 
   // Generate a `stats` json
   configToMutate.plugins.push(
-    new StatsPlugin(path.join(__dirname, 'stats.json'), {
+    new StatsPlugin(path.join(process.cwd(), 'stats.json'), {
       chunkModules: true,
       // exclude: [ /node_modules\\\/react/, ],
     })

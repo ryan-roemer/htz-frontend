@@ -1,7 +1,7 @@
 const path = require('path');
 
 const { BUNDLE_ANALYZE, } = process.env;
-const reportsPath = path.join('..', 'bundles');
+const reportsPath = path.join(process.cwd(), 'bundle-report');
 
 module.exports = {
   analyzeServer: [ 'server', 'both', ].includes(BUNDLE_ANALYZE),

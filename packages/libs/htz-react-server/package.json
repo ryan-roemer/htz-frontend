@@ -17,6 +17,7 @@
     "gc": "htz-scripts commitizen",
     "lint": "htz-scripts lint",
     "prepare": "npm run build",
+    "postinstall": "htz-scripts fixStyledJsx",
     "styleguide": "htz-scripts styleguide",
     "styleguide:build": "htz-scripts styleguide:build",
     "test": "htz-scripts test",

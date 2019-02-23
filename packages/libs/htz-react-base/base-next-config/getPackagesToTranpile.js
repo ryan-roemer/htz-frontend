@@ -1,9 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-function getPackagesToTranspile({ exclude, }) {
-  const relativePath = [ '..', '..', '..', '..', 'node_modules', '@haaretz', ];
-  const htzPackagesPath = path.join(__dirname, ...relativePath);
+function getPackagesToTranspile({ exclude, } = {}) {
+  const relativePathToHtzPkgs = [ '..', '..', '..', 'node_modules', '@haaretz', ];
+  const htzPackagesPath = path.join(process.cwd(), ...relativePathToHtzPkgs);
   const pkgs = fs
     .readdirSync(htzPackagesPath)
     .filter(pkg => {

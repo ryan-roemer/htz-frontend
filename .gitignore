@@ -233,5 +233,5 @@ dist/
 .jest/
 .tern-port
 
-# Webpack generated bundle
-packages/apps/*/bundles/
+# Webpack analyzer reports
+packages/apps/*/bundle-report/*.html

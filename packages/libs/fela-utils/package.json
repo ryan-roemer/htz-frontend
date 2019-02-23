@@ -24,6 +24,7 @@
     "gc": "htz-scripts commitizen",
     "lint": "htz-scripts lint",
     "prepare": "npm run build",
+    "postinstall": "htz-scripts fixStyledJsx",
     "serve": "yarn documentation serve src --config documentation.yml --watch",
     "styleguide": "htz-scripts styleguide",
     "styleguide:build": "htz-scripts styleguide:build",
