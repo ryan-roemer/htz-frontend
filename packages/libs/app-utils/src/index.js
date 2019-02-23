@@ -15,6 +15,7 @@ import lineGraphMap from './jsonGenerator/jsonMaps/lineGraph';
 import scatterGraphMap from './jsonGenerator/jsonMaps/scatterGraph';
 import areaGraphMap from './jsonGenerator/jsonMaps/areaGraph';
 import quoteMap from './jsonGenerator/jsonMaps/quote';
+import subscriptionsDataMap from './jsonGenerator/jsonMaps/subscriptionsData';
 
 // Schema Fragments
 import articleHeader from './fragments/articleHeader/articleHeader';
@@ -72,6 +73,7 @@ export {
   scatterGraphMap,
   areaGraphMap,
   quoteMap,
+  subscriptionsDataMap,
   // Schema Fragments
   articleHeader,
   author,

@@ -21,6 +21,7 @@ import Page from './types/page_type';
 import HomePage from './types/home_page_type';
 import { GenerateOtp, } from './types/otp_operations_type';
 import TableScoreGraph from './types/tableScore/table_score_type';
+import SubscriptionsData from './types/subscriptions_data_type';
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -285,6 +286,14 @@ const RootQuery = new GraphQLObjectType({
         return dataSources.TableScoreAPI.retrieveTableScore(tableType, subType, identifier);
       },
     },
+
+    subscriptionsData: {
+      type: SubscriptionsData,
+      args: {},
+      resolve(parentValue, {}, { dataSources, }) {
+        return dataSources.SubscriptionsAPI.getSubscriptionsData();
+      },
+    }
   }),
 });
 

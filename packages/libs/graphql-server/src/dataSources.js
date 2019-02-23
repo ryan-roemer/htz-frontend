@@ -10,6 +10,7 @@ import {
   areaGraphMap,
   assetMap,
   assetsMap,
+  subscriptionsDataMap,
 } from '@haaretz/app-utils';
 import querystring from 'querystring';
 
@@ -526,6 +527,16 @@ class TableScoreAPI extends RESTDataSource {
   }
 }
 
+class SubscriptionsAPI extends RESTDataSource {
+  get baseURL() {
+    return this.context.msSportResults;
+  }
+
+  async getSubscriptionsData() {
+    return jsonGenerator({ map: subscriptionsDataMap, args: {}, });
+  }
+}
+
 const dataSources = () => ({
   PageAPI: new PageAPI(),
   PapiAPI: new PapiAPI(),
@@ -536,5 +547,6 @@ const dataSources = () => ({
   NewSsoOperationsAPI: new NewSsoOperationsAPI(),
   HtzFunctionOperationsAPI: new HtzFunctionOperationsAPI(),
   TableScoreAPI: new TableScoreAPI(),
+  SubscriptionsAPI: new SubscriptionsAPI(),
 });
 export default dataSources;
