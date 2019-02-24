@@ -1,0 +1,29 @@
+version: '3.3'
+services:
+  htz_react:
+    hostname: htz-front-app
+    build:
+      context: .
+      args:
+        NEXT_BUILD_ID: ${version:-latest}
+    image: 'nexus-ng.themarker.com/htz-front-app:${version:-latest}'
+    ports:
+      - 2211:2211
+    environment:
+      - NODE_ENV=production
+      - CONNECTION_PRESET=stage
+      - NEXT_BUILD_ID=${NEXT_BUILD_ID:-latest}
+      # the following environment is optional
+      - PORT=2211
+      - BIND_ADDRESS=react-dev-stg
+      - HOSTNAME=react-dev-stg
+      - GRAPHQL_USE_SSL=true
+      - GRAPHQL_EXPOSE_PORT=false
+      - GRAPHQL_SUB_DOMAIN=graphql-dev-stg
+
+    networks:
+      - dev03
+
+networks:
+  dev03:
+    external: true
