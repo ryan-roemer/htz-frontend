@@ -62,6 +62,7 @@ import LayoutContainer from './components/PageLayout/LayoutContainer';
 import LayoutRow from './components/PageLayout/LayoutRow';
 import LinksBlock from './components/RelatedArticles/LinksBlock';
 import List from './components/List/List';
+import MagazineRecipes from './components/MagazineRecipes/MagazineRecipes';
 import MainBlock from './components/HomePageMainBlock/MainBlock.js';
 import Masthead from './components/Masthead/Masthead';
 import Media from './components/Media/Media';
@@ -269,7 +270,6 @@ export {
   ActionButtons,
   Astronaut,
   ApolloConsumer,
-  VisuallyHidden,
   AriaLive,
   ArticleBody,
   BlockLink,
@@ -313,6 +313,7 @@ export {
   Masthead,
   Media,
   MobileQuickRegistration,
+  MagazineRecipes,
   MarketingNotificationProvider,
   MarketingNotification,
   MobileListWrapper,
@@ -351,6 +352,7 @@ export {
   TextLink,
   TopNews,
   Video,
+  VisuallyHidden,
   WrappedComments,
   // Icons
   IconAccessibility,

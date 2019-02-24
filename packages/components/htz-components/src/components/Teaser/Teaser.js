@@ -4,7 +4,6 @@ import * as React from 'react';
 import { FelaComponent, } from 'react-fela';
 import type { ComponentPropResponsiveObject, StyleProps, } from '@haaretz/htz-css-tools';
 
-import type { FillHeightType, } from '../Card/cardStyle';
 import type { ClickTrackerBannerType, } from '../../flowTypes/ClickTrackerBannerType';
 import type { TeaserDataType, } from '../../flowTypes/TeaserDataType';
 import type { attrFlowType, } from '../../flowTypes/attrTypes';
@@ -137,7 +136,6 @@ export default function Teaser({
         miscStyles={{
           alignContent: 'flex-start',
           flexGrow: '1',
-          // height: untilIos11 ? 'initial' : '100%',
           ...setStacking(isStacked),
           ...(gridMiscStyles || {}),
         }}

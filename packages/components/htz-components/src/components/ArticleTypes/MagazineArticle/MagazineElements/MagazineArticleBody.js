@@ -137,6 +137,15 @@ const buildComponent = (context, index, isLastItem, magazineLayout) => {
           </MagazineContentWrapper>
         </NoSSR>
       );
+    case 'com.tm.interactive.recipes10':
+      return (
+        <MagazineContentWrapper
+          component={{ ...context, position: 'midWide', }}
+          magazineLayout={magazineLayout}
+        >
+          <Component {...context} />
+        </MagazineContentWrapper>
+      );
     default:
       return (
         <FelaTheme
