@@ -20,6 +20,7 @@ export const zoominText = 'הגדל';
 export const zoomoutText = 'הקטן';
 
 export const galleryI18n = Object.freeze({
+  open: 'עברו לתצוגת גלריה',
   captionPrefix: (current, total) => `${current} מתוך ${total} | `,
   mobileList: total => `${total} תמונות`,
 });
@@ -50,6 +51,9 @@ export const creditPrefixI18n = Object.freeze({
 
 export const navigationMenuI18n = Object.freeze({
   buttonText: 'ניווט',
+  a11yTexts: Object.freeze({
+    subMenu: (title, isOpen) => `${isOpen ? 'סגירת' : 'פתיחת'} תת-תפריט ${title}`,
+  }),
 });
 
 export const mobileNavigationMenuI18n = Object.freeze({
@@ -65,7 +69,15 @@ export const mobileQuickRegistrationI18n = Object.freeze({
 export const headerSearchI18n = Object.freeze({
   buttonText: 'חיפוש',
   placeHolder: 'הקלידו לחיפוש באתר',
+  a11yTexts: Object.freeze({
+    close: 'לחצו לסגירת החיפוש',
+    execSearch: 'לחצו כדי להריץ את החיפוש',
+  }),
   queryUrl: query => `https://www.haaretz.co.il/misc/search-results?text=${query}&searchType=textSearch`,
+});
+
+export const homepageLogoLink = Object.freeze({
+  a11yText: 'חזרה לעמוד הבית',
 });
 
 export const mobileSearchI18n = Object.freeze({
@@ -90,6 +102,9 @@ export const commentI18n = Object.freeze({
     readMoreBtnTxt: 'קראו עוד',
     replyBtnTxt: 'הגיבו',
     reportAbuseBtnTxt: 'דווחו כפוגעני',
+  }),
+  ariaTexts: Object.freeze({
+    subCommentTxt: 'תגובה לתגובה',
   }),
 });
 
@@ -272,6 +287,7 @@ export const userMenuI18n = Object.freeze({
 
 export const a11yMenuI18n = Object.freeze({
   a11yToggle: state => `${state ? 'הפסק' : 'הפעל'} מצב ניגודיות`,
+  a11yTitle: 'תפריט נגישות',
   menuItems: Object.freeze([
     Object.freeze({
       name: 'דווח על בעיית נגישות',
@@ -284,6 +300,7 @@ export const zenTextI18n = 'קריאת זן';
 
 export const readingListMenuI18n = Object.freeze({
   url: 'https://www.haaretz.co.il/personal-area/my-account#readingList',
+  a11yText: 'מעבר לרשימת הקריאה',
 });
 
 export const serviceByMailI18n = Object.freeze({
@@ -348,6 +365,13 @@ export const reviewRatingI18n = Object.freeze({
   ratingTitle: 'דירוג',
 });
 
+export const ratingI18n = Object.freeze({
+  a11yTexts: Object.freeze({
+    rateAction: rate => `לחץ כדי לדרג ב-${rate} כוכבים`,
+    rating: rating => `${rating} כוכבים`,
+  }),
+});
+
 export const liveBlogI18n = Object.freeze({
   liveUpdate: 'LIVE',
   updatesTitle: 'עדכונים',
@@ -409,4 +433,8 @@ export const btnOptions = Object.freeze({
     open: 90,
     close: 270,
   },
+});
+
+export const survey = Object.freeze({
+  button: 'לכל הסקרים',
 });

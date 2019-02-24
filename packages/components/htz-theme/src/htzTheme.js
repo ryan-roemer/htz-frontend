@@ -62,6 +62,7 @@ import {
   zoomoutText,
   selectAriaLabel,
   marketingTools,
+  survey,
   footballHeaders,
   nbaHeaders,
   groupBarTabs,
@@ -150,6 +151,7 @@ const htzTheme = Object.freeze({
   zoomoutText,
   selectAriaLabel,
   marketingTools,
+  survey,
   // Methods
   color: getColor,
   getDelay,
