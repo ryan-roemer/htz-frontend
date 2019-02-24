@@ -31,7 +31,7 @@ type ListProps = {
 
 type State = {
   updatedListDuplication: boolean,
-  listDuplicationIds: string[],
+  listDuplicationIds: Array<?string>,
 };
 
 class List extends React.Component<ListProps, State> {
@@ -39,20 +39,39 @@ class List extends React.Component<ListProps, State> {
     viewProps: {},
   };
 
-  updateListDuplication = items => {
-    const itemsRepresentedContent = items.reduce((accumulator, currentValue) => {
-      if (currentValue && currentValue.representedContent) {
-        accumulator.push(currentValue.representedContent);
-      }
-      return accumulator;
-    }, []);
+  state = {
+    updatedListDuplication: false,
+    listDuplicationIds: [],
+  };
 
-    this.props.updateListDuplication(itemsRepresentedContent);
+  componentDidMount() {
+    // we want this to run just once at component mount,
+    // This makes this whole component only usable for client side lists,
+    // Once we make add ssr capabilities we need to make sure the listDuplicationIds
+    // wont cause the list to re-query data and re render,
+    if (this.props.listData && this.props.listData.loadPriority !== 'ssr') {
+      const listDuplicationIds = this.props.getListDuplication();
+      this.setState({ listDuplicationIds, });
+    }
+  }
+
+  updateListDuplication = items => {
+    if (!this.state.updatedListDuplication) {
+      const itemsRepresentedContent = items.reduce((accumulator, currentValue) => {
+        if (currentValue && currentValue.representedContent) {
+          accumulator.push(currentValue.representedContent);
+        }
+        return accumulator;
+      }, []);
+
+      this.props.updateListDuplication(itemsRepresentedContent);
+      this.setState({ updatedListDuplication: true, });
+    }
   };
 
   render(): Node {
-    const { listData: { View, }, listData, viewProps, getListDuplication, } = this.props;
-    const listDuplicationIds = getListDuplication();
+    const { listData: { View, }, listData, viewProps, } = this.props;
+    const { listDuplicationIds, } = this.state;
     return (
       <ReadingHistoryProvider>
         {readingHistory => (
