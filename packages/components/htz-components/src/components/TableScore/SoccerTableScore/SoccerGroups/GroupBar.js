@@ -114,19 +114,24 @@ class GroupBar extends React.Component <Props, State> {
               theme.groupBarTabs.headers.map((h, index) => {
                 const active = this.state.activeTab === index;
                 return active ? (
-                  <a
-                    href="javascript:void(0)"
-                    style={{ flexGrow: '1', }}
-                    ref={activeTab => { this.activeTab = activeTab; }}
-                  >
-                    <SingleTab
-                      key={h}
-                      index={index}
-                      text={h}
-                      active={active}
-                      handleClick={this.handleClick}
-                    />
-                  </a>
+                  <FelaComponent
+                    style={{ flexGrow: '1', ':focus': { outline: 'none', }, }}
+                    render={({ className, }) => (
+                      <a
+                        href="javascript:void(0)"
+                        className={className}
+                        ref={activeTab => { this.activeTab = activeTab; }}
+                      >
+                        <SingleTab
+                          key={h}
+                          index={index}
+                          text={h}
+                          active={active}
+                          handleClick={this.handleClick}
+                        />
+                      </a>
+                    )}
+                  />
                 ) : (
                   <a
                     href="javascript:void(0)"

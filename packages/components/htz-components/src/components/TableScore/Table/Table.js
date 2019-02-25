@@ -25,9 +25,11 @@ function Table(props: Props): Node {
   return (
     <table aria-describedby={tableType} style={{ width: '100%', position: 'relative', }} dir="rtl">
 
-      <VisuallyHidden>
-        <caption>{tableType}</caption>
-      </VisuallyHidden>
+      <caption>
+        <VisuallyHidden>
+          {tableType}
+        </VisuallyHidden>
+      </caption>
 
       <Header headers={headers} />
       <Body tableData={tableData} isOpen={isOpen} borders={borders} />
