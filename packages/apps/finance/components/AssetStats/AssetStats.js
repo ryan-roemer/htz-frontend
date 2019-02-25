@@ -58,13 +58,13 @@ export const Stat = ({ children, title, miscStyles, }: any): Node => (
 );
 export type GraphType = "line" | "scatter" | "hotMoney";
 export type Period =
-  | "daily"
-  | "weekly"
-  | "monthly"
+  | "day"
+  | "week"
+  | "month"
   | "quarterly"
-  | "yearly"
-  | "tripleYear"
-  | "max";
+  | "year1"
+  | "year3"
+  | "year5";
 type Props = {
   graphType: GraphType,
   period: Period,

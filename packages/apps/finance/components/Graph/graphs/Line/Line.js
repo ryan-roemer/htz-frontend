@@ -38,13 +38,13 @@ type State= {
 };
 
 const xAxisTickFormats: Object = new Map([
-  [ 'daily', [ '%H:%M', d3.timeHour.every, 1, ], ],
-  [ 'weekly', [ '%A', d3.timeDay.every, 1, ], ],
-  [ 'monthly', [ '%d/%m', d3.timeDay.every, 2, ], ],
+  [ 'day', [ '%H:%M', d3.timeHour.every, 1, ], ],
+  [ 'week', [ '%A', d3.timeDay.every, 1, ], ],
+  [ 'month', [ '%d/%m', d3.timeDay.every, 2, ], ],
   [ 'quarterly', [ '%B', d3.timeMonth.every, 1, ], ],
-  [ 'yearly', [ '%B', d3.timeMonth.every, 2, ], ],
-  [ 'tripleYear', [ '%b %y', d3.timeMonth.every, 3, ], ],
-  [ 'max', [ '%Y', d3.timeYear.every, 1, ], ],
+  [ 'year1', [ '%B', d3.timeMonth.every, 2, ], ],
+  [ 'year3', [ '%b %y', d3.timeMonth.every, 3, ], ],
+  [ 'year5', [ '%Y', d3.timeYear.every, 1, ], ],
 ]);
 
 class Line extends React.Component<Props, State> {
@@ -120,7 +120,7 @@ class Line extends React.Component<Props, State> {
   getAssetFromMouseEvent: () => Asset = () => {
     const { xScale, } = this.state;
     const { data, } = this.props;
-
+    console.log('lineData: ', data);
     /* Get the X value of the item that occupies the same X as the mouse position */
     const x: number = xScale.invert(d3.mouse(this.overlayRef)[0]);
 

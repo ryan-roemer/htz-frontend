@@ -17,18 +17,20 @@ import SectionLink from '../SectionLink/SectionLink';
 type FieldType = {
   name: string,
   display: string,
-  sortingOrder: "ascend" | "descend",
+  sortingOrder: "asc" | "desc",
   style?: (any => StyleProps) | null,
   value: Object => string,
 };
 
 type Props = {
+  queryPrefix: ?string,
   miscStyles: ?StyleProps,
   headerMiscStyles: ?StyleProps,
   initialSort: string, // eslint-disable-line react/no-unused-prop-types
   fields: Array<FieldType>,
   fragment: string,
-  parentId: ?string,
+  section: ?string,
+  subSection: ?string,
   assetsId: ?Array<string>,
   type: ?string,
   assetSubSection: ?string,
@@ -45,9 +47,9 @@ type Props = {
 };
 
 type State = {
-  sortBy: ?string,
-  sortOrder: ?("ascend" | "descend"),
-  parentId: ?string,
+  sortBy?: ?string,
+  sortOrder: ?("asc" | "desc"),
+  subSection: ?string,
   expirationBenchmarkDate: ?string,
   mtfCategory: ?string,
   mtfCategoryExposure: ?string,
@@ -57,7 +59,7 @@ type State = {
 
 type SortIconsProps = {
   active: boolean,
-  sortOrder: "ascend" | "descend",
+  sortOrder: "asc" | "desc",
 };
 
 type TableLinkProps = {
@@ -67,41 +69,71 @@ type TableLinkProps = {
   allowTab: ?boolean,
 };
 
-const TableQuery: string => DocumentNode = fragment => gql`
-  query SortableTable(
-    $parentId: String,
-    $assetSubSection: String,
-    $assetsId: [String],
-    $expirationBenchmarkDate: String,
-    $mtfCategory: String,
-    $mtfCategoryExposure: String,
-    $etfCategory: String,
-    $etfCategoryPosition: String,
-    $count: Int!,
-    $sortBy: String!,
-    $sortOrder: String!,
-    $offset: Int!
-  ) {
-    assetsList(
-      parentId: $parentId,
-      assetSubSection: $assetSubSection,
-      assetsId: $assetsId,
-      expirationBenchmarkDate: $expirationBenchmarkDate,
-      mtfCategory: $mtfCategory,
-      mtfCategoryExposure: $mtfCategoryExposure,
-      etfCategory: $etfCategory,
-      etfCategoryPosition: $etfCategoryPosition,
-      count: $count,
-      sortBy: $sortBy,
-      sortOrder: $sortOrder,
-      offset: $offset
-    ) {
-      id
-      type
-      ${fragment}
-    }
-  }
-`;
+type GetQueryParams = {
+  queryPrefix: ?string,
+  fragment: string,
+  subSection?: ?string,
+  section?: ?string,
+  assetsId?: ?Array<string>,
+  count?: number,
+  sortBy: ?string,
+  sortOrder: ?("asc" | "desc"),
+}
+
+const TableQuery: GetQueryParams => {
+  query: DocumentNode,
+  variables: Object,
+} = ({
+  queryPrefix,
+  fragment,
+  subSection,
+  section,
+  assetsId,
+  count,
+  sortBy,
+  sortOrder,
+}) => ({
+  query: assetsId
+    ? gql`
+      query ${queryPrefix || ''}SortableTable($ids: [String!]!) {
+        assets(ids: $ids) {
+          id
+          type
+          ${fragment}
+        }
+      }
+    `
+    : gql`
+      query ${queryPrefix || ''}SortableTable(
+        $filters: [AssetGroupFilter!],
+        $count: Float!,
+        $sortBy: AssetColumn,
+        $sortOrder: OrderType,
+        $offset: Float
+      ) {
+        assetsList(
+          filters: $filters
+          count: $count,
+          sortBy: $sortBy,
+          sortOrder: $sortOrder,
+          offset: $offset
+        ) {
+          id
+          type
+          ${fragment}
+        }
+      }
+    `,
+  variables: assetsId
+    ? { ids: assetsId, }
+    : {
+      filters: [ { section, subSection, }, ],
+      count: assetsId ? assetsId.length : count,
+      sortBy,
+      sortOrder,
+      offset: 0,
+    },
+});
 
 // eslint-disable-next-line react/prop-types
 export const SortIcons: SortIconsProps => Node = ({ active, sortOrder, }) => (
@@ -112,10 +144,10 @@ export const SortIcons: SortIconsProps => Node = ({ active, sortOrder, }) => (
       marginEnd: '1rem',
     }}
     render={({ theme, className, }) => {
-      const ascendFill: string = active && sortOrder === 'ascend'
+      const ascendFill: string = active && sortOrder === 'asc'
         ? theme.color('neutral', '-2')
         : theme.color('neutral', '-4');
-      const descendFill: string = active && sortOrder === 'descend'
+      const descendFill: string = active && sortOrder === 'desc'
         ? theme.color('neutral', '-2')
         : theme.color('neutral', '-4');
       return (
@@ -133,36 +165,37 @@ export const SortIcons: SortIconsProps => Node = ({ active, sortOrder, }) => (
   />
 );
 
-// eslint-disable-next-line react/prop-types
-export const TableLink: TableLinkProps => Node = ({
+export function TableLink({
   content,
   assetId,
   type,
   allowTab,
-}) => (
-  <FelaComponent
-    style={{
-      display: 'inline-block',
-      width: '100%',
-    }}
-    render={({ className, }) => (
-      <Link
-        href={{
-          pathname: `/asset/${type}`,
-          query: {
-            assetId,
-            section: type,
-          },
-        }}
-        as={`/${type}/${assetId}`}
-      >
-        <a {...(!allowTab ? { tabIndex: -1, } : {})} className={className}>
-          {content}
-        </a>
-      </Link>
-    )}
-  />
-);
+}: TableLinkProps): Node {
+  return (
+    <FelaComponent
+      style={{
+        display: 'inline-block',
+        width: '100%',
+      }}
+      render={({ className, }) => (
+        <Link
+          href={{
+            pathname: `/asset/${type}`,
+            query: {
+              assetId,
+              section: type,
+            },
+          }}
+          as={`/${type}/${assetId}`}
+        >
+          <a {...(!allowTab ? { tabIndex: -1, } : {})} className={className}>
+            {content}
+          </a>
+        </Link>
+      )}
+    />
+  );
+}
 
 const tdHeaderStyle: (Object, ?StyleProps) => Object = (theme, miscStyles) => ({
   paddingTop: '0.5rem',
@@ -185,7 +218,8 @@ const Table = ({
   fields,
   sortOrder,
   assets,
-  parentId,
+  subSection,
+  section,
   fetchData,
   fetchAll,
   client,
@@ -281,15 +315,15 @@ const Table = ({
         ))}
       </tbody>
     </FelaComponent>
-    {addLink && type ? (
+    {addLink ? (
       <SectionLink
         href={{
-          pathname: `/${type || ''}`,
+          pathname: `/${type || subSection || ''}`,
           query: {
-            parentId,
+            subSection,
           },
         }}
-        as={`/${type || ''}/${parentId || ''}`}
+        as={type ? `/${type || ''}/${subSection || ''}` : `/${subSection || ''}`}
       >
         <span>{linkText || ''}</span>
       </SectionLink>
@@ -330,10 +364,12 @@ const Table = ({
 
 class SortableTable extends React.Component<Props, State> {
   static defaultProps = {
+    queryPrefix: null,
     miscStyles: null,
     headerMiscStyles: null,
     assetsId: null,
-    parentId: null,
+    subSection: null,
+    section: null,
     type: null,
     assetSubSection: null,
     count: 5,
@@ -351,7 +387,7 @@ class SortableTable extends React.Component<Props, State> {
   state = {
     sortBy: null,
     sortOrder: null,
-    parentId: null,
+    subSection: null,
     expirationBenchmarkDate: null,
     mtfCategory: null,
     mtfCategoryExposure: null,
@@ -360,7 +396,7 @@ class SortableTable extends React.Component<Props, State> {
   };
 
   static getDerivedStateFromProps(nextProps: Props, prevState: State) {
-    const getSortOrder: () => ?("ascend" | "descend") = () => {
+    const getSortOrder: () => ?("asc" | "desc") = () => {
       const selectedField: ?FieldType = nextProps.fields.find(
         (field: FieldType) => field.name === nextProps.initialSort
       );
@@ -369,7 +405,7 @@ class SortableTable extends React.Component<Props, State> {
     return {
       sortBy: prevState.sortBy || nextProps.initialSort,
       sortOrder: prevState.sortOrder || getSortOrder(),
-      parentId: nextProps.parentId || prevState.parentId || null,
+      subSection: nextProps.subSection || prevState.subSection || null,
       expirationBenchmarkDate:
         nextProps.expirationBenchmarkDate
         || prevState.expirationBenchmarkDate
@@ -399,44 +435,36 @@ class SortableTable extends React.Component<Props, State> {
     props?: Props,
   }) => Promise<any> = async ({ client, field = null, props = null, }) => {
     const {
-      parentId,
+      subSection,
+      section,
       assetsId,
       count,
-      assetSubSection,
-      expirationBenchmarkDate,
-      mtfCategory,
-      mtfCategoryExposure,
-      etfCategory,
-      etfCategoryPosition,
       fragment,
+      queryPrefix,
     } = props || this.props;
     this.setState(prevState => {
       const sortBy = field ? field.name : prevState.sortBy;
       const sortOrder = field
         ? prevState.sortBy !== field.name
           ? field.sortingOrder
-          : prevState.sortOrder === 'descend'
-            ? 'ascend'
-            : 'descend'
+          : prevState.sortOrder === 'desc'
+            ? 'asc'
+            : 'desc'
         : prevState.sortOrder;
-
+      const { query, variables, } = TableQuery({
+        queryPrefix,
+        fragment,
+        subSection,
+        section,
+        assetsId,
+        count,
+        sortBy,
+        sortOrder,
+      });
       client
         .query({
-          query: TableQuery(fragment),
-          variables: {
-            parentId,
-            assetsId,
-            count: assetsId ? assetsId.length : count,
-            sortBy,
-            sortOrder,
-            assetSubSection,
-            offset: 0,
-            expirationBenchmarkDate,
-            mtfCategory,
-            mtfCategoryExposure,
-            etfCategory,
-            etfCategoryPosition,
-          },
+          query,
+          variables,
         })
         .then(() => this.setState({ sortBy, sortOrder, }));
     });
@@ -445,38 +473,31 @@ class SortableTable extends React.Component<Props, State> {
   render(): Node {
     const {
       fields,
-      parentId,
+      subSection,
+      section,
       assetsId,
       count,
-      assetSubSection,
-      expirationBenchmarkDate,
-      mtfCategory,
-      mtfCategoryExposure,
-      etfCategory,
-      etfCategoryPosition,
       fragment,
       extractData,
+      queryPrefix,
       ...props
     } = this.props;
 
     const { sortBy, sortOrder, } = this.state;
+    const { query, variables, } = TableQuery({
+      queryPrefix,
+      fragment,
+      subSection,
+      section,
+      assetsId,
+      count,
+      sortBy,
+      sortOrder,
+    });
     return (
       <Query
-        query={TableQuery(fragment)}
-        variables={{
-          parentId,
-          assetsId,
-          count: assetsId ? assetsId.length : count,
-          sortBy,
-          sortOrder,
-          assetSubSection,
-          offset: 0,
-          expirationBenchmarkDate,
-          mtfCategory,
-          mtfCategoryExposure,
-          etfCategory,
-          etfCategoryPosition,
-        }}
+        query={query}
+        variables={variables}
       >
         {({ loading, error, data, fetchMore, client, }) => {
           const fetchAll = (offset: number) => fetchMore({
@@ -494,10 +515,10 @@ class SortableTable extends React.Component<Props, State> {
                       ? itemB[sortBy].toUpperCase()
                       : itemB[sortBy]; // ignore upper and lowercase
                     if (valueA < valueB) {
-                      return sortOrder === 'ascend' ? -1 : 1;
+                      return sortOrder === 'asc' ? -1 : 1;
                     }
                     if (valueA > valueB) {
-                      return sortOrder === 'ascend' ? 1 : -1;
+                      return sortOrder === 'asc' ? 1 : -1;
                     }
 
                     // values must be equal
@@ -518,14 +539,17 @@ class SortableTable extends React.Component<Props, State> {
 
           const assets: Array<Asset> = extractData
             ? extractData(data)
-            : data.assetsList;
+            : assetsId
+              ? data.assets
+              : data.assetsList;
           return (
             <Table
               assets={assets}
               fetchData={this.fetchData}
               {...{
                 sortOrder,
-                parentId,
+                subSection,
+                section,
                 fetchMore,
                 fields,
                 client,

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import type { ChildrenArray, Node, StatelessFunctionalComponent, } from 'react';
+import type { ChildrenArray, Node, } from 'react';
 import { FelaComponent, } from 'react-fela';
 import { borderTop, } from '@haaretz/htz-css-tools';
 
@@ -14,11 +14,12 @@ type TabType = {
   display: string,
   control: string,
   sortBy: string,
-  sortOrder: "ascend" | "descend",
+  sortOrder: "asc" | "desc",
 };
 
 type Props = {
-  assetId?: string,
+  subSection?: string,
+  section?: string,
   tabs: Array<TabType>,
 };
 
@@ -51,45 +52,48 @@ export const tabRule: Object => Object = ({ theme, }) => ({
   },
 });
 
-export const TabButton: StatelessFunctionalComponent<TabButtonProps> = ({
+export function TabButton({
   isActive,
   children,
-  ...props // eslint-disable-line react/prop-types
-}) => (
-  <FelaComponent
-    style={theme => ({
-      ...(isActive
-        ? {
+  ...props
+}: TabButtonProps): Node {
+  return (
+    <FelaComponent
+      style={theme => ({
+        ...(isActive
+          ? {
+            backgroundColor: theme.color('neutral', '-10'),
+            color: theme.color('primary'),
+            fontWeight: '700',
+          }
+          : {}),
+        paddingTop: '0.5rem',
+        paddingBottom: '0.5rem',
+        width: '100%',
+        ...borderTop(
+          3,
+          2,
+          'solid',
+          isActive ? theme.color('primary') : 'transparent'
+        ),
+        ':focus': {
+          outline: 'none',
           backgroundColor: theme.color('neutral', '-10'),
-          color: theme.color('primary'),
-          fontWeight: '700',
-        }
-        : {}),
-      paddingTop: '0.5rem',
-      paddingBottom: '0.5rem',
-      width: '100%',
-      ...borderTop(
-        3,
-        2,
-        'solid',
-        isActive ? theme.color('primary') : 'transparent'
-      ),
-      ':focus': {
-        outline: 'none',
-        backgroundColor: theme.color('neutral', '-10'),
-      },
-    })}
-    render={({ className, }) => (
-      <button type="button" className={className} {...props}>
-        {children}
-      </button>
-    )}
-  />
-);
+        },
+      })}
+      render={({ className, }) => (
+        <button type="button" className={className} {...props}>
+          {children}
+        </button>
+      )}
+    />
+  );
+}
 
 class TabbedGraph extends React.Component<Props, State> {
   static defaultProps = {
-    assetId: null,
+    subSection: null,
+    section: null,
   };
 
   state = {
@@ -105,11 +109,8 @@ class TabbedGraph extends React.Component<Props, State> {
   };
 
   render(): Node {
-    const {
-      index,
-      tab: { sortBy, sortOrder, control, },
-    } = this.state;
-    const { assetId, tabs, } = this.props;
+    const { index, tab: { sortBy, sortOrder, control, }, } = this.state;
+    const { subSection, section, tabs, } = this.props;
     return (
       <FelaComponent
         style={theme => ({
@@ -141,9 +142,11 @@ class TabbedGraph extends React.Component<Props, State> {
             </TabList>
             <TabPanel id={control}>
               <TableGraphConnector
-                assetId={assetId}
+                subSection={subSection}
+                section={section}
                 sortBy={sortBy}
                 sortOrder={sortOrder}
+                count={9}
               />
             </TabPanel>
           </Tabs>

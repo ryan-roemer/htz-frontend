@@ -11,18 +11,22 @@ import GraphController from '../GraphController/GraphController';
 import SectionLink from '../SectionLink/SectionLink';
 
 type Props = {
-  assetId?: number | string | null,
+  subSection?: number | string | null,
+  count: ?number,
   assetsId: ?Array<string>,
   isExchange?: boolean,
+  section: ?string,
   sortBy: ?string,
-  sortOrder: ?"ascend" | ?"descend",
+  sortOrder: ?"asc" | ?"desc",
 };
 
 type State = Asset;
 
 class TableGraphConnector extends React.Component<Props, State> {
   static defaultProps = {
-    assetId: null,
+    section: null,
+    count: null,
+    subSection: null,
     assetsId: null,
     isExchange: false,
     sortBy: null,
@@ -42,7 +46,7 @@ class TableGraphConnector extends React.Component<Props, State> {
 
   render(): Node {
     const { id, name, type, } = this.state || {};
-    const { assetId, assetsId, isExchange, sortBy, sortOrder, } = this.props;
+    const { subSection, assetsId, isExchange, sortBy, sortOrder, count, section, } = this.props;
     return (
       <FelaTheme
         render={theme => (
@@ -66,9 +70,11 @@ class TableGraphConnector extends React.Component<Props, State> {
               <AssetsTable
                 changeAsset={this.changeAsset}
                 sortBy={sortBy}
+                section={section}
                 sortOrder={sortOrder}
-                assetId={assetId}
+                subSection={subSection}
                 assetsId={assetsId}
+                count={count || (assetsId ? assetsId.length : 0)}
                 isExchange={isExchange}
                 headers={[
                   {
