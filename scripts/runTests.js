@@ -28,8 +28,7 @@ const packages = filePaths.reduce((result, file) => {
 }, {});
 
 // Run tests in each package separately (in case different packages have different settings)
-Object.keys(packages).forEach(packageDir =>
-  runTestsLocally(packageDir, packages[packageDir])
+Object.keys(packages).forEach(packageDir => runTestsLocally(packageDir, packages[packageDir])
 );
 
 function runTestsLocally(packageDir, files) {

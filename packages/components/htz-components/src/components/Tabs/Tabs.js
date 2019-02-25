@@ -44,19 +44,22 @@ class Tabs extends React.Component<Props, State> {
       <FelaComponent
         style={(
           {
-            theme
+            theme,
           }
         ) => ({
           extend: [
             ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-          ]
-        })}>{({ className, }) => (
+          ],
+        })}
+      >
+        {({ className, }) => (
           <TabTag className={className}>
             {
               children({ activeTab, setActiveTab: this.setActiveTab, })
             }
           </TabTag>
-        )}</FelaComponent>
+        )}
+      </FelaComponent>
     );
   }
 }

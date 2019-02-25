@@ -13,13 +13,11 @@ const writeMetaDataToApollo = (apolloClient, metadata) => {
   return metadata;
 };
 
-const getMetadataFromApollo = apolloClient =>
-  apolloClient.readQuery({ query: STATE_METADATA, }).stateMetaData;
+const getMetadataFromApollo = apolloClient => apolloClient.readQuery({ query: STATE_METADATA, }).stateMetaData;
 
-const parseRouteInfo = routeInfo =>
-  (typeof routeInfo === 'object'
-    ? { route: routeInfo.url, metadata: routeInfo.param, }
-    : { route: routeInfo, metadata: null, });
+const parseRouteInfo = routeInfo => (typeof routeInfo === 'object'
+  ? { route: routeInfo.url, metadata: routeInfo.param, }
+  : { route: routeInfo, metadata: null, });
 
 export {
   writeMetaDataToApollo,

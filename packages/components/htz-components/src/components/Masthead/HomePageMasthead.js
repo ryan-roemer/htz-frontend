@@ -56,7 +56,8 @@ export default class HomePageMasthead extends React.PureComponent<HomePageMasthe
     const { contentId, logo, isScrolled, shouldDisplay, } = this.props;
 
     return (
-      <FelaTheme>{theme => (
+      <FelaTheme>
+        {theme => (
           <LayoutRow
             miscStyles={{
               position: [ { until: 's', value: 'fixed', }, { from: 's', value: 'relative', }, ],
@@ -129,7 +130,8 @@ export default class HomePageMasthead extends React.PureComponent<HomePageMasthe
               </React.Fragment>
             </LayoutContainer>
           </LayoutRow>
-        )}</FelaTheme>
+        )}
+      </FelaTheme>
     );
   }
 }

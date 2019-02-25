@@ -57,7 +57,8 @@ export default function PopupNotification({
       }}
       overlayBgColor="rgba(255, 255, 255, 0.9)"
       render={({ isVisible, handleClose, isModal, }) => (
-        <FelaComponent style={style.wrapper}>{({ theme, className, }) => (
+        <FelaComponent style={style.wrapper}>
+          {({ theme, className, }) => (
             <div className={className}>
               <FelaComponent style={style.innerWrapper} as="span">
                 {getIcon(icon)}
@@ -77,7 +78,8 @@ export default function PopupNotification({
                 </Button>
               </FelaComponent>
             </div>
-          )}</FelaComponent>
+          )}
+        </FelaComponent>
       )}
     />
   );

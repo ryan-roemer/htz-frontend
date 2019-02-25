@@ -11,10 +11,9 @@ function isCommitToGuardedBranch(guardedBranches) {
     .filter(item => !!item)[0];
 
   if (guardedBranches.includes(branch)) {
-    const message =
-      `${chalk.yellow(
-        `You are trying to commit directly into ${branch}`
-      )}\n${chalk.white('Are you sure you this is a good idea?')}`;
+    const message = `${chalk.yellow(
+      `You are trying to commit directly into ${branch}`
+    )}\n${chalk.white('Are you sure you this is a good idea?')}`;
 
     return inquirer.prompt([
       {

@@ -367,7 +367,7 @@ export default function UserService(config = {}) {
   }
 
   function isMobile() {
-    return window.matchMedia("(max-width: 600px)").matches;
+    return window.matchMedia('(max-width: 600px)').matches;
   }
 
   /**

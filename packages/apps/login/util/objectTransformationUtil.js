@@ -9,11 +9,11 @@ const transformGraphQlObjectToFlowDispenserObject = ({ userByMail, }) => {
       isPhoneValid: userExist && userStatus ? userByMail.userStatus.isMobileValidated : false,
       isPhoneConnectedWithEmail: userExist && userStatus && userByMail.userStatus.isPhoneEmailConn,
       isPremiumUser:
-        userExist && crmStatus &&
-        userByMail.userCrmStatus.id !== null &&
-        (userByMail.userCrmStatus.isActiveEng ||
-          userByMail.userCrmStatus.isActiveHeb ||
-          userByMail.userCrmStatus.isActiveTm),
+        userExist && crmStatus
+        && userByMail.userCrmStatus.id !== null
+        && (userByMail.userCrmStatus.isActiveEng
+          || userByMail.userCrmStatus.isActiveHeb
+          || userByMail.userCrmStatus.isActiveTm),
     },
   };
 };

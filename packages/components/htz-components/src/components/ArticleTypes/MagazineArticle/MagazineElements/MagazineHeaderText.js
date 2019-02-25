@@ -50,7 +50,8 @@ const subTitleStyle = ({ theme, variationB, }) => ({
 
 function HeaderText({ title, subtitle, className, variationB, }) {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <div className={className}>
           <FelaComponent style={titleStyle} variationB={variationB} as="h1">
             {title}
@@ -61,7 +62,8 @@ function HeaderText({ title, subtitle, className, variationB, }) {
             </FelaComponent>
           ) : null}
         </div>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }
 

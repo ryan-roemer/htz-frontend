@@ -30,16 +30,14 @@ const defaultProps = {};
 function Instructions({ instructions, }) {
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         marginTop: '4rem',
         maxWidth: theme.articleStyle.body.maxWidth,
         marginRight: 'auto',
-        marginLeft: 'auto'
-      })}>{({ theme, className, }) => (
+        marginLeft: 'auto',
+      })}
+    >
+      {({ theme, className, }) => (
         <Section className={className}>
           <FelaComponent
             style={{
@@ -48,16 +46,20 @@ function Instructions({ instructions, }) {
               marginBottom: '3rem',
               maxWidth: '41rem',
               extend: [ theme.type('2'), borderBottom('2px', 1, 'solid', theme.color('primary')), ],
-            }}>{({ className, }) => (
+            }}
+          >
+            {({ className, }) => (
               <H className={className}>{theme.recipeInstructionsI18n.sectionTitle}</H>
-            )}</FelaComponent>
+            )}
+          </FelaComponent>
           <div>
             {instructions.map(instructionsBody => (
               <ArticleBody key={instructionsBody.contentId} body={instructionsBody.body} />
             ))}
           </div>
         </Section>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

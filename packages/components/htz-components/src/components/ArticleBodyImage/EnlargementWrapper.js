@@ -82,7 +82,9 @@ class EnlargementWrapper extends React.Component<Props, State> {
           overflow: 'hidden',
           position: 'relative',
           cursor: 'zoom-in',
-        }}>{({ className, }) => (
+        }}
+      >
+        {({ className, }) => (
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
           <div
             className={className}
@@ -93,7 +95,8 @@ class EnlargementWrapper extends React.Component<Props, State> {
             <Icon isFullScreen={false} hide={this.state.hide} iconText={iconText} />
             {children}
           </div>
-        )}</FelaComponent>
+        )}
+      </FelaComponent>
     );
   }
 }

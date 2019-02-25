@@ -278,7 +278,8 @@ export class Select extends Component {
       .indexOf(selectedItem ? selectedItem.key || selectedItem.value : null);
 
     return (
-      <FelaComponent style={{ position: 'relative', }}>{({ className, theme, }) => (
+      <FelaComponent style={{ position: 'relative', }}>
+        {({ className, theme, }) => (
           <div className={className}>
             <Downshift
               selectedItem={selectedItem}
@@ -313,24 +314,25 @@ export class Select extends Component {
                   >
                     <StyledSelectedItem
                       {...getButtonProps({
-                        'aria-label': theme.selectAriaLabel.text,
-                        buttonMiscStyles,
-                        variant,
-                        isOpen,
-                        noHighlitedItems: highlightedIndex === null,
-                        type: 'button',
-                        ...(refFunc ? { innerRef: el => refFunc(el), } : {}),
-                        ...(onBlur ? { onBlur, } : {}),
-                        ...(onFocus ? { onFocus, } : {}),
-                      })}
+                'aria-label': theme.selectAriaLabel.text,
+                buttonMiscStyles,
+                variant,
+                isOpen,
+                noHighlitedItems: highlightedIndex === null,
+                type: 'button',
+                ...(refFunc ? { innerRef: el => refFunc(el), } : {}),
+                ...(onBlur ? { onBlur, } : {}),
+                ...(onFocus ? { onFocus, } : {}),
+              })}
                     >
                       {selectedItem
-                        ? selectedItem.display || selectedItem.value
-                        : placeholder}
+                ? selectedItem.display || selectedItem.value
+                : placeholder}
                     </StyledSelectedItem>
                     <FelaComponent style={{ position: 'relative', }}>
                       {isOpen ? (
-                        <FelaComponent style={dropDownMenuStyle} variant={variant}>{({ className, }) => (
+                <FelaComponent style={dropDownMenuStyle} variant={variant}>
+                          {({ className, }) => (
                             <div
                               className={className}
                               data-test="dropdown-menu"
@@ -350,8 +352,9 @@ export class Select extends Component {
                                 </StyledItem>
                               ))}
                             </div>
-                          )}</FelaComponent>
-                      ) : null}
+                          )}
+                        </FelaComponent>
+              ) : null}
                     </FelaComponent>
                   </StyledSelectWrapper>
                 </div>
@@ -365,7 +368,8 @@ export class Select extends Component {
               />
             ) : null}
           </div>
-        )}</FelaComponent>
+        )}
+      </FelaComponent>
     );
   }
 }

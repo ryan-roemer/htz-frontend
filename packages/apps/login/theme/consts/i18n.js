@@ -23,8 +23,8 @@ export const phoneInputTexts = host => ({
   phoneInputRequiredShort: '*',
 });
 
-export const nameInputTexts = (host) => ({
-  nameInputLabel: host === 'haaretz.com' ? ['First Name', 'Last Name'] : ['שם פרטי', 'שם משפחה'],
+export const nameInputTexts = host => ({
+  nameInputLabel: host === 'haaretz.com' ? [ 'First Name', 'Last Name', ] : [ 'שם פרטי', 'שם משפחה', ],
   nameInputRequiredLong: host === 'haaretz.com' ? 'required' : 'שדה חובה',
   nameInputRequiredShort: '*',
 });

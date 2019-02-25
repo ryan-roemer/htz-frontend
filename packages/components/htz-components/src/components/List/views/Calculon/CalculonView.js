@@ -177,7 +177,8 @@ function Teaser1({
   biAction,
 }: TeaserPropsType): React.Node {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <Teaser
           data={data}
           gutter={0}
@@ -264,7 +265,8 @@ function Teaser1({
             renderFooter={() => <Footer data={data} showAuthor isRankOnTop />}
           />
         </Teaser>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }
 
@@ -275,7 +277,8 @@ function Teaser2({
   biAction,
 }: TeaserPropsType): React.Node {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <Teaser
           data={data}
           gutter={1}
@@ -379,7 +382,8 @@ function Teaser2({
             renderFooter={() => <Footer data={data} />}
           />
         </Teaser>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }
 
@@ -390,7 +394,8 @@ function Teaser3({
   biAction,
 }: TeaserPropsType): React.Node {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <Teaser
           data={data}
           gutter={1}
@@ -494,7 +499,8 @@ function Teaser3({
             renderFooter={() => <Footer data={data} />}
           />
         </Teaser>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }
 
@@ -672,7 +678,7 @@ function Footer({ data, showAuthor, isRankOnTop, }: FooterProps): React.Node {
         <FelaComponent
           style={(
             {
-              theme
+              theme,
             }
           ) => ({
             flexBasis: 'auto',
@@ -686,7 +692,7 @@ function Footer({ data, showAuthor, isRankOnTop, }: FooterProps): React.Node {
                   ),
                 ],
               }
-              : {})
+              : {}),
           })}
           as="div"
         >

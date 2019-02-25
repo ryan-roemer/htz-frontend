@@ -99,7 +99,7 @@ class OptOutStrip extends React.PureComponent {
                         <FelaComponent
                           style={(
                             {
-                              theme
+                              theme,
                             }
                           ) => optOutStripStyle(theme)}
                           as="div"
@@ -115,12 +115,14 @@ class OptOutStrip extends React.PureComponent {
                           <FelaComponent
                             style={(
                               {
-                                theme
+                                theme,
                               }
                             ) => ({
                               color: theme.color('neutral', '-10'),
-                              marginInlineEnd: '2rem'
-                            })}>{({ theme, className, }) => (
+                              marginInlineEnd: '2rem',
+                            })}
+                          >
+                            {({ theme, className, }) => (
                               <span className={className}>
                                 <FelaComponent
                                   style={{
@@ -138,7 +140,8 @@ class OptOutStrip extends React.PureComponent {
                                 </FelaComponent>
                                   לחצו כאן כדי לחזור לגרסה הישנה
                               </span>
-                            )}</FelaComponent>
+                            )}
+                          </FelaComponent>
                           <Button
                             onClick={() => this.optOut(user.id, optOutMutation)
                               }

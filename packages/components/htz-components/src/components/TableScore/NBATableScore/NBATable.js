@@ -115,16 +115,19 @@ export default class NBATable extends React.Component<Props, State> {
               <FelaComponent style={CenteredElement}>
                 <CoastBar client={client} coastType={coastType} toggleCoast={this.toggleCoast} />
 
-                <FelaTheme>{theme => (
+                <FelaTheme>
+                  {theme => (
                     <Table
                       tableData={tableData}
                       tableType="soccer-leagues"
                       headers={theme.nbaHeaders.headers}
                       isOpen={isOpen}
                       borders={borders}
-                    />)}</FelaTheme>
+                    />)}
+                </FelaTheme>
 
-                <FelaTheme>{theme => (
+                <FelaTheme>
+                  {theme => (
                     <ToggleButton
                       handleClick={this.handleToggle}
                       rotateDeg={
@@ -135,7 +138,8 @@ export default class NBATable extends React.Component<Props, State> {
                     >
                       {isOpen ? theme.btnOptions.title.open : theme.btnOptions.title.close}
                     </ToggleButton>
-                  )}</FelaTheme>
+                  )}
+                </FelaTheme>
 
               </FelaComponent>
             </FelaComponent>
@@ -149,16 +153,19 @@ export default class NBATable extends React.Component<Props, State> {
             <FelaComponent style={CenteredElement}>
               <CoastBar client={client} coastType={coastType} toggleCoast={this.toggleCoast} />
 
-              <FelaTheme>{theme => (
+              <FelaTheme>
+                {theme => (
                   <Table
                     tableData={tableData}
                     tableType="soccer-leagues"
                     headers={theme.nbaHeaders.headers}
                     isOpen={isOpen}
                     borders={borders}
-                  />)}</FelaTheme>
+                  />)}
+              </FelaTheme>
 
-              <FelaTheme>{theme => (
+              <FelaTheme>
+                {theme => (
                   <ToggleButton
                     handleClick={this.handleToggle}
                     rotateDeg={isOpen ? theme.btnOptions.degree.open : theme.btnOptions.degree.close}
@@ -166,7 +173,8 @@ export default class NBATable extends React.Component<Props, State> {
                   >
                     {isOpen ? theme.btnOptions.title.open : theme.btnOptions.title.close}
                   </ToggleButton>
-                )}</FelaTheme>
+                )}
+              </FelaTheme>
 
             </FelaComponent>
           </FelaComponent>

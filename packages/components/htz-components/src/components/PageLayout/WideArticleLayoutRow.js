@@ -9,7 +9,7 @@ const WideArticleLayoutRow = ({ children, hideDivider, miscStyles, showBorderTop
   <FelaComponent
     style={(
       {
-        theme
+        theme,
       }
     ) => ({
       marginTop: '3rem',
@@ -29,12 +29,15 @@ const WideArticleLayoutRow = ({ children, hideDivider, miscStyles, showBorderTop
           }
         ),
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ]
-    })}>{({ className, }) => (
+      ],
+    })}
+  >
+    {({ className, }) => (
       <Section className={className}>
         {children}
       </Section>
-    )}</FelaComponent>
+    )}
+  </FelaComponent>
 );
 
 WideArticleLayoutRow.propTypes = {

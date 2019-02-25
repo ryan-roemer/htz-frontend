@@ -33,11 +33,14 @@ type Props = {
   },
 };
 
-const numToString: number => string = num => (
-  num.toLocaleString('he', { minimumFractionDigits: 2, maximumFractionDigits: 2, })
-);
+const numToString: number => string = num => num.toLocaleString('he', { minimumFractionDigits: 2, maximumFractionDigits: 2, });
 
-function money({ url: { query: { section, }, asPath, }, }: Props): Node {
+function money({
+  url: {
+    query: { section, },
+    asPath,
+  },
+}: Props): Node {
   return (
     <MainLayout
       section={section}
@@ -45,12 +48,11 @@ function money({ url: { query: { section, }, asPath, }, }: Props): Node {
       description="הכסף החם - למידע עדכני על תנועות ההון בבורסה, גיוסים ופדיונות בקרנות נאמנות ותעודות סל היכנס לאתר TheMarker Finance"
       path={asPath}
     >
-      <FelaTheme>{theme => (
+      <FelaTheme>
+        {theme => (
           <Fragment>
             <PageRow>
-              <RowItem
-                title="תנועות ההון בתעודות סל וקרנות נאמנות (ב-%)"
-              >
+              <RowItem title="תנועות ההון בתעודות סל וקרנות נאמנות (ב-%)">
                 <FeedTabbedGraph
                   part={1}
                   side={1}
@@ -143,9 +145,7 @@ function money({ url: { query: { section, }, asPath, }, }: Props): Node {
               </RowItem>
             </PageRow>
             <PageRow>
-              <RowItem
-                title="תנועות ההון בתעודות סל וקרנות נאמנות (ב-₪)"
-              >
+              <RowItem title="תנועות ההון בתעודות סל וקרנות נאמנות (ב-₪)">
                 <FeedTabbedGraph
                   part={2}
                   side={1}
@@ -238,9 +238,7 @@ function money({ url: { query: { section, }, asPath, }, }: Props): Node {
             <PageRow>
               <Grid gutter={2}>
                 <GridItem width={3 / 5}>
-                  <RowItem
-                    title="ביצועי קרנות הנאמנות מול המדדים"
-                  >
+                  <RowItem title="ביצועי קרנות הנאמנות מול המדדים">
                     <TabbedTable
                       defaultTab={2}
                       presentation
@@ -262,8 +260,8 @@ function money({ url: { query: { section, }, asPath, }, }: Props): Node {
                                 ...borderBottom('2px', 1, 'solid', theme.color('neutral', '-6')),
                               }}
                               initialSort="indexYield"
-                              data={
-                                data.table.dataSource.map((asset: {
+                              data={data.table.dataSource.map(
+                                (asset: {
                                   name: string,
                                   indexYield: string,
                                   mtfBeat: string,
@@ -275,8 +273,8 @@ function money({ url: { query: { section, }, asPath, }, }: Props): Node {
                                   mtfBeat: asset[2],
                                   mtfYield: asset[3],
                                   id: asset[4],
-                                }))
-                              }
+                                })
+                              )}
                               fields={[
                                 {
                                   name: 'name',
@@ -296,9 +294,10 @@ function money({ url: { query: { section, }, asPath, }, }: Props): Node {
                                   display: '% תשואות המדד',
                                   sortingOrder: 'descend',
                                   style: ({ indexYield, }) => ({
-                                    color: indexYield < 0
-                                      ? theme.color('negative')
-                                      : theme.color('positive'),
+                                    color:
+                                      indexYield < 0
+                                        ? theme.color('negative')
+                                        : theme.color('positive'),
                                     direction: 'ltr',
                                     fontWeight: '700',
                                     paddingEnd: '2rem',
@@ -321,9 +320,10 @@ function money({ url: { query: { section, }, asPath, }, }: Props): Node {
                                   display: '% תשואה הקרנות',
                                   sortingOrder: 'descend',
                                   style: ({ mtfYield, }) => ({
-                                    color: mtfYield < 0
-                                      ? theme.color('negative')
-                                      : theme.color('positive'),
+                                    color:
+                                      mtfYield < 0
+                                        ? theme.color('negative')
+                                        : theme.color('positive'),
                                     direction: 'ltr',
                                     fontWeight: '700',
                                     paddingEnd: '2rem',
@@ -339,7 +339,6 @@ function money({ url: { query: { section, }, asPath, }, }: Props): Node {
                             />
                           )}
                         />
-
                       )}
                     />
                   </RowItem>
@@ -356,9 +355,7 @@ function money({ url: { query: { section, }, asPath, }, }: Props): Node {
             <PageRow>
               <Grid gutter={2}>
                 <GridItem width={3 / 5}>
-                  <RowItem
-                    title="טעויות עקיבה בקרנות מחקות"
-                  />
+                  <RowItem title="טעויות עקיבה בקרנות מחקות" />
                 </GridItem>
                 <GridItem width={2 / 5}>
                   <GeneralAdSlot
@@ -370,7 +367,8 @@ function money({ url: { query: { section, }, asPath, }, }: Props): Node {
               </Grid>
             </PageRow>
           </Fragment>
-        )}</FelaTheme>
+        )}
+      </FelaTheme>
     </MainLayout>
   );
 }

@@ -45,15 +45,19 @@ const wrapperStyle = ({ miscStyles, theme, }) => ({
  */
 function Tags({ tagsList, miscStyles, }) {
   return tagsList && tagsList.length > 0 ? (
-    <FelaComponent miscStyles={miscStyles} style={wrapperStyle}>{({ className, theme, }) => (
+    <FelaComponent miscStyles={miscStyles} style={wrapperStyle}>
+      {({ className, theme, }) => (
         <div className={className}>
           <FelaComponent
             style={{
               color: theme.color('secondary'),
               marginEnd: '1rem',
-            }}>{({ className, }) => (
+            }}
+          >
+            {({ className, }) => (
               <H className={className}>{theme.tagsElementI18n.prefix}</H>
-            )}</FelaComponent>
+            )}
+          </FelaComponent>
           <ul>
             {tagsList.map((tag, i) => (
               <FelaComponent
@@ -69,9 +73,9 @@ function Tags({ tagsList, miscStyles, }) {
                   content={(
                     <FelaComponent
                       style={{
-                        color: theme.color('neutral', '-2'),
-                        textDecoration: 'underline',
-                      }}
+                  color: theme.color('neutral', '-2'),
+                  textDecoration: 'underline',
+                }}
                       as="span"
                     >
                       {tag.contentName}
@@ -82,7 +86,8 @@ function Tags({ tagsList, miscStyles, }) {
             ))}
           </ul>
         </div>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   ) : null;
 }
 

@@ -122,16 +122,19 @@ export default class SoccerLeaguesTable extends React.Component<Props, State> {
             <FelaComponent style={Container}>
               <FelaComponent style={CenteredElement}>
 
-                <FelaTheme>{theme => (
+                <FelaTheme>
+                  {theme => (
                     <Table
                       tableData={tableData}
                       tableType="soccer-leagues"
                       headers={theme.footballHeaders.headers}
                       isOpen={isOpen}
                       borders={borders}
-                    />)}</FelaTheme>
+                    />)}
+                </FelaTheme>
 
-                <FelaTheme>{theme => (
+                <FelaTheme>
+                  {theme => (
                     <ToggleButton
                       handleClick={this.handleToggle}
                       rotateDeg={
@@ -141,7 +144,8 @@ export default class SoccerLeaguesTable extends React.Component<Props, State> {
                     >
                       {isOpen ? theme.btnOptions.title.open : theme.btnOptions.title.close}
                     </ToggleButton>
-                  )}</FelaTheme>
+                  )}
+                </FelaTheme>
 
               </FelaComponent>
             </FelaComponent>

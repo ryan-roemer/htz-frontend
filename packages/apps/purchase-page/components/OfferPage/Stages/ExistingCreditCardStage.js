@@ -44,15 +44,13 @@ const PAY_WITH_EXISTING_CARD = gql`
 function DisplayError() {
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         color: theme.color('tertiary'),
         marginTop: '2rem',
-        fontWeight: 'bold'
-      })}>{({
+        fontWeight: 'bold',
+      })}
+    >
+      {({
         className,
         theme: {
           stage5: {
@@ -72,7 +70,8 @@ function DisplayError() {
             </Button>
           </FelaComponent>
         </div>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

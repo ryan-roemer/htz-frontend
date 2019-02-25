@@ -61,7 +61,8 @@ class Stage2 extends Component {
                     client.writeData({ data: { startFromStage2: true, }, });
                   }
                   return (
-                    <FelaComponent style={{ textAlign: 'center', }}>{({
+                    <FelaComponent style={{ textAlign: 'center', }}>
+                      {({
                         className,
                         theme: {
                           stage2: { header, },
@@ -154,7 +155,8 @@ class Stage2 extends Component {
                             </LayoutContainer>
                           </div>
                         );
-                      }}</FelaComponent>
+                      }}
+                    </FelaComponent>
                   );
                 }}
               </Query>

@@ -25,7 +25,8 @@ function Leonardo({ list, }: Props): Node {
     : null;
 
   return items ? (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <ListView
           innerBackgroundColor="white"
           gutter={0}
@@ -70,7 +71,7 @@ function Leonardo({ list, }: Props): Node {
                     render={(banner: ClickTrackerBannerType) => {
                       const { clicktrackerimage, link, } = banner;
                       return (
-                        <HtzLink href={link}>
+                  <HtzLink href={link}>
                           <Image
                             data={clicktrackerimage}
                             imgOptions={{
@@ -90,7 +91,8 @@ function Leonardo({ list, }: Props): Node {
             </Grid>
           </GridItem>
         </ListView>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   ) : (
     <Debug>There is not enough items to render this list view</Debug>
   );

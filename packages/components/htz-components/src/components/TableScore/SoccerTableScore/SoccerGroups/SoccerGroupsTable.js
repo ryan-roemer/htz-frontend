@@ -56,7 +56,7 @@ const CenteredElement: Object = {
 
 const Container: Object = {
   display: 'inline-block',
-}
+};
 
 
 export default class SoccerLeaguesTable extends React.Component<Props, State> {
@@ -113,13 +113,15 @@ export default class SoccerLeaguesTable extends React.Component<Props, State> {
                   groupNumber={Number(group) || 1}
                 />
 
-                <FelaTheme>{theme => (
+                <FelaTheme>
+                  {theme => (
                     <Table
                       tableData={data.tableScore.data}
                       tableType="soccer-champions"
                       headers={theme.footballHeaders.headers}
                     />
-                  )}</FelaTheme>
+                  )}
+                </FelaTheme>
               </FelaComponent>
             </FelaComponent>
           );
@@ -138,13 +140,15 @@ export default class SoccerLeaguesTable extends React.Component<Props, State> {
                   groupNumber={Number(group) || 1}
                 />
 
-                <FelaTheme>{theme => (
+                <FelaTheme>
+                  {theme => (
                     <Table
                       tableData={tableData}
                       tableType="soccer-champions"
                       headers={theme.footballHeaders.headers}
                     />
-                  )}</FelaTheme>
+                  )}
+                </FelaTheme>
               </FelaComponent>
             </FelaComponent>
           )}

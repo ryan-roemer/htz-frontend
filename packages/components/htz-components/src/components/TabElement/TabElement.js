@@ -4,10 +4,7 @@ import { FelaComponent, FelaTheme, } from 'react-fela';
 import { borderBottom, } from '@haaretz/htz-css-tools';
 
 import type { ChildrenArray, Node, ComponentType, } from 'react';
-import type {
-  TabsElementType,
-  TabItemType,
-} from '../../flowTypes/TabsElementType';
+import type { TabsElementType, TabItemType, } from '../../flowTypes/TabsElementType';
 
 import Tabs from '../Tabs/Tabs';
 import TabList from '../TabList/TabList';
@@ -37,11 +34,7 @@ type TabButtonProps = {
 export function TabButton({ isActive, children, ...props }: TabButtonProps) {
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         ...(isActive
           ? {
             backgroundColor: theme.color('quaternary'),
@@ -60,12 +53,15 @@ export function TabButton({ isActive, children, ...props }: TabButtonProps) {
           backgroundColor: theme.color('quaternary'),
         },
 
-        extend: [ theme.type(0, { until: 'l', }), ]
-      })}>{({ className, }) => (
+        extend: [ theme.type(0, { until: 'l', }), ],
+      })}
+    >
+      {({ className, }) => (
         <button type="button" className={className} {...props}>
           {children}
         </button>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 
@@ -79,14 +75,11 @@ TabElement.defaultProps = {
   List: null,
 };
 
-function TabElement({
-  elements,
-  List: SsrList,
-  startAt,
-}: TabsElementProps): Node {
+function TabElement({ elements, List: SsrList, startAt, }: TabsElementProps): Node {
   const List = SsrList || CsrList;
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <Tabs
           activeTab={startAt}
           miscStyles={{
@@ -115,12 +108,7 @@ function TabElement({
                     ...theme.mq(
                       { from: 'l', },
                       {
-                        ...borderBottom(
-                          '1px',
-                          0,
-                          'solid',
-                          theme.color('neutral', '-6')
-                        ),
+                        ...borderBottom('1px', 0, 'solid', theme.color('neutral', '-6')),
                       }
                     ),
                   }}
@@ -159,7 +147,8 @@ function TabElement({
             );
           }}
         </Tabs>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }
 

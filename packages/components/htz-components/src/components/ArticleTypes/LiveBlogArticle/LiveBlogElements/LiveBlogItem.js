@@ -17,7 +17,7 @@ const Fade = ({ children, fadeText, }) => (
   <FelaComponent
     style={(
       {
-        theme
+        theme,
       }
     ) => ({
       display: fadeText ? 'block' : 'none',
@@ -28,7 +28,7 @@ const Fade = ({ children, fadeText, }) => (
       margin: 'auto',
 
       backgroundImage:
-        'linear-gradient(0deg,#fff,#fff 0%,hsla(0,0%,100%,.8) 25%,hsla(0,0%,100%,0))'
+        'linear-gradient(0deg,#fff,#fff 0%,hsla(0,0%,100%,.8) 25%,hsla(0,0%,100%,0))',
     })}
     as="span"
   >
@@ -104,7 +104,8 @@ class LiveBlogItem extends React.Component {
 
     return (
       <React.Fragment>
-        <FelaTheme>{theme => (
+        <FelaTheme>
+          {theme => (
             <React.Fragment>
               <Grid
                 tagName="article"
@@ -132,7 +133,7 @@ class LiveBlogItem extends React.Component {
                   <FelaComponent
                     style={(
                       {
-                        theme
+                        theme,
                       }
                     ) => ({
                       ...theme.type(1),
@@ -145,25 +146,31 @@ class LiveBlogItem extends React.Component {
                           color: theme.color('tertiary'),
                           ...theme.type(-1),
                         }
-                      )
-                    })}>{({ className, }) => (
+                      ),
+                    })}
+                  >
+                    {({ className, }) => (
                       <div className={className}>
                         <Time time={item.pubDate} format="HH:mm" />
                       </div>
-                    )}</FelaComponent>
+                    )}
+                  </FelaComponent>
                   <FelaComponent
                     style={(
                       {
-                        theme
+                        theme,
                       }
                     ) => ({
                       ...theme.type(-2),
-                      ...theme.mq({ until: 's', }, { marginInlineEnd: '1rem', ...theme.type(-1), })
-                    })}>{({ className, }) => (
+                      ...theme.mq({ until: 's', }, { marginInlineEnd: '1rem', ...theme.type(-1), }),
+                    })}
+                  >
+                    {({ className, }) => (
                       <div className={className}>
                         <Time time={item.pubDate} format="DD.MM.YYYY" />
                       </div>
-                    )}</FelaComponent>
+                    )}
+                  </FelaComponent>
                   {/* M/L/XL Action Buttons */}
                   <ActionButtons
                     shouldMainNavBarDisplay={false}
@@ -218,11 +225,13 @@ class LiveBlogItem extends React.Component {
                   // eslint-disable-next-line no-return-assign
                   attrs={{ ref: mainContainerEl => (this.mainContainerEl = mainContainerEl), }}
                 >
-                  <FelaComponent style={{ marginBottom: '2rem', extend: [ theme.type(2), ], }}>{({ className, }) => (
+                  <FelaComponent style={{ marginBottom: '2rem', extend: [ theme.type(2), ], }}>
+                    {({ className, }) => (
                       <H className={className}>
                         <a href={`#${item.cardId}`}>{item.title}</a>
                       </H>
-                    )}</FelaComponent>
+                    )}
+                  </FelaComponent>
 
                   <ArticleBody body={item.body} />
                   {this.state.fadeText === true ? <Fade fadeText={this.state.fadeText} /> : null}
@@ -232,7 +241,7 @@ class LiveBlogItem extends React.Component {
                 <FelaComponent
                   style={(
                     {
-                      theme
+                      theme,
                     }
                   ) => ({
                     ...theme.mq({ from: 's', }, { display: 'none', }),
@@ -249,8 +258,10 @@ class LiveBlogItem extends React.Component {
                         marginInlineEnd: '2rem',
                         ...borderTop('2px', 1, 'solid', theme.color('neutral', '-6')),
                       }
-                    )
-                  })}>{({ className, }) => (
+                    ),
+                  })}
+                >
+                  {({ className, }) => (
                     <span className={className}>
                       <ActionButtons
                         shouldMainNavBarDisplay={false}
@@ -267,34 +278,36 @@ class LiveBlogItem extends React.Component {
                       {this.state.fadeText !== true && !this.state.itemExpanded ? null : !this.state
                         .itemExpanded ? (
                           <Button
-                            variant="inverseOpaque"
-                            miscStyles={{
+                  variant="inverseOpaque"
+                  miscStyles={{
                               marginBottom: '1rem',
                               ':focus': {
                                 color: theme.color('neutral', '-2'),
                               },
                             }}
-                            boxModel={{ hp: 2, vp: 1, }}
-                            onClick={() => this.setState({ fadeText: false, itemExpanded: true, })}
-                          >
-                            {theme.liveBlogI18n.expand}
-                          </Button>
+                  boxModel={{ hp: 2, vp: 1, }}
+                  onClick={() => this.setState({ fadeText: false, itemExpanded: true, })}
+                >
+                  {theme.liveBlogI18n.expand}
+                </Button>
                         ) : (
                           <Button
-                            variant="inverseOpaque"
-                            miscStyles={{ marginBottom: '1rem', }}
-                            boxModel={{ hp: 2, vp: 1, }}
-                            onClick={() => this.setState({ fadeText: true, itemExpanded: false, })}
-                          >
-                            {theme.liveBlogI18n.close}
-                          </Button>
+                  variant="inverseOpaque"
+                  miscStyles={{ marginBottom: '1rem', }}
+                  boxModel={{ hp: 2, vp: 1, }}
+                  onClick={() => this.setState({ fadeText: true, itemExpanded: false, })}
+                >
+                  {theme.liveBlogI18n.close}
+                </Button>
                         )}
                     </span>
-                  )}</FelaComponent>
+                  )}
+                </FelaComponent>
                 {/* Mobile action buttons end */}
               </Grid>
             </React.Fragment>
-          )}</FelaTheme>
+          )}
+        </FelaTheme>
       </React.Fragment>
     );
   }

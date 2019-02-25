@@ -38,6 +38,9 @@ export default function AboveBlockLink({ children, render, }) {
       style={{
         position: 'relative',
         zIndex: '1',
-      }}>{children || render}</FelaComponent>
+      }}
+    >
+      {children || render}
+    </FelaComponent>
   );
 }

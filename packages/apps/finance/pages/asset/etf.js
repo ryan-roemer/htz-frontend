@@ -19,8 +19,8 @@ import RelatedAssets from '../../components/QuotePageComponents/RelatedAssets/Re
 import QuoteAssetsTable from '../../components/QuotePageComponents/QuoteAssetsTable/QuoteAssetsTable';
 
 const EtfQuery: DocumentNode = gql`
-  query EtfData($assetId: String!){
-    asset(assetId: $assetId){
+  query EtfData($assetId: String!) {
+    asset(assetId: $assetId) {
       name
       value
       changePercentage
@@ -63,12 +63,14 @@ type Props = {
   },
 };
 
-function etf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
+function etf({
+  url: {
+    query: { section, assetId, },
+    asPath,
+  },
+}: Props): Node {
   return (
-    <Query
-      query={EtfQuery}
-      variables={{ assetId, }}
-    >
+    <Query query={EtfQuery} variables={{ assetId, }}>
       {({ loading, error, data, }) => {
         if (error) return null;
         if (loading) return null;
@@ -100,7 +102,8 @@ function etf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
             description={`${name} - למידע עדכני על תעודות סל היכנסו לאתר TheMarker Finance`}
             path={asPath}
           >
-            <FelaTheme>{theme => (
+            <FelaTheme>
+              {theme => (
                 <Fragment>
                   <PageRow lines={2}>
                     <RowItem
@@ -136,10 +139,7 @@ function etf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                     <RelatedAssets assets={relatedAssets} />
                   </PageRow>
                   <PageRow>
-                    <GraphController
-                      selectedStockId={assetId}
-                      width={900}
-                    />
+                    <GraphController selectedStockId={assetId} width={900} />
                   </PageRow>
                   <PageRow>
                     <Grid
@@ -149,12 +149,8 @@ function etf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                         paddingEnd: '0rem',
                       }}
                     >
-                      <GridItem
-                        width={1 / 3}
-                      >
-                        <RowItem
-                          title="נתוני המסחר"
-                        >
+                      <GridItem width={1 / 3}>
+                        <RowItem title="נתוני המסחר">
                           <QuoteInfoTable
                             id={assetId}
                             tradingStatus
@@ -171,18 +167,14 @@ function etf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                           />
                         </RowItem>
                       </GridItem>
-                      <GridItem
-                        width={2 / 3}
-                      >
+                      <GridItem width={2 / 3}>
                         <FelaComponent
                           style={{
                             display: 'flow',
                             flowDirection: 'column',
                           }}
                         >
-                          <RowItem
-                            title="מחזורים"
-                          >
+                          <RowItem title="מחזורים">
                             <VolumeGraph
                               theme={theme}
                               data={[
@@ -202,9 +194,7 @@ function etf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                               }}
                             />
                           </RowItem>
-                          <RowItem
-                            title="תשואות"
-                          >
+                          <RowItem title="תשואות">
                             <YieldGraph
                               theme={theme}
                               data={[
@@ -237,10 +227,7 @@ function etf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                     </Grid>
                   </PageRow>
                   <PageRow>
-                    <RowItem
-                      title="מידע כללי"
-                      miscStyles={{ marginBottom: '2rem', }}
-                    >
+                    <RowItem title="מידע כללי" miscStyles={{ marginBottom: '2rem', }}>
                       <Grid
                         gutter={2}
                         miscStyles={{
@@ -248,9 +235,7 @@ function etf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                           paddingEnd: '0rem',
                         }}
                       >
-                        <GridItem
-                          width={1 / 2}
-                        >
+                        <GridItem width={1 / 2}>
                           <QuoteInfoTable
                             miscStyles={{
                               height: '100%',
@@ -267,9 +252,7 @@ function etf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                             ]}
                           />
                         </GridItem>
-                        <GridItem
-                          width={1 / 2}
-                        >
+                        <GridItem width={1 / 2}>
                           <QuoteInfoTable
                             miscStyles={{
                               whiteSpace: 'normal',
@@ -306,13 +289,8 @@ function etf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                         paddingEnd: '0rem',
                       }}
                     >
-                      <GridItem
-                        width={1 / 2}
-                      >
-                        <RowItem
-                          title="פרופיל התעודה"
-                          miscStyles={{ marginBottom: '1rem', }}
-                        >
+                      <GridItem width={1 / 2}>
+                        <RowItem title="פרופיל התעודה" miscStyles={{ marginBottom: '1rem', }}>
                           <FelaComponent
                             as="p"
                             style={{
@@ -323,32 +301,28 @@ function etf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                               textAlign: 'start',
                             }}
                           >
-                            {`תאריך שינוי מדיניות: ${
-                              new Date(policyChangeDate)
-                                .toLocaleString('it-It', {
-                                  day: '2-digit',
-                                  month: '2-digit',
-                                  year: 'numeric',
-                                })
-                            }`}
+                            {`תאריך שינוי מדיניות: ${new Date(policyChangeDate).toLocaleString(
+                              'it-It',
+                              {
+                                day: '2-digit',
+                                month: '2-digit',
+                                year: 'numeric',
+                              }
+                            )}`}
                           </FelaComponent>
-                          <FelaComponent
-                            as="p"
-                          >
-                            {mtfEtfPolicy}
-                          </FelaComponent>
+                          <FelaComponent as="p">{mtfEtfPolicy}</FelaComponent>
                         </RowItem>
                       </GridItem>
-                      <GridItem
-                        width={1 / 2}
-                      >
-                        <RowItem
-                          title="חשיפת התעודה למדדים"
-                        >
+                      <GridItem width={1 / 2}>
+                        <RowItem title="חשיפת התעודה למדדים">
                           <QuoteAssetsTable
                             assets={indexExposure}
                             fields={[
-                              { value: 'name', display: 'נכס בסיס (שם הנכס)', miscStyles: { fontWeight: '700', }, },
+                              {
+                                value: 'name',
+                                display: 'נכס בסיס (שם הנכס)',
+                                miscStyles: { fontWeight: '700', },
+                              },
                               { value: 'assetBaseHoldingRatio', display: 'אחוז בנכס בסיס', },
                             ]}
                           />
@@ -357,11 +331,12 @@ function etf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                     </Grid>
                   </PageRow>
                 </Fragment>
-              )}</FelaTheme>
-        </MainLayout>
+              )}
+            </FelaTheme>
+          </MainLayout>
         );
-    }}
-  </Query>
+      }}
+    </Query>
   );
 }
 

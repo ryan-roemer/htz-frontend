@@ -96,7 +96,8 @@ function options({
             description={`${name} למידע עדכני על נתוני אופציות - נגזרים וכתבי אופציות, היכנסו לאתר TheMarker Finance`}
             path={asPath}
           >
-            <FelaTheme>{theme => (
+            <FelaTheme>
+              {theme => (
                 <Fragment>
                   <PageRow lines={2}>
                     <RowItem
@@ -218,10 +219,7 @@ function options({
                     </Grid>
                   </PageRow>
                   <PageRow>
-                    <RowItem
-                      title="פרטי אופציה"
-                      miscStyles={{ marginBottom: '2rem', }}
-                    >
+                    <RowItem title="פרטי אופציה" miscStyles={{ marginBottom: '2rem', }}>
                       <Grid
                         gutter={2}
                         miscStyles={{
@@ -317,10 +315,7 @@ function options({
                       }}
                     >
                       <GridItem width={1 / 3}>
-                        <RowItem
-                          title="יחסים פיננסיים"
-                          miscStyles={{ marginBottom: '2rem', }}
-                        >
+                        <RowItem title="יחסים פיננסיים" miscStyles={{ marginBottom: '2rem', }}>
                           <QuoteInfoTable
                             id={assetId}
                             fields={[
@@ -340,7 +335,8 @@ function options({
                     </Grid>
                   </PageRow>
                 </Fragment>
-              )}</FelaTheme>
+              )}
+            </FelaTheme>
           </MainLayout>
         );
       }}

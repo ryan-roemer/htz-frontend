@@ -271,7 +271,8 @@ function MainTeaser({
   const itemId = data.representedContent == null ? data.contentId : data.representedContent;
 
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <Teaser
           data={data}
           gutter={0}
@@ -344,7 +345,8 @@ function MainTeaser({
             renderFooter={() => <Footer data={data} showAuthors />}
           />
         </Teaser>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }
 
@@ -428,7 +430,8 @@ Stock.defaultProps = {
 
 function Stock({ name, value, change, hideOnM, }: StockProps): Node {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <GridItem
           gutter={2}
           rule={[ { until: 'l', value: true, }, { from: 'xl', value: true, }, ]}
@@ -466,7 +469,8 @@ function Stock({ name, value, change, hideOnM, }: StockProps): Node {
             </GridItem>
           </Grid>
         </GridItem>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }
 
@@ -476,7 +480,8 @@ type StocksProps = {
 
 function Stocks({ stocks, }: StocksProps): Node {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <GridItem
           gutter={4}
           stretchContent
@@ -554,7 +559,8 @@ function Stocks({ stocks, }: StocksProps): Node {
             </Grid>
           </FelaComponent>
         </GridItem>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }
 

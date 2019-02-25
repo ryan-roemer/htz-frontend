@@ -36,7 +36,7 @@ function TopNews({ newsItems, contentName, }: Props): React.Node {
         <FelaComponent
           style={(
             {
-              theme
+              theme,
             }
           ) => ({
             paddingInlineEnd: '4rem',
@@ -47,8 +47,10 @@ function TopNews({ newsItems, contentName, }: Props): React.Node {
               theme.type(-1, { untilBp: 'xl', lines: 4, }),
               theme.type(-2, { fromBp: 'xl', }),
               borderVertical('2px', 1, 'solid', theme.color('bg')),
-            ]
-          })}>{({ theme, className, }) => (
+            ],
+          })}
+        >
+          {({ theme, className, }) => (
             <Section tagName="div" className={className}>
               <FelaComponent
                 style={{
@@ -56,11 +58,14 @@ function TopNews({ newsItems, contentName, }: Props): React.Node {
                   display: 'inline',
                   fontWeight: '700',
                   paddingInlineEnd: '1rem',
-                }}>{({ className: headerClassName, }) => (
+                }}
+              >
+                {({ className: headerClassName, }) => (
                   <H className={headerClassName} offset={2}>
                     {contentName}
                   </H>
-                )}</FelaComponent>
+                )}
+              </FelaComponent>
               <FelaComponent style={{ display: 'inline-block', }} as="ul">
                 {newsItems
                   && newsItems.map((link, idx) => {
@@ -83,18 +88,22 @@ function TopNews({ newsItems, contentName, }: Props): React.Node {
                             ),
                             '&:hover': hoverFocusStyle,
                             '&:focus': hoverFocusStyle,
-                          }}>{({ className: linkClassName, }) => (
+                          }}
+                        >
+                          {({ className: linkClassName, }) => (
                             <HtzLink href={link.href} className={linkClassName}>
                               {link.contentName}
                             </HtzLink>
-                          )}</FelaComponent>
+                          )}
+                        </FelaComponent>
                         {isLast ? null : ' | '}
                       </FelaComponent>
                     );
                   })}
               </FelaComponent>
             </Section>
-          )}</FelaComponent>
+          )}
+        </FelaComponent>
       </LayoutContainer>
     </LayoutRow>
   );

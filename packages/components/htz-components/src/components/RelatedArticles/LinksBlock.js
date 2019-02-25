@@ -35,9 +35,8 @@ const propTypes = {
       /**
        * An array of Article's authors (if more than one, only the first will be displayed).
        */
-      authors: PropTypes.arrayOf(
-        PropTypes.oneOfType([ PropTypes.string, PropTypes.object, ])
-      ).isRequired,
+      authors: PropTypes.arrayOf(PropTypes.oneOfType([ PropTypes.string, PropTypes.object, ]))
+        .isRequired,
     })
   ).isRequired,
   /**
@@ -86,17 +85,11 @@ const ArticleWrapper = createComponent(articleWrapperStyle, 'li');
 function LinksBlock({ seriesTitle, articles, miscStyles, }) {
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
-        extend: [
-          ...(miscStyles
-            ? parseStyleProps(miscStyles, theme.mq, theme.type)
-            : []),
-        ]
-      })}>{({
+      style={({ theme, }) => ({
+        extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
+      })}
+    >
+      {({
         className,
         theme: {
           seriesArticleI18n: { titlePrefix, },
@@ -105,20 +98,20 @@ function LinksBlock({ seriesTitle, articles, miscStyles, }) {
         <div className={className}>
           <SeriesTitle>{titlePrefix + seriesTitle}</SeriesTitle>
           <Query query={GET_ARTICLE_ID}>
-            {({ data: { articleId, }, }) => articles.map(
-              (article, i) => (articleId !== article.contentId ? (
-                <ArticleWrapper
-                  key={i} // eslint-disable-line react/no-array-index-key
-                  lastItem={i === articles.length - 1}
-                >
-                  <ArticleLink article={article} isBlock />
-                </ArticleWrapper>
-              ) : null)
+            {({ data: { articleId, }, }) => articles.map((article, i) => (articleId !== article.contentId ? (
+              <ArticleWrapper
+                key={i} // eslint-disable-line react/no-array-index-key
+                lastItem={i === articles.length - 1}
+              >
+                <ArticleLink article={article} isBlock />
+              </ArticleWrapper>
+            ) : null)
             )
             }
           </Query>
         </div>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

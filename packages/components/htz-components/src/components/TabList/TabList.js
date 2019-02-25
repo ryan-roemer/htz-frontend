@@ -21,19 +21,16 @@ function TabList({ render, children, miscStyles, }: Props): Node {
   const TabListTag: string = render || 'ul';
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
-        extend: [
-          ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-        ]
-      })}>{({ className, }) => (
+      style={({ theme, }) => ({
+        extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
+      })}
+    >
+      {({ className, }) => (
         <TabListTag className={className} role="tablist">
           {children}
         </TabListTag>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

@@ -86,7 +86,8 @@ const iconStyle = ({ theme, }) => ({
 
 // eslint-disable-next-line react/prop-types
 const Icon = props => (
-  <FelaComponent style={iconStyle}>{({ theme, className, }) => (
+  <FelaComponent style={iconStyle}>
+    {({ theme, className, }) => (
       <button type="button" className={className} {...props} aria-label={theme.zoomoutText} tabIndex="-1">
         <IconArrow
           color={[ 'neutral', '-10', ]}
@@ -97,7 +98,8 @@ const Icon = props => (
           }}
         />
       </button>
-    )}</FelaComponent>
+    )}
+  </FelaComponent>
 );
 
 const mediaWrapperStyle = ({ isFullScreen, theme, }) => (isFullScreen
@@ -184,17 +186,21 @@ class FullScreenMedia extends React.Component {
       <FelaComponent
         style={containerStyle}
         isFullScreen={isFullScreen}
-        disableFullScreen={disableFullScreen}>{({ className, }) => (
+        disableFullScreen={disableFullScreen}
+      >
+        {({ className, }) => (
           <div className={className}>
             <div />
-            <FelaComponent style={mediaWrapperStyle} isFullScreen={isFullScreen}>{({ className, }) => (
+            <FelaComponent style={mediaWrapperStyle} isFullScreen={isFullScreen}>
+              {({ className, }) => (
                 <div
                   ref={mediaRef => { this.mediaRef = mediaRef; }}
                   className={className}
                 >
                   {render({ isFullScreen, toggleFullScreen: this.toggleFullScreen, })}
                 </div>
-              )}</FelaComponent>
+              )}
+            </FelaComponent>
             {isFullScreen ? (
               <Fragment>
                 <FelaComponent
@@ -217,7 +223,8 @@ class FullScreenMedia extends React.Component {
               </Fragment>
             ) : null}
           </div>
-        )}</FelaComponent>
+        )}
+      </FelaComponent>
     );
   }
 }

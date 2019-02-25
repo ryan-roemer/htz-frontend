@@ -35,7 +35,8 @@ export default function ZappPromotedContent({
   biAction,
 }: ZappPromotedContentProps): React.Node {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <ClickTracker
           {...data}
           render={banner => (
@@ -61,12 +62,12 @@ export default function ZappPromotedContent({
                       data={banner.clicktrackerimage}
                       lazyLoad={lazyLoadImages}
                       imgOptions={{
-                        transforms: {
-                          width: '102',
-                          aspect: 'square',
-                          quality: 'auto',
-                        },
-                      }}
+                  transforms: {
+                    width: '102',
+                    aspect: 'square',
+                    quality: 'auto',
+                  },
+                }}
                     />
                   </GridItem>
                   <GridItem
@@ -78,13 +79,13 @@ export default function ZappPromotedContent({
                   >
                     <FelaComponent
                       style={{
-                        position: 'relative',
-                        width: '100%',
-                        height: '100%',
-                      }}
+                  position: 'relative',
+                  width: '100%',
+                  height: '100%',
+                }}
                     >
                       <Section isFragment>
-                        <AboveBlockLink>
+                  <AboveBlockLink>
                           {({ className, }) => (
                             <HtzLink
                               href={banner.link}
@@ -99,9 +100,9 @@ export default function ZappPromotedContent({
                             </HtzLink>
                           )}
                         </AboveBlockLink>
-                      </Section>
+                </Section>
                       <FelaComponent
-                        style={{
+                  style={{
                           position: 'absolute',
                           bottom: 0,
                           left: 0,
@@ -109,9 +110,9 @@ export default function ZappPromotedContent({
                           fontWeight: 'bold',
                           extend: [ theme.type(-2), ],
                         }}
-                      >
-                        {'תוכן מקודם'}
-                      </FelaComponent>
+                >
+                  {'תוכן מקודם'}
+                </FelaComponent>
                     </FelaComponent>
                   </GridItem>
                 </Grid>
@@ -119,6 +120,7 @@ export default function ZappPromotedContent({
             </Card>
           )}
         />
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }

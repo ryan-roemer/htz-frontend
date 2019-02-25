@@ -27,21 +27,20 @@ const LoginButton = ({ buttonStyles, size, iconStyles, isLoggedIn, hrefLogin, ..
       >
         <IconAvatar size={size} miscStyles={iconStyles} />
         <FelaComponent
-          style={(
-            {
-              theme
-            }
-          ) => ({
+          style={({ theme, }) => ({
             color: theme.color('neutral', '-2'),
             paddingInlineStart: '0.5rem',
-            extend: [ theme.type(-2), ]
-          })}>{({ className, theme, }) => (
+            extend: [ theme.type(-2), ],
+          })}
+        >
+          {({ className, theme, }) => (
             <span className={className}>
               {isLoggedIn
                 ? theme.mobileUserMenuI18n.userLoggedIn
                 : theme.mobileUserMenuI18n.noUserData}
             </span>
-          )}</FelaComponent>
+          )}
+        </FelaComponent>
       </Button>
     )}
   />
@@ -50,14 +49,12 @@ const LoginButton = ({ buttonStyles, size, iconStyles, isLoggedIn, hrefLogin, ..
 function MobileBarActionButtons({ shouldMainNavBarDisplay, isLoggedIn, }) {
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         display: 'flex',
-        flexGrow: '1'
-      })}>{({ theme, className, }) => (
+        flexGrow: '1',
+      })}
+    >
+      {({ theme, className, }) => (
         <div className={className}>
           {/* {!isLoggedIn ? null : (
                 <ActionButtons
@@ -90,7 +87,9 @@ function MobileBarActionButtons({ shouldMainNavBarDisplay, isLoggedIn, }) {
               // ...(isLoggedIn
               //   ? { ...borderRight('1px', 'solid', theme.color('neutral', '-4')), }
               //   : {}),
-            }}>{({ className, }) => (
+            }}
+          >
+            {({ className, }) => (
               <span className={className}>
                 <LoginButton
                   isLoggedIn={isLoggedIn}
@@ -105,9 +104,11 @@ function MobileBarActionButtons({ shouldMainNavBarDisplay, isLoggedIn, }) {
                   }}
                 />
               </span>
-            )}</FelaComponent>
+            )}
+          </FelaComponent>
         </div>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

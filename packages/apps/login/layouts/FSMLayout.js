@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { StyleProvider, } from '@haaretz/fela-utils';
 import { Query, Footer, } from '@haaretz/htz-components';
 import FiniteStateMachine from '../components/FiniteStateMachine/FiniteStateMachine';
-import Header from '../layouts/Header';
+import Header from './Header';
 // import Footer from '../layouts/Footer';
 import styleRenderer from '../components/styleRenderer/styleRenderer';
 import theme from '../theme';

@@ -24,28 +24,19 @@ A11yError.defaultProps = {
 export function A11yError({ errorText, miscStyles, }) {
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         color: theme.color('tertiary'),
         fontWeight: 'bold',
 
-        extend: [
-          ...(miscStyles
-            ? parseStyleProps(miscStyles, theme.mq, theme.type)
-            : []),
-        ]
-      })}>{({ className, }) => (
-        <div
-          className={className}
-          aria-live="assertive"
-          aria-relevant="additions"
-        >
+        extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
+      })}
+    >
+      {({ className, }) => (
+        <div className={className} aria-live="assertive" aria-relevant="additions">
           {errorText}
         </div>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

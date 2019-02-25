@@ -133,7 +133,8 @@ export default class Icons extends React.Component {
     return (
       <div>
         <p style={{ marginBottom: '2rem', }}>
-          <strong>Edit icons size:</strong>{' '}
+          <strong>Edit icons size:</strong>
+          {' '}
           <input
             style={{
               MozAppearance: 'slider-horizontal',
@@ -147,8 +148,14 @@ export default class Icons extends React.Component {
             name="iconSize"
             value={this.state.size}
             onChange={this.handleSizeChange}
-          />{' '
-          }<span style={{ fontFamily: 'monospace', }}>({this.state.size}rem)</span>
+          />
+          {' '
+          }
+          <span style={{ fontFamily: 'monospace', }}>
+(
+            {this.state.size}
+rem)
+          </span>
         </p>
         <Wrapper>
           <Cell name="IconAccessibility">{<IconAccessibility size={this.state.size} />}</Cell>
@@ -156,7 +163,8 @@ export default class Icons extends React.Component {
           <Cell name="IconAlefLogo">{<IconAlefLogo size={this.state.size} />}</Cell>
           <Cell name="IconAlert">{<IconAlert size={this.state.size} />}</Cell>
           <Cell name="IconApple">{<IconApple size={this.state.size} />}</Cell>
-          <Cell name="IconAlef">{<IconAlef size={this.state.size} />}</Cell><Cell name="IconAndroid">{<IconAndroid size={this.state.size} />}</Cell>
+          <Cell name="IconAlef">{<IconAlef size={this.state.size} />}</Cell>
+          <Cell name="IconAndroid">{<IconAndroid size={this.state.size} />}</Cell>
           <Cell name="IconArrow">{<IconArrow size={this.state.size} />}</Cell>
           <Cell name="IconAvatar">{<IconAvatar size={this.state.size} />}</Cell>
           <Cell name="IconBack">{<IconBack size={this.state.size} />}</Cell>
@@ -167,11 +175,13 @@ export default class Icons extends React.Component {
           <Cell name="IconCamera">{<IconCamera size={this.state.size} />}</Cell>
           <Cell name="IconCheck">{<IconCheck size={this.state.size} />}</Cell>
           <Cell name="IconClock">{<IconClock size={this.state.size} />}</Cell>
-          <Cell name="IconClose">{<IconClose size={this.state.size} />}</Cell><Cell name="IconComment">{<IconComment size={this.state.size} />}</Cell>
+          <Cell name="IconClose">{<IconClose size={this.state.size} />}</Cell>
+          <Cell name="IconComment">{<IconComment size={this.state.size} />}</Cell>
           <Cell name="IconCredit">{<IconCredit size={this.state.size} />}</Cell>
           <Cell name="IconDislike">{<IconDislike size={this.state.size} />}</Cell>
           <Cell name="IconDrive">{<IconDrive size={this.state.size} />}</Cell>
-          <Cell name="IconFacebook">{<IconFacebook size={this.state.size} />}</Cell><Cell name="IconFacebookLogo">{<IconFacebookLogo size={this.state.size} />}</Cell>
+          <Cell name="IconFacebook">{<IconFacebook size={this.state.size} />}</Cell>
+          <Cell name="IconFacebookLogo">{<IconFacebookLogo size={this.state.size} />}</Cell>
           <Cell name="IconGPlus">{<IconGPlus size={this.state.size} />}</Cell>
           <Cell name="IconGaniYoshua">{<IconGaniYoshua size={this.state.size} />}</Cell>
           <Cell name="IconHaaretzLogo">{<IconHaaretzLogo size={this.state.size} />}</Cell>
@@ -191,7 +201,8 @@ export default class Icons extends React.Component {
           <Cell name="IconMessenger">{<IconMessenger size={this.state.size} />}</Cell>
           <Cell name="IconMarkerLogoTransparent">{<IconMarkerLogoTransparent size={this.state.size} />}</Cell>
           <Cell name="IconPdf">{<IconPdf size={this.state.size} />}</Cell>
-          <Cell name="IconPlus">{<IconPlus size={this.state.size} />}</Cell><Cell name="IconPortions">{<IconPortions size={this.state.size} />}</Cell>
+          <Cell name="IconPlus">{<IconPlus size={this.state.size} />}</Cell>
+          <Cell name="IconPortions">{<IconPortions size={this.state.size} />}</Cell>
           <Cell name="IconPetachTikva">{<IconPetachTikva size={this.state.size} />}</Cell>
           <Cell name="IconPrint">{<IconPrint size={this.state.size} />}</Cell>
           <Cell name="IconReading">{<IconReading size={this.state.size} />}</Cell>
@@ -209,7 +220,8 @@ export default class Icons extends React.Component {
           <Cell name="IconStar">{<IconStar size={this.state.size} />}</Cell>
           <Cell name="IconTheMarker">{<IconTheMarker size={this.state.size} />}</Cell>
           <Cell name="IconWhatsapp">{<IconWhatsapp size={this.state.size} />}</Cell>
-          <Cell name="IconZen">{<IconZen size={this.state.size} />}</Cell><Cell name="IconTwitter">{<IconTwitter size={this.state.size} />}</Cell>
+          <Cell name="IconZen">{<IconZen size={this.state.size} />}</Cell>
+          <Cell name="IconTwitter">{<IconTwitter size={this.state.size} />}</Cell>
           <Cell name="IconZoomOut">{<IconZoomOut size={this.state.size} />}</Cell>
           <Cell name="IconZoomIn">{<IconZoomIn size={this.state.size} />}</Cell>
           <Cell name="IconMarkerLogo">{<IconMarkerLogo size={this.state.size} />}</Cell>

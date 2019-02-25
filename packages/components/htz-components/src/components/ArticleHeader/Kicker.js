@@ -106,6 +106,17 @@ export default function Kicker({
       isBlock={isBlock}
       fontSize={fontSize}
       divider={divider}
-      miscStyles={miscStyles}>{tagName}</FelaComponent>
+      miscStyles={miscStyles}
+      as={tagName}
+    >
+      <FelaComponent
+        style={innerStyle}
+        isBlock={isBlock}
+        innerMiscStyles={innerMiscStyles}
+        as="span"
+      >
+        {text || children}
+      </FelaComponent>
+    </FelaComponent>
   );
 }

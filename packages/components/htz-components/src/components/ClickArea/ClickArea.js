@@ -200,7 +200,9 @@ class ClickAreaInner extends Component<any, ClickAreaState> {
         size={size}
         isDisabled={isDisabled}
         miscStyles={miscStyles}
-        style={clickAreaStyle}>{({ className, theme, }) => (
+        style={clickAreaStyle}
+      >
+        {({ className, theme, }) => (
           <ButtonCore
             ref={buttonRef}
             className={className}
@@ -218,7 +220,8 @@ class ClickAreaInner extends Component<any, ClickAreaState> {
               />
             </FelaComponent>
           </ButtonCore>
-        )}</FelaComponent>
+        )}
+      </FelaComponent>
     );
   }
 }

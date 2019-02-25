@@ -126,96 +126,106 @@ export default function ListViewHeader({
       hasTitlePadding={hasTitlePadding}
       miscStyles={miscStyles}
       isCommercial={isCommercial}
-      style={listViewHeaderStyle}>{({ className, theme, }) => (
+      style={listViewHeaderStyle}
+    >
+      {({ className, theme, }) => (
         <header className={className}>
           {title && (
-            <FelaComponent
-              style={{
-                ...(isCommercial
-                  ? {
-                    color: theme.color('commercial'),
-                    fontFamily: theme.fontStacks.commercial,
+          <FelaComponent
+            style={{
+              ...(isCommercial
+                ? {
+                  color: theme.color('commercial'),
+                  fontFamily: theme.fontStacks.commercial,
+                }
+                : { color: theme.color('primary'), }),
+              fontWeight: 700,
+              extend: [
+                isHorizontal && hasTitlePadding
+                  ? { paddingInlineStart: '1rem', }
+                  : theme.mq({ until: 's', }, { paddingInlineStart: '1rem', }),
+                theme.mq(
+                  { until: 's', },
+                  {
+                    display: 'flex',
+                    width: '100%',
+                    alignItems: 'center',
                   }
-                  : { color: theme.color('primary'), }),
-                fontWeight: 700,
-                extend: [
-                  isHorizontal && hasTitlePadding
-                    ? { paddingInlineStart: '1rem', }
-                    : theme.mq({ until: 's', }, { paddingInlineStart: '1rem', }),
-                  theme.mq(
-                    { until: 's', },
-                    {
-                      display: 'flex',
-                      width: '100%',
-                      alignItems: 'center',
-                    }
-                  ),
-                  // Trump all other styles with those defined in `miscStyles`
-                  ...(titleMiscStyles
-                    ? parseStyleProps(titleMiscStyles, theme.mq, theme.type)
-                    : []),
-                ],
-              }}>{({ className: headerClass, }) => (url ? (
-                <FelaComponent
-                  style={{
-                    extend: [ theme.mq({ until: 's', }, { display: 'flex', width: '100%', }), ],
-                  }}>{({ className: linkClassName, }) => (
-                    <HtzLink className={linkClassName} href={url}>
-                      <H className={headerClass}>
+                ),
+                // Trump all other styles with those defined in `miscStyles`
+                ...(titleMiscStyles
+                  ? parseStyleProps(titleMiscStyles, theme.mq, theme.type)
+                  : []),
+              ],
+            }}
+          >
+            {({ className: headerClass, }) => (url ? (
+              <FelaComponent
+                style={{
+                  extend: [ theme.mq({ until: 's', }, { display: 'flex', width: '100%', }), ],
+                }}
+              >
+                {({ className: linkClassName, }) => (
+                  <HtzLink className={linkClassName} href={url}>
+              <H className={headerClass}>
                         {title}
                         <IconBack
                           size={isVertical ? 6 : 7}
                           miscStyles={{
-                            marginInlineStart: 'auto',
-                            paddingTop: '1rem',
-                            paddingBottom: '1rem',
-                            backgroundColor: theme.color('quaternary'),
-                            ...theme.mq({ from: 's', }, { display: 'none', }),
-                          }}
+              marginInlineStart: 'auto',
+              paddingTop: '1rem',
+              paddingBottom: '1rem',
+              backgroundColor: theme.color('quaternary'),
+              ...theme.mq({ from: 's', }, { display: 'none', }),
+            }}
                         />
                       </H>
-                    </HtzLink>
-                  )}</FelaComponent>
-              ) : (
-                <H className={headerClass}>{title}</H>
-              ))
-              }</FelaComponent>
+            </HtzLink>
+                )}
+              </FelaComponent>
+            ) : (
+              <H className={headerClass}>{title}</H>
+            ))
+              }
+          </FelaComponent>
           )}
           {extraLinks && (
-            <FelaComponent
-              style={{
-                marginTop: '1rem',
-                color: theme.color('neutral', '-3'),
-                ...(isHorizontal ? { marginInlineStart: 'auto', } : {}),
-                extend: [
-                  theme.mq({ until: 's', }, { display: 'none', }),
-                  theme.mq({ from: 's', until: 'l', }, { direction: 'ltr', paddingStart: '2rem', }),
-                  theme.mq({ until: 'l', }, { fontWeight: '700', }),
-                  theme.type(-1, { fromBp: 's', untilBp: 'l', }),
-                  theme.type(-1, { fromBp: 'l', untilBp: 'xl', lines: 4, }),
-                  theme.type(-2, { fromBp: 'xl', lines: 4, }),
-                  ...(isHorizontal
-                    ? []
-                    : [ theme.mq({ until: 'l', }, { marginInlineStart: 'auto', }), ]),
-                ],
-              }}
-              as="ul"
-            >
-              {extraLinks.map((item, idx) => (
+          <FelaComponent
+            style={{
+              marginTop: '1rem',
+              color: theme.color('neutral', '-3'),
+              ...(isHorizontal ? { marginInlineStart: 'auto', } : {}),
+              extend: [
+                theme.mq({ until: 's', }, { display: 'none', }),
+                theme.mq({ from: 's', until: 'l', }, { direction: 'ltr', paddingStart: '2rem', }),
+                theme.mq({ until: 'l', }, { fontWeight: '700', }),
+                theme.type(-1, { fromBp: 's', untilBp: 'l', }),
+                theme.type(-1, { fromBp: 'l', untilBp: 'xl', lines: 4, }),
+                theme.type(-2, { fromBp: 'xl', lines: 4, }),
+                ...(isHorizontal
+                  ? []
+                  : [ theme.mq({ until: 'l', }, { marginInlineStart: 'auto', }), ]),
+              ],
+            }}
+            as="ul"
+          >
+            {extraLinks.map((item, idx) => (
+              <FelaComponent
+                style={{
+                  extend: [ theme.mq({ until: 'l', }, { display: 'inline-block', }), ],
+                }}
+                as="li"
+                key={item.contentId}
+              >
                 <FelaComponent
                   style={{
-                    extend: [ theme.mq({ until: 'l', }, { display: 'inline-block', }), ],
-                  }}
-                  as="li"
-                  key={item.contentId}
+              ':hover': {
+                color: theme.color('neutral', -1),
+              },
+            }}
                 >
-                  <FelaComponent
-                    style={{
-                      ':hover': {
-                        color: theme.color('neutral', -1),
-                      },
-                    }}>{({ className, }) => (
-                      <HtzLink
+                  {({ className, }) => (
+              <HtzLink
                         href={item.href}
                         className={className}
                         onClick={
@@ -229,43 +239,46 @@ export default function ListViewHeader({
                       >
                         {item.linkText || item.contentName}
                       </HtzLink>
-                    )}</FelaComponent>
-                  {idx !== extraLinks.length - 1 && (
-                    <FelaComponent
-                      style={{
+            )}
+                </FelaComponent>
+                {idx !== extraLinks.length - 1 && (
+                <FelaComponent
+            style={{
                         display: 'inline-block',
                         marginRight: '1rem',
                         marginLeft: '1rem',
                         extend: [ theme.mq({ from: 'l', }, { display: 'none', }), ],
                       }}
-                      as="span"
-                    >
-                      {'|'}
-                    </FelaComponent>
-                  )}
-                </FelaComponent>
-              ))}
-            </FelaComponent>
+            as="span"
+          >
+            {'|'}
+          </FelaComponent>
+                )}
+              </FelaComponent>
+            ))}
+          </FelaComponent>
           )}
           {(commercialLinks || marketingTeaser) && (
-            <FelaComponent
-              style={{
-                marginTop: 'auto',
-                extend: [ theme.mq({ until: 'l', }, { display: 'none', }), ],
-              }}
-            >
-              {!isHorizontal && marketingTeaser && marketingTeaser.href ? (
-                <Query query={getUser}>
-                  {({ loading, error, data, }) => {
-                    if (loading) return null;
-                    if (error) return null;
-                    if (data && data.user.type !== 'paying') {
-                      return (
-                        <Section>
+          <FelaComponent
+            style={{
+              marginTop: 'auto',
+              extend: [ theme.mq({ until: 'l', }, { display: 'none', }), ],
+            }}
+          >
+            {!isHorizontal && marketingTeaser && marketingTeaser.href ? (
+              <Query query={getUser}>
+                {({ loading, error, data, }) => {
+                  if (loading) return null;
+                  if (error) return null;
+                  if (data && data.user.type !== 'paying') {
+                    return (
+                <Section>
                           <IconAlefLogoTransparent color="secondary" size={3} />
-                          <FelaComponent style={{ color: theme.color('secondary'), }}>{({ className: marketingHeaderClassName, }) => (
+                          <FelaComponent style={{ color: theme.color('secondary'), }}>
+                            {({ className: marketingHeaderClassName, }) => (
                               <H className={marketingHeaderClassName}>{marketingTeaser.title}</H>
-                            )}</FelaComponent>
+                            )}
+                          </FelaComponent>
 
                           <FelaComponent
                             style={{
@@ -284,20 +297,22 @@ export default function ListViewHeader({
                             {marketingTeaser.cta}
                           </Button>
                         </Section>
-                      );
-                    }
-                    return null;
-                  }}
-                </Query>
-              ) : (
-                !isHorizontal
+                    );
+                  }
+                  return null;
+                }}
+              </Query>
+            ) : (
+              !isHorizontal
                 && commercialLinks && (
                   <FelaComponent
                     style={{
                       color: theme.color('commercial'),
                       extend: [ theme.type(-1), ],
                       fontFamily: theme.fontStacks ? theme.fontStacks.commercial : undefined,
-                    }}>{({ className: commercialHeaderClassName, }) => (
+                    }}
+                  >
+                    {({ className: commercialHeaderClassName, }) => (
                       <React.Fragment>
                         <H className={commercialHeaderClassName}>{theme.commercialListI18n.text}</H>
 
@@ -317,12 +332,12 @@ export default function ListViewHeader({
                             <FelaComponent
                               style={(
                                 {
-                                  theme
+                                  theme,
                                 }
                               ) => ({
                                 marginBottom: idx < commercialLinks.length - 1 ? '1rem' : '0',
                                 '&:hover': { textDecoration: 'underline', },
-                                '&:focus': { textDecoration: 'underline', }
+                                '&:focus': { textDecoration: 'underline', },
                               })}
                               key={commercialLink.contentId}
                               as="li"
@@ -344,13 +359,15 @@ export default function ListViewHeader({
                           ))}
                         </FelaComponent>
                       </React.Fragment>
-                    )}</FelaComponent>
-                )
-              )}
-            </FelaComponent>
+                    )}
+                  </FelaComponent>
+              )
+            )}
+          </FelaComponent>
           )}
         </header>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

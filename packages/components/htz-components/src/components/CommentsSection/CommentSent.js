@@ -77,7 +77,9 @@ class CommentSent extends React.Component {
       <FelaComponent
         displayThankYou={displayThankYou}
         isReplyForm={isReplyForm}
-        style={contStyle}>{({
+        style={contStyle}
+      >
+        {({
           className,
           theme,
           theme: {
@@ -102,15 +104,18 @@ class CommentSent extends React.Component {
                 <FelaComponent
                   style={{
                     fontWeight: 'bold',
-                  }}>{({ className, }) => (
+                  }}
+                >
+                  {({ className, }) => (
                     <span
-                      tabIndex={-1}
-                      className={className}
-                      ref={this.manageFocus}
-                    >
-                      {commentRecievedBoldTextThankYouPage}
-                    </span>
-                  )}</FelaComponent>
+              tabIndex={-1}
+              className={className}
+              ref={this.manageFocus}
+            >
+              {commentRecievedBoldTextThankYouPage}
+            </span>
+                  )}
+                </FelaComponent>
                 <FelaComponent
                   style={{
                     marginBottom: '5rem',
@@ -149,7 +154,7 @@ class CommentSent extends React.Component {
                 }}
                 render={({ getInputProps, handleSubmit, }) => (
                   <div>
-                    <p
+            <p
                       tabIndex={-1}
                       ref={this.manageFocus}
                     >
@@ -163,8 +168,8 @@ class CommentSent extends React.Component {
                       </FelaComponent>
                       {commentRecievedText}
                     </p>
-                    <p>{commentRecievedTextSecondRow}</p>
-                    <TextInput
+            <p>{commentRecievedTextSecondRow}</p>
+            <TextInput
                       {...getInputProps({
                         name: 'notificationEmail',
                         noteText: emailNoteTxt,
@@ -178,7 +183,7 @@ class CommentSent extends React.Component {
                         },
                       })}
                     />
-                    <FelaComponent
+            <FelaComponent
                       style={{
                         marginTop: '3rem',
                       }}
@@ -205,12 +210,13 @@ class CommentSent extends React.Component {
                         {dontGetNotificationsBtnTxt}
                       </Button>
                     </FelaComponent>
-                  </div>
+          </div>
                 )}
               />
             )}
           </div>
-        )}</FelaComponent>
+        )}
+      </FelaComponent>
     );
   }
 }

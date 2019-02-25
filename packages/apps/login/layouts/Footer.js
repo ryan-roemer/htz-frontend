@@ -1,7 +1,7 @@
 import React, { Fragment, } from 'react';
 import { createComponent, FelaComponent, } from 'react-fela';
-import { LoginGeneralLayoutStyles, } from '../components/StyleComponents/LoginStyleComponents';
 import FooterB from '@haaretz/htz-components';
+import { LoginGeneralLayoutStyles, } from '../components/StyleComponents/LoginStyleComponents';
 
 const { FooterWrapper, FooterContentHolder, } = LoginGeneralLayoutStyles;
 

@@ -49,7 +49,8 @@ const NextItem = createComponent(NextItemStyle, HtzLink, props => Object.keys(pr
 
 function Osaka({ nextArticleUrl, nextArticleText, lists, }) {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <FelaComponent
           style={{
             backgroundColor: theme.color('neutral', '-10'),
@@ -132,19 +133,19 @@ function Osaka({ nextArticleUrl, nextArticleText, lists, }) {
                     <NextItem
                       href={nextArticleUrl}
                       onClick={() => {
-                        biAction({
-                          actionCode: biActionMapper.get('next_page'),
-                          additionalInfo: {
-                            ViewName: 'NextArticleInSection',
-                            ArticleId: nextArticleUrl.match(/(?:.*-?)(1\.\d+.*)/)[1],
-                            NumberInList: 1,
-                            ListId: '',
-                            platform: 'desktop',
-                          },
-                        });
-                      }}
+                  biAction({
+                    actionCode: biActionMapper.get('next_page'),
+                    additionalInfo: {
+                      ViewName: 'NextArticleInSection',
+                      ArticleId: nextArticleUrl.match(/(?:.*-?)(1\.\d+.*)/)[1],
+                      NumberInList: 1,
+                      ListId: '',
+                      platform: 'desktop',
+                    },
+                  });
+                }}
                       content={(
-                        <FelaComponent
+                  <FelaComponent
                           style={{ display: 'flex', alignItems: 'center', }}
                           as="p"
                         >
@@ -161,7 +162,8 @@ function Osaka({ nextArticleUrl, nextArticleText, lists, }) {
             )}
           />
         </FelaComponent>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }
 

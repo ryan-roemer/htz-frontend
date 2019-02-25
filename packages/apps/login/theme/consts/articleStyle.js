@@ -9,7 +9,6 @@ const paragraphLink = Object.freeze({
 });
 
 
-
 const articleStyle = Object.freeze({
   paragraphLink,
 });

@@ -163,33 +163,40 @@ export function NewsletterForm({
         return errors;
       }}
       render={({ getInputProps, handleSubmit, }) => (
-        <FelaComponent style={BeforeConfirmedWrapperStyle}>{({ className, theme, }) => {
+        <FelaComponent style={BeforeConfirmedWrapperStyle}>
+          {({ className, theme, }) => {
             const {
               textInputI18n: { requiredLong, requiredShort, },
               newsletterStyle,
             } = theme;
             return (
               <div className={className}>
-                <FelaComponent style={UpperInputRow}>{({ className, }) => (
+                <FelaComponent style={UpperInputRow}>
+                  {({ className, }) => (
                     <div className={className}>
-                      <FelaComponent variant={variant} style={inputUpperNoteStyle}>{({ className, }) => (
+                      <FelaComponent variant={variant} style={inputUpperNoteStyle}>
+                        {({ className, }) => (
                           <H className={className}>{headlineText}</H>
-                        )}</FelaComponent>
+                        )}
+                      </FelaComponent>
                       {NewsletterIcon ? (
                         <NewsletterIcon
                           size={[
-                            { from: 's', value: 3, },
-                            { until: 's', value: 7, },
-                          ]}
+                  { from: 's', value: 3, },
+                  { until: 's', value: 7, },
+                ]}
                         />
                       ) : null}
                     </div>
-                  )}</FelaComponent>
-                <FelaComponent style={RowStyle}>{({ className, }) => (
+                  )}
+                </FelaComponent>
+                <FelaComponent style={RowStyle}>
+                  {({ className, }) => (
                     <div className={className}>
-                      <FelaComponent style={InputWrapperStyle}>{({ className, }) => (
+                      <FelaComponent style={InputWrapperStyle}>
+                        {({ className, }) => (
                           <div className={className}>
-                            <TextInput
+                  <TextInput
                               {...getInputProps({
                                 name: 'email',
                                 label: 'דוא"ל',
@@ -204,8 +211,9 @@ export function NewsletterForm({
                                 miscStyles: { type: -1, },
                               })}
                             />
-                          </div>
-                        )}</FelaComponent>
+                </div>
+                        )}
+                      </FelaComponent>
                       <Button
                         onClick={handleSubmit}
                         boxModel={{ hp: 3, vp: 1, }}
@@ -216,10 +224,12 @@ export function NewsletterForm({
                         {buttonText}
                       </Button>
                     </div>
-                  )}</FelaComponent>
+                  )}
+                </FelaComponent>
               </div>
             );
-          }}</FelaComponent>
+          }}
+        </FelaComponent>
       )}
     />
   );

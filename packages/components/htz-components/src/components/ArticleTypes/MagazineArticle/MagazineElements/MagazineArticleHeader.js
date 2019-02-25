@@ -72,11 +72,7 @@ function Header({
 }) {
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         textAlign: 'center',
         display: 'flex',
         flexDirection: 'column',
@@ -86,8 +82,10 @@ function Header({
             { from: 'l', },
             { marginBottom: '6rem', ...(variationB ? {} : { marginTop: '6rem', }), }
           ),
-        ]
-      })}>{({ className, theme, }) => (
+        ],
+      })}
+    >
+      {({ className, theme, }) => (
         <header className={className}>
           <HeaderElementCont
             miscStyles={{
@@ -235,7 +233,8 @@ function Header({
             />
           ) : null}
         </header>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

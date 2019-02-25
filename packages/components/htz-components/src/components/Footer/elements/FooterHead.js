@@ -112,124 +112,144 @@ const IconsListStyle = ({ theme, isHiddenOnMobile, isLast, }) => ({
 
 export default function FooterHead() {
   return (
-    <FelaComponent style={desktopHeadStyle}>{({ className, theme, }) => (
+    <FelaComponent style={desktopHeadStyle}>
+      {({ className, theme, }) => (
         <div className={className}>
-          <FelaComponent style={LogoStyle}>{({ className, }) => (
+          <FelaComponent style={LogoStyle}>
+            {({ className, }) => (
               <div className={className}>
                 <IconHaaretzLogo size={6} miscStyles={LogoMiscStyle} />
                 <VisuallyHidden>הארץ</VisuallyHidden>
               </div>
-            )}</FelaComponent>
-          <FelaComponent style={IconsUlStyle}>{({ className, }) => (
+            )}
+          </FelaComponent>
+          <FelaComponent style={IconsUlStyle}>
+            {({ className, }) => (
               <ul className={className}>
-                <FelaComponent style={IconsListStyle}>{({ className, }) => (
+                <FelaComponent style={IconsListStyle}>
+                  {({ className, }) => (
                     <li className={className}>
                       <HtzLink
-                        content={(
+                  content={(
                           <Fragment>
-                            <VisuallyHidden>
+                <VisuallyHidden>
                               facebook
                             </VisuallyHidden>
-                            <IconFaceBookLogo miscStyles={IconMiscStyle} />
-                          </Fragment>
+                <IconFaceBookLogo miscStyles={IconMiscStyle} />
+              </Fragment>
 )}
-                        href="https://www.facebook.com/haaretz"
-                      />
+                  href="https://www.facebook.com/haaretz"
+                />
                     </li>
-                  )}</FelaComponent>
-                <FelaComponent style={IconsListStyle}>{({ className, }) => (
+                  )}
+                </FelaComponent>
+                <FelaComponent style={IconsListStyle}>
+                  {({ className, }) => (
                     <li className={className}>
                       <HtzLink
-                        content={(
+                  content={(
                           <Fragment>
-                            <VisuallyHidden>
+                <VisuallyHidden>
                               Twitter
                             </VisuallyHidden>
-                            <IconTwitter miscStyles={IconMiscStyle} />
-                          </Fragment>
+                <IconTwitter miscStyles={IconMiscStyle} />
+              </Fragment>
 )}
-                        href="https://twitter.com/haaretz"
-                      />
+                  href="https://twitter.com/haaretz"
+                />
                     </li>
-                  )}</FelaComponent>
-                <FelaComponent isHiddenOnMobile style={IconsListStyle}>{({ className, }) => (
+                  )}
+                </FelaComponent>
+                <FelaComponent isHiddenOnMobile style={IconsListStyle}>
+                  {({ className, }) => (
                     <li className={className}>
                       <HtzLink
-                        content={(
+                  content={(
                           <Fragment>
-                            <VisuallyHidden>
+                <VisuallyHidden>
                               Android
                             </VisuallyHidden>
-                            <IconAndroid />
-                          </Fragment>
+                <IconAndroid />
+              </Fragment>
 )}
-                        href="https://play.google.com/store/apps/details?id=com.haaretz"
-                      />
+                  href="https://play.google.com/store/apps/details?id=com.haaretz"
+                />
                     </li>
-                  )}</FelaComponent>
-                <FelaComponent isHiddenOnMobile style={IconsListStyle}>{({ className, }) => (
+                  )}
+                </FelaComponent>
+                <FelaComponent isHiddenOnMobile style={IconsListStyle}>
+                  {({ className, }) => (
                     <li className={className}>
                       <HtzLink
-                        content={(
+                  content={(
                           <Fragment>
-                            <VisuallyHidden>
+                <VisuallyHidden>
                               Apple
                             </VisuallyHidden>
-                            <IconApple />
-                          </Fragment>
+                <IconApple />
+              </Fragment>
 )}
-                        href="https://itunes.apple.com/us/app/id521559643"
-                      />
+                  href="https://itunes.apple.com/us/app/id521559643"
+                />
                     </li>
-                  )}</FelaComponent>
-                <FelaComponent style={IconsListStyle}>{({ className, }) => (
+                  )}
+                </FelaComponent>
+                <FelaComponent style={IconsListStyle}>
+                  {({ className, }) => (
                     <li className={className}>
                       <HtzLink
-                        content={(
+                  content={(
                           <Fragment>
-                            <VisuallyHidden>
+                <VisuallyHidden>
                               Google Plus
                             </VisuallyHidden>
-                            <IconGPlus miscStyles={IconMiscStyle} />
-                          </Fragment>
+                <IconGPlus miscStyles={IconMiscStyle} />
+              </Fragment>
 )}
-                        href="https://plus.google.com/+haaretzcoil"
-                      />
+                  href="https://plus.google.com/+haaretzcoil"
+                />
                     </li>
-                  )}</FelaComponent>
-                <FelaComponent isHiddenOnMobile style={IconsListStyle}>{({ className, }) => (
+                  )}
+                </FelaComponent>
+                <FelaComponent isHiddenOnMobile style={IconsListStyle}>
+                  {({ className, }) => (
                     <li className={className}>
                       <HtzLink
-                        content={(
+                  content={(
                           <Fragment>
-                            <VisuallyHidden>
+                <VisuallyHidden>
                               Email
                             </VisuallyHidden>
-                            <IconMail />
-                          </Fragment>
+                <IconMail />
+              </Fragment>
 )}
-                        href="https://www.haaretz.co.il/misc/redemail"
-                      />
+                  href="https://www.haaretz.co.il/misc/redemail"
+                />
                     </li>
-                  )}</FelaComponent>
-                <FelaComponent isLast isHiddenOnMobile style={IconsListStyle}>{({ className, }) => (
+                  )}
+                </FelaComponent>
+                <FelaComponent isLast isHiddenOnMobile style={IconsListStyle}>
+                  {({ className, }) => (
                     <li className={className}>
                       <HtzLink
-                        content={(
+                  content={(
                           <Fragment>
-                            <VisuallyHidden>
+                <VisuallyHidden>
                               RSS
                             </VisuallyHidden>
-                            <IconRss />
-                          </Fragment>
+                <IconRss />
+              </Fragment>
 )}
-                        href="https://www.haaretz.co.il/misc/rss"
-                      />
+                  href="https://www.haaretz.co.il/misc/rss"
+                />
                     </li>
-                  )}</FelaComponent>
+                  )}
+                </FelaComponent>
               </ul>
-            )}</FelaComponent>
+            )}
+          </FelaComponent>
         </div>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }

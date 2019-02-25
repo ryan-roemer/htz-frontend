@@ -32,7 +32,9 @@ export default function LogoAndDate({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-      }}>{({ className, theme: { homepageLogoLink, }, }) => (
+      }}
+    >
+      {({ className, theme: { homepageLogoLink, }, }) => (
         <div className={className}>
           {Logo ? (
             <HtzLink href="/" attrs={{ tabIndex, }}>
@@ -42,7 +44,8 @@ export default function LogoAndDate({
           ) : null}
           {disableDatetime ? null : <PageDateTime miscStyles={datetimeMiscStyles} />}
         </div>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

@@ -1,10 +1,10 @@
-import React, { Fragment, Component } from "react";
-import Router from "next/router";
-import { ApolloConsumer } from "react-apollo";
+import React, { Fragment, Component, } from 'react';
+import Router from 'next/router';
+import { ApolloConsumer, } from 'react-apollo';
 
-import { EventTracker, HtzLink } from "@haaretz/htz-components";
-import FSMLayout from "../layouts/FSMLayout";
-import OtpForm from "../components/Misc/Forms/OtpForm";
+import { EventTracker, HtzLink, } from '@haaretz/htz-components';
+import FSMLayout from '../layouts/FSMLayout';
+import OtpForm from '../components/Misc/Forms/OtpForm';
 import {
   connectMailWithPhone,
   getUserData,
@@ -13,30 +13,30 @@ import {
   getPhoneNum,
   retrieveHash,
   getUser,
-  saveOtpHash
-} from "./queryutil/userDetailsOperations";
+  saveOtpHash,
+} from './queryutil/userDetailsOperations';
 
-import { getFlowNumber } from "../components/FlowDispenser/flowStorage";
-import { sendTrackingEvents } from "../util/trackingEventsUtil";
-import BottomLinks from "../components/Misc/BottomLinks";
-import Preloader from "../components/Misc/Preloader";
-import { LoginContentStyles } from "../components/StyleComponents/LoginStyleComponents";
+import { getFlowNumber, } from '../components/FlowDispenser/flowStorage';
+import { sendTrackingEvents, } from '../util/trackingEventsUtil';
+import BottomLinks from '../components/Misc/BottomLinks';
+import Preloader from '../components/Misc/Preloader';
+import { LoginContentStyles, } from '../components/StyleComponents/LoginStyleComponents';
 
 // Styling Components -------
-const { ContentWrapper, FormWrapper, ItemCenterer } = LoginContentStyles;
+const { ContentWrapper, FormWrapper, ItemCenterer, } = LoginContentStyles;
 // --------------------------
 
 // Methods -------------------
 
 const loginWithPass = (email, flow, eventTrackers) => {
   sendTrackingEvents(eventTrackers, {
-    page: "Phone Mail Sent",
+    page: 'Phone Mail Sent',
     flowNumber: flow,
-    label: "withPassword"
+    label: 'withPassword',
   })(() => {
     // eslint-disable-next-line no-undef
     window.location = `/?params=${btoa(
-      JSON.stringify({ email })
+      JSON.stringify({ email, })
     )}&type=reevaluate`;
   });
 };
@@ -49,31 +49,31 @@ const sendAgain = (client, doTransition) => {
     email,
     userName: userData.firstName,
     phone: phoneNumber,
-    paramString: JSON.stringify({ email, phone: phoneNumber }),
-    url: getHostname(client)
+    paramString: JSON.stringify({ email, phone: phoneNumber, }),
+    url: getHostname(client),
   }).then(
     () => {
-      const route = doTransition("sentAgain");
+      const route = doTransition('sentAgain');
       Router.push(route);
     },
-    error => console.log(error.message) //TODO error ui
+    error => console.log(error.message) // TODO error ui
   );
 };
 // --------------------------
 
 class PhoneMailSent extends Component {
   state = {
-    isLoading: false
+    isLoading: false,
   };
 
   setPreloader = isLoadingStatus => {
-    this.setState({ isLoading: !!isLoadingStatus });
+    this.setState({ isLoading: !!isLoadingStatus, });
   };
 
   render() {
     return (
       <FSMLayout>
-        {({ currentState, findRout, doTransition }) => (
+        {({ currentState, findRout, doTransition, }) => (
           <ApolloConsumer>
             {client => {
               const flow = getFlowNumber(client);
@@ -99,7 +99,7 @@ class PhoneMailSent extends Component {
                             showNumber={false}
                             eventCategory="Phone Mail Sent"
                             eventsTrackers={{ biAction, gaAction, }}
-                            dontGenerateOtp={true}
+                            dontGenerateOtp
                             flow={flow}
                           />
 
@@ -119,11 +119,11 @@ class PhoneMailSent extends Component {
                                 e.preventDefault();
                                 this.setPreloader(true);
                                 sendTrackingEvents(
-                                  { biAction, gaAction },
+                                  { biAction, gaAction, },
                                   {
-                                    page: "Phone Mail Sent",
+                                    page: 'Phone Mail Sent',
                                     flowNumber: flow,
-                                    label: "sendAgainPhoneEmail"
+                                    label: 'sendAgainPhoneEmail',
                                   }
                                 )(() => {
                                   sendAgain(client, doTransition);
@@ -137,12 +137,12 @@ class PhoneMailSent extends Component {
                             <br />
 
                             <HtzLink
-                              href={`${findRout("withPassword")}`}
+                              href={`${findRout('withPassword')}`}
                               onClick={e => {
                                 e.preventDefault();
                                 loginWithPass(getEmail(client), flow, {
                                   biAction,
-                                  gaAction
+                                  gaAction,
                                 });
                               }}
                             >

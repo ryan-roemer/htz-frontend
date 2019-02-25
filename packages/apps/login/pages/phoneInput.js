@@ -26,10 +26,9 @@ const isMobile = phone => {
   return phoneRegex.test(phone);
 };
 
-const validatePhoneNumber = ({ phoneNumber, }) =>
-  (!isMobile(phoneNumber) || !phoneNumber || phoneNumber.length < 10
-    ? generateSmsCodeError('אנא הזינו מספר טלפון נייד')
-    : []);
+const validatePhoneNumber = ({ phoneNumber, }) => (!isMobile(phoneNumber) || !phoneNumber || phoneNumber.length < 10
+  ? generateSmsCodeError('אנא הזינו מספר טלפון נייד')
+  : []);
 
 const onSubmit = ({ doTransition, client, showError, hideError, }) => ({ phoneNumber, }) => {
   hideError();
@@ -58,12 +57,12 @@ class PhoneInput extends React.Component {
     errorMessage: '',
   };
 
-  showError = (errorMsg) => {
+  showError = errorMsg => {
     this.setState({ showError: true, errorMessage: errorMsg, });
   };
 
   hideError = () => {
-    this.setState({ showError: false, errorMessage: "", });
+    this.setState({ showError: false, errorMessage: '', });
   };
 
   render() {
@@ -108,10 +107,10 @@ class PhoneInput extends React.Component {
                             />
                           </div>
 
-                          <ErrorBox className={this.state.showError ? "" : "hidden"}>
-                        <span>
-                          {this.state.errorMessage}
-                        </span>
+                          <ErrorBox className={this.state.showError ? '' : 'hidden'}>
+                            <span>
+                              {this.state.errorMessage}
+                            </span>
                           </ErrorBox>
                           <ItemCenterer>
                             <Button onClick={handleSubmit}>המשך</Button>

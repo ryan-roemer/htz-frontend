@@ -17,8 +17,8 @@ import VolumeGraph from '../../components/Graph/graphs/Volume/Volume';
 import YieldGraph from '../../components/Graph/graphs/Yield/Yield';
 
 const ExchangeQuery: DocumentNode = gql`
-  query ExchangeData($assetId: String!){
-    asset(assetId: $assetId){
+  query ExchangeData($assetId: String!) {
+    asset(assetId: $assetId) {
       name
       value
       changePercentage
@@ -51,14 +51,15 @@ type Props = {
   },
 };
 
-function exchange({ url: { query: { assetId, section, }, asPath, }, }: Props): Node {
+function exchange({
+  url: {
+    query: { assetId, section, },
+    asPath,
+  },
+}: Props): Node {
   const crypto: boolean = section === 'crypto';
   return (
-    <Query
-      partialRefetch
-      query={ExchangeQuery}
-      variables={{ assetId, }}
-    >
+    <Query partialRefetch query={ExchangeQuery} variables={{ assetId, }}>
       {({ loading, error, data, }) => {
         if (error) return null;
         if (loading) return null;
@@ -81,17 +82,20 @@ function exchange({ url: { query: { assetId, section, }, asPath, }, }: Props): N
         return (
           <MainLayout
             section={section}
-            title={crypto
-              ? `${name} - שער ${name} - מטבעות דיגיטלים - TheMarker Finance`
-              : `${name} -מט"ח – נתוני מסחר מטבע חוץ TheMarker Finance`
+            title={
+              crypto
+                ? `${name} - שער ${name} - מטבעות דיגיטלים - TheMarker Finance`
+                : `${name} -מט"ח – נתוני מסחר מטבע חוץ TheMarker Finance`
             }
-            description={crypto
-              ? `${name} שערים עדכנים והיסטוריים של מטבע ${name} - כל המידע על מטבעות דיגיטליים ומטבעות קריפטוגרפים באתר TheMarker Finance`
-              : `${name} למידע על נתוני מסחר של מטבעות חוץ, שערי מט"ח, אופציות מט"ח, שערים יציגים ועוד , היכנסו לאתר TheMarker Finance`
+            description={
+              crypto
+                ? `${name} שערים עדכנים והיסטוריים של מטבע ${name} - כל המידע על מטבעות דיגיטליים ומטבעות קריפטוגרפים באתר TheMarker Finance`
+                : `${name} למידע על נתוני מסחר של מטבעות חוץ, שערי מט"ח, אופציות מט"ח, שערים יציגים ועוד , היכנסו לאתר TheMarker Finance`
             }
             path={asPath}
           >
-            <FelaTheme>{theme => (
+            <FelaTheme>
+              {theme => (
                 <Fragment>
                   <PageRow lines={2}>
                     <RowItem
@@ -110,22 +114,16 @@ function exchange({ url: { query: { assetId, section, }, asPath, }, }: Props): N
                       valueData={[
                         { title: 'שער', value: value.toString(), },
                         { title: '% שינוי', value: changePercentage, },
-                        (fixedRate
+                        fixedRate
                           ? { title: 'שער יציג', value: fixedRate, decimal: 4, }
-                          : { title: 'תשואה שנתית', value: yearlyYield, percentage: true, }
-                        ),
+                          : { title: 'תשואה שנתית', value: yearlyYield, percentage: true, },
                       ]}
                       date={{ title: 'נכון ל:', value: lastTradeTime, }}
-                      assetInfo={[
-                        { title: 'סוג נייר:', value: subType, },
-                      ]}
+                      assetInfo={[ { title: 'סוג נייר:', value: subType, }, ]}
                     />
                   </PageRow>
                   <PageRow>
-                    <GraphController
-                      selectedStockId={assetId}
-                      width={900}
-                    />
+                    <GraphController selectedStockId={assetId} width={900} />
                   </PageRow>
                   <PageRow>
                     <Grid
@@ -135,12 +133,8 @@ function exchange({ url: { query: { assetId, section, }, asPath, }, }: Props): N
                         paddingEnd: '0rem',
                       }}
                     >
-                      <GridItem
-                        width={1 / 3}
-                      >
-                        <RowItem
-                          title="נתוני המסחר"
-                        >
+                      <GridItem width={1 / 3}>
+                        <RowItem title="נתוני המסחר">
                           <QuoteInfoTable
                             id={assetId}
                             tradingStatus
@@ -156,18 +150,14 @@ function exchange({ url: { query: { assetId, section, }, asPath, }, }: Props): N
                           />
                         </RowItem>
                       </GridItem>
-                      <GridItem
-                        width={2 / 3}
-                      >
+                      <GridItem width={2 / 3}>
                         <FelaComponent
                           style={{
                             display: 'flow',
                             flowDirection: 'column',
                           }}
                         >
-                          <RowItem
-                            title="מחזורים"
-                          >
+                          <RowItem title="מחזורים">
                             <VolumeGraph
                               theme={theme}
                               data={[
@@ -187,9 +177,7 @@ function exchange({ url: { query: { assetId, section, }, asPath, }, }: Props): N
                               }}
                             />
                           </RowItem>
-                          <RowItem
-                            title="תשואות"
-                          >
+                          <RowItem title="תשואות">
                             <YieldGraph
                               theme={theme}
                               data={[
@@ -231,11 +219,12 @@ function exchange({ url: { query: { assetId, section, }, asPath, }, }: Props): N
                     </RowItem>
                   </PageRow>
                 </Fragment>
-              )}</FelaTheme>
-        </MainLayout>
+              )}
+            </FelaTheme>
+          </MainLayout>
         );
-    }}
-  </Query>
+      }}
+    </Query>
   );
 }
 

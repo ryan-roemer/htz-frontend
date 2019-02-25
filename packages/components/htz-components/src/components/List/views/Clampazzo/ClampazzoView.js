@@ -46,14 +46,14 @@ function Clampazzo({ list, lazyLoadImages, gaAction, biAction, }: Props): Node {
       <FelaComponent
         style={(
           {
-            theme
+            theme,
           }
         ) => ({
           ...theme.type(1),
           fontWeight: '700',
           color: theme.color('commercial'),
           ...borderTop('2px', 1, 'solid', theme.color('commercial')),
-          marginBottom: '1rem'
+          marginBottom: '1rem',
         })}
       >
         <H>{title}</H>
@@ -72,13 +72,16 @@ function Clampazzo({ list, lazyLoadImages, gaAction, biAction, }: Props): Node {
               <FelaComponent
                 style={(
                   {
-                    theme
+                    theme,
                   }
                 ) => ({
                   fontWeight: 'bold',
                   color: theme.color('neutral'),
-                  marginTop: '1rem'
-                })}>{({ className, }) => <H className={className}>{item.titleMobile ? item.titleMobile : item.title}</H>}</FelaComponent>
+                  marginTop: '1rem',
+                })}
+              >
+                {({ className, }) => <H className={className}>{item.titleMobile ? item.titleMobile : item.title}</H>}
+              </FelaComponent>
             </FelaComponent>
           </BlockLink>
         </ListItem>

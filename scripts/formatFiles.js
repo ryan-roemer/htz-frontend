@@ -40,8 +40,7 @@ const packages = filePaths.reduce((result, file) => {
 }, {});
 
 // Lint files in each package separately (in case different packages have different settings)
-Object.keys(packages).forEach(packageDir =>
-  lintLocally(packageDir, packages[packageDir])
+Object.keys(packages).forEach(packageDir => lintLocally(packageDir, packages[packageDir])
 );
 
 function lintLocally(packageDir, files) {

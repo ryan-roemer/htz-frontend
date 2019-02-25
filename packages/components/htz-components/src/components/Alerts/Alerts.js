@@ -8,11 +8,7 @@ const Alerts = React.forwardRef((props, ref) => {
   const { author, onToggle, } = props;
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         color: theme.color('alerts', 'openButtonText'),
         fontWeight: 'bold',
 
@@ -45,8 +41,10 @@ const Alerts = React.forwardRef((props, ref) => {
               textAlign: 'center',
             }
           ),
-        ]
-      })}>{({
+        ],
+      })}
+    >
+      {({
         className,
         theme,
         theme: {
@@ -83,7 +81,8 @@ const Alerts = React.forwardRef((props, ref) => {
             </FelaComponent>
           </AlertsButton>
         </React.Fragment>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 });
 

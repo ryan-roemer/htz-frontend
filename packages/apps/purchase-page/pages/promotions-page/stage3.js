@@ -125,7 +125,8 @@ class Stage3 extends Component {
                     );
                   }
                   return (
-                    <FelaComponent style={{ textAlign: 'center', }}>{({
+                    <FelaComponent style={{ textAlign: 'center', }}>
+                      {({
                         className,
                         theme: {
                           stage3: { header, },
@@ -144,30 +145,30 @@ class Stage3 extends Component {
                                 <StageHeader
                                   headerElements={[
                                     <FelaComponent
-                                      style={{ fontWeight: 'bold', }}
-                                      as="span"
-                                    >
-                                      <span>{header.textBeforeChosen}</span>
-                                      {' '}
-                                      {
+                style={{ fontWeight: 'bold', }}
+                as="span"
+              >
+                <span>{header.textBeforeChosen}</span>
+                {' '}
+                {
                                         header.chosenSubscriptionText[
                                           chosenSubscription
                                         ]
                                       }
-                                      {' '}
-                                      {`${
+                {' '}
+                {`${
                                         header.chosenPaymentArrangementText[
                                           chosenPaymentArrangement
                                         ]
                                       }.`}
-                                    </FelaComponent>,
+              </FelaComponent>,
                                     <Fragment>
-                                      {header.dynamicTextNewLineLoginStage[
+                {header.dynamicTextNewLineLoginStage[
                                         this.state.registerOrLoginStage
                                       ].map(line => (
                                         <p key={Math.random()}>{line}</p>
                                       ))}
-                                    </Fragment>,
+              </Fragment>,
                                   ]}
                                 />
 )}
@@ -191,7 +192,8 @@ class Stage3 extends Component {
                             />
                           </LayoutContainer>
                         </div>
-                      )}</FelaComponent>
+                      )}
+                    </FelaComponent>
                   );
                 }}
               </Query>

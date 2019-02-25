@@ -55,7 +55,8 @@ export default class AuthorNotificationsRegistration extends React.Component {
   render() {
     console.log(config);
     return (
-      <FelaTheme>{theme => (
+      <FelaTheme>
+        {theme => (
           <div>
             <div id={`${this.id}_form`}>
               <ServiceByMailRegistration
@@ -87,30 +88,34 @@ export default class AuthorNotificationsRegistration extends React.Component {
                 <FelaComponent
                   style={({ theme, }) => ({
                     textAlign: 'center',
-                  })}>{({ className, }) => (
+                  })}
+                >
+                  {({ className, }) => (
                     <div className={className}>
                       <FelaComponent
                         style={{
-                          paddingTop: 4,
-                          ...theme.type(-1),
-                          fontWeight: '700',
-                          marginBottom: 2,
-                        }}
+                  paddingTop: 4,
+                  ...theme.type(-1),
+                  fontWeight: '700',
+                  marginBottom: 2,
+                }}
                       >
                         {this.state.registrationSuccess
-                          ? theme.serviceByMailI18n.successDefaultMessage
-                          : theme.serviceByMailI18n.failureDefaultMessage}
+                  ? theme.serviceByMailI18n.successDefaultMessage
+                  : theme.serviceByMailI18n.failureDefaultMessage}
                       </FelaComponent>
                       <Button onClick={handleClose} variant="primary">
                         {theme.serviceByMailI18n.btnCloseText}
                       </Button>
                     </div>
-                  )}</FelaComponent>
+                  )}
+                </FelaComponent>
               )}
             />
             <div id={this.id} />
           </div>
-        )}</FelaTheme>
+        )}
+      </FelaTheme>
     );
   }
 }

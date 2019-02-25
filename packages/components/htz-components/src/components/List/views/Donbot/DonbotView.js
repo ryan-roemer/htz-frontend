@@ -206,7 +206,8 @@ function DonbotMainTeaser({
 }: TeaserProps): Node {
   const articleId = item.representedContent || item.contentId;
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <Teaser
           data={item}
           gutter={0}
@@ -296,7 +297,8 @@ function DonbotMainTeaser({
             )}
           />
         </Teaser>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }
 
@@ -308,7 +310,8 @@ function DonbotTeaser({
   lazyLoadImages,
 }: TeaserProps): Node {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <Teaser
           data={item}
           onClick={
@@ -385,7 +388,8 @@ function DonbotTeaser({
             )}
           />
         </Teaser>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }
 

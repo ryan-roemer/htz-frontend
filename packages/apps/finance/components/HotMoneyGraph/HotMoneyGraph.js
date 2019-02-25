@@ -84,7 +84,8 @@ class HotMoneyGraph extends React.Component<Props, State> {
     const { assets, headers, period, } = this.props;
     const time = period === 2 ? 'monthly' : period === 3 ? 'yearly' : 'quarterly';
     return (
-      <FelaTheme>{theme => (
+      <FelaTheme>
+        {theme => (
           <Grid
             gutter={2}
             miscStyles={{
@@ -131,7 +132,8 @@ class HotMoneyGraph extends React.Component<Props, State> {
               />
             </GridItem>
           </Grid>
-        )}</FelaTheme>
+        )}
+      </FelaTheme>
     );
   }
 }

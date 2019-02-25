@@ -10,15 +10,13 @@ import GStat from '../Scripts/GStat';
 export default function MastheadUserTools() {
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         alignItems: 'stretch',
         display: 'flex',
-        marginStart: 'auto'
-      })}>{({ className, }) => (
+        marginStart: 'auto',
+      })}
+    >
+      {({ className, }) => (
         <div className={className}>
           <EventTracker>
             {({ biAction, gaMapper, }) => (
@@ -36,6 +34,7 @@ export default function MastheadUserTools() {
           <MastheadReadingList />
           <MastheadA11yMenu />
         </div>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }

@@ -70,38 +70,74 @@ class WelcomePage extends Component {
                       }}
                       render={({ handleClose, }) => (
                         <FelaComponent
-                            style={({ theme, }) => ({
-                              display: 'flex',
-                              justifyContent: 'center',
-                              transform: 'skewY(-6deg)',
-                              maxWidth: '142rem',
-                              paddingInlineStart: '2rem',
-                              paddingInlineEnd: '2rem',
-                              marginInlineStart: 'auto',
-                              marginInlineEnd: 'auto',
-                              color: theme.color('bodyText', 'base'),
-                            })}
-                          >
-                            {({
-                              theme,
-                              theme: {
-                                welcomePageI18n: {
-                                  texts: { headerHighLighted, headerNormal, bullets, },
-                                  buttonText,
-                                },
+                          style={({ theme, }) => ({
+                            display: 'flex',
+                            justifyContent: 'center',
+                            transform: 'skewY(-6deg)',
+                            maxWidth: '142rem',
+                            paddingInlineStart: '2rem',
+                            paddingInlineEnd: '2rem',
+                            marginInlineStart: 'auto',
+                            marginInlineEnd: 'auto',
+                            color: theme.color('bodyText', 'base'),
+                          })}
+                        >
+                          {({
+                            theme,
+                            theme: {
+                              welcomePageI18n: {
+                                texts: { headerHighLighted, headerNormal, bullets, },
+                                buttonText,
                               },
-                              className,
-                            }) => (
-                              <div className={className}>
+                            },
+                            className,
+                          }) => (
+                            <div className={className}>
+                              <FelaComponent
+                                style={{
+                                  display: 'flex',
+                                  justifyContent: 'space-between',
+                                  extend: [
+                                    theme.mq(
+                                      { until: 'm', },
+                                      {
+                                        flexDirection: 'column-reverse',
+                                      }
+                                    ),
+                                  ],
+                                }}
+                              >
                                 <FelaComponent
                                   style={{
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
                                     extend: [
                                       theme.mq(
                                         { until: 'm', },
                                         {
-                                          flexDirection: 'column-reverse',
+                                          marginTop: '-15rem',
+                                          paddingInlineStart: '3rem',
+                                          paddingInlineEnd: '3rem',
+                                        }
+                                      ),
+                                      theme.mq({ until: 's', }, { marginBottom: '5rem', }),
+                                      theme.mq(
+                                        { from: 's', until: 'm', },
+                                        { marginBottom: '8rem', }
+                                      ),
+                                      theme.mq(
+                                        { from: 'm', until: 'l', },
+                                        {
+                                          paddingTop: '10rem',
+                                          marginBottom: '10rem',
+                                          paddingInlineStart: '3rem',
+                                          marginInlineEnd: '-8rem',
+                                        }
+                                      ),
+                                      theme.mq(
+                                        { from: 'l', },
+                                        {
+                                          paddingTop: '10rem',
+                                          marginInlineEnd: '-16rem',
+                                          marginBottom: '18rem',
                                         }
                                       ),
                                     ],
@@ -110,139 +146,103 @@ class WelcomePage extends Component {
                                   <FelaComponent
                                     style={{
                                       extend: [
-                                        theme.mq(
-                                          { until: 'm', },
-                                          {
-                                            marginTop: '-15rem',
-                                            paddingInlineStart: '3rem',
-                                            paddingInlineEnd: '3rem',
-                                          }
-                                        ),
-                                        theme.mq({ until: 's', }, { marginBottom: '5rem', }),
-                                        theme.mq(
-                                          { from: 's', until: 'm', },
-                                          { marginBottom: '8rem', }
-                                        ),
-                                        theme.mq(
-                                          { from: 'm', until: 'l', },
-                                          {
-                                            paddingTop: '10rem',
-                                            marginBottom: '10rem',
-                                            paddingInlineStart: '3rem',
-                                            marginInlineEnd: '-8rem',
-                                          }
-                                        ),
-                                        theme.mq(
-                                          { from: 'l', },
-                                          {
-                                            paddingTop: '10rem',
-                                            marginInlineEnd: '-16rem',
-                                            marginBottom: '18rem',
-                                          }
-                                        ),
+                                        theme.type(5, { fromBp: 'm', }),
+                                        theme.type(3, { untilBp: 'm', }),
                                       ],
                                     }}
                                   >
-                                    <FelaComponent
-                                      style={{
-                                        extend: [
-                                          theme.type(5, { fromBp: 'm', }),
-                                          theme.type(3, { untilBp: 'm', }),
-                                        ],
-                                      }}
-                                    >
-                                      {({ className, }) => (
-                                        <H className={className}>
-                                          <FelaComponent
-                                            style={{
-                                              color: theme.color('primary', '-2'),
-                                            }}
-                                          >
-                                            {headerHighLighted}
-                                          </FelaComponent>
-                                          <div>{headerNormal}</div>
-                                        </H>
-                                      )}
-                                    </FelaComponent>
-
-                                    <FelaComponent
-                                      style={{
-                                        listStyleType: 'disc',
-                                        listStylePosition: 'inside',
-                                        paddingInlineStart: '-4rem',
-                                        marginTop: '3rem',
-                                        extend: [ theme.mq({ until: 's', }, { marginTop: '1rem', }), ],
-                                      }}
-                                      as="ul"
-                                    >
-                                      {bullets.map(bullet => (
-                                        <li key={bullet}>
-                                          <FelaComponent
-                                            style={{
-                                              marginInlineStart: '-1rem',
-                                            }}
-                                            as="span"
-                                          >
-                                            {bullet}
-                                          </FelaComponent>
-                                        </li>
-                                      ))}
-                                    </FelaComponent>
-                                    <Button
-                                      variant="primaryOpaque"
-                                      miscStyles={{ marginTop: '4rem', }}
-                                      onClick={() => handleClose()}
-                                    >
-                                      {buttonText}
-                                    </Button>
+                                    {({ className, }) => (
+                                      <H className={className}>
+                                        <FelaComponent
+                                          style={{
+                                            color: theme.color('primary', '-2'),
+                                          }}
+                                        >
+                                          {headerHighLighted}
+                                        </FelaComponent>
+                                        <div>{headerNormal}</div>
+                                      </H>
+                                    )}
                                   </FelaComponent>
+
                                   <FelaComponent
                                     style={{
-                                      position: 'relative',
-                                      top: '-20%',
+                                      listStyleType: 'disc',
+                                      listStylePosition: 'inside',
+                                      paddingInlineStart: '-4rem',
+                                      marginTop: '3rem',
+                                      extend: [ theme.mq({ until: 's', }, { marginTop: '1rem', }), ],
                                     }}
+                                    as="ul"
                                   >
-                                    <WelcomeCartoon
-                                      size={[
-                                        { until: 's', value: 36, },
-                                        { from: 's', until: 'm', value: 50, },
-                                        { from: 'm', until: 'l', value: 60, },
-                                        { from: 'l', until: 'xl', value: 75, },
-                                        { from: 'xl', value: 85, },
-                                      ]}
-                                    />
+                                    {bullets.map(bullet => (
+                                      <li key={bullet}>
+                                        <FelaComponent
+                                          style={{
+                                            marginInlineStart: '-1rem',
+                                          }}
+                                          as="span"
+                                        >
+                                          {bullet}
+                                        </FelaComponent>
+                                      </li>
+                                    ))}
                                   </FelaComponent>
-                                  <IconClose
-                                    size={[
-                                      { until: 's', value: 2.5, },
-                                      { from: 's', until: 'l', value: 3.5, },
-                                      { from: 'l', value: 5, },
-                                    ]}
+                                  <Button
+                                    variant="primaryOpaque"
+                                    miscStyles={{ marginTop: '4rem', }}
                                     onClick={() => handleClose()}
-                                    miscStyles={{
-                                      cursor: 'pointer',
-                                      transform: [
-                                        {
-                                          until: 'm',
-                                          value: 'translateX(-1rem)',
-                                        },
-                                        {
-                                          from: 'm',
-                                          until: 'l',
-                                          value: 'translateX(5rem)',
-                                        },
-                                        {
-                                          from: 'l',
-                                          value: 'translateX(8rem)',
-                                        },
-                                      ],
-                                      alignSelf: [ { until: 'm', value: 'flex-end', }, ],
-                                    }}
+                                  >
+                                    {buttonText}
+                                  </Button>
+                                </FelaComponent>
+                                <FelaComponent
+                                  style={{
+                                    position: 'relative',
+                                    top: '-20%',
+                                  }}
+                                >
+                                  <WelcomeCartoon
+                                    size={[
+                                      { until: 's', value: 36, },
+                                      { from: 's', until: 'm', value: 50, },
+                                      { from: 'm', until: 'l', value: 60, },
+                                      { from: 'l', until: 'xl', value: 75, },
+                                      { from: 'xl', value: 85, },
+                                    ]}
                                   />
                                 </FelaComponent>
-                              </div>
-                            )}
-                          </FelaComponent>
+                                <IconClose
+                                  size={[
+                                    { until: 's', value: 2.5, },
+                                    { from: 's', until: 'l', value: 3.5, },
+                                    { from: 'l', value: 5, },
+                                  ]}
+                                  onClick={() => handleClose()}
+                                  miscStyles={{
+                                    cursor: 'pointer',
+                                    transform: [
+                                      {
+                                        until: 'm',
+                                        value: 'translateX(-1rem)',
+                                      },
+                                      {
+                                        from: 'm',
+                                        until: 'l',
+                                        value: 'translateX(5rem)',
+                                      },
+                                      {
+                                        from: 'l',
+                                        value: 'translateX(8rem)',
+                                      },
+                                    ],
+                                    alignSelf: [ { until: 'm', value: 'flex-end', }, ],
+                                  }}
+                                />
+                              </FelaComponent>
+                            </div>
+                          )}
+                        </FelaComponent>
                       )}
                     />
                   );

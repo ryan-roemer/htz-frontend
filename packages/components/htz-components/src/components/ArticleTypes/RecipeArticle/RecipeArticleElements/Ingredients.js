@@ -18,16 +18,14 @@ const defaultProps = {};
 function Ingredients({ ingredientLists, }) {
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         marginTop: '4rem',
         maxWidth: theme.articleStyle.body.maxWidth,
         marginRight: 'auto',
-        marginLeft: 'auto'
-      })}>{({ theme, className, }) => (
+        marginLeft: 'auto',
+      })}
+    >
+      {({ theme, className, }) => (
         <Section className={className}>
           <FelaComponent
             style={{
@@ -36,9 +34,12 @@ function Ingredients({ ingredientLists, }) {
               marginBottom: '3rem',
               maxWidth: '41rem',
               extend: [ theme.type('2'), borderBottom('2px', 1, 'solid', theme.color('primary')), ],
-            }}>{({ className, }) => (
+            }}
+          >
+            {({ className, }) => (
               <H className={className}>{theme.recipeIngredientsI18n.sectionTitle}</H>
-            )}</FelaComponent>
+            )}
+          </FelaComponent>
           <Section>
             {ingredientLists.map((list, idx) => (
               <FelaComponent
@@ -51,7 +52,10 @@ function Ingredients({ ingredientLists, }) {
                       fontWeight: 'bold',
                       marginTop: '1rem',
                       marginBottom: '1rem',
-                    }}>{({ className, }) => <H>{list.header}</H>}</FelaComponent>
+                    }}
+                  >
+                    {({ className, }) => <H>{list.header}</H>}
+                  </FelaComponent>
                 ) : null}
                 <FelaComponent style={{ paddingInlineStart: '1rem', }} as="ul">
                   {list.ingredients.map(ingredient => (
@@ -76,7 +80,10 @@ function Ingredients({ ingredientLists, }) {
                     >
                       <FelaComponent
                         style={{
-                          extend: [ theme.type(1, { untilBp: 'xl', lines: 5, }), theme.type(0, { fromBp: 'xl', lines: 5, }), ],
+                          extend: [
+                            theme.type(1, { untilBp: 'xl', lines: 5, }),
+                            theme.type(0, { fromBp: 'xl', lines: 5, }),
+                          ],
                         }}
                         as="span"
                       >
@@ -89,7 +96,8 @@ function Ingredients({ ingredientLists, }) {
             ))}
           </Section>
         </Section>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

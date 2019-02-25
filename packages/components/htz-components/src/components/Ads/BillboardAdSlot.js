@@ -7,25 +7,17 @@ import type { DfpBannerType, } from '../../flowTypes/DfpBannerType';
 
 import AdSlotBase from './AdSlotBase';
 
-
 function BillboardAdSlot(props: DfpBannerType): Node {
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         extend: [
-          theme.mq(
-            { from: 's', },
-            { '&>:first-child :not(:empty)': { minHeight: '150px', }, },
-          ),
+          theme.mq({ from: 's', }, { '&>:first-child :not(:empty)': { minHeight: '150px', }, }),
           theme.mq(
             { from: 'l', },
-            { '&:not(:empty)': { paddingTop: '5rem', paddingBottom: '5rem', }, },
+            { '&:not(:empty)': { paddingTop: '5rem', paddingBottom: '5rem', }, }
           ),
-        ]
+        ],
       })}
     >
       <AdSlotBase {...props} />

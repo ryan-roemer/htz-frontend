@@ -302,7 +302,8 @@ class MarketingNotificationProvider extends React.Component<Props, State> {
   render(): Node {
     return (
       <NoSSR>
-        <FelaTheme>{theme => (
+        <FelaTheme>
+          {theme => (
             <UserDispenser
               render={({ isLoggedIn, user, }) => (
                 <Query
@@ -354,7 +355,8 @@ class MarketingNotificationProvider extends React.Component<Props, State> {
                 </Query>
               )}
             />
-          )}</FelaTheme>
+          )}
+        </FelaTheme>
       </NoSSR>
     );
   }

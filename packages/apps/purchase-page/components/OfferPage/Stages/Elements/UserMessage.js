@@ -16,12 +16,12 @@ function UserMessage({ userMessage, }) {
       <FelaComponent
         style={(
           {
-            theme
+            theme,
           }
         ) => ({
           fontWeight: 'bold',
           marginTop: '1rem',
-          extend: [ theme.type(1), ]
+          extend: [ theme.type(1), ],
         })}
       >
         {userMessage.map(line => <p key={line}>{line}</p>)}

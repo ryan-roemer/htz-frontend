@@ -26,7 +26,9 @@ function MobileBarActionButtons({ shouldMainNavBarDisplay, }) {
         display: 'flex',
         justifyContent: 'space-between',
         flexGrow: '1',
-      }}>{({ theme, className, }) => (
+      }}
+    >
+      {({ theme, className, }) => (
         <div className={className}>
           <Query query={actionBarData}>
             {({ loading, error, data, }) => {
@@ -40,37 +42,37 @@ function MobileBarActionButtons({ shouldMainNavBarDisplay, }) {
                     isFlat
                     size={iconSize}
                     buttons={{
-                      name: 'facebook',
-                      iconStyles: {
-                        color: theme.color('facebook'),
-                      },
-                    }}
+                name: 'facebook',
+                iconStyles: {
+                  color: theme.color('facebook'),
+                },
+              }}
                   />
                   <ActionButtons
                     elementUrl={articleUrl}
                     isFlat
                     size={iconSize}
                     buttons={{
-                      name: 'whatsapp',
-                      iconStyles: {
-                        color: theme.color('whatsapp'),
-                      },
-                    }}
+                name: 'whatsapp',
+                iconStyles: {
+                  color: theme.color('whatsapp'),
+                },
+              }}
                   />
                   <ActionButtons
                     isFlat
                     size={iconSize}
                     buttons={{
-                      name: 'save',
-                      buttonStyles: isArticleSaved => ({
-                        ...(isArticleSaved
-                          ? {
-                            color: theme.color('neutral', '-10'),
-                            backgroundColor: theme.color('primary'),
-                          }
-                          : {}),
-                      }),
-                    }}
+                name: 'save',
+                buttonStyles: isArticleSaved => ({
+                  ...(isArticleSaved
+                    ? {
+                      color: theme.color('neutral', '-10'),
+                      backgroundColor: theme.color('primary'),
+                    }
+                    : {}),
+                }),
+              }}
                   />
 
                   <ActionButtons
@@ -79,18 +81,19 @@ function MobileBarActionButtons({ shouldMainNavBarDisplay, }) {
                     size={iconSize}
                     elementName={data.title}
                     buttons={{
-                      name: 'mail',
-                      iconStyles: {
-                        color: theme.color('primary'),
-                      },
-                    }}
+                name: 'mail',
+                iconStyles: {
+                  color: theme.color('primary'),
+                },
+              }}
                   />
                 </Fragment>
               );
             }}
           </Query>
         </div>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

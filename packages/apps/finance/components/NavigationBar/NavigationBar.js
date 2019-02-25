@@ -24,7 +24,7 @@ const ListItem = ({ name, as, href, selected, }: ListItemProps): Node => (
   <FelaComponent
     style={(
       {
-        theme
+        theme,
       }
     ) => ({
       ...(selected ? { color: theme.color('primary'), } : {}),
@@ -44,7 +44,7 @@ const ListItem = ({ name, as, href, selected, }: ListItemProps): Node => (
           transform: 'translate(-50%, 50%)',
           width: '2px',
         },
-      }
+      },
     })}
     as="li"
   >
@@ -58,7 +58,7 @@ const NavigationBar = ({ section, miscStyles, assetId, }: Props): Node => (
   <FelaComponent
     style={(
       {
-        theme
+        theme,
       }
     ) => ({
       ...theme.type(-1),
@@ -71,7 +71,7 @@ const NavigationBar = ({ section, miscStyles, assetId, }: Props): Node => (
 
       extend: [
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ]
+      ],
     })}
     as="ul"
   >

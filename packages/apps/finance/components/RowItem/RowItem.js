@@ -16,7 +16,7 @@ const RowItem = ({ title, children, miscStyles, }: Props): Node => (
   <FelaComponent
     style={(
       {
-        theme
+        theme,
       }
     ) => ({
       ...theme.type(1),
@@ -25,13 +25,16 @@ const RowItem = ({ title, children, miscStyles, }: Props): Node => (
       extend: [
         borderBottom('2px', 1, 'solid', theme.color('neutral', '-1')),
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ]
-    })}>{({ className, }) => (
+      ],
+    })}
+  >
+    {({ className, }) => (
       <Fragment>
         { title && <H className={className}>{title}</H>}
         {children}
       </Fragment>
-    )}</FelaComponent>
+    )}
+  </FelaComponent>
 );
 
 RowItem.defaultProps = { miscStyles: null, children: null, };

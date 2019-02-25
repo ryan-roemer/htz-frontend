@@ -21,9 +21,7 @@ type Props = {
   },
 };
 
-const numToString: number => string = num => (
-  num.toLocaleString('he', { minimumFractionDigits: 2, maximumFractionDigits: 2, })
-);
+const numToString: number => string = num => num.toLocaleString('he', { minimumFractionDigits: 2, maximumFractionDigits: 2, });
 
 function index({ url: { asPath, }, }: Props): Node {
   return (
@@ -32,12 +30,11 @@ function index({ url: { asPath, }, }: Props): Node {
       description="אתר פיננס דה מרקר מספק מידע מורחב ועדכני משוקי ההון בישראל, וול סטריט, אירופה ואסיה אודות מניות, אגרות חוב, קרנות נאמנות, תעודות סל, נגזרים, דולר, שוק המטבעות ובעלי עניין"
       path={asPath}
     >
-      <FelaTheme>{theme => (
+      <FelaTheme>
+        {theme => (
           <Fragment>
             <PageRow miscStyles={{ marginBottom: '0', }}>
-              <RowItem
-                title="מבט לשווקים"
-              >
+              <RowItem title="מבט לשווקים">
                 <TableGraphConnector
                   assetsId={[ '2', '142', '137', '-2000', '164', '143', '167', '145', '149', ]}
                 />
@@ -61,9 +58,7 @@ function index({ url: { asPath, }, }: Props): Node {
             <PageRow>
               <Grid>
                 <GridItem width={1 / 2}>
-                  <RowItem
-                    title="מניות תל אביב"
-                  >
+                  <RowItem title="מניות תל אביב">
                     <SortableTable
                       parentId="142"
                       type="bonds"
@@ -100,9 +95,10 @@ function index({ url: { asPath, }, }: Props): Node {
                           display: '% שינוי',
                           sortingOrder: 'descend',
                           style: ({ changePercentage, }) => ({
-                            color: changePercentage < 0
-                              ? theme.color('negative')
-                              : theme.color('positive'),
+                            color:
+                              changePercentage < 0
+                                ? theme.color('negative')
+                                : theme.color('positive'),
                             direction: 'ltr',
                             fontWeight: '700',
                             paddingEnd: '2rem',
@@ -149,9 +145,7 @@ function index({ url: { asPath, }, }: Props): Node {
             <PageRow>
               <Grid>
                 <GridItem width={1 / 2}>
-                  <RowItem
-                    title="מניות בנסדא״ק"
-                  >
+                  <RowItem title="מניות בנסדא״ק">
                     <SortableTable
                       parentId="136"
                       type="bonds"
@@ -188,9 +182,10 @@ function index({ url: { asPath, }, }: Props): Node {
                           display: '% שינוי',
                           sortingOrder: 'descend',
                           style: ({ changePercentage, }) => ({
-                            color: changePercentage < 0
-                              ? theme.color('negative')
-                              : theme.color('positive'),
+                            color:
+                              changePercentage < 0
+                                ? theme.color('negative')
+                                : theme.color('positive'),
                             direction: 'ltr',
                             fontWeight: '700',
                             paddingEnd: '2rem',
@@ -208,9 +203,7 @@ function index({ url: { asPath, }, }: Props): Node {
                   </RowItem>
                 </GridItem>
                 <GridItem width={1 / 2}>
-                  <RowItem
-                    title="מניות ארביטראז׳"
-                  >
+                  <RowItem title="מניות ארביטראז׳">
                     <SortableTable
                       parentId="-2000"
                       type="stocks"
@@ -247,9 +240,7 @@ function index({ url: { asPath, }, }: Props): Node {
                           display: '% פער',
                           sortingOrder: 'descend',
                           style: ({ arbGap, }) => ({
-                            color: arbGap < 0
-                              ? theme.color('negative')
-                              : theme.color('positive'),
+                            color: arbGap < 0 ? theme.color('negative') : theme.color('positive'),
                             direction: 'ltr',
                             fontWeight: '700',
                             paddingEnd: '2rem',
@@ -271,9 +262,7 @@ function index({ url: { asPath, }, }: Props): Node {
             <PageRow>
               <Grid>
                 <GridItem width={1 / 2}>
-                  <RowItem
-                    title="מט״ח"
-                  >
+                  <RowItem title="מט״ח">
                     <SortableTable
                       assetsId={[ '0', '1', '2', '3', '4', ]}
                       type="currency"
@@ -310,9 +299,10 @@ function index({ url: { asPath, }, }: Props): Node {
                           display: '% שינוי',
                           sortingOrder: 'descend',
                           style: ({ changePercentage, }) => ({
-                            color: changePercentage < 0
-                              ? theme.color('negative')
-                              : theme.color('positive'),
+                            color:
+                              changePercentage < 0
+                                ? theme.color('negative')
+                                : theme.color('positive'),
                             direction: 'ltr',
                             fontWeight: '700',
                             paddingEnd: '2rem',
@@ -357,18 +347,46 @@ function index({ url: { asPath, }, }: Props): Node {
               </Grid>
             </PageRow>
             <PageRow>
-              <RowItem
-                title="הכי חם בשוק"
-              >
+              <RowItem title="הכי חם בשוק">
                 <TabbedGraph
                   assetId="general"
                   tabs={[
-                    { display: 'עולות', control: 'graph-up', sortBy: 'changePercentage', sortOrder: 'descend', },
-                    { display: 'יורדות', control: 'graph-down', sortBy: 'changePercentage', sortOrder: 'ascend', },
-                    { display: 'פעילות', control: 'graph-active', sortBy: 'volume', sortOrder: 'descend', },
-                    { display: 'הנצפים באתר', control: 'graph-mostViewed', sortBy: 'name', sortOrder: 'ascend', }, // TEMP
-                    { display: 'עולות שנתי', control: 'graph-upYearly', sortBy: 'yearlyYield', sortOrder: 'descend', },
-                    { display: 'יורדות שנתי', control: 'graph-downYearly', sortBy: 'yearlyYield', sortOrder: 'ascend', },
+                    {
+                      display: 'עולות',
+                      control: 'graph-up',
+                      sortBy: 'changePercentage',
+                      sortOrder: 'descend',
+                    },
+                    {
+                      display: 'יורדות',
+                      control: 'graph-down',
+                      sortBy: 'changePercentage',
+                      sortOrder: 'ascend',
+                    },
+                    {
+                      display: 'פעילות',
+                      control: 'graph-active',
+                      sortBy: 'volume',
+                      sortOrder: 'descend',
+                    },
+                    {
+                      display: 'הנצפים באתר',
+                      control: 'graph-mostViewed',
+                      sortBy: 'name',
+                      sortOrder: 'ascend',
+                    }, // TEMP
+                    {
+                      display: 'עולות שנתי',
+                      control: 'graph-upYearly',
+                      sortBy: 'yearlyYield',
+                      sortOrder: 'descend',
+                    },
+                    {
+                      display: 'יורדות שנתי',
+                      control: 'graph-downYearly',
+                      sortBy: 'yearlyYield',
+                      sortOrder: 'ascend',
+                    },
                   ]}
                 />
               </RowItem>
@@ -376,9 +394,7 @@ function index({ url: { asPath, }, }: Props): Node {
             <PageRow>
               <Grid>
                 <GridItem width={1 / 2}>
-                  <RowItem
-                    title="תעודות סל"
-                  >
+                  <RowItem title="תעודות סל">
                     <SortableTable
                       parentId="2"
                       type="etf"
@@ -415,9 +431,7 @@ function index({ url: { asPath, }, }: Props): Node {
                           display: '% פער',
                           sortingOrder: 'descend',
                           style: ({ arbGap, }) => ({
-                            color: arbGap < 0
-                              ? theme.color('negative')
-                              : theme.color('positive'),
+                            color: arbGap < 0 ? theme.color('negative') : theme.color('positive'),
                             direction: 'ltr',
                             fontWeight: '700',
                             paddingEnd: '2rem',
@@ -435,9 +449,7 @@ function index({ url: { asPath, }, }: Props): Node {
                   </RowItem>
                 </GridItem>
                 <GridItem width={1 / 2}>
-                  <RowItem
-                    title="קרנות נאמנות"
-                  >
+                  <RowItem title="קרנות נאמנות">
                     <SortableTable
                       parentId="35"
                       type="mtf"
@@ -474,9 +486,10 @@ function index({ url: { asPath, }, }: Props): Node {
                           display: '% שינוי',
                           sortingOrder: 'descend',
                           style: ({ changePercentage, }) => ({
-                            color: changePercentage < 0
-                              ? theme.color('negative')
-                              : theme.color('positive'),
+                            color:
+                              changePercentage < 0
+                                ? theme.color('negative')
+                                : theme.color('positive'),
                             direction: 'ltr',
                             fontWeight: '700',
                             paddingEnd: '2rem',
@@ -496,7 +509,8 @@ function index({ url: { asPath, }, }: Props): Node {
               </Grid>
             </PageRow>
           </Fragment>
-        )}</FelaTheme>
+        )}
+      </FelaTheme>
     </MainLayout>
   );
 }

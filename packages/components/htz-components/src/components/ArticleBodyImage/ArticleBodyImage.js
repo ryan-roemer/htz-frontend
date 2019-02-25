@@ -317,7 +317,9 @@ function ArticleBodyImage({
       isHeadline={isHeadline}
       className={className}
       miscStyles={miscStyles}
-      isFullScreen={isFullScreen}>{({
+      isFullScreen={isFullScreen}
+    >
+      {({
         className,
         theme: {
           creditPrefixI18n: { imageCreditPrefix, },
@@ -334,12 +336,12 @@ function ArticleBodyImage({
                   iconText={galleryI18n.open}
                 >
                   <ImageElement
-                    imgOptions={imgOptions}
-                    forceAspect={forceAspect}
-                    viewMode={viewMode}
-                    {...image}
-                    isFullScreen={isFullScreen}
-                  />
+              imgOptions={imgOptions}
+              forceAspect={forceAspect}
+              viewMode={viewMode}
+              {...image}
+              isFullScreen={isFullScreen}
+            />
                 </EnlargementWrapper>
               )}
             </ApolloBoundaryConsumer>
@@ -363,7 +365,8 @@ function ArticleBodyImage({
             />
           ) : null}
         </figure>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

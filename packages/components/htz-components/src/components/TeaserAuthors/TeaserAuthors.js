@@ -23,14 +23,14 @@ const InlineAddress = ({
   <FelaComponent
     style={(
       {
-        theme
+        theme,
       }
     ) => ({
       display: 'inline',
 
       extend: [
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ]
+      ],
     })}
     as="address"
   >
@@ -47,7 +47,8 @@ const TeaserAuthors = ({
 
   const commaMaxIndex = Math.min(authors.length, limit) - 1;
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <span dir={theme.direction}>
           {authors.slice(0, limit).map((author, idx) => (
             <React.Fragment key={author.contentName}>
@@ -58,7 +59,8 @@ const TeaserAuthors = ({
             </React.Fragment>
           ))}
         </span>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 };
 

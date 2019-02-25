@@ -97,13 +97,15 @@ export default class StripController extends React.Component<Props, State> {
       <FelaComponent
         style={(
           {
-            theme
+            theme,
           }
         ) => ({
           display: 'flex',
           flexGrow: 1,
-          color: theme.color('primary')
-        })}>{({ theme, className, }) => (
+          color: theme.color('primary'),
+        })}
+      >
+        {({ theme, className, }) => (
           <div className={className}>
             <ClickArea
               onClick={() => this.prev(true)}
@@ -136,7 +138,8 @@ export default class StripController extends React.Component<Props, State> {
               <IconBack />
             </ClickArea>
           </div>
-        )}</FelaComponent>
+        )}
+      </FelaComponent>
     );
   }
 }

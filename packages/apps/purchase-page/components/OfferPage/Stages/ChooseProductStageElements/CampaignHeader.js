@@ -16,7 +16,7 @@ function CampaignHeader({ campaignData, }) {
         <FelaComponent
           style={(
             {
-              theme
+              theme,
             }
           ) => ({
             marginInlineStart: 'auto',
@@ -36,14 +36,14 @@ function CampaignHeader({ campaignData, }) {
                 { flexDirection: 'column-reverse', textAlign: 'center', }
               ),
               //   theme.mq({ until: 'm', }, { paddingBottom: 0, marginBottom: '-7rem',}),
-            ]
+            ],
           })}
         >
           <FelaComponent style={{}}>
             <FelaComponent
               style={(
                 {
-                  theme
+                  theme,
                 }
               ) => ({
                 color:
@@ -56,7 +56,7 @@ function CampaignHeader({ campaignData, }) {
                   theme.type(1, { fromBp: 'l', untilBp: 'xl', }),
                   theme.type(0, { untilBp: 'l', }),
                   theme.mq({ until: 'l', }, { marginTop: '2rem', }),
-                ]
+                ],
               })}
               as="h1"
             >
@@ -65,7 +65,7 @@ function CampaignHeader({ campaignData, }) {
             <FelaComponent
               style={(
                 {
-                  theme
+                  theme,
                 }
               ) => ({
                 color:
@@ -77,7 +77,7 @@ function CampaignHeader({ campaignData, }) {
                   theme.type(6),
                   theme.type(5, { fromBp: 'l', untilBp: 'xl', }),
                   theme.type(3, { untilBp: 'l', }),
-                ]
+                ],
               })}
               as="h1"
             >
@@ -86,7 +86,7 @@ function CampaignHeader({ campaignData, }) {
             <FelaComponent
               style={(
                 {
-                  theme
+                  theme,
                 }
               ) => ({
                 color:
@@ -98,7 +98,7 @@ function CampaignHeader({ campaignData, }) {
                   theme.type(6),
                   theme.type(5, { fromBp: 'l', untilBp: 'xl', }),
                   theme.type(3, { untilBp: 'l', }),
-                ]
+                ],
               })}
               as="h1"
             >
@@ -108,7 +108,7 @@ function CampaignHeader({ campaignData, }) {
           <FelaComponent
             style={(
               {
-                theme
+                theme,
               }
             ) => ({
               width: '250px',
@@ -122,7 +122,7 @@ function CampaignHeader({ campaignData, }) {
                     height: '90px',
                   }
                 ),
-              ]
+              ],
             })}
           >
             <Image
@@ -140,7 +140,7 @@ function CampaignHeader({ campaignData, }) {
         <FelaComponent
           style={(
             {
-              theme
+              theme,
             }
           ) => ({
             top: 0,
@@ -151,13 +151,13 @@ function CampaignHeader({ campaignData, }) {
             overflow: 'hidden',
             transformOrigin: 'top left',
             transform: 'skewY(-4deg)',
-            extend: [ theme.mq({ until: 'l', }, { height: '150%', }), ]
+            extend: [ theme.mq({ until: 'l', }, { height: '150%', }), ],
           })}
         >
           <FelaComponent
             style={(
               {
-                theme
+                theme,
               }
             ) => ({
               background:
@@ -167,7 +167,7 @@ function CampaignHeader({ campaignData, }) {
               height: '100% ',
               overflow: 'hidden',
               transformOrigin: 'top left',
-              transform: 'skewY(4deg)'
+              transform: 'skewY(4deg)',
             })}
           />
         </FelaComponent>

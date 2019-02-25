@@ -20,7 +20,7 @@ const Slider = ({ innerRef, linePos, }) => (
   <FelaComponent
     style={(
       {
-        theme
+        theme,
       }
     ) => ({
       end: `${linePos}%`,
@@ -64,10 +64,13 @@ const Slider = ({ innerRef, linePos, }) => (
 
       ':active:after': {
         start: '-6px',
-      }
-    })}>{({ className, }) => (
+      },
+    })}
+  >
+    {({ className, }) => (
       <div ref={innerRef} className={className} draggable />
-    )}</FelaComponent>
+    )}
+  </FelaComponent>
 );
 
 // eslint-disable-next-line react/prop-types
@@ -75,7 +78,7 @@ const After = ({ linePos, children, }) => (
   <FelaComponent
     style={(
       {
-        theme
+        theme,
       }
     ) => ({
       transform: `translateX(-${100 - linePos}%)`,
@@ -88,12 +91,15 @@ const After = ({ linePos, children, }) => (
       end: '0',
       width: '100%',
       boxSizing: 'content-box',
-      boxShadow: '3px 0 5px 0 rgba(0,0,0,.75)'
-    })}>{({ className, }) => (
+      boxShadow: '3px 0 5px 0 rgba(0,0,0,.75)',
+    })}
+  >
+    {({ className, }) => (
       <div className={className} draggable={false}>
         {children}
       </div>
-    )}</FelaComponent>
+    )}
+  </FelaComponent>
 );
 
 // eslint-disable-next-line react/prop-types
@@ -101,7 +107,7 @@ const ImageWrapper = ({ linePos, children, }) => (
   <FelaComponent
     style={(
       {
-        theme
+        theme,
       }
     ) => ({
       transform: `translateX(${100 - linePos}%)`,
@@ -109,12 +115,15 @@ const ImageWrapper = ({ linePos, children, }) => (
       overflow: 'hidden',
       width: '100%',
       top: '0',
-      end: '0'
-    })}>{({ className, }) => (
+      end: '0',
+    })}
+  >
+    {({ className, }) => (
       <div className={className} draggable={false}>
         {children}
       </div>
-    )}</FelaComponent>
+    )}
+  </FelaComponent>
 );
 
 const imgOptions = {
@@ -160,7 +169,9 @@ export default class BeforeAndAfter extends React.Component {
           width: '100%',
           position: 'relative',
           overflow: 'hidden',
-        }}>{({ className, }) => (
+        }}
+      >
+        {({ className, }) => (
           <div
             className={className}
             ref={wrapper => (this.wrapper = wrapper)} // eslint-disable-line no-return-assign
@@ -187,7 +198,8 @@ export default class BeforeAndAfter extends React.Component {
               </ImageWrapper>
             </After>
           </div>
-        )}</FelaComponent>
+        )}
+      </FelaComponent>
     ) : null;
   }
 }

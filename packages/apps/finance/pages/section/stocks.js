@@ -34,7 +34,8 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
       description="כל המידע על  מניות: נתוני מסחר, נתונים בזמן אמת, גרפים חדשות ועוד באתר TheMarker Finance"
       path={asPath}
     >
-      <FelaTheme>{theme => (
+      <FelaTheme>
+        {theme => (
           <Fragment>
             <PageRow>
               <MarketSummary marketId="3" miscStyles={{ flexGrow: '1', }} />
@@ -631,7 +632,8 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
               </Grid>
             </PageRow>
           </Fragment>
-        )}</FelaTheme>
+        )}
+      </FelaTheme>
     </MainLayout>
   );
 }

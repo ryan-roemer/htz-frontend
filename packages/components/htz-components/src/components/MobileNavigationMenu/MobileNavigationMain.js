@@ -44,7 +44,7 @@ export default class MobileNavigationMain extends React.Component {
             <FelaComponent
               style={(
                 {
-                  theme
+                  theme,
                 }
               ) => ({
                 display: 'flex',
@@ -56,8 +56,10 @@ export default class MobileNavigationMain extends React.Component {
 
                 borderTopColor: theme.color('secondary', '+1'),
                 borderTopStyle: 'solid',
-                borderTopWidth: '1px'
-              })}>{({ className, }) => (
+                borderTopWidth: '1px',
+              })}
+            >
+              {({ className, }) => (
                 <Fragment>
                   <div className={className}>
                     <MobileNavigationMenu
@@ -72,7 +74,8 @@ export default class MobileNavigationMain extends React.Component {
                     )}
                   </div>
                 </Fragment>
-              )}</FelaComponent>
+              )}
+            </FelaComponent>
           );
         }}
       </ApolloConsumer>

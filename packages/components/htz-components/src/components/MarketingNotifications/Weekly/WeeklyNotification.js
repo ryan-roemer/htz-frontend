@@ -48,7 +48,8 @@ export default function WeeklyNotification({
         height: '71rem',
       }}
       render={({ isVisible, handleClose, isModal, }) => (
-        <FelaComponent style={style.wrapper}>{({ theme, className, }) => (
+        <FelaComponent style={style.wrapper}>
+          {({ theme, className, }) => (
             <div className={className}>
               <FelaComponent style={style.innerWrapper} as="span">
                 <FelaComponent style={style.icon} as="span">
@@ -68,21 +69,26 @@ export default function WeeklyNotification({
                 >
                   {buttonText}
                 </Button>
-                <FelaComponent style={style.footer}>{({ className, theme, }) => (
+                <FelaComponent style={style.footer}>
+                  {({ className, theme, }) => (
                     <span className={className}>
                       {theme.marketingTools.Weekly.weeklyLink}
-                      <FelaComponent style={style.link}>{({ className, }) => (
+                      <FelaComponent style={style.link}>
+                        {({ className, }) => (
                           <HtzLink
-                            content="התחברו לאתר"
-                            href="http://haaretz.co.il"
-                            className={className}
-                          />
-                        )}</FelaComponent>
+                  content="התחברו לאתר"
+                  href="http://haaretz.co.il"
+                  className={className}
+                />
+                        )}
+                      </FelaComponent>
                     </span>
-                  )}</FelaComponent>
+                  )}
+                </FelaComponent>
               </FelaComponent>
             </div>
-          )}</FelaComponent>
+          )}
+        </FelaComponent>
       )}
     />
   );

@@ -103,10 +103,12 @@ export default function TeaserSubtitle({
 }: TeaserSubtitleProps): React.Node {
   const Component = tagName;
   return subtitle || subtitleMobile ? (
-    <FelaComponent color={color} typeScale={typeScale} miscStyles={miscStyles} style={style}>{({ className, }) => (
+    <FelaComponent color={color} typeScale={typeScale} miscStyles={miscStyles} style={style}>
+      {({ className, }) => (
         <Component className={className} attrs={attrs}>
           <TeaserResponsiveText text={subtitle} mobileText={subtitleMobile} />
         </Component>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   ) : null;
 }

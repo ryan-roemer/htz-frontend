@@ -6,8 +6,8 @@ import { FelaTheme, createComponent, } from 'react-fela';
 import { EventTracker, HtzLink, Register, Form, TextInput, Button, CheckBox, } from '@haaretz/htz-components';
 import { UserTransformations, } from '@haaretz/htz-user-utils';
 
-import FSMLayout from '../layouts/FSMLayout';
 import isEmail from 'validator/lib/isEmail';
+import FSMLayout from '../layouts/FSMLayout';
 import { getEmail, getUserData, } from './queryutil/userDetailsOperations';
 import { sendTrackingEvents, } from '../util/trackingEventsUtil';
 import { getFlowNumber, } from '../components/FlowDispenser/flowStorage';
@@ -34,14 +34,14 @@ const halfSizeStyleWrapperStyle = () => ({
     display: 'block',
     justifyContent: 'none',
     overflow: 'hidden',
-  }
+  },
 });
 const halfSizeStyle = () => ({
   float: 'right',
   width: '49%',
   '@media (max-width: 768px)': {
     width: '100%',
-  }
+  },
 });
 const termsStyle = () => ({
   lineHeight: '17px',
@@ -49,13 +49,13 @@ const termsStyle = () => ({
     color: '#0895c3 !important',
     '&:hover': {
       textDecoration: 'underline',
-    }
+    },
   },
   '& div': {
     fontSize: '1.8rem',
     '@media (max-width: 768px)': {
       fontSize: '2.3rem',
-    }
+    },
   },
 });
 const HalfSizeWrapper = createComponent(halfSizeStyleWrapperStyle);
@@ -73,61 +73,60 @@ const generateTermsError = message => generateError('terms', 5)(message);
 
 const isChecked = terms => !!terms;
 
-const validateFirstNameInput = ({ firstname, }) =>
-  (!firstname
-    ? generateFirstNameError('אנא הזינו שם פרטי')
-    : !isName(firstname)
-      ? generateFirstNameError('יש להזין שם המורכב מ-2 אותיות לפחות וללא מספרים')
-      : []); // name is valid
+const validateFirstNameInput = ({ firstname, }) => (!firstname
+  ? generateFirstNameError('אנא הזינו שם פרטי')
+  : !isName(firstname)
+    ? generateFirstNameError('יש להזין שם המורכב מ-2 אותיות לפחות וללא מספרים')
+    : []); // name is valid
 
-const validateLastNameInput = ({ lastname, }) =>
-  (!lastname
-    ? generateLastNameError('אנא הזינו שם משפחה')
-    : !isName(lastname)
-      ? generateLastNameError('יש להזין שם המורכב מ-2 אותיות לפחות וללא מספרים')
-      : []); // name is valid
+const validateLastNameInput = ({ lastname, }) => (!lastname
+  ? generateLastNameError('אנא הזינו שם משפחה')
+  : !isName(lastname)
+    ? generateLastNameError('יש להזין שם המורכב מ-2 אותיות לפחות וללא מספרים')
+    : []); // name is valid
 
-const validateEmailInput = ({ email, }) =>
-  (!email
-    ? generateEmailError('אנא הזינו כתובת דוא”ל')
-    : !isEmail(email)
-      ? generateEmailError('אנא הזינו כתובת דוא”ל תקינה')
-      : []); // email is valid
+const validateEmailInput = ({ email, }) => (!email
+  ? generateEmailError('אנא הזינו כתובת דוא”ל')
+  : !isEmail(email)
+    ? generateEmailError('אנא הזינו כתובת דוא”ל תקינה')
+    : []); // email is valid
 
-const validateMobileInput = ({ phone, }) =>
-  (!phone
-    ? generateMobileError('אנא הזינו מספר טלפון נייד')
-    : !isMobile(phone)
-      ? generateMobileError('אנא הזינו מספר טלפון נייד תקין')
-      : []); // mobile is valid
+const validateMobileInput = ({ phone, }) => (!phone
+  ? generateMobileError('אנא הזינו מספר טלפון נייד')
+  : !isMobile(phone)
+    ? generateMobileError('אנא הזינו מספר טלפון נייד תקין')
+    : []); // mobile is valid
 
-const validatePasswordInput = ({ password, }) =>
-  (!password
-    ? generatePasswordError('אנא הזינו סיסמה')
-    : !isPassword(password)
-      ? generatePasswordError('ש להזין סיסמה בת 6 תווים ומעלה')
-      : []); // password is valid
+const validatePasswordInput = ({ password, }) => (!password
+  ? generatePasswordError('אנא הזינו סיסמה')
+  : !isPassword(password)
+    ? generatePasswordError('ש להזין סיסמה בת 6 תווים ומעלה')
+    : []); // password is valid
 
 const getTermsText = () => (
   <div>
-      אני מאשר/ת את <HtzLink target="_blank" href="https://www.haaretz.co.il/misc/terms-of-use">תנאי השימוש</HtzLink> באתר הארץ, וכן קבלת המלצות קריאה, הצעות לרכישת מינוי ודיוור מאתרי הארץ-TheMarker
+      אני מאשר/ת את
+    {' '}
+    <HtzLink target="_blank" href="https://www.haaretz.co.il/misc/terms-of-use">תנאי השימוש</HtzLink>
+    {' '}
+באתר הארץ, וכן קבלת המלצות קריאה, הצעות לרכישת מינוי ודיוור מאתרי הארץ-TheMarker
   </div>
 );
 const getGeneralErrorMessage = () => (
   <span>
     סליחה תקלה. אנא נסו שוב בעוד כמה דקות או פנו ל
     <HtzLink target="_blank" href="https://www.haaretz.co.il/misc/contact-us">
-      <span style={ {textDecoration: "underline",} } >שירות הלקוחות </span>
+      <span style={{ textDecoration: 'underline', }}>שירות הלקוחות </span>
     </HtzLink>
     שלנו
   </span>
 );
-const getFacebookLogin = (user) => {
+const getFacebookLogin = user => {
   const facebookParams = getFacebookParams(user);
-  return facebookParams ?
-    getFacebookLoginUrl(facebookParams) :
-    false;
-}
+  return facebookParams
+    ? getFacebookLoginUrl(facebookParams)
+    : false;
+};
 
 
 const onSubmit = ({ register, doTransition, user, flow, showError, hideError, setPreloader, eventsTrackers, }) => ({ firstname, lastname, email, password, phone, terms, }) => {
@@ -146,8 +145,8 @@ const onSubmit = ({ register, doTransition, user, flow, showError, hideError, se
   ).then(
     () => {
       sendTrackingEvents(eventsTrackers, { page: 'Register', flowNumber: flow, label: 'register', })(() => {
-          Router.push(doTransition('success'));
-        }
+        Router.push(doTransition('success'));
+      }
       );
     },
     reason => {
@@ -211,8 +210,7 @@ class RegisterPage extends Component {
     ? generateTermsError('יש לאשר את תנאי השימוש באתר')
     : []);
 
-  toggleChecked = () =>
-    this.setState({ isChecked: !this.state.isChecked, isFirstTime: false, });
+  toggleChecked = () => this.setState({ isChecked: !this.state.isChecked, isFirstTime: false, });
 
   render() {
     return (
@@ -222,7 +220,8 @@ class RegisterPage extends Component {
           return (
             <FSMLayout>
               {({ currentState, findRout, doTransition, }) => (
-                <FelaTheme>{theme => (
+                <FelaTheme>
+                  {theme => (
                     <Fragment>
                       <EventTracker>
                         {({ biAction, gaAction, gaMapper, }) => (
@@ -236,18 +235,18 @@ class RegisterPage extends Component {
                                   clearFormAfterSubmit={false}
                                   // initialValues={{ email: 'insert email' }}
                                   validate={this.valdiateForm}
-                                  initialValues={ {email: getEmail(client)} }
+                                  initialValues={{ email: getEmail(client), }}
                                   onSubmit={onSubmit({
-                                    register,
-                                    doTransition,
-                                    flow: flow,
-                                    showError: this.showError,
-                                    hideError: this.hideError,
-                                    setPreloader: this.setPreloader,
-                                    eventsTrackers: { biAction, gaAction, },
-                                  })}
+                  register,
+                  doTransition,
+                  flow,
+                  showError: this.showError,
+                  hideError: this.hideError,
+                  setPreloader: this.setPreloader,
+                  eventsTrackers: { biAction, gaAction, },
+                })}
                                   render={({ getInputProps, handleSubmit, clearForm, }) => (
-                                    <Fragment>
+                  <Fragment>
 
                                       <HalfSizeWrapper>
                                         <HalfSize>
@@ -301,7 +300,7 @@ class RegisterPage extends Component {
                                             type: 'email',
                                           })}
                                           attrs={{
-                                            'name': 'userName',
+                                            name: 'userName',
                                           }}
                                         />
                                       </div>
@@ -321,12 +320,12 @@ class RegisterPage extends Component {
                                             type: 'password',
                                           })}
                                           attrs={{
-                                            'name': 'password',
+                                            name: 'password',
                                           }}
                                         />
                                       </div>
 
-                                      {/*<div>
+                                      {/* <div>
                                         <TextInput
                                           type="tel"
                                           label={theme.phoneInputLabel}
@@ -337,7 +336,7 @@ class RegisterPage extends Component {
                                             type: 'tel',
                                           })}
                                         />
-                                      </div>*/}
+                                      </div> */}
 
                                       <TermsWrapper>
                                         <CheckBox
@@ -365,7 +364,7 @@ class RegisterPage extends Component {
                                         <Button isBusy={this.state.isLoading} onClick={handleSubmit}>הרשמה</Button>
                                       </ItemCenterer>
                                     </Fragment>
-                                  )}
+                )}
                                 />
                               )}
                               />
@@ -375,13 +374,13 @@ class RegisterPage extends Component {
                                 <HtzLink
                                   href={`${findRout('backToLogin')}`}
                                   onClick={e => {
-                                    e.preventDefault();
-                                    const route = doTransition('backToLogin');
-                                    sendTrackingEvents({ biAction, gaAction, }, { page: 'Register', flowNumber: flow, label: 'loginPage', })(() => {
-                                        Router.push(route);
-                                      }
-                                    );
-                                  }}
+                  e.preventDefault();
+                  const route = doTransition('backToLogin');
+                  sendTrackingEvents({ biAction, gaAction, }, { page: 'Register', flowNumber: flow, label: 'loginPage', })(() => {
+                    Router.push(route);
+                  }
+                  );
+                }}
                                 >
                                   התחברו
                                 </HtzLink>
@@ -392,7 +391,8 @@ class RegisterPage extends Component {
                         )}
                       </EventTracker>
                     </Fragment>
-                  )}</FelaTheme>
+                  )}
+                </FelaTheme>
               )}
             </FSMLayout>
           );

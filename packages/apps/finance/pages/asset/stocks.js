@@ -19,8 +19,8 @@ import RelatedAssets from '../../components/QuotePageComponents/RelatedAssets/Re
 import ShareHolders from '../../components/QuotePageComponents/ShareHolders/ShareHolders';
 
 const StockQuery: DocumentNode = gql`
-  query StockData($assetId: String!){
-    asset(assetId: $assetId){
+  query StockData($assetId: String!) {
+    asset(assetId: $assetId) {
       name
       value
       changePercentage
@@ -59,12 +59,14 @@ type Props = {
   },
 };
 
-function stocks({ url: { query: { assetId, section, }, asPath, }, }: Props): Node {
+function stocks({
+  url: {
+    query: { assetId, section, },
+    asPath,
+  },
+}: Props): Node {
   return (
-    <Query
-      query={StockQuery}
-      variables={{ assetId, }}
-    >
+    <Query query={StockQuery} variables={{ assetId, }}>
       {({ loading, error, data, }) => {
         if (error) return null;
         if (loading) return null;
@@ -95,7 +97,8 @@ function stocks({ url: { query: { assetId, section, }, asPath, }, }: Props): Nod
             description={`כל המידע על  מניית ${name} ${assetNumber}: נתוני מסחר, נתונים בזמן אמת, גרפים חדשות ועוד באתר TheMarker Finance`}
             path={asPath}
           >
-            <FelaTheme>{theme => (
+            <FelaTheme>
+              {theme => (
                 <Fragment>
                   <PageRow lines={2}>
                     <RowItem
@@ -131,10 +134,7 @@ function stocks({ url: { query: { assetId, section, }, asPath, }, }: Props): Nod
                     <RelatedAssets assets={relatedAssets} />
                   </PageRow>
                   <PageRow>
-                    <GraphController
-                      selectedStockId={assetId}
-                      width={900}
-                    />
+                    <GraphController selectedStockId={assetId} width={900} />
                   </PageRow>
                   <PageRow>
                     <Grid
@@ -144,12 +144,8 @@ function stocks({ url: { query: { assetId, section, }, asPath, }, }: Props): Nod
                         paddingEnd: '0rem',
                       }}
                     >
-                      <GridItem
-                        width={1 / 3}
-                      >
-                        <RowItem
-                          title="נתוני המסחר"
-                        >
+                      <GridItem width={1 / 3}>
+                        <RowItem title="נתוני המסחר">
                           <QuoteInfoTable
                             id={assetId}
                             tradingStatus
@@ -165,18 +161,14 @@ function stocks({ url: { query: { assetId, section, }, asPath, }, }: Props): Nod
                           />
                         </RowItem>
                       </GridItem>
-                      <GridItem
-                        width={2 / 3}
-                      >
+                      <GridItem width={2 / 3}>
                         <FelaComponent
                           style={{
                             display: 'flow',
                             flowDirection: 'column',
                           }}
                         >
-                          <RowItem
-                            title="מחזורים"
-                          >
+                          <RowItem title="מחזורים">
                             <VolumeGraph
                               theme={theme}
                               data={[
@@ -196,9 +188,7 @@ function stocks({ url: { query: { assetId, section, }, asPath, }, }: Props): Nod
                               }}
                             />
                           </RowItem>
-                          <RowItem
-                            title="תשואות"
-                          >
+                          <RowItem title="תשואות">
                             <YieldGraph
                               theme={theme}
                               data={[
@@ -238,13 +228,8 @@ function stocks({ url: { query: { assetId, section, }, asPath, }, }: Props): Nod
                         paddingEnd: '0rem',
                       }}
                     >
-                      <GridItem
-                        width={1 / 3}
-                      >
-                        <RowItem
-                          title="יחסים פיננסיים"
-                          miscStyles={{ marginBottom: '2rem', }}
-                        >
+                      <GridItem width={1 / 3}>
+                        <RowItem title="יחסים פיננסיים" miscStyles={{ marginBottom: '2rem', }}>
                           <QuoteInfoTable
                             id={assetId}
                             fields={[
@@ -258,9 +243,7 @@ function stocks({ url: { query: { assetId, section, }, asPath, }, }: Props): Nod
                           />
                         </RowItem>
                       </GridItem>
-                      <GridItem
-                        width={2 / 3}
-                      >
+                      <GridItem width={2 / 3}>
                         <RowItem
                           title="בחסות בנק לאומי"
                           miscStyles={{
@@ -295,9 +278,7 @@ function stocks({ url: { query: { assetId, section, }, asPath, }, }: Props): Nod
                         paddingEnd: '0rem',
                       }}
                     >
-                      <GridItem
-                        width={1 / 3}
-                      >
+                      <GridItem width={1 / 3}>
                         <RowItem
                           title="קשרי משקיעים"
                           miscStyles={{
@@ -311,30 +292,25 @@ function stocks({ url: { query: { assetId, section, }, asPath, }, }: Props): Nod
                           />
                         </RowItem>
                       </GridItem>
-                      <GridItem
-                        width={2 / 3}
-                      >
-                        <RowItem
-                          title="בעלי עניין קונצרני"
-                        >
+                      <GridItem width={2 / 3}>
+                        <RowItem title="בעלי עניין קונצרני">
                           <ShareHolders data={shareHolders} />
                         </RowItem>
                       </GridItem>
                     </Grid>
                   </PageRow>
                   <FelaComponent
-                    style={(
-                      {
-                        theme
-                      }
-                    ) => ({
+                    style={({ theme, }) => ({
                       display: 'block',
 
                       extend: [
-                        theme.mq({ from: 'l', }, {
-                          display: 'none',
-                        }),
-                      ]
+                        theme.mq(
+                          { from: 'l', },
+                          {
+                            display: 'none',
+                          }
+                        ),
+                      ],
                     })}
                   >
                     <PageRow>
@@ -348,7 +324,8 @@ function stocks({ url: { query: { assetId, section, }, asPath, }, }: Props): Nod
                     </PageRow>
                   </FelaComponent>
                 </Fragment>
-              )}</FelaTheme>
+              )}
+            </FelaTheme>
           </MainLayout>
         );
       }}

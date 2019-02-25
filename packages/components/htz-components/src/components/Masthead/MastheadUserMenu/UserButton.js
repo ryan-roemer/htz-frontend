@@ -35,7 +35,7 @@ class UserButton extends React.Component {
       <FelaComponent
         style={(
           {
-            theme
+            theme,
           }
         ) => ({
           height: '100%',
@@ -58,8 +58,10 @@ class UserButton extends React.Component {
                 color: theme.color('userMenu', 'textOpenOrHover'),
               }
               : {},
-          ]
-        })}>{({ className, theme, }) => (
+          ],
+        })}
+      >
+        {({ className, theme, }) => (
           <button
             ref={buttonRef}
             type="button"
@@ -106,7 +108,8 @@ class UserButton extends React.Component {
             </FelaComponent>
             <IconAvatar size={3.5} miscStyles={{ marginRight: '2rem', }} />
           </button>
-        )}</FelaComponent>
+        )}
+      </FelaComponent>
     );
   }
 }

@@ -109,18 +109,17 @@ class FiniteStateMachine extends React.Component {
     const currentHistoryPointer = parseInt(this.getHistoryPointer(), 10);
     const backwards = historyObject[currentHistoryPointer - 1];
     const forward = historyObject[currentHistoryPointer + 1];
-    const direction =
-      (
-        backwards !== undefined
+    const direction = (
+      backwards !== undefined
         && (url === backwards.pastTransition || as === backwards.pastTransition)
-      )
-        ? 'backwards'
-        : (
-          forward !== undefined
+    )
+      ? 'backwards'
+      : (
+        forward !== undefined
           && (url === forward.pastTransition || as === forward.pastTransition)
-        )
-          ? 'forward'
-          : null;
+      )
+        ? 'forward'
+        : null;
 
     const updatedHistoryPointer = direction === 'backwards'
       ? this.decrementHistoryPointer()
@@ -226,10 +225,9 @@ class FiniteStateMachine extends React.Component {
    * @param {string} state - the current state of the FSM
    * @returns {string}
    */
-  resolveNewState = (action, state) =>
-    Object
-      .entries(this.props.statesGraph)
-      .find(entry => entry[0] === state)[1][action];
+  resolveNewState = (action, state) => Object
+    .entries(this.props.statesGraph)
+    .find(entry => entry[0] === state)[1][action];
 
   /**
    * This function uses the old and new states as parameters to find the transition

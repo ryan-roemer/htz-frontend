@@ -80,7 +80,8 @@ class Stage4 extends Component {
                   const chosenPaymentArrangement = chosenOffer.type;
 
                   return (
-                    <FelaComponent style={{ textAlign: 'center', }}>{({
+                    <FelaComponent style={{ textAlign: 'center', }}>
+                      {({
                         className,
                         theme: {
                           stage4: { header, details, },
@@ -96,13 +97,13 @@ class Stage4 extends Component {
                                   headerElements={[
                                     ...(loggedInOrRegistered
                                       ? [
-                                        <FelaComponent style={{ fontWeight: 'bold', }}>
+                  <FelaComponent style={{ fontWeight: 'bold', }}>
                                           {`${
                                             header[loggedInOrRegistered || 'connected']
                                               .textTopLine
                                           }`}
                                         </FelaComponent>,
-                                        <span>
+                  <span>
                                           {
                                               header[loggedInOrRegistered || 'connected']
                                                 .textNewLine
@@ -110,7 +111,7 @@ class Stage4 extends Component {
                                         </span>,
                                       ]
                                       : [
-                                        <Fragment>
+                  <Fragment>
                                           <FelaComponent
                                             style={{ fontWeight: 'bold', }}
                                             as="span"
@@ -126,7 +127,7 @@ class Stage4 extends Component {
                                             }.`}
                                           </FelaComponent>
                                         </Fragment>,
-                                        <span>{details.textNewLine}</span>,
+                  <span>{details.textNewLine}</span>,
                                       ]),
                                   ]}
                                 />
@@ -148,7 +149,8 @@ class Stage4 extends Component {
                             />
                           </LayoutContainer>
                         </div>
-                      )}</FelaComponent>
+                      )}
+                    </FelaComponent>
                   );
                 }}
               </Query>

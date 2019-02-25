@@ -29,7 +29,8 @@ export default function MarketingNotificationInner({
   onSubmit,
 }: Props): Node {
   return (
-    <FelaComponent style={style.wrapper}>{({ theme, className, }) => (
+    <FelaComponent style={style.wrapper}>
+      {({ theme, className, }) => (
         <div className={className}>
           <FelaComponent style={style.innerWrapper} as="span">
             <FelaComponent style={style.text1}>{text1}</FelaComponent>
@@ -43,6 +44,7 @@ export default function MarketingNotificationInner({
             </Button>
           </FelaComponent>
         </div>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }

@@ -5,7 +5,6 @@ const storeFlowNumber = apolloClient => flowNumber => {
   return flowNumber;
 };
 
-const getFlowNumber = apolloClient =>
-  apolloClient.readQuery({ query: GET_FLOW_NUMBER, }).userFlowNumber;
+const getFlowNumber = apolloClient => apolloClient.readQuery({ query: GET_FLOW_NUMBER, }).userFlowNumber;
 
 export { storeFlowNumber, getFlowNumber, };

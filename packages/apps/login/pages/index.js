@@ -2,7 +2,7 @@
 
 import React, { Fragment, } from 'react';
 // import { ApolloConsumer, } from 'react-apollo';
-import { GoogleAnalytics, EventTracker, Footer, UserDispenser,ApolloConsumer, } from '@haaretz/htz-components';
+import { GoogleAnalytics, EventTracker, Footer, UserDispenser, ApolloConsumer, } from '@haaretz/htz-components';
 import { StyleProvider, } from '@haaretz/fela-utils';
 import { FelaTheme, } from 'react-fela';
 import Header from '../layouts/Header';
@@ -30,7 +30,8 @@ const Index = () => (
         const host = client.readQuery({ query: GET_HOST, }).hostname.match(/^(?:.*?\.)?(.*)/i)[1];
         return (
           <StyleProvider renderer={styleRenderer} theme={theme(host)}>
-            <FelaTheme>{theme => (
+            <FelaTheme>
+              {theme => (
                 <Fragment>
                   <UserDispenser
                     render={({ isLoggedIn, user, }) => (
@@ -40,7 +41,7 @@ const Index = () => (
                             <Header />
                             <ContentWrapper>
                               <FlowDispenser
-                                render={({ getFlowByData, }) => (
+                  render={({ getFlowByData, }) => (
                                   <IndexForm
                                     client={client}
                                     getFlowByData={getFlowByData}
@@ -50,7 +51,7 @@ const Index = () => (
                                     userDispenser={{ isLoggedIn, user, }}
                                   />
                                 )}
-                              />
+                />
                             </ContentWrapper>
                             <MobileFooterSpacer />
                             <Footer contentId="7.1283189" />
@@ -59,9 +60,10 @@ const Index = () => (
                       </EventTracker>
                     )}
                   />
-                  
+
                 </Fragment>
-              )}</FelaTheme>
+              )}
+            </FelaTheme>
           </StyleProvider>
         );
       }}

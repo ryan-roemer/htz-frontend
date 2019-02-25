@@ -24,11 +24,7 @@ ItemLink.defaultProps = {
 export default function ItemLink({ name, url, isHeader, isSite, }) {
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         borderBottomColor: theme.color('primary', '+1'),
         borderBottomStyle: 'solid',
         borderBottomWidth: '2px',
@@ -41,8 +37,7 @@ export default function ItemLink({ name, url, isHeader, isSite, }) {
             fontWeight: 'bold',
             extend: [ theme.type(1), ],
           }
-          : !isSite && { textIndent: 0, }
-        ),
+          : !isSite && { textIndent: 0, }),
 
         ...(isSite
           ? {
@@ -50,9 +45,10 @@ export default function ItemLink({ name, url, isHeader, isSite, }) {
             fontWeight: 'normal',
             textDecoration: 'underline',
           }
-          : {})
-      })}>{({ className, }) => (
-        <HtzLink href={url} content={name} className={className} />
-      )}</FelaComponent>
+          : {}),
+      })}
+    >
+      {({ className, }) => <HtzLink href={url} content={name} className={className} />}
+    </FelaComponent>
   );
 }

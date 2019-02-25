@@ -33,7 +33,8 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
       description="כל המידע על  קרנות נאמנות: נתוני מסחר, נתונים בזמן אמת, גרפים חדשות ועוד באתר TheMarker Finance"
       path={asPath}
     >
-      <FelaTheme>{theme => (
+      <FelaTheme>
+        {theme => (
           <Fragment>
             <PageRow>
               <RowItem
@@ -508,7 +509,8 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
               </Grid>
             </PageRow>
           </Fragment>
-        )}</FelaTheme>
+        )}
+      </FelaTheme>
     </MainLayout>
   );
 }

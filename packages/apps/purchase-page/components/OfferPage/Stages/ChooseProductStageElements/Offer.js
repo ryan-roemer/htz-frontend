@@ -267,10 +267,10 @@ const DesktopOffer = ({
               <FelaComponent
                 style={(
                   {
-                    theme
+                    theme,
                   }
                 ) => ({
-                  extend: [ theme.mq({ until: 's', }, { textAlign: 'right', }), ]
+                  extend: [ theme.mq({ until: 's', }, { textAlign: 'right', }), ],
                 })}
               >
                 <StyledOfferTitle isRecommended={offer.isRecommended}>
@@ -300,7 +300,7 @@ const DesktopOffer = ({
               <FelaComponent
                 style={(
                   {
-                    theme
+                    theme,
                   }
                 ) => ({
                   extend: [
@@ -310,7 +310,7 @@ const DesktopOffer = ({
                         alignSelf: 'flex-end',
                       }
                     ),
-                  ]
+                  ],
                 })}
               >
                 <Button

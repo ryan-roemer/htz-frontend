@@ -23,12 +23,12 @@ const DynamicSlotFromDfpConfig = ({ adSlotId, miscStyles, }) => (
             <FelaComponent
               style={(
                 {
-                  theme
+                  theme,
                 }
               ) => ({
                 extend: [
                   ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-                ]
+                ],
               })}
             >
               <DynamicAdSlot id={adSlotId} adUnit={adUnit} sizes={slotConfig.adSizeMapping} />

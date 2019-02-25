@@ -34,13 +34,13 @@ export default class WebInreadAdSlotCaption extends React.Component<{}, State> {
       <FelaComponent
         style={(
           {
-            theme
+            theme,
           }
         ) => ({
           display: display ? 'block' : 'none',
           paddingTop: '0rem',
           paddingBottom: '0rem',
-          ...theme.type(-3)
+          ...theme.type(-3),
         })}
       >
         <div ref={el => { this.elementRef = el; }}>- פרסומת -</div>

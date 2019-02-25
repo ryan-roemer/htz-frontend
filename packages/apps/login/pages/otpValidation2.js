@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Fragment, Component, } from 'react';
 import Router from 'next/router';
 import { ApolloConsumer, } from 'react-apollo';
 
@@ -27,24 +27,24 @@ const { InputLinkButton, ErrorBox, } = LoginMiscLayoutStyles;
 // Methods -------------------
 const generateSmsCodeError = message => [ { name: 'smsCode', order: 1, errorText: message, }, ];
 const isNumeric = number => Number(number).toString() !== 'NaN';
-const validateSmsCodeInput = ({ smsCode, }) =>
-  (!isNumeric(smsCode) || !smsCode || smsCode.length < 1
-    ? generateSmsCodeError('אנא הזינו את הקוד שנשלח אליכם')
-    : []);
+const validateSmsCodeInput = ({ smsCode, }) => (!isNumeric(smsCode) || !smsCode || smsCode.length < 1
+  ? generateSmsCodeError('אנא הזינו את הקוד שנשלח אליכם')
+  : []);
 
-const getUserFromApollo = (client) => {
+const getUserFromApollo = client => {
   try {
     return getUser(client);
-  } catch(e) {
+  }
+  catch (e) {
     return false;
   }
-}
+};
 
 const getFacebookLogin = user => {
   const facebookParams = getFacebookParams(user);
-  return facebookParams ?
-    getFacebookLoginUrl(facebookParams) :
-    false;
+  return facebookParams
+    ? getFacebookLoginUrl(facebookParams)
+    : false;
 };
 
 const onSubmit = ({ client, host, flow, user, loginWithMobile, showError, hideError, setPreloader, eventsTrackers, }) => ({ smsCode, termsChk, }) => {
@@ -55,24 +55,23 @@ const onSubmit = ({ client, host, flow, user, loginWithMobile, showError, hideEr
       // eslint-disable-next-line no-undef
       () => {
         sendTrackingEvents(eventsTrackers, { page: 'SMS code 2', flowNumber: flow, label: 'login', })(() => {
-            const referrerUrl = getReferrerUrl(client);
-            window.location = getFacebookLogin(user) || (referrerUrl || `https://www.${host}`);
-          }
+          const referrerUrl = getReferrerUrl(client);
+          window.location = getFacebookLogin(user) || (referrerUrl || `https://www.${host}`);
+        }
         );
       },
       reason => {
         setPreloader(false);
-        showError((reason.message || "אירעה שגיאה, אנא נסה שנית מאוחר יותר."))
+        showError((reason.message || 'אירעה שגיאה, אנא נסה שנית מאוחר יותר.'));
       }
     );
-}
+};
 
 const hidePhone = phoneNumber => `${phoneNumber.substring(0, 3)}****${phoneNumber.substring(7)}`;
 
 // --------------------------
 
 class OtpValidation2 extends Component {
-
   state = {
     showError: false,
     errorMessage: '',
@@ -84,15 +83,15 @@ class OtpValidation2 extends Component {
   }
 
   hideError = () => {
-    this.setState({ showError: false, errorMessage: "", });
+    this.setState({ showError: false, errorMessage: '', });
   }
 
-  setPreloader = (isLoadingStatus) => {
+  setPreloader = isLoadingStatus => {
     this.setState({ isLoading: !!isLoadingStatus, });
   }
 
   render() {
-    return(
+    return (
       <FSMLayout>
         {({ currentState, findRout, doTransition, }) => (
           <ApolloConsumer>
@@ -119,7 +118,7 @@ class OtpValidation2 extends Component {
                               clearFormAfterSubmit={false}
                               // initialValues={{ email: 'insert email' }}
                               validate={validateSmsCodeInput}
-                              onSubmit={onSubmit({ client, host, flow, user, loginWithMobile, showError: this.showError, hideError: this.hideError, setPreloader: this.setPreloader, eventsTrackers: {biAction, gaAction,}, })}
+                              onSubmit={onSubmit({ client, host, flow, user, loginWithMobile, showError: this.showError, hideError: this.hideError, setPreloader: this.setPreloader, eventsTrackers: { biAction, gaAction, }, })}
                               render={({ getInputProps, handleSubmit, clearForm, }) => (
                                 <Fragment>
                                   <div>
@@ -138,13 +137,13 @@ class OtpValidation2 extends Component {
                                       })}
                                     />
                                   </div>
-        
-                                  <ErrorBox className={this.state.showError ? "" : "hidden"}>
+
+                                  <ErrorBox className={this.state.showError ? '' : 'hidden'}>
                                     <span>
                                       {this.state.errorMessage}
                                     </span>
                                   </ErrorBox>
-        
+
                                   <ItemCenterer>
                                     <Button isBusy={this.state.isLoading} onClick={handleSubmit}>התחברות</Button>
                                   </ItemCenterer>
@@ -161,9 +160,9 @@ class OtpValidation2 extends Component {
                             onClick={e => {
                               e.preventDefault();
                               const route = doTransition('withPassword');
-                              sendTrackingEvents({biAction, gaAction,}, { page: 'SMS code 2', flowNumber: flow, label: 'withPassword', })(() => {
-                                  Router.push(route);
-                                }
+                              sendTrackingEvents({ biAction, gaAction, }, { page: 'SMS code 2', flowNumber: flow, label: 'withPassword', })(() => {
+                                Router.push(route);
+                              }
                               );
                             }}
                           >
@@ -177,9 +176,9 @@ class OtpValidation2 extends Component {
                             onClick={e => {
                               e.preventDefault();
                               const route = doTransition('withPassword');
-                              sendTrackingEvents({biAction, gaAction,}, { page: 'SMS code 2', flowNumber: flow, label: 'getCustomerService', })(() => {
-                                  window.open("https://www.haaretz.co.il/misc/contact-us");
-                                }
+                              sendTrackingEvents({ biAction, gaAction, }, { page: 'SMS code 2', flowNumber: flow, label: 'getCustomerService', })(() => {
+                                window.open('https://www.haaretz.co.il/misc/contact-us');
+                              }
                               );
                             }}
                           >
@@ -197,7 +196,6 @@ class OtpValidation2 extends Component {
       </FSMLayout>
     );
   }
-
 }
 
 export default OtpValidation2;

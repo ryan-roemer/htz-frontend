@@ -61,13 +61,19 @@ function TableHeaderTab({ children, index, }: HeaderTabProps): Node {
       minWidth="40px"
       textAlign="right"
       mediaPaddingRight="1.5rem"
-      mediaMinWidth="18rem">{({ className, }) => <th className={className}>{children}</th>}</FelaComponent>) : (
+      mediaMinWidth="18rem"
+    >
+      {({ className, }) => <th className={className}>{children}</th>}
+    </FelaComponent>) : (
       <FelaComponent
         style={SingleTabStyle}
         borderWidth="1px"
         minWidth="60px"
         textAlign="center"
-        mediaPaddingRight="0.9">{({ className, }) => <th className={className}>{children}</th>}</FelaComponent>);
+        mediaPaddingRight="0.9"
+      >
+        {({ className, }) => <th className={className}>{children}</th>}
+      </FelaComponent>);
 }
 
 

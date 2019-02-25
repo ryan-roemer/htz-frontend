@@ -88,7 +88,7 @@ class RecipeRating extends Component {
       <FelaComponent
         style={(
           {
-            theme
+            theme,
           }
         ) => ({
           extend: [
@@ -102,8 +102,10 @@ class RecipeRating extends Component {
             ),
             theme.mq({ until: 's', }, { paddingRight: '2rem', paddingLeft: '2rem', }),
             ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-          ]
-        })}>{({
+          ],
+        })}
+      >
+        {({
           className,
           theme,
           theme: {
@@ -176,8 +178,8 @@ class RecipeRating extends Component {
                   <ApolloConsumer>
                     {client => (
                       <Rating
-                        disabled={this.state.userAlreadyRated}
-                        newRating={starRanking => {
+                disabled={this.state.userAlreadyRated}
+                newRating={starRanking => {
                           if (!this.state.userAlreadyRated) {
                             const userAlreadyRated = checkAndWriteToLocalStorage(cleanArticleId);
                             if (!userAlreadyRated) {
@@ -189,22 +191,22 @@ class RecipeRating extends Component {
                             }
                           }
                         }}
-                        rating={reviewStars}
-                      />
+                rating={reviewStars}
+              />
                     )}
                   </ApolloConsumer>
                   {articleRankersCounter > 5 ? (
                     <FelaComponent
                       style={{
-                        marginInlineStart: '1rem',
-                        color: theme.color('primary'),
-                      }}
+                marginInlineStart: '1rem',
+                color: theme.color('primary'),
+              }}
                       as="span"
                     >
                       (
                       {this.state.userRating
-                        ? articleRankersCounter + 1
-                        : articleRankersCounter + 0}
+                ? articleRankersCounter + 1
+                : articleRankersCounter + 0}
                       )
                     </FelaComponent>
                   ) : null}
@@ -231,10 +233,10 @@ class RecipeRating extends Component {
                   >
                     <FelaComponent
                       style={{
-                        color: theme.color('primary'),
-                        marginInlineEnd: '1rem',
-                        extend: [ theme.type(2), ],
-                      }}
+                color: theme.color('primary'),
+                marginInlineEnd: '1rem',
+                extend: [ theme.type(2), ],
+              }}
                       as="span"
                     >
                       {icon[row.icon]}
@@ -252,7 +254,8 @@ class RecipeRating extends Component {
               })}
             </div>
           );
-        }}</FelaComponent>
+        }}
+      </FelaComponent>
     );
   }
 }

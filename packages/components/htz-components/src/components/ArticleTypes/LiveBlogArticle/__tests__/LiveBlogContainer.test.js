@@ -15,7 +15,8 @@ describe.skip('LiveBLogContainer component', () => {
   it('renders liveBLogContainer correctly', () => {
     const snapshot = felaSnapshotter(
       <ApolloProvider client={client}>
-        <FelaTheme>{theme => (
+        <FelaTheme>
+          {theme => (
             <LiveBlogContainer
               liveblogItems={liveblogItems}
               canonicalUrl="https://www.haaretz.co.il/news/politics/LIVE-1.6293368"
@@ -23,14 +24,16 @@ describe.skip('LiveBLogContainer component', () => {
               bps={theme.bps}
               typeConf={theme.typeConf}
             />
-          )}</FelaTheme>
+          )}
+        </FelaTheme>
       </ApolloProvider>
     );
     expect(snapshot).toMatchSnapshot();
   });
   it.skip('renders liveBLogContainer correctly with Timeline Text', () => {
     const snapshot = felaSnapshotter(
-      <FelaTheme>{theme => (
+      <FelaTheme>
+        {theme => (
           <ApolloProvider client={client}>
             <LiveBlogContainer
               liveblogItems={liveblogItems}
@@ -41,7 +44,8 @@ describe.skip('LiveBLogContainer component', () => {
               showTimeLineText
             />
           </ApolloProvider>
-        )}</FelaTheme>
+        )}
+      </FelaTheme>
     );
     expect(snapshot).toMatchSnapshot();
   });

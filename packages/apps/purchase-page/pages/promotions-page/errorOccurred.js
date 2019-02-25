@@ -52,15 +52,17 @@ const ErrorOccurredElement = ({ messageType, fbFullRedirectUri, }) => (
             <FelaComponent
               style={(
                 {
-                  theme
+                  theme,
                 }
               ) => ({
                 maxWidth: '70rem',
                 marginLeft: 'auto',
                 marginRight: 'auto',
                 marginTop: '3rem',
-                extend: [ theme.type(2), ]
-              })}>{({
+                extend: [ theme.type(2), ],
+              })}
+            >
+              {({
                 className,
                 theme: {
                   generalError: { message: generalError, },
@@ -85,7 +87,8 @@ const ErrorOccurredElement = ({ messageType, fbFullRedirectUri, }) => (
                   </FelaComponent>
                 );
               }
-              }</FelaComponent>
+              }
+            </FelaComponent>
           </Fragment>
         )}
         stageElement={<ThankYouStage fbFullRedirectUri={fbFullRedirectUri} />}

@@ -19,23 +19,19 @@ function preventDestructivePush(branches = [ 'master', 'dev', ]) {
   !isPermanent && process.exit(0);
 
   const pushCommand = process.env.GIT_COMMAND;
-  const isPushToPermanent = branches.some(branchName =>
-    pushCommand.includes(branchName)
+  const isPushToPermanent = branches.some(branchName => pushCommand.includes(branchName)
   );
   const destructiveFlags = [ '-d ', '--delete ', '-f ', '--force ', ];
   const willDeletePermanent = branches.map(branchName => `:${branchName}`);
 
-  const isDestructive =
-    [ ...destructiveFlags, ...willDeletePermanent, ].filter(flag =>
-      pushCommand.includes(flag)
-    ).length > 0;
+  const isDestructive = [ ...destructiveFlags, ...willDeletePermanent, ].filter(flag => pushCommand.includes(flag)
+  ).length > 0;
 
   if ((isPermanent && isDestructive) || (isPushToPermanent && isDestructive)) {
     try {
       const permanentBranchesRegex = new RegExp(
         branches.reduce(
-          (regExpString, branchName, i) =>
-            (i === 0 ? branchName : `${regExpString}|(?:${branchName})`),
+          (regExpString, branchName, i) => (i === 0 ? branchName : `${regExpString}|(?:${branchName})`),
           ''
         )
       );

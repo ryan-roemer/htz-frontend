@@ -13,19 +13,17 @@ MobileUserButton.propTypes = {
 export default function MobileUserButton({ isLoggedIn, }) {
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         display: 'flex',
 
         ...(!isLoggedIn
           ? {
             extend: [ borderEnd('1px', 'solid', theme.color('primary', '+1')), ],
           }
-          : {})
-      })}>{({ theme, className, }) => {
+          : {}),
+      })}
+    >
+      {({ theme, className, }) => {
         const { userLoggedIn, noUserData, url, } = theme.mobileUserMenuI18n;
 
         return (
@@ -37,9 +35,7 @@ export default function MobileUserButton({ isLoggedIn, }) {
                   boxModel={{ vp: 2, hp: 2, }}
                   variant="secondaryOpaque"
                   fontSize={-1}
-                  {...(isLoggedIn
-                    ? { onClick: () => logout(), }
-                    : { href: url, })}
+                  {...(isLoggedIn ? { onClick: () => logout(), } : { href: url, })}
                 >
                   <IconAvatar size={3} miscStyles={{ marginLeft: '1rem', }} />
                   <span>{isLoggedIn ? userLoggedIn : noUserData}</span>
@@ -48,6 +44,7 @@ export default function MobileUserButton({ isLoggedIn, }) {
             )}
           />
         );
-      }}</FelaComponent>
+      }}
+    </FelaComponent>
   );
 }

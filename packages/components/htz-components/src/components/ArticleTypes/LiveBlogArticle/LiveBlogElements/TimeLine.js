@@ -149,12 +149,13 @@ class TimeLine extends React.Component {
     if (!keyEvents) return <></>;
     return (
       <React.Fragment>
-        <FelaComponent style={wrapperStyle} miscStyles={miscStyles}>{({ className, theme, }) => (
+        <FelaComponent style={wrapperStyle} miscStyles={miscStyles}>
+          {({ className, theme, }) => (
             <div className={className}>
               <FelaComponent
                 style={(
                   {
-                    theme
+                    theme,
                   }
                 ) => ({
                   paddingBlockEnd: '5rem',
@@ -165,27 +166,34 @@ class TimeLine extends React.Component {
                   ...theme.mq(
                     { from: 'l', },
                     { paddingBlockStart: '3rem', paddingInlineEnd: '0rem', }
-                  )
-                })}>{({ className, }) => (
+                  ),
+                })}
+              >
+                {({ className, }) => (
                   <ul className={className}>
                     {keyEvents.map((item, i) => (
                       <FelaComponent
                         isFirstItem={i === 0}
                         isLastItem={i === keyEvents.length - 1}
-                        style={itemStyle}>{({ className, }) => (
+                        style={itemStyle}
+                      >
+                        {({ className, }) => (
                           <li key={`cardId-${item.cardId}`} className={className}>
-                            <FelaComponent
-                              isFirstItem={i === 0}
-                              isLastItem={i === keyEvents.length - 1}
-                              style={TimeHeadlineStyle}
-                              active={this.state.activeItem}
-                              cardId={item.cardId}>{({ className, }) => (
+                  <FelaComponent
+              isFirstItem={i === 0}
+              isLastItem={i === keyEvents.length - 1}
+              style={TimeHeadlineStyle}
+              active={this.state.activeItem}
+              cardId={item.cardId}
+            >
+              {({ className, }) => (
                                 <Time time={item.pubDate} format="HH:mm" className={className} />
-                              )}</FelaComponent>
-                            <FelaComponent
-                              style={(
+                              )}
+            </FelaComponent>
+                  <FelaComponent
+              style={(
                                 {
-                                  theme
+                                  theme,
                                 }
                               ) => ({
                                 ...theme.mq(
@@ -201,8 +209,10 @@ class TimeLine extends React.Component {
 
                                 ':visited': {
                                   color: theme.color('primary', '+1'),
-                                }
-                              })}>{({ className, }) => (
+                                },
+                              })}
+            >
+              {({ className, }) => (
                                 <a
                                   className={className}
                                   href={`#${item.cardId}`}
@@ -210,14 +220,18 @@ class TimeLine extends React.Component {
                                 >
                                   {item.keyEvent}
                                 </a>
-                              )}</FelaComponent>
-                          </li>
-                        )}</FelaComponent>
+                              )}
+            </FelaComponent>
+                </li>
+                        )}
+                      </FelaComponent>
                     ))}
                   </ul>
-                )}</FelaComponent>
+                )}
+              </FelaComponent>
             </div>
-          )}</FelaComponent>
+          )}
+        </FelaComponent>
       </React.Fragment>
     );
   }

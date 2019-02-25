@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { shallow, mount, } from 'enzyme';
 // import toJson from 'enzyme-to-json';
+// TODO: fix when fela issue #618 is resolved.
 // import { createTheme, } from 'fela-bindings';
 
 /**
@@ -14,41 +15,42 @@ import { shallow, mount, } from 'enzyme';
  * Fela components with Enzyme
  */
 export default function createFelaEnzymeRenderers(renderer, baseTheme) {
-  return null;
-  // function felaShallow(node, options = {}, mockTheme) {
-  //   const component = shallow(node, {
-  //     context: {
-  //       renderer,
-  //       _FELA_THEME_: mockTheme || baseTheme,
-  //     },
-  //     ...options,
-  //   });
+  function felaShallow(node, options = {}, mockTheme) {
+    const component = shallow(node, {
+      context: {
+        renderer,
+        _FELA_THEME_: mockTheme || baseTheme,
+      },
+      ...options,
+    });
 
-  //   // component.snapshot = snapshot(component, renderer);
-  //   return component;
-  // }
+    // component.snapshot = snapshot(component, renderer);
+    return component;
+  }
 
-  // function felaMount(node, mockTheme) {
-  //   const theme = createTheme(mockTheme || baseTheme);
+  // TODO: fix when fela issue #618 is resolved.
+  function felaMount(node, mockTheme) {
+    // const theme = createTheme(mockTheme || baseTheme);
 
-  //   const component = mount(node, {
-  //     childContextTypes: {
-  //       // eslint-disable-next-line react/forbid-prop-types
-  //       renderer: PropTypes.object,
-  //       // eslint-disable-next-line react/forbid-prop-types
-  //       _FELA_THEME_: PropTypes.object,
-  //     },
-  //     context: {
-  //       renderer,
-  //       _FELA_THEME_: theme,
-  //     },
-  //   });
+    // const component = mount(node, {
+    //   childContextTypes: {
+    //     // eslint-disable-next-line react/forbid-prop-types
+    //     renderer: PropTypes.object,
+    //     // eslint-disable-next-line react/forbid-prop-types
+    //     _FELA_THEME_: PropTypes.object,
+    //   },
+    //   context: {
+    //     renderer,
+    //     _FELA_THEME_: theme,
+    //   },
+    // });
 
-  //   // component.snapshot = snapshot(component, renderer);
-  //   return component;
-  // }
+    // // component.snapshot = snapshot(component, renderer);
+    // return component;
+    return null;
+  }
 
-  // return { felaMount, felaShallow, };
+  return { felaMount, felaShallow, };
 }
 
 // function snapshot(component, renderer) {

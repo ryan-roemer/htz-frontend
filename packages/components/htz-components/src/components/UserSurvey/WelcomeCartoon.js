@@ -20,7 +20,8 @@ function setSize(size, value) {
 
 function WelcomeCartoon({ size, }) {
   return (
-    <FelaComponent size={size} style={style}>{({ theme, className, }) => (
+    <FelaComponent size={size} style={style}>
+      {({ theme, className, }) => (
         <svg
           id="Layer_1"
           className={className}
@@ -1827,7 +1828,8 @@ function WelcomeCartoon({ size, }) {
             />
           </g>
         </svg>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

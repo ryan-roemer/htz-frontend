@@ -18,8 +18,8 @@ import YieldGraph from '../../components/Graph/graphs/Yield/Yield';
 import SortableTable from '../../components/SortableTable/SortableTable';
 
 const indexQuery: DocumentNode = gql`
-  query indexData($assetId: String!){
-    asset(assetId: $assetId){
+  query indexData($assetId: String!) {
+    asset(assetId: $assetId) {
       name
       value
       changePercentage
@@ -62,16 +62,16 @@ type Props = {
   },
 };
 
-const numToString: number => string = num => (
-  num.toLocaleString('he', { minimumFractionDigits: 2, maximumFractionDigits: 2, })
-);
+const numToString: number => string = num => num.toLocaleString('he', { minimumFractionDigits: 2, maximumFractionDigits: 2, });
 
-function indices({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
+function indices({
+  url: {
+    query: { section, assetId, },
+    asPath,
+  },
+}: Props): Node {
   return (
-    <Query
-      query={indexQuery}
-      variables={{ assetId, }}
-    >
+    <Query query={indexQuery} variables={{ assetId, }}>
       {({ loading, error, data, }) => {
         if (error) return null;
         if (loading) return null;
@@ -99,7 +99,8 @@ function indices({ url: { query: { section, assetId, }, asPath, }, }: Props): No
             description={`כל המידע על ${name} נתוני מסחר, נתונים בזמן אמת, גרפים חדשות ועוד באתר TheMarker Finance`}
             path={asPath}
           >
-            <FelaTheme>{theme => (
+            <FelaTheme>
+              {theme => (
                 <Fragment>
                   <PageRow lines={2}>
                     <RowItem
@@ -128,10 +129,7 @@ function indices({ url: { query: { section, assetId, }, asPath, }, }: Props): No
                     />
                   </PageRow>
                   <PageRow>
-                    <GraphController
-                      selectedStockId={assetId}
-                      width={900}
-                    />
+                    <GraphController selectedStockId={assetId} width={900} />
                   </PageRow>
                   <PageRow>
                     <Grid
@@ -141,12 +139,8 @@ function indices({ url: { query: { section, assetId, }, asPath, }, }: Props): No
                         paddingEnd: '0rem',
                       }}
                     >
-                      <GridItem
-                        width={1 / 3}
-                      >
-                        <RowItem
-                          title="נתוני המסחר"
-                        >
+                      <GridItem width={1 / 3}>
+                        <RowItem title="נתוני המסחר">
                           <QuoteInfoTable
                             id={assetId}
                             tradingStatus
@@ -162,18 +156,14 @@ function indices({ url: { query: { section, assetId, }, asPath, }, }: Props): No
                           />
                         </RowItem>
                       </GridItem>
-                      <GridItem
-                        width={2 / 3}
-                      >
+                      <GridItem width={2 / 3}>
                         <FelaComponent
                           style={{
                             display: 'flow',
                             flowDirection: 'column',
                           }}
                         >
-                          <RowItem
-                            title="מחזורים"
-                          >
+                          <RowItem title="מחזורים">
                             <VolumeGraph
                               theme={theme}
                               data={[
@@ -193,9 +183,7 @@ function indices({ url: { query: { section, assetId, }, asPath, }, }: Props): No
                               }}
                             />
                           </RowItem>
-                          <RowItem
-                            title="תשואות"
-                          >
+                          <RowItem title="תשואות">
                             <YieldGraph
                               theme={theme}
                               data={[
@@ -228,9 +216,7 @@ function indices({ url: { query: { section, assetId, }, asPath, }, }: Props): No
                     </Grid>
                   </PageRow>
                   <PageRow>
-                    <RowItem
-                      title="הרכב המדד"
-                    >
+                    <RowItem title="הרכב המדד">
                       <SortableTable
                         extractData={data => data.assetsList[0].assetComponents}
                         miscStyles={{ tableLayout: 'fixed', }}
@@ -274,9 +260,10 @@ function indices({ url: { query: { section, assetId, }, asPath, }, }: Props): No
                             display: '% שינוי',
                             sortingOrder: 'descend',
                             style: ({ changePercentage, }) => ({
-                              color: changePercentage < 0
-                                ? theme.color('negative')
-                                : theme.color('positive'),
+                              color:
+                                changePercentage < 0
+                                  ? theme.color('negative')
+                                  : theme.color('positive'),
                               direction: 'ltr',
                               fontWeight: '700',
                               paddingEnd: '2rem',
@@ -322,9 +309,7 @@ function indices({ url: { query: { section, assetId, }, asPath, }, }: Props): No
                     </RowItem>
                   </PageRow>
                   <PageRow>
-                    <RowItem
-                      title="תעודות סל המשקיעות במדד"
-                    >
+                    <RowItem title="תעודות סל המשקיעות במדד">
                       <SortableTable
                         extractData={data => data.assetsList[0].etfComponents}
                         miscStyles={{ tableLayout: 'fixed', }}
@@ -369,9 +354,10 @@ function indices({ url: { query: { section, assetId, }, asPath, }, }: Props): No
                             display: '% שינוי',
                             sortingOrder: 'descend',
                             style: ({ changePercentage, }) => ({
-                              color: changePercentage < 0
-                                ? theme.color('negative')
-                                : theme.color('positive'),
+                              color:
+                                changePercentage < 0
+                                  ? theme.color('negative')
+                                  : theme.color('positive'),
                               direction: 'ltr',
                               fontWeight: '700',
                               paddingEnd: '2rem',
@@ -394,9 +380,8 @@ function indices({ url: { query: { section, assetId, }, asPath, }, }: Props): No
                             display: '% תשואה שנתית',
                             sortingOrder: 'descend',
                             style: ({ yearlyYield, }) => ({
-                              color: yearlyYield < 0
-                                ? theme.color('negative')
-                                : theme.color('positive'),
+                              color:
+                                yearlyYield < 0 ? theme.color('negative') : theme.color('positive'),
                               direction: 'ltr',
                               fontWeight: '700',
                               paddingEnd: '2rem',
@@ -427,9 +412,7 @@ function indices({ url: { query: { section, assetId, }, asPath, }, }: Props): No
                     </RowItem>
                   </PageRow>
                   <PageRow>
-                    <RowItem
-                      title="קרנות נאמנות המשקיעות במדד"
-                    >
+                    <RowItem title="קרנות נאמנות המשקיעות במדד">
                       <SortableTable
                         extractData={data => data.assetsList[0].mtfComponents}
                         miscStyles={{ tableLayout: 'fixed', }}
@@ -474,9 +457,10 @@ function indices({ url: { query: { section, assetId, }, asPath, }, }: Props): No
                             display: '% שינוי',
                             sortingOrder: 'descend',
                             style: ({ changePercentage, }) => ({
-                              color: changePercentage < 0
-                                ? theme.color('negative')
-                                : theme.color('positive'),
+                              color:
+                                changePercentage < 0
+                                  ? theme.color('negative')
+                                  : theme.color('positive'),
                               direction: 'ltr',
                               fontWeight: '700',
                               paddingEnd: '2rem',
@@ -499,9 +483,8 @@ function indices({ url: { query: { section, assetId, }, asPath, }, }: Props): No
                             display: '% תשואה שנתית',
                             sortingOrder: 'descend',
                             style: ({ yearlyYield, }) => ({
-                              color: yearlyYield < 0
-                                ? theme.color('negative')
-                                : theme.color('positive'),
+                              color:
+                                yearlyYield < 0 ? theme.color('negative') : theme.color('positive'),
                               direction: 'ltr',
                               fontWeight: '700',
                               paddingEnd: '2rem',
@@ -541,11 +524,12 @@ function indices({ url: { query: { section, assetId, }, asPath, }, }: Props): No
                     </RowItem>
                   </PageRow>
                 </Fragment>
-              )}</FelaTheme>
-        </MainLayout>
+              )}
+            </FelaTheme>
+          </MainLayout>
         );
-    }}
-  </Query>
+      }}
+    </Query>
   );
 }
 

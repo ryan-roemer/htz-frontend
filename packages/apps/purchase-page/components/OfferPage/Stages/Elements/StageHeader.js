@@ -31,7 +31,8 @@ const headerStyle = ({ theme, }) => ({
 function StageHeader({ headerElements, }) {
   return (
     <FelaComponent style={{ textAlign: 'center', }}>
-      <FelaComponent style={headerStyle}>{({ className, }) => (
+      <FelaComponent style={headerStyle}>
+        {({ className, }) => (
           <h1 className={className}>
             {headerElements.map(element => (
               <FelaComponent style={{ display: 'block', }} key={Math.random()}>
@@ -39,7 +40,8 @@ function StageHeader({ headerElements, }) {
               </FelaComponent>
             ))}
           </h1>
-        )}</FelaComponent>
+        )}
+      </FelaComponent>
     </FelaComponent>
   );
 }

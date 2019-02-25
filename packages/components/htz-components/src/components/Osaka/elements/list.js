@@ -79,19 +79,23 @@ function List({ articles, promoted, outbrain, miscStyles, }) {
         display: 'flex',
         flexDirection: promoted || outbrain ? 'column' : 'row',
         extend: [ ...(miscStyles ? parseStyleProps(miscStyles) : []), ],
-      }}>{({ className, theme, }) => (
+      }}
+    >
+      {({ className, theme, }) => (
         <div className={className}>
           {articles.map((article, i) => (
             <FelaComponent
               style={{
                 width: `${100 / articles.length}%`,
                 ...(promoted ? borderEnd('1px', 'solid', theme.color('neutral', '-4')) : {}),
-              }}>{({ className: linkClass, }) => (
+              }}
+            >
+              {({ className: linkClass, }) => (
                 <EventTracker>
                   {({ biAction, gaAction, }) => (
                     <HtzLink
-                      className={linkClass}
-                      onClick={() => {
+                className={linkClass}
+                onClick={() => {
                         biAction({
                           actionCode: 109,
                           additionalInfo: {
@@ -101,12 +105,13 @@ function List({ articles, promoted, outbrain, miscStyles, }) {
                           },
                         });
                       }}
-                      href={article.url}
-                      content={<Article {...article} />}
-                    />
+                href={article.url}
+                content={<Article {...article} />}
+              />
                   )}
                 </EventTracker>
-              )}</FelaComponent>
+              )}
+            </FelaComponent>
           ))}
           {promoted ? <Promoted>{theme.osakaI18n.promotedContent}</Promoted> : null}
           {outbrain ? (
@@ -134,7 +139,8 @@ function List({ articles, promoted, outbrain, miscStyles, }) {
             </a>
           ) : null}
         </div>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

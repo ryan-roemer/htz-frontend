@@ -100,7 +100,8 @@ class CoastBar extends React.Component<Props, State> {
 
   render(): Node {
     return (
-      <FelaComponent style={barRule}>{({ className, }) => (
+      <FelaComponent style={barRule}>
+        {({ className, }) => (
           <div className={className}>
             <ClickArea onClick={this.handleEast}>
               <SingleTab active={this.state.east} text="מזרח" />
@@ -110,7 +111,8 @@ class CoastBar extends React.Component<Props, State> {
               <SingleTab active={this.state.west} text="מערב" />
             </ClickArea>
           </div>
-        )}</FelaComponent>
+        )}
+      </FelaComponent>
     );
   }
 }

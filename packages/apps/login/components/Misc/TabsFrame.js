@@ -24,7 +24,7 @@ export default class TabsFrame extends React.Component {
     doTransition: null,
     activeTab: 1,
     isLink: [],
-    host: "haaretz.co.il",
+    host: 'haaretz.co.il',
   };
 
   /* ---------- Lifecycle Methods ---------- */
@@ -33,13 +33,11 @@ export default class TabsFrame extends React.Component {
   }
 
   /* ------------ Functionality ------------ */
-  changeTab = (index, flow, eventsTrackers, label) => {
-    return () => {
-      sendTrackingEvents(eventsTrackers, { page: 'How to login?', flowNumber: flow, label: label, })(() => {
-          this.setState({ activeTab: index, });
-        }
-      );
-    };
+  changeTab = (index, flow, eventsTrackers, label) => () => {
+    sendTrackingEvents(eventsTrackers, { page: 'How to login?', flowNumber: flow, label, })(() => {
+      this.setState({ activeTab: index, });
+    }
+    );
   }
 
   keyPressHandler = (index, childProps, event) => {
@@ -52,36 +50,34 @@ export default class TabsFrame extends React.Component {
     this.setState({ activeTab: this.props.activeTab || 0, isLink: this.props.isLink, });
   }
 
-  createNavButton = (child, index) => {
-    return !this.state.isLink[index] ?
-      (
-        <span className={index === this.state.activeTab ? "on" : ""} tabIndex="-1" >
-          <label htmlFor={`tab${index}`} tabIndex="-1">
-            {child.props.tabname || `Tab ${index}`}
-            <input
-              type="radio"
-              name="tab"
-              id={`tab${index}`}
-              value={`tab${index}`}
-              onClick={this.changeTab(index, child.props.flow, child.props.eventsTrackers, child.props.label)}
-              onKeyDown={this.keyPressHandler.bind(this, index, child.props)}
-              tabIndex={index === this.state.activeTab ? -1 : 1}
-            />
-          </label>
-        </span>
-      ) :
-      (this.props.findRout && this.props.doTransition ? (
-        <HtzLink
-          href={`${this.props.findRout(this.state.isLink[index])}`}
-          onClick={e => {
-            e.preventDefault();
-            Router.push(this.props.doTransition(this.state.isLink[index]));
-          }}
-        >
+  createNavButton = (child, index) => (!this.state.isLink[index]
+    ? (
+      <span className={index === this.state.activeTab ? 'on' : ''} tabIndex="-1">
+        <label htmlFor={`tab${index}`} tabIndex="-1">
           {child.props.tabname || `Tab ${index}`}
-        </HtzLink>
-      ) : null);
-  }
+          <input
+            type="radio"
+            name="tab"
+            id={`tab${index}`}
+            value={`tab${index}`}
+            onClick={this.changeTab(index, child.props.flow, child.props.eventsTrackers, child.props.label)}
+            onKeyDown={this.keyPressHandler.bind(this, index, child.props)}
+            tabIndex={index === this.state.activeTab ? -1 : 1}
+          />
+        </label>
+      </span>
+    )
+    : (this.props.findRout && this.props.doTransition ? (
+      <HtzLink
+        href={`${this.props.findRout(this.state.isLink[index])}`}
+        onClick={e => {
+          e.preventDefault();
+          Router.push(this.props.doTransition(this.state.isLink[index]));
+        }}
+      >
+        {child.props.tabname || `Tab ${index}`}
+      </HtzLink>
+    ) : null))
 
   navClickHandler = index => (this.state.isLine[index] ? this.changeTab(index) : false);
 

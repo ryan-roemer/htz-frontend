@@ -22,12 +22,14 @@ const PasswordNote = (
         <FelaComponent
           style={(
             {
-              theme
+              theme,
             }
           ) => ({
             textDecoration: 'underline',
-            color: theme.color('loginOrRegister', 'inFormText')
-          })}>{({ className, }) => (
+            color: theme.color('loginOrRegister', 'inFormText'),
+          })}
+        >
+          {({ className, }) => (
             <BIAction>
               {action => (
                 <button
@@ -48,7 +50,8 @@ const PasswordNote = (
                 </button>
               )}
             </BIAction>
-          )}</FelaComponent>
+          )}
+        </FelaComponent>
       </FelaComponent>
     ) : (
       text

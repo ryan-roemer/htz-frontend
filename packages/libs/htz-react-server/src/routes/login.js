@@ -8,8 +8,7 @@ export default function finance(app, server) {
       'Content-Type': 'text/plain;charset=UTF-8',
     },
   };
-  server.get('/robots.txt', (req, res) =>
-    res.status(200).sendFile('robots.txt', options)
+  server.get('/robots.txt', (req, res) => res.status(200).sendFile('robots.txt', options)
   );
   /* Home Page */
   server.get('/', (req, res) => {
@@ -25,7 +24,5 @@ export default function finance(app, server) {
     return app.render(req, res, '/', query);
   });
   /* Redirect to index */
-  server.get('*', (req, res) => {
-    return app.render(req, res, '/');
-  });
+  server.get('*', (req, res) => app.render(req, res, '/'));
 }

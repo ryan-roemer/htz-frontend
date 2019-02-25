@@ -168,7 +168,8 @@ class CommentsSection extends React.Component {
     } = this.props;
 
     return (
-      <FelaTheme>{({
+      <FelaTheme>
+        {({
           commentsSectionI18n: {
             buttons: { loadMoreCommentsBtnText, },
             texts: { chooseSortMethodText, },
@@ -183,7 +184,7 @@ class CommentsSection extends React.Component {
           <FelaComponent
             style={(
               {
-                theme
+                theme,
               }
             ) => ({
               extend: [
@@ -194,7 +195,7 @@ class CommentsSection extends React.Component {
                   { paddingBottom: '14rem', }
                 ),
                 theme.mq({ from: 'xl', }, { paddingBottom: '1rem', }),
-              ]
+              ],
             })}
           >
             <CommentForm
@@ -269,7 +270,8 @@ class CommentsSection extends React.Component {
               badge="inline"
             />
           </FelaComponent>
-        )}</FelaTheme>
+        )}
+      </FelaTheme>
     );
   }
 }

@@ -70,7 +70,8 @@ const Graph = ({
 }: Props): Node => {
   const GraphElement: ComponentType<any> = graphTypes.get(type);
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <FelaComponent
           style={{
             extend: [
@@ -87,7 +88,8 @@ const Graph = ({
             {...props}
           />
         </FelaComponent>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 };
 

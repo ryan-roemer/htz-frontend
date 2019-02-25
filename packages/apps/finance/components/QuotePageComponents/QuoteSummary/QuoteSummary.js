@@ -32,11 +32,7 @@ const numToString: (number, number) => string = (num, decimal) => num.toLocaleSt
 const PaperItem = ({ title, value, }: PaperItemProps): Node => (
   <FelaComponent
     as="p"
-    style={(
-      {
-        theme
-      }
-    ) => ({
+    style={({ theme, }) => ({
       alignItems: 'center',
       backgroundColor: theme.color('neutral', '-10'),
       display: 'flex',
@@ -47,7 +43,7 @@ const PaperItem = ({ title, value, }: PaperItemProps): Node => (
 
       ':not(:last-child)': {
         marginBottom: '0.5rem',
-      }
+      },
     })}
   >
     <FelaComponent
@@ -70,7 +66,8 @@ const PaperItem = ({ title, value, }: PaperItemProps): Node => (
 );
 
 const QuoteSummary = ({ valueData, date, assetInfo, }: Props): Node => (
-  <FelaTheme>{theme => (
+  <FelaTheme>
+    {theme => (
       <Grid
         gutter={2}
         miscStyles={{
@@ -97,38 +94,36 @@ const QuoteSummary = ({ valueData, date, assetInfo, }: Props): Node => (
               ...theme.type(-2),
             }}
           >
-            {valueData.map(
-              ({ title, value, decimal = 2, percentage, }: AssetData) => (
-                <Stat
-                  key={title}
-                  title={title}
-                  miscStyles={{
-                    color:
-                      typeof value === 'number'
-                        ? Number(value) < 0
-                          ? theme.color('negative')
-                          : theme.color('positive')
-                        : theme.color('neutral', '-1'),
-                    ...theme.type(2),
-                    ...(percentage
-                      ? {
-                        ':before': {
-                          content: '"% "',
-                        },
-                      }
-                      : {}),
-                  }}
-                >
-                  {className => (
-                    <span className={className}>
-                      {!isNaN(value) // eslint-disable-line no-restricted-globals
-                        ? numToString(Number(value), decimal)
-                        : value}
-                    </span>
-                  )}
-                </Stat>
-              )
-            )}
+            {valueData.map(({ title, value, decimal = 2, percentage, }: AssetData) => (
+              <Stat
+                key={title}
+                title={title}
+                miscStyles={{
+                  color:
+                    typeof value === 'number'
+                      ? Number(value) < 0
+                        ? theme.color('negative')
+                        : theme.color('positive')
+                      : theme.color('neutral', '-1'),
+                  ...theme.type(2),
+                  ...(percentage
+                    ? {
+                      ':before': {
+                        content: '"% "',
+                      },
+                    }
+                    : {}),
+                }}
+              >
+                {className => (
+                  <span className={className}>
+                    {!isNaN(value) // eslint-disable-line no-restricted-globals
+                      ? numToString(Number(value), decimal)
+                      : value}
+                  </span>
+                )}
+              </Stat>
+            ))}
           </FelaComponent>
           <FelaComponent
             style={{
@@ -172,7 +167,8 @@ const QuoteSummary = ({ valueData, date, assetInfo, }: Props): Node => (
           ))}
         </GridItem>
       </Grid>
-    )}</FelaTheme>
+    )}
+  </FelaTheme>
 );
 
 export default QuoteSummary;

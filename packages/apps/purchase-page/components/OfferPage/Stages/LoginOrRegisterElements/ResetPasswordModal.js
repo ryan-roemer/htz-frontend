@@ -82,7 +82,8 @@ class ResetPasswordModal extends Component {
         closeOnOutsideClick
         overlayBgColor="rgba(22, 22, 22, 0.8)"
         render={({ handleClose, }) => (
-          <FelaComponent style={modalStyle}>{({
+          <FelaComponent style={modalStyle}>
+            {({
               theme: {
                 stage3: {
                   form,
@@ -103,29 +104,32 @@ class ResetPasswordModal extends Component {
                 <FelaComponent
                   style={(
                     {
-                      theme
+                      theme,
                     }
                   ) => ({
                     textAlign: 'center',
-                    extend: [ theme.type(1), ]
-                  })}>{({ className, }) => (
+                    extend: [ theme.type(1), ],
+                  })}
+                >
+                  {({ className, }) => (
                     <H id="forgetPasswordDescription" className={className}>
                       {header}
                     </H>
-                  )}</FelaComponent>
+                  )}
+                </FelaComponent>
                 {this.state.resetEmailSent ? (
                   <Fragment>
                     <FelaComponent
                       style={(
                         {
-                          theme
+                          theme,
                         }
                       ) => ({
                         color: theme.color('neutral', -3),
                         textAlign: 'center',
                         fontWeight: 'bold',
                         marginTop: '3rem',
-                        marginBottom: '2rem'
+                        marginBottom: '2rem',
                       })}
                     >
                       {successMessage}
@@ -144,9 +148,9 @@ class ResetPasswordModal extends Component {
                     <ApolloConsumer>
                       {client => (this.props.isVisible ? (
                         <Form
-                          clearFormAfterSubmit={false}
-                          initialValues={{ resetEmail: this.props.email, }}
-                          onSubmit={async ({ resetEmail, }) => {
+              clearFormAfterSubmit={false}
+              initialValues={{ resetEmail: this.props.email, }}
+              onSubmit={async ({ resetEmail, }) => {
                             this.setState({ loading: true, });
                             const {
                               data: { resetPassword: { status, message, }, },
@@ -160,7 +164,7 @@ class ResetPasswordModal extends Component {
                               loading: false,
                             });
                           }}
-                          validate={({ resetEmail = '', }) => {
+              validate={({ resetEmail = '', }) => {
                             const errors = [];
                             if (!isEmail(resetEmail)) {
                               errors.push({
@@ -172,7 +176,7 @@ class ResetPasswordModal extends Component {
 
                             return errors;
                           }}
-                          render={({ getInputProps, handleSubmit, }) => (
+              render={({ getInputProps, handleSubmit, }) => (
                             <Fragment>
                               <FelaComponent
                                 style={{ textAlign: 'inline-start', }}
@@ -218,14 +222,15 @@ class ResetPasswordModal extends Component {
                               </BIAction>
                             </Fragment>
                           )}
-                        />
+            />
                       ) : null)
                       }
                     </ApolloConsumer>
                   </FelaComponent>
                 )}
               </div>
-            )}</FelaComponent>
+            )}
+          </FelaComponent>
         )}
       />
     );

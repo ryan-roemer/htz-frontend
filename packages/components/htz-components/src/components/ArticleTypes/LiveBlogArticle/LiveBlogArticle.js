@@ -100,7 +100,8 @@ function LiveBlog({ articleId, slots, path, }) {
           );
 
           return (
-            <FelaTheme>{theme => (
+            <FelaTheme>
+              {theme => (
                 <LayoutContainer
                   tagName="article"
                   bgc={theme.color('primary', '-6')}
@@ -180,9 +181,9 @@ function LiveBlog({ articleId, slots, path, }) {
                               }
                               return (
                                 <LiveBlogLayoutRow
-                                  isArticleBody
-                                  hideMargineliaComponentUnderLBp={!!authors}
-                                  margineliaComponent={(
+                    isArticleBody
+                    hideMargineliaComponentUnderLBp={!!authors}
+                    margineliaComponent={(
                                     <Fragment>
                                       {authors ? (
                                         <LiveBlogHeaderMeta
@@ -218,8 +219,8 @@ function LiveBlog({ articleId, slots, path, }) {
                                       </Query>
                                     </Fragment>
 )}
-                                >
-                                  <ArticleBody
+                  >
+                    <ArticleBody
                                     // todo: quick registration doesnt render but ruins the test if the article body should render at all, decide what logic to add here
                                     body={body.filter(
                                       item => item.inputTemplate
@@ -235,7 +236,7 @@ function LiveBlog({ articleId, slots, path, }) {
                                       maxWidth: '100%',
                                     }}
                                   />
-                                  <LiveBlogContainer
+                    <LiveBlogContainer
                                     liveblogItems={liveblogItems}
                                     canonicalUrl={canonicalUrl}
                                     keyEvents={keyEvents}
@@ -243,7 +244,7 @@ function LiveBlog({ articleId, slots, path, }) {
                                     bps={theme.bps}
                                     typeConf={theme.typeConf}
                                   />
-                                  <Tags
+                    <Tags
                                     tagsList={tags}
                                     miscStyles={{
                                       ...theme.mq(
@@ -264,7 +265,7 @@ function LiveBlog({ articleId, slots, path, }) {
                                       ),
                                     }}
                                   />
-                                  {newsletterProps.length > 0 ? (
+                    {newsletterProps.length > 0 ? (
                                     <NoSSR key={element.contentId}>
                                       <Newsletter
                                         {...newsletterProps[0]}
@@ -284,8 +285,8 @@ function LiveBlog({ articleId, slots, path, }) {
                                       />
                                     </NoSSR>
                                   ) : null}
-                                  {bloggerInfo}
-                                </LiveBlogLayoutRow>
+                    {bloggerInfo}
+                  </LiveBlogLayoutRow>
                               );
                             }}
                           </ApolloConsumer>
@@ -359,28 +360,32 @@ function LiveBlog({ articleId, slots, path, }) {
                           }
                         ),
                       ],
-                    }}>{({ className, }) => (
+                    }}
+                  >
+                    {({ className, }) => (
                       <aside className={className}>
                         {aside ? (
                           <Zen animate>
                             <FelaComponent
                               style={{
-                                height: '100%',
-                                left: '0',
-                                paddingTop: '3rem',
-                                position: 'absolute',
-                                top: '0',
-                              }}
+                  height: '100%',
+                  left: '0',
+                  paddingTop: '3rem',
+                  position: 'absolute',
+                  top: '0',
+                }}
                             >
                               <SideBar content={aside} />
                             </FelaComponent>
                           </Zen>
                         ) : null}
                       </aside>
-                    )}</FelaComponent>
+                    )}
+                  </FelaComponent>
                   <ArticleGallery path={path} />
                 </LayoutContainer>
-              )}</FelaTheme>
+              )}
+            </FelaTheme>
           );
         }}
       </Query>

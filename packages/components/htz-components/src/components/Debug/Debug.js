@@ -29,12 +29,12 @@ class Debug extends React.Component<Props, State> {
       <FelaComponent
         style={(
           {
-            theme
+            theme,
           }
         ) => ({
           fontSize: '20px',
           color: theme.color('input', 'primaryErrorTextLabel'),
-          textAlign: 'center'
+          textAlign: 'center',
         })}
       >
         {children}

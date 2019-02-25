@@ -88,42 +88,41 @@ export { cssReset, };
  *   function that returns a CSS-in-JS object of typographic styles conforming to a global predefined
  *   typographic scale and vertical rhythm
  */
-const loginPageTheme = host =>
-  Object.freeze({
-    // Constants
-    articleStyle,
-    bps,
-    btnStyle,
-    direction: 'rtl',
-    gridStyle,
-    fontStacks,
-    inputStyle,
-    typeConf,
-    
-    footerBorderStyle,
+const loginPageTheme = host => Object.freeze({
+  // Constants
+  articleStyle,
+  bps,
+  btnStyle,
+  direction: 'rtl',
+  gridStyle,
+  fontStacks,
+  inputStyle,
+  typeConf,
 
-    // I18n
-    footerMobileListsI18n,
-    footerDesktopI18n,
-    linkToHomePage,
-    ...emailInputTexts(host),
-    ...passwordInputTexts(host),
-    ...phoneInputTexts(host),
-    ...nameInputTexts(host),
+  footerBorderStyle,
 
-    // Methods
-    color: getColor(host),
-    getDelay,
-    getDuration,
-    getTimingFunction,
-    getTransition,
-    getTransitionString,
-    getMqString,
-    getZIndex,
-    mq,
-    pxToRem,
-    type: typesetter,
-  });
+  // I18n
+  footerMobileListsI18n,
+  footerDesktopI18n,
+  linkToHomePage,
+  ...emailInputTexts(host),
+  ...passwordInputTexts(host),
+  ...phoneInputTexts(host),
+  ...nameInputTexts(host),
+
+  // Methods
+  color: getColor(host),
+  getDelay,
+  getDuration,
+  getTimingFunction,
+  getTransition,
+  getTransitionString,
+  getMqString,
+  getZIndex,
+  mq,
+  pxToRem,
+  type: typesetter,
+});
 
 export default loginPageTheme;
 

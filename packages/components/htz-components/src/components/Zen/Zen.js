@@ -64,7 +64,7 @@ class Zen extends React.Component {
               <FelaComponent
                 style={(
                   {
-                    theme
+                    theme,
                   }
                 ) => ({
                   display: zenMode ? 'none' : 'block',
@@ -73,7 +73,7 @@ class Zen extends React.Component {
                     ...(miscStyles
                       ? parseStyleProps(miscStyles, theme.mq, theme.type)
                       : []),
-                  ]
+                  ],
                 })}
               >
                 {children}
@@ -92,14 +92,14 @@ class Zen extends React.Component {
               <FelaComponent
                 style={(
                   {
-                    theme
+                    theme,
                   }
                 ) => ({
                   extend: [
                     ...(miscStyles
                       ? parseStyleProps(miscStyles, theme.mq, theme.type)
                       : []),
-                  ]
+                  ],
                 })}
               >
                 {children}

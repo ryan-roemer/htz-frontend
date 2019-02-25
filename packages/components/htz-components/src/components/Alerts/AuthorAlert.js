@@ -115,32 +115,32 @@ class AuthorAlert extends React.Component {
                           <div className={className}>
                             <FelaComponent
                               style={({ theme, }) => ({
-                                  overflow: 'hidden',
-                                  left: 0,
-                                  right: 0,
-                                  backgroundColor: theme.color('primary', '-5'),
-                                  zIndex: theme.getZIndex('above'),
-                                  ':before': {
-                                    position: 'absolute',
-                                    display: 'block',
-                                    content: '""',
-                                    height: '2px',
-                                    width: '100%',
-                                    backgroundColor: theme.color('primary', '-1'),
-                                    zIndex: 1,
-                                  },
-                                })}
+                                overflow: 'hidden',
+                                left: 0,
+                                right: 0,
+                                backgroundColor: theme.color('primary', '-5'),
+                                zIndex: theme.getZIndex('above'),
+                                ':before': {
+                                  position: 'absolute',
+                                  display: 'block',
+                                  content: '""',
+                                  height: '2px',
+                                  width: '100%',
+                                  backgroundColor: theme.color('primary', '-1'),
+                                  zIndex: 1,
+                                },
+                              })}
                             >
                               {({ className, }) => (
-                                  <div className={className}>
-                                    <AuthorNotificationsRegistration
-                                      author={this.props.author}
-                                      platform={this.props.platform}
-                                      biAction={this.props.biAction}
-                                      onToggle={() => handleClose()}
-                                    />
-                                  </div>
-                                )}
+                                <div className={className}>
+                                  <AuthorNotificationsRegistration
+                                    author={this.props.author}
+                                    platform={this.props.platform}
+                                    biAction={this.props.biAction}
+                                    onToggle={() => handleClose()}
+                                  />
+                                </div>
+                              )}
                             </FelaComponent>
                           </div>
                         )}

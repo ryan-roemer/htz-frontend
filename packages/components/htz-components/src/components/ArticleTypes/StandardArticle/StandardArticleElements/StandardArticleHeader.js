@@ -51,20 +51,13 @@ function Header({
 }) {
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         textAlign: 'start',
 
-        extend: [
-          theme.mq(
-            { until: 'm', },
-            { display: 'flex', flexDirection: 'column', }
-          ),
-        ]
-      })}>{({ className, theme, }) => (
+        extend: [ theme.mq({ until: 'm', }, { display: 'flex', flexDirection: 'column', }), ],
+      })}
+    >
+      {({ className, theme, }) => (
         <header className={className}>
           {hasBreadCrumbs ? (
             <FelaComponent
@@ -72,28 +65,19 @@ function Header({
                 paddingInlineStart: theme.layoutStyle.startColumnPadding,
                 marginTop: '3rem',
                 extend: [
-                  theme.mq(
-                    { until: 's', },
-                    { paddingInlineStart: theme.layoutStyle.contPaddingS, }
-                  ),
+                  theme.mq({ until: 's', }, { paddingInlineStart: theme.layoutStyle.contPaddingS, }),
                   theme.mq(
                     { from: 'xl', },
                     {
-                      paddingInlineStart:
-                              theme.layoutStyle.startColumnPaddingXL,
+                      paddingInlineStart: theme.layoutStyle.startColumnPaddingXL,
                     }
                   ),
-                  theme.mq(
-                    { until: 's', },
-                    { order: -1, marginTop: '2rem', marginBottom: '3rem', }
-                  ),
+                  theme.mq({ until: 's', }, { order: -1, marginTop: '2rem', marginBottom: '3rem', }),
                 ],
-              }}>{({ className, }) => (
-                <Breadcrumbs
-                  articleId={articleId}
-                  className={className}
-                />
-              )}</FelaComponent>
+              }}
+            >
+              {({ className, }) => <Breadcrumbs articleId={articleId} className={className} />}
+            </FelaComponent>
           ) : null}
           <FelaComponent
             style={{
@@ -108,30 +92,27 @@ function Header({
                     marginTop: '0',
                   }
                 ),
-                theme.mq(
-                  { from: 's', until: 'l', },
-                  { paddingInlineEnd: '2rem', }
-                ),
+                theme.mq({ from: 's', until: 'l', }, { paddingInlineEnd: '2rem', }),
                 theme.mq({ from: 'xl', }, { paddingInlineStart: '3rem', }),
               ],
-            }}>{({ className, }) => (
+            }}
+          >
+            {({ className, }) => (
               <HeaderText
                 className={className}
                 kicker={exclusive}
                 subtitle={subtitle}
                 title={title}
               />
-            )}</FelaComponent>
+            )}
+          </FelaComponent>
           <ArticleHeaderMeta
             authors={authors}
             publishDate={pubDate}
             modifiedDate={modDate}
             reportingFrom={reportingFrom}
             miscStyles={{
-              marginTop: [
-                { until: 's', value: '3rem', },
-                { from: 's', until: 'l', value: '2rem', },
-              ],
+              marginTop: [ { until: 's', value: '3rem', }, { from: 's', until: 'l', value: '2rem', }, ],
               marginInlineStart: [
                 {
                   from: 's',
@@ -146,18 +127,13 @@ function Header({
                 },
                 { until: 's', value: theme.layoutStyle.contPaddingS, },
               ],
-              display: [
-                { until: 'l', value: 'block', },
-                { from: 'l', value: 'none', },
-              ],
+              display: [ { until: 'l', value: 'block', }, { from: 'l', value: 'none', }, ],
             }}
           />
           <FelaComponent
             style={{
               paddingInlineStart: '2rem',
-              extend: [
-                theme.mq({ from: 'xl', }, { paddingInlineStart: '3rem', }),
-              ],
+              extend: [ theme.mq({ from: 'xl', }, { paddingInlineStart: '3rem', }), ],
             }}
           >
             <ShareBar title={title} canonicalUrl={canonicalUrl} />
@@ -233,7 +209,8 @@ function Header({
             />
           ) : null}
         </header>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

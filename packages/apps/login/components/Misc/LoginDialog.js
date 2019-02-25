@@ -30,10 +30,9 @@ export default class LoginDialog extends Component {
   }
 
   /** - returns all grand children passed to the component */
-  getAllStages = () =>
-    React.Children.toArray(
-      this.props.children(this.nextStage, this.hideDialog, this.getCloseButton).props.children
-    );
+  getAllStages = () => React.Children.toArray(
+    this.props.children(this.nextStage, this.hideDialog, this.getCloseButton).props.children
+  );
 
   /** - return the grand child that should be displayd (according to state stageIndex) */
   getStage = () => {

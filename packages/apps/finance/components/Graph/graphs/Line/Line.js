@@ -313,11 +313,13 @@ class Line extends React.Component<Props, State> {
       <FelaComponent
         style={(
           {
-            theme
+            theme,
           }
         ) => ({
-          backgroundColor: theme.color('neutral', '-1')
-        })}>{({ className, theme, }) => (
+          backgroundColor: theme.color('neutral', '-1'),
+        })}
+      >
+        {({ className, theme, }) => (
           <svg
             className={className}
             viewBox={`0 0 ${width} ${height}`}
@@ -331,7 +333,9 @@ class Line extends React.Component<Props, State> {
               style={{
                 ...theme.type(-3),
                 fontFamily: theme.fontStacks.enhanced,
-              }}>{({ className, }) => (
+              }}
+            >
+              {({ className, }) => (
                 <Fragment>
                   <g
                     className={className}
@@ -344,7 +348,8 @@ class Line extends React.Component<Props, State> {
                     transform={`translate(${margin.left}, 0)`}
                   />
                 </Fragment>
-              )}</FelaComponent>
+              )}
+            </FelaComponent>
             <g>
               <line
                 ref={lineRef => { this.lineRef = lineRef; }}
@@ -365,7 +370,8 @@ class Line extends React.Component<Props, State> {
               style={{ fill: 'none', pointerEvents: 'all', }}
             />
           </svg>
-        )}</FelaComponent>
+        )}
+      </FelaComponent>
     );
   }
 }

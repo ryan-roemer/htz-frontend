@@ -5,6 +5,7 @@ import { borderBottom, } from '@haaretz/htz-css-tools';
 
 import type { Node, } from 'react';
 
+import GeneralAdSlot from '@haaretz/htz-components/dist/esnext/components/Ads/GeneralAdSlot';
 import MainLayout from '../../layouts/MainLayout';
 import PageRow from '../../components/PageRow/PageRow';
 import MarketSummary from '../../components/MarketSummary/MarketSummary';
@@ -16,7 +17,6 @@ import TabList from '../../components/TabList/TabList';
 import TabPanel from '../../components/TabPanel/TabPanel';
 import Tab from '../../components/Tab/Tab';
 import { TabButton, } from '../../components/TabbedGraph/TabbedGraph';
-import GeneralAdSlot from '@haaretz/htz-components/dist/esnext/components/Ads/GeneralAdSlot';
 
 type Props = {
   url: {
@@ -53,9 +53,7 @@ const tabRule: Object => Object = ({ theme, }) => ({
   },
 });
 
-const numToString: number => string = num => (
-  num.toLocaleString('he', { minimumFractionDigits: 2, maximumFractionDigits: 2, })
-);
+const numToString: number => string = num => num.toLocaleString('he', { minimumFractionDigits: 2, maximumFractionDigits: 2, });
 
 class Bonds extends React.Component<Props, State> {
   state = {
@@ -74,7 +72,12 @@ class Bonds extends React.Component<Props, State> {
 
   render(): Node {
     const { bonds, assetSubSection, index, } = this.state;
-    const { url: { query: { section, }, asPath, }, } = this.props;
+    const {
+      url: {
+        query: { section, },
+        asPath,
+      },
+    } = this.props;
     return (
       <MainLayout
         section={section}
@@ -82,15 +85,14 @@ class Bonds extends React.Component<Props, State> {
         description='אגרות חוב: כל המידע על אג"ח, נתונים בזמן אמת, גרפים חדשות ועוד באתר TheMarker Finance'
         path={asPath}
       >
-        <FelaTheme>{theme => (
+        <FelaTheme>
+          {theme => (
             <Fragment>
               <PageRow>
                 <MarketSummary marketId="3" miscStyles={{ flexGrow: '1', }} />
               </PageRow>
               <PageRow>
-                <RowItem
-                  title="מדדי אג״ח"
-                >
+                <RowItem title="מדדי אג״ח">
                   <TableGraphConnector
                     assetsId={[ '2', '142', '137', '-2000', '164', '143', '167', '145', '149', ]}
                   />
@@ -106,79 +108,92 @@ class Bonds extends React.Component<Props, State> {
                 </RowItem>
               </PageRow>
               <PageRow>
-                <RowItem
-                  title="נתוני אג״ח"
-                >
+                <RowItem title="נתוני אג״ח">
                   <FelaComponent
                     style={{
                       color: theme.color('neutral', '-3'),
                       display: 'flex',
                       marginTop: '2rem',
                       ...theme.type(-1),
-                    }}>{({ className, }) => (
-                      <Tabs
-                        activeTab={index}
-                      >
+                    }}
+                  >
+                    {({ className, }) => (
+                      <Tabs activeTab={index}>
                         <TabList className={className}>
                           <Tab
                             index={0}
                             controls="bonds-up"
                             presentation
                             rule={tabRule}
-                            onClick={() => this.changeSelectedTime({ bonds: 'up', assetSubSection: '0', index: 0, })}
+                            onClick={() => this.changeSelectedTime({
+                              bonds: 'up',
+                              assetSubSection: '0',
+                              index: 0,
+                            })
+                            }
                             render={TabButton}
                           >
-                            <span>
-                                  ממשלתי
-                            </span>
+                            <span>ממשלתי</span>
                           </Tab>
                           <Tab
                             index={1}
                             controls="bonds-up"
                             presentation
                             rule={tabRule}
-                            onClick={() => this.changeSelectedTime({ bonds: 'up', assetSubSection: '1', index: 1, })}
+                            onClick={() => this.changeSelectedTime({
+                              bonds: 'up',
+                              assetSubSection: '1',
+                              index: 1,
+                            })
+                            }
                             render={TabButton}
                           >
-                            <span>
-                                  קונצרני
-                            </span>
+                            <span>קונצרני</span>
                           </Tab>
                           <Tab
                             index={2}
                             controls="bonds-up"
                             presentation
                             rule={tabRule}
-                            onClick={() => this.changeSelectedTime({ bonds: 'up', assetSubSection: '2', index: 2, })}
+                            onClick={() => this.changeSelectedTime({
+                              bonds: 'up',
+                              assetSubSection: '2',
+                              index: 2,
+                            })
+                            }
                             render={TabButton}
                           >
-                            <span>
-                                  ענפים
-                            </span>
+                            <span>ענפים</span>
                           </Tab>
                           <Tab
                             index={3}
                             controls="bonds-up"
                             presentation
                             rule={tabRule}
-                            onClick={() => this.changeSelectedTime({ bonds: 'up', assetSubSection: '3', index: 3, })}
+                            onClick={() => this.changeSelectedTime({
+                              bonds: 'up',
+                              assetSubSection: '3',
+                              index: 3,
+                            })
+                            }
                             render={TabButton}
                           >
-                            <span>
-                                  דירוגים
-                            </span>
+                            <span>דירוגים</span>
                           </Tab>
                           <Tab
                             index={4}
                             controls="bonds-up"
                             presentation
                             rule={tabRule}
-                            onClick={() => this.changeSelectedTime({ bonds: 'up', assetSubSection: '4', index: 4, })}
+                            onClick={() => this.changeSelectedTime({
+                              bonds: 'up',
+                              assetSubSection: '4',
+                              index: 4,
+                            })
+                            }
                             render={TabButton}
                           >
-                            <span>
-                                  כללי
-                            </span>
+                            <span>כללי</span>
                           </Tab>
                         </TabList>
                         <TabPanel id={`bonds-${bonds}`}>
@@ -225,9 +240,10 @@ class Bonds extends React.Component<Props, State> {
                                 display: '% שינוי',
                                 sortingOrder: 'descend',
                                 style: ({ changePercentage, }) => ({
-                                  color: changePercentage < 0
-                                    ? theme.color('negative')
-                                    : theme.color('positive'),
+                                  color:
+                                    changePercentage < 0
+                                      ? theme.color('negative')
+                                      : theme.color('positive'),
                                   direction: 'ltr',
                                   fontWeight: '700',
                                   paddingEnd: '2rem',
@@ -250,9 +266,10 @@ class Bonds extends React.Component<Props, State> {
                                 display: '% תשואה לפדיון',
                                 sortingOrder: 'descend',
                                 style: ({ redemptionYield, }) => ({
-                                  color: redemptionYield < 0
-                                    ? theme.color('negative')
-                                    : theme.color('positive'),
+                                  color:
+                                    redemptionYield < 0
+                                      ? theme.color('negative')
+                                      : theme.color('positive'),
                                   direction: 'ltr',
                                   fontWeight: '700',
                                   paddingEnd: '2rem',
@@ -276,7 +293,8 @@ class Bonds extends React.Component<Props, State> {
                           />
                         </TabPanel>
                       </Tabs>
-                    )}</FelaComponent>
+                    )}
+                  </FelaComponent>
                 </RowItem>
               </PageRow>
               <PageRow>
@@ -289,7 +307,8 @@ class Bonds extends React.Component<Props, State> {
                 </RowItem>
               </PageRow>
             </Fragment>
-          )}</FelaTheme>
+          )}
+        </FelaTheme>
       </MainLayout>
     );
   }

@@ -16,7 +16,7 @@ const RelatedAssets = ({ assets, miscStyles, }: Props): Node => (
   <FelaComponent
     style={(
       {
-        theme
+        theme,
       }
     ) => ({
       ...theme.type(-2),
@@ -29,7 +29,7 @@ const RelatedAssets = ({ assets, miscStyles, }: Props): Node => (
 
       extend: [
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ]
+      ],
     })}
     as="ul"
   >

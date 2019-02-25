@@ -55,7 +55,8 @@ export default class BreakingNewsBox extends React.Component<Props, State> {
   render() {
     const { loop, speed, itemsTransitionDuration, } = this.props;
     return (
-      <FelaTheme>{theme => (
+      <FelaTheme>
+        {theme => (
           <Grid
             gutter={0}
             miscStyles={{
@@ -98,23 +99,23 @@ export default class BreakingNewsBox extends React.Component<Props, State> {
                       <FelaComponent
                         as="ul"
                         style={{
-                          alignItems: 'center',
-                          display: 'flex',
-                          height: '100%',
-                          position: 'relative',
-                        }}
+                  alignItems: 'center',
+                  display: 'flex',
+                  height: '100%',
+                  position: 'relative',
+                }}
                       >
                         {items.map((item, index) => {
-                          const isVisible = index === this.state.visibleIndex;
-                          return (
+                  const isVisible = index === this.state.visibleIndex;
+                  return (
                             <BreakingNewsItem
                               key={item.contentId}
                               {...item}
                               isVisible={isVisible}
                               animationDuration={itemsTransitionDuration}
                             />
-                          );
-                        })}
+                  );
+                })}
                       </FelaComponent>
                     </GridItem>
                     <GridItem gutter={0} miscStyles={{ flexGrow: 0, }}>
@@ -131,7 +132,8 @@ export default class BreakingNewsBox extends React.Component<Props, State> {
               }}
             </Query>
           </Grid>
-        )}</FelaTheme>
+        )}
+      </FelaTheme>
     );
   }
 }

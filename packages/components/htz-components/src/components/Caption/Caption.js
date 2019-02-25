@@ -118,7 +118,7 @@ const Caption = props => {
       <FelaComponent
         style={(
           {
-            theme
+            theme,
           }
         ) => ({
           marginEnd: '1rem',
@@ -126,7 +126,7 @@ const Caption = props => {
           extend: [
             // Trump all other styles with those defined in `miscStyles`
             ...(captionMiscStyles ? parseStyleProps(captionMiscStyles, theme.mq, theme.type) : []),
-          ]
+          ],
         })}
         as="span"
       >

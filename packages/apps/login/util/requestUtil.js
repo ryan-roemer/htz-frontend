@@ -12,7 +12,7 @@ import objTransform from './objectTransformationUtil';
 const getHost = client => client.readQuery({ query: GET_HOST, }).hostname.match(/^(?:.*?\.)?(.*)/i)[1];
 
 const checkForPhoneMailConnect = userData => {
-  const transformed = objTransform({ userByMail: userData, })
+  const transformed = objTransform({ userByMail: userData, });
   return !!transformed.user.isPhoneConnectedWithEmail;
 };
 

@@ -87,7 +87,8 @@ class OsakaWrapper extends React.Component {
             },
           } = this.props;
           return (
-            <FelaTheme>{theme => {
+            <FelaTheme>
+              {theme => {
                 let nextArticleUrl = '/';
                 let nextArticleText = theme.osakaI18n.backToHome;
                 return (
@@ -162,7 +163,8 @@ class OsakaWrapper extends React.Component {
                     )}
                   </LayoutContainer>
                 );
-              }}</FelaTheme>
+              }}
+            </FelaTheme>
           );
         }}
       />

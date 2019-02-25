@@ -127,7 +127,8 @@ function PazuzuTeaser({
     : [ { until: 'xl', value: true, }, { from: 'xl', value: false, }, ];
 
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <GridItem
           gutter={0}
           miscStyles={{
@@ -269,20 +270,21 @@ function PazuzuTeaser({
                     commentsCount={item.commentsCounts}
                   />
                   {item.rank && (
-                    <TeaserRank
-                      maxRank={5}
-                      rank={item.rank}
-                      miscStyles={{
-                        order: [ { until: 's', value: -1, }, ],
-                        display: [ { until: 's', value: 'none', }, ],
-                      }}
-                    />
+                  <TeaserRank
+                    maxRank={5}
+                    rank={item.rank}
+                    miscStyles={{
+                order: [ { until: 's', value: -1, }, ],
+                display: [ { until: 's', value: 'none', }, ],
+              }}
+                  />
                   )}
                 </React.Fragment>
               )}
             />
           </Teaser>
         </GridItem>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }

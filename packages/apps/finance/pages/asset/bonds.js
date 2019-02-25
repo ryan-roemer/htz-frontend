@@ -20,8 +20,8 @@ import RelatedAssets from '../../components/QuotePageComponents/RelatedAssets/Re
 import StaticTable from '../../components/StaticTable/StaticTable';
 
 const BondQuery: DocumentNode = gql`
-  query BondData($assetId: String!){
-    asset(assetId: $assetId){
+  query BondData($assetId: String!) {
+    asset(assetId: $assetId) {
       name
       value
       changePercentage
@@ -67,16 +67,16 @@ type Props = {
   },
 };
 
-const numToString: number => string = num => (
-  num.toLocaleString('he', { minimumFractionDigits: 2, maximumFractionDigits: 2, })
-);
+const numToString: number => string = num => num.toLocaleString('he', { minimumFractionDigits: 2, maximumFractionDigits: 2, });
 
-function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node {
+function bonds({
+  url: {
+    query: { assetId, section, },
+    asPath,
+  },
+}: Props): Node {
   return (
-    <Query
-      query={BondQuery}
-      variables={{ assetId, }}
-    >
+    <Query query={BondQuery} variables={{ assetId, }}>
       {({ loading, error, data, }) => {
         if (error) return null;
         if (loading) return null;
@@ -107,7 +107,8 @@ function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node
             description={`${name} - למידע עדכני על נתוני אג"ח - אגרות חוב, היכנסו לאתר TheMarker Finance`}
             path={asPath}
           >
-            <FelaTheme>{theme => (
+            <FelaTheme>
+              {theme => (
                 <Fragment>
                   <PageRow lines={2}>
                     <RowItem
@@ -139,10 +140,7 @@ function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node
                     <RelatedAssets assets={relatedAssets} />
                   </PageRow>
                   <PageRow>
-                    <GraphController
-                      selectedStockId={assetId}
-                      width={900}
-                    />
+                    <GraphController selectedStockId={assetId} width={900} />
                   </PageRow>
                   <PageRow>
                     <Grid
@@ -152,12 +150,8 @@ function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node
                         paddingEnd: '0rem',
                       }}
                     >
-                      <GridItem
-                        width={1 / 3}
-                      >
-                        <RowItem
-                          title="נתוני המסחר"
-                        >
+                      <GridItem width={1 / 3}>
+                        <RowItem title="נתוני המסחר">
                           <QuoteInfoTable
                             id={assetId}
                             tradingStatus
@@ -173,18 +167,14 @@ function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node
                           />
                         </RowItem>
                       </GridItem>
-                      <GridItem
-                        width={2 / 3}
-                      >
+                      <GridItem width={2 / 3}>
                         <FelaComponent
                           style={{
                             display: 'flow',
                             flowDirection: 'column',
                           }}
                         >
-                          <RowItem
-                            title="מחזורים"
-                          >
+                          <RowItem title="מחזורים">
                             <VolumeGraph
                               theme={theme}
                               data={[
@@ -204,9 +194,7 @@ function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node
                               }}
                             />
                           </RowItem>
-                          <RowItem
-                            title="תשואות"
-                          >
+                          <RowItem title="תשואות">
                             <YieldGraph
                               theme={theme}
                               data={[
@@ -239,10 +227,7 @@ function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node
                     </Grid>
                   </PageRow>
                   <PageRow>
-                    <RowItem
-                      title="חישובי אג״ח"
-                      miscStyles={{ marginBottom: '4rem', }}
-                    >
+                    <RowItem title="חישובי אג״ח" miscStyles={{ marginBottom: '4rem', }}>
                       <Grid
                         gutter={2}
                         miscStyles={{
@@ -250,9 +235,7 @@ function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node
                           paddingEnd: '0rem',
                         }}
                       >
-                        <GridItem
-                          width={1 / 3}
-                        >
+                        <GridItem width={1 / 3}>
                           <QuoteInfoTable
                             id={assetId}
                             fields={[
@@ -264,9 +247,7 @@ function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node
                             ]}
                           />
                         </GridItem>
-                        <GridItem
-                          width={1 / 3}
-                        >
+                        <GridItem width={1 / 3}>
                           <QuoteInfoTable
                             id={assetId}
                             fields={[
@@ -275,20 +256,25 @@ function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node
                               { name: 'redemptionDate', display: 'תאריך פדיון', type: 'date', },
                               { name: 'periodicalInterest', display: 'ריבית תקופתית', },
                               { name: 'yearlyInterest', display: 'ריבית שנתית', },
-
                             ]}
                           />
                         </GridItem>
-                        <GridItem
-                          width={1 / 3}
-                        >
+                        <GridItem width={1 / 3}>
                           <QuoteInfoTable
                             id={assetId}
                             fields={[
                               { name: 'retailTax', display: 'מס ליחידים', },
                               { name: 'linkageType', display: 'סוג הצמדה', },
-                              { name: 'expirationBenchmarkDates', display: 'תאריך מדד בסיס', type: 'date', },
-                              { name: 'periodicalInterestDate', display: 'תאריך ריבית תקופתית', type: 'date', },
+                              {
+                                name: 'expirationBenchmarkDates',
+                                display: 'תאריך מדד בסיס',
+                                type: 'date',
+                              },
+                              {
+                                name: 'periodicalInterestDate',
+                                display: 'תאריך ריבית תקופתית',
+                                type: 'date',
+                              },
                               { name: 'paymentDate', display: 'תאריך תשלום', type: 'date', },
                             ]}
                           />
@@ -304,12 +290,8 @@ function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node
                         paddingEnd: '0rem',
                       }}
                     >
-                      <GridItem
-                        width={65 / 100}
-                      >
-                        <RowItem
-                          title="תחזית אירועים"
-                        >
+                      <GridItem width={65 / 100}>
+                        <RowItem title="תחזית אירועים">
                           <StaticTable
                             data={eventsPrediction}
                             columns={[
@@ -388,13 +370,8 @@ function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node
                         paddingEnd: '0rem',
                       }}
                     >
-                      <GridItem
-                        width={1 / 3}
-                      >
-                        <RowItem
-                          title="יחסים פיננסיים"
-                          miscStyles={{ marginBottom: '2rem', }}
-                        >
+                      <GridItem width={1 / 3}>
+                        <RowItem title="יחסים פיננסיים" miscStyles={{ marginBottom: '2rem', }}>
                           <QuoteInfoTable
                             id={assetId}
                             fields={[
@@ -406,12 +383,8 @@ function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node
                           />
                         </RowItem>
                       </GridItem>
-                      <GridItem
-                        width={2 / 3}
-                      >
-                        <RowItem
-                          title="בעלי עניין קונצרני"
-                        >
+                      <GridItem width={2 / 3}>
+                        <RowItem title="בעלי עניין קונצרני">
                           <ShareHolders data={shareHolders} />
                         </RowItem>
                       </GridItem>
@@ -427,11 +400,12 @@ function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node
                     </RowItem>
                   </PageRow>
                 </Fragment>
-              )}</FelaTheme>
-        </MainLayout>
+              )}
+            </FelaTheme>
+          </MainLayout>
         );
-    }}
-  </Query>
+      }}
+    </Query>
   );
 }
 

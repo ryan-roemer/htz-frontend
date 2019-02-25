@@ -1,5 +1,5 @@
 // @flow
-import React, { Fragment } from 'react';
+import React, { Fragment, } from 'react';
 import { FelaTheme, } from 'react-fela';
 import { Grid, GridItem, GeneralAdSlot, } from '@haaretz/htz-components';
 
@@ -35,7 +35,7 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
       { display: 'ממונף לונג', value: { queryString: 'longLeverage', }, },
       { display: 'ממונף שורט', value: { queryString: 'shortLeverage', }, },
       { display: 'מורכבת', value: { queryString: 'complex', }, },
-      ],
+    ],
   };
 
   return (
@@ -45,7 +45,8 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
       description="כל המידע על  תעודות סל: נתוני מסחר, נתונים בזמן אמת, גרפים חדשות ועוד באתר TheMarker Finance"
       path={asPath}
     >
-      <FelaTheme>{theme => (
+      <FelaTheme>
+        {theme => (
           <Fragment>
             <PageRow>
               <RowItem
@@ -348,7 +349,8 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
               </RowItem>
             </PageRow>
           </Fragment>
-        )}</FelaTheme>
+        )}
+      </FelaTheme>
     </MainLayout>
   );
 }

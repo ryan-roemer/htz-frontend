@@ -4,8 +4,7 @@
 
 /** Config --------------------------------------------- */
 
-const FACEBOOK_LOGIN_PATH =
-  'https://ms-apps.haaretz.co.il/ms-fb-instant/subscribe/facebook-redirect';
+const FACEBOOK_LOGIN_PATH = 'https://ms-apps.haaretz.co.il/ms-fb-instant/subscribe/facebook-redirect';
 
 /** Misc ----------------------------------------------- */
 
@@ -19,8 +18,7 @@ const getUserType = userCrmStatus => {
 /**
  * builds and returns the full url for facebook login
  */
-const buildRedirectUrl = ({ token, subscription, userid, redirect, }) =>
-  `${FACEBOOK_LOGIN_PATH}?account_linking_token=${token}&subscription_status=${subscription}&publisher_user_id=${userid}&redirect_uri=${redirect}`;
+const buildRedirectUrl = ({ token, subscription, userid, redirect, }) => `${FACEBOOK_LOGIN_PATH}?account_linking_token=${token}&subscription_status=${subscription}&publisher_user_id=${userid}&redirect_uri=${redirect}`;
 
 /** Exported ------------------------------------------- */
 

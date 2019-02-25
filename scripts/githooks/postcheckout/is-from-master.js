@@ -7,8 +7,7 @@ const inquirer = require('inquirer');
 const execSyncOpts = { encoding: 'utf8', };
 
 function isFromMaster() {
-  const [
-    ,
+  const [ ,
     currentCommit,
     isBranchCheckoutString,
   ] = process.env.GIT_PARAMS.split(' ');
@@ -55,14 +54,12 @@ function isFromMaster() {
     .filter(item => !!item)[0];
 
   // All checkouts from master or from a tag
-  const fromPremittedBranch =
-    currentCommit.startsWith(lastCommitInMaster) ||
-    currentCommit.startsWith(latestTag);
+  const fromPremittedBranch = currentCommit.startsWith(lastCommitInMaster)
+    || currentCommit.startsWith(latestTag);
 
   if (!fromPremittedBranch) {
-    const message =
-      `"${chalk.yellow(branch)}" did not branch off of "master".\n` +
-      'Do you want me to delete it and recreate it from "master" for you?';
+    const message = `"${chalk.yellow(branch)}" did not branch off of "master".\n`
+      + 'Do you want me to delete it and recreate it from "master" for you?';
 
     return inquirer
       .prompt([

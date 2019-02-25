@@ -3,9 +3,9 @@ import Router from 'next/router';
 import { ApolloConsumer, } from 'react-apollo';
 
 import { HtzLink, } from '@haaretz/htz-components';
+import { EventTracker, Form, TextInput, Button, } from '@haaretz/htz-components';
 import FSMLayout from '../layouts/FSMLayout';
 
-import { EventTracker, Form, TextInput, Button, } from '@haaretz/htz-components';
 import theme from '../theme/index';
 import { getFlowNumber, } from '../components/FlowDispenser/flowStorage';
 import { sendTrackingEvents, } from '../util/trackingEventsUtil';
@@ -26,10 +26,9 @@ const isValidPhoneNumber = number => {
   const phoneRegex = /^(\s*|[\+0-9]\d{6,})$/;
   return phoneRegex.test(number);
 };
-const validatePhoneNumber = ({ smscode, }) =>
-  (!isValidPhoneNumber(smscode) || !smscode || smscode.length < 10
-    ? generateSmsCodeError('אנא הזינו מספר טלפון נייד')
-    : []);
+const validatePhoneNumber = ({ smscode, }) => (!isValidPhoneNumber(smscode) || !smscode || smscode.length < 10
+  ? generateSmsCodeError('אנא הזינו מספר טלפון נייד')
+  : []);
 
 const onSubmit = doTransitionFunction => {
   const route = doTransitionFunction('accept');
@@ -63,8 +62,8 @@ const PhoneMailSent2 = () => (
                             const route = doTransition('withPassword');
                             Router.push(route);
                             sendTrackingEvents({ biAction, gaAction, }, { page: 'Phone validation 2', flowNumber: flow, label: 'withPassword', })(() => {
-                                Router.push(route);
-                              }
+                              Router.push(route);
+                            }
                             );
                           }}
                         >
@@ -80,8 +79,8 @@ const PhoneMailSent2 = () => (
                             e.preventDefault();
                             const route = doTransition('withPassword');
                             sendTrackingEvents({ biAction, gaAction, }, { page: 'Phone validation 2', flowNumber: flow, label: 'withPassword', })(() => {
-                                Router.push(route);
-                              }
+                              Router.push(route);
+                            }
                             );
                           }}
                         >
@@ -93,7 +92,8 @@ const PhoneMailSent2 = () => (
                 )}
               </EventTracker>
             </Fragment>
-          )}
+          );
+        }
         }
       </ApolloConsumer>
     )}

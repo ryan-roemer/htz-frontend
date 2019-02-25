@@ -82,7 +82,8 @@ function RecipeArticle({ articleId, slots, path, }) {
           } = recipeArticleElement;
 
           return (
-            <FelaTheme>{theme => (
+            <FelaTheme>
+              {theme => (
                 <LayoutContainer tagName="article">
                   <Head>
                     <meta name="title" content={metaTitle} />
@@ -124,7 +125,7 @@ function RecipeArticle({ articleId, slots, path, }) {
                           return null;
                         }
                         if (
-                          // todo: change to recipe input template
+                        // todo: change to recipe input template
                           element.inputTemplate === 'com.htz.StandardArticle'
                           || element.inputTemplate === 'com.mouse.story.MouseStandardStory'
                           || element.inputTemplate === 'com.tm.StandardArticle'
@@ -139,7 +140,7 @@ function RecipeArticle({ articleId, slots, path, }) {
                                   },
                                 });
                                 return (
-                                  <ArticleLayoutRow
+                    <ArticleLayoutRow
                                     isArticleBody
                                     hideMargineliaComponentUnderLBp={false}
                                     margineliaComponent={(
@@ -242,29 +243,33 @@ function RecipeArticle({ articleId, slots, path, }) {
                           theme.mq({ until: 'l', }, { display: 'none', }),
                           theme.mq({ from: 'l', }, { width: 'calc(300px + 8rem)', }),
                         ],
-                      }}>{({ className, }) => (
+                      }}
+                    >
+                      {({ className, }) => (
                         <aside className={className}>
                           {aside ? (
                             <Zen animate>
                               <FelaComponent
-                                style={{
+                  style={{
                                   height: '100%',
                                   left: '0',
                                   paddingTop: '4rem',
                                   position: 'absolute',
                                   top: '0',
                                 }}
-                              >
-                                <SideBar content={aside} />
-                              </FelaComponent>
+                >
+                  <SideBar content={aside} />
+                </FelaComponent>
                             </Zen>
                           ) : null}
                         </aside>
-                      )}</FelaComponent>
+                      )}
+                    </FelaComponent>
                   </FelaComponent>
                   <ArticleGallery path={path} />
                 </LayoutContainer>
-              )}</FelaTheme>
+              )}
+            </FelaTheme>
           );
         }}
       </Query>

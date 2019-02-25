@@ -69,16 +69,19 @@ export default class MobileMenuSection extends React.Component {
             <FelaComponent
               style={(
                 {
-                  theme
+                  theme,
                 }
               ) => ({
                 ...indentedStyle,
-                extend: [ theme.type(typeSize), ]
-              })}>{({ className, }) => (
+                extend: [ theme.type(typeSize), ],
+              })}
+            >
+              {({ className, }) => (
                 <li key={page.name} className={className}>
                   <MobileMenuLink {...page} />
                 </li>
-              )}</FelaComponent>
+              )}
+            </FelaComponent>
           ) : null)
         )}
         {pages.length > 2 ? (
@@ -86,7 +89,7 @@ export default class MobileMenuSection extends React.Component {
             <FelaComponent
               style={(
                 {
-                  theme
+                  theme,
                 }
               ) => ({
                 color: theme.color('neutral', '-10'),
@@ -102,8 +105,10 @@ export default class MobileMenuSection extends React.Component {
                   outline: 'none',
                 },
 
-                ...indentedStyle
-              })}>{({ theme, className, }) => (
+                ...indentedStyle,
+              })}
+            >
+              {({ theme, className, }) => (
                 <button
                   type="button"
                   className={className}
@@ -111,7 +116,8 @@ export default class MobileMenuSection extends React.Component {
                   aria-expanded={isOpen}
                   aria-label={`more ${sectionName}`}
                 >
-                  <FelaComponent style={{ color: theme.color('neutral', '-10'), }}>{({ className, }) => (
+                  <FelaComponent style={{ color: theme.color('neutral', '-10'), }}>
+                    {({ className, }) => (
                       <Fragment>
                         <span className={className}>
                           {isOpen
@@ -132,9 +138,11 @@ export default class MobileMenuSection extends React.Component {
                           />
                         </span>
                       </Fragment>
-                    )}</FelaComponent>
+                    )}
+                  </FelaComponent>
                 </button>
-              )}</FelaComponent>
+              )}
+            </FelaComponent>
           </li>
         ) : null}
       </ul>

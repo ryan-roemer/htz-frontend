@@ -272,11 +272,13 @@ class Scatter extends React.Component<Props, State> {
       <FelaComponent
         style={(
           {
-            theme
+            theme,
           }
         ) => ({
-          backgroundColor: theme.color('neutral', '-1')
-        })}>{({ className, theme, }) => (
+          backgroundColor: theme.color('neutral', '-1'),
+        })}
+      >
+        {({ className, theme, }) => (
           <svg
             viewBox={`0 0 ${width} ${height}`}
             className={className}
@@ -300,7 +302,9 @@ class Scatter extends React.Component<Props, State> {
               style={{
                 ...theme.type(-3),
                 fontFamily: theme.fontStacks.enhanced,
-              }}>{({ className, }) => (
+              }}
+            >
+              {({ className, }) => (
                 <Fragment>
                   <g
                     className={className}
@@ -317,7 +321,8 @@ class Scatter extends React.Component<Props, State> {
                     transform={`translate(${margin.left}, 0)`}
                   />
                 </Fragment>
-              )}</FelaComponent>
+              )}
+            </FelaComponent>
             <g>
               <line
                 ref={lineRef => {
@@ -331,7 +336,8 @@ class Scatter extends React.Component<Props, State> {
               />
             </g>
           </svg>
-        )}</FelaComponent>
+        )}
+      </FelaComponent>
     );
   }
 }

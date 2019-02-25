@@ -206,11 +206,14 @@ function SectionComponent({
             ? parseStyleProps(sectionMiscStyles, theme.mq, theme.type)
             : []),
         ],
-      })}>{({ className, }) => (
+      })}
+    >
+      {({ className, }) => (
         <Section isFragment={false} className={className} {...attrs}>
           {children}
         </Section>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   ) : (
     <Section isFragment {...attrs}>
       {children}

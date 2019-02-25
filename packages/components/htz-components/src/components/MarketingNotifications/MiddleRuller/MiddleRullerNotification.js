@@ -41,7 +41,8 @@ export default function MarketingNotificationInner({
       {ReactGA.ga('ec:addPromo', { name: promo.name, id: promo.id, position: promo.position, })}
       <UserDispenser
         render={({ isLoggedIn, user, }) => (isLoggedIn && user.type === 'paying' ? null : (
-          <FelaComponent style={style.wrapper}>{({ theme, className, }) => (
+          <FelaComponent style={style.wrapper}>
+            {({ theme, className, }) => (
               <div className={className}>
                 <ClickArea
                   href={buttonUrl}
@@ -59,7 +60,8 @@ export default function MarketingNotificationInner({
                   <IconArrow miscStyles={style.button(theme)} />
                 </ClickArea>
               </div>
-            )}</FelaComponent>
+            )}
+          </FelaComponent>
         ))
         }
       />

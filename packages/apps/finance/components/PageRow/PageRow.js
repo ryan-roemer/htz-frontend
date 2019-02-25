@@ -15,7 +15,7 @@ const PageRow: StatelessFunctionalComponent<Props> = ({ children, miscStyles, li
   <FelaComponent
     style={(
       {
-        theme
+        theme,
       }
     ) => ({
       maxWidth: '127rem',
@@ -25,7 +25,7 @@ const PageRow: StatelessFunctionalComponent<Props> = ({ children, miscStyles, li
         ...(miscStyles
           ? parseStyleProps(miscStyles, theme.mq, theme.type)
           : []),
-      ]
+      ],
     })}
   >
     {children}

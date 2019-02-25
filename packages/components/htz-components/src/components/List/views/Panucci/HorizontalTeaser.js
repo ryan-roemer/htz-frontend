@@ -40,7 +40,8 @@ export default function HorizontalTeaser({
   ];
 
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <Teaser
           onClick={
             biAction ? () => biAction({ index, articleId: itemData.representedContent, }) : null
@@ -108,6 +109,7 @@ export default function HorizontalTeaser({
             renderFooter={() => <TeaserFooter data={itemData} displayFlags={displayFlags} />}
           />
         </Teaser>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }

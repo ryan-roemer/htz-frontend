@@ -39,47 +39,30 @@ const defaultProps = {
   miscStyles: null,
 };
 
-export default function LayoutRow({
-  attrs,
-  children,
-  tagName,
-  id,
-  miscStyles,
-  bgc,
-  namedBgc,
-}) {
+export default function LayoutRow({ attrs, children, tagName, id, miscStyles, bgc, namedBgc, }) {
   const Tag = tagName;
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         backgroundColor: bgc || theme.color('layout', 'rowBg'),
         width: '100%',
 
         extend: [
           ...[
             namedBgc
-              ? parseComponentProp(
-                'backgroundColor',
-                namedBgc,
-                theme.mq,
-                setColor,
-                theme.color
-              )
+              ? parseComponentProp('backgroundColor', namedBgc, theme.mq, setColor, theme.color)
               : {},
           ],
-          ...(miscStyles
-            ? parseStyleProps(miscStyles, theme.mq, theme.type)
-            : []),
-        ]
-      })}>{({ className, }) => (
+          ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
+        ],
+      })}
+    >
+      {({ className, }) => (
         <Tag className={className} id={id} {...attrs}>
           {children}
         </Tag>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

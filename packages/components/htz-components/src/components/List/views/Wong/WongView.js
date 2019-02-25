@@ -81,23 +81,13 @@ export default function Wong({
   const MediaComponent = getMediaComponent(media && media.kind, isConrad ? Image : Picture);
   const relatedPadding = '2rem';
   return (
-    <FelaTheme>{theme => {
+    <FelaTheme>
+      {theme => {
         const mediaProps = getMediaProps(media, isConrad, theme);
         return (
           <GridItem
             gutter={gutter}
             width={width}
-            // Wong left border
-            // rule={
-            //   isConrad
-            //     ? null
-            //     : [
-            //       {
-            //         from: 'xl',
-            //         value: { color: [ 'neutral', '-4', ], width: 1, },
-            //       },
-            //     ]
-            // }
           >
             <Teaser
               gutter={0}
@@ -160,20 +150,20 @@ export default function Wong({
                       isH1
                       {...item}
                       typeScale={[
-                        { until: 's', value: 2, },
-                        { from: 's', until: 'l', value: 6, },
-                        { from: 'l', until: 'xl', value: 5, },
-                        { from: 'xl', value: isConrad ? 5 : 4, },
-                      ]}
+                  { until: 's', value: 2, },
+                  { from: 's', until: 'l', value: 6, },
+                  { from: 'l', until: 'xl', value: 5, },
+                  { from: 'xl', value: isConrad ? 5 : 4, },
+                ]}
                       kickerTypeScale={[ { until: 's', value: 0, }, { from: 's', value: -1, }, ]}
                       kickerMiscStyles={{
-                        marginBottom: '1rem',
-                        marginInlineStart: [ { until: 's', value: '-2rem', }, ],
-                      }}
+                  marginBottom: '1rem',
+                  marginInlineStart: [ { until: 's', value: '-2rem', }, ],
+                }}
                       kickerInnerMiscStyles={{
-                        paddingInlineStart: [ { until: 's', value: '2rem', }, ],
-                        paddingInlineEnd: [ { until: 's', value: '2rem', }, ],
-                      }}
+                  paddingInlineStart: [ { until: 's', value: '2rem', }, ],
+                  paddingInlineEnd: [ { until: 's', value: '2rem', }, ],
+                }}
                       onClick={
                         biAction
                           ? () => biAction({
@@ -186,15 +176,15 @@ export default function Wong({
                     <TeaserSubtitle
                       {...item}
                       typeScale={[
-                        { from: 's', until: 'l', value: 0, },
-                        { until: 'xl', value: 0, },
-                        { from: 'xl', value: -1, },
-                      ]}
+                  { from: 's', until: 'l', value: 0, },
+                  { until: 'xl', value: 0, },
+                  { from: 'xl', value: -1, },
+                ]}
                       miscStyles={{
-                        display: [ { until: 's', value: 'none', }, ],
-                        marginTop: [ { from: 's', value: '1rem', }, ],
-                        fontWeight: 400,
-                      }}
+                  display: [ { until: 's', value: 'none', }, ],
+                  marginTop: [ { from: 's', value: '1rem', }, ],
+                  fontWeight: 400,
+                }}
                     />
                   </React.Fragment>
                 )}
@@ -228,15 +218,15 @@ export default function Wong({
                       size={[ { from: 's', until: 'l', value: 2, }, ]}
                     />
                     {item.relatedArticles && (
-                      <FelaComponent
-                        style={{
+                    <FelaComponent
+                style={{
                           marginTop: '1rem',
                           fontWeight: '700',
                           extend: [ theme.mq({ until: 's', }, { display: 'none', }), ],
                         }}
-                        as="ul"
-                      >
-                        {item.relatedArticles.map(
+                as="ul"
+              >
+                {item.relatedArticles.map(
                           // related articles should show up to
                           // 3 articles on xl bp, 2 articles for s-l bp, and none for s bp
                           (article, idx) => (idx < 3 ? (
@@ -269,7 +259,9 @@ export default function Wong({
                                         theme.type(-1, { untilBp: 'xl', }),
                                         theme.type(-2, { fromBp: 'xl', }),
                                       ],
-                                    }}>{({ className: linkClassName, }) => (
+                                    }}
+                                  >
+                                    {({ className: linkClassName, }) => (
                                       <HtzLink
                                         href={article.path}
                                         className={linkClassName}
@@ -294,13 +286,14 @@ export default function Wong({
                                         />
                                         {article.title}
                                       </HtzLink>
-                                    )}</FelaComponent>
+                                    )}
+                                  </FelaComponent>
                                 </li>
                               )}
                             </AboveBlockLink>
                           ) : null)
                         )}
-                      </FelaComponent>
+              </FelaComponent>
                     )}
                   </React.Fragment>
                 )}
@@ -308,7 +301,8 @@ export default function Wong({
             </Teaser>
           </GridItem>
         );
-      }}</FelaTheme>
+      }}
+    </FelaTheme>
   );
 }
 

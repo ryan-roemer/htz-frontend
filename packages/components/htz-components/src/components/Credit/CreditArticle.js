@@ -30,8 +30,10 @@ const style = ({ miscStyles, theme, }) => ({
 
 export default function CreditArticle({ contentName, url, miscStyles, onClick, }) {
   return (
-    <FelaComponent miscStyles={miscStyles} style={style}>{({ className, }) => (
+    <FelaComponent miscStyles={miscStyles} style={style}>
+      {({ className, }) => (
         <Credit className={className} contentName={contentName} url={url} onClick={onClick} />
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }

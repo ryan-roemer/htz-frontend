@@ -45,7 +45,8 @@ function VogelItem({
   biAction,
 }: VogelItemPropTypes): React.Node {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <Teaser
           fillHeight={false}
           data={data}
@@ -140,7 +141,8 @@ function VogelItem({
             )}
           />
         </Teaser>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }
 

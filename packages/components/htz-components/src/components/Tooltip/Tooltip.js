@@ -245,14 +245,15 @@ class Tooltip extends Component {
         as="span"
         style={(
           {
-            theme
+            theme,
           }
         ) => ({
           position: 'relative',
-          extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ]
+          extend: [ ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []), ],
         })}
       >
-        <FelaComponent style={{ display: 'flex', }}>{({ className, }) => (
+        <FelaComponent style={{ display: 'flex', }}>
+          {({ className, }) => (
             <span
               aria-describedby={this.id}
               ref={el => {
@@ -263,11 +264,12 @@ class Tooltip extends Component {
             >
               {children}
             </span>
-          )}</FelaComponent>
+          )}
+        </FelaComponent>
         <FelaComponent
           style={(
             {
-              theme
+              theme,
             }
           ) => {
             this.theme = theme; // make the theme available trou out the class
@@ -282,7 +284,9 @@ class Tooltip extends Component {
               tooltipMiscStyles,
               openSide,
             });
-          }}>{({ className, }) => (
+          }}
+        >
+          {({ className, }) => (
             <div
               className={className}
               ref={el => {
@@ -293,22 +297,28 @@ class Tooltip extends Component {
                 <FelaComponent
                   style={(
                     {
-                      theme
+                      theme,
                     }
-                  ) => close(theme, this.props.openSide)}>{({ className, }) => (
+                  ) => close(theme, this.props.openSide)}
+                >
+                  {({ className, }) => (
                     <button type="button" className={className} onClick={() => this.onClose()}>
                       <IconClose size={2} miscStyles={closeInner} />
                     </button>
-                  )}</FelaComponent>
+                  )}
+                </FelaComponent>
               )}
 
-              <FelaComponent style={tooltipInner}>{({ className, }) => (
+              <FelaComponent style={tooltipInner}>
+                {({ className, }) => (
                   <span className={className} id={this.id}>
                     {text}
                   </span>
-                )}</FelaComponent>
+                )}
+              </FelaComponent>
             </div>
-          )}</FelaComponent>
+          )}
+        </FelaComponent>
       </FelaComponent>
     );
   }

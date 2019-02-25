@@ -20,8 +20,8 @@ import ShareHolders from '../../components/QuotePageComponents/ShareHolders/Shar
 import QuoteAssetsTable from '../../components/QuotePageComponents/QuoteAssetsTable/QuoteAssetsTable';
 
 const MtfQuery: DocumentNode = gql`
-  query MtfData($assetId: String!){
-    asset(assetId: $assetId){
+  query MtfData($assetId: String!) {
+    asset(assetId: $assetId) {
       name
       value
       changePercentage
@@ -69,12 +69,14 @@ type Props = {
   },
 };
 
-function mtf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
+function mtf({
+  url: {
+    query: { section, assetId, },
+    asPath,
+  },
+}: Props): Node {
   return (
-    <Query
-      query={MtfQuery}
-      variables={{ assetId, }}
-    >
+    <Query query={MtfQuery} variables={{ assetId, }}>
       {({ loading, error, data, }) => {
         if (error) return null;
         if (loading) return null;
@@ -107,7 +109,8 @@ function mtf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
             description={`${name} - למידע עדכני על נתוני קרנות נאמנות, היכנסו לאתר TheMarker Finance`}
             path={asPath}
           >
-            <FelaTheme>{theme => (
+            <FelaTheme>
+              {theme => (
                 <Fragment>
                   <PageRow lines={2}>
                     <RowItem
@@ -143,10 +146,7 @@ function mtf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                     <RelatedAssets assets={relatedAssets} />
                   </PageRow>
                   <PageRow>
-                    <GraphController
-                      selectedStockId={assetId}
-                      width={900}
-                    />
+                    <GraphController selectedStockId={assetId} width={900} />
                   </PageRow>
                   <PageRow>
                     <Grid
@@ -156,12 +156,8 @@ function mtf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                         paddingEnd: '0rem',
                       }}
                     >
-                      <GridItem
-                        width={1 / 3}
-                      >
-                        <RowItem
-                          title="נתוני המסחר"
-                        >
+                      <GridItem width={1 / 3}>
+                        <RowItem title="נתוני המסחר">
                           <QuoteInfoTable
                             id={assetId}
                             tradingStatus
@@ -178,18 +174,14 @@ function mtf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                           />
                         </RowItem>
                       </GridItem>
-                      <GridItem
-                        width={2 / 3}
-                      >
+                      <GridItem width={2 / 3}>
                         <FelaComponent
                           style={{
                             display: 'flow',
                             flowDirection: 'column',
                           }}
                         >
-                          <RowItem
-                            title="מחזורים"
-                          >
+                          <RowItem title="מחזורים">
                             <VolumeGraph
                               theme={theme}
                               data={[
@@ -209,9 +201,7 @@ function mtf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                               }}
                             />
                           </RowItem>
-                          <RowItem
-                            title="תשואות"
-                          >
+                          <RowItem title="תשואות">
                             <YieldGraph
                               theme={theme}
                               data={[
@@ -244,10 +234,7 @@ function mtf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                     </Grid>
                   </PageRow>
                   <PageRow>
-                    <RowItem
-                      title="מידע כללי"
-                      miscStyles={{ marginBottom: '2rem', }}
-                    >
+                    <RowItem title="מידע כללי" miscStyles={{ marginBottom: '2rem', }}>
                       <Grid
                         gutter={2}
                         miscStyles={{
@@ -255,9 +242,7 @@ function mtf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                           paddingEnd: '0rem',
                         }}
                       >
-                        <GridItem
-                          width={1 / 3}
-                        >
+                        <GridItem width={1 / 3}>
                           <QuoteInfoTable
                             id={assetId}
                             fields={[
@@ -270,9 +255,7 @@ function mtf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                             ]}
                           />
                         </GridItem>
-                        <GridItem
-                          width={1 / 3}
-                        >
+                        <GridItem width={1 / 3}>
                           <QuoteInfoTable
                             id={assetId}
                             fields={[
@@ -285,9 +268,7 @@ function mtf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                             ]}
                           />
                         </GridItem>
-                        <GridItem
-                          width={1 / 3}
-                        >
+                        <GridItem width={1 / 3}>
                           <QuoteInfoTable
                             id={assetId}
                             fields={[
@@ -319,13 +300,8 @@ function mtf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                         paddingEnd: '0rem',
                       }}
                     >
-                      <GridItem
-                        width={1 / 3}
-                      >
-                        <RowItem
-                          title="מדיניות"
-                          miscStyles={{ marginBottom: '1rem', }}
-                        >
+                      <GridItem width={1 / 3}>
+                        <RowItem title="מדיניות" miscStyles={{ marginBottom: '1rem', }}>
                           <FelaComponent
                             as="p"
                             style={{
@@ -336,14 +312,14 @@ function mtf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                               textAlign: 'start',
                             }}
                           >
-                            {`תאריך שינוי מדיניות: ${
-                              new Date(policyChangeDate)
-                                .toLocaleString('it-It', {
-                                  day: '2-digit',
-                                  month: '2-digit',
-                                  year: 'numeric',
-                                })
-                            }`}
+                            {`תאריך שינוי מדיניות: ${new Date(policyChangeDate).toLocaleString(
+                              'it-It',
+                              {
+                                day: '2-digit',
+                                month: '2-digit',
+                                year: 'numeric',
+                              }
+                            )}`}
                           </FelaComponent>
                           <FelaComponent
                             style={{
@@ -355,13 +331,8 @@ function mtf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                           </FelaComponent>
                         </RowItem>
                       </GridItem>
-                      <GridItem
-                        width={1 / 3}
-                      >
-                        <RowItem
-                          title="סיווגים"
-                          miscStyles={{ marginBottom: '2rem', }}
-                        >
+                      <GridItem width={1 / 3}>
+                        <RowItem title="סיווגים" miscStyles={{ marginBottom: '2rem', }}>
                           <QuoteInfoTable
                             id={assetId}
                             fixed
@@ -376,13 +347,8 @@ function mtf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                           />
                         </RowItem>
                       </GridItem>
-                      <GridItem
-                        width={1 / 3}
-                      >
-                        <RowItem
-                          title="יחסים פיננסיים"
-                          miscStyles={{ marginBottom: '2rem', }}
-                        >
+                      <GridItem width={1 / 3}>
+                        <RowItem title="יחסים פיננסיים" miscStyles={{ marginBottom: '2rem', }}>
                           <QuoteInfoTable
                             id={assetId}
                             fields={[
@@ -404,38 +370,35 @@ function mtf({ url: { query: { section, assetId, }, asPath, }, }: Props): Node {
                         paddingEnd: '0rem',
                       }}
                     >
-                      <GridItem
-                        width={1 / 2}
-                      >
-                        <RowItem
-                          title="הרכב הקרן"
-                        >
+                      <GridItem width={1 / 2}>
+                        <RowItem title="הרכב הקרן">
                           <QuoteAssetsTable
                             assets={assetComponents}
                             fields={[
-                              { value: 'name', display: 'שם נייר', miscStyles: { fontWeight: '700', }, },
+                              {
+                                value: 'name',
+                                display: 'שם נייר',
+                                miscStyles: { fontWeight: '700', },
+                              },
                               { value: 'mtfHoldingRatio', display: '% מהקרן', },
                               { value: 'numeralValue', display: 'שווי בא׳ ש״ח', },
                             ]}
                           />
                         </RowItem>
                       </GridItem>
-                      <GridItem
-                        width={1 / 2}
-                      >
-                        <RowItem
-                          title="בעלי עניין קונצרני"
-                        >
+                      <GridItem width={1 / 2}>
+                        <RowItem title="בעלי עניין קונצרני">
                           <ShareHolders data={shareHolders} />
                         </RowItem>
                       </GridItem>
                     </Grid>
                   </PageRow>
                 </Fragment>
-              )}</FelaTheme>
-        </MainLayout>
+              )}
+            </FelaTheme>
+          </MainLayout>
         );
-    }}
+      }}
     </Query>
   );
 }

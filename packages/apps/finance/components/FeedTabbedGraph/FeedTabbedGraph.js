@@ -107,14 +107,16 @@ class FeedTabbedGraph extends React.Component<Props, State> {
       <FelaComponent
         style={(
           {
-            theme
+            theme,
           }
         ) => ({
           color: theme.color('neutral', '-3'),
           display: 'flex',
           marginTop: '2rem',
-          ...theme.type(-1)
-        })}>{({ className, }) => (
+          ...theme.type(-1),
+        })}
+      >
+        {({ className, }) => (
           <Tabs
             activeTab={index}
           >
@@ -151,7 +153,8 @@ class FeedTabbedGraph extends React.Component<Props, State> {
               }
             </TabPanel>
           </Tabs>
-        )}</FelaComponent>
+        )}
+      </FelaComponent>
     );
   }
 }

@@ -52,16 +52,14 @@ function Header({
 }) {
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         textAlign: 'start',
         overflow: 'hidden',
         backgroundColor: 'white',
-        extend: [ theme.mq({ until: 'm', }, { display: 'flex', flexDirection: 'column', }), ]
-      })}>{({ className, theme, }) => (
+        extend: [ theme.mq({ until: 'm', }, { display: 'flex', flexDirection: 'column', }), ],
+      })}
+    >
+      {({ className, theme, }) => (
         <header className={className}>
           {hasBreadCrumbs ? (
             <FelaComponent
@@ -78,9 +76,10 @@ function Header({
                   ),
                   theme.mq({ until: 's', }, { order: -1, marginTop: '2rem', marginBottom: '3rem', }),
                 ],
-              }}>{({ className, }) => (
-                <Breadcrumbs articleId={articleId} className={className} />
-              )}</FelaComponent>
+              }}
+            >
+              {({ className, }) => <Breadcrumbs articleId={articleId} className={className} />}
+            </FelaComponent>
           ) : null}
           <FelaComponent
             style={{
@@ -98,14 +97,17 @@ function Header({
                 theme.mq({ from: 's', until: 'l', }, { paddingInlineEnd: '2rem', }),
                 theme.mq({ from: 'xl', }, { paddingInlineStart: '3rem', paddingInlineEnd: '5rem', }),
               ],
-            }}>{({ className, }) => (
+            }}
+          >
+            {({ className, }) => (
               <HeaderText
                 className={className}
                 kicker={exclusive}
                 title={title}
                 subtitle={subtitle}
               />
-            )}</FelaComponent>
+            )}
+          </FelaComponent>
           <LiveBlogHeaderMeta
             authors={authors}
             publishDate={pubDate}
@@ -152,22 +154,23 @@ function Header({
                       theme.mq({ until: 'l', }, { display: 'flex', }),
                       theme.mq({ from: 'l', }, { display: 'none', }),
                     ],
-                  }}>{({ className, theme, }) => (
+                  }}
+                >
+                  {({ className, theme, }) => (
                     <span className={className}>
                       <FelaComponent
-                        style={(
-                          {
-                            theme
-                          }
-                        ) => ({
+                        style={({ theme, }) => ({
                           color: 'white',
                           paddingInlineStart: '1rem',
                           paddingTop: '0.3rem',
                           fontWeight: 'bold',
-                          extend: [ theme.type(-2), ]
-                        })}>{({ className, }) => (
+                          extend: [ theme.type(-2), ],
+                        })}
+                      >
+                        {({ className, }) => (
                           <span className={className}>{theme.liveBlogI18n.liveUpdate}</span>
-                        )}</FelaComponent>
+                        )}
+                      </FelaComponent>
                       <FelaComponent
                         style={{
                           height: '1rem',
@@ -175,9 +178,13 @@ function Header({
                           borderRadius: '50%',
                           backgroundColor: 'white',
                           margin: '1rem',
-                        }}>{({ className, }) => <span className={className} />}</FelaComponent>
+                        }}
+                      >
+                        {({ className, }) => <span className={className} />}
+                      </FelaComponent>
                     </span>
-                  )}</FelaComponent>
+                  )}
+                </FelaComponent>
               ) : null}
               <HeadlineElement
                 elementObj={headlineElement}
@@ -251,7 +258,8 @@ function Header({
             </Fragment>
           ) : null}
         </header>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

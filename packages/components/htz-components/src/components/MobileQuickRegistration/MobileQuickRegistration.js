@@ -50,7 +50,7 @@ const RegistrationWrapper = ({ miscStyles, children, }) => (
   <FelaComponent
     style={(
       {
-        theme
+        theme,
       }
     ) => ({
       position: 'relative',
@@ -62,7 +62,7 @@ const RegistrationWrapper = ({ miscStyles, children, }) => (
         ...(miscStyles
           ? parseStyleProps(miscStyles, theme.mq, theme.type)
           : []),
-      ]
+      ],
     })}
     as="aside"
   >
@@ -75,12 +75,12 @@ const TeaserBody = ({ children, }) => (
   <FelaComponent
     style={(
       {
-        theme
+        theme,
       }
     ) => ({
       color: theme.color('neutral', '-3'),
       marginBottom: '2rem',
-      extend: [ theme.type(5), ]
+      extend: [ theme.type(5), ],
     })}
   >
     {children}
@@ -92,7 +92,7 @@ const IconWrapper = ({ children, }) => (
   <FelaComponent
     style={(
       {
-        theme
+        theme,
       }
     ) => ({
       position: 'absolute',
@@ -101,7 +101,7 @@ const IconWrapper = ({ children, }) => (
       top: '0',
       backgroundColor: theme.color('neutral', '-10'),
       paddingLeft: '2rem',
-      paddingRight: '2rem'
+      paddingRight: '2rem',
     })}
     as="span"
   >
@@ -130,7 +130,8 @@ class MobileQuickRegistration extends Component {
     } = this.props;
     const href = `mailto:${doubleOptIn}-${mailto}?subject=${mailSubject}&body=${mailBody}`;
     return (
-      <FelaTheme>{theme => (
+      <FelaTheme>
+        {theme => (
           <Media
             query={{ until: 's', }}
             render={() => (
@@ -178,7 +179,8 @@ class MobileQuickRegistration extends Component {
               </ShouldRenderNewsletterProvider>
             )}
           />
-        )}</FelaTheme>
+        )}
+      </FelaTheme>
     );
   }
 }

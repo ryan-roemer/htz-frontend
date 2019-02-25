@@ -35,7 +35,8 @@ export default class ArticlePageMasthead extends React.PureComponent<ArticlePage
     const { contentId, logo, rowBgc, shouldDisplay, } = this.props;
 
     return (
-      <FelaTheme>{theme => (
+      <FelaTheme>
+        {theme => (
           <LayoutRow
             namedBgc={rowBgc || [
               { until: 's', value: 'transparent', },
@@ -71,7 +72,8 @@ export default class ArticlePageMasthead extends React.PureComponent<ArticlePage
               </React.Fragment>
             </LayoutContainer>
           </LayoutRow>
-        )}</FelaTheme>
+        )}
+      </FelaTheme>
     );
   }
 }

@@ -77,10 +77,12 @@ export default function LayoutContainer({
 }) {
   const Tag = tagName;
   return (
-    <FelaComponent style={styles} bgc={bgc} namedBgc={namedBgc} miscStyles={miscStyles}>{({ className, }) => (
+    <FelaComponent style={styles} bgc={bgc} namedBgc={namedBgc} miscStyles={miscStyles}>
+      {({ className, }) => (
         <Tag {...attrs} className={className}>
           {children}
         </Tag>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }

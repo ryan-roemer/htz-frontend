@@ -125,16 +125,12 @@ class ArticleHeaderMeta extends React.Component {
 
   displayDates = (publishDate, modifiedDate, className, variationMq) => (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         extend: [
           ...(variationMq.a ? [ theme.mq(variationMq.a, {}), ] : []),
           ...(variationMq.b ? [ theme.mq(variationMq.b, { display: 'inline', }), ] : []),
           ...(variationMq.c ? [ theme.mq(variationMq.c, {}), ] : []),
-        ]
+        ],
       })}
     >
       <TeaserTime publishDate={publishDate} lastUpdate={modifiedDate} className={className} />
@@ -173,233 +169,249 @@ class ArticleHeaderMeta extends React.Component {
       modifiedDate,
       variationMq,
     } = this.props;
-    return authors.length > 0 && (
-      <EventTracker>
-        {({ biAction, }) => (
-          <FelaComponent style={outerStyle} miscStyles={miscStyles}>
-            <Query query={PLATFORM_QUERY}>
-              {({ loading, error, data, client, }) => {
-                if (loading) return null;
-                if (error) console.log(error);
-                const { platform, } = data;
-                return (
-                  <FelaComponent style={wrapperStyle} variationMq={variationMq}>{({ className, theme, }) => (
-                      <Fragment>
-                        <div className={className}>
-                          <FelaComponent
-                            style={imageAuthorsAndMobileTimeContStyle}
-                            variationMq={variationMq}
-                          >
-                            {/*  Author image */}
-                            {authors.length > 1 || !authors[0].image ? (
-                              <IconAlefLogo
-                                color="primary"
-                                size={[ { until: 'l', value: 6, }, { from: 'l', value: 10, }, ]}
-                                miscStyles={{
-                                  display: [
-                                    ...(variationMq.a
-                                      ? [ { ...variationMq.a, value: 'inline-block', }, ]
-                                      : []),
-                                    ...(variationMq.b
-                                      ? [ { ...variationMq.b, value: 'none', }, ]
-                                      : []),
-                                    ...(variationMq.c
-                                      ? [ { ...variationMq.c, value: 'block', }, ]
-                                      : []),
-                                  ],
-                                  marginInlineEnd: '1rem',
-                                }}
-                              />
-                            ) : (
-                              <Image
-                                data={authors[0].image}
-                                imgOptions={{
-                                  transforms: {
-                                    width: '100',
-                                    aspect: 'square',
-                                    quality: 'auto',
-                                    gravity: 'face',
-                                  },
-                                }}
-                                miscStyles={{
-                                  width: [
-                                    ...(variationMq.a
-                                      ? [ { ...variationMq.a, value: '6rem', }, ]
-                                      : []),
-                                    ...(variationMq.b
-                                      ? [ { ...variationMq.b, value: '6rem', }, ]
-                                      : []),
-                                    ...(variationMq.c
-                                      ? [ { ...variationMq.c, value: '10rem', }, ]
-                                      : []),
-                                  ],
-                                  height: [
-                                    ...(variationMq.a
-                                      ? [ { ...variationMq.a, value: '6rem', }, ]
-                                      : []),
-                                    ...(variationMq.b
-                                      ? [ { ...variationMq.b, value: '6rem', }, ]
-                                      : []),
-                                    ...(variationMq.c
-                                      ? [ { ...variationMq.c, value: '10rem', }, ]
-                                      : []),
-                                  ],
-                                  paddingBottom: '6rem',
-                                  borderRadius: '50%',
-                                  overflow: 'hidden',
-                                  display: [
-                                    ...(variationMq.a
-                                      ? [ { ...variationMq.a, value: 'inline-block', }, ]
-                                      : []),
-                                    ...(variationMq.b
-                                      ? [ { ...variationMq.b, value: 'none', }, ]
-                                      : []),
-                                    ...(variationMq.c
-                                      ? [ { ...variationMq.c, value: 'block', }, ]
-                                      : []),
-                                  ],
-                                  marginInlineEnd: '1rem',
-                                }}
-                              />
-                            )}
-
-                            {/* Author name and publish-date */}
+    return (
+      authors.length > 0 && (
+        <EventTracker>
+          {({ biAction, }) => (
+            <FelaComponent style={outerStyle} miscStyles={miscStyles}>
+              <Query query={PLATFORM_QUERY}>
+                {({ loading, error, data, client, }) => {
+                  if (loading) return null;
+                  if (error) console.log(error);
+                  const { platform, } = data;
+                  return (
+                    <FelaComponent style={wrapperStyle} variationMq={variationMq}>
+                      {({ className, theme, }) => (
+                        <Fragment>
+                          <div className={className}>
                             <FelaComponent
-                              style={authorsAndTimeContStyle}
+                              style={imageAuthorsAndMobileTimeContStyle}
                               variationMq={variationMq}
                             >
-                              {authors.map((author, idx) => (
-                                <CreditArticle
-                                  key={author.contentId || author.name}
-                                  contentName={author.name || author.contentName}
-                                  url={author.url}
-                                  onClick={
-                                    biAction
-                                      ? () => biAction({
-                                        actionCode: 109,
-                                        additionalInfo: {
-                                          writer_id: author.contentId || author.contentName,
-                                          platform,
-                                        },
-                                      })
-                                      : null
-                                  }
+                              {/*  Author image */}
+                              {authors.length > 1 || !authors[0].image ? (
+                                <IconAlefLogo
+                                  color="primary"
+                                  size={[ { until: 'l', value: 6, }, { from: 'l', value: 10, }, ]}
                                   miscStyles={{
-                                    ':after': {
-                                      content:
-                                        idx === authors.length - 1
-                                          ? null
-                                          : authors.length > 1
-                                            ? authors.length - 2 === idx
-                                              ? '" ו"'
-                                              : '", "'
-                                            : null,
-                                    },
-                                    display: 'inline',
-                                  }}
-                                />
-                              ))}
-                              {reportingFrom ? (
-                                <FelaComponent
-                                  style={{
-                                    color: theme.color('primary'),
-                                    extend: [
-                                      theme.type(-2, { fromBp: 'xl', }),
-                                      theme.type(-1, {
-                                        fromBp: 's',
-                                        untilBp: 'xl',
-                                      }),
-                                      theme.type(-2, { untilBp: 's', }),
+                                    display: [
                                       ...(variationMq.a
-                                        ? [
-                                          theme.mq(variationMq.a, {
-                                            ':before': {
-                                              content: '" | "',
-                                            },
-                                          }),
-                                        ]
+                                        ? [ { ...variationMq.a, value: 'inline-block', }, ]
                                         : []),
                                       ...(variationMq.b
-                                        ? [
-                                          theme.mq(variationMq.b, {
-                                            ':before': {
-                                              content: '" | "',
-                                            },
-                                          }),
-                                        ]
+                                        ? [ { ...variationMq.b, value: 'none', }, ]
                                         : []),
                                       ...(variationMq.c
-                                        ? [ theme.mq(variationMq.c, { display: 'block', }), ]
+                                        ? [ { ...variationMq.c, value: 'block', }, ]
                                         : []),
                                     ],
+                                    marginInlineEnd: '1rem',
                                   }}
-                                  as="span"
-                                >
-                                  {reportingFrom}
-                                </FelaComponent>
-                              ) : null}
+                                />
+                              ) : (
+                                <Image
+                                  data={authors[0].image}
+                                  imgOptions={{
+                                    transforms: {
+                                      width: '100',
+                                      aspect: 'square',
+                                      quality: 'auto',
+                                      gravity: 'face',
+                                    },
+                                  }}
+                                  miscStyles={{
+                                    width: [
+                                      ...(variationMq.a
+                                        ? [ { ...variationMq.a, value: '6rem', }, ]
+                                        : []),
+                                      ...(variationMq.b
+                                        ? [ { ...variationMq.b, value: '6rem', }, ]
+                                        : []),
+                                      ...(variationMq.c
+                                        ? [ { ...variationMq.c, value: '10rem', }, ]
+                                        : []),
+                                    ],
+                                    height: [
+                                      ...(variationMq.a
+                                        ? [ { ...variationMq.a, value: '6rem', }, ]
+                                        : []),
+                                      ...(variationMq.b
+                                        ? [ { ...variationMq.b, value: '6rem', }, ]
+                                        : []),
+                                      ...(variationMq.c
+                                        ? [ { ...variationMq.c, value: '10rem', }, ]
+                                        : []),
+                                    ],
+                                    paddingBottom: '6rem',
+                                    borderRadius: '50%',
+                                    overflow: 'hidden',
+                                    display: [
+                                      ...(variationMq.a
+                                        ? [ { ...variationMq.a, value: 'inline-block', }, ]
+                                        : []),
+                                      ...(variationMq.b
+                                        ? [ { ...variationMq.b, value: 'none', }, ]
+                                        : []),
+                                      ...(variationMq.c
+                                        ? [ { ...variationMq.c, value: 'block', }, ]
+                                        : []),
+                                    ],
+                                    marginInlineEnd: '1rem',
+                                  }}
+                                />
+                              )}
 
-                              <FelaComponent style={timeStyle} mobileTime variationMq={variationMq}>{({ className, }) => (
-                                  <Fragment>
-                                    {this.displayDates(
-                                      publishDate,
-                                      modifiedDate,
-                                      className,
-                                      variationMq
-                                    )}
-                                  </Fragment>
-                                )}</FelaComponent>
+                              {/* Author name and publish-date */}
+                              <FelaComponent
+                                style={authorsAndTimeContStyle}
+                                variationMq={variationMq}
+                              >
+                                {authors.map((author, idx) => (
+                                  <CreditArticle
+                                    key={author.contentId || author.name}
+                                    contentName={author.name || author.contentName}
+                                    url={author.url}
+                                    onClick={
+                                      biAction
+                                        ? () => biAction({
+                                          actionCode: 109,
+                                          additionalInfo: {
+                                            writer_id: author.contentId || author.contentName,
+                                            platform,
+                                          },
+                                        })
+                                        : null
+                                    }
+                                    miscStyles={{
+                                      ':after': {
+                                        content:
+                                          idx === authors.length - 1
+                                            ? null
+                                            : authors.length > 1
+                                              ? authors.length - 2 === idx
+                                                ? '" ו"'
+                                                : '", "'
+                                              : null,
+                                      },
+                                      display: 'inline',
+                                    }}
+                                  />
+                                ))}
+                                {reportingFrom ? (
+                                  <FelaComponent
+                                    style={{
+                                      color: theme.color('primary'),
+                                      extend: [
+                                        theme.type(-2, { fromBp: 'xl', }),
+                                        theme.type(-1, {
+                                          fromBp: 's',
+                                          untilBp: 'xl',
+                                        }),
+                                        theme.type(-2, { untilBp: 's', }),
+                                        ...(variationMq.a
+                                          ? [
+                                            theme.mq(variationMq.a, {
+                                              ':before': {
+                                                content: '" | "',
+                                              },
+                                            }),
+                                          ]
+                                          : []),
+                                        ...(variationMq.b
+                                          ? [
+                                            theme.mq(variationMq.b, {
+                                              ':before': {
+                                                content: '" | "',
+                                              },
+                                            }),
+                                          ]
+                                          : []),
+                                        ...(variationMq.c
+                                          ? [ theme.mq(variationMq.c, { display: 'block', }), ]
+                                          : []),
+                                      ],
+                                    }}
+                                    as="span"
+                                  >
+                                    {reportingFrom}
+                                  </FelaComponent>
+                                ) : null}
+
+                                <FelaComponent
+                                  style={timeStyle}
+                                  mobileTime
+                                  variationMq={variationMq}
+                                >
+                                  {({ className, }) => (
+                                    <Fragment>
+                                      {this.displayDates(
+                                        publishDate,
+                                        modifiedDate,
+                                        className,
+                                        variationMq
+                                      )}
+                                    </Fragment>
+                                  )}
+                                </FelaComponent>
+                              </FelaComponent>
                             </FelaComponent>
-                          </FelaComponent>
-                          {/* alerts and desktop time */}
-                          <FelaComponent
-                            style={alertsAndDesktopTimeContStyle}
-                            variationMq={variationMq}
+                            {/* alerts and desktop time */}
+                            <FelaComponent
+                              style={alertsAndDesktopTimeContStyle}
+                              variationMq={variationMq}
+                            >
+                              {authors.length === 1 && authors[0].hasEmailAlerts ? (
+                                <AuthorAlert
+                                  author={authors[0]}
+                                  platform={platform}
+                                  biAction={biAction}
+                                  ref={this.alertsToggleBtnRef}
+                                  onToggle={() => this.toggleAuthorAlertsForm(biAction, platform)}
+                                />
+                              ) : null}
+                            </FelaComponent>
+                            <FelaComponent
+                              style={timeStyle}
+                              variationMq={variationMq}
+                              mobileTime={false}
+                            >
+                              {({ className, }) => (
+                                <Fragment>
+                                  {this.displayDates(
+                                    publishDate,
+                                    modifiedDate,
+                                    className,
+                                    variationMq
+                                  )}
+                                </Fragment>
+                              )}
+                            </FelaComponent>
+                          </div>
+                          {/* Author notifaction dialog until M breakpoint. The L and XL modal break points login at <AuthorAlert /> */}
+                          <SlideinBox
+                            show={authors[0].hasEmailAlerts && this.state.isShowAuthorAlertsForm}
+                            duration={2}
+                            focus
+                            maxHeight={100}
                           >
-                            {authors.length === 1 && authors[0].hasEmailAlerts ? (
-                              <AuthorAlert
-                                author={authors[0]}
-                                platform={platform}
-                                biAction={biAction}
-                                ref={this.alertsToggleBtnRef}
-                                onToggle={() => this.toggleAuthorAlertsForm(biAction, platform)}
-                              />
-                            ) : null}
-                          </FelaComponent>
-                          <FelaComponent style={timeStyle} variationMq={variationMq} mobileTime={false}>{({ className, }) => (
-                              <Fragment>
-                                {this.displayDates(
-                                  publishDate,
-                                  modifiedDate,
-                                  className,
-                                  variationMq
-                                )}
-                              </Fragment>
-                            )}</FelaComponent>
-                        </div>
-                        {/* Author notifaction dialog until M breakpoint. The L and XL modal break points login at <AuthorAlert /> */}
-                        <SlideinBox
-                          show={authors[0].hasEmailAlerts && this.state.isShowAuthorAlertsForm}
-                          duration={2}
-                          focus
-                          maxHeight={100}
-                        >
-                          <AuthorNotificationsRegistration
-                            author={authors[0]}
-                            platform={platform}
-                            biAction={biAction}
-                            onToggle={() => this.toggleAuthorAlertsForm(biAction, platform)}
-                          />
-                        </SlideinBox>
-                        {/* End of Author notifaction dialog until M breakpoint */}
-                      </Fragment>
-                    )}</FelaComponent>
-                );
-              }}
-            </Query>
-          </FelaComponent>
-        )}
-      </EventTracker>
+                            <AuthorNotificationsRegistration
+                              author={authors[0]}
+                              platform={platform}
+                              biAction={biAction}
+                              onToggle={() => this.toggleAuthorAlertsForm(biAction, platform)}
+                            />
+                          </SlideinBox>
+                          {/* End of Author notifaction dialog until M breakpoint */}
+                        </Fragment>
+                      )}
+                    </FelaComponent>
+                  );
+                }}
+              </Query>
+            </FelaComponent>
+          )}
+        </EventTracker>
+      )
     );
   }
 }

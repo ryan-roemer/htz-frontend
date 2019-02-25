@@ -64,7 +64,7 @@ class EmailValidationSent extends React.Component {
     this.setState({ showError: true, errorMessage: errorMsg, });
   };
 
-  setPreloader = (isLoadingStatus) => {
+  setPreloader = isLoadingStatus => {
     this.setState({ isLoading: !!isLoadingStatus, });
   };
 
@@ -88,7 +88,7 @@ class EmailValidationSent extends React.Component {
                             </span>
                           </TextBox>
 
-                          <br/>
+                          <br />
                           <ItemCenterer>
                             <Preloader isLoading={this.state.isLoading} />
                           </ItemCenterer>

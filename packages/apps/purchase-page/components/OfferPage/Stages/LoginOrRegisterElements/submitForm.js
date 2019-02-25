@@ -77,7 +77,8 @@ const submitForm = ({
             <FelaComponent style={{ fontWeight: 'normal', }} as="span">
               הסיסמה שהזנתם שגויה, נסו שנית או -
               {' '}
-              <FelaComponent style={{ fontWeight: 700, textDecoration: 'underline', }}>{({ className, }) => (
+              <FelaComponent style={{ fontWeight: 700, textDecoration: 'underline', }}>
+                {({ className, }) => (
                   <button
                     className={className}
                     type="button"
@@ -85,7 +86,8 @@ const submitForm = ({
                   >
                     החליפו סיסמה
                   </button>
-                )}</FelaComponent>
+                )}
+              </FelaComponent>
             </FelaComponent>
           );
         }

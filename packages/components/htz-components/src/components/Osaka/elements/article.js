@@ -43,13 +43,15 @@ function Article({ title, image, sourceName, }) {
         flexWrap: 'nowrap',
         paddingLeft: '1rem',
         paddingRight: '1rem',
-      }}>{({ className, }) => (
+      }}
+    >
+      {({ className, }) => (
         <Section className={className}>
           {typeof image === 'string' || image.path ? (
             <FelaComponent
               style={(
                 {
-                  theme
+                  theme,
                 }
               ) => ({
                 flexShrink: '0',
@@ -75,7 +77,7 @@ function Article({ title, image, sourceName, }) {
                 ],
 
                 height: '',
-                width: '84px'
+                width: '84px',
               })}
             >
               <img
@@ -91,13 +93,13 @@ function Article({ title, image, sourceName, }) {
           <FelaComponent
             style={(
               {
-                theme
+                theme,
               }
             ) => ({
               ...theme.type(-2),
               marginStart: '1rem',
               maxHeight: '9rem',
-              overflow: 'hidden'
+              overflow: 'hidden',
             })}
           >
             {sourceName ? (
@@ -112,15 +114,19 @@ function Article({ title, image, sourceName, }) {
             <FelaComponent
               style={(
                 {
-                  theme
+                  theme,
                 }
               ) => ({
                 fontWeight: 'bold',
-                extend: [ theme.type(-2), ]
-              })}>{({ className, }) => <H className={className}>{title}</H>}</FelaComponent>
+                extend: [ theme.type(-2), ],
+              })}
+            >
+              {({ className, }) => <H className={className}>{title}</H>}
+            </FelaComponent>
           </FelaComponent>
         </Section>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

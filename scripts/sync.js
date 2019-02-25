@@ -5,8 +5,8 @@
  */
 const deepMerge = require('deepmerge');
 const globby = require('globby');
-const rootPackage = require('../package.json');
 const spawn = require('cross-spawn');
+const rootPackage = require('../package.json');
 const updatePackageJson = require('./update-package-json');
 
 const syncDependencies = rootPackage.syncDependencies || {};

@@ -44,7 +44,8 @@ class TableGraphConnector extends React.Component<Props, State> {
     const { id, name, type, } = this.state || {};
     const { assetId, assetsId, isExchange, sortBy, sortOrder, } = this.props;
     return (
-      <FelaTheme>{theme => (
+      <FelaTheme>
+        {theme => (
           <Grid
             gutter={2}
             miscStyles={{
@@ -131,7 +132,8 @@ class TableGraphConnector extends React.Component<Props, State> {
               </SectionLink>
             </GridItem>
           </Grid>
-        )}</FelaTheme>
+        )}
+      </FelaTheme>
     );
   }
 }

@@ -254,7 +254,8 @@ type ComicPropTypes = {
 Comic.defaultProps = { lazyLoadImages: true, };
 function Comic({ data, lazyLoadImages, }: ComicPropTypes): React.Node {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <Card
           miscStyles={{
             display: [ { from: 's', value: 'none', }, ],
@@ -290,13 +291,17 @@ function Comic({ data, lazyLoadImages, }: ComicPropTypes): React.Node {
               paddingTop: '1rem',
               width: 'fit-content',
               extend: [ theme.type(-1), ],
-            }}>{({ className, }) => (
+            }}
+          >
+            {({ className, }) => (
               <H className={className}>
                 <TeaserResponsiveText text={data.title} mobileText={data.titleMobile} />
               </H>
-            )}</FelaComponent>
+            )}
+          </FelaComponent>
         </Card>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }
 
@@ -310,7 +315,8 @@ type TeaserPropTypes = {
 Editorial.defaultProps = { lazyLoadImages: true, index: 1, };
 function Editorial({ data, lazyLoadImages, index, biAction, }: TeaserPropTypes): React.Node {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <Teaser
           data={data}
           gutter={2}
@@ -440,7 +446,8 @@ function Editorial({ data, lazyLoadImages, index, biAction, }: TeaserPropTypes):
             )}
           />
         </Teaser>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }
 
@@ -546,7 +553,8 @@ function OpEdTeaser({
   lazyLoadImages,
 }: OpEdTeaserPropTypes): React.Node {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <Teaser
           data={data}
           gutter={2}
@@ -706,6 +714,7 @@ function OpEdTeaser({
             )}
           />
         </Teaser>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }

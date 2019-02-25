@@ -19,6 +19,7 @@ type Props = {
   children: ({ assetId: string, expirationDate: string, }) => Node,
 }
 
+// eslint-disable-next-line react/prop-types
 const SelectionLabel = ({ content, }) => (
   <FelaComponent
     style={{
@@ -62,17 +63,15 @@ class ExpirationBenchmarkFilter extends React.Component<Props, State> {
       expirationBenchmarkDates,
     } = this.state;
     const selectedItem: ?Asset = assets.find(asset => asset.id === id);
-    const selectedDate: ?string =
-      expirationBenchmarkDates.find(expirationDate =>
-        expirationDate === expirationBenchmarkDate
-      );
+    const selectedDate: ?string = expirationBenchmarkDates.find(expirationDate => expirationDate === expirationBenchmarkDate
+    );
     return (
       <Fragment>
         <FelaComponent style={{ position: 'relative', }}>
           <FelaComponent
             style={(
               {
-                theme
+                theme,
               }
             ) => ({
               ...theme.type(-2),
@@ -85,7 +84,7 @@ class ExpirationBenchmarkFilter extends React.Component<Props, State> {
               paddingEnd: '2rem',
               position: 'absolute',
               end: '0',
-              top: '0'
+              top: '0',
             })}
           >
             <SelectionLabel content="בחר נכס בסיס:" />

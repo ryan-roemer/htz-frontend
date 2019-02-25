@@ -1,4 +1,4 @@
-import { GraphQLObjectType, GraphQLString, GraphQLBoolean, GraphQLID } from 'graphql';
+import { GraphQLObjectType, GraphQLString, GraphQLBoolean, GraphQLID, } from 'graphql';
 
 
 const TableScore = new GraphQLObjectType({

@@ -63,7 +63,7 @@ const ColoredLink = ({ crumb, }) => (
     key={crumb.contentId}
     style={(
       {
-        theme
+        theme,
       }
     ) => ({
       fontWeight: '700',
@@ -74,10 +74,13 @@ const ColoredLink = ({ crumb, }) => (
         underlineSkip: 'ink',
       },
 
-      extend: [ theme.type(-1), ]
-    })}>{({ className, }) => (
+      extend: [ theme.type(-1), ],
+    })}
+  >
+    {({ className, }) => (
       <HtzLink className={className} content={crumb.name} href={crumb.url} />
-    )}</FelaComponent>
+    )}
+  </FelaComponent>
 );
 
 class Breadcrumbs extends React.Component {
@@ -133,7 +136,8 @@ class Breadcrumbs extends React.Component {
     ) : null;
 
     return (
-      <FelaTheme>{theme => {
+      <FelaTheme>
+        {theme => {
           const {
             breadcrumbsI18n: { ariaLabel, },
           } = theme;
@@ -147,32 +151,32 @@ class Breadcrumbs extends React.Component {
                       <FelaComponent
                         as="span"
                         style={{
-                          color:
+                  color:
                             index === 0 ? theme.color('primary') : theme.color('neutral', '-2'),
-                          ':hover': {
-                            color:
+                  ':hover': {
+                    color:
                               index === 0
                                 ? theme.color('primary', '+1')
                                 : theme.color('neutral', '-1'),
-                          },
-                          extend: [
-                            theme.mq(
-                              { until: 's', },
-                              isLast
-                                ? { color: theme.color('primary'), }
-                                : {
-                                  // hide every item but the last
-                                  display: 'none',
-                                }
-                            ),
-                          ],
-                        }}
+                  },
+                  extend: [
+                    theme.mq(
+                      { until: 's', },
+                      isLast
+                        ? { color: theme.color('primary'), }
+                        : {
+                          // hide every item but the last
+                          display: 'none',
+                        }
+                    ),
+                  ],
+                }}
                       >
                         {elem}
                       </FelaComponent>
                       {isLast ? null : (
                         <FelaComponent
-                          style={{
+                  style={{
                             extend: [
                               theme.mq(
                                 { until: 's', },
@@ -182,10 +186,10 @@ class Breadcrumbs extends React.Component {
                               ),
                             ],
                           }}
-                          as="span"
-                        >
-                          {' | '}
-                        </FelaComponent>
+                  as="span"
+                >
+                  {' | '}
+                </FelaComponent>
                       )}
                     </Fragment>
                   );
@@ -194,7 +198,8 @@ class Breadcrumbs extends React.Component {
               </nav>
             </Fragment>
           );
-        }}</FelaTheme>
+        }}
+      </FelaTheme>
     );
   }
 }

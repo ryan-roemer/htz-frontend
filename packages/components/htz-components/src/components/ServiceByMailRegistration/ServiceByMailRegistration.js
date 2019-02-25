@@ -84,7 +84,7 @@ export default class ServiceByMailRegistration extends React.Component {
           <FelaComponent
             style={(
               {
-                theme
+                theme,
               }
             ) => ({
               backgroundColor: theme.color('primary', '-6'),
@@ -105,8 +105,10 @@ export default class ServiceByMailRegistration extends React.Component {
                     paddingBottom: '4rem',
                   }
                 ),
-              ]
-            })}>{({ className, theme, }) => (
+              ],
+            })}
+          >
+            {({ className, theme, }) => (
               <div className={className}>
                 {this.props.title ? (
                   <FelaComponent
@@ -132,24 +134,24 @@ export default class ServiceByMailRegistration extends React.Component {
                       >
                         <TextInput
                           {...getInputProps({
-                            name: 'email',
-                            label: theme.serviceByMailI18n.inpEmailLabelText,
-                            type: 'email',
-                            isError: false,
-                            placeHolder: theme.serviceByMailI18n.inpEmailLabelText,
-                            noteText: theme.serviceByMailI18n.inpEmailNoteText,
-                            variant: 'primaryOpaque',
-                            requiredText: {
-                              isSup: true,
-                              long: 'required',
-                              short: '*',
-                            },
-                            miscStyles: {
-                              type: [ { from: 'l', value: -2, }, ],
-                              fontWeight: 'bold',
-                              width: [ { from: 'l', value: '67rem', }, ],
-                            },
-                          })}
+                name: 'email',
+                label: theme.serviceByMailI18n.inpEmailLabelText,
+                type: 'email',
+                isError: false,
+                placeHolder: theme.serviceByMailI18n.inpEmailLabelText,
+                noteText: theme.serviceByMailI18n.inpEmailNoteText,
+                variant: 'primaryOpaque',
+                requiredText: {
+                  isSup: true,
+                  long: 'required',
+                  short: '*',
+                },
+                miscStyles: {
+                  type: [ { from: 'l', value: -2, }, ],
+                  fontWeight: 'bold',
+                  width: [ { from: 'l', value: '67rem', }, ],
+                },
+              })}
                         />
                       </FelaComponent>
 
@@ -175,22 +177,22 @@ export default class ServiceByMailRegistration extends React.Component {
                       >
                         <FelaComponent
                           style={{
-                            display: 'flex',
-                            alignItems: 'stretch',
-                          }}
+                display: 'flex',
+                alignItems: 'stretch',
+              }}
                         >
                           <Button
-                            variant="primaryOpaque"
-                            onClick={handleSubmit}
-                            isBusy={this.state.isBusy}
-                            miscStyles={{
+                variant="primaryOpaque"
+                onClick={handleSubmit}
+                isBusy={this.state.isBusy}
+                miscStyles={{
                               type: [ { until: 's', value: 0, }, { from: 's', value: -2, }, ],
                             }}
-                          >
-                            {theme.serviceByMailI18n.btnSubmitText}
-                          </Button>
+              >
+                {theme.serviceByMailI18n.btnSubmitText}
+              </Button>
                           {this.props.onCancel != null ? (
-                            <Button
+                <Button
                               variant="negative"
                               isFlat
                               onClick={() => this.props.onCancel()}
@@ -201,14 +203,15 @@ export default class ServiceByMailRegistration extends React.Component {
                             >
                               {theme.serviceByMailI18n.btnCancelText}
                             </Button>
-                          ) : null}
+              ) : null}
                         </FelaComponent>
                       </FelaComponent>
                     </Fragment>
                   )}
                 />
               </div>
-            )}</FelaComponent>
+            )}
+          </FelaComponent>
         )}
       />
     );

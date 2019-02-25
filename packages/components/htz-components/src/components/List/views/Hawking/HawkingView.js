@@ -203,7 +203,8 @@ function HawkingMainTeaser({
   index,
 }: TeaserProps): Node {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <Teaser
           onClick={
             biAction
@@ -303,7 +304,8 @@ function HawkingMainTeaser({
             )}
           />
         </Teaser>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }
 
@@ -314,7 +316,8 @@ HawkingTeaser.defaultProps = {
 
 function HawkingTeaser({ item, index, biAction, }: TeaserProps): Node {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <Teaser
           data={item}
           onClick={
@@ -363,6 +366,7 @@ function HawkingTeaser({ item, index, biAction, }: TeaserProps): Node {
             )}
           />
         </Teaser>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }

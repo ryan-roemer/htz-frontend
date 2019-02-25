@@ -26,7 +26,8 @@ ItemButton.defaultProps = {
 
 export default function ItemButton({ name, url, variant, miscStyles, }) {
   return (
-    <FelaTheme>{theme => (
+    <FelaTheme>
+      {theme => (
         <Button
           boxModel={{ vp: 2, hp: 2, }}
           isFull
@@ -41,6 +42,7 @@ export default function ItemButton({ name, url, variant, miscStyles, }) {
         >
           <span>{name}</span>
         </Button>
-      )}</FelaTheme>
+      )}
+    </FelaTheme>
   );
 }

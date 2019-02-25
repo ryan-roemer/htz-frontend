@@ -13,11 +13,7 @@ import ShareBar from '../../../ShareBar/ShareBar';
 // eslint-disable-next-line react/prop-types
 const HeaderElementCont = ({ children, miscStyles, }) => (
   <FelaComponent
-    style={(
-      {
-        theme
-      }
-    ) => ({
+    style={({ theme, }) => ({
       marginRight: 'auto',
       marginLeft: 'auto',
 
@@ -25,7 +21,7 @@ const HeaderElementCont = ({ children, miscStyles, }) => (
         theme.mq({ from: 'm', }, { maxWidth: '80%', }),
         theme.mq({ until: 'm', }, { paddingRight: '2rem', paddingLeft: '2rem', }),
         ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
-      ]
+      ],
     })}
   >
     {children}
@@ -74,11 +70,7 @@ function Header({
 }) {
   return (
     <FelaComponent
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         marginRight: 'auto',
         marginLeft: 'auto',
         textAlign: 'center',
@@ -88,8 +80,10 @@ function Header({
           theme.mq({ from: 'xl', }, { maxWidth: '130rem', }),
           theme.mq({ from: 'l', until: 'xl', }, { maxWidth: '152rem', }),
           theme.mq({ until: 'm', }, { display: 'flex', flexDirection: 'column', }),
-        ]
-      })}>{({ className, theme, }) => (
+        ],
+      })}
+    >
+      {({ className, theme, }) => (
         <header className={className}>
           <HeaderElementCont>
             {hasBreadCrumbs ? <Breadcrumbs articleId={articleId} /> : null}
@@ -99,14 +93,17 @@ function Header({
               style={{
                 marginTop: '3rem',
                 extend: [ theme.mq({ until: 's', }, { marginRight: '2rem', marginLeft: '2rem', }), ],
-              }}>{({ className, }) => (
+              }}
+            >
+              {({ className, }) => (
                 <HeaderText
                   className={className}
                   kicker={exclusive}
                   subtitle={subtitle}
                   title={title}
                 />
-              )}</FelaComponent>
+              )}
+            </FelaComponent>
           </HeaderElementCont>
           <HeaderElementCont
             miscStyles={{
@@ -209,7 +206,8 @@ function Header({
             />
           ) : null}
         </header>
-      )}</FelaComponent>
+      )}
+    </FelaComponent>
   );
 }
 

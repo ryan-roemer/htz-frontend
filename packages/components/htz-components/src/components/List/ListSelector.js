@@ -29,7 +29,8 @@ export default class ListSelector extends React.Component {
   render() {
     return (
       <div style={{ position: 'relative', }}>
-        <FelaComponent style={{ appearance: 'menulist', }}>{({ className, }) => (
+        <FelaComponent style={{ appearance: 'menulist', }}>
+          {({ className, }) => (
             <select
               name="viewType"
               onChange={this.onSelect}
@@ -68,7 +69,8 @@ export default class ListSelector extends React.Component {
               <option value="Zoidberg">Zoidberg</option>
               <option value="Zombie">Zombie</option>
             </select>
-          )}</FelaComponent>
+          )}
+        </FelaComponent>
         {/* turnA is an ugly hack to cause the list to completely unmount an remount
             since List component has important stuff happening in componentDidMount */}
         {this.state.view && this.state.turnA ? (

@@ -32,27 +32,22 @@ export default function BreakingNewsItem({
   return (
     <FelaComponent
       as="li"
-      style={(
-        {
-          theme
-        }
-      ) => ({
+      style={({ theme, }) => ({
         position: 'absolute',
         opacity: isVisible ? 1 : 0,
         visibility: isVisible ? 'visible' : 'hidden',
         zIndex: isVisible ? 1 : 0,
         transitionProperty: 'opacity, visibility',
         ...theme.getDuration('transition', animationDuration),
-        ...theme.getTimingFunction('transition', 'swiftOut')
+        ...theme.getTimingFunction('transition', 'swiftOut'),
       })}
     >
-      <FelaComponent style={(
-        {
-          theme
-        }
-      ) => ({
-        ...theme.type(-1, { lines: 3, })
-      })} as="article">
+      <FelaComponent
+        style={({ theme, }) => ({
+          ...theme.type(-1, { lines: 3, }),
+        })}
+        as="article"
+      >
         {url ? (
           <HtzLink href={url}>
             <BreakingNewsContent title={title} creationDateTime={creationDateTime} />
@@ -71,7 +66,7 @@ export default function BreakingNewsItem({
 type BreakingNewsContentType = {
   title: string,
   creationDateTime: number,
-}
+};
 function BreakingNewsContent({ title, creationDateTime, }: BreakingNewsContentType): React.Node {
   return (
     <React.Fragment>
@@ -79,10 +74,13 @@ function BreakingNewsContent({ title, creationDateTime, }: BreakingNewsContentTy
         style={{
           fontWeight: 700,
           marginInlineEnd: '1rem',
-        }}>{({ className, }) => (
-          <Time time={creationDateTime} format="HH:mm" className={className} />
-        )}</FelaComponent>
-      <FelaComponent style={{ display: 'inline', fontWeight: 400, }}>{({ className, }) => <H className={className}>{title}</H>}</FelaComponent>
+        }}
+      >
+        {({ className, }) => <Time time={creationDateTime} format="HH:mm" className={className} />}
+      </FelaComponent>
+      <FelaComponent style={{ display: 'inline', fontWeight: 400, }}>
+        {({ className, }) => <H className={className}>{title}</H>}
+      </FelaComponent>
     </React.Fragment>
   );
 }

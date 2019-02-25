@@ -33,7 +33,7 @@ function SideBar({ content, }) {
         <FelaComponent
           style={(
             {
-              theme
+              theme,
             }
           ) => ({
             position: 'sticky',
@@ -49,7 +49,7 @@ function SideBar({ content, }) {
               theme.getDelay('transition', -1),
               theme.getDuration('transition', -1),
               theme.getTimingFunction('transition', 'linear'),
-            ]
+            ],
           })}
         >
           <WrappedScroll

@@ -25,7 +25,8 @@ class Astronaut extends React.Component {
   render() {
     const { size, } = this.props;
     return (
-      <FelaComponent size={size} style={style}>{({ theme, className, }) => (
+      <FelaComponent size={size} style={style}>
+        {({ theme, className, }) => (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -51,7 +52,9 @@ class Astronaut extends React.Component {
                   '50%': { opacity: '0', },
                   '100%': { opacity: '0', },
                 },
-              }}>{({ className, theme, }) => (
+              }}
+            >
+              {({ className, theme, }) => (
                 <circle
                   className={className}
                   fill="#3FA0CB"
@@ -59,7 +62,8 @@ class Astronaut extends React.Component {
                   cy="165.9"
                   r="2.2"
                 />
-              )}</FelaComponent>
+              )}
+            </FelaComponent>
             <FelaComponent
               style={{
                 animationDelay: '1s',
@@ -74,7 +78,9 @@ class Astronaut extends React.Component {
                   '50%': { opacity: '0', transform: 'scale(1) rotate(0)', },
                   '100%': { opacity: '0', },
                 },
-              }}>{({ className, theme, }) => (
+              }}
+            >
+              {({ className, theme, }) => (
                 <circle
                   className={className}
                   fill="#3FA0CB"
@@ -82,7 +88,8 @@ class Astronaut extends React.Component {
                   cy="277.5"
                   r="3.5"
                 />
-              )}</FelaComponent>
+              )}
+            </FelaComponent>
             <FelaComponent
               style={{
                 animationDelay: '1s',
@@ -96,7 +103,9 @@ class Astronaut extends React.Component {
                   '40%': { opacity: '0', },
                   '100%': { opacity: '0', },
                 },
-              }}>{({ className, theme, }) => (
+              }}
+            >
+              {({ className, theme, }) => (
                 <circle
                   className={className}
                   fill="#BED3DE"
@@ -104,7 +113,8 @@ class Astronaut extends React.Component {
                   cy="171"
                   r="4.6"
                 />
-              )}</FelaComponent>
+              )}
+            </FelaComponent>
             <FelaComponent
               style={{
                 animationDelay: '2s',
@@ -120,7 +130,9 @@ class Astronaut extends React.Component {
                   '51%': { transform: 'scale(1)', },
                   '100%': { opacity: '0', },
                 },
-              }}>{({ className, theme, }) => (
+              }}
+            >
+              {({ className, theme, }) => (
                 <circle
                   className={className}
                   fill="#3FA0CB"
@@ -128,7 +140,8 @@ class Astronaut extends React.Component {
                   cy="183"
                   r="2"
                 />
-              )}</FelaComponent>
+              )}
+            </FelaComponent>
             <FelaComponent
               style={{
                 animationDuration: '4.5s',
@@ -142,7 +155,9 @@ class Astronaut extends React.Component {
                   '50%': { opacity: '0', transform: 'scale(1)', },
                   '100%': { opacity: '0', },
                 },
-              }}>{({ className, theme, }) => (
+              }}
+            >
+              {({ className, theme, }) => (
                 <circle
                   className={className}
                   fill="#3FA0CB"
@@ -150,7 +165,8 @@ class Astronaut extends React.Component {
                   cy="181.5"
                   r="1.5"
                 />
-              )}</FelaComponent>
+              )}
+            </FelaComponent>
             <g className="astronaut-stars">
               <circle fill="#3FA0CB" cx="596.5" cy="261.5" r="2.5" />
               <circle fill="#3FA0CB" cx="555" cy="226" r="1" />
@@ -249,7 +265,9 @@ class Astronaut extends React.Component {
                     '0%': { transform: 'rotate(1deg) translate(0,-1%)', },
                     '100%': { transform: 'rotate(-1deg) translate(0,1%)', },
                   },
-                }}>{({ className, theme, }) => (
+                }}
+              >
+                {({ className, theme, }) => (
                   <g className={className}>
                     <circle fill="#087EB5" cx="610.7" cy="459.5" r="22.2" />
                     <path
@@ -257,7 +275,8 @@ class Astronaut extends React.Component {
                       d="M617 460.7c0-0.6 0-1.1 0-1.1S617 460 617 460.7c0 0.6 0 1.1 0 1.1S617 461.3 617 460.7zM613.7 463.1c-15.7 6-23.5 6.9-23.5 6.9s-6.3 1.4-7.1 0.3c-0.6-0.8 6.5-3.9 6.5-3.9l-0.5-1.7c0 0-21.2 10-20.2 13 0.7 2.2 13.1 4.7 46.8-6.9 19.2-6.6 41.2-21.6 39.3-25.8 -1.4-3-24.7 4.1-24.7 4.1l1.1 2.3c0 0 4.5-1.4 5.2-0.5C637.8 452.5 623.9 459.2 613.7 463.1zM630.8 450.3c0 0 20.1-5.1 19.4-2.9 -0.7 2.2-11 11.4-33.7 21.1s-48.7 11.1-42.3 6 14.9-9.7 14.9-9.7 -14.7 9.3-7.9 8.6c6.8-0.7 18.3-2.6 33.3-9 0 0 31.6-14.2 25.9-14.7C637.5 449.5 630.8 450.3 630.8 450.3zM579.5 471.4c0 0-5.5 3.3-3 4.1s15.5 0.6 37.1-7.7c32.9-12.7 44-25 17.2-17.5 0 0 15-3.3 12.1 0.1 -3.6 4.1-17.2 11-31.1 16.5C597.2 472.8 570.3 477.5 579.5 471.4z"
                     />
                   </g>
-                )}</FelaComponent>
+                )}
+              </FelaComponent>
               <circle fill="#96D4F1" cx="580.6" cy="483.2" r="0.5" />
               <circle fill="#96D4F1" cx="643.2" cy="461.3" r="0.4" />
               <circle fill="#96D4F1" cx="633.7" cy="432.1" r="2" />
@@ -523,7 +542,9 @@ class Astronaut extends React.Component {
                       transform: 'translate(0%) rotate(15deg)',
                     },
                   },
-                }}>{({ theme, className, }) => (
+                }}
+              >
+                {({ theme, className, }) => (
                   <g className={className}>
                     <circle
                       id={`SVGID_3_${this.state.idSuffix}`}
@@ -552,7 +573,8 @@ class Astronaut extends React.Component {
                       d="M62.6 207.7c7.4-3.2 26.3-11.8 34.3 13.7 4.6 14.6 3 26.5-14 34.5 -8.2 3.9-26.3 0.8-28.7-3.8C49.3 243.2 40 217.4 62.6 207.7z"
                     />
                   </g>
-                )}</FelaComponent>
+                )}
+              </FelaComponent>
               <polyline
                 fill="#2F4856"
                 points="87.5 215.9 87.6 215.9 88.3 216.1 87.3 217 "
@@ -605,7 +627,9 @@ class Astronaut extends React.Component {
                   '73%': { transform: 'translate(0,-1.2%) rotate(-3deg)', },
                   '100%': { transform: 'translate(0,0) rotate(0deg)', },
                 },
-              }}>{({ className, }) => (
+              }}
+            >
+              {({ className, }) => (
                 <g className={className}>
                   <g className="astronaut-planet">
                     <circle
@@ -1238,98 +1262,98 @@ class Astronaut extends React.Component {
                       />
                       <defs>
                         <ellipse
-                          id={`SVGID_67_${this.state.idSuffix}`}
-                          transform="matrix(0.0426 -0.9991 0.9991 0.0426 192.2581 324.8105)"
-                          cx="265.6"
-                          cy="62.1"
-                          rx="53.1"
-                          ry="47.7"
-                        />
+                  id={`SVGID_67_${this.state.idSuffix}`}
+                  transform="matrix(0.0426 -0.9991 0.9991 0.0426 192.2581 324.8105)"
+                  cx="265.6"
+                  cy="62.1"
+                  rx="53.1"
+                  ry="47.7"
+                />
                       </defs>
                       <clipPath id={`SVGID_68_${this.state.idSuffix}`}>
                         <use
-                          xlinkHref={`#SVGID_67_${this.state.idSuffix}`}
-                          overflow="visible"
-                        />
+                  xlinkHref={`#SVGID_67_${this.state.idSuffix}`}
+                  overflow="visible"
+                />
                       </clipPath>
                       <g clipPath={`url(#SVGID_68_${this.state.idSuffix})`}>
                         <path
-                          id={`SVGID_17_${this.state.idSuffix}`}
-                          fill="#087EB5"
-                          d="M299.7 92.3c1.3 0.1-5.6-37.1-5.6-37.1s-18.9-9.7-42.1-8.6c-23.3 1.1-31 6.5-31 6.5l-6.4 3.8c0 0 4.9 39.1 5.8 39.8 0.9 0.7 21.9 23.4 22.9 23.2s46.3-4.2 46.3-4.2l11.3-19L299.7 92.3z"
-                        />
+                  id={`SVGID_17_${this.state.idSuffix}`}
+                  fill="#087EB5"
+                  d="M299.7 92.3c1.3 0.1-5.6-37.1-5.6-37.1s-18.9-9.7-42.1-8.6c-23.3 1.1-31 6.5-31 6.5l-6.4 3.8c0 0 4.9 39.1 5.8 39.8 0.9 0.7 21.9 23.4 22.9 23.2s46.3-4.2 46.3-4.2l11.3-19L299.7 92.3z"
+                />
                         <defs>
-                          <path
-                            id={`SVGID_69_${this.state.idSuffix}`}
-                            d="M299.7 92.3c1.3 0.1-5.6-37.1-5.6-37.1s-18.9-9.7-42.1-8.6c-23.3 1.1-31 6.5-31 6.5l-6.4 3.8c0 0 4.9 39.1 5.8 39.8 0.9 0.7 21.9 23.4 22.9 23.2s46.3-4.2 46.3-4.2l11.3-19L299.7 92.3z"
-                          />
-                        </defs>
+                  <path
+              id={`SVGID_69_${this.state.idSuffix}`}
+              d="M299.7 92.3c1.3 0.1-5.6-37.1-5.6-37.1s-18.9-9.7-42.1-8.6c-23.3 1.1-31 6.5-31 6.5l-6.4 3.8c0 0 4.9 39.1 5.8 39.8 0.9 0.7 21.9 23.4 22.9 23.2s46.3-4.2 46.3-4.2l11.3-19L299.7 92.3z"
+            />
+                </defs>
                         <clipPath id={`SVGID_70_${this.state.idSuffix}`}>
-                          <use
-                            xlinkHref={`#SVGID_69_${this.state.idSuffix}`}
-                            overflow="visible"
-                          />
-                        </clipPath>
+                  <use
+              xlinkHref={`#SVGID_69_${this.state.idSuffix}`}
+              overflow="visible"
+            />
+                </clipPath>
                         <path
-                          clipPath={`url(#SVGID_70_${this.state.idSuffix})`}
-                          fill="#6AB2D3"
-                          d="M239.9 47.5c0 0-6.5 51.6 8.5 64.6 15 13.1-30.7-13.7-33.9-39.2S230.8 42.3 239.9 47.5z"
-                        />
+                  clipPath={`url(#SVGID_70_${this.state.idSuffix})`}
+                  fill="#6AB2D3"
+                  d="M239.9 47.5c0 0-6.5 51.6 8.5 64.6 15 13.1-30.7-13.7-33.9-39.2S230.8 42.3 239.9 47.5z"
+                />
                         <defs>
-                          <ellipse
-                            id={`SVGID_71_${this.state.idSuffix}`}
-                            transform="matrix(0.0426 -0.9991 0.9991 0.0426 192.2581 324.8105)"
-                            cx="265.6"
-                            cy="62.1"
-                            rx="53.1"
-                            ry="47.7"
-                          />
-                        </defs>
+                  <ellipse
+              id={`SVGID_71_${this.state.idSuffix}`}
+              transform="matrix(0.0426 -0.9991 0.9991 0.0426 192.2581 324.8105)"
+              cx="265.6"
+              cy="62.1"
+              rx="53.1"
+              ry="47.7"
+            />
+                </defs>
                         <clipPath id={`SVGID_72_${this.state.idSuffix}`}>
-                          <use
-                            xlinkHref={`#SVGID_71_${this.state.idSuffix}`}
-                            overflow="visible"
-                          />
-                        </clipPath>
+                  <use
+              xlinkHref={`#SVGID_71_${this.state.idSuffix}`}
+              overflow="visible"
+            />
+                </clipPath>
                         <path
-                          opacity="0.8"
-                          clipPath={`url(#SVGID_72_${this.state.idSuffix})`}
-                          fill="#FFFFFF"
-                          enableBackground="new    "
-                          d="M232.8 93.7c-3.4-9.3-1-38.2 19.1-38.2 16.7 0 13.8 21.5 16.7 35.8 5.6 27.1 21.5 22.3 5.6 23.1C263.9 115 243.9 124 232.8 93.7z"
-                        />
+                  opacity="0.8"
+                  clipPath={`url(#SVGID_72_${this.state.idSuffix})`}
+                  fill="#FFFFFF"
+                  enableBackground="new    "
+                  d="M232.8 93.7c-3.4-9.3-1-38.2 19.1-38.2 16.7 0 13.8 21.5 16.7 35.8 5.6 27.1 21.5 22.3 5.6 23.1C263.9 115 243.9 124 232.8 93.7z"
+                />
                         <defs>
-                          <ellipse
-                            id={`SVGID_73_${this.state.idSuffix}`}
-                            transform="matrix(0.0426 -0.9991 0.9991 0.0426 192.2581 324.8105)"
-                            cx="265.6"
-                            cy="62.1"
-                            rx="53.1"
-                            ry="47.7"
-                          />
-                        </defs>
+                  <ellipse
+              id={`SVGID_73_${this.state.idSuffix}`}
+              transform="matrix(0.0426 -0.9991 0.9991 0.0426 192.2581 324.8105)"
+              cx="265.6"
+              cy="62.1"
+              rx="53.1"
+              ry="47.7"
+            />
+                </defs>
                         <clipPath id={`SVGID_74_${this.state.idSuffix}`}>
-                          <use
-                            xlinkHref={`#SVGID_73_${this.state.idSuffix}`}
-                            overflow="visible"
-                          />
-                        </clipPath>
+                  <use
+              xlinkHref={`#SVGID_73_${this.state.idSuffix}`}
+              overflow="visible"
+            />
+                </clipPath>
                         <path
-                          clipPath={`url(#SVGID_74_${this.state.idSuffix})`}
-                          fill="#E0B560"
-                          d="M229.5 25.6c0 0 11.6-7.5 24.6-8.9s47.2 4.1 55.4 32.8 3.4-37.6-23.9-45.1C258.2-3.1 237 15.3 229.5 25.6z"
-                        />
+                  clipPath={`url(#SVGID_74_${this.state.idSuffix})`}
+                  fill="#E0B560"
+                  d="M229.5 25.6c0 0 11.6-7.5 24.6-8.9s47.2 4.1 55.4 32.8 3.4-37.6-23.9-45.1C258.2-3.1 237 15.3 229.5 25.6z"
+                />
                         <ellipse
-                          id={`SVGID_10_${this.state.idSuffix}`}
-                          transform="matrix(0.0426 -0.9991 0.9991 0.0426 192.2581 324.8105)"
-                          fill="none"
-                          stroke="#1D1D1B"
-                          strokeMiterlimit="10"
-                          cx="265.6"
-                          cy="62.1"
-                          rx="53.1"
-                          ry="47.7"
-                        />
+                  id={`SVGID_10_${this.state.idSuffix}`}
+                  transform="matrix(0.0426 -0.9991 0.9991 0.0426 192.2581 324.8105)"
+                  fill="none"
+                  stroke="#1D1D1B"
+                  strokeMiterlimit="10"
+                  cx="265.6"
+                  cy="62.1"
+                  rx="53.1"
+                  ry="47.7"
+                />
                       </g>
                       <path
                         opacity="0.4"
@@ -1749,9 +1773,11 @@ class Astronaut extends React.Component {
                     </g>
                   </g>
                 </g>
-              )}</FelaComponent>
+              )}
+            </FelaComponent>
           </svg>
-        )}</FelaComponent>
+        )}
+      </FelaComponent>
     );
   }
 }

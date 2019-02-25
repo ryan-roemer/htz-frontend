@@ -21,10 +21,9 @@ const { InputLinkButton, ErrorBox, } = LoginMiscLayoutStyles;
 // Methods -------------------
 const generateSmsCodeError = message => [ { name: 'smsCode', order: 1, errorText: message, }, ];
 const isNumeric = number => Number(number).toString() !== 'NaN';
-const validateSmsCodeInput = ({ smsCode, }) =>
-  (!isNumeric(smsCode) || !smsCode || smsCode.length < 1
-    ? generateSmsCodeError('אנא הזינו את הקוד שנשלח אליכם')
-    : []);
+const validateSmsCodeInput = ({ smsCode, }) => (!isNumeric(smsCode) || !smsCode || smsCode.length < 1
+  ? generateSmsCodeError('אנא הזינו את הקוד שנשלח אליכם')
+  : []);
 
 const onSubmit = ({
   client,
@@ -60,7 +59,6 @@ const hidePhone = phoneNumber => `${phoneNumber.substring(0, 3)}****${phoneNumbe
 // --------------------------
 
 class OtpValidation extends Component {
-
   state = {
     showError: false,
     errorMessage: '',
@@ -88,7 +86,7 @@ class OtpValidation extends Component {
                       <h5>
                         להתחברות הזינו את הקוד שנשלח למספר
                         <br />
-                        <span dir="ltr">{ /*hidePhone(getUserData(client).phoneNum)*/ }</span>
+                        <span dir="ltr">{ /* hidePhone(getUserData(client).phoneNum) */ }</span>
                       </h5>
                     </ItemCenterer>
                     <Login

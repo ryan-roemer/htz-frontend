@@ -52,7 +52,8 @@ function options({
       description="כל המידע על  אופציות נתוני מסחר, נתונים בזמן אמת, גרפים חדשות ועוד באתר TheMarker Finance"
       path={asPath}
     >
-      <FelaTheme>{theme => (
+      <FelaTheme>
+        {theme => (
           <Fragment>
             <PageRow>
               <RowItem title="אופציות מעו״ף">
@@ -63,10 +64,7 @@ function options({
                     const assets: Array<Asset> = data.assetsList;
                     return (
                       <ExpirationBenchmarkFilter assets={assets}>
-                        {({
-                          assetId,
-                          expirationDate,
-                        }) => (
+                        {({ assetId, expirationDate, }) => (
                           <SortableTable
                             miscStyles={{
                               marginTop: '7rem',
@@ -155,9 +153,7 @@ function options({
                                 }),
                                 value: ({ openPositionsChangeRate, }) => `
                                   ${openPositionsChangeRate > 0 ? '+' : '-'}
-                                  ${numToString(
-                                  Math.abs(openPositionsChangeRate)
-                                )}%
+                                  ${numToString(Math.abs(openPositionsChangeRate))}%
                                 `,
                               },
                               {
@@ -193,7 +189,8 @@ function options({
               </RowItem>
             </PageRow>
           </Fragment>
-        )}</FelaTheme>
+        )}
+      </FelaTheme>
     </MainLayout>
   );
 }

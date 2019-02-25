@@ -59,7 +59,8 @@ export default function Item({ name, url, pages, variant, miscStyles, onClick, }
   return (
     <EventTracker>
       {({ biAction, }) => (
-        <FelaTheme>{theme => (
+        <FelaTheme>
+          {theme => (
             <Fragment>
               {pages && pages.length > 0 ? (
                 <DropdownList
@@ -112,7 +113,7 @@ export default function Item({ name, url, pages, variant, miscStyles, onClick, }
                       <Fragment>
                         {renderButton(({ toggleState, openList, closeList, }) => (
                           <Fragment>
-                            <Button
+                  <Button
                               boxModel={{ vp: 1, hp: 2, }}
                               isFull
                               fontSize={-2}
@@ -128,7 +129,7 @@ export default function Item({ name, url, pages, variant, miscStyles, onClick, }
                             >
                               <span>{name}</span>
                             </Button>
-                            <Button
+                  <Button
                               boxModel={{ vp: 1, hp: 2, }}
                               variant={variant}
                               isHard
@@ -157,7 +158,7 @@ export default function Item({ name, url, pages, variant, miscStyles, onClick, }
                               />
                             </Button>
 
-                            {isOpen && (
+                  {isOpen && (
                               <ListWrapper
                                 attrs={eventsAttrs(openList, closeList, list)}
                                 listStyle={{
@@ -182,7 +183,7 @@ export default function Item({ name, url, pages, variant, miscStyles, onClick, }
                                 {combinedItems}
                               </ListWrapper>
                             )}
-                          </Fragment>
+                </Fragment>
                         ))}
                       </Fragment>
                     );
@@ -206,7 +207,8 @@ export default function Item({ name, url, pages, variant, miscStyles, onClick, }
                 </Button>
               )}
             </Fragment>
-          )}</FelaTheme>
+          )}
+        </FelaTheme>
       )}
     </EventTracker>
   );

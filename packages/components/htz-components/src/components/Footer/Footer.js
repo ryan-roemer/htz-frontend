@@ -138,7 +138,8 @@ class Footer extends React.Component {
     return (
       <Fragment>
         <FirstImpressionPlaceHolder />
-        <FelaTheme>{theme => {
+        <FelaTheme>
+          {theme => {
             const {
               footerDesktopI18n: { ExpandedButton, Copyright, },
               color,
@@ -175,7 +176,7 @@ class Footer extends React.Component {
                         <MobileView theme={theme} />
                         <StyledDesktopBody>
                           <StyledHeadLinksWrapper>
-                            <StyledUlLinks>
+                  <StyledUlLinks>
                               {footer.headList.map((item, index) => (
                                 <StyledLi key={`${item.contentName}${item.value}`}>
                                   <StyledHeadLink
@@ -187,7 +188,7 @@ class Footer extends React.Component {
                                 </StyledLi>
                               ))}
                             </StyledUlLinks>
-                            <ButtonFooter
+                  <ButtonFooter
                               variant="inverse"
                               boxModel={{ hp: 4, vp: 1, }}
                               onClick={() => this.handleClick()}
@@ -198,19 +199,19 @@ class Footer extends React.Component {
                             >
                               {expanded ? ExpandedButton.close : ExpandedButton.showMore}
                             </ButtonFooter>
-                          </StyledHeadLinksWrapper>
+                </StyledHeadLinksWrapper>
                           <div
-                            ref={el => {
+                  ref={el => {
                               this.focusElement = el;
                             }}
-                            tabIndex="-1"
-                          >
-                            <ExpandedList
+                  tabIndex="-1"
+                >
+                  <ExpandedList
                               toolbox={footer.toolbox}
                               columnsArr={columnsArr}
                               showMe={expanded}
                             />
-                          </div>
+                </div>
                           <StyledDesktopText>{Copyright.firstRow}</StyledDesktopText>
                           <StyledDesktopText>{Copyright.secondRow}</StyledDesktopText>
                         </StyledDesktopBody>
@@ -220,7 +221,8 @@ class Footer extends React.Component {
                 }}
               </Query>
             );
-          }}</FelaTheme>
+          }}
+        </FelaTheme>
         <AccessListByIp />
         <ChartBeat shouldRender={shouldRenderScripts} />
         <UniversitiesPush />

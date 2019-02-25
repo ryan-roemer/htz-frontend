@@ -3,7 +3,6 @@ import { createComponent, FelaTheme, } from 'react-fela';
 import PropTypes from 'prop-types';
 
 const BottomLinks = props => {
-
   const { spacing, } = props;
 
   const bottomLinksStyle = () => ({
@@ -26,20 +25,20 @@ const BottomLinks = props => {
     },
   });
   const BottomLinksWrapper = createComponent(bottomLinksStyle);
-  
+
   return (
     <BottomLinksWrapper>
       {props.children}
     </BottomLinksWrapper>
-  )
+  );
 };
 
 BottomLinks.propTypes = {
   spacing: PropTypes.number,
-}
+};
 
 BottomLinks.defaultProps = {
   spacing: 0,
-}
+};
 
 export default BottomLinks;

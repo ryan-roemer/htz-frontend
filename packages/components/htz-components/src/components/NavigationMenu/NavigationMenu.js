@@ -123,7 +123,8 @@ class NavigationMenu extends React.Component {
     return (
       <EventTracker>
         {({ biAction, }) => (
-          <FelaTheme>{theme => {
+          <FelaTheme>
+            {theme => {
               const { isHovered, } = this.state;
               const { items, sites, promotions, } = this.props.menuSections;
 
@@ -205,10 +206,11 @@ class NavigationMenu extends React.Component {
                   render={({ renderButton, ListWrapper, isOpen, closeList, }) => (
                     <Fragment>
                       {renderButton(({ toggleState, }) => (
-                        <FelaComponent style={menuButtonStyle} isOpen={isOpen} isHovered={isHovered}>{({ className, }) => (
+                        <FelaComponent style={menuButtonStyle} isOpen={isOpen} isHovered={isHovered}>
+                          {({ className, }) => (
                             <button
-                              className={className}
-                              onClick={
+                  className={className}
+                  onClick={
                                 !isOpen && biAction
                                   ? () => {
                                     toggleState();
@@ -216,19 +218,19 @@ class NavigationMenu extends React.Component {
                                   }
                                   : toggleState
                               }
-                              aria-expanded={isOpen}
-                              ref={el => {
+                  aria-expanded={isOpen}
+                  ref={el => {
                                 if (!this.hamburgerEl) {
                                   this.hamburgerEl = el;
                                 }
                               }}
-                              onMouseEnter={this.handleMouseEnter}
-                              onMouseLeave={this.handleMouseLeave}
-                              onFocus={this.handleMouseEnter}
-                              onBlur={this.handleMouseLeave}
-                              type="button"
-                            >
-                              <FelaComponent
+                  onMouseEnter={this.handleMouseEnter}
+                  onMouseLeave={this.handleMouseLeave}
+                  onFocus={this.handleMouseEnter}
+                  onBlur={this.handleMouseLeave}
+                  type="button"
+                >
+                  <FelaComponent
                                 style={{
                                   marginStart: '2rem',
                                   marginEnd: '3rem',
@@ -246,9 +248,10 @@ class NavigationMenu extends React.Component {
                                   isTransition
                                 />
                               </FelaComponent>
-                              <span>{theme.navigationMenuI18n.buttonText}</span>
-                            </button>
-                          )}</FelaComponent>
+                  <span>{theme.navigationMenuI18n.buttonText}</span>
+                </button>
+                          )}
+                        </FelaComponent>
                       ))}
                       {isOpen ? (
                         <ListWrapper
@@ -266,7 +269,8 @@ class NavigationMenu extends React.Component {
                   )}
                 />
               );
-            }}</FelaTheme>
+            }}
+          </FelaTheme>
         )}
       </EventTracker>
     );

@@ -1,8 +1,8 @@
 import React, { Component, Fragment, } from 'react';
 import config from 'config';
+import { Form, TextInput, Button, } from '@haaretz/htz-components';
 import { domainToSiteNumber, } from '../../../util/siteUtil';
 
-import { Form, TextInput, Button, } from '@haaretz/htz-components';
 import { getEmail, } from '../../../pages/queryutil/userDetailsOperations';
 import { LoginContentStyles, LoginMiscLayoutStyles, } from '../../StyleComponents/LoginStyleComponents';
 import { sendTrackingEvents, } from '../../../util/trackingEventsUtil';
@@ -35,10 +35,9 @@ const onResetPassword = ({ host, nextStage, showError, hideError, setPreloader, 
       setPreloader(false);
       if (json.status === 'success') {
         sendTrackingEvents(eventsTrackers, { page: 'Reset Password', flowNumber: flow, label: 'sendResetPassword', })(() => {
-            nextStage();
-          }
+          nextStage();
+        }
         );
-        
       }
       else {
         hideError();
@@ -85,7 +84,7 @@ class ResetPasswordForm extends Component {
           <h4>החלפת סיסמה</h4>
           <Form
             clearFormAfterSubmit={false}
-            initialValues={ {email: getEmail(client)} }
+            initialValues={{ email: getEmail(client), }}
             validate={validateEmailInput}
             onSubmit={onResetPassword({
               host,
@@ -113,7 +112,7 @@ class ResetPasswordForm extends Component {
                   })}
                 />
 
-                <ErrorBox className={this.state.showError ? "" : "hidden"}>
+                <ErrorBox className={this.state.showError ? '' : 'hidden'}>
                   <span>
                     {this.state.errorMessage}
                   </span>
