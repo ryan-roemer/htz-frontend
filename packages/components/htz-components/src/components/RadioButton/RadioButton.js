@@ -145,7 +145,7 @@ export class RadioButton extends Component {
           variant={variant}
         >
           <FelaTheme>
-            {({ theme, }) => (
+            {theme => (
               <Ripple
                 isActive={this.state.isFocused}
                 bgColor={theme.color('checkBox', `${variant}Ripple`)}

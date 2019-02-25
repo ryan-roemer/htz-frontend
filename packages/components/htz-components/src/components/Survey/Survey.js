@@ -77,11 +77,7 @@ export default class Survey extends React.Component {
                       />
                       <FelaComponent style={style.legendLabel} as="span">
                         <span>{legend[0]}</span>
-<<<<<<< HEAD
                         <FelaComponent style={style.legendDate} as="span">{legend[1]}</FelaComponent>
-=======
-                        <FelaComponent style={style.legendDate} render="span">{legend[1]}</FelaComponent>
->>>>>>> fix(survey): add render span
                       </FelaComponent>
                     </FelaComponent>
                   );

@@ -220,7 +220,7 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
   return (
     <Grid miscStyles={miscStyles}>
       <FelaTheme>
-        {({ theme, }) => (
+        {theme => (
           <GridItem
             width={1}
             miscStyles={{

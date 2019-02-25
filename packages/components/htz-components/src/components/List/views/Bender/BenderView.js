@@ -24,12 +24,12 @@ const benderWrapperRules = ({ theme, }) => ({
   paddingInlineStart: '2rem',
   paddingInlineEnd: '2rem',
   paddingBottom: '2rem',
-  // marginTop: '10rem',
+  marginTop: '10rem',
   extend: [
     theme.mq({ until: 's', display: 'none', }),
     borderTop('2px', 1, 'solid', theme.color('primary')),
-    // theme.mq({ from: 's', until: 'l', marginTop: '8rem', }),
-    // theme.mq({ from: 'xl', marginTop: '9rem', }),
+    theme.mq({ from: 's', until: 'l', marginTop: '8rem', }),
+    theme.mq({ from: 'xl', marginTop: '9rem', }),
   ],
 });
 

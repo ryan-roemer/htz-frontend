@@ -6,7 +6,7 @@ import SectionTitleA from '../../../SectionTitleA/SectionTitleA';
 import Section from '../../../AutoLevels/Section';
 import { stylesPropType, } from '../../../../propTypes/stylesPropType';
 
-const margineliaStyle = ({ theme, theme: { layoutStyle, }, hideUnderLargeBreakPoint, }) => ({
+const margineliaStyle = ({ theme, hideUnderLargeBreakPoint, }) => ({
   extend: [
     ...(hideUnderLargeBreakPoint ? [ theme.mq({ until: 'l', }, { display: 'none', }), ] : []),
     theme.mq(
@@ -19,15 +19,15 @@ const margineliaStyle = ({ theme, theme: { layoutStyle, }, hideUnderLargeBreakPo
     theme.mq(
       { from: 'l', until: 'xl', },
       {
-        start: `${layoutStyle.startColumnPadding}rem`,
-        maxWidth: `${layoutStyle.startColumnWidthL - layoutStyle.startColumnPadding}rem`,
+        start: `${theme.layoutStyle.startColumnPadding}rem`,
+        maxWidth: `${theme.layoutStyle.startColumnWidthL - theme.layoutStyle.startColumnPadding}rem`,
       }
     ),
     theme.mq(
       { from: 'xl', },
       {
-        start: `${layoutStyle.startColumnPaddingXL}rem`,
-        maxWidth: `${layoutStyle.startColumnWidthXL - layoutStyle.startColumnPaddingXL}rem`,
+        start: `${theme.layoutStyle.startColumnPaddingXL}rem`,
+        maxWidth: `${theme.layoutStyle.startColumnWidthXL - theme.layoutStyle.startColumnPaddingXL}rem`,
       }
     ),
   ],
@@ -55,15 +55,15 @@ const LiveBlogLayoutRow = ({
           <SectionTitleA isInMargin={!!(id === 'commentsSection')} title={title} id={id || null} />
         ) : null}
         <FelaComponent
-          style={({ layoutStyle, mq, }) => ({
+          style={({ theme, }) => ({
             position: 'relative',
             ...(!title ? { backgroundColor: theme.color('primary', '-6'), } : {}),
             extend: [
-              mq(
+              theme.mq(
                 { from: 'l', until: 'xl', },
-                { paddingInlineStart: `${layoutStyle.startColumnWidthL}rem`, }
+                { paddingInlineStart: `${theme.layoutStyle.startColumnWidthL}rem`, }
               ),
-              mq({ from: 'xl', }, { paddingInlineStart: `${layoutStyle.startColumnWidthXL}rem`, }),
+              theme.mq({ from: 'xl', }, { paddingInlineStart: `${theme.layoutStyle.startColumnWidthXL}rem`, }),
             ],
           })}
         >
