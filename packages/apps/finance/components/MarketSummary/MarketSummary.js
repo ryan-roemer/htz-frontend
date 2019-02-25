@@ -12,8 +12,8 @@ import type { Asset, AssetType, } from '../../types/asset';
 import SectionLink from '../SectionLink/SectionLink';
 
 const MarketSummaryQuery: DocumentNode = gql`
-  query MarketSummary($assetsId: [String]!) {
-    assetsList(assetsId: $assetsId) {
+  query MarketSummary($assetsId: [String!]!) {
+    assets(ids: $assetsId) {
       name
       value
       changePercentage
@@ -185,8 +185,7 @@ const MarketSummary = ({ asset, miscStyles, }: Props): Node => {
             }}
           >
             <span>
-              לבורסת
-              {name}
+              {`לבורסת ${name}`}
             </span>
           </SectionLink>
         </FelaComponent>
@@ -195,14 +194,18 @@ const MarketSummary = ({ asset, miscStyles, }: Props): Node => {
   );
 };
 
-export default ({ miscStyles, }: { miscStyles: ?Object, }): Node => (
+export default ({
+  miscStyles,
+  assetsId,
+}: {
+  miscStyles: ?Object,
+  assetsId: string[],
+}): Node => (
   <Query
     query={MarketSummaryQuery}
-    variables={{
-      assetsId: [ '2', '142', '137', ],
-    }}
+    variables={{ assetsId, }}
   >
-    {({ loading, error, data: { assetsList: assets, }, }) => {
+    {({ loading, error, data: { assets, }, }) => {
       if (error) return null;
       if (loading) return null;
       return (

@@ -9,39 +9,37 @@ import type { DocumentNode, } from 'graphql/language/ast';
 import { Query, } from '@haaretz/htz-components';
 
 const GraphQuery: DocumentNode = gql`
-  query FinanceGraph($type: String!, $time: String!, $assetId: String!) {
-    financeGraph(type: $type, time: $time, assetId: $assetId) {
-      startTime
-      endTime
-      dataSource {
-        ... on LineGraphData {
-          time
-          value
-          yieldSpread
-          change
-          volume
-          name
-          symbol
-        }
-        ... on ScatterGraphData {
-          x
-          y
-          name
-          symbol
-        }
+  query FinanceGraph($type: GraphType!, $time: PeriodType!, $assetId: String!) {
+  graph(type: $type, period: $time, id: $assetId) {
+    dataSource {
+      ... on LineGraphData {
+        time
+        value
+        yieldSpread
+        change
+        volume
+      }
+      ... on ScatterGraphData {
+        x
+        y
+        id
       }
     }
   }
+}
 `;
 
 type Props = {
-  indexId?: ?number | string,
-  time?: ?string,
+  indexId?: ?(number | string),
+  time: ?string,
   type: string,
   changeStats: Function,
-  miscStyles?: ?Object,
-  data: Object,
+  data: ?any,
 };
+
+type GraphProps = Props & {
+  miscStyles?: ?Object,
+}
 
 const graphTypes: Object = new Map([
   [
@@ -60,14 +58,14 @@ const graphTypes: Object = new Map([
   ],
 ]);
 
-const Graph = ({
+const GraphWithData = ({
   indexId,
   time,
   type,
   miscStyles,
   data,
   ...props
-}: Props): Node => {
+}: GraphProps): Node => {
   const GraphElement: ComponentType<any> = graphTypes.get(type);
   return (
     <FelaTheme
@@ -93,13 +91,17 @@ const Graph = ({
   );
 };
 
-Graph.defaultProps = {
-  indexId: null,
+GraphWithData.defaultProps = {
   time: null,
   miscStyles: null,
 };
 
-export default (props: any) => {
+Graph.defaultProps = {
+  data: null,
+  indexId: null,
+};
+
+export default function Graph(props: Props) {
   if (!props.data) {
     const { indexId, type, time, } = props;
     return (
@@ -113,15 +115,22 @@ export default (props: any) => {
       >
         {({ loading, error, data, }) => {
           if (error) return null;
-          return (
-            <Graph
-              {...props}
-              data={!loading ? data.financeGraph.dataSource : null}
-            />
-          );
+          if (data && data.graph && data.graph.dataSource.length > 0) {
+            data.graph.dataSource.forEach(item => {
+              // eslint-disable-next-line no-param-reassign
+              item.time = new Date(item.time).getTime();
+            });
+            return (
+              <GraphWithData
+                {...props}
+                data={!loading ? data.graph.dataSource : null}
+              />
+            );
+          }
+          return null;
         }}
       </Query>
     );
   }
-  return <Graph {...props} data={props.data} />;
-};
+  return <GraphWithData {...props} data={props.data} />;
+}

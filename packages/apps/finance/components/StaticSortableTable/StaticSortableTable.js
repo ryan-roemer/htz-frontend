@@ -13,7 +13,7 @@ import { SortIcons, } from '../SortableTable/SortableTable';
 type FieldType = {
   name: string,
   display: string,
-  sortingOrder: "ascend" | "descend",
+  sortingOrder: "asc" | "desc",
   style?: Object => StyleProps,
   value: Object => string,
 };
@@ -170,9 +170,9 @@ class StaticSortableTable extends React.Component<Props, State> {
       const sortOrder = field
         ? prevState.sortBy !== name
           ? sortingOrder
-          : prevState.sortOrder === 'descend'
-            ? 'ascend'
-            : 'descend'
+          : prevState.sortOrder === 'desc'
+            ? 'asc'
+            : 'desc'
         : prevState.sortOrder;
 
       data.sort((itemA, itemB) => {
@@ -183,10 +183,10 @@ class StaticSortableTable extends React.Component<Props, State> {
           ? itemB[name].toUpperCase()
           : itemB[name]; // ignore upper and lowercase
         if (valueA < valueB) {
-          return sortOrder === 'ascend' ? -1 : 1;
+          return sortOrder === 'asc' ? -1 : 1;
         }
         if (valueA > valueB) {
-          return sortOrder === 'ascend' ? 1 : -1;
+          return sortOrder === 'asc' ? 1 : -1;
         }
 
         // values must be equal

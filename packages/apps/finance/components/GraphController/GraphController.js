@@ -67,7 +67,7 @@ class GraphController extends React.Component<Props, State> {
 
   static getDerivedStateFromProps(nextProps: Props, prevState: State) {
     return {
-      selectedPeriod: !prevState ? 'daily' : prevState.selectedPeriod,
+      selectedPeriod: !prevState ? 'day' : prevState.selectedPeriod,
       selectedGraph: !prevState
         ? { value: 'line', display: 'גרף קוי', }
         : prevState.selectedGraph,
@@ -114,51 +114,51 @@ class GraphController extends React.Component<Props, State> {
                   <TabList className={className}>
                     <Tab
                       index={0}
-                      controls="graph-daily"
+                      controls="graph-day"
                       presentation
                       rule={tabRule}
-                      onClick={() => this.changeSelectedTime({ period: 'daily', index: 0, })
+                      onClick={() => this.changeSelectedTime({ period: 'day', index: 0, })
                       }
                     >
                       <span>יומי</span>
                     </Tab>
                     <Tab
                       index={1}
-                      controls="graph-weekly"
+                      controls="graph-week"
                       presentation
                       rule={tabRule}
-                      onClick={() => this.changeSelectedTime({ period: 'weekly', index: 1, })
+                      onClick={() => this.changeSelectedTime({ period: 'week', index: 1, })
                       }
                     >
                       <span>שבועי</span>
                     </Tab>
                     <Tab
                       index={2}
-                      controls="graph-monthly"
+                      controls="graph-month"
                       presentation
                       rule={tabRule}
-                      onClick={() => this.changeSelectedTime({ period: 'monthly', index: 2, })
+                      onClick={() => this.changeSelectedTime({ period: 'month', index: 2, })
                       }
                     >
                       <span>חודשי</span>
                     </Tab>
                     <Tab
                       index={3}
-                      controls="graph-yearly"
+                      controls="graph-year1"
                       presentation
                       rule={tabRule}
-                      onClick={() => this.changeSelectedTime({ period: 'yearly', index: 3, })
+                      onClick={() => this.changeSelectedTime({ period: 'year1', index: 3, })
                       }
                     >
                       <span>שנתי</span>
                     </Tab>
                     <Tab
                       index={4}
-                      controls="graph-tripleYear"
+                      controls="graph-year3"
                       presentation
                       rule={tabRule}
                       onClick={() => this.changeSelectedTime({
-                        period: 'tripleYear',
+                        period: 'year3',
                         index: 4,
                       })
                       }
@@ -167,10 +167,10 @@ class GraphController extends React.Component<Props, State> {
                     </Tab>
                     <Tab
                       index={5}
-                      controls="graph-max"
+                      controls="graph-year5"
                       presentation
                       rule={tabRule}
-                      onClick={() => this.changeSelectedTime({ period: 'max', index: 5, })
+                      onClick={() => this.changeSelectedTime({ period: 'year5', index: 5, })
                       }
                     >
                       <span>מקסימום</span>

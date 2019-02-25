@@ -13,29 +13,74 @@ import TabList from '../TabList/TabList';
 import Tab from '../Tab/Tab';
 import Tabs from '../Tabs/Tabs';
 
-const TableQuery: DocumentNode = gql`
-  query GraphTable(
-    $assetsId: [String]
-    $assetId: String
-    $count: Int
-    $sortBy: String
-    $sortOrder: String
-  ) {
-    assetsList(
-      assetsId: $assetsId
-      assetId: $assetId
-      count: $count
-      sortBy: $sortBy
-      sortOrder: $sortOrder
-    ) {
-      name
-      value
-      changePercentage
-      id
-      type
-    }
-  }
-`;
+type GetQueryParams = {
+  subSection?: string,
+  section?: string,
+  assetsId?: Array<string>,
+  count?: number,
+  sortBy: string,
+  sortOrder: "asc" | "desc",
+}
+
+const TableQuery: GetQueryParams => {
+  query: DocumentNode,
+  variables: Object,
+} = ({
+  section,
+  fragment,
+  subSection,
+  assetsId,
+  count,
+  sortBy,
+  sortOrder,
+}) => ({
+  query: assetsId
+    ? gql`
+        query AssetsTable($assetsId: [String!]!) {
+          assets(
+            ids: $assetsId
+          ) {
+            name
+            value
+            changePercentage
+            id
+            type
+          }
+        }
+      `
+    : gql`
+      query AssetsTable(
+        $filters: [AssetGroupFilter!],
+        $count: Float!,
+        $sortBy: AssetColumn,
+        $sortOrder: OrderType,
+        $offset: Float
+      ) {
+        assetsList(
+          filters: $filters
+          count: $count,
+          sortBy: $sortBy,
+          sortOrder: $sortOrder,
+          offset: $offset
+        ) {
+          name
+          value
+          changePercentage
+          id
+          type
+        }
+      }
+    `,
+  variables: assetsId
+    ? { assetsId, }
+    : {
+      filters: [ { section, subSection, }, ],
+      count: assetsId ? assetsId.length : count,
+      sortBy,
+      sortOrder,
+      offset: 0,
+    },
+});
 
 type TdComponentProps = {
   children: ChildrenArray<Node> | Node,
@@ -84,7 +129,7 @@ type Header = {
 type AssetsTableProps = {
   data: Array<Asset | FeedAsset>,
   miscStyles: ?Object,
-  changeAsset: (Asset | FeedAsset) => void,
+  changeAsset: ?(Asset | FeedAsset) => void,
   headers: Array<Header>,
 };
 
@@ -139,11 +184,11 @@ class AssetsTable extends React.Component<AssetsTableProps, State> {
   }
 
   componentDidMount() {
-    this.props.changeAsset(this.state.asset);
+    if (this.props.changeAsset) this.props.changeAsset(this.state.asset);
   }
 
   componentDidUpdate() {
-    this.props.changeAsset(this.state.asset);
+    if (this.props.changeAsset) this.props.changeAsset(this.state.asset);
   }
 
   changeSelectedIndexId: (Asset | FeedAsset, number) => void = (
@@ -316,31 +361,25 @@ class AssetsTable extends React.Component<AssetsTableProps, State> {
 }
 
 export default (props: any) => {
-  const { assetId, assetsId, sortBy, sortOrder, assets, } = props;
+  const { assetsId, assets, subSection, sortBy, sortOrder, count, section, } = props;
+  const { query, variables, } = TableQuery({
+    subSection,
+    assetsId,
+    count,
+    sortBy,
+    sortOrder,
+    section,
+  });
   return !assets ? (
     <Query
-      query={TableQuery}
-      variables={{
-        ...(assetId
-          ? {
-            assetId: assetId.toString(),
-            count: 9,
-            ...(sortBy
-              ? {
-                sortBy,
-                sortOrder,
-              }
-              : {}),
-          }
-          : {
-            assetsId,
-          }),
-      }}
+      query={query}
+      variables={variables}
     >
-      {({ loading, error, data: { assetsList, }, }) => {
+      {({ loading, error, data, }) => {
         if (error) return null;
         if (loading) return null;
-        return <AssetsTable data={assetsList} {...props} />;
+        const assets = assetsId ? data.assets : data.assetsList;
+        return assets.length ? <AssetsTable data={assets} {...props} /> : null;
       }}
     </Query>
   ) : assets.length ? (
