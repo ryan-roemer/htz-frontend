@@ -7,7 +7,6 @@ import type { Node, } from 'react';
 
 import MainLayout from '../../layouts/MainLayout';
 import PageRow from '../../components/PageRow/PageRow';
-import MarketSummary from '../../components/MarketSummary/MarketSummary';
 import RowItem from '../../components/RowItem/RowItem';
 import TableGraphConnector from '../../components/TableGraphConnector/TableGraphConnector';
 import SortableTable from '../../components/SortableTable/SortableTable';
@@ -22,9 +21,13 @@ type Props = {
   },
 };
 
-const numToString: number => string = num => (
-  num.toLocaleString('he', { minimumFractionDigits: 2, maximumFractionDigits: 2, })
-);
+const numToString: (number | string) => string = num => (typeof num === 'number'
+  ? num.toLocaleString('he', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
+  : num);
+
 
 function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
   return (
@@ -37,9 +40,6 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
       <FelaTheme
         render={theme => (
           <Fragment>
-            <PageRow>
-              <MarketSummary marketId="3" miscStyles={{ flexGrow: '1', }} />
-            </PageRow>
             <PageRow miscStyles={{ marginBottom: '0', }}>
               <RowItem
                 title="מבט לשווקים"
@@ -71,8 +71,10 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                     title="המניות העולות - תל אביב"
                   >
                     <SortableTable
-                      parentId="142"
-                      type="stocks"
+                      queryPrefix="TA_Up"
+                      section="index"
+                      subSection="2"
+                      type="indices"
                       fragment="
                         name
                         value
@@ -82,7 +84,7 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם נייר',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -96,13 +98,13 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'value',
                           display: 'שער אחרון',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ value, }) => numToString(value),
                         },
                         {
                           name: 'changePercentage',
                           display: '% שינוי',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: ({ changePercentage, }) => ({
                             color: changePercentage < 0
                               ? theme.color('negative')
@@ -129,8 +131,10 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                     title="המניות העולות - נאסד״ק"
                   >
                     <SortableTable
-                      parentId="136"
-                      type="stocks"
+                      queryPrefix="Nasdaq_Up"
+                      section="index"
+                      subSection="29.10.@CCO"
+                      type="indices"
                       fragment="
                         name
                         value
@@ -140,7 +144,7 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם נייר',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -154,13 +158,13 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'value',
                           display: 'שער אחרון',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ value, }) => numToString(value),
                         },
                         {
                           name: 'changePercentage',
                           display: '% שינוי',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: ({ changePercentage, }) => ({
                             color: changePercentage < 0
                               ? theme.color('negative')
@@ -191,8 +195,10 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                     title="המניות היורדות - תל אביב"
                   >
                     <SortableTable
-                      parentId="142"
-                      type="stocks"
+                      queryPrefix="TA_Down"
+                      section="index"
+                      subSection="2"
+                      type="indices"
                       fragment="
                         name
                         value
@@ -202,7 +208,7 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם נייר',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -216,13 +222,13 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'value',
                           display: 'שער אחרון',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ value, }) => numToString(value),
                         },
                         {
                           name: 'changePercentage',
                           display: '% שינוי',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: ({ changePercentage, }) => ({
                             color: changePercentage < 0
                               ? theme.color('negative')
@@ -249,8 +255,10 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                     title="המניות היורדות - נאסד״ק"
                   >
                     <SortableTable
-                      parentId="136"
-                      type="stocks"
+                      queryPrefix="Nasdaq_Down"
+                      section="index"
+                      subSection="29.10.@CCO"
+                      type="indices"
                       fragment="
                         name
                         value
@@ -260,7 +268,7 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם נייר',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -274,13 +282,13 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'value',
                           display: 'שער אחרון',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ value, }) => numToString(value),
                         },
                         {
                           name: 'changePercentage',
                           display: '% שינוי',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: ({ changePercentage, }) => ({
                             color: changePercentage < 0
                               ? theme.color('negative')
@@ -320,8 +328,10 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                     title="המניות הפעילות - תל אביב"
                   >
                     <SortableTable
-                      parentId="142"
-                      type="stocks"
+                      queryPrefix="TA_Active"
+                      section="index"
+                      subSection="2"
+                      type="indices"
                       fragment="
                         name
                         value
@@ -331,7 +341,7 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם נייר',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -345,13 +355,13 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'value',
                           display: 'שער אחרון',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ value, }) => numToString(value),
                         },
                         {
                           name: 'volume',
                           display: 'מחזור',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: (volume: number) => ({
                             color: volume < 0
                               ? theme.color('negative')
@@ -362,7 +372,7 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                             position: 'relative',
                             textAlign: 'start',
                           }),
-                          value: ({ value, }) => numToString(value),
+                          value: ({ volume, }) => numToString(volume),
                         },
                       ]}
                       initialSort="volume"
@@ -375,8 +385,10 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                     title="המניות הפעילות - נאסד״ק"
                   >
                     <SortableTable
-                      parentId="136"
-                      type="stocks"
+                      queryPrefix="Nasdaq_Active"
+                      section="index"
+                      subSection="29.10.@CCO"
+                      type="indices"
                       fragment="
                         name
                         value
@@ -386,7 +398,7 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם נייר',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -400,13 +412,13 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'value',
                           display: 'שער אחרון',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ value, }) => numToString(value),
                         },
                         {
                           name: 'volume',
                           display: 'מחזור',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: (volume: number) => ({
                             color: volume < 0
                               ? theme.color('negative')
@@ -417,7 +429,7 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                             position: 'relative',
                             textAlign: 'start',
                           }),
-                          value: ({ value, }) => numToString(value),
+                          value: ({ volume, }) => numToString(volume),
                         },
                       ]}
                       initialSort="volume"
@@ -445,7 +457,7 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם נייר',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -459,13 +471,13 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'value',
                           display: 'שער אחרון',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ value, }) => numToString(value),
                         },
                         {
                           name: 'changePercentage',
                           display: '% שינוי',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: ({ changePercentage, }) => ({
                             color: changePercentage < 0
                               ? theme.color('negative')
@@ -503,7 +515,7 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם נייר',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -517,13 +529,13 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'value',
                           display: 'שער אחרון',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ value, }) => numToString(value),
                         },
                         {
                           name: 'changePercentage',
                           display: '% שינוי',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: ({ changePercentage, }) => ({
                             color: changePercentage < 0
                               ? theme.color('negative')
@@ -554,9 +566,11 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                     title="פערי ארביטראז׳"
                   >
                     <SortableTable
-                      parentId="-2000"
-                      loadMore
+                      queryPrefix="Arbitrage"
+                      section="index"
+                      subSection="-2000"
                       type="stocks"
+                      loadMore
                       fragment="
                         name
                         value
@@ -568,7 +582,7 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם נייר',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -582,25 +596,25 @@ function stocks({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'value',
                           display: 'שער אחרון',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ value, }) => numToString(value),
                         },
                         {
                           name: 'symbol',
                           display: 'סימול בוול סטריט',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           value: ({ symbol, }) => symbol,
                         },
                         {
                           name: 'USDValue',
                           display: 'שער בדולרים',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ USDValue, }) => numToString(USDValue),
                         },
                         {
                           name: 'arbGap',
                           display: '% פער',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: ({ arbGap, }) => ({
                             color: arbGap < 0
                               ? theme.color('negative')
