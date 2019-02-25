@@ -1,8 +1,12 @@
 // @flow
 import React, { Fragment, } from 'react';
-import { Grid, GridItem, GeneralAdSlot, } from '@haaretz/htz-components';
+import { Grid, GridItem, GeneralAdSlot, Query, } from '@haaretz/htz-components';
 import type { Node, } from 'react';
 import { FelaTheme, } from 'react-fela';
+import gql from 'graphql-tag';
+
+import type { DocumentNode, } from 'graphql/language/ast';
+import type { StyleProps, } from '@haaretz/htz-css-tools';
 
 import MainLayout from '../layouts/MainLayout';
 import TableGraphConnector from '../components/TableGraphConnector/TableGraphConnector';
@@ -10,6 +14,20 @@ import PageRow from '../components/PageRow/PageRow';
 import RowItem from '../components/RowItem/RowItem';
 import SortableTable from '../components/SortableTable/SortableTable';
 import TabbedGraph from '../components/TabbedGraph/TabbedGraph';
+import StaticTable from '../components/StaticTable/StaticTable';
+import MarketSummary from '../components/MarketSummary/MarketSummary';
+
+const ExchangeQuery: DocumentNode = gql`
+  query ExchangeTable($ids: [String!]!) {
+    assets(ids: $ids) {
+      id
+      type
+      name
+      value
+      changePercentage
+    }
+  }
+`;
 
 type Props = {
   url: {
@@ -21,9 +39,13 @@ type Props = {
   },
 };
 
-const numToString: number => string = num => (
-  num.toLocaleString('he', { minimumFractionDigits: 2, maximumFractionDigits: 2, })
-);
+const numToString: (number | string) => string = num => (typeof num === 'number'
+  ? num.toLocaleString('he', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
+  : num);
+
 
 function index({ url: { asPath, }, }: Props): Node {
   return (
@@ -35,12 +57,18 @@ function index({ url: { asPath, }, }: Props): Node {
       <FelaTheme
         render={theme => (
           <Fragment>
+            <PageRow>
+              <MarketSummary
+                miscStyles={{ flexGrow: '1', }}
+                assetsId={[ '142', '9001', '30.10.!DJI', ]}
+              />
+            </PageRow>
             <PageRow miscStyles={{ marginBottom: '0', }}>
               <RowItem
                 title="מבט לשווקים"
               >
                 <TableGraphConnector
-                  assetsId={[ '2', '142', '137', '-2000', '164', '143', '167', '145', '149', ]}
+                  assetsId={[ '142', '137', '164', '145', '9001', '9004', '29.10.@CCO', '30.10.!DJI', '33.10.!SPX', ]}
                 />
               </RowItem>
             </PageRow>
@@ -66,8 +94,10 @@ function index({ url: { asPath, }, }: Props): Node {
                     title="מניות תל אביב"
                   >
                     <SortableTable
-                      parentId="142"
-                      type="bonds"
+                      queryPrefix="TA"
+                      section="index"
+                      subSection="2"
+                      type="indices"
                       fragment="
                         name
                         value
@@ -79,7 +109,7 @@ function index({ url: { asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם נייר',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -93,13 +123,13 @@ function index({ url: { asPath, }, }: Props): Node {
                         {
                           name: 'value',
                           display: 'שער אחרון',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ value, }) => numToString(value),
                         },
                         {
                           name: 'changePercentage',
                           display: '% שינוי',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: ({ changePercentage, }) => ({
                             color: changePercentage < 0
                               ? theme.color('negative')
@@ -154,8 +184,10 @@ function index({ url: { asPath, }, }: Props): Node {
                     title="מניות בנסדא״ק"
                   >
                     <SortableTable
-                      parentId="136"
-                      type="bonds"
+                      queryPrefix="Nasdaq"
+                      section="index"
+                      subSection="29.10.@CCO"
+                      type="indices"
                       fragment="
                         name
                         value
@@ -167,7 +199,7 @@ function index({ url: { asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם נייר',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -181,13 +213,13 @@ function index({ url: { asPath, }, }: Props): Node {
                         {
                           name: 'value',
                           display: 'שער אחרון',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ value, }) => numToString(value),
                         },
                         {
                           name: 'changePercentage',
                           display: '% שינוי',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: ({ changePercentage, }) => ({
                             color: changePercentage < 0
                               ? theme.color('negative')
@@ -213,7 +245,9 @@ function index({ url: { asPath, }, }: Props): Node {
                     title="מניות ארביטראז׳"
                   >
                     <SortableTable
-                      parentId="-2000"
+                      queryPrefix="Arbitrage"
+                      section="index"
+                      subSection="-2000"
                       type="stocks"
                       fragment="
                         name
@@ -226,7 +260,7 @@ function index({ url: { asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם נייר',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -240,13 +274,13 @@ function index({ url: { asPath, }, }: Props): Node {
                         {
                           name: 'symbol',
                           display: 'סימול בוול סטריט',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           value: ({ symbol, }) => symbol,
                         },
                         {
                           name: 'arbGap',
                           display: '% פער',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: ({ arbGap, }) => ({
                             color: arbGap < 0
                               ? theme.color('negative')
@@ -272,63 +306,75 @@ function index({ url: { asPath, }, }: Props): Node {
             <PageRow>
               <Grid>
                 <GridItem width={1 / 2}>
-                  <RowItem
-                    title="מט״ח"
+                  <Query
+                    query={ExchangeQuery}
+                    variables={{
+                      ids: [ '9001', '9004', '9305', '9772', '9304', ],
+                    }}
                   >
-                    <SortableTable
-                      assetsId={[ '0', '1', '2', '3', '4', ]}
-                      type="currency"
-                      fragment="
-                        name
-                        value
-                        changePercentage
-                      "
-                      linkText="למדור מטבעות דיגיטליים"
-                      addLink
-                      fields={[
-                        {
-                          name: 'name',
-                          display: 'שם נייר',
-                          sortingOrder: 'ascend',
-                          style: () => ({
-                            fontWeight: '700',
-                            maxWidth: '17rem',
-                            overflow: 'hidden',
-                            paddingStart: '2rem',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap',
-                          }),
-                          value: ({ name, }) => name,
-                        },
-                        {
-                          name: 'value',
-                          display: 'שער אחרון',
-                          sortingOrder: 'descend',
-                          value: ({ value, }) => numToString(value),
-                        },
-                        {
-                          name: 'changePercentage',
-                          display: '% שינוי',
-                          sortingOrder: 'descend',
-                          style: ({ changePercentage, }) => ({
-                            color: changePercentage < 0
-                              ? theme.color('negative')
-                              : theme.color('positive'),
-                            direction: 'ltr',
-                            fontWeight: '700',
-                            paddingEnd: '2rem',
-                            position: 'relative',
-                            textAlign: 'start',
-                          }),
-                          value: ({ changePercentage, }) => `
-                            ${changePercentage > 0 ? '+' : '-'}
-                            ${numToString(Math.abs(changePercentage))}%
-                          `,
-                        },
-                      ]}
-                      initialSort="value"
-                    />
-                  </RowItem>
+                    {({ loading, error, data, }) => {
+                      if (loading || error) return null;
+                      const { assets, } = data;
+                      return (
+                        <RowItem
+                          title="מט״ח"
+                        >
+                          <StaticTable
+                            queryPrefix="Exchange"
+                            type="currency"
+                            linkText="למדור מטבעות דיגיטליים"
+                            addLink
+                            linkContent
+                            data={assets}
+                            columns={[
+                              {
+                                title: 'שם מטבע',
+                                name: 'name',
+                                styles: {
+                                  fontWeight: '700',
+                                  maxWidth: '17rem',
+                                  overflow: 'hidden',
+                                  paddingStart: '2rem',
+                                  textOverflow: 'ellipsis',
+                                  whiteSpace: 'nowrap',
+                                },
+                                render: value => value,
+                              },
+                              {
+                                title: 'שער אחרון',
+                                name: 'value',
+                                styles: {
+                                  paddingStart: '2rem',
+                                },
+                                render: value => numToString(value),
+                              },
+                              {
+                                title: '% שינוי',
+                                percentage: true,
+                                name: 'changePercentage',
+                                styles: function styles(value: number): StyleProps {
+                                  return ({
+                                    color: value < 0
+                                      ? theme.color('negative')
+                                      : theme.color('positive'),
+                                    direction: 'ltr',
+                                    fontWeight: '700',
+                                    paddingStart: '2rem',
+                                    position: 'relative',
+                                    textAlign: 'start',
+                                  });
+                                },
+                                render: value => `
+                                  ${value > 0 ? '+' : '-'}
+                                  ${numToString(Math.abs(value))}%
+                                `,
+                              },
+                            ]}
+                          />
+                        </RowItem>
+                      );
+                    }}
+                  </Query>
                 </GridItem>
                 <GridItem width={1 / 2}>
                   <RowItem
@@ -362,14 +408,15 @@ function index({ url: { asPath, }, }: Props): Node {
                 title="הכי חם בשוק"
               >
                 <TabbedGraph
-                  assetId="general"
+                  subSection="2"
+                  section="index"
                   tabs={[
-                    { display: 'עולות', control: 'graph-up', sortBy: 'changePercentage', sortOrder: 'descend', },
-                    { display: 'יורדות', control: 'graph-down', sortBy: 'changePercentage', sortOrder: 'ascend', },
-                    { display: 'פעילות', control: 'graph-active', sortBy: 'volume', sortOrder: 'descend', },
-                    { display: 'הנצפים באתר', control: 'graph-mostViewed', sortBy: 'name', sortOrder: 'ascend', }, // TEMP
-                    { display: 'עולות שנתי', control: 'graph-upYearly', sortBy: 'yearlyYield', sortOrder: 'descend', },
-                    { display: 'יורדות שנתי', control: 'graph-downYearly', sortBy: 'yearlyYield', sortOrder: 'ascend', },
+                    { display: 'עולות', control: 'graph-up', sortBy: 'changePercentage', sortOrder: 'desc', },
+                    { display: 'יורדות', control: 'graph-down', sortBy: 'changePercentage', sortOrder: 'asc', },
+                    { display: 'פעילות', control: 'graph-active', sortBy: 'volume', sortOrder: 'desc', },
+                    { display: 'הנצפים באתר', control: 'graph-mostViewed', sortBy: 'name', sortOrder: 'asc', }, // TEMP
+                    { display: 'עולות שנתי', control: 'graph-upYearly', sortBy: 'yearlyYield', sortOrder: 'desc', },
+                    { display: 'יורדות שנתי', control: 'graph-downYearly', sortBy: 'yearlyYield', sortOrder: 'asc', },
                   ]}
                 />
               </RowItem>
@@ -381,8 +428,9 @@ function index({ url: { asPath, }, }: Props): Node {
                     title="תעודות סל"
                   >
                     <SortableTable
-                      parentId="2"
-                      type="etf"
+                      queryPrefix="Etf"
+                      section="type"
+                      subSection="etf"
                       fragment="
                         name
                         symbol
@@ -394,7 +442,7 @@ function index({ url: { asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם נייר',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -408,13 +456,13 @@ function index({ url: { asPath, }, }: Props): Node {
                         {
                           name: 'symbol',
                           display: 'סימול בוול סטריט',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           value: ({ symbol, }) => symbol,
                         },
                         {
                           name: 'arbGap',
                           display: '% פער',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: ({ arbGap, }) => ({
                             color: arbGap < 0
                               ? theme.color('negative')
@@ -440,8 +488,9 @@ function index({ url: { asPath, }, }: Props): Node {
                     title="קרנות נאמנות"
                   >
                     <SortableTable
-                      parentId="35"
-                      type="mtf"
+                      queryPrefix="Mtf"
+                      subSection="mtf"
+                      section="type"
                       fragment="
                         name
                         value
@@ -453,7 +502,7 @@ function index({ url: { asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם נייר',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -467,13 +516,13 @@ function index({ url: { asPath, }, }: Props): Node {
                         {
                           name: 'value',
                           display: 'שער אחרון',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ value, }) => numToString(value),
                         },
                         {
                           name: 'changePercentage',
                           display: '% שינוי',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: ({ changePercentage, }) => ({
                             color: changePercentage < 0
                               ? theme.color('negative')
