@@ -116,11 +116,7 @@ const Caption = props => {
       miscStyles={miscStyles}
     >
       <FelaComponent
-        style={(
-          {
-            theme,
-          }
-        ) => ({
+        style={({ theme, }) => ({
           marginEnd: '1rem',
 
           extend: [
