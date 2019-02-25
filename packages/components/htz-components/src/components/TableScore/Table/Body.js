@@ -42,7 +42,7 @@ const FirstRowStyle: Object => Object = ({ theme, textAlign, }) => ({
   fontWeight: '500',
   minWidth: '20rem',
   extend: [
-    theme.mq({ until: 's', }, {
+    theme.mq({ until: 'm', }, {
       minWidth: '2rem',
       paddingBlockStart: '2rem',
       paddingBlockEnd: '2rem',

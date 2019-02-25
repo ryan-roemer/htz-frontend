@@ -3,7 +3,6 @@
 import * as React from 'react';
 import type { Node, } from 'react';
 import { FelaComponent, FelaTheme, } from 'react-fela';
-import { borderTop, borderRight, } from '@haaretz/htz-css-tools';
 import ClickArea from '../../../ClickArea/ClickArea';
 
 // / Flow types
@@ -59,33 +58,20 @@ type SingleTabOptions = {
 
 
 function SingleTab({ text, active, index, handleClick, }: SingleTabOptions): Node {
-  const singleTab: Node = index === 0
-    ? (
-      <FelaComponent
-        active={active}
-        rule={singleTabRule}
+  return (
+    <FelaComponent
+      active={active}
+      rule={singleTabRule}
+    >
+      <ClickArea
+        miscStyles={{ width: '100%',
+          fontWeight: active ? 700 : 500, }}
+        onClick={() => handleClick(index)}
       >
-        <ClickArea onClick={() => handleClick(index)}>
-          {text}
-        </ClickArea>
-      </FelaComponent>
-    )
-    : (
-      <FelaComponent
-        active={active}
-        rule={singleTabRule}
-      >
-        <ClickArea
-          miscStyles={{ width: '100%',
-            fontWeight: active ? 700 : 500, }}
-          onClick={() => handleClick(index)}
-        >
-          {text}
-        </ClickArea>
-      </FelaComponent>
-    );
-
-  return singleTab;
+        {text}
+      </ClickArea>
+    </FelaComponent>
+  );
 }
 
 class GroupBar extends React.Component <Props, State> {

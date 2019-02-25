@@ -70,15 +70,17 @@ function TableHeaderTab({ children, index, }: HeaderTabProps): Node {
       mediaPaddingRight="1.5rem"
       mediaMinWidth="22rem"
       render={({ className, }) => <th className={className}>{children}</th>}
-    />) : (
-      <FelaComponent
-        rule={SingleTabStyle}
-        borderWidth="1px"
-        minWidth="60px"
-        textAlign="center"
-        smallMediaPadding="1rem 1rem 1rem 0.5rem"
-        render={({ className, }) => <th className={className}>{children}</th>}
-      />);
+    />
+  ) : (
+    <FelaComponent
+      rule={SingleTabStyle}
+      borderWidth="1px"
+      minWidth="60px"
+      textAlign="center"
+      smallMediaPadding="1rem 1rem 1rem 0.5rem"
+      render={({ className, }) => <th className={className}>{children}</th>}
+    />
+  );
 }
 
 
