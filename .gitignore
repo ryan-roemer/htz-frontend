@@ -234,4 +234,4 @@ dist/
 .tern-port
 
 # Webpack analyzer reports
-packages/apps/*/bundle-report/*.html
+packages/apps/*/bundle-report
