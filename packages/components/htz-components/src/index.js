@@ -184,6 +184,7 @@ import UserInjector from './components/User/UserInjector';
 import DfpInjector from './components/Ads/DfpInjector';
 import GeneralAdSlot from './components/Ads/GeneralAdSlot';
 import withDfpSideEffect from './components/Dfp/withDfpSideEffect';
+import AdBlockRedirect from './components/AdBlock/AdBlockRedirect';
 
 /** ************************************ *
  *       U  T  I  L  I  T  I  E  S       *
@@ -421,6 +422,7 @@ export {
   DfpInjector,
   GeneralAdSlot,
   withDfpSideEffect,
+  AdBlockRedirect,
   // User
   CheckEmailExists,
   Login,

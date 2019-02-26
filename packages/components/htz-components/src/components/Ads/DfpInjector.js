@@ -154,7 +154,10 @@ class DfpInjector extends Component {
   componentWillUnmount() {
     console.log('Destroy Slots');
     // eslint-disable-next-line no-undef
-    googletag.destroySlots();
+    if (googletag.destroySlots) {
+      // eslint-disable-next-line no-undef
+      googletag.destroySlots();
+    }
     // this.setState()
   }
 
