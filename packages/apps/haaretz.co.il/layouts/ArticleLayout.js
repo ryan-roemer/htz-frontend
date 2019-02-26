@@ -28,6 +28,11 @@ const DfpInjector = dynamic(import('../components/Dfp/DfpInjector'), {
   ssr: false,
 });
 
+const AdBlockRedirect = dynamic(import('../components/AdBlock/AdBlockRedirect'), {
+  loading: () => null,
+  ssr: false,
+});
+
 const WelcomePage = dynamic(import('../components/WelcomePage/WelcomePage'), {
   loading: () => null,
   ssr: false,
@@ -160,6 +165,7 @@ class ArticleLayout extends React.Component {
                 <RouteChangeListener />
                 <UserInjector />
                 <DfpInjector path={url.query.path} pageType="htz_article" />
+                <AdBlockRedirect />
                 <StyleProvider renderer={styleRenderer} theme={htzTheme}>
                   <Fragment>
                     <AriaLive />
