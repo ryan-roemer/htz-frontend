@@ -275,8 +275,8 @@ function Comic({ data, lazyLoadImages, }: ComicPropTypes): React.Node {
               imgOptions={getImageAssets({
                 bps: theme.bps,
                 aspect: 'headline',
-                sizes: [ { size: 'calc(100vw - 6rem)', }, ],
-                widths: [ 599, 500, 400, ],
+                sizes: [ { size: 'calc(100vw - 36px)', }, ],
+                widths: [ 548, 380, 340, 285, ],
               })}
             />
           </FelaComponent>
@@ -635,8 +635,8 @@ function OpEdTeaser({
                   imgOptions={getImageAssets({
                     bps: theme.bps,
                     aspect: 'square',
-                    sizes: [ { size: '17rem', }, ],
-                    widths: [ 204, 119, 102, ],
+                    sizes: [ { size: '119px', }, ],
+                    widths: [ 180, 119, ],
                   })}
                   lazyLoad={lazyLoadImages}
                 />

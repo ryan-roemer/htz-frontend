@@ -177,7 +177,7 @@ function PazuzuTeaser({
                         { from: 'l', size: '314px', },
                         { from: 'm', size: '348px', },
                         { from: 's', size: '264px', },
-                        { size: 'calc(50vw - 6rem)', },
+                        { size: 'calc(50vw - 36px)', },
                       ],
                       aspect: 'headline',
                       widths: [ 162, 265, 324, 350, 600, ],
@@ -204,7 +204,7 @@ function PazuzuTeaser({
                       { from: 'l', size: '314px', },
                       { from: 'm', size: '348px', },
                       { from: 's', size: '264px', },
-                      { size: 'calc(50vw - 4.5rem)', },
+                      { size: 'calc(50vw - 27px)', },
                     ],
                     widths: [ 200, 240, 265, 280, 315, 350, 600, ],
                   })}

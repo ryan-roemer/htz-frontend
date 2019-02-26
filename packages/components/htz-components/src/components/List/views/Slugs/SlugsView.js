@@ -196,7 +196,7 @@ function MainTeaser({ data, lazyLoadImages, biAction, }: TeaserProps): React.Nod
                   { from: 'xl', size: '487px', },
                   { from: 'l', size: '393px', },
                   { from: 's', size: '408px', },
-                  { size: 'calc(100vw - 4rem)', },
+                  { size: 'calc(100vw - 24px)', },
                 ],
                 widths: [ 680, 600, 487, 293, 408, ],
               })}
@@ -263,7 +263,7 @@ function TwoUpTeaser({ data, lazyLoadImages, biAction, index, }: TeaserProps): R
                     { from: 'xl', size: '274px', },
                     { from: 'm', size: '240px', },
                     { from: 's', size: '184px', },
-                    { size: 'calc(50vw - 2.5rem)', },
+                    { size: 'calc(50vw - 15px)', },
                   ],
                   widths: [ 650, 600, 500, 400, 274, 240, 184, ],
                 }),

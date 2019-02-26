@@ -238,7 +238,7 @@ function HawkingMainTeaser({
                   { from: 'l', size: '400px', },
                   { from: 'm', size: '480px', },
                   { from: 's', size: '368px', },
-                  { size: 'calc(100vw - 4rem)', },
+                  { size: 'calc(100vw - 24px)', },
                 ],
                 widths: [ 296, 350, 400, 368, 592, 960, ],
               })}

@@ -53,7 +53,7 @@ export default function MainTeaser({ itemData, lazyLoadImages, biAction, }: Prop
                   { from: 'l', size: '393px', },
                   { from: 'm', size: '472px', },
                   { from: 's', size: '360px', },
-                  { size: 'calc(100vw - 4rem)', },
+                  { size: 'calc(100vw - 24px)', },
                 ],
                 widths: [ 360, 384, 393, 472, 575, 720, ],
               })}

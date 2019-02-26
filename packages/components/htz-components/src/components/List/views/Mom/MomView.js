@@ -316,7 +316,7 @@ function TeaserWithImg1({ data, index, lazyLoadImages, biAction, }: TeaserProps)
                 defaultImgOptions: {
                   sizes: '108px',
                   aspect: 'square',
-                  widths: [ 108, ],
+                  widths: [ 108, 216, ],
                 },
                 sources: [
                   {

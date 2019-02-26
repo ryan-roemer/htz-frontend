@@ -79,7 +79,7 @@ export default function MainTeaser({
                   { from: 'l', size: '226px', },
                   { from: 'm', size: '423px', },
                   { from: 's', size: '322px', },
-                  { size: 'calc(100vw - 4rem)', },
+                  { size: 'calc(100vw - 24px)', },
                 ],
                 widths: [ 226, 281, 322, 390, 423, 600, ],
               })}

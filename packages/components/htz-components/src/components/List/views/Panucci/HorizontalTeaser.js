@@ -69,7 +69,7 @@ export default function HorizontalTeaser({
                 bps: theme.bps,
                 imgData: itemData.image,
                 defaultImgOptions: {
-                  sizes: '18rem',
+                  sizes: '108px',
                   aspect: 'square',
                   widths: [ 108, 216, ],
                 },

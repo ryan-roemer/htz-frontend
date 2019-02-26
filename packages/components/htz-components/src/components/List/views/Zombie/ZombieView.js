@@ -294,9 +294,9 @@ function MainTeaser({
                 bps: theme.bps,
                 imgData: data.image,
                 defaultImgOptions: {
-                  sizes: 'calc(100vw - 4rem)',
+                  sizes: 'calc(100vw - 24px)',
                   aspect: 'headline',
-                  widths: [ 352, 400, 575, ],
+                  widths: [ 300, 352, 400, 560, ],
                 },
                 sources: [
                   {

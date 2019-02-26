@@ -208,7 +208,7 @@ function Teaser1({
                   { from: 'l', size: '567px', },
                   { from: 'm', size: '472px', },
                   { from: 's', size: '360px', },
-                  { size: 'calc(100vw - 4rem)', },
+                  { size: 'calc(100vw - 24px)', },
                 ],
                 widths: [ 597, 567, 472, 360, 400, ],
               })}
@@ -319,7 +319,7 @@ function Teaser2({
                     { from: 'l', size: '154px', },
                     { from: 'm', size: '224px', },
                     { from: 's', size: '168px', },
-                    { size: '18rem', },
+                    { size: '108px', },
                   ],
                   aspect: 'square',
                   widths: [ 108, 154, 168, 204, 224, 400, ],

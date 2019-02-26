@@ -172,7 +172,7 @@ function Teaser1({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.No
                 defaultImgOptions: {
                   sizes: [ { size: '120px', }, ],
                   aspect: 'square',
-                  widths: [ 120, ],
+                  widths: [ 120, 240, ],
                 },
                 sources: [
                   {

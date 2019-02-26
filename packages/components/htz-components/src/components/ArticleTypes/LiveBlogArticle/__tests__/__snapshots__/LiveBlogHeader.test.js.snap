@@ -7,36 +7,36 @@ Object {
       className="htz-a htz-b htz-c htz-d htz-e htz-f htz-g"
     >
       <div
-        className="htz-i htz-h htz-o htz-j htz-p htz-q htz-n htz-r"
+        className="htz-i htz-h htz-u htz-j htz-v htz-w htz-x htz-n htz-o htz-y htz-z htz-ab htz-p htz-ac htz-q htz-r htz-ae htz-af htz-s htz-t"
       >
         <h1
-          className="htz-s htz-t htz-u htz-v htz-w htz-x htz-y htz-z htz-ab"
+          className="htz-ag htz-ah htz-ai htz-aj htz-ak htz-al htz-am htz-an htz-ao"
         >
           משחק המונופול שיפתור את הבעיות הרגולטוריות של ישראל
         </h1>
         <p
-          className="htz-ac htz-ae htz-af htz-ag htz-ah htz-ai"
+          className="htz-ap htz-aq htz-ar htz-as htz-at htz-au"
         >
            המונופול שיפתור את הבעיות הרגולטוריות 
         </p>
       </div>
       <div
-        className="htz-aj htz-ak htz-al htz-am htz-an htz-ao htz-ap htz-aq"
+        className="htz-av htz-aw htz-ax htz-ay htz-az htz-ba htz-bb htz-bc htz-bd htz-be htz-bf htz-bg htz-bh htz-bi htz-bj htz-bk"
       >
         <div
-          className="htz-ar htz-as htz-at htz-au htz-av htz-aw htz-ax htz-ay htz-az htz-ba htz-bb htz-bc htz-bd htz-be htz-bf htz-bg htz-bh htz-bi htz-bj htz-bk htz-bl htz-bm"
+          className="htz-bl htz-bm htz-bn htz-bo htz-bp htz-bq htz-br htz-bs htz-bt htz-bu htz-bv htz-bw htz-bx htz-by htz-bz htz-ca htz-cb htz-cc htz-cd htz-ce htz-cf htz-cg"
         >
           <div
-            className="htz-ar htz-as htz-bh htz-bi htz-bj htz-bk htz-bl htz-bm"
+            className="htz-bl htz-bm htz-cb htz-cc htz-cd htz-ce htz-cf htz-cg"
           >
             <div
-              className="htz-bn"
+              className="htz-ch"
             >
               <address
-                className="htz-bo htz-bp htz-bq htz-br htz-bs htz-bt htz-bu htz-bv htz-bw htz-bx htz-s"
+                className="htz-ci htz-cj htz-ck htz-cl htz-cm htz-cn htz-co htz-cp htz-cq htz-cr htz-ag"
               >
                 <a
-                  className="htz-by htz-bz htz-ca"
+                  className="htz-cs htz-ct htz-cu"
                   href="/misc/writers/WRITER-1.681402"
                   onClick={[Function]}
                 >
@@ -44,17 +44,17 @@ Object {
                 </a>
               </address>
               <div
-                className="htz-ci"
+                className="htz-dg"
               >
                 <time
-                  className="htz-cb htz-aq htz-bn htz-cc htz-cd htz-ce htz-cf htz-cg htz-ch"
+                  className="htz-cv htz-bk htz-ch htz-cw htz-cx htz-cy htz-cz htz-da htz-db htz-dc htz-dd htz-de htz-df"
                   dateTime="2018-07-20T17:42:00+03:00"
                 >
                   20.07.2018
                 </time>
                  
                 <time
-                  className="htz-cb htz-aq htz-bn htz-cc htz-cd htz-ce htz-cf htz-cg htz-ch"
+                  className="htz-cv htz-bk htz-ch htz-cw htz-cx htz-cy htz-cz htz-da htz-db htz-dc htz-dd htz-de htz-df"
                   dateTime="2018-07-25T16:18:00+03:00"
                 >
                   עודכן ב-25.07.2018
@@ -63,17 +63,17 @@ Object {
             </div>
           </div>
           <div
-            className="htz-ci"
+            className="htz-dg"
           >
             <time
-              className="htz-cb htz-cj htz-cc htz-cd htz-bn htz-ce htz-cf htz-cg htz-ch"
+              className="htz-cv htz-dh htz-cw htz-cx htz-cy htz-cz htz-da htz-db htz-ch htz-dc htz-dd htz-de htz-df"
               dateTime="2018-07-20T17:42:00+03:00"
             >
               20.07.2018
             </time>
              
             <time
-              className="htz-cb htz-cj htz-cc htz-cd htz-bn htz-ce htz-cf htz-cg htz-ch"
+              className="htz-cv htz-dh htz-cw htz-cx htz-cy htz-cz htz-da htz-db htz-ch htz-dc htz-dd htz-de htz-df"
               dateTime="2018-07-25T16:18:00+03:00"
             >
               עודכן ב-25.07.2018
@@ -82,7 +82,7 @@ Object {
         </div>
       </div>
       <div
-        className="htz-h htz-n"
+        className="htz-h htz-p htz-q htz-r htz-s htz-t"
       >
         <ShareBar
           canonicalUrl="http://pre.haaretz.co.il/news/politics/LIVE-1.6293368"
@@ -90,15 +90,15 @@ Object {
         />
       </div>
       <span
-        className="htz-ck htz-cl htz-cm htz-as htz-cn htz-co htz-aq htz-bm"
+        className="htz-di htz-dj htz-dk htz-bm htz-dl htz-dm htz-bk htz-cg"
       >
         <span
-          className="htz-cp htz-cq htz-cr htz-bp htz-cs htz-ct htz-cu htz-cv"
+          className="htz-dn htz-do htz-dp htz-cj htz-dq htz-dr htz-ds htz-dt htz-du htz-dv"
         >
           LIVE
         </span>
         <span
-          className="htz-cw htz-cx htz-cy htz-c htz-cz"
+          className="htz-dw htz-dx htz-dy htz-c htz-dz"
         />
       </span>
       <HeadlineElement
@@ -197,6 +197,6 @@ Object {
       />
     </header>
   </div>,
-  "styles": ".htz-a{text-align:right}.htz-b{overflow:hidden}.htz-c{background-color:white}.htz-h{padding-right:2rem}.htz-i{margin-top:3rem}.htz-s{display:inline}.htz-ac{font-weight:normal}.htz-ae{margin-top:1rem}.htz-ar{display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:flex}.htz-as{align-items:center}.htz-bm{-webkit-box-align:center}.htz-bo{color:#006B96}.htz-bp{font-weight:bold}.htz-by{color:currentcolor}.htz-cb{display:inline-block}.htz-ck{height:5rem}.htz-cl{width:100%}.htz-cm{background-color:#A8001C}.htz-cp{color:white}.htz-cq{padding-right:1rem}.htz-cr{padding-top:0.3rem}.htz-cw{height:1rem}.htz-cx{width:1rem}.htz-cy{border-radius:50%}.htz-cz{margin:1rem}.htz-bz:hover{text-decoration:underline}.htz-ca:focus{text-decoration:underline}@media (max-width: 47.9375em){.htz-d{display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:flex}.htz-e{flex-direction:column}.htz-f{-webkit-box-orient:vertical}.htz-g{-webkit-box-direction:normal}.htz-t{font-size:4rem}.htz-u{line-height:1.25em}}@media (max-width: 37.4375em){.htz-j{padding-right:3rem}.htz-k{order:-1}.htz-l{margin-top:2rem}.htz-m{margin-bottom:3rem}.htz-o{padding-left:3rem}.htz-p{margin-top:0}.htz-aj{margin-top:3rem}.htz-ak{margin-right:3rem}.htz-al{margin-left:3rem}.htz-at{flex-grow:1}.htz-au{justify-content:space-between}.htz-av{border-top-width:1px}.htz-aw{border-top-style:solid}.htz-ax{border-top-color:#CCC}.htz-ay{padding-top:calc(1rem - 1px)}.htz-az{border-bottom-width:1px}.htz-ba{border-bottom-style:solid}.htz-bb{border-bottom-color:#CCC}.htz-bc{padding-bottom:calc(1rem - 1px)}.htz-bd{-webkit-box-flex:1}.htz-be{-webkit-box-pack:justify}.htz-bq{font-size:2rem}.htz-br{line-height:1.5em}.htz-cn{order:-3}}@media (min-width: 80em){.htz-n{padding-right:3rem}.htz-r{padding-left:5rem}.htz-z{font-size:5.857142857142857rem}.htz-ab{line-height:1.1951219512195121em}.htz-ah{font-size:3rem}.htz-ai{line-height:1.3333333333333333em}.htz-bw{font-size:2.2857142857142856rem}.htz-bx{line-height:1.3125em}.htz-cg{font-size:1.7142857142857142rem}.htz-ch{line-height:1.75em}.htz-cu{font-size:2rem}.htz-cv{line-height:1.5em}}@media (min-width: 37.5em) and (max-width: 63.9375em){.htz-q{padding-left:2rem}.htz-am{margin-top:2rem}.htz-bs{font-size:2.3333333333333335rem}.htz-bt{line-height:1.2857142857142858em}.htz-cc{margin-right:1rem}.htz-cd{margin-left:1rem}.htz-ci{display:inline}}@media (min-width: 48em) and (max-width: 63.9375em){.htz-v{font-size:4.666666666666667rem}.htz-w{line-height:1.2857142857142858em}}@media (min-width: 64em) and (max-width: 79.9375em){.htz-x{font-size:5.333333333333333rem}.htz-y{line-height:1.125em}.htz-bu{font-size:2.6666666666666665rem}.htz-bv{line-height:1.5em}}@media (max-width: 79.9375em){.htz-af{font-size:3rem}.htz-ag{line-height:1.3333333333333333em}.htz-ce{font-size:1.8333333333333333rem}.htz-cf{line-height:1.6363636363636365em}.htz-cs{font-size:2rem}.htz-ct{line-height:1.5em}}@media (min-width: 37.5em){.htz-an{margin-right:2rem}.htz-ao{margin-left:2rem}.htz-bf{justify-content:flex-start}.htz-bg{-webkit-box-pack:right}}@media (max-width: 63.9375em){.htz-ap{display:block}.htz-cj{display:none}.htz-co{display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:flex}}@media (min-width: 64em){.htz-aq{display:none}.htz-bh{flex-direction:column}.htz-bi{align-items:flex-start}.htz-bj{-webkit-box-orient:vertical}.htz-bk{-webkit-box-direction:normal}.htz-bl{-webkit-box-align:right}.htz-bn{margin-top:0.5rem}}",
+  "styles": ".htz-a{text-align:right}.htz-b{overflow:hidden}.htz-c{background-color:white}.htz-h{padding-right:2rem}.htz-i{margin-top:3rem}.htz-s{-webkit-padding-start:2rem}.htz-t{-moz-padding-start:2rem}.htz-ag{display:inline}.htz-ap{font-weight:normal}.htz-aq{margin-top:1rem}.htz-bl{display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:flex}.htz-bm{align-items:center}.htz-cg{-webkit-box-align:center}.htz-ci{color:#006B96}.htz-cj{font-weight:bold}.htz-cs{color:currentcolor}.htz-cv{display:inline-block}.htz-di{height:5rem}.htz-dj{width:100%}.htz-dk{background-color:#A8001C}.htz-dn{color:white}.htz-do{padding-right:1rem}.htz-dp{padding-top:0.3rem}.htz-du{-webkit-padding-start:1rem}.htz-dv{-moz-padding-start:1rem}.htz-dw{height:1rem}.htz-dx{width:1rem}.htz-dy{border-radius:50%}.htz-dz{margin:1rem}.htz-ct:hover{text-decoration:underline}.htz-cu:focus{text-decoration:underline}@media (max-width: 47.9375em){.htz-d{display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:flex}.htz-e{flex-direction:column}.htz-f{-webkit-box-orient:vertical}.htz-g{-webkit-box-direction:normal}.htz-ah{font-size:4rem}.htz-ai{line-height:1.25em}}@media (max-width: 37.4375em){.htz-j{padding-right:3rem}.htz-k{order:-1}.htz-l{margin-top:2rem}.htz-m{margin-bottom:3rem}.htz-n{-webkit-padding-start:3rem}.htz-o{-moz-padding-start:3rem}.htz-u{padding-left:3rem}.htz-v{margin-top:0}.htz-w{-webkit-padding-end:3rem}.htz-x{-moz-padding-end:3rem}.htz-av{margin-top:3rem}.htz-aw{margin-right:3rem}.htz-ax{margin-left:3rem}.htz-ay{-webkit-margin-start:3rem}.htz-az{-moz-margin-start:3rem}.htz-ba{-webkit-margin-end:3rem}.htz-bb{-moz-margin-end:3rem}.htz-bn{flex-grow:1}.htz-bo{justify-content:space-between}.htz-bp{border-top-width:1px}.htz-bq{border-top-style:solid}.htz-br{border-top-color:#CCC}.htz-bs{padding-top:calc(1rem - 1px)}.htz-bt{border-bottom-width:1px}.htz-bu{border-bottom-style:solid}.htz-bv{border-bottom-color:#CCC}.htz-bw{padding-bottom:calc(1rem - 1px)}.htz-bx{-webkit-box-flex:1}.htz-by{-webkit-box-pack:justify}.htz-ck{font-size:2rem}.htz-cl{line-height:1.5em}.htz-dl{order:-3}}@media (min-width: 80em){.htz-p{padding-right:3rem}.htz-q{-webkit-padding-start:3rem}.htz-r{-moz-padding-start:3rem}.htz-ac{padding-left:5rem}.htz-ae{-webkit-padding-end:5rem}.htz-af{-moz-padding-end:5rem}.htz-an{font-size:5.857142857142857rem}.htz-ao{line-height:1.1951219512195121em}.htz-at{font-size:3rem}.htz-au{line-height:1.3333333333333333em}.htz-cq{font-size:2.2857142857142856rem}.htz-cr{line-height:1.3125em}.htz-de{font-size:1.7142857142857142rem}.htz-df{line-height:1.75em}.htz-ds{font-size:2rem}.htz-dt{line-height:1.5em}}@media (min-width: 37.5em) and (max-width: 63.9375em){.htz-y{padding-left:2rem}.htz-z{-webkit-padding-end:2rem}.htz-ab{-moz-padding-end:2rem}.htz-bc{margin-top:2rem}.htz-cm{font-size:2.3333333333333335rem}.htz-cn{line-height:1.2857142857142858em}.htz-cw{margin-right:1rem}.htz-cx{margin-left:1rem}.htz-cy{-webkit-margin-start:1rem}.htz-cz{-moz-margin-start:1rem}.htz-da{-webkit-margin-end:1rem}.htz-db{-moz-margin-end:1rem}.htz-dg{display:inline}}@media (min-width: 48em) and (max-width: 63.9375em){.htz-aj{font-size:4.666666666666667rem}.htz-ak{line-height:1.2857142857142858em}}@media (min-width: 64em) and (max-width: 79.9375em){.htz-al{font-size:5.333333333333333rem}.htz-am{line-height:1.125em}.htz-co{font-size:2.6666666666666665rem}.htz-cp{line-height:1.5em}}@media (max-width: 79.9375em){.htz-ar{font-size:3rem}.htz-as{line-height:1.3333333333333333em}.htz-dc{font-size:1.8333333333333333rem}.htz-dd{line-height:1.6363636363636365em}.htz-dq{font-size:2rem}.htz-dr{line-height:1.5em}}@media (min-width: 37.5em){.htz-bd{margin-right:2rem}.htz-be{margin-left:2rem}.htz-bf{-webkit-margin-start:2rem}.htz-bg{-moz-margin-start:2rem}.htz-bh{-webkit-margin-end:2rem}.htz-bi{-moz-margin-end:2rem}.htz-bz{justify-content:flex-start}.htz-ca{-webkit-box-pack:right}}@media (max-width: 63.9375em){.htz-bj{display:block}.htz-dh{display:none}.htz-dm{display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:flex}}@media (min-width: 64em){.htz-bk{display:none}.htz-cb{flex-direction:column}.htz-cc{align-items:flex-start}.htz-cd{-webkit-box-orient:vertical}.htz-ce{-webkit-box-direction:normal}.htz-cf{-webkit-box-align:right}.htz-ch{margin-top:0.5rem}}",
 }
 `;
