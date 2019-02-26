@@ -14,6 +14,8 @@ import TeaserMedia from '../../../TeaserMedia/TeaserMedia';
 import TeaserResponsiveText from '../../../TeaserResponsiveText/TeaserResponsiveText';
 import GridItem from '../../../Grid/GridItem';
 import BlockLink from '../../../BlockLink/BlockLink';
+import AboveBlockLink from '../../../BlockLink/AboveBlockLink';
+import HtzLink from '../../../HtzLink/HtzLink';
 import { isImage, isEmbed, } from '../../../../utils/validateType';
 
 import type { ImageDataType, } from '../../../../flowTypes/ImageDataType';
@@ -42,42 +44,49 @@ export default function Boxy({ list, }: Props): Node {
             bgc={color('neutral', '-2')}
             miscStyles={{ marginTop: [ { until: 's', value: 6, }, ], }}
           >
-            <LayoutContainer
-              miscStyles={{
-                // Hide yellow strip when it overflows from the bottom
-                // because of subpixel rendering
-                overflow: 'hidden',
-                position: 'relative',
-              }}
-            >
-              <FelaComponent style={textWrapperStyle}>
-                {item.title && (
-                  <FelaComponent
-                    style={innerTextStyle}
-                    render={({ className: headerClass, }) => (
-                      // We use an offset here, because the title should be the same level
-                      // as a header inside a section, no the same as a section's title
-                      <BlockLink href={item.path}>
-                        <H className={headerClass} offset={1}>
-                          <TeaserResponsiveText text={item.title} mobileText={item.titleMobile} />
-                        </H>
-                      </BlockLink>
-                    )}
-                  />
-                )}
-              </FelaComponent>
-              {mediaKind === 'image' ? (
-                <TeaserMedia data={item}>
-                  <MediaComponent {...mediaProps} />
-                </TeaserMedia>
-              ) : (
-                <GridItem width={1} stretchContent>
-                  <BlockLink href={item.path} attrs={{ tabIndex: -1, }}>
+            <BlockLink href={item.path} attrs={{ tabIndex: -1, }}>
+              <LayoutContainer
+                miscStyles={{
+                  // Hide yellow strip when it overflows from the bottom
+                  // because of subpixel rendering
+                  overflow: 'hidden',
+                  position: 'relative',
+                }}
+              >
+                <AboveBlockLink>
+                  {({ className, }) => (
+                    <FelaComponent style={textWrapperStyle}>
+                      {item.title && (
+                        <FelaComponent
+                          style={innerTextStyle}
+                          render={({ className: headerClass, }) => (
+                            // We use an offset here, because the title should be the same level
+                            // as a header inside a section, no the same as a section's title
+                            <HtzLink href={item.path} className={className}>
+                              <H className={headerClass} offset={1}>
+                                <TeaserResponsiveText
+                                  text={item.title}
+                                  mobileText={item.titleMobile}
+                                />
+                              </H>
+                            </HtzLink>
+                          )}
+                        />
+                      )}
+                    </FelaComponent>
+                  )}
+                </AboveBlockLink>
+                {mediaKind === 'image' ? (
+                  <TeaserMedia data={item}>
                     <MediaComponent {...mediaProps} />
-                  </BlockLink>
-                </GridItem>
-              )}
-            </LayoutContainer>
+                  </TeaserMedia>
+                ) : (
+                  <GridItem width={1} stretchContent>
+                    <MediaComponent {...mediaProps} />
+                  </GridItem>
+                )}
+              </LayoutContainer>
+            </BlockLink>
           </LayoutRow>
         );
       }}
