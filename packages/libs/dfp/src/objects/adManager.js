@@ -811,7 +811,7 @@ export default class AdManager {
       // if (googleGlobalSettings.enableSingleRequest === true) {
       //   googletag.pubads().enableSingleRequest();
       // }
-      if (googleGlobalSettings.enableAsyncRendering === true) {
+      /* if (googleGlobalSettings.enableAsyncRendering === true) {
         pubads.enableAsyncRendering();
         // if (googleGlobalSettings.disableInitialLoad === true) {
         //   console.log('disabling initial load');
@@ -820,7 +820,7 @@ export default class AdManager {
       }
       else {
         pubads.enableSyncRendering();
-      }
+      } */
       // Enables all GPT services that have been defined for ad slots on the page.
       googletag.enableServices();
     }
