@@ -21,10 +21,13 @@ const DfpInjector = dynamic(import('../components/Dfp/DfpInjector'), {
   loading: () => null,
   ssr: false,
 });
-const GaHomePage = dynamic(import('../components/GoogleAnalyticsHomePage/GoogleAnalyticsHomePage'), {
-  loading: () => null,
-  ssr: false,
-});
+const GaHomePage = dynamic(
+  import('../components/GoogleAnalyticsHomePage/GoogleAnalyticsHomePage'),
+  {
+    loading: () => null,
+    ssr: false,
+  }
+);
 
 function HomePageLayout({ render, }: { render: Function, }): React.Node {
   return (
@@ -50,7 +53,10 @@ function HomePageLayout({ render, }: { render: Function, }): React.Node {
           <React.Fragment>
             <Head>
               <title>{seoData.metaTitle}</title>
-              <meta property="article:publisher" content="https://www.facebook.com/haaretz" />
+              <meta
+                property="article:publisher"
+                content="https://www.facebook.com/haaretz"
+              />
               <meta property="fb:pages" content="109551402519" />
               {/*
                * Refresh page every 5 mins
@@ -59,25 +65,30 @@ function HomePageLayout({ render, }: { render: Function, }): React.Node {
               <script
                 type="text/javascript"
                 dangerouslySetInnerHTML={{
-                  __html: `
-if (window) {
-  const refreshTimer = setTimeout(
-    function() { typeof window != null &&  window.location.reload() },
-    ${1000 * 60 * 5}
-  );
-  window['__HTZ'] = {
-    cancelRefresh: function cancelRefresh() {
-      clearTimeout(refreshTimer);
-    },
+                  __html: `window.__HTZ = {};
+try {
+  if (window.mathcMedia("(min-width: 37.5em)").matches) {
+    const refreshTimer = setTimeout(
+      function() { typeof window != null &&  window.location.reload() },
+      ${1000 * 60 * 5}
+    );
+    window.__HTZ.cancelRefresh = function cancelRefresh() {
+        clearTimeout(refreshTimer);
+      },
+    }
   }
 }
-            `,
+catch (err) {}`,
                 }}
               />
 
               <meta name="description" content={seoData.metaDescription} />
               <link rel="canonical" href={seoData.canonicalUrl} />
-              <link rel="alternate" media="only screen and (max-width: 640px)" href="https://www.haaretz.co.il/whtzMobileSite/" />
+              <link
+                rel="alternate"
+                media="only screen and (max-width: 640px)"
+                href="https://www.haaretz.co.il/whtzMobileSite/"
+              />
             </Head>
             <ScrollListener />
             <RouteChangeListener />
