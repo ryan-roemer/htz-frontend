@@ -21,10 +21,13 @@ const DfpInjector = dynamic(import('../components/Dfp/DfpInjector'), {
   loading: () => null,
   ssr: false,
 });
-const GaHomePage = dynamic(import('../components/GoogleAnalyticsHomePage/GoogleAnalyticsHomePage'), {
-  loading: () => null,
-  ssr: false,
-});
+const GaHomePage = dynamic(
+  import('../components/GoogleAnalyticsHomePage/GoogleAnalyticsHomePage'),
+  {
+    loading: () => null,
+    ssr: false,
+  }
+);
 
 function HomePageLayout({ render, }: { render: Function, }): React.Node {
   return (
@@ -32,6 +35,7 @@ function HomePageLayout({ render, }: { render: Function, }): React.Node {
       {({ loading, error, data, client, }) => {
         if (loading) return null;
         if (error) console.error(error);
+        console.log('!!!!!!THIS IS NEW');
         const {
           homePage: { slots, seoData, pageDateTimeString, pageType, },
         } = data;
@@ -50,7 +54,10 @@ function HomePageLayout({ render, }: { render: Function, }): React.Node {
           <React.Fragment>
             <Head>
               <title>{seoData.metaTitle}</title>
-              <meta property="article:publisher" content="https://www.facebook.com/haaretz" />
+              <meta
+                property="article:publisher"
+                content="https://www.facebook.com/haaretz"
+              />
               <meta property="fb:pages" content="109551402519" />
               {/*
                * Refresh page every 5 mins
@@ -77,7 +84,11 @@ if (window) {
 
               <meta name="description" content={seoData.metaDescription} />
               <link rel="canonical" href={seoData.canonicalUrl} />
-              <link rel="alternate" media="only screen and (max-width: 640px)" href="https://www.haaretz.co.il/whtzMobileSite/" />
+              <link
+                rel="alternate"
+                media="only screen and (max-width: 640px)"
+                href="https://www.haaretz.co.il/whtzMobileSite/"
+              />
             </Head>
             <ScrollListener />
             <RouteChangeListener />
