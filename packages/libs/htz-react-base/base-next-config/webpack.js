@@ -5,14 +5,12 @@
 // /////////// //
 
 const path = require('path');
-const StatsPlugin = require('stats-webpack-plugin');
-const { DuplicatesPlugin, } = require('inspectpack/plugin');
 
 // ////////////////// //
 //   Config and ENV   //
 // ////////////////// //
 
-const { BUNDLE_ANALYZE, } = process.env;
+const { BUNDLE_STATS, BUNDLE_ANALYZE, } = process.env;
 
 const moduleRules = require('./moduleRules');
 
@@ -23,6 +21,7 @@ module.exports = function configWebpack(
 ) {
   // eslint-disable-next-line no-unused-vars
   const { buildId, dev, isServer, defaultLoaders, } = opts;
+  const isClient = !isServer;
 
   if (!config.module.rules) config.module.rules = [];
   config.module.rules.push(...moduleRules);
@@ -43,17 +42,50 @@ module.exports = function configWebpack(
   // Use untranspiled source in htz packages
   config.resolve.mainFields.unshift('htzInternal');
 
-  // Check for duplicate code from dependencies
-  if (!isServer) {
-    config.plugins.push(
-      new DuplicatesPlugin({
-        verbose: true,
-        emitHandler: report => console.log(report),
-      })
-    );
-  }
+  if ((isClient && BUNDLE_STATS) || BUNDLE_ANALYZE) {
+    const { StatsWriterPlugin, } = require('webpack-stats-plugin');
+    const DuplicatesPackagesCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 
-  if (BUNDLE_ANALYZE) setBundleAnalyze(config);
+    // Check for duplicate code from dependencies
+    const duplicates = new DuplicatesPackagesCheckerPlugin({
+      // Also show module that is requiring each duplicate package
+      verbose: BUNDLE_STATS || BUNDLE_ANALYZE,
+      // Emit errors instead of warnings
+      emitError: false,
+      // Show help message if duplicate packages are found
+      showHelp: false,
+      // Warn also if major versions differ
+      strict: true,
+      /**
+       * Exclude instances of packages from the results.
+       * If all instances of a package are excluded, or all instances except one,
+       * then the package is no longer considered duplicated and won't be emitted as a warning/error.
+       * @param {Object} instance
+       * @param {string} instance.name The name of the package
+       * @param {string} instance.version The version of the package
+       * @param {string} instance.path Absolute path to the package
+       * @param {?string} instance.issuer Absolute path to the module that requested the package
+       * @returns {boolean} true to exclude the instance, false otherwise
+       */
+      // exclude(instance) {
+      //   return instance.name === "fbjs";
+      // }
+    });
+
+    // Generate a `stats` json
+    config.stats = 'verbose';
+    config.profile = true;
+
+    const stats = new StatsWriterPlugin({
+      filename: path.join(
+        '..',
+        'bundle-report',
+        "stats-{isServer ? 'server' : 'client'}.json"
+      ),
+      fields: [ 'assets', 'moudles', ],
+    });
+    config.plugins.push(duplicates, stats);
+  }
 
   shimForClientSideBuild(config);
 
@@ -63,19 +95,6 @@ module.exports = function configWebpack(
 // //////////////////// //
 //   Helper Functions   //
 // //////////////////// //
-
-function setBundleAnalyze(configToMutate) {
-  configToMutate.profile = true;
-  configToMutate.stats = 'verbose';
-
-  // Generate a `stats` json
-  configToMutate.plugins.push(
-    new StatsPlugin(path.join(process.cwd(), 'stats.json'), {
-      chunkModules: true,
-      // exclude: [ /node_modules\\\/react/, ],
-    })
-  );
-}
 
 // This is required for removing node core modules
 // from packages that use them and fail to

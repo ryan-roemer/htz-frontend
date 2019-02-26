@@ -42,19 +42,8 @@ switch (process.env.BABEL_ENV) {
     presets.push([
       '@babel/preset-env',
       {
-        targets: {
-          // The browser list having any slimming effect on the selected
-          // transforms is mostly aspirational due to the UglifyJS requirement,
-          // see below.
-          browsers: require('./browsers'),
-          // This line is necessary as long as webpack uses UglifyJS for
-          // for minification. Certain syntax transforms are necessary even if
-          // every browser in the list supports it, because UglifyJS needs to
-          // support it too. You may notice that removing this line may not
-          // break the build - most likely, that just means the selected
-          // browsers happen to require the same transforms.
-        },
-        useBuiltIns: 'entry',
+        targets: require('./browsers').join(', '),
+        // useBuiltIns: 'entry',
         forceAllTransforms: false,
         modules: false,
       },
