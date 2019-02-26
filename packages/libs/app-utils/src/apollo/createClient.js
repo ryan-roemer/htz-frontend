@@ -119,17 +119,19 @@ function create(initialState, appDefaultState, req) {
     },
   }).restore(initialState || {});
 
+  // **Since we do not use this cookie when using Fastly caching. We do not need the following commented out code.**
   // try creating a user from initial request (server only)
-  const userFromReq = req
-    ? Object.assign(
-      {},
-      defaultUser,
-      new UserFactory(true, req.header('Cookie') || '', hostname).build()
-    )
-    : undefined;
+  // const userFromReq = req
+  //   ? Object.assign(
+  //     {},
+  //     defaultUser,
+  //     new UserFactory(true, req.header('Cookie') || '', hostname).build()
+  //   )
+  //   : undefined;
+
   // try to rehydrate user on client from server state (client)
   const userFromCache = inMemoryCache.data.data['$ROOT_QUERY.user'];
-  const user = Object.assign({}, defaultUser, userFromReq || userFromCache);
+  const user = Object.assign({}, defaultUser, userFromCache);
 
   const stateLink = withClientState({
     cache: inMemoryCache,

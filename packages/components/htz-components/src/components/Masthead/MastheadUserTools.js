@@ -24,7 +24,7 @@ export default function MastheadUserTools() {
                   <React.Fragment>
                     <MastheadUserMenu userName={user.firstName} biAction={biAction} />
                     {/* TODO: change gstat script location when user cache problem is fixed */}
-                    <GStat user={user} />
+                    {user.anonymousId ? <GStat user={user} /> : null}
                   </React.Fragment>
                 )}
               />
