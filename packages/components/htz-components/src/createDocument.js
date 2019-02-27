@@ -6,6 +6,7 @@ import config from 'config';
 import serialize from 'serialize-javascript';
 import { breakUrl, } from '@haaretz/app-utils';
 import SEO from './components/SEO/SEO';
+import InitPixel from './components/Scripts/InitPixel';
 import criticalFontLoader from './utils/criticalFontLoader';
 // import ChartBeat from './components/Scripts/ChartBeat';
 
@@ -155,6 +156,7 @@ const createDocument = ({
              * ************************* */}
             {criticalFont.style}
             {this.renderStyles()}
+            <InitPixel hostname={this.props.host} />
             {/* TODO: This should be in the theme's static rules */}
             <style
               dangerouslySetInnerHTML={{

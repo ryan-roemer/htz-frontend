@@ -1,4 +1,4 @@
-import { createApp, InitPixel, } from '@haaretz/htz-components';
+import { createApp, } from '@haaretz/htz-components';
 import { withData, } from '@haaretz/app-utils';
 
 const initialState = () => ({
@@ -30,4 +30,4 @@ const initialState = () => ({
   pageDateTimeString: null,
 });
 
-export default withData(createApp(InitPixel), initialState);
+export default withData(createApp(), initialState);

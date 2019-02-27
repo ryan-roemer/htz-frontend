@@ -1,22 +1,14 @@
 import React, { Component, } from 'react';
-// import PropTypes from 'prop-types';
-import Head from 'next/head';
-import gql from 'graphql-tag';
-import Query from '../ApolloBoundary/Query';
-
-const GET_HOST_NAME = gql`
-  query getHostName {
-    hostname @client
-  }
-`;
-const propTypes = {};
-
-const defaultProps = {};
+import PropTypes from 'prop-types';
 
 // init pixel should be rendered only once per application
 // should not be a child of a component that gets unmounted
 // usually should be in next.js App component
 class InitPixel extends Component {
+  static propTypes = {
+    hostname: PropTypes.string.isRequired,
+  };
+
   shouldComponentUpdate() {
     return false;
   }
@@ -159,20 +151,13 @@ class InitPixel extends Component {
 
   render() {
     return (
-      <Query query={GET_HOST_NAME}>
-        {({ data: { hostname, }, }) => (
-          <Head>
-            {this.facebookPixel(hostname)}
-            {this.googlePixel(hostname)}
-            {this.chromePush(hostname)}
-          </Head>
-        )}
-      </Query>
+      <React.Fragment>
+        {this.facebookPixel(this.props.hostname)}
+        {this.googlePixel(this.props.hostname)}
+        {this.chromePush(this.props.hostname)}
+      </React.Fragment>
     );
   }
 }
-
-InitPixel.propTypes = propTypes;
-InitPixel.defaultProps = defaultProps;
 
 export default InitPixel;
