@@ -22,6 +22,7 @@ class PapiAPI extends RESTDataSource {
     return this.context.serviceBase;
   }
 
+
   async getCmLink(path) {
     const fetchPath = `json/cmlink/${path}${path.includes('?') ? '&' : '?'}ts=
     ${new Date().getTime()}`;
@@ -38,14 +39,16 @@ class PapiAPI extends RESTDataSource {
   }
 
   async getContent({ cid, }) {
-    const fetchPath = `papi/cmlink${cid.startsWith('/') ? '' : '/'}${cid}?exploded=true`;
+    const fetchPath = `papi/cmlink${
+      cid.startsWith('/') ? '' : '/'
+    }${cid}?exploded=true`;
     return this.get(fetchPath, {}, { cacheOptions: { ttl, }, });
   }
 
   async getList({ listId, history, section, }) {
-    const fetchPath = `papi/cmlink${listId.startsWith('/') ? '' : '/'}${listId}?exploded=true${
-      history ? `&exclude=${history.join(',')}` : ''
-    }${section ? `&section=${section}` : ''}`;
+    const fetchPath = `papi/cmlink${
+      listId.startsWith('/') ? '' : '/'
+    }${listId}?exploded=true${history ? `&exclude=${history.join(',')}` : ''}${section ? `&section=${section}` : ''}`;
     return this.get(fetchPath, {}, { cacheOptions: { ttl, }, });
   }
 
@@ -107,10 +110,9 @@ class PapiAPI extends RESTDataSource {
   // like / dislike comment
   async rateComment(newVote) {
     console.log('creating new Vote from data source: ', newVote);
-    const fetchPath = `logger/p.gif?type=COMMENTS_RATINGS&a=%2F2.385%2F${
+    const fetchPath = `logger/p.gif?type=COMMENTS_RATINGS&a=%2F2.285%2F${
       newVote.articleId
     }&comment=${newVote.commentId}&group=${newVote.group}&_=${new Date().getTime()}`;
-
     return this.get(
       fetchPath,
       {},

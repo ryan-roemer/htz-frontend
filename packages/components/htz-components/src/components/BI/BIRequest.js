@@ -7,6 +7,7 @@ import { doStat, } from './statutil';
 import UserDispenser from '../User/UserDispenser';
 import NoSSR from '../NoSSR/NoSSR';
 
+
 const AuthorId = gql`
   fragment AuthorId on AuthorObject {
     contentId
@@ -41,7 +42,6 @@ function BIRequest({ articleId, authors, }) {
     <NoSSR>
       <UserDispenser
         render={({ user, }) => {
-          if (!user.anonymousId) return null;
           if (articleId) {
             return (
               <Query query={GET_DOSTAT_DATA} variables={{ path: articleId, }} errorPolicy="all">
