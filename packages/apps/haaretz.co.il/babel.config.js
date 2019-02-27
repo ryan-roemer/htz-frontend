@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-const browserslist = require('@haaretz/htz-react-base/browsers').join(', ');
+// const browserslist = require('@haaretz/htz-react-base/browsers').join(', ');
 
 module.exports = api => {
   const { env, } = process;
@@ -12,23 +12,24 @@ module.exports = api => {
   api.cache(isDev);
 
   return {
-    presets: [
-      '@babel/preset-flow',
-      [
-        'next/babel',
-        {
-          'preset-env': {
-            debug: !!BABEL_DEBUG,
-            targets: browserslist,
-            forceAllTransforms: false,
-          },
-          'transform-runtime': {
-            regenerator: false,
-            useESModules: true,
-          },
-        },
-      ],
-    ],
+    presets: [ '@babel/preset-flow', 'next/babel', ],
+    // presets: [
+    //   '@babel/preset-flow',
+    //   [
+    //     'next/babel',
+    //     {
+    //       'preset-env': {
+    //         debug: !!BABEL_DEBUG,
+    //         targets: browserslist,
+    //         forceAllTransforms: false,
+    //       },
+    //       'transform-runtime': {
+    //         regenerator: false,
+    //         useESModules: true,
+    //       },
+    //     },
+    //   ],
+    // ],
     plugins: [
       'lodash',
       'babel-plugin-transform-react-remove-prop-types',

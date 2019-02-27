@@ -3,12 +3,12 @@ module.exports = [
   'chromeandroid >= 55',
   'edge >= 16',
   'firefox >= 60',
-  'ios >= 11',
-  'safari >= 11',
-  'samsung >= 6.2',
+  'ios >= 10',
+  'safari >= 10',
+  'samsung >= 4',
   // // Android browser support raises the size of our
   // // `commons` bundle size by 70KB!
-  // 'android >= 67',
+  'android >= 4.4.2',
   'not dead',
   'current node',
 ];
