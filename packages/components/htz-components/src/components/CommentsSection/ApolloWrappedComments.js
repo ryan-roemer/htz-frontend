@@ -6,6 +6,7 @@ import Mutation from '../ApolloBoundary/Mutation';
 import CommentSection from './CommentsSection';
 import GET_ID from './queries/getId';
 import FETCH_COMMENTS from './queries/fetchComments';
+import GET_LINEAGE from './queries/lineage';
 import SUBMIT_NEW_COMMENT from './mutations/submitNewComment';
 import SUBMIT_NEW_VOTE from './mutations/submitNewVote';
 import SUBMIT_NOTIFICATION_EMAIL from './mutations/submitNotificationEmail';
@@ -26,13 +27,13 @@ class CommentsWithApollo extends React.Component {
   };
   // todo: add optimistic response for voting
 
-  initVote = (commentId, group, submitNewVote) => {
-    const articleId = this.props.articleId;
+  initVote = (commentId, group, lineageString, submitNewVote) => {
+    // const articleId = this.props.articleId;
     submitNewVote({
       variables: {
         commentId,
-        articleId,
         group,
+        lineageString,
       },
     })
       .then(({ data, }) => {
@@ -106,7 +107,7 @@ class CommentsWithApollo extends React.Component {
         query={FETCH_COMMENTS}
         variables={{ path: `${contentId}?composite=true&limited=true`, }}
       >
-        {({ data, loading, error, fetchMore, }) => {
+        {({ data, loading, error, client, fetchMore, }) => {
           if (loading) {
             return null;
           }
@@ -115,6 +116,21 @@ class CommentsWithApollo extends React.Component {
             return null;
           }
           const { commentsElement, } = data;
+
+          // Create page lineage string to be send it to initVote function
+          // to be used in rateComment function in dataSources.js
+          const lineageData = client.readQuery({
+            query: GET_LINEAGE,
+            variables: { path: `/${this.props.articleId}`, },
+          });
+
+          const lineageString = lineageData
+            && lineageData.page
+            && lineageData.page.lineage
+            && lineageData.page.lineage
+              .reverse()
+              .reduce((pathFragment, item) => `${pathFragment}%2F${item.contentId}`, '');
+
           return (
             <Mutation mutation={REPORT_ABUSE}>
               {reportAbuse => (
@@ -126,7 +142,7 @@ class CommentsWithApollo extends React.Component {
                           {submitNewComment => (
                             <CommentSection
                               initVote={(commentId, group) => {
-                                this.initVote(commentId, group, submitNewVote);
+                                this.initVote(commentId, group, lineageString, submitNewVote);
                               }}
                               reportAbuse={(commentId, captchaKey) => {
                                 this.initReportAbuse(commentId, captchaKey, reportAbuse);
@@ -172,19 +188,13 @@ function WrappedComments() {
       {({ data: { articleId, commentsElementId, }, }) => {
         console.log('article id', articleId);
         return articleId ? (
-          <CommentsWithApollo
-            articleId={articleId}
-            contentId={commentsElementId}
-          />
+          <CommentsWithApollo articleId={articleId} contentId={commentsElementId} />
         ) : null;
       }}
     </Query>
   );
 }
 
-WrappedComments.propTypes = {
-
-};
-WrappedComments.defaultProps = {
-};
+WrappedComments.propTypes = {};
+WrappedComments.defaultProps = {};
 export default WrappedComments;

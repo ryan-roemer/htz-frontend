@@ -109,10 +109,11 @@ class PapiAPI extends RESTDataSource {
 
   // like / dislike comment
   async rateComment(newVote) {
-    console.log('creating new Vote from data source: ', newVote);
-    const fetchPath = `logger/p.gif?type=COMMENTS_RATINGS&a=%2F2.285%2F${
-      newVote.articleId
+    // console.log('creating new Vote from data source: ', newVote);
+    const fetchPath = `logger/p.gif?type=COMMENTS_RATINGS&a=${
+      newVote.lineageString
     }&comment=${newVote.commentId}&group=${newVote.group}&_=${new Date().getTime()}`;
+
     return this.get(
       fetchPath,
       {},

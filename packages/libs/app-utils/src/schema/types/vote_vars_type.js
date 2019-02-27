@@ -4,7 +4,7 @@ import { GraphQLInputObjectType, GraphQLString, GraphQLID, } from 'graphql';
 const voteVars = new GraphQLInputObjectType({
   name: 'voteVars',
   fields: () => ({
-    articleId: { type: GraphQLString, },
+    lineageString: { type: GraphQLString, },
     commentId: { type: GraphQLID, },
     group: { type: GraphQLString, },
   }),
