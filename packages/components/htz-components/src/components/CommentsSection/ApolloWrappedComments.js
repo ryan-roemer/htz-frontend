@@ -108,7 +108,7 @@ class CommentsWithApollo extends React.Component {
           articlePath: `/${this.props.articleId}`,
         }}
       >
-        {({ data, loading, error, client, fetchMore, }) => {
+        {({ data, loading, error, fetchMore, /* client, */ }) => {
           if (loading) {
             return null;
           }
