@@ -38,4 +38,6 @@ const DefaultComponent = ({ inputTemplate, contentId, kind, }) => {
   );
 };
 
-export default inputTemplate => elements.get(inputTemplate) || DefaultComponent;
+export default function getHomepageElements(inputTemplate) {
+  return elements.get(inputTemplate) || DefaultComponent;
+}

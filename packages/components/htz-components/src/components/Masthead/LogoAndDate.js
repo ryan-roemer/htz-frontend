@@ -1,15 +1,17 @@
 // @flow
 import * as React from 'react';
 import { FelaComponent, } from 'react-fela';
-import { type StyleProps, type ComponentPropResponsiveObject, } from '@haaretz/htz-css-tools';
-import IconHaaretzLogo from '../Icon/icons/IconHaaretzLogo';
+import {
+  type StyleProps,
+  type ComponentPropResponsiveObject,
+} from '@haaretz/htz-css-tools';
 import PageDateTime from './PageDateTime';
 import HtzLink from '../HtzLink/HtzLink';
 import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 
 type LogoAndDateProps = {
   logoMiscStyles: ?StyleProps,
-  logoComponent: ?React.ElementType,
+  logoComponent: React.ElementType,
   disableDatetime: ?boolean,
   logoSize: ?number | ComponentPropResponsiveObject<number>[],
   datetimeMiscStyles: ?StyleProps,
@@ -41,7 +43,9 @@ export default function LogoAndDate({
               <VisuallyHidden>{homepageLogoLink.a11yText}</VisuallyHidden>
             </HtzLink>
           ) : null}
-          {disableDatetime ? null : <PageDateTime miscStyles={datetimeMiscStyles} />}
+          {disableDatetime ? null : (
+            <PageDateTime miscStyles={datetimeMiscStyles} />
+          )}
         </div>
       )}
     />
@@ -51,7 +55,6 @@ export default function LogoAndDate({
 LogoAndDate.defaultProps = {
   logoMiscStyles: null,
   datetimeMiscStyles: null,
-  logoComponent: IconHaaretzLogo,
   disableDatetime: false,
   logoSize: 4,
   tabIndex: 0,

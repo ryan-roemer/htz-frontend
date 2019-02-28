@@ -35,6 +35,7 @@ function HomePageSlotsLayout({
   const extractElements = slot => slot.map(element => {
     const Element = getElements(element.inputTemplate);
     const { properties, ...elementWithoutProperties } = element;
+
     if (element.inputTemplate === 'com.tm.FooterElement') {
       return (
         <Element

@@ -1,14 +1,14 @@
-/* global document */
 // @flow
-import React from 'react';
-import type { Node, } from 'react';
+//
+/* global document */
+import * as React from 'react';
 import { FelaComponent, } from 'react-fela';
 import ReactGA from 'react-ga';
 import * as style from './BottomStripStyle';
 import Button from '../../Button/Button';
 import IconClose from '../../Icon/icons/IconClose';
 import IconAlefLogoTransparent from '../../Icon/icons/IconAlefLogoTransparent';
-import WrappedScroll from '../../Scroll/Scroll';
+import useScrollYPosition from '../../../hooks/useScrollYPosition';
 import ClickArea from '../../ClickArea/ClickArea';
 
 type Props = {
@@ -16,15 +16,18 @@ type Props = {
   text1: ?string,
   text2: ?string,
   buttonUrl: ?string,
-  color: 'yellow' | 'blue' | 'lightblue',
+  color: "yellow" | "blue" | "lightblue",
   onSubmit: ?() => void,
 };
 
 type State = {
-  mode: 'regular' | 'small',
   documentHeight: number,
   shouldRender: boolean,
 };
+
+type ModeState = "regular" | "small";
+
+type ContentProps = Props & { shouldRender: boolean, mode: ModeState, };
 
 type Color = {
   background: string,
@@ -56,97 +59,120 @@ const colors: Colors = {
   }),
 };
 
-export default class BottomStripNotification extends React.Component<Props, State> {
-  state = {
-    mode: 'regular',
+BottomStripNotification.defaultProps = {
+  buttonText: null,
+  text1: null,
+  text2: null,
+  buttonUrl: null,
+};
+export default function BottomStripNotification(props: Props): React.Node {
+  const { y, } = useScrollYPosition();
+  const [ state: State, setState, ] = React.useState({
     documentHeight: 0,
     shouldRender: false,
-  };
+  });
+  const [ mode: ModeState, setMode, ] = React.useState('regular');
 
-  static defaultProps = {
-    buttonText: null,
-    text1: null,
-    text2: null,
-    buttonUrl: null,
-  };
-
-  componentDidMount() {
-    setTimeout(() => this.setState({ mode: 'small', }), 10000);
-    this.setState({
-      documentHeight: document.documentElement
-        ? document.documentElement.scrollHeight
-        : document.body
-          ? document.body.scrollHeight
-          : 0,
-      shouldRender: true,
+  React.useEffect(() => {
+    const shrinkTimer = setTimeout(() => setMode('small'), 10000);
+    const documentHeight = (document
+        && document.documentElement
+        && document.documentElement.scrollHeight)
+      || 0;
+    setState({
+      documentHeight,
+      shouldRender: y > documentHeight - 1200,
     });
-    ReactGA.ga('ec:addPromo', { name: 'Header - Blue Strip', id: 'hp-header-blue-strip', position: 'Header', });
-  }
+    ReactGA.ga('ec:addPromo', {
+      name: 'Header - Blue Strip',
+      id: 'hp-header-blue-strip',
+      position: 'Header',
+    });
 
-  render(): Node {
-    if (!this.state.shouldRender) return null;
-    const { buttonText, text1, text2, buttonUrl, color, onSubmit, } = this.props;
-    const isSmall = this.state.mode === 'small';
-    return (
-      <WrappedScroll
-        render={({ y, }) => {
-          if (y > this.state.documentHeight - 1200) return null;
-          return (
-            <FelaComponent
-              isSmall={isSmall}
-              color={colors[color]}
-              rule={style.wrapper}
-              render={({ theme, className, }) => (
-                <div className={className}>
+    return clearTimeout(shrinkTimer);
+  }, []);
+
+  const Content = React.memo(
+    ({
+      shouldRender,
+      mode,
+      buttonText,
+      text1,
+      text2,
+      buttonUrl,
+      color,
+      onSubmit,
+    }: ContentProps): React.Node => {
+      if (shouldRender) return null;
+      const isSmall = mode === 'small';
+
+      return (
+        <FelaComponent
+          isSmall={isSmall}
+          color={colors[color]}
+          rule={style.wrapper}
+          render={({ theme, className, }) => (
+            <div className={className}>
+              <FelaComponent
+                isSmall={isSmall}
+                color={colors[color]}
+                rule={style.innerWrapper}
+                render="span"
+              >
+                {isSmall ? null : (
+                  <ClickArea
+                    miscStyles={style.closeButton(theme, isSmall)}
+                    onClick={() => setMode('small')}
+                  >
+                    <IconClose />
+                  </ClickArea>
+                )}
+                <FelaComponent isSmall={isSmall} color={colors[color]}>
+                  <IconAlefLogoTransparent
+                    miscStyles={style.icon(theme, isSmall, colors[color])}
+                  />
+                </FelaComponent>
+                <FelaComponent
+                  isSmall={isSmall}
+                  color={colors[color]}
+                  rule={style.textWrapper}
+                >
+                  {isSmall ? null : (
+                    <FelaComponent
+                      isSmall={isSmall}
+                      color={colors[color]}
+                      rule={style.text1}
+                    >
+                      {text1}
+                    </FelaComponent>
+                  )}
                   <FelaComponent
                     isSmall={isSmall}
                     color={colors[color]}
-                    rule={style.innerWrapper}
-                    render="span"
-                  >
-                    {isSmall ? null : (
-                      <ClickArea
-                        miscStyles={style.closeButton(theme, isSmall)}
-                        onClick={() => this.setState({ mode: 'small', })}
-                      >
-                        <IconClose />
-                      </ClickArea>
+                    rule={style.text2}
+                    render={({ className, }) => (
+                      <div
+                        className={className}
+                        dangerouslySetInnerHTML={{ __html: text2, }}
+                      />
                     )}
-                    <FelaComponent isSmall={isSmall} color={colors[color]}>
-                      <IconAlefLogoTransparent
-                        miscStyles={style.icon(theme, isSmall, colors[color])}
-                      />
-                    </FelaComponent>
-                    <FelaComponent isSmall={isSmall} color={colors[color]} rule={style.textWrapper}>
-                      {isSmall ? null : (
-                        <FelaComponent isSmall={isSmall} color={colors[color]} rule={style.text1}>
-                          {text1}
-                        </FelaComponent>
-                      )}
-                      <FelaComponent
-                        isSmall={isSmall}
-                        color={colors[color]}
-                        rule={style.text2}
-                        render={({ className, }) => (
-                          <div className={className} dangerouslySetInnerHTML={{ __html: text2, }} />
-                        )}
-                      />
-                      <Button
-                        variant={style.buttonVariant}
-                        href={buttonUrl}
-                        onClick={onSubmit}
-                        miscStyles={style.button(theme, isSmall)}
-                      >
-                        {buttonText}
-                      </Button>
-                    </FelaComponent>
-                  </FelaComponent>
-                </div>
-              )}
-            />
-          );
-        }}
-      />
-    );
-  }
+                  />
+                  <Button
+                    variant={style.buttonVariant}
+                    href={buttonUrl}
+                    onClick={onSubmit}
+                    miscStyles={style.button(theme, isSmall)}
+                  >
+                    {buttonText}
+                  </Button>
+                </FelaComponent>
+              </FelaComponent>
+            </div>
+          )}
+        />
+      );
+    }
+  );
+
+  return <Content shouldRender={state.shouldRender} mode={mode} {...props} />;
 }

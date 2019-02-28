@@ -10,7 +10,6 @@ import {
   AriaLive,
   DeviceTypeInjector,
   PageSchema,
-  ScrollListener,
   RouteChangeListener,
   UserInjector,
   PremiumContentMeta,
@@ -64,7 +63,9 @@ class ArticleLayout extends React.Component {
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const nextArticleId = nextProps.url.query.path.match(/(?:.*-?)(1\.\d+.*)/)[1];
+    const nextArticleId = nextProps.url.query.path.match(
+      /(?:.*-?)(1\.\d+.*)/
+    )[1];
 
     if (!prevState.articleId || prevState.articleId !== nextArticleId) {
       return { articleId: nextArticleId, };
@@ -99,7 +100,10 @@ class ArticleLayout extends React.Component {
     const history = JSON.parse(sessionStorage.getItem('readingHistory')) || [];
     if (!history.includes(articleId)) {
       history.push(articleId);
-      sessionStorage.setItem('readingHistory', JSON.stringify(history, null, 2));
+      sessionStorage.setItem(
+        'readingHistory',
+        JSON.stringify(history, null, 2)
+      );
     }
   };
 
@@ -126,9 +130,9 @@ class ArticleLayout extends React.Component {
             this.setState({
               articleId,
             });
-            const titleSEO = `${lineage[0].name} - ${lineage[1] ? lineage[1].name : ''} - ${
-              lineage.length > 2 ? lineage[lineage.length - 1].name : ''
-            }`;
+            const titleSEO = `${lineage[0].name} - ${
+              lineage[1] ? lineage[1].name : ''
+            } - ${lineage.length > 2 ? lineage[lineage.length - 1].name : ''}`;
             client.writeData({
               data: {
                 pageType,
@@ -146,10 +150,11 @@ class ArticleLayout extends React.Component {
               ? standardArticleElement.isPremiumContent
               : null;
 
-            const authorsArr = slots.article
-              .find(item => item.authors);
+            const authorsArr = slots.article.find(item => item.authors);
 
-            const authors = authorsArr.authors ? authorsArr.authors.map(item => item.contentName).join(', ') : 'No Authors';
+            const authors = authorsArr.authors
+              ? authorsArr.authors.map(item => item.contentName).join(', ')
+              : 'No Authors';
 
             return (
               <Fragment>
@@ -161,7 +166,6 @@ class ArticleLayout extends React.Component {
                 isPremiumContent !== null ? (
                   <PremiumContentMeta isPremiumContent={isPremiumContent} />
                 ) : null}
-                <ScrollListener />
                 <RouteChangeListener />
                 <UserInjector />
                 <DfpInjector path={url.query.path} pageType="htz_article" />
@@ -192,7 +196,13 @@ class ArticleLayout extends React.Component {
               </Fragment>
             );
           }
-          return <Error errorCode={1} kind="error" message="PApi is down, Call Avi Kaufman." />;
+          return (
+            <Error
+              errorCode={1}
+              kind="error"
+              message="PApi is down, Call Avi Kaufman."
+            />
+          );
         }}
       </Query>
     );

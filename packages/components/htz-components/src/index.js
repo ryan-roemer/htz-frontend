@@ -86,8 +86,6 @@ import RadioGroup from './components/RadioButton/RadioGroup';
 import RelatedArticles from './components/RelatedArticles/RelatedArticles';
 import RouteChangeListener from './components/EventListeners/RouteChangeListener';
 import RssFeed from './components/RssFeed/RssFeed';
-import Scroll from './components/Scroll/Scroll';
-import ScrollListener from './components/EventListeners/ScrollListener';
 import Section from './components/AutoLevels/Section';
 import Select from './components/Select/Select';
 import SeriesArticles from './components/RelatedArticles/SeriesArticles';
@@ -209,6 +207,9 @@ import pixelEvent from './utils/pixelEvent';
 // Hooks
 
 import useGetComponent, { GetComponentProvider, GetComponentConsumer, } from './hooks/GetComponentContext/useGetComponent';
+import useScrollPosition from './hooks/useScrollPosition.js';
+import useScrollYPosition from './hooks/useScrollYPosition.js';
+import useScrollXPosition from './hooks/useScrollXPosition.js';
 
 // temp for ssr lists because of this bug with nextjs: https://github.com/zeit/next.js/issues/5511
 
@@ -334,8 +335,6 @@ export {
   RelatedArticles,
   RouteChangeListener,
   RssFeed,
-  Scroll,
-  ScrollListener,
   Section,
   Select,
   SeriesArticles,
@@ -479,11 +478,13 @@ export {
   Zoidberg,
   Zombie,
   // Hooks
-  useGetComponent,
   GetComponentProvider,
   GetComponentConsumer,
+  useGetComponent,
+  useScrollPosition,
+  useScrollYPosition,
+  useScrollXPosition,
 };
-
 // Flow Types
 export type {
   ClickTrackerBannerType,

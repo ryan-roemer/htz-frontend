@@ -4,7 +4,7 @@ import { FelaComponent, } from 'react-fela';
 import gql from 'graphql-tag';
 
 import Query from '../ApolloBoundary/Query';
-import WrappedScroll from '../Scroll/Scroll';
+import getScrollYPosition from '../../hooks/useScrollYPosition';
 import useGetComponent from '../../hooks/GetComponentContext/useGetComponent';
 
 const IS_OSAKA_DISPLAYED = gql`
@@ -26,6 +26,7 @@ const propTypes = {
  * for how long (in pixels) the element should appear on the page.
  */
 function SideBar({ content, }) {
+  const { y, } = getScrollYPosition();
   const getComponent = useGetComponent();
   return (
     <Query query={IS_OSAKA_DISPLAYED}>
@@ -47,21 +48,18 @@ function SideBar({ content, }) {
             ],
           })}
         >
-          <WrappedScroll
-            render={({ y, }) => content.map(element => {
-              const Element = getComponent(element.inputTemplate);
-              const { properties, ...elementWithoutProperties } = element;
-              return (
-                <Element
-                  scrollY={y}
-                  key={element.contentId}
-                  {...elementWithoutProperties}
-                  {...properties}
-                />
-              );
-            })
-            }
-          />
+          {content.map(element => {
+            const Element = getComponent(element.inputTemplate);
+            const { properties, ...elementWithoutProperties } = element;
+            return (
+              <Element
+                scrollY={y}
+                key={element.contentId}
+                {...elementWithoutProperties}
+                {...properties}
+              />
+            );
+          })}
         </FelaComponent>
       )}
     </Query>

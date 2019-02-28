@@ -8,7 +8,6 @@ import Head from 'next/head';
 import {
   AriaLive,
   DeviceTypeInjector,
-  ScrollListener,
   RouteChangeListener,
   UserInjector,
   Query,
@@ -91,7 +90,6 @@ catch (err) {console.log(err)}`,
                 href="https://www.haaretz.co.il/whtzMobileSite/"
               />
             </Head>
-            <ScrollListener />
             <RouteChangeListener />
             <UserInjector />
             <DfpInjector path="/" pageType="htz_hp" />

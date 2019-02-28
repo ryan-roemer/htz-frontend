@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Query from '../ApolloBoundary/Query';
 import { appendScript, } from '../../utils/scriptTools';
 import { fromCache, } from './queries/getData';
-import WrappedScroll from '../Scroll/Scroll';
+import useScrollYPosition from '../../hooks/useScrollYPosition';
 import OsakaWrapper from './OsakaWrapper';
 
 const propTypes = {
@@ -42,7 +42,7 @@ class OsakaWithOutbrain extends React.Component {
   getArticles = () => {
     // eslint-disable-next-line react/prop-types
     const { promotedElement, hostname, canonicalUrl, } = this.props;
-    const url = canonicalUrl ? this.changeSubDomain(canonicalUrl) : '';
+    const url = canonicalUrl ? changeSubDomain(canonicalUrl) : '';
     const promoted = promotedElement[0].content.banners[0];
     const siteKey = this.keys.get(hostname);
     OBR
@@ -90,12 +90,6 @@ class OsakaWithOutbrain extends React.Component {
   };
 
   // TODO: Temporary until outbrain will ignore the subDomain
-  changeSubDomain = url => {
-    const subDomain = url.match(
-      /^https?:\/\/(\S+)\.(?:(?:haaretz)|(?:themarker))/
-    )[1];
-    return subDomain === 'www' ? url : url.replace(subDomain, 'www');
-  };
 
   render() {
     const { articles, } = this.state;
@@ -132,13 +126,13 @@ const OsakaWithApollo = ({ articleId, ...props }) => (
 
 // eslint-disable-next-line react/prop-types
 function OsakaController({ items, articleId, }) {
+  const { y, velocity, } = useScrollYPosition();
   return (
-    <WrappedScroll
-      render={scrollProps => (
-        <OsakaWithApollo
-          {...{ ...scrollProps, promotedElement: items, articleId, }}
-        />
-      )}
+    <OsakaWithApollo
+      articleId={articleId}
+      promotedElement={items}
+      velocity={velocity}
+      y={y}
     />
   );
 }
@@ -146,3 +140,14 @@ function OsakaController({ items, articleId, }) {
 OsakaController.propTypes = propTypes;
 
 export default OsakaController;
+
+// //////////////////// //
+//   Helper functions   //
+// //////////////////// //
+
+function changeSubDomain(url) {
+  const subDomain = url.match(
+    /^https?:\/\/(\S+)\.(?:(?:haaretz)|(?:themarker))/
+  )[1];
+  return subDomain === 'www' ? url : url.replace(subDomain, 'www');
+}

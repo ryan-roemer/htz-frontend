@@ -51,87 +51,92 @@ const mastheadWrapperMiscStyles = ({ theme, isScrolled, shouldDisplay, }) => ({
   ],
 });
 
-export default class HomePageMasthead extends React.PureComponent<HomePageMastheadProps> {
-  render() {
-    const { contentId, logo, isScrolled, shouldDisplay, } = this.props;
-
-    return (
-      <FelaTheme
-        render={theme => (
-          <LayoutRow
-            miscStyles={{
-              position: [ { until: 's', value: 'fixed', }, { from: 's', value: 'relative', }, ],
-              top: [ { until: 's', value: 0, }, ],
-              left: [ { until: 's', value: 0, }, ],
-              width: [ { until: 's', value: '100%', }, ],
-              zIndex: theme.getZIndex('masthead'),
-            }}
+export default function HomePageMasthead({
+  contentId,
+  logo,
+  isScrolled,
+  shouldDisplay,
+}: HomePageMastheadProps): React.Node {
+  return (
+    <FelaTheme
+      render={theme => (
+        <LayoutRow
+          miscStyles={{
+            left: [ { until: 's', value: 0, }, ],
+            marginBottom: [ { until: 's', value: '-7rem', }, ],
+            position: [
+              { until: 's', value: isScrolled ? 'sticky' : 'relative', },
+              { from: 's', value: 'relative', },
+            ],
+            top: [ { until: 's', value: 0, }, ],
+            width: [ { until: 's', value: '100%', }, ],
+            zIndex: theme.getZIndex('masthead'),
+          }}
+          namedBgc={[
+            { until: 's', value: 'transparent', },
+            { from: 's', value: 'bg', },
+          ]}
+        >
+          <LayoutContainer
             namedBgc={[
               { until: 's', value: 'transparent', },
-              { from: 's', value: 'bg', },
+              { from: 's', value: [ 'layout', 'containerBg', ], },
             ]}
           >
-            <LayoutContainer
-              namedBgc={[
-                { until: 's', value: 'transparent', },
-                { from: 's', value: [ 'layout', 'containerBg', ], },
-              ]}
-            >
-              <React.Fragment>
-                <MastheadWrapper
-                  miscStyles={mastheadWrapperMiscStyles({
-                    theme,
-                    isScrolled,
-                    shouldDisplay,
-                  })}
-                  logo={logo}
-                  datetimeMiscStyles={{
-                    marginTop: '1rem',
-                    marginBottom: '1rem',
-                  }}
-                  logoSize={[ { until: 'l', value: 4, }, { from: 'l', value: 5, }, ]}
-                  logoMiscStyles={{
-                    marginBottom: [ { from: 's', until: 'l', value: '.5rem', }, ],
-                    transitionProperty: 'fill, color,  height, width',
-                    ...theme.getDelay('transition', -1),
-                    ...theme.getDuration('transition', -1),
-                    ...theme.getTimingFunction('transition', 'linear'),
-                    willChange: 'transform',
-                    color: [
-                      {
-                        until: 's',
-                        value: isScrolled ? [ 'bodytext', 'base', ] : 'white',
-                      },
-                    ],
-                    fill: [
-                      { until: 'l', value: 'transparent', },
-                      { from: 'l', value: [ 'primary', 'base', ], },
-                    ],
-                  }}
-                  panelsResponsiveHiding={[
-                    { until: 's', value: 'all', },
-                    { from: 's', until: 'l', value: 'bottom', },
-                  ]}
-                  renderStartPanel={(toggleOther, toggleMe) => (
-                    <React.Fragment>
-                      <NavigationMenu contentId={contentId} />
-                      <HeaderSearch onClick={toggleOther} />
-                    </React.Fragment>
-                  )}
-                  renderEndPanel={(toggleOther, toggleMe) => (
-                    <React.Fragment>
-                      <MastheadUserTools />
-                    </React.Fragment>
-                  )}
-                  renderBottomPanel={() => (
-                    <MadorimNavigation contentId={contentId} />
-                  )}
-                />
-              </React.Fragment>
-            </LayoutContainer>
-          </LayoutRow>
-        )}
-      />
-    );
-  }
+            <React.Fragment>
+              <MastheadWrapper
+                miscStyles={mastheadWrapperMiscStyles({
+                  theme,
+                  isScrolled,
+                  shouldDisplay,
+                })}
+                logo={logo}
+                datetimeMiscStyles={{
+                  marginTop: '1rem',
+                  marginBottom: '1rem',
+                }}
+                logoSize={[ { until: 'l', value: 4, }, { from: 'l', value: 5, }, ]}
+                logoMiscStyles={{
+                  marginBottom: [ { from: 's', until: 'l', value: '.5rem', }, ],
+                  transitionProperty: 'fill, color,  height, width',
+                  ...theme.getDelay('transition', -1),
+                  ...theme.getDuration('transition', -1),
+                  ...theme.getTimingFunction('transition', 'linear'),
+                  willChange: 'transform',
+                  color: [
+                    {
+                      until: 's',
+                      value: isScrolled ? [ 'bodytext', 'base', ] : 'white',
+                    },
+                  ],
+                  fill: [
+                    { until: 'l', value: 'transparent', },
+                    { from: 'l', value: [ 'primary', 'base', ], },
+                  ],
+                }}
+                panelsResponsiveHiding={[
+                  { until: 's', value: 'all', },
+                  { from: 's', until: 'l', value: 'bottom', },
+                ]}
+                renderStartPanel={(toggleOther, toggleMe) => (
+                  <React.Fragment>
+                    <NavigationMenu contentId={contentId} />
+                    <HeaderSearch onClick={toggleOther} />
+                  </React.Fragment>
+                )}
+                renderEndPanel={(toggleOther, toggleMe) => (
+                  <React.Fragment>
+                    <MastheadUserTools />
+                  </React.Fragment>
+                )}
+                renderBottomPanel={() => (
+                  <MadorimNavigation contentId={contentId} />
+                )}
+              />
+            </React.Fragment>
+          </LayoutContainer>
+        </LayoutRow>
+      )}
+    />
+  );
 }
