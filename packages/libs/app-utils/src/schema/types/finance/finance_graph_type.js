@@ -4,8 +4,7 @@ import {
   GraphQLFloat,
   GraphQLList, GraphQLUnionType,
 } from 'graphql';
-
-import { GraphQLTimestamp, } from './finance_asset_type';
+import GraphQLTimestamp from '../timestamp_type';
 
 const lineGraph = new GraphQLObjectType({
   name: 'LineGraphData',

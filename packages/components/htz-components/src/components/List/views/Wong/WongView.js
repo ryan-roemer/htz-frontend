@@ -8,6 +8,7 @@ import type { HTMLEmbedDataType, } from '../../../../flowTypes/HTMLEmbedDataType
 import type { ImageDataType, } from '../../../../flowTypes/ImageDataType';
 import type { ListDataType, } from '../../../../flowTypes/ListDataType';
 import type { ListBiActionType, } from '../../../../flowTypes/ListBiActionType';
+import type { CountdownType, } from '../../../../flowTypes/CountdownType';
 
 import { isImage, isEmbed, isGallery, } from '../../../../utils/validateType.js';
 import LiveUpdateView from '../../../LiveUpdateView/LiveUpdateView';
@@ -58,6 +59,7 @@ type Props = {
   width: ?(number | ComponentPropResponsiveObject<number>[]),
   biAction: ?ListBiActionType,
   lazyLoadImages: boolean,
+  hasCountdown: ?CountdownType,
 };
 
 Wong.defaultProps = {
@@ -66,6 +68,7 @@ Wong.defaultProps = {
   lazyLoadImages: false,
   biAction: null,
   width: null,
+  hasCountdown: null,
 };
 
 export default function Wong({
@@ -75,6 +78,7 @@ export default function Wong({
   list: { items, },
   biAction,
   width,
+  hasCountdown,
 }: Props): React.Node {
   const item = items[0];
   const media = item.media || null;
@@ -182,6 +186,16 @@ export default function Wong({
                             articleId: item.representedContent,
                           })
                           : null
+                      }
+                      {
+                        ...(
+                          hasCountdown
+                            ? {
+                              showKicker: false,
+                              countdownObj: hasCountdown,
+                            }
+                            : {}
+                        )
                       }
                     />
                     <TeaserSubtitle

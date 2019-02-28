@@ -66,6 +66,13 @@ export default gql`
                 ...ItemInList
               }
             }
+            mainBlockComponents {
+              ... on Countdown {
+                inputTemplate
+                endOfTime
+                title
+              }
+            }
           }
           ... on List {
             ...HomePageList

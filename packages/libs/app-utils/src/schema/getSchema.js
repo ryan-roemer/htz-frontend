@@ -3,6 +3,7 @@ import MainBlock from './types/main_block_type';
 import MiddleRuller from './types/middle_ruller_type';
 import TabViewElement from './types/tab_view_element_type';
 import clickTrackerBannersWrapper from './types/click_tracker_banner_wrapper_type';
+import countdown from './types/countdown_type';
 import dfpBanner from './types/dfp_banner_type';
 import elementGroup from './types/element_group_type';
 import embed from './types/embed_type';
@@ -35,6 +36,7 @@ const types = new Map([
   [ 'com.polobase.quickNewsletterRegistration', mobileQuickRegistrationType, ],
   [ 'com.polobase.whtzMobileSiteListsWrapper', mobileListWrapper, ],
   [ 'com.tm.BlogImage', image, ],
+  [ 'com.tm.Countdown', countdown, ],
   [ 'com.tm.ElementGroup', elementGroup, ],
   [ 'com.tm.GridElementGroup', gridElementGroup, ],
   [ 'com.tm.HeaderNewsGroup', HeaderNewsGroup, ],
@@ -61,6 +63,10 @@ const types = new Map([
   [ 'tagsElement', tags, ],
   [ 'video', video, ],
 ]);
+
+export const allTypes = [ ...types.values(), ].filter((type, index, types) => (
+  types.indexOf(type) === index
+));
 
 // What the fucking fuck?!
 // types.get('com.tm.element.List') doesn't get the map item

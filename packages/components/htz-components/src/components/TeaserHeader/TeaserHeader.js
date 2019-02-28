@@ -1,5 +1,8 @@
 // @flow
 
+import { FelaComponent, } from 'react-fela';
+import * as React from 'react';
+
 import {
   type ComponentPropResponsiveObject,
   type StyleProps,
@@ -7,16 +10,16 @@ import {
   parseComponentProp,
   parseTypographyProp,
 } from '@haaretz/htz-css-tools';
-import { FelaComponent, } from 'react-fela';
-import * as React from 'react';
-
 import type { attrFlowType, } from '../../flowTypes/attrTypes';
+import type { CountdownType, } from '../../flowTypes/CountdownType';
+
 import AboveBlockLink from '../BlockLink/AboveBlockLink';
 import H from '../AutoLevels/H';
 import HtzLink from '../HtzLink/HtzLink';
 import Kicker from '../ArticleHeader/Kicker';
 import TeaserResponsiveText from '../TeaserResponsiveText/TeaserResponsiveText';
 import style from './teaserHeaderStyle';
+import Countdown from '../Countdown/Countdown';
 
 type IsCenteredType = boolean | Array<ComponentPropResponsiveObject<boolean>>;
 
@@ -139,6 +142,7 @@ type TeaserHeaderProps = {
    */
   onClick: ?(evt: SyntheticMouseEvent<HTMLElement>) => void,
   showKicker: boolean,
+  countdownObj: ?CountdownType,
 };
 
 TeaserHeader.defaultProps = {
@@ -161,6 +165,7 @@ TeaserHeader.defaultProps = {
   isCentered: false,
   onClick: null,
   linkTarget: null,
+  countdownObj: null,
 };
 
 export default function TeaserHeader({
@@ -185,6 +190,7 @@ export default function TeaserHeader({
   kickerTypeScale,
   isCentered,
   onClick,
+  countdownObj,
 }: TeaserHeaderProps): React.Node {
   return (
     <FelaComponent
@@ -214,6 +220,12 @@ export default function TeaserHeader({
                     <TeaserResponsiveText text={exclusive} mobileText={exclusiveMobile} />
                   </Kicker>
                 )}
+                {countdownObj
+                  ? (
+                    <Countdown {...countdownObj} />
+                  )
+                  : null
+                }
                 <FelaComponent
                   isBlock={kickerIsBlock}
                   color={color}

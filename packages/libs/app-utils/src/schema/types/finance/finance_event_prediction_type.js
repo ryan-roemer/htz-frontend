@@ -2,8 +2,7 @@ import {
   GraphQLFloat,
   GraphQLObjectType,
 } from 'graphql';
-
-import { GraphQLTimestamp, } from './finance_asset_type';
+import GraphQLTimestamp from '../timestamp_type';
 
 const eventPrediction = new GraphQLObjectType({
   name: 'EventPrediction',

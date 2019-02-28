@@ -8,6 +8,7 @@ import GeneralAdSlot from '../Ads/GeneralAdSlot';
 
 import type { ListDataType, } from '../../flowTypes/ListDataType';
 import type { DfpBannerType, } from '../../flowTypes/DfpBannerType';
+import type { CountdownType, } from '../../flowTypes/CountdownType';
 
 type Props = {
   List: ComponentType<any>,
@@ -15,13 +16,16 @@ type Props = {
     slotA: ListDataType,
     slotB: DfpBannerType,
     slotC: ListDataType,
+    mainBlockComponents: Array<?(CountdownType)>,
   },
 };
 
 export default function MainBlock({
-  data: { slotA, slotB, slotC, },
+  data: { slotA, slotB, slotC, mainBlockComponents, },
   List,
 }: Props): Node {
+  const hasCountdown: ?CountdownType = mainBlockComponents.find(element => element && element.inputTemplate === 'com.tm.Countdown');
+
   const isWideMain = slotA.view === 'Conrad';
   return (
     <ListView
@@ -33,6 +37,7 @@ export default function MainBlock({
       <List
         {...slotA}
         viewProps={{
+          hasCountdown,
           width: [
             { from: 's', until: 'l', value: 1, },
             { from: 'l', until: 'xl', value: 1, },

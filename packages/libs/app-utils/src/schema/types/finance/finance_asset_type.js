@@ -1,55 +1,15 @@
 import {
   GraphQLObjectType,
-  GraphQLScalarType,
   GraphQLEnumType,
   GraphQLString,
   GraphQLFloat,
-  GraphQLError,
   GraphQLList,
   GraphQLInt,
 } from 'graphql';
-import { Kind, } from 'graphql/language/kinds';
 
 import shareHolder from './finance_share_holder_type';
 import eventPrediction from './finance_event_prediction_type';
-
-// eslint-disable-next-line no-restricted-globals
-const isDate = value => typeof value === 'number' && !isNaN(value.valueOf());
-
-const coerceDate = value => {
-  const date = new Date(value).getTime();
-  if (!isDate(date)) {
-    const message = `Date can't represent non-date value: ${value}`;
-    throw new TypeError(message);
-  }
-  return date;
-};
-
-export const GraphQLTimestamp = new GraphQLScalarType({
-  name: 'Timestamp',
-  serialize: value => coerceDate(value),
-  parseValue: coerceDate,
-  parseLiteral(valueNode) {
-    const { kind, value, } = valueNode;
-    let date;
-    switch (kind) {
-      case Kind.INT:
-      case Kind.FLOAT:
-        date = new Date(+value);
-        break;
-      case Kind.STRING:
-        date = new Date(value);
-        break;
-      default:
-    }
-    if (!isDate(date)) {
-      throw new GraphQLError(`Expected date value but got: ${value}`, [
-        valueNode,
-      ]);
-    }
-    return date;
-  },
-});
+import GraphQLTimestamp from '../timestamp_type';
 
 export const AssetType = new GraphQLEnumType({
   name: 'AssetType',
