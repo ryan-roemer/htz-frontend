@@ -9,6 +9,7 @@ import NewsletterWithoutApollo from './NewsletterWithoutApollo';
 import { newsletterVariantType, } from './elements/types/newsletterVariantType';
 import UserDispenser from '../User/UserDispenser';
 import NoSSR from '../NoSSR/NoSSR';
+import Media from '../Media/Media';
 import ShouldRenderNewsletterProvider from './ShouldRenderNewsletterProvider';
 
 const propTypes = {
@@ -62,29 +63,34 @@ const defaultProps = {
 
 const Newsletter = ({ renderFrequency, ...props }) => (
   <NoSSR>
-    <ShouldRenderNewsletterProvider>
-      {shouldRenderNewsletter => {
-        if (shouldRenderNewsletter === false) {
-          return null;
-        }
-        return (
-          <Mutation mutation={submitNewsletter}>
-            {(signUpNewsletter, { data, loading, }) => (
-              <UserDispenser
-                render={({ user: { email, }, }) => (
-                  <NewsletterWithoutApollo
-                    signUpNewsletter={signUpNewsletter}
-                    loading={loading}
-                    userEmail={email}
-                    {...props}
+    <Media query={{ from: 's', }}>
+      {matches => (matches ? (
+        <ShouldRenderNewsletterProvider>
+          {shouldRenderNewsletter => {
+            if (shouldRenderNewsletter === false) {
+              return null;
+            }
+            return (
+              <Mutation mutation={submitNewsletter}>
+                {(signUpNewsletter, { data, loading, }) => (
+                  <UserDispenser
+                    render={({ user: { email, }, }) => (
+                      <NewsletterWithoutApollo
+                        signUpNewsletter={signUpNewsletter}
+                        loading={loading}
+                        userEmail={email}
+                        {...props}
+                      />
+                    )}
                   />
                 )}
-              />
-            )}
-          </Mutation>
-        );
-      }}
-    </ShouldRenderNewsletterProvider>
+              </Mutation>
+            );
+          }}
+        </ShouldRenderNewsletterProvider>
+      ) : null)
+      }
+    </Media>
   </NoSSR>
 );
 
