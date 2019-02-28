@@ -65,17 +65,17 @@ function HomePageLayout({ render, }: { render: Function, }): React.Node {
               <script
                 type="text/javascript"
                 dangerouslySetInnerHTML={{
-                  __html: `window.__HTZ = {};
+                  __html: `
+window.__HTZ = {};
 try {
   if (window.mathcMedia("(min-width: 37.5em)").matches) {
-    const refreshTimer = setTimeout(
-      function() { typeof window != null &&  window.location.reload() },
+    var refreshTimer = setTimeout(
+      function refreshWindow() { typeof window != 'undefined' &&  window.location.reload() },
       ${1000 * 60 * 5}
     );
     window.__HTZ.cancelRefresh = function cancelRefresh() {
-        clearTimeout(refreshTimer);
-      },
-    }
+      clearTimeout(refreshTimer);
+    };
   }
 }
 catch (err) {}`,
