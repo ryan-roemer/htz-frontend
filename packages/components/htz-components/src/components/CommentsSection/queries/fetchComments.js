@@ -1,8 +1,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import gql from 'graphql-tag';
+import { breadcrumbs, } from '@haaretz/app-utils';
 
 export default gql`
-  query CommentListQuery($path: String!) {
+  query CommentListQuery($path: String!, $articlePath: String!) {
     commentsElement(path: $path) {
       comments {
         commentId
@@ -26,5 +27,9 @@ export default gql`
       commentsMinusRate
       totalHits
     }
+    page(path: $articlePath) {
+      ...PageBreadcrumbs
+    }
   }
+  ${breadcrumbs}
 `;

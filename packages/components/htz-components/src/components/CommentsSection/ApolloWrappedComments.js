@@ -6,7 +6,6 @@ import Mutation from '../ApolloBoundary/Mutation';
 import CommentSection from './CommentsSection';
 import GET_ID from './queries/getId';
 import FETCH_COMMENTS from './queries/fetchComments';
-import GET_LINEAGE from './queries/lineage';
 import SUBMIT_NEW_COMMENT from './mutations/submitNewComment';
 import SUBMIT_NEW_VOTE from './mutations/submitNewVote';
 import SUBMIT_NOTIFICATION_EMAIL from './mutations/submitNotificationEmail';
@@ -28,7 +27,6 @@ class CommentsWithApollo extends React.Component {
   // todo: add optimistic response for voting
 
   initVote = (commentId, group, lineageString, submitNewVote) => {
-    // const articleId = this.props.articleId;
     submitNewVote({
       variables: {
         commentId,
@@ -105,7 +103,10 @@ class CommentsWithApollo extends React.Component {
     return (
       <Query
         query={FETCH_COMMENTS}
-        variables={{ path: `${contentId}?composite=true&limited=true`, }}
+        variables={{
+          path: `${contentId}?composite=true&limited=true`,
+          articlePath: `/${this.props.articleId}`,
+        }}
       >
         {({ data, loading, error, client, fetchMore, }) => {
           if (loading) {
@@ -115,21 +116,20 @@ class CommentsWithApollo extends React.Component {
             console.error(error);
             return null;
           }
+          if (!data) return null;
           const { commentsElement, } = data;
 
           // Create page lineage string to be send it to initVote function
           // to be used in rateComment function in dataSources.js
-          const lineageData = client.readQuery({
-            query: GET_LINEAGE,
-            variables: { path: `/${this.props.articleId}`, },
-          });
+          const lineageStr = data.page
+          && data.page.lineage
+          && data.page.lineage
+            .slice()
+            .reverse()
+            .reduce((pathFragment, item) => `${pathFragment}%2F${item.contentId}`, '');
 
-          const lineageString = lineageData
-            && lineageData.page
-            && lineageData.page.lineage
-            && lineageData.page.lineage
-              .reverse()
-              .reduce((pathFragment, item) => `${pathFragment}%2F${item.contentId}`, '');
+          // check if lineageStr is 'string'
+          const lineageString = typeof lineageStr !== 'string' ? this.props.articleId : lineageStr;
 
           return (
             <Mutation mutation={REPORT_ABUSE}>
