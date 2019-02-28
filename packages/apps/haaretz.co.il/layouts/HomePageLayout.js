@@ -68,7 +68,7 @@ function HomePageLayout({ render, }: { render: Function, }): React.Node {
                   __html: `
 window.__HTZ = {};
 try {
-  if (window.mathcMedia("(min-width: 37.5em)").matches) {
+  if (window.matchMedia("(min-width: 37.5em)").matches) {
     var refreshTimer = setTimeout(
       function refreshWindow() { typeof window != 'undefined' &&  window.location.reload() },
       ${1000 * 60 * 5}
@@ -78,7 +78,7 @@ try {
     };
   }
 }
-catch (err) {}`,
+catch (err) {console.log(err)}`,
                 }}
               />
 
