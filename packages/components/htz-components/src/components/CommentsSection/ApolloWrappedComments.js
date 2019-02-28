@@ -129,7 +129,7 @@ class CommentsWithApollo extends React.Component {
             .reduce((pathFragment, item) => `${pathFragment}%2F${item.contentId}`, '');
 
           // check if lineageStr is 'string'
-          const lineageString = typeof lineageStr !== 'string' ? this.props.articleId : lineageStr;
+          const lineageString = lineageStr || this.props.articleId;
 
           return (
             <Mutation mutation={REPORT_ABUSE}>
