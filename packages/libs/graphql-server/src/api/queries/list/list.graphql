@@ -20,7 +20,9 @@ type List {
 }
 
 input ListInput {
-  listId: ID,
+  listId: ID!,
+  section: String,
+  history: [String],
 }
 
 type Query {

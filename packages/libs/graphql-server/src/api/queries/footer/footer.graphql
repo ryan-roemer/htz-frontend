@@ -1,0 +1,25 @@
+type Pair {
+  contentName: String,
+  value: String,
+}
+
+type Column {
+  contentName: String,
+  combineWithNextColumn: Boolean,
+  rows: [Pair],
+}
+
+type Footer {
+  headList: [Pair],
+  columns: [Column],
+  creditList: [Pair],
+  toolbox: [Pair],
+}
+
+input FooterInput {
+  listId: ID!,
+}
+
+extend type Query {
+  footer(input: FooterInput!): Footer!
+}
