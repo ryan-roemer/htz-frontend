@@ -1,0 +1,5 @@
+type NullFallback {
+  message: String,
+  errorCode: Int,
+  kind: String!,
+}

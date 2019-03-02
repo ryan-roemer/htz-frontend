@@ -5,7 +5,7 @@ type Img {
 }
 
 type Image {
-  contentName: String!,
+  contentName: String,
   contentId: ID!,
   inputTemplate: String!,
   viewMode: String,

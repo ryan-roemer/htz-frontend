@@ -1,0 +1,11 @@
+type Tag {
+  contentName: String,
+  contentId: ID!,
+  inputTemplate: String!,
+  url: String,
+}
+
+type Tags {
+  tagsList: [Tag]!,
+  kind: String!,
+}

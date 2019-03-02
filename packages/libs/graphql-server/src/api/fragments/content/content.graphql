@@ -1,5 +1,5 @@
 type Content {
-  contentName: String!,
+  contentName: String,
   contentId: ID!,
   inputTemplate: String!,
   properties: JSON

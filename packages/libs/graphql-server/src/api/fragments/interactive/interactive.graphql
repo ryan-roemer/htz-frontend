@@ -1,8 +1,7 @@
-type Link {
+type Interactive {
   contentName: String,
   contentId: ID!,
   inputTemplate: String!,
-  href: String,
-  toolTip: String,
-  linkText: String,
+  properties: JSON,
+  kind: String,
 }

@@ -1,5 +1,5 @@
 interface PolopolyObj {
   contentId: ID!,
   inputTemplate: String!,
-  contentName: String!,
+  contentName: String,
 }

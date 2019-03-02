@@ -1,0 +1,20 @@
+union ArticleBodyItem =
+  Content
+  | DfpBanner
+  | ElementGroup
+  | Embed
+  | HtmlElement
+  | Image
+  | ImageGallery
+  | Interactive
+  | Link
+  | MobileQuickRegistration
+  | NewsLetter
+  | Paragraph
+  | RelatedArticles
+  | SeriesOrBlockArticles
+  | Quote
+  | Tags
+  | Video
+  | TableScore
+  | NullFallback

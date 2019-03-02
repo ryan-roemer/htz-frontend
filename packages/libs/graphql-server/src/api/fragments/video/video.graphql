@@ -1,0 +1,9 @@
+type Video {
+  videoContent: String,
+  contentId: ID!,
+  inputTemplate: String!,
+  kind: String!,
+  videoType: String,
+  title: String,
+  credit: String,
+}

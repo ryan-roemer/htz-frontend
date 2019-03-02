@@ -1,0 +1,10 @@
+type Attribute {
+  key: String,
+  value: String,
+}
+
+type Paragraph {
+  attributes: [Attribute]
+  tag: String,
+  content: JSON,
+}

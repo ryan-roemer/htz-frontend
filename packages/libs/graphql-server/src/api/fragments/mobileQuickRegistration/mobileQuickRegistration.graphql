@@ -1,0 +1,11 @@
+type MobileQuickRegistration {
+  contentName: String,
+  contentId: ID!,
+  inputTemplate: String!,
+  teaserBody: String,
+  doubleOptIn: String,
+  mailto: String,
+  mailSubject: String,
+  mailBody: String,
+  teaserButton: String,
+}

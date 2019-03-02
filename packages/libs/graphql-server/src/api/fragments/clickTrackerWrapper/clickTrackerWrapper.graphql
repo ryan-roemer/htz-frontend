@@ -21,7 +21,7 @@ type ClickTrackerBanner {
 }
 
 type ClickTrackerWrapper {
-  contentName: String!,
+  contentName: String,
   contentId: ID!,
   inputTemplate: String!,
   totalPercentage: Int,

@@ -1,0 +1,11 @@
+type SeriesOrBlockArticles {
+  contentName: String,
+  contentId: ID!,
+  inputTemplate: String!,
+  kind: String!,
+  articles: [Teaser]!,
+  seriesTitle: String,
+  sort: String,
+  itemsPerPage: Int
+  usePagination: Boolean,
+}

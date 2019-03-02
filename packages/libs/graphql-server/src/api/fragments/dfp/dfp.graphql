@@ -1,5 +1,5 @@
 type DfpBanner {
-  contentName: String!,
+  contentName: String,
   contentId: ID!,
   inputTemplate: String!,
   audianceTarget: String,

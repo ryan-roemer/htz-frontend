@@ -1,0 +1,10 @@
+type Quote {
+  contentName: String,
+  contentId: ID!,
+  inputTemplate: String!,
+  text: String,
+  position: String,
+  credit: String,
+  afterParagraph: String,
+  imagesList: [Image],
+}

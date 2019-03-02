@@ -1,0 +1,9 @@
+type TableScore {
+  contentId: ID!,
+  inputTemplate: String!,
+  tableType: String,
+  coastType: String!,
+  isOpen: Boolean,
+  league: String,
+  number: String,
+}

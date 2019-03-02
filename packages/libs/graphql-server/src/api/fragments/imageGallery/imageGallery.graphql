@@ -1,5 +1,5 @@
 type ImageGallery {
-  contentName: String!,
+  contentName: String,
   contentId: ID!,
   inputTemplate: String!,
   kind: String,

@@ -1,0 +1,4 @@
+type RelatedArticles {
+  articles: [Teaser]!,
+  kind: String!,
+}

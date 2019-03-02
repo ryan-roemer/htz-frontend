@@ -1,8 +1,7 @@
-type Link {
+type HtmlElement {
   contentName: String,
   contentId: ID!,
   inputTemplate: String!,
-  href: String,
-  toolTip: String,
-  linkText: String,
+  hideOnSite: Boolean,
+  code: String,
 }

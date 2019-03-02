@@ -1,4 +1,4 @@
-import { createTestClient} from 'apollo-server-testing';
+import { createTestClient, } from 'apollo-server-testing';
 import { ApolloServer, } from 'apollo-server';
 
 import gqlServerConfig from '../api';

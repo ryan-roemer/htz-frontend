@@ -1,0 +1,8 @@
+type NewsLetter {
+  contentName: String,
+  contentId: ID!,
+  inputTemplate: String!,
+  renderFrequency: Int
+  segmentId: ID,
+  segmentName: String,
+}
