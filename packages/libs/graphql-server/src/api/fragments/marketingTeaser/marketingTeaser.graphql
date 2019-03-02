@@ -1,0 +1,9 @@
+type MarketingTeaser {
+  contentName: String!,
+  contentId: ID!,
+  inputTemplate: String!,
+  title: String,
+  subtitle: String,
+  href: String,
+  cta: String,
+}

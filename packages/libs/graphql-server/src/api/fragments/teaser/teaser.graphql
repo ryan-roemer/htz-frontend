@@ -1,0 +1,38 @@
+type MediaFlags {
+  video: Boolean,
+  html_embed: Boolean,
+  gallery: Boolean,
+}
+
+type RelatedArticle {
+  title: String,
+  path: String,
+  contentId: ID,
+}
+
+type Teaser {
+  contentId: ID!,
+  inputTemplate: String!,
+  image: Image,
+  media: Media,
+  firstParagraph: String,
+  publishDate: Date,
+  representedContent: ID,
+  representedContentType: String,
+  exclusiveMobile: String,
+  title: String,
+  commentsCounts: Int
+  path: String,
+  subtitleMobile: String,
+  isPremiumContent: Boolean,
+  lastUpdate: Date,
+  subtitle: String,
+  authorImage: Image,
+  mediaFlags: MediaFlags,
+  exclusive: String,
+  rank: Float,
+  titleMobile: String,
+  hash: String,
+  authors: [Author]
+  relatedArticles: [RelatedArticle]
+}

@@ -1,0 +1,15 @@
+type Author {
+  contentName: String!,
+  contentId: ID!,
+  inputTemplate: String!,
+  image: Image,
+  authorType: String,
+  email: String,
+#  biography: ArticleBody,
+  facebook: String,
+  gplus: String,
+  hasEmailAlerts: Boolean,
+  hasPushAlerts: Boolean,
+  twitter: String,
+  url: String,
+}

@@ -1,0 +1,11 @@
+type DfpBanner {
+  contentName: String!,
+  contentId: ID!,
+  inputTemplate: String!,
+  audianceTarget: String,
+  className: String,
+  hideOnSite: Boolean,
+  id: String,
+  position: String,
+  miscStyles: JSON
+}

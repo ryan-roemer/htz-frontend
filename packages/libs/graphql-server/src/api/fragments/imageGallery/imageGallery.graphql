@@ -1,0 +1,10 @@
+type ImageGallery {
+  contentName: String!,
+  contentId: ID!,
+  inputTemplate: String!,
+  kind: String,
+  images: [Image],
+  accessibility: String,
+  name: String,
+  showTitle: Boolean,
+}

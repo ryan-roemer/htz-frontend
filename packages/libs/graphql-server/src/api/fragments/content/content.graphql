@@ -1,0 +1,6 @@
+type Content {
+  contentName: String!,
+  contentId: ID!,
+  inputTemplate: String!,
+  properties: JSON
+}

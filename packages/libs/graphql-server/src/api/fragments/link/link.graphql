@@ -1,0 +1,8 @@
+type Link {
+  contentName: String!,
+  contentId: ID!,
+  inputTemplate: String!,
+  href: String,
+  toolTip: String,
+  linkText: String,
+}

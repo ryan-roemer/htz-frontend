@@ -1,0 +1,28 @@
+type List {
+  contentName: String!,
+  contentId: ID!,
+  inputTemplate: String!,
+  title: String,
+  description: String,
+  extraLinks: [Link],
+  commercialLinks:  [Link],
+  marketingTeaser: MarketingTeaser,
+  hasPagination: Boolean,
+  view: String,
+  url: String,
+  urlDescription: String,
+  items: [Teaser],
+  clickTrackers: [ClickTrackerWrapper],
+  dfp: [DfpBanner],
+  content: [Content],
+  loadPriority: LoadPriority,
+  isLazyloadImages: Boolean,
+}
+
+input ListInput {
+  listId: ID,
+}
+
+type Query {
+  list(input: ListInput!): List!
+}
