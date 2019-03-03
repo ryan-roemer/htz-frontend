@@ -19,7 +19,11 @@ import BlockLink from '../../../BlockLink/BlockLink';
 import H from '../../../AutoLevels/H';
 import HtzLink from '../../../HtzLink/HtzLink';
 import Section from '../../../AutoLevels/Section';
-import { isClickTrackerWrapper, isDfp, isTeaser, } from '../../../../utils/validateType';
+import {
+  isClickTrackerWrapper,
+  isDfp,
+  isTeaser,
+} from '../../../../utils/validateType';
 
 const listItemStyle = {
   alignItems: 'flex-start',
@@ -46,11 +50,20 @@ function ClickTrackerItem({ item, index, biAction, }: ClickTrackerProps): Node {
                   ...listItemStyle,
                   marginTop: '1rem',
                   borderTop: [ '1px', 0, 'solid', theme.color('neutral', '-4'), ],
-                  borderBottom: [ '1px', 0, 'solid', theme.color('neutral', '-4'), ],
+                  borderBottom: [
+                    '1px',
+                    0,
+                    'solid',
+                    theme.color('neutral', '-4'),
+                  ],
                   borderEnd: [ '5px', 0, 'solid', theme.color('neutral', '-4'), ],
                 }}
                 href={link}
-                onClick={biAction ? () => biAction({ index, articleId: item.contentId, }) : null}
+                onClick={
+                  biAction
+                    ? () => biAction({ index, articleId: item.contentId, })
+                    : null
+                }
               >
                 <PromotedItem
                   title={text}
@@ -77,7 +90,6 @@ type ItemProps = {
 };
 
 function Item({ data, index, biAction, listLength, }: ItemProps): Node {
-
   return (
     <FelaTheme
       render={theme => (
@@ -87,11 +99,22 @@ function Item({ data, index, biAction, listLength, }: ItemProps): Node {
             marginTop: index ? '1rem' : undefined,
             ...(index < listLength - 1
               ? // place separators only between items
-              { borderBottom: [ '1px', '1', 'solid', theme.color('neutral', '-4'), ], }
+              {
+                borderBottom: [
+                  '1px',
+                  '1',
+                  'solid',
+                  theme.color('neutral', '-4'),
+                ],
+              }
               : {}),
           }}
           href={data.path}
-          onClick={biAction ? () => biAction({ index, articleId: data.contentId, }) : null}
+          onClick={
+            biAction
+              ? () => biAction({ index, articleId: data.contentId, })
+              : null
+          }
         >
           <Section isFragment>
             <FelaComponent
@@ -163,7 +186,17 @@ type Props = {
 function Zoidberg({ list, isLazyloadImages, biAction, }: Props): Node {
   const { title, items, clickTrackers, dfp, } = list;
 
-  const stdItemsLength: number = items.length;
+  const stdItemsLength: number = items && items.length;
+
+  if (!stdItemsLength) {
+    console.log(
+      `List ${
+        list.contentId
+      } tried to render the Zoidberg view, but has no items.
+      This is a client-side only list. Is it being rendered on the server?`
+    );
+    return null;
+  }
 
   return (
     <FelaComponent
@@ -187,7 +220,12 @@ function Zoidberg({ list, isLazyloadImages, biAction, }: Props): Node {
         {items.map((item, index) => (
           <ListItem key={item.contentId}>
             {isTeaser(item) ? (
-              <Item data={item} index={index} biAction={biAction} listLength={stdItemsLength} />
+              <Item
+                data={item}
+                index={index}
+                biAction={biAction}
+                listLength={stdItemsLength}
+              />
             ) : null}
           </ListItem>
         ))}
@@ -195,7 +233,11 @@ function Zoidberg({ list, isLazyloadImages, biAction, }: Props): Node {
           ? clickTrackers.map((item, index) => (
             <ListItem key={item.contentId}>
               {isClickTrackerWrapper(item) ? (
-                <ClickTrackerItem item={item} index={index} biAction={biAction} />
+                <ClickTrackerItem
+                  item={item}
+                  index={index}
+                  biAction={biAction}
+                />
               ) : null}
             </ListItem>
           ))
