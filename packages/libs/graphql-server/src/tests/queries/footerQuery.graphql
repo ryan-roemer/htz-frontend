@@ -1,0 +1,24 @@
+query FooterQuery($input: FooterInput!) {
+  footer(input: $input) {
+    headList {
+      contentName
+      value
+    }
+    columns {
+      contentName
+      combineWithNextColumn
+      rows {
+        contentName
+        value
+      }
+    }
+    creditList {
+      contentName
+      value
+    }
+    toolbox {
+      contentName
+      value
+    }
+  }
+}

@@ -7,6 +7,7 @@ const types = new Map([
   [ 'com.polobase.quickNewsletterRegistration', 'MobileQuickRegistrationType', ],
   [ 'com.polobase.whtzMobileSiteListsWrapper', 'MobileListWrapper', ],
   [ 'com.tm.BlogImage', 'Image', ],
+  [ 'com.tm.element.List', 'List', ],
   [ 'com.tm.ElementGroup', 'ElementGroup', ],
   [ 'com.tm.GridElementGroup', 'GridElementGroup', ],
   [ 'com.tm.HeaderNewsGroup', 'HeaderNewsGroup', ],
@@ -34,6 +35,4 @@ const types = new Map([
   [ 'video', 'Video', ],
 ]);
 
-// What the fucking fuck?!
-// types.get('com.tm.element.List') doesn't get the map item
-export default inputTemplate => (inputTemplate === 'com.tm.element.List' ? 'List' : types.get(inputTemplate));
+export default inputTemplate => types.get(inputTemplate);

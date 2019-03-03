@@ -1,0 +1,728 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fetch a footer 1`] = `
+Object {
+  "footer": Object {
+    "columns": Array [
+      Object {
+        "combineWithNextColumn": false,
+        "contentName": "מדורים",
+        "rows": Array [
+          Object {
+            "contentName": "חדשות",
+            "value": "https://www.haaretz.co.il/news",
+          },
+          Object {
+            "contentName": "סרטים מומלצים",
+            "value": "https://www.haaretz.co.il/misc/tags/1.1653396",
+          },
+          Object {
+            "contentName": "מזג אוויר",
+            "value": "http://www.haaretz.co.il/news/weather",
+          },
+          Object {
+            "contentName": "אוכל",
+            "value": "http://www.haaretz.co.il/food",
+          },
+          Object {
+            "contentName": "מסעדות מומלצות",
+            "value": "http://www.haaretz.co.il/food/restaurant-guide",
+          },
+          Object {
+            "contentName": "ספרים",
+            "value": "http://www.haaretz.co.il/literature",
+          },
+          Object {
+            "contentName": "סרטים",
+            "value": "http://www.haaretz.co.il/gallery/cinema",
+          },
+          Object {
+            "contentName": "דעות",
+            "value": "http://www.haaretz.co.il/opinions",
+          },
+          Object {
+            "contentName": "תרבות",
+            "value": "http://www.haaretz.co.il/gallery",
+          },
+          Object {
+            "contentName": "ספורט",
+            "value": "http://www.haaretz.co.il/sport",
+          },
+          Object {
+            "contentName": "בחירות 2019",
+            "value": "https://www.haaretz.co.il/news/elections",
+          },
+          Object {
+            "contentName": "סקר בחירות",
+            "value": "https://www.haaretz.co.il/misc/tags/TAG-elections-1.1840225",
+          },
+          Object {
+            "contentName": "Haaretz.com",
+            "value": "http://www.haaretz.com/",
+          },
+          Object {
+            "contentName": "Israel election 2019",
+            "value": "https://www.haaretz.com/israel-news/elections",
+          },
+          Object {
+            "contentName": "Netanyahu - election",
+            "value": "https://www.haaretz.com/israel-news/elections/.premium-netanyahu-s-dilemma-if-he-closes-the-gap-with-gantz-he-may-lose-the-election-1.6983067",
+          },
+          Object {
+            "contentName": "Conway vs. Trump",
+            "value": "https://www.haaretz.com/us-news/conway-slams-trump-supporters-they-know-he-s-a-liar-they-just-don-t-care-1.6983604",
+          },
+          Object {
+            "contentName": "Mohammed bin Salman",
+            "value": "https://www.haaretz.com/world-news/this-jewish-comedian-offered-to-marry-mbs-and-sparked-an-instant-controversy-1.6976003",
+          },
+          Object {
+            "contentName": "Ocasio-Cortez - Omar",
+            "value": "https://www.haaretz.com/us-news/ocasio-cortez-defends-omar-call-out-islamophobia-like-anti-semitism-1.6983277",
+          },
+          Object {
+            "contentName": "Netanyahu - 'Fox & Friends'",
+            "value": "https://www.haaretz.com/israel-news/netanyahu-posts-a-fox-friends-clip-defending-him-against-corruption-charges-1.6983420",
+          },
+          Object {
+            "contentName": "Middle East",
+            "value": "https://www.haaretz.com/middle-east-news",
+          },
+          Object {
+            "contentName": "Israel news",
+            "value": "http://www.haaretz.com/israel-news",
+          },
+        ],
+      },
+      Object {
+        "combineWithNextColumn": false,
+        "contentName": "כלים שימושיים",
+        "rows": Array [
+          Object {
+            "contentName": "המייל האדום",
+            "value": "/misc/redemail",
+          },
+          Object {
+            "contentName": "מדיניות פרטיות",
+            "value": "/misc/privacy-policy",
+          },
+          Object {
+            "contentName": "חלון מבזקים",
+            "value": "/misc/widget",
+          },
+          Object {
+            "contentName": "ארכיון הארץ",
+            "value": "http://www.haaretz.co.il/misc/1.767350",
+          },
+          Object {
+            "contentName": "דיוור הארץ",
+            "value": "http://www.haaretz.co.il/personal-area/newsletter",
+          },
+          Object {
+            "contentName": "כל כותרות היום",
+            "value": "/misc/all-headlines",
+          },
+          Object {
+            "contentName": "צור קשר",
+            "value": "/misc/contact-us",
+          },
+          Object {
+            "contentName": "מודעות אבל",
+            "value": "http://www.haaretz.co.il/misc/1.2768082",
+          },
+          Object {
+            "contentName": "תנאי שימוש",
+            "value": "/misc/terms-of-use",
+          },
+          Object {
+            "contentName": "מינוי הארץ",
+            "value": "https://www.haaretz.co.il/promotions-page",
+          },
+          Object {
+            "contentName": "מינוי לעיתון",
+            "value": "http://www.sale.haaretz.co.il/haaretzyomi-digital",
+          },
+          Object {
+            "contentName": "מידע למנויים",
+            "value": "http://www.haaretz.co.il/misc/menuim",
+          },
+          Object {
+            "contentName": "כנסים",
+            "value": "http://www.themarker.com/commercial/conferences",
+          },
+          Object {
+            "contentName": "נגישות",
+            "value": "http://www.haaretz.co.il/misc/accessibility",
+          },
+        ],
+      },
+      Object {
+        "combineWithNextColumn": false,
+        "contentName": "עכבר העיר",
+        "rows": Array [
+          Object {
+            "contentName": "מרתון תל אביב 2019",
+            "value": "https://www.haaretz.co.il/gallery/events/special-events/event-1.3477111",
+          },
+          Object {
+            "contentName": "פורים 2019",
+            "value": "https://www.haaretz.co.il/gallery/purim",
+          },
+          Object {
+            "contentName": "פסח 2019",
+            "value": "https://www.haaretz.co.il/gallery/passover",
+          },
+          Object {
+            "contentName": "אירוויזיון 2019",
+            "value": "https://www.haaretz.co.il/gallery/music/events/event-1.6877239",
+          },
+          Object {
+            "contentName": "מה עושים היום?",
+            "value": "https://www.haaretz.co.il/gallery/events",
+          },
+          Object {
+            "contentName": "הופעות בינלאומיות בישראל",
+            "value": "https://www.haaretz.co.il/gallery/music/1.3154151",
+          },
+          Object {
+            "contentName": "מדור ילדים",
+            "value": "https://www.haaretz.co.il/kids",
+          },
+          Object {
+            "contentName": "אטרקציות לילדים",
+            "value": "https://www.haaretz.co.il/kids/attractions",
+          },
+          Object {
+            "contentName": "טיולים לשבת",
+            "value": "https://www.haaretz.co.il/kids/travel-with-kids/1.3154117",
+          },
+          Object {
+            "contentName": "מה עושים עם הילדים בסופ\\"ש?",
+            "value": "https://www.haaretz.co.il/kids/1.3154157",
+          },
+          Object {
+            "contentName": "הופעות היום",
+            "value": "https://www.haaretz.co.il/gallery/music/events",
+          },
+          Object {
+            "contentName": "מבשלים עם ילדים",
+            "value": "https://www.haaretz.co.il/kids/cooking-with-kids",
+          },
+          Object {
+            "contentName": "הצגות לילדים",
+            "value": "https://www.haaretz.co.il/kids/kids-shows",
+          },
+          Object {
+            "contentName": "מופעי סטנדאפ",
+            "value": "https://www.haaretz.co.il/gallery/theater/stand-up",
+          },
+          Object {
+            "contentName": "מתחמי ג'ימבורי ברחבי הארץ",
+            "value": "https://www.haaretz.co.il/kids/1.3294921",
+          },
+        ],
+      },
+      Object {
+        "combineWithNextColumn": false,
+        "contentName": "TheMarker",
+        "rows": Array [
+          Object {
+            "contentName": "שוק ההון",
+            "value": "http://www.themarker.com/markets",
+          },
+          Object {
+            "contentName": "חדשות",
+            "value": "https://www.themarker.com/allnews",
+          },
+          Object {
+            "contentName": "גלובל",
+            "value": "http://www.themarker.com/wallstreet",
+          },
+          Object {
+            "contentName": "נדל\\"ן",
+            "value": "http://www.themarker.com/realestate",
+          },
+          Object {
+            "contentName": "TechNation",
+            "value": "http://www.themarker.com/technation",
+          },
+          Object {
+            "contentName": "MarkerWeek",
+            "value": "http://www.themarker.com/markerweek",
+          },
+          Object {
+            "contentName": "מגזין TheMarker",
+            "value": "http://www.themarker.com/magazine",
+          },
+          Object {
+            "contentName": "TheMarker Women",
+            "value": "http://www.themarker.com/themarker-women",
+          },
+          Object {
+            "contentName": "דין וחשבון",
+            "value": "http://www.themarker.com/law",
+          },
+          Object {
+            "contentName": "מדיה ופרסום",
+            "value": "http://www.themarker.com/advertising",
+          },
+          Object {
+            "contentName": "עסקים קטנים",
+            "value": "http://www.themarker.com/smb",
+          },
+          Object {
+            "contentName": "צרכנות",
+            "value": "http://www.themarker.com/consumer",
+          },
+          Object {
+            "contentName": "קריירה",
+            "value": "http://www.themarker.com/career",
+          },
+          Object {
+            "contentName": "רכב",
+            "value": "http://www.themarker.com/cars",
+          },
+          Object {
+            "contentName": "TheMarker TV",
+            "value": "http://www.themarker.com/tv",
+          },
+          Object {
+            "contentName": "כנסים",
+            "value": "http://www.themarker.com/labels/conferences",
+          },
+          Object {
+            "contentName": "Cafe",
+            "value": "http://cafe.themarker.com/",
+          },
+          Object {
+            "contentName": "Finance",
+            "value": "http://finance.themarker.com/",
+          },
+          Object {
+            "contentName": "ת\\"א 35",
+            "value": "http://finance.themarker.com/home/?type=1&documentId=142",
+          },
+          Object {
+            "contentName": "ת\\"א 125",
+            "value": "http://finance.themarker.com/home/?type=1&documentId=137",
+          },
+          Object {
+            "contentName": "מניית טבע",
+            "value": "http://finance.themarker.com/quote/?mador=1&documentId=629014",
+          },
+          Object {
+            "contentName": "מניית בזק",
+            "value": "http://finance.themarker.com/quote/?mador=1&documentId=230011",
+          },
+        ],
+      },
+      Object {
+        "combineWithNextColumn": false,
+        "contentName": "שיתופי פעולה",
+        "rows": Array [
+          Object {
+            "contentName": "פגסוס טיולים",
+            "value": "https://www.haaretz.co.il/labels/pegasus",
+          },
+          Object {
+            "contentName": "בית אבי חי",
+            "value": "https://www.haaretz.co.il/labels/avi-chai",
+          },
+          Object {
+            "contentName": "מנטור - מתחם הגברים",
+            "value": "https://www.themarker.com/labels/mentor",
+          },
+          Object {
+            "contentName": "גם לכיף יש גבול בחסות מפעל הפיס",
+            "value": "https://www.themarker.com/labels/pais",
+          },
+          Object {
+            "contentName": "דיזנגוף סנטר",
+            "value": "https://www.haaretz.co.il/labels/dizengof-center",
+          },
+          Object {
+            "contentName": "SUPERMARKER – צרכנות פיננסית",
+            "value": "http://supermarker.themarker.com/",
+          },
+          Object {
+            "contentName": "אופנה",
+            "value": "http://www.onlife.co.il/%D7%A1%D7%92%D7%A0%D7%95%D7%9F/%D7%90%D7%95%D7%A4%D7%A0%D7%94",
+          },
+          Object {
+            "contentName": "הריון ולידה",
+            "value": "http://www.onlife.co.il/הדרת-נשים-בישראל",
+          },
+          Object {
+            "contentName": "משפחה",
+            "value": "http://www.onlife.co.il/משפחה ",
+          },
+          Object {
+            "contentName": "כל העיר ירושלים",
+            "value": "https://www.kolhair.co.il/",
+          },
+          Object {
+            "contentName": "כלבו חיפה והצפון",
+            "value": "https://www.colbonews.co.il/",
+          },
+          Object {
+            "contentName": "כאן דרום אשדוד",
+            "value": "https://www.kan-ashdod.co.il/",
+          },
+          Object {
+            "contentName": "צומת השרון כפר סבא",
+            "value": "https://www.tzomet-kfs.co.il/",
+          },
+          Object {
+            "contentName": "השקמה חולון",
+            "value": "https://www.hashikma-holon.co.il/",
+          },
+          Object {
+            "contentName": "ערים רחובות",
+            "value": "https://www.arimnews.co.il/",
+          },
+        ],
+      },
+    ],
+    "creditList": Array [
+      Object {
+        "contentName": "Web design by Roni Arie",
+        "value": "http://roniarie.carbonmade.com/",
+      },
+    ],
+    "headList": Array [
+      Object {
+        "contentName": "מערכת",
+        "value": "/misc/editors",
+      },
+      Object {
+        "contentName": "הנהלה",
+        "value": "/misc/management",
+      },
+      Object {
+        "contentName": "אודות הארץ",
+        "value": "/misc/about-haaretz",
+      },
+      Object {
+        "contentName": "צרו קשר",
+        "value": "/misc/contact-us",
+      },
+      Object {
+        "contentName": "רכשו מינוי",
+        "value": "http://www.haaretz.co.il/promotions-page",
+      },
+      Object {
+        "contentName": "ביטול מינוי דיגיטלי",
+        "value": "https://www.haaretz.co.il/misc/contact-us",
+      },
+      Object {
+        "contentName": "שאלות ותשובות",
+        "value": "/misc/faq",
+      },
+      Object {
+        "contentName": "פרסם אצלנו",
+        "value": "http://www.haaretz.co.il/st/c/prod/global/mediaKit/haaretzHeb.html",
+      },
+    ],
+    "toolbox": null,
+  },
+}
+`;
+
+exports[`fetch a list 1`] = `
+Object {
+  "list": Object {
+    "clickTrackers": Array [
+      Object {
+        "banners": Array [
+          Object {
+            "advertiserCamp": "עיריית פתח תקוה",
+            "chance": 8,
+            "clicktrackerimage": Object {
+              "accessibility": "גאיה קורן",
+              "aspects": null,
+              "contentId": "1.6976926",
+              "contentName": "גאיה קורן",
+              "credit": "רון קדמי",
+              "imageType": "image",
+              "imageUrlLinkGroup": null,
+              "imageUrlLinkGroupTarget": null,
+              "imgArray": Array [
+                Object {
+                  "aspects": Object {
+                    "belgrade": Object {
+                      "height": 315,
+                      "width": 1000,
+                      "x": 0,
+                      "y": 20,
+                    },
+                    "full": Object {
+                      "height": 667,
+                      "width": 1000,
+                    },
+                    "headline": Object {
+                      "height": 582,
+                      "width": 1000,
+                      "x": 0,
+                      "y": 16,
+                    },
+                    "landscape": Object {
+                      "height": 430,
+                      "width": 1000,
+                      "x": 0,
+                      "y": 22,
+                    },
+                    "regular": Object {
+                      "height": 667,
+                      "width": 888,
+                      "x": 31,
+                      "y": 0,
+                    },
+                    "square": Object {
+                      "height": 667,
+                      "width": 666,
+                      "x": 94,
+                      "y": 0,
+                    },
+                    "vertical": Object {
+                      "height": 667,
+                      "width": 567,
+                      "x": 105,
+                      "y": 0,
+                    },
+                  },
+                  "imgName": "image/3323377473.jpg",
+                  "version": "1551256120",
+                },
+              ],
+              "inputTemplate": "com.tm.Image",
+              "isAnimated": null,
+              "kind": "image",
+              "photographer": "none",
+              "position": null,
+              "title": null,
+              "viewMode": null,
+            },
+            "departments": Array [
+              "all",
+            ],
+            "link": "https://www.haaretz.co.il/gallery/events/petah-tikva/1.6976853",
+            "linkTarget": "_blank",
+            "maxRange": null,
+            "minRange": null,
+            "percentage": 100,
+            "priority": 2,
+            "replaceDomainForAdBlocker": false,
+            "text": "ההזדמנות ממשית לשוויון: אירועי חודש האישה בפתח תקוה",
+          },
+        ],
+        "contentId": "7.7953595",
+        "contentName": "תוכן מקודם- ורטיקלים- עמוד הבית ריאקט - עליון (עם תמונה)",
+        "inputTemplate": "com.polobase.ClickTrackerBannersWrapper",
+        "totalPercentage": 1200,
+        "viewModes": Object {
+          "viewModeHtz": "434promotion",
+          "viewModeHtzMobile": "tadmitMobile",
+          "viewModeJson": "narrowCommercial",
+          "viewModeTmMobile": "tadmitMobile",
+        },
+      },
+    ],
+    "commercialLinks": Array [
+      Object {
+        "contentId": "1.6853000",
+        "contentName": "זירת ההשקעות של פיפלביז",
+        "href": "https://www.themarker.com/labels/pipelbiz",
+        "inputTemplate": "com.tm.Link",
+        "linkText": "זירת ההשקעות של פיפלביז",
+        "toolTip": "זירת ההשקעות של פיפלביז",
+      },
+    ],
+    "content": Array [
+      Object {
+        "contentId": "1.1087122",
+        "contentName": "Haaretz",
+        "inputTemplate": "com.tm.Image",
+        "properties": Object {
+          "accessibility": "Haaretz",
+          "imageType": "image",
+          "imgArray": Array [
+            Object {
+              "aspects": Object {
+                "full": Object {
+                  "height": 1495,
+                  "width": 2674,
+                },
+              },
+              "imgName": "image/3694361761.png",
+              "version": "1502953267",
+            },
+          ],
+          "kind": "image",
+          "photographer": "none",
+        },
+      },
+    ],
+    "contentId": "7.7829323",
+    "contentName": "ליסט ספיישל",
+    "description": "זהו תיאור האירוע המיוחד שבגללו יש ליסט ספיישל",
+    "dfp": Array [
+      Object {
+        "audianceTarget": "all",
+        "className": "ad h-hidden js-dfp-resp-refresh",
+        "contentId": "7.7951481",
+        "contentName": "Haaretz.co.il.TheMarker.Banner",
+        "hideOnSite": false,
+        "id": "haaretz.co.il.themarker.banner",
+        "inputTemplate": "com.polobase.DfpBannerElement",
+        "miscStyles": null,
+        "position": null,
+      },
+    ],
+    "extraLinks": Array [
+      Object {
+        "contentId": "1.6845588",
+        "contentName": "בחירות 2019",
+        "href": "/news/elections",
+        "inputTemplate": "com.tm.Link",
+        "linkText": null,
+        "toolTip": null,
+      },
+    ],
+    "hasPagination": false,
+    "inputTemplate": "com.tm.element.List",
+    "isLazyloadImages": true,
+    "items": Array [
+      Object {
+        "authorImage": null,
+        "authors": null,
+        "commentsCounts": 1,
+        "contentId": "1.6652579",
+        "exclusive": "Analysis ",
+        "exclusiveMobile": null,
+        "firstParagraph": null,
+        "hash": null,
+        "image": Object {
+          "accessibility": "Hamas Chief Ismail Haniyeh shakes hands with Egyptian senior security official Ayman Badie during their meeting in Gaza City October 18, 2018. ",
+          "aspects": null,
+          "contentId": "1.6652637",
+          "contentName": "Hamas Chief Ismail Haniyeh shakes hands with Egyptian senior security official Ayman Badie",
+          "credit": "REUTERS/Mohammed Salem",
+          "imageType": "image",
+          "imageUrlLinkGroup": null,
+          "imageUrlLinkGroupTarget": null,
+          "imgArray": Array [
+            Object {
+              "aspects": Object {
+                "full": Object {
+                  "height": 1405,
+                  "width": 2200,
+                },
+                "headline": Object {
+                  "height": 1280,
+                  "width": 2200,
+                  "x": 0,
+                  "y": 125,
+                },
+                "regular": Object {
+                  "height": 1405,
+                  "width": 1873,
+                  "x": 281,
+                  "y": 0,
+                },
+                "square": Object {
+                  "height": 1405,
+                  "width": 1406,
+                  "x": 391,
+                  "y": 0,
+                },
+              },
+              "imgName": "image/3337836633.jpg",
+              "version": "1542115336",
+            },
+          ],
+          "inputTemplate": "com.tm.Image",
+          "isAnimated": null,
+          "kind": "image",
+          "photographer": "none",
+          "position": null,
+          "title": "Hamas Chief Ismail Haniyeh shakes hands with Egyptian senior security official Ayman Badie during their meeting in Gaza City October 18, 2018. ",
+          "viewMode": null,
+        },
+        "inputTemplate": "com.tm.TeaserData",
+        "isPremiumContent": null,
+        "lastUpdate": null,
+        "media": Object {
+          "accessibility": "דודו טסה",
+          "aspects": null,
+          "contentId": "1.6983965",
+          "contentName": "דודו טסה",
+          "credit": "אורית פניני",
+          "imageType": "image",
+          "imageUrlLinkGroup": null,
+          "imageUrlLinkGroupTarget": null,
+          "imgArray": Array [
+            Object {
+              "aspects": Object {
+                "full": Object {
+                  "height": 1468,
+                  "width": 2200,
+                },
+                "headline": Object {
+                  "height": 1250,
+                  "width": 2152,
+                  "x": 36,
+                  "y": 16,
+                },
+                "regular": Object {
+                  "height": 1424,
+                  "width": 1902,
+                  "x": 155,
+                  "y": 12,
+                },
+                "square": Object {
+                  "height": 1420,
+                  "width": 1421,
+                  "x": 310,
+                  "y": 0,
+                },
+                "vertical": Object {
+                  "height": 1464,
+                  "width": 1247,
+                  "x": 381,
+                  "y": 0,
+                },
+              },
+              "imgName": "image/994299772.jpg",
+              "version": "1551633675",
+            },
+          ],
+          "inputTemplate": "com.tm.Image",
+          "isAnimated": null,
+          "kind": "image",
+          "photographer": "none",
+          "position": null,
+          "title": "דודו טסה",
+          "viewMode": null,
+        },
+        "mediaFlags": null,
+        "path": "http://pre.haaretz.com/israel-news/hamas-tries-to-dictate-new-rules-of-game-in-gaza-but-it-may-be-misjudging-israel-1.6652579",
+        "publishDate": null,
+        "rank": null,
+        "relatedArticles": null,
+        "representedContent": "1.6652579",
+        "representedContentType": "regularArticle",
+        "subtitle": null,
+        "subtitleMobile": null,
+        "title": "RRRR Israel's early elections: How Trump accidentally exposed Netanyahu's bluff",
+        "titleMobile": "Hamas tries to dictate new rules of game in Gaza, but it may be misjudging Israel",
+      },
+    ],
+    "loadPriority": "client",
+    "marketingTeaser": null,
+    "title": "ספיישל",
+    "url": null,
+    "urlDescription": null,
+    "view": "Mom",
+  },
+}
+`;
