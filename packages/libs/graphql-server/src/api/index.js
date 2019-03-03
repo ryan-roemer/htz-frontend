@@ -5,9 +5,9 @@ import fragments from './fragments';
 import queries from './queries';
 import scalars from './scalars';
 import interfaces from './interfaces';
+import enums from './enums.graphql';
 
 import createContext from '../utils/createContext';
-import gqlLoader from '../utils/gqlLoader';
 import dataSources from '../dataSources';
 
 // const typeDefs = makeExecutableSchema({ typeDefs: list.typeDefs, });
@@ -15,7 +15,7 @@ import dataSources from '../dataSources';
 export default schemas => ({
   // schema: mergeSchemas({ schemas: [ ...schemas, typeDefs, ], }),
   typeDefs: [
-    gqlLoader('api/enums.graphql'),
+    enums,
     scalars.typeDefs,
     interfaces.typeDefs,
     fragments.typeDefs,

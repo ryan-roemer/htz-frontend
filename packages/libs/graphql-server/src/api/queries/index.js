@@ -1,16 +1,19 @@
 import merge from 'lodash/merge';
 
-import footer from './footer';
-import list from './list';
+import footerTypeDef from './footer/footer.graphql';
+import listTypeDef from './list/list.graphql';
+
+import footerResolver from './footer/footer.resolvers';
+import listResolver from './list/list.resolvers';
 
 export default {
   typeDefs: [
-    footer.typeDefs,
-    list.typeDefs,
+    footerTypeDef,
+    listTypeDef,
   ].join(' '),
 
   resolvers: merge({},
-    footer.resolvers,
-    list.resolvers,
+    footerResolver,
+    listResolver,
   ),
 };

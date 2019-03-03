@@ -1,7 +1,7 @@
-import gqlLoader from '../../utils/gqlLoader';
+import typeDefs from './interfaces.graphql';
 import resolvers from './interfaces.resolvers';
 
 export default {
-  typeDefs: gqlLoader('api/interfaces/interfaces.graphql'),
+  typeDefs,
   resolvers,
 };

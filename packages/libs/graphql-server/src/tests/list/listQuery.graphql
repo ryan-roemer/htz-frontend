@@ -1,0 +1,213 @@
+query List ($input: ListInput!){
+  list(input: $input) {
+    clickTrackers {
+      banners {
+        advertiserCamp
+        chance
+        clicktrackerimage {
+          ... Image
+        }
+        departments
+        link
+        linkTarget
+        maxRange
+        minRange
+        percentage
+        priority
+        replaceDomainForAdBlocker
+        text
+      }
+      contentId
+      contentName
+      inputTemplate
+      totalPercentage
+      viewModes {
+        viewModeHtz
+        viewModeHtzMobile
+        viewModeJson
+        viewModeTmMobile
+      }
+    }
+    commercialLinks {
+      ... Link
+    }
+    content {
+      contentId
+      contentName
+      inputTemplate
+      properties
+    }
+    contentId
+    contentName
+    description
+    dfp {
+      audianceTarget
+      className
+      contentId
+      contentName
+      hideOnSite
+      id
+      inputTemplate
+      miscStyles
+      position
+    }
+    extraLinks {
+      ... Link
+    }
+    hasPagination
+    inputTemplate
+    isLazyloadImages
+    items {
+      ... Teaser
+    }
+    loadPriority
+    marketingTeaser {
+      contentId
+      contentName
+      cta
+      href
+      inputTemplate
+      subtitle
+      title
+    }
+    title
+    url
+    urlDescription
+    view
+  }
+}
+
+fragment Link on Link {
+  contentId
+  contentName
+  href
+  inputTemplate
+  linkText
+  toolTip
+}
+
+fragment Image on Image {
+  accessibility
+  aspects
+  contentId
+  contentName
+  credit
+  imageType
+  imageUrlLinkGroup
+  imageUrlLinkGroupTarget
+  imgArray {
+    aspects
+    imgName
+    version
+  }
+  inputTemplate
+  isAnimated
+  kind
+  photographer
+  position
+  title
+  viewMode
+}
+
+fragment ImageGallery on ImageGallery {
+  accessibility
+  contentId
+  contentName
+  images {
+    ... Image
+  }
+  inputTemplate
+  kind
+  name
+  showTitle
+}
+
+fragment Embed on Embed {
+  caption
+  content
+  contentId
+  contentName
+  credit
+  embedType
+  inputTemplate
+  kind
+  position
+  settings
+  viewMode
+}
+
+fragment Author on Author {
+  authorType
+  biography{
+    attributes {
+      key
+      value
+    }
+    content
+    tag
+  }
+  contentId
+  contentName
+  email
+  facebook
+  gplus
+  hasEmailAlerts
+  hasPushAlerts
+  image {
+    ... Image
+  }
+  inputTemplate
+  twitter
+  url
+}
+
+fragment Teaser on Teaser {
+  authorImage {
+    ... Image
+  }
+  authors {
+    ... Author
+  }
+  commentsCounts
+  contentId
+  exclusive
+  exclusiveMobile
+  firstParagraph
+  hash
+  image {
+    ... Image
+  }
+  inputTemplate
+  isPremiumContent
+  lastUpdate
+  media {
+    ... on Embed {
+      ... Embed
+    }
+    ... on Image {
+      ... Image
+    }
+    ... on ImageGallery {
+      ... ImageGallery
+    }
+  }
+  mediaFlags {
+    gallery
+    html_embed
+    video
+  }
+  path
+  publishDate
+  rank
+  relatedArticles {
+    contentId
+    path
+    title
+  }
+  representedContent
+  representedContentType
+  subtitle
+  subtitleMobile
+  title
+  titleMobile
+}

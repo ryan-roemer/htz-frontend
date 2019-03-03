@@ -5,7 +5,7 @@ type Author {
   image: Image,
   authorType: String,
   email: String,
-  biography: [ArticleBodyItem],
+  biography: [Paragraph],
   facebook: String,
   gplus: String,
   hasEmailAlerts: Boolean,

@@ -19,6 +19,7 @@ const plugins = [
   '@babel/plugin-proposal-class-properties',
   '@babel/plugin-proposal-object-rest-spread',
   '@babel/plugin-syntax-dynamic-import',
+  'import-graphql',
 ];
 
 switch (process.env.BABEL_ENV) {

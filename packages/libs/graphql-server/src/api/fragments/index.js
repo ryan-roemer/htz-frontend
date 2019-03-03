@@ -1,64 +1,69 @@
 import merge from 'lodash/merge';
 
-import articleBody from './articleBody';
-import author from './author';
-import clickTrackerWrapper from './clickTrackerWrapper';
-import content from './content';
-import dfp from './dfp';
-import elementGroup from './elementGroup';
-import embed from './embed';
-import htmlElement from './htmlElement';
-import image from './image';
-import imageGallery from './imageGallery';
-import interactive from './interactive';
-import link from './link';
-import marketingTeaser from './marketingTeaser';
-import media from './media';
-import mobileQuickRegistration from './mobileQuickRegistration';
-import newsLetter from './newsLetter';
-import nullFallback from './nullFallback';
-import paragraph from './paragraph';
-import quote from './quote';
-import relatedArticles from './relatedArticles';
-import seriesOrBlockArticles from './seriesOrBlockArticles';
-import tableScore from './tableScore';
-import tags from './tags';
-import teaser from './teaser';
-import video from './video';
+import articleBodyTypeDef from './articleBody/articleBody.graphql';
+import authorTypeDef from './author/author.graphql';
+import clickTrackerWrapperTypeDef from './clickTrackerWrapper/clickTrackerWrapper.graphql';
+import contentTypeDef from './content/content.graphql';
+import dfpTypeDef from './dfp/dfp.graphql';
+import elementGroupTypeDef from './elementGroup/elementGroup.graphql';
+import embedTypeDef from './embed/embed.graphql';
+import htmlElementTypeDef from './htmlElement/htmlElement.graphql';
+import imageTypeDef from './image/image.graphql';
+import imageGalleryTypeDef from './imageGallery/imageGallery.graphql';
+import interactiveTypeDef from './interactive/interactive.graphql';
+import linkTypeDef from './link/link.graphql';
+import marketingTeaserTypeDef from './marketingTeaser/marketingTeaser.graphql';
+import mediaTypeDef from './media/media.graphql';
+import mobileQuickRegistrationTypeDef from './mobileQuickRegistration/mobileQuickRegistration.graphql';
+import newsLetterTypeDef from './newsLetter/newsLetter.graphql';
+import nullFallbackTypeDef from './nullFallback/nullFallback.graphql';
+import paragraphTypeDef from './paragraph/paragraph.graphql';
+import quoteTypeDef from './quote/quote.graphql';
+import relatedArticlesTypeDef from './relatedArticles/relatedArticles.graphql';
+import seriesOrBlockArticlesTypeDef from './seriesOrBlockArticles/seriesOrBlockArticles.graphql';
+import tableScoreTypeDef from './tableScore/tableScore.graphql';
+import tagsTypeDef from './tags/tags.graphql';
+import teaserTypeDef from './teaser/teaser.graphql';
+import videoTypeDef from './video/video.graphql';
+
+import articleBodyResolver from './articleBody/articleBody.resolvers';
+import contentResolver from './content/content.resolvers';
+import interactiveResolver from './interactive/interactive.resolvers';
+import mediaResolver from './media/media.resolvers';
 
 export default {
   typeDefs: [
-    articleBody.typeDefs,
-    author.typeDefs,
-    clickTrackerWrapper.typeDefs,
-    content.typeDefs,
-    dfp.typeDefs,
-    elementGroup.typeDefs,
-    embed.typeDefs,
-    htmlElement.typeDefs,
-    image.typeDefs,
-    imageGallery.typeDefs,
-    interactive.typeDefs,
-    link.typeDefs,
-    marketingTeaser.typeDefs,
-    media.typeDefs,
-    mobileQuickRegistration.typeDefs,
-    newsLetter.typeDefs,
-    nullFallback.typeDefs,
-    paragraph.typeDefs,
-    quote.typeDefs,
-    relatedArticles.typeDefs,
-    seriesOrBlockArticles.typeDefs,
-    tableScore.typeDefs,
-    tags.typeDefs,
-    teaser.typeDefs,
-    video.typeDefs,
+    articleBodyTypeDef,
+    authorTypeDef,
+    clickTrackerWrapperTypeDef,
+    contentTypeDef,
+    dfpTypeDef,
+    elementGroupTypeDef,
+    embedTypeDef,
+    htmlElementTypeDef,
+    imageTypeDef,
+    imageGalleryTypeDef,
+    interactiveTypeDef,
+    linkTypeDef,
+    marketingTeaserTypeDef,
+    mediaTypeDef,
+    mobileQuickRegistrationTypeDef,
+    newsLetterTypeDef,
+    nullFallbackTypeDef,
+    paragraphTypeDef,
+    quoteTypeDef,
+    relatedArticlesTypeDef,
+    seriesOrBlockArticlesTypeDef,
+    tableScoreTypeDef,
+    tagsTypeDef,
+    teaserTypeDef,
+    videoTypeDef,
   ].join(' '),
 
   resolvers: merge({},
-    articleBody.resolvers,
-    content.resolvers,
-    interactive.resolvers,
-    media.resolvers,
+    articleBodyResolver,
+    contentResolver,
+    interactiveResolver,
+    mediaResolver,
   ),
 };
