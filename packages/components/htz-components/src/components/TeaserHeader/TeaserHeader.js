@@ -222,7 +222,7 @@ export default function TeaserHeader({
                 )}
                 {countdownObj
                   ? (
-                    <Countdown {...countdownObj} />
+                    <Countdown {...countdownObj} miscStyles={{ marginBottom: '2rem', }} />
                   )
                   : null
                 }

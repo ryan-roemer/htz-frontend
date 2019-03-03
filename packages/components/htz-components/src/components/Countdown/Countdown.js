@@ -69,11 +69,24 @@ type EndTimeObj = {
 };
 
 type State = {
-  endTimeObj: EndTimeObj,
+  endTimeObj: ?EndTimeObj,
   timesUp: boolean,
 }
 
-class Countdown extends React.Component<CountdownType, State> {
+type Props = CountdownType & {
+  miscStyles: ?StyleProps,
+}
+
+class Countdown extends React.Component<Props, State> {
+  state = {
+    endTimeObj: null,
+    timesUp: false,
+  };
+
+  static defaultProps = {
+    miscStyles: null,
+  };
+
   componentDidMount() {
     const endTimeObj = this.getTimeObj();
     if (endTimeObj) {
@@ -110,43 +123,45 @@ class Countdown extends React.Component<CountdownType, State> {
   updateEndTime: () => void = () => {
     const { endTimeObj, } = this.state;
 
-    if (
-      Number(endTimeObj.days) === 0
-      && Number(endTimeObj.hours) === 0
-      && Number(endTimeObj.minutes) === 0
-      && Number(endTimeObj.seconds) === 0
-    ) this.setState({ timesUp: true, });
+    if (endTimeObj) {
+      if (
+        Number(endTimeObj.days) === 0
+        && Number(endTimeObj.hours) === 0
+        && Number(endTimeObj.minutes) === 0
+        && Number(endTimeObj.seconds) === 0
+      ) this.setState({ timesUp: true, });
 
-    let seconds;
-    let minutes;
-    let hours;
-    let days;
+      let seconds;
+      let minutes;
+      let hours;
+      let days;
 
-    seconds = Number(endTimeObj.seconds) - 1;
+      seconds = Number(endTimeObj.seconds) - 1;
 
-    if (seconds < 0) {
-      seconds = 59;
-      minutes = Number(endTimeObj.minutes) - 1;
+      if (seconds < 0) {
+        seconds = 59;
+        minutes = Number(endTimeObj.minutes) - 1;
 
-      if (minutes < 0) {
-        minutes = 59;
-        hours = Number(endTimeObj.hours) - 1;
+        if (minutes < 0) {
+          minutes = 59;
+          hours = Number(endTimeObj.hours) - 1;
 
-        if (hours < 0) {
-          hours = 23;
-          days = Number(endTimeObj.days) - 1;
+          if (hours < 0) {
+            hours = 23;
+            days = Number(endTimeObj.days) - 1;
+          }
         }
       }
-    }
 
-    this.setState({
-      endTimeObj: {
-        days: days != null ? this.addPrefix(days) : endTimeObj.days,
-        hours: hours != null ? this.addPrefix(hours) : endTimeObj.hours,
-        minutes: minutes != null ? this.addPrefix(minutes) : endTimeObj.minutes,
-        seconds: this.addPrefix(seconds),
-      },
-    });
+      this.setState({
+        endTimeObj: {
+          days: days != null ? this.addPrefix(days) : endTimeObj.days,
+          hours: hours != null ? this.addPrefix(hours) : endTimeObj.hours,
+          minutes: minutes != null ? this.addPrefix(minutes) : endTimeObj.minutes,
+          seconds: this.addPrefix(seconds),
+        },
+      });
+    }
   };
 
   addPrefix: number => UnitType = unit => (
@@ -158,13 +173,11 @@ class Countdown extends React.Component<CountdownType, State> {
   );
 
   render(): Node {
-    if (!this.state) return null;
-
     if (this.state.timesUp) return null;
 
-    const { title, } = this.props;
+    const { title, miscStyles, } = this.props;
 
-    const { endTimeObj: { days, hours, minutes, seconds, }, } = this.state;
+    const { days, hours, minutes, seconds, } = this.state.endTimeObj || {};
 
     return (
       <FelaComponent
@@ -173,6 +186,7 @@ class Countdown extends React.Component<CountdownType, State> {
           fontWeight: '700',
           extend: [
             theme.type(-1, { lines: 4, }),
+            ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
           ],
         })}
       >
@@ -187,32 +201,36 @@ class Countdown extends React.Component<CountdownType, State> {
         >
           {title}
         </FelaComponent>
-        <FelaComponent
-          style={theme => ({
-            color: theme.color('neutral', '-1'),
-            backgroundColor: theme.color('quaternary'),
-            paddingInlineStart: '1rem',
-            paddingInlineEnd: '1rem',
-            display: 'flex',
-          })}
-        >
-          <div dir="ltr">
-            {Number(days) ? <TimeUnit unit={days} /> : null}
-            <TimeUnit unit={hours} />
-            <TimeUnit unit={minutes} />
-            <TimeUnit unit={seconds} />
-          </div>
-          <FelaComponent
-            style={theme => ({
-              ...theme.type(-3, { lines: 4, }),
-              fontWeight: '300',
-              marginRight: '1rem',
-            })}
-            render="span"
-          >
-            {Number(days) ? 'ימים' : 'שעות'}
-          </FelaComponent>
-        </FelaComponent>
+        {
+          seconds && (
+            <FelaComponent
+              style={theme => ({
+                color: theme.color('neutral', '-1'),
+                backgroundColor: theme.color('quaternary'),
+                paddingInlineStart: '1rem',
+                paddingInlineEnd: '1rem',
+                display: 'flex',
+              })}
+            >
+              <div dir="ltr">
+                {Number(days) ? <TimeUnit unit={days} /> : null}
+                <TimeUnit unit={hours} />
+                <TimeUnit unit={minutes} />
+                <TimeUnit unit={seconds} />
+              </div>
+              <FelaComponent
+                style={theme => ({
+                  ...theme.type(-3, { lines: 4, }),
+                  fontWeight: '300',
+                  marginRight: '1rem',
+                })}
+                render="span"
+              >
+                {Number(days) ? 'ימים' : 'שעות'}
+              </FelaComponent>
+            </FelaComponent>
+          )
+        }
       </FelaComponent>
     );
   }
