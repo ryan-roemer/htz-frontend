@@ -30,10 +30,10 @@ type Props = {
   /**
    * Determine if the component should be lazyload images
    */
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
 };
 
-function Clampazzo({ list, isLazyLoadImages, gaAction, biAction, }: Props): Node {
+function Clampazzo({ list, isLazyloadImages, gaAction, biAction, }: Props): Node {
   const { title, items, } = list;
   return (
     <FelaComponent
@@ -63,7 +63,7 @@ function Clampazzo({ list, isLazyLoadImages, gaAction, biAction, }: Props): Node
               }
           >
             <FelaComponent style={{ marginBottom: '2rem', }}>
-              <Image data={item.image} imgOptions={imgOptions} lazyLoad={isLazyLoadImages} />
+              <Image data={item.image} imgOptions={imgOptions} lazyLoad={isLazyloadImages} />
 
               <FelaComponent
                 style={theme => ({

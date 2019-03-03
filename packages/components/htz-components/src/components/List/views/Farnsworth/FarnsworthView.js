@@ -30,10 +30,15 @@ type Props = {
   /**
    * Determine if the component should be lazyload images
    */
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
 };
 
-function Farnsworth({ list, isLazyLoadImages, gaAction, biAction, }: Props): Node {
+function Farnsworth({
+  list,
+  isLazyloadImages,
+  gaAction,
+  biAction,
+}: Props): Node {
   const { title, items, } = list;
   return (
     <FelaComponent
@@ -58,11 +63,17 @@ function Farnsworth({ list, isLazyLoadImages, gaAction, biAction, }: Props): Nod
           <BlockLink
             href={item.path}
             onClick={
-                biAction ? () => biAction({ index, articleId: item.representedContent, }) : null
+                biAction
+                  ? () => biAction({ index, articleId: item.representedContent, })
+                  : null
               }
           >
             <FelaComponent style={{ marginBottom: '2rem', }}>
-              <Image data={item.image} imgOptions={imgOptions} lazyLoad={isLazyLoadImages} />
+              <Image
+                data={item.image}
+                imgOptions={imgOptions}
+                lazyLoad={isLazyloadImages}
+              />
 
               <FelaComponent
                 style={theme => ({
@@ -70,7 +81,9 @@ function Farnsworth({ list, isLazyLoadImages, gaAction, biAction, }: Props): Nod
                   color: theme.color('neutral'),
                   marginTop: '1rem',
                 })}
-                render={({ className, }) => <H className={className}>{item.title}</H>}
+                render={({ className, }) => (
+                  <H className={className}>{item.title}</H>
+                )}
               />
             </FelaComponent>
           </BlockLink>

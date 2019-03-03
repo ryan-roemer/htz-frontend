@@ -3,7 +3,7 @@ import React, { Fragment, } from 'react';
 import { FelaComponent, FelaTheme, } from 'react-fela';
 import { borderBottom, } from '@haaretz/htz-css-tools';
 
-import type { ChildrenArray, Node, ComponentType, } from 'react';
+import type { ChildrenArray, Node, } from 'react';
 import type {
   TabsElementType,
   TabItemType,
@@ -13,9 +13,9 @@ import Tabs from '../Tabs/Tabs';
 import TabList from '../TabList/TabList';
 import Tab from '../Tab/Tab';
 import TabPanel from '../TabPanel/TabPanel';
-import CsrList from '../List/List';
 import ListViewHeader from '../ListViewHeader/ListViewHeader';
 import GridItem from '../Grid/GridItem';
+import List from '../List/List';
 import ListView from '../ListView/ListView';
 import { isClickTrackerWrapper, isDfp, isList, } from '../../utils/validateType';
 import ClickTracker from '../ClickTracker/ClickTrackerWrapper';
@@ -65,7 +65,6 @@ export function TabButton({ isActive, children, ...props }: TabButtonProps) {
 }
 
 type TabsElementProps = TabsElementType & {
-  List?: ?ComponentType<any>,
   startAt: number,
 };
 
@@ -74,12 +73,7 @@ TabElement.defaultProps = {
   List: null,
 };
 
-function TabElement({
-  elements,
-  List: SsrList,
-  startAt,
-}: TabsElementProps): Node {
-  const List = SsrList || CsrList;
+function TabElement({ elements, startAt, }: TabsElementProps): Node {
   return (
     <FelaTheme
       render={theme => (

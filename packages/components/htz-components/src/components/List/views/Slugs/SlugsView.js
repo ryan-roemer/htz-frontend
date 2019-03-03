@@ -25,12 +25,12 @@ type Props = {
   list: ListDataType,
   gaAction: () => void,
   biAction: ?ListBiActionType,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
 };
 
 Slugs.defaultProps = {
   gaAction: null,
-  isLazyLoadImages: true,
+  isLazyloadImages: true,
 };
 
 export default function Slugs({
@@ -38,7 +38,7 @@ export default function Slugs({
   loadPriority,
   gaAction,
   biAction,
-  isLazyLoadImages,
+  isLazyloadImages,
 }: Props): React.Node {
   const { items, dfp, extraLinks, ...restOfList } = list;
   return (
@@ -87,7 +87,7 @@ export default function Slugs({
               display: 'flex',
             }}
           >
-            <MainTeaser data={items[0]} {...{ isLazyLoadImages, biAction, }} />
+            <MainTeaser data={items[0]} {...{ isLazyloadImages, biAction, }} />
           </GridItem>
 
           {/* Secondary teasers */}
@@ -99,10 +99,10 @@ export default function Slugs({
               { from: 'xl', value: 6 / 12, },
             ]}
           >
-            <TwoUp data1={items[1]} data2={items[2]} {...{ isLazyLoadImages, biAction, }} />
+            <TwoUp data1={items[1]} data2={items[2]} {...{ isLazyloadImages, biAction, }} />
 
             {/* Textual Teaser */}
-            <TextualTeaser data={items[3]} {...{ isLazyLoadImages, biAction, }} />
+            <TextualTeaser data={items[3]} {...{ isLazyloadImages, biAction, }} />
           </GridItem>
         </Grid>
       </GridItem>
@@ -159,13 +159,13 @@ function bannerStyle({ theme, }) {
 type TeaserProps = {
   data: TeaserDataType,
   index: 0 | 1 | 2 | 3,
-  isLazyLoadImages?: boolean,
+  isLazyloadImages?: boolean,
   biAction: ?ListBiActionType,
 };
 
-MainTeaser.defaultProps = { isLazyLoadImages: true, index: 0, };
+MainTeaser.defaultProps = { isLazyloadImages: true, index: 0, };
 
-function MainTeaser({ data, isLazyLoadImages, biAction, }: TeaserProps): React.Node {
+function MainTeaser({ data, isLazyloadImages, biAction, }: TeaserProps): React.Node {
   const articleId = data.contentId;
 
   return (
@@ -188,7 +188,7 @@ function MainTeaser({ data, isLazyLoadImages, biAction, }: TeaserProps): React.N
             onClick={biAction ? () => biAction({ index: 0, articleId, }) : null}
           >
             <Image
-              lazyLoad={isLazyLoadImages}
+              lazyLoad={isLazyloadImages}
               imgOptions={getImageAssets({
                 bps: theme.bps,
                 aspect: 'square',
@@ -230,8 +230,8 @@ function MainTeaser({ data, isLazyLoadImages, biAction, }: TeaserProps): React.N
   );
 }
 
-TwoUpTeaser.defaultProps = { isLazyLoadImages: true, };
-function TwoUpTeaser({ data, isLazyLoadImages, biAction, index, }: TeaserProps): React.Node {
+TwoUpTeaser.defaultProps = { isLazyloadImages: true, };
+function TwoUpTeaser({ data, isLazyloadImages, biAction, index, }: TeaserProps): React.Node {
   const articleId = data.contentId;
 
   return (
@@ -254,7 +254,7 @@ function TwoUpTeaser({ data, isLazyLoadImages, biAction, index, }: TeaserProps):
             onClick={biAction ? () => biAction({ index, articleId, }) : null}
           >
             <Image
-              lazyLoad={isLazyLoadImages}
+              lazyLoad={isLazyloadImages}
               imgOptions={{
                 ...getImageAssets({
                   bps: theme.bps,
@@ -295,7 +295,7 @@ function TwoUpTeaser({ data, isLazyLoadImages, biAction, index, }: TeaserProps):
   );
 }
 
-TextualTeaser.defaultProps = { isLazyLoadImages: true, index: 3, };
+TextualTeaser.defaultProps = { isLazyloadImages: true, index: 3, };
 function TextualTeaser({ data, biAction, }: TeaserProps): React.Node {
   const articleId = data.contentId;
 
@@ -337,12 +337,12 @@ function TextualTeaser({ data, biAction, }: TeaserProps): React.Node {
 type TwoUpProps = {
   data1: TeaserDataType,
   data2: TeaserDataType,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
   biAction: ?ListBiActionType,
 };
 
-TwoUp.defaultProps = { isLazyLoadImages: true, };
-function TwoUp({ data1, data2, isLazyLoadImages, biAction, }: TwoUpProps): React.Node {
+TwoUp.defaultProps = { isLazyloadImages: true, };
+function TwoUp({ data1, data2, isLazyloadImages, biAction, }: TwoUpProps): React.Node {
   return (
     <Grid
       rowSpacing={[ { from: 's', value: { amount: 4, }, }, ]}
@@ -356,13 +356,13 @@ function TwoUp({ data1, data2, isLazyLoadImages, biAction, }: TwoUpProps): React
         width={[ { until: 's', value: 1 / 2, }, { from: 's', value: 1, }, ]}
         miscStyles={{ display: 'flex', }}
       >
-        <TwoUpTeaser data={data1} index={1} {...{ isLazyLoadImages, biAction, }} />
+        <TwoUpTeaser data={data1} index={1} {...{ isLazyloadImages, biAction, }} />
       </GridItem>
       <GridItem
         width={[ { until: 's', value: 1 / 2, }, { from: 's', value: 1, }, ]}
         miscStyles={{ display: 'flex', }}
       >
-        <TwoUpTeaser data={data2} index={2} {...{ isLazyLoadImages, biAction, }} />
+        <TwoUpTeaser data={data2} index={2} {...{ isLazyloadImages, biAction, }} />
       </GridItem>
     </Grid>
   );

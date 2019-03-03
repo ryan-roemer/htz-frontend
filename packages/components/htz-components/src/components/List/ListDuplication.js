@@ -1,28 +1,27 @@
 // @flow
-import React from 'react';
+import type { TeaserDataType, } from '../../flowTypes/TeaserDataType';
 
-import type { Node, } from 'react';
+type TesersInPage = Array<string>;
 
-type Props = {
-  children: ({
-    updateListDuplication: Array<?string> => void,
-    getListDuplication: () => Array<?string>,
-  }) => Node,
+let teasersInPage: TesersInPage = [];
+
+export function updateTeasersInPage(listItems: Array<TeaserDataType>): void {
+  if (!listItems) return undefined;
+
+  const articlesInList = listItems.reduce((articleIds, item) => {
+    const { representedContent, contentId, } = item;
+    articleIds.push(representedContent || contentId);
+    return articleIds;
+  }, []);
+
+  teasersInPage = [ ...new Set([ ...teasersInPage, ...articlesInList, ]), ];
+  return undefined;
 }
 
-export default class ListDuplication extends React.PureComponent<Props> {
-  static listDuplicationIds = [];
+export function getTeasersInPage(): Array<string> {
+  return teasersInPage;
+}
 
-  updateListDuplication: Array<?string> => void = ids => {
-    ListDuplication.listDuplicationIds = [
-      ...new Set([ ...ListDuplication.listDuplicationIds, ...ids, ]),
-    ];
-  };
-
-  getListDuplication: () => Array<?string> = () => ListDuplication.listDuplicationIds;
-
-  render(): Node {
-    const { props: { children, }, updateListDuplication, getListDuplication, } = this;
-    return children({ updateListDuplication, getListDuplication, });
-  }
+export function clearTeasersInPage() {
+  teasersInPage = [];
 }

@@ -25,7 +25,7 @@ import GeneralAdSlot from '../../../Ads/GeneralAdSlot';
 
 type Props = {
   list: ListDataType,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
   biAction: ?ListBiActionType,
   gaAction: ?() => void,
 };
@@ -33,14 +33,14 @@ type Props = {
 HawkingList.defaultProps = {
   biAction: null,
   gaAction: null,
-  isLazyLoadImages: true,
+  isLazyloadImages: true,
 };
 
 export default function HawkingList({
   list,
   biAction,
   gaAction,
-  isLazyLoadImages,
+  isLazyloadImages,
 }: Props): Node {
   const { items, clickTrackers, dfp, ...restOfList } = list;
 
@@ -83,7 +83,7 @@ export default function HawkingList({
             {mainTeaser && (
               <HawkingMainTeaser
                 item={mainTeaser}
-                isLazyLoadImages={isLazyLoadImages}
+                isLazyloadImages={isLazyloadImages}
                 biAction={biAction}
               />
             )}
@@ -185,20 +185,20 @@ export default function HawkingList({
 
 type TeaserProps = {
   item: TeaserDataType,
-  isLazyLoadImages?: boolean,
+  isLazyloadImages?: boolean,
   biAction: ?ListBiActionType,
   index: number,
 };
 
 HawkingMainTeaser.defaultProps = {
-  isLazyLoadImages: true,
+  isLazyloadImages: true,
   biAction: null,
   index: 0,
 };
 
 function HawkingMainTeaser({
   item,
-  isLazyLoadImages,
+  isLazyloadImages,
   biAction,
   index,
 }: TeaserProps): Node {
@@ -311,7 +311,7 @@ function HawkingMainTeaser({
 
 HawkingTeaser.defaultProps = {
   biAction: null,
-  isLazyLoadImages: true,
+  isLazyloadImages: true,
 };
 
 function HawkingTeaser({ item, index, biAction, }: TeaserProps): Node {
