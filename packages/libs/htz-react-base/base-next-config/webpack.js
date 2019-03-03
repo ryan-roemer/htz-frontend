@@ -80,7 +80,7 @@ module.exports = function configWebpack(
       filename: path.join(
         '..',
         'bundle-report',
-        "stats-{isServer ? 'server' : 'client'}.json"
+        `stats-${isServer ? 'server' : 'client'}.json`
       ),
       fields: [ 'assets', 'moudles', ],
     });
