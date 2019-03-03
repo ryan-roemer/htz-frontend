@@ -24,22 +24,26 @@ import TeaserHeader from '../../../TeaserHeader/TeaserHeader';
 type Props = {
   list: ListDataType,
   biAction: ?ListBiActionType,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
 };
 
 type ItemProps = {
   item: ClickTrackerBannerWrapperType,
   index: number,
   biAction: ?ListBiActionType,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
 };
 
 Donatello.defaultProps = {
-  isLazyLoadImages: true,
+  isLazyloadImages: true,
   biAction: null,
 };
 
-export default function Donatello({ list, biAction, isLazyLoadImages = true, }: Props): Node {
+export default function Donatello({
+  list,
+  biAction,
+  isLazyloadImages = true,
+}: Props): Node {
   const items: ?Array<ClickTrackerBannerWrapperType> = list.clickTrackers
     ? list.clickTrackers.slice(0, 5)
     : null;
@@ -49,7 +53,10 @@ export default function Donatello({ list, biAction, isLazyLoadImages = true, }: 
         render={theme => (
           <ListView
             innerBackgroundColor="transparent"
-            padding={[ { until: 's', value: [ 0, 2, ], }, { from: 's', value: [ 0, 4, ], }, ]}
+            padding={[
+              { until: 's', value: [ 0, 2, ], },
+              { from: 's', value: [ 0, 4, ], },
+            ]}
             miscStyles={{
               fontFamily: theme.fontStacks.commercial,
               display: [ { until: 's', value: 'none', }, ],
@@ -62,7 +69,9 @@ export default function Donatello({ list, biAction, isLazyLoadImages = true, }: 
               biAction={biAction}
               width={[ { until: 'l', value: 1, }, { from: 'l', value: 1 / 6, }, ]}
             />
-            <GridItem width={[ { until: 'l', value: 1, }, { from: 'l', value: 5 / 6, }, ]}>
+            <GridItem
+              width={[ { until: 'l', value: 1, }, { from: 'l', value: 5 / 6, }, ]}
+            >
               <Grid gutter={4}>
                 {items.map((item: ClickTrackerBannerWrapperType, index) => {
                   const isLast: boolean = index === items.length - 1;
@@ -75,7 +84,10 @@ export default function Donatello({ list, biAction, isLazyLoadImages = true, }: 
                       ]}
                       miscStyles={{
                         display: isLast
-                          ? [ { until: 'l', value: 'none', }, { from: 'l', value: 'flex', }, ]
+                          ? [
+                            { until: 'l', value: 'none', },
+                            { from: 'l', value: 'flex', },
+                          ]
                           : 'flex',
                       }}
                     >
@@ -83,7 +95,7 @@ export default function Donatello({ list, biAction, isLazyLoadImages = true, }: 
                         item={item}
                         biAction={biAction}
                         index={index}
-                        isLazyLoadImages={isLazyLoadImages}
+                        isLazyloadImages={isLazyloadImages}
                       />
                     </GridItem>
                   );
@@ -102,11 +114,11 @@ export default function Donatello({ list, biAction, isLazyLoadImages = true, }: 
 }
 
 Item.defaultProps = {
-  isLazyLoadImages: true,
+  isLazyloadImages: true,
   biAction: null,
 };
 
-function Item({ item, biAction, index, isLazyLoadImages, }: ItemProps): Node {
+function Item({ item, biAction, index, isLazyloadImages, }: ItemProps): Node {
   return (
     <ClickTracker
       {...item}
@@ -151,7 +163,7 @@ function Item({ item, biAction, index, isLazyLoadImages, }: ItemProps): Node {
                   <TeaserMedia data={banner} width={1} isClickTracker>
                     <Image
                       data={clicktrackerimage}
-                      lazyLoad={isLazyLoadImages}
+                      lazyLoad={isLazyloadImages}
                       imgOptions={{
                         transforms: {
                           width: '180',

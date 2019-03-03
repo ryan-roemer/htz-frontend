@@ -6,27 +6,30 @@ import type { GridElementType, } from '../../flowTypes/GridElementType';
 
 import Grid from '../Grid/Grid';
 import GridItem from '../Grid/GridItem';
-import CsrList from '../List/List';
+import List from '../List/List';
 import ListView from '../ListView/ListView';
 import StickyListViewHeader from '../ListViewHeader/StickyListViewHeader';
 import Debug from '../Debug/Debug';
 import ClickTracker from '../ClickTracker/ClickTrackerWrapper';
 import GeneralAdSlot from '../Ads/GeneralAdSlot';
 import TabElement from '../TabElement/TabElement';
-import { isClickTrackerWrapper, isDfp, isList, isTabElement, } from '../../utils/validateType';
+import {
+  isClickTrackerWrapper,
+  isDfp,
+  isList,
+  isTabElement,
+} from '../../utils/validateType';
 
 type GridElementProps = GridElementType & {
   showTitle?: boolean,
   gutter: number,
   withoutWrapper?: boolean,
-  List?: ?ComponentType<any>,
 };
 
 GridElement.defaultProps = {
-  gutter: 4,
-  List: null,
-  showTitle: true,
-  withoutWrapper: false,
+  gutter: 4, // eslint-disable-line react/default-props-match-prop-types
+  showTitle: true, // eslint-disable-line react/default-props-match-prop-types
+  withoutWrapper: false, // eslint-disable-line react/default-props-match-prop-types
 };
 
 function GridElement({
@@ -35,15 +38,15 @@ function GridElement({
   gutter,
   showTitle,
   withoutWrapper,
-  List: SsrList,
 }: GridElementProps): Node {
   const WrapperElement: ComponentType<any> = withoutWrapper ? Grid : ListView;
-  const List = SsrList || CsrList;
   return (
     <WrapperElement
       gutter={gutter}
       padding={
-        withoutWrapper ? null : [ { until: 's', value: [ 0, 2, ], }, { from: 's', value: [ 0, 4, ], }, ]
+        withoutWrapper
+          ? null
+          : [ { until: 's', value: [ 0, 2, ], }, { from: 's', value: [ 0, 4, ], }, ]
       }
     >
       {showTitle && title ? (
@@ -74,10 +77,12 @@ function GridElement({
             ) : isList(content) ? (
               <List {...content} />
             ) : isTabElement(content) ? (
-              <TabElement List={SsrList} {...content} withoutWrapper />
+              <TabElement {...content} withoutWrapper />
             ) : (
               <Debug key={content.contentId}>
-                {`Element of type '${content.inputTemplate}' is not supported in GridElementGroup`}
+                {`Element of type '${
+                  content.inputTemplate
+                }' is not supported in GridElementGroup`}
               </Debug>
             )}
           </GridItem>

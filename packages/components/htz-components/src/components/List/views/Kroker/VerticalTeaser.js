@@ -21,7 +21,7 @@ type Props = {
 VerticlaTeaser.defautlProps = { biAction: null, isLast: false, };
 export default function VerticlaTeaser({
   itemData,
-  isLazyLoadImages,
+  isLazyloadImages,
   displayFlags,
   biAction,
 }: Props): React.Node {

@@ -17,19 +17,19 @@ import type { ListBiActionType, } from '../../../../flowTypes/ListBiActionType';
 
 type Props = {
   itemData: TeaserDataType,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
   displayFlags: DisplayFlagsType,
   biAction: ?ListBiActionType,
   index: 3 | 4,
 };
 
 HorizontalTeaser.defaultProps = {
-  isLazyLoadImages: true,
+  isLazyloadImages: true,
   biAction: null,
 };
 export default function HorizontalTeaser({
   itemData,
-  isLazyLoadImages,
+  isLazyloadImages,
   displayFlags,
   biAction,
   index,
@@ -64,7 +64,7 @@ export default function HorizontalTeaser({
             }}
           >
             <Picture
-              lazyLoad={isLazyLoadImages}
+              lazyLoad={isLazyloadImages}
               {...getPictureAssets({
                 bps: theme.bps,
                 imgData: itemData.image,

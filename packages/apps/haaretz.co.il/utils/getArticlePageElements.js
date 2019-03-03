@@ -1,23 +1,26 @@
 import React from 'react';
 import { dfpTargeting, } from '@haaretz/dfp';
 
+// List views
+
 import {
+  // General Elements
   ArticleBody,
-  GeneralAdSlot,
   Breadcrumbs,
   ChangeableElementGroup,
-  WrappedComments,
   ClickTrackerWrapper,
   Debug,
   ElementGroup,
   Embed,
   Error,
   Footer,
+  GeneralAdSlot,
   HtmlElement,
   Image,
   ImageGallery,
   Interactive,
   LinksBlock,
+  List,
   MagazineRecipes,
   Masthead,
   MobileListWrapper,
@@ -27,16 +30,22 @@ import {
   Paragraph,
   Quote,
   RelatedArticles,
+  RssFeed,
   SeriesArticles,
   SpecialPromotions,
+  TableScore,
   Tags,
   TopNews,
   Video,
   withDfpSideEffect,
-  TableScore,
-  RssFeed,
+  WrappedComments,
+
+  // List views
+  Bender,
+  Farnsworth,
+  Leela,
+  Zoidberg,
 } from '@haaretz/htz-components';
-import ArticlePageList from '../components/List/ArticlePageList';
 
 const tagsFromTagElement = ({ tagsList, }) => tagsList.map(x => x.contentName);
 
@@ -90,8 +99,15 @@ const elements = new Map([
   [ 'video', Video, ],
   [ 'com.tm.HtmlElement', HtmlElement, ],
   [ 'com.tm.newsLetterQuickRegistrationRespAuto', Newsletter, ],
-  [ 'com.tm.ListElement', () => <Debug><p>Old list, NOT SUPPORTED</p></Debug>, ],
-  [ 'com.tm.element.List', ArticlePageList, ],
+  [
+    'com.tm.ListElement',
+    () => (
+      <Debug>
+        <p>Old list, NOT SUPPORTED</p>
+      </Debug>
+    ),
+  ],
+  [ 'com.tm.element.List', List, ],
   [ 'com.polobase.whtzMobileSiteListsWrapper', MobileListWrapper, ],
   [ 'com.tm.element.group', ChangeableElementGroup, ],
   [ 'com.tm.HeaderNewsGroup', TopNews, ],
@@ -104,13 +120,20 @@ const elements = new Map([
   [ 'com.tm.ExternalRssElement', RssFeed, ],
   [ 'error', Error, ],
   [ null, null, ],
+
+  // List views
+  [ 'Bender', Bender, ],
+  [ 'Farnsworth', Farnsworth, ],
+  [ 'Leela', Leela, ],
+  [ 'Zoidberg', Zoidberg, ],
 ]);
 
 // eslint-disable-next-line react/prop-types
 const DefaultComponent = ({ inputTemplate, contentId, kind, }) => {
   console.log(`
-    Element of type: '${kind || inputTemplate}' is not supported and
-    we don't have any component fot it yet.
+    Element of type: '${kind || inputTemplate}' is not supported
+    in article pages, and we don't have any component for it yet.
+
     The id of the element you tried to render on this page is: ${contentId}.
   `);
   return (

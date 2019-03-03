@@ -103,7 +103,7 @@ export default function VerticalList({
                         key={contentId}
                         itemData={banner}
                         biAction={biAction}
-                        isLazyLoadImages
+                        isLazyloadImages
                       />
                     );
                   }}
@@ -113,7 +113,7 @@ export default function VerticalList({
                   key={firstItem.contentId}
                   itemData={firstItem}
                   biAction={biAction}
-                  isLazyLoadImages
+                  isLazyloadImages
                 />
               ) : null
             ) : null}
@@ -154,15 +154,15 @@ export default function VerticalList({
 // /////////////////////////////////////////////////////////////////////
 
 type FirstTeaserProps = {
-  isLazyLoadImages?: boolean, // eslint-disable-line react/no-unused-prop-types
+  isLazyloadImages?: boolean, // eslint-disable-line react/no-unused-prop-types
   itemData: TeaserDataType | ClickTrackerBannerType,
   biAction: ?ListBiActionType,
 };
 
-VerticalListFirstTeaser.defaultProps = { isLazyLoadImages: true, };
+VerticalListFirstTeaser.defaultProps = { isLazyloadImages: true, };
 
 function VerticalListFirstTeaser({
-  isLazyLoadImages,
+  isLazyloadImages,
   itemData,
   biAction,
 }: FirstTeaserProps) {
@@ -200,7 +200,7 @@ function VerticalListFirstTeaser({
             isStacked
           >
             <Image
-              lazyLoad={isLazyLoadImages}
+              lazyLoad={isLazyloadImages}
               data={
                 isClickTracker(itemData)
                   ? itemData.clicktrackerimage
@@ -272,7 +272,7 @@ type VerticalListTeaserProps = FirstTeaserProps & {
 };
 
 // eslint-disable-next-line react/default-props-match-prop-types
-VerticalListTeaser.defaultProps = { isLast: false, isLazyLoadImages: true, };
+VerticalListTeaser.defaultProps = { isLast: false, isLazyloadImages: true, };
 
 function VerticalListTeaser({
   itemData,

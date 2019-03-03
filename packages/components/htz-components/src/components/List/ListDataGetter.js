@@ -25,7 +25,7 @@ type ListComponentProps = {
   listId: string,
   gaAction: () => void,
   biAction: ?ListBiActionType,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
 };
 export type ListContentRendererProps = {
   children: ListComponentProps => Node,

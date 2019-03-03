@@ -26,7 +26,7 @@ import getPictureAssets from '../../../../utils/getPictureAssets';
 
 type Props = {
   list: ListDataType,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
   biAction: ?ListBiActionType,
   gaAction: ?() => void,
 };
@@ -34,14 +34,14 @@ type Props = {
 DonbotList.defaultProps = {
   biAction: null,
   gaAction: null,
-  isLazyLoadImages: true,
+  isLazyloadImages: true,
 };
 
 export default function DonbotList({
   list,
   biAction,
   gaAction,
-  isLazyLoadImages,
+  isLazyloadImages,
 }: Props): Node {
   const { items, extraLinks, ...restOfList } = list;
   const mainTeaser = items && items.length > 0 && items[0];
@@ -84,7 +84,7 @@ export default function DonbotList({
             {mainTeaser && (
               <DonbotMainTeaser
                 item={mainTeaser}
-                isLazyLoadImages={isLazyLoadImages}
+                isLazyloadImages={isLazyloadImages}
                 biAction={biAction}
               />
             )}
@@ -115,7 +115,7 @@ export default function DonbotList({
                 {teaser1 && (
                   <DonbotTeaser
                     index={1}
-                    isLazyLoadImages={isLazyLoadImages}
+                    isLazyloadImages={isLazyloadImages}
                     item={teaser1}
                     biAction={biAction}
                   />
@@ -134,7 +134,7 @@ export default function DonbotList({
                 {teaser2 && (
                   <DonbotTeaser
                     index={2}
-                    isLazyLoadImages={isLazyLoadImages}
+                    isLazyloadImages={isLazyloadImages}
                     item={teaser2}
                     biAction={biAction}
                   />
@@ -153,7 +153,7 @@ export default function DonbotList({
                 {teaser3 && (
                   <DonbotTeaser
                     index={3}
-                    isLazyLoadImages={isLazyLoadImages}
+                    isLazyloadImages={isLazyloadImages}
                     item={teaser3}
                     biAction={biAction}
                   />
@@ -172,7 +172,7 @@ export default function DonbotList({
                 {teaser4 && (
                   <DonbotTeaser
                     index={4}
-                    isLazyLoadImages={isLazyLoadImages}
+                    isLazyloadImages={isLazyloadImages}
                     item={teaser4}
                     biAction={biAction}
                   />
@@ -192,16 +192,16 @@ export default function DonbotList({
 
 type TeaserProps = {
   item: TeaserDataType,
-  isLazyLoadImages?: boolean,
+  isLazyloadImages?: boolean,
   biAction: ?ListBiActionType,
   index: number,
 };
 
-DonbotMainTeaser.defaultProps = { isLazyLoadImages: true, index: 0, };
+DonbotMainTeaser.defaultProps = { isLazyloadImages: true, index: 0, };
 
 function DonbotMainTeaser({
   item,
-  isLazyLoadImages,
+  isLazyloadImages,
   biAction,
 }: TeaserProps): Node {
   const articleId = item.representedContent || item.contentId;
@@ -220,7 +220,7 @@ function DonbotMainTeaser({
             isStacked
           >
             <Picture
-              lazyLoad={isLazyLoadImages}
+              lazyLoad={isLazyloadImages}
               {...getPictureAssets({
                 bps: theme.bps,
                 imgData: item.image,
@@ -302,12 +302,12 @@ function DonbotMainTeaser({
   );
 }
 
-DonbotTeaser.defaultProps = { biAction: null, isLazyLoadImages: true, };
+DonbotTeaser.defaultProps = { biAction: null, isLazyloadImages: true, };
 function DonbotTeaser({
   item,
   index,
   biAction,
-  isLazyLoadImages,
+  isLazyloadImages,
 }: TeaserProps): Node {
   return (
     <FelaTheme
@@ -337,7 +337,7 @@ function DonbotTeaser({
             isStacked
           >
             <Image
-              lazyLoad={isLazyLoadImages}
+              lazyLoad={isLazyloadImages}
               imgOptions={getImageAssets({
                 bps: theme.bps,
                 aspect: 'headline',

@@ -19,18 +19,18 @@ import type { ClickTrackerBannerWrapperType, } from '../../../../flowTypes/Click
 
 type ZappPromotedContentProps = {
   data: ClickTrackerBannerWrapperType,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
   index: number,
   biAction: ?ListBiActionType,
 };
 
 ZappPromotedContent.defaultProps = {
-  isLazyLoadImages: true,
+  isLazyloadImages: true,
 };
 
 export default function ZappPromotedContent({
   data,
-  isLazyLoadImages,
+  isLazyloadImages,
   index,
   biAction,
 }: ZappPromotedContentProps): React.Node {
@@ -60,7 +60,7 @@ export default function ZappPromotedContent({
                   <GridItem width={4 / 12}>
                     <Image
                       data={banner.clicktrackerimage}
-                      lazyLoad={isLazyLoadImages}
+                      lazyLoad={isLazyloadImages}
                       imgOptions={{
                         transforms: {
                           width: '102',

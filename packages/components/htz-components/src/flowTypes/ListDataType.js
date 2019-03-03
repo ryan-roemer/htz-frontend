@@ -15,7 +15,6 @@ export type ListDataType = {
   // only `marketingTeaser` should be placed in the JSON
   commercialLinks?: ListExtraLinkType[],
   marketingTeaser?: ListMarketingTeaserType,
-  isLazyloadImages: boolean,
   loadPriority: "ssr" | "client" | "lazy",
   description?: string,
   items: Array<TeaserDataType>,
@@ -29,6 +28,6 @@ export type ListDataType = {
   url?: string,
   description?: string,
   urlDescription?: string,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
   loadPriority?: "ssr" | "client" | "lazy",
 };

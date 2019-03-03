@@ -44,7 +44,7 @@ export type Props = {
   list: ListDataType,
   gaAction: () => void,
   biAction: ?ListBiActionType,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
 };
 
 type State = {
@@ -128,7 +128,7 @@ export default class Zombie extends React.Component<Props, State> {
   };
 
   render() {
-    const { list, biAction, isLazyLoadImages, } = this.props;
+    const { list, biAction, isLazyloadImages, } = this.props;
     const { stocks, } = this.state;
     const { items, dfp, ...restOfList } = list;
 
@@ -179,7 +179,7 @@ export default class Zombie extends React.Component<Props, State> {
                   <MainTeaser
                     data={items[0]}
                     biAction={biAction}
-                    isLazyLoadImages={isLazyLoadImages}
+                    isLazyloadImages={isLazyloadImages}
                   />
                 </GridItem>
                 <GridItem
@@ -258,15 +258,15 @@ type TeaserProps = {
   biAction: ?ListBiActionType,
   data: TeaserDataType,
   index: 0 | 1 | 2 | 3,
-  isLazyLoadImages: ?boolean,
+  isLazyloadImages: ?boolean,
 };
 
-MainTeaser.defaultProps = { isLazyLoadImages: true, index: 0, };
+MainTeaser.defaultProps = { isLazyloadImages: true, index: 0, };
 function MainTeaser({
   biAction,
   data,
   index,
-  isLazyLoadImages,
+  isLazyloadImages,
 }: TeaserProps): Node {
   const itemId = data.representedContent == null ? data.contentId : data.representedContent;
 
@@ -289,7 +289,7 @@ function MainTeaser({
             isStacked
           >
             <Picture
-              lazyLoad={isLazyLoadImages}
+              lazyLoad={isLazyloadImages}
               {...pictureAssetProps({
                 bps: theme.bps,
                 imgData: data.image,
@@ -350,7 +350,7 @@ function MainTeaser({
   );
 }
 
-TextualTeaser.defaultProps = { isLazyLoadImages: false, };
+TextualTeaser.defaultProps = { isLazyloadImages: false, };
 
 function TextualTeaser({ biAction, data, index, }: TeaserProps): Node {
   const itemId = data.representedContent == null ? data.contentId : data.representedContent;

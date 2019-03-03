@@ -5,15 +5,15 @@ import SalView from '../List/views/Sal/SalView';
 import type { RssFeedType, } from '../../flowTypes/RssFeedType';
 import type { ListDataType, } from '../../flowTypes/ListDataType';
 
-function rssDataToListData(rssData): ListDataType {
+function rssDataToListData(rssData: RssFeedType): ListDataType {
   return {
     title: rssData.title,
     contentName: rssData.title,
     contentId: rssData.contentId,
     hasPagination: false,
     inputTemplate: 'com.tm.ListElement',
-    isLazyloadImages: false,
-    lazyLoadImages: false,
+    isLazyloadImages: true,
+    lazyLoadImages: true,
     view: 'Sal',
     items: rssItemsToTeaserData(rssData.items, rssData.contentId),
   };
@@ -28,7 +28,9 @@ function rssItemsToTeaserData(items, keyPrefix) {
   return !items
     ? []
     : items.map((item, idx) => {
-      const publishedDate = item.publishedDate ? new Date(item.publishedDate).getTime() : null;
+      const publishedDate = item.publishedDate
+        ? new Date(item.publishedDate).getTime()
+        : null;
 
       return {
         image: rssItemImageToImage(item.imageUrl),
@@ -85,7 +87,7 @@ export default function RssFeed(props: RssFeedType) {
     <SalView
       {...{
         list: dataAsList,
-        isLazyLoadImages: dataAsList.isLazyloadImages,
+        isLazyloadImages: dataAsList.isLazyloadImages,
         biAction: null,
         gaAction: null,
       }}

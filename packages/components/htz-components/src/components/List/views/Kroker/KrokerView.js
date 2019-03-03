@@ -19,7 +19,7 @@ import type { TeaserDataType, } from '../../../../flowTypes/TeaserDataType';
 type Props = {
   list: ListDataType,
   listId: string,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
   gaAction: ?() => void,
   biAction: ?ListBiActionType,
 };
@@ -27,7 +27,7 @@ type Props = {
 export default function KrokerView({
   list,
   listId,
-  isLazyLoadImages,
+  isLazyloadImages,
   gaAction,
   biAction,
 }: Props): React.Node {
@@ -77,7 +77,7 @@ export default function KrokerView({
             <ListItems
               items={items}
               dfp={dfp}
-              isLazyLoadImages={isLazyLoadImages}
+              isLazyloadImages={isLazyloadImages}
               biAction={biAction}
               gaAction={gaAction}
             />
@@ -91,11 +91,11 @@ export default function KrokerView({
 type ListItemsProps = {
   items: Array<TeaserDataType>,
   dfp: ?Array<DfpBannerType>,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
   gaAction: ?() => void,
   biAction: ?ListBiActionType,
 };
-function ListItems({ items, dfp, isLazyLoadImages, gaAction, biAction, }: ListItemsProps): React.Node {
+function ListItems({ items, dfp, isLazyloadImages, gaAction, biAction, }: ListItemsProps): React.Node {
   return (
     <Grid
       rowSpacing={[
@@ -113,7 +113,7 @@ function ListItems({ items, dfp, isLazyLoadImages, gaAction, biAction, }: ListIt
             miscStyles={{ display: 'flex', }}
           >
             {/* item 1 */}
-            <MainTeaser itemData={items[0]} isLazyLoadImages={isLazyLoadImages} biAction={biAction} />
+            <MainTeaser itemData={items[0]} isLazyloadImages={isLazyloadImages} biAction={biAction} />
           </GridItem>
           <GridItem
             width={[ { until: 's', value: 1, }, { from: 's', value: 2 / 5, }, ]}
@@ -122,7 +122,7 @@ function ListItems({ items, dfp, isLazyLoadImages, gaAction, biAction, }: ListIt
             {/* item 2 */}
             <VerticalImageTeaser
               itemData={items[1]}
-              isLazyLoadImages={isLazyLoadImages}
+              isLazyloadImages={isLazyloadImages}
               biAction={biAction}
               displayFlags={{ commentsCount: true, }}
             />

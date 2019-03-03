@@ -17,13 +17,13 @@ import type { ListBiActionType, } from '../../../../flowTypes/ListBiActionType';
 
 type Props = {
   itemData: TeaserDataType,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
   displayFlags: DisplayFlagsType,
   biAction: ?ListBiActionType,
 };
 
 VerticalImageTeaser.defaultProps = {
-  isLazyLoadImages: true,
+  isLazyloadImages: true,
   biAction: null,
 };
 
@@ -35,7 +35,7 @@ const headerType = [
 
 export default function VerticalImageTeaser({
   itemData,
-  isLazyLoadImages,
+  isLazyloadImages,
   biAction,
   displayFlags,
 }: Props): React.Node {
@@ -74,7 +74,7 @@ export default function VerticalImageTeaser({
             }
           >
             <Picture
-              lazyLoad={isLazyLoadImages}
+              lazyLoad={isLazyloadImages}
               {...(itemData.image
                 ? getPictureAssets({
                   bps: theme.bps,

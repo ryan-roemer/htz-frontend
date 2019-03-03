@@ -1,7 +1,8 @@
 // @flow
 import React from 'react';
-import type { Node, ComponentType, } from 'react';
+import type { Node, } from 'react';
 import GridItem from '../Grid/GridItem';
+import List from '../List/List';
 import ListView from '../ListView/ListView';
 
 import GeneralAdSlot from '../Ads/GeneralAdSlot';
@@ -11,20 +12,20 @@ import type { DfpBannerType, } from '../../flowTypes/DfpBannerType';
 import type { CountdownType, } from '../../flowTypes/CountdownType';
 
 type Props = {
-  List: ComponentType<any>,
   data: {
     slotA: ListDataType,
     slotB: DfpBannerType,
     slotC: ListDataType,
-    mainBlockComponents: Array<?(CountdownType)>,
+    mainBlockComponents: Array<?CountdownType>,
   },
 };
 
 export default function MainBlock({
   data: { slotA, slotB, slotC, mainBlockComponents, },
-  List,
 }: Props): Node {
-  const hasCountdown: ?CountdownType = mainBlockComponents.find(element => element && element.inputTemplate === 'com.tm.Countdown');
+  const hasCountdown: ?CountdownType = mainBlockComponents.find(
+    element => element && element.inputTemplate === 'com.tm.Countdown'
+  );
 
   const isWideMain = slotA.view === 'Conrad';
   return (

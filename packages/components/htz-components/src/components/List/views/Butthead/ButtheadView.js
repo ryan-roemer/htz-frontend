@@ -13,7 +13,7 @@ import GeneralAdSlot from '../../../Ads/GeneralAdSlot';
 
 type ButtheadPropsType = {
   list: ListDataType,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
   biAction: ?ListBiActionType,
   gaAction: ?() => void,
 };
@@ -21,12 +21,12 @@ type ButtheadPropsType = {
 Butthead.defaultProps = {
   biAction: null,
   gaAction: null,
-  isLazyLoadImages: true,
+  isLazyloadImages: true,
 };
 
 function Butthead({
   list,
-  isLazyLoadImages,
+  isLazyloadImages,
   biAction,
   gaAction,
 }: ButtheadPropsType): Node {

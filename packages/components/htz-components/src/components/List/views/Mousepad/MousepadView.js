@@ -11,7 +11,7 @@ import type { ListDataType, } from '../../../../flowTypes/ListDataType';
 
 type Props = {
   list: ListDataType,
-  isLazyLoadImages: boolean,
+  isLazyloadImages: boolean,
   gaAction: () => void,
   biAction: ?ListBiActionType,
 };
@@ -20,7 +20,7 @@ export default function Mousepad({
   list,
   gaAction,
   biAction,
-  isLazyLoadImages,
+  isLazyloadImages,
 }: Props): React.Node {
   const listMiddle = Math.ceil(list.items.length / 2);
 

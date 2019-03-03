@@ -1,93 +1,103 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 
-import type { ComponentType, Node, } from 'react';
 import type { ListDataType, } from '../../flowTypes/ListDataType';
-
+import type { TeaserDataType, } from '../../flowTypes/TeaserDataType';
+import { getTeasersInPage, updateTeasersInPage, } from './ListDuplication';
 import ReadingHistoryProvider from '../ReadingHistory/ReadingHistoryProvider';
-import ListDuplication from './ListDuplication';
+import useGetComponent from '../../hooks/GetComponentContext/useGetComponent';
 
-// eslint-disable-next-line react/require-default-props
-const ListWrapper = ({ viewProps, ...listData }: Object) => (
-  <ListDuplication>
-    {({ updateListDuplication, getListDuplication, }) => (
-      <List
-        getListDuplication={getListDuplication}
-        viewProps={viewProps}
-        listData={listData}
-        updateListDuplication={updateListDuplication}
-      />
-    )}
-  </ListDuplication>
-);
-
-type ListProps = {
-  listData: ListDataType & { View: ComponentType<any>, },
-  /** A function that updates the apollo store with the itemsRepresentedContent ids  */
-  updateListDuplication: Array<?string> => void,
-  getListDuplication: () => Array<?string>,
-  viewProps: ?Object,
+type ListProps = ListDataType & {
+  viewProps: Object,
 };
 
-type State = {
-  updatedListDuplication: boolean,
-  listDuplicationIds: Array<?string>,
-};
+// eslint-disable-next-line react/default-props-match-prop-types
+List.defaultProps = { viewProps: {}, };
+export default function List(props: ListProps) {
+  const getListView = useGetComponent();
 
-class List extends React.Component<ListProps, State> {
-  static defaultProps = {
-    viewProps: {},
-  };
+  const { viewProps, ...listData } = props;
+  const { loadPriority, contentId, } = listData;
+  const isSsr = loadPriority === 'ssr';
 
-  state = {
-    updatedListDuplication: false,
-    listDuplicationIds: [],
-  };
+  const ListInner = getListView(props.view);
 
-  componentDidMount() {
-    // we want this to run just once at component mount,
-    // This makes this whole component only usable for client side lists,
-    // Once we make add ssr capabilities we need to make sure the listDuplicationIds
-    // wont cause the list to re-query data and re render,
-    if (this.props.listData && this.props.listData.loadPriority !== 'ssr') {
-      const listDuplicationIds = this.props.getListDuplication();
-      this.setState({ listDuplicationIds, });
-    }
-  }
-
-  updateListDuplication = items => {
-    if (!this.state.updatedListDuplication) {
-      const itemsRepresentedContent = items.reduce((accumulator, currentValue) => {
-        if (currentValue && currentValue.representedContent) {
-          accumulator.push(currentValue.representedContent);
-        }
-        return accumulator;
-      }, []);
-
-      this.props.updateListDuplication(itemsRepresentedContent);
-      this.setState({ updatedListDuplication: true, });
-    }
-  };
-
-  render(): Node {
-    const { listData: { View, }, listData, viewProps, } = this.props;
-    const { listDuplicationIds, } = this.state;
-    return (
-      <ReadingHistoryProvider>
-        {readingHistory => (
-          <View
-            listData={listData}
-            viewProps={viewProps}
-            updateListDuplication={this.updateListDuplication}
-            variables={{
-              listId: listData.contentId,
-              history: [ ...readingHistory, ...listDuplicationIds || [], ],
-            }}
-          />
-        )}
-      </ReadingHistoryProvider>
-    );
-  }
+  return isSsr ? (
+    <ListInner
+      listData={listData}
+      viewProps={viewProps}
+      updateListDuplication={updateTeasersInPage}
+      variables={{
+        listId: contentId,
+        history: getTeasersInPage(),
+      }}
+    />
+  ) : (
+    <ClientSideList
+      getListDuplication={getTeasersInPage}
+      viewProps={viewProps}
+      listData={listData}
+      updateListDuplication={updateTeasersInPage}
+      ListInner={ListInner}
+    />
+  );
 }
 
-export default ListWrapper;
+type ClientSideListProps = {
+  listData: ListDataType,
+  /** A function that updates the list of article links in the page */
+  updateListDuplication: (Array<TeaserDataType>) => void,
+  getListDuplication: () => Array<string>,
+  viewProps: Object,
+  ListInner: React.ComponentType<any>,
+};
+
+// function ClientSideList({
+function ClientSideList({
+  listData,
+  getListDuplication,
+  updateListDuplication,
+  viewProps,
+  ListInner,
+}: ClientSideListProps) {
+  const [
+    listDuplicationIds: Array<?string>,
+    setListDuplicationsIds,
+  ] = React.useState([]);
+  const [
+    listDuplicationIsUpdated: boolean,
+    setListDuplicationIsUpdated,
+  ] = React.useState(false);
+
+  React.useEffect(
+    () => {
+      setListDuplicationsIds(getListDuplication());
+    },
+    // we want this to run just once when the components is first
+    // rendered, which is why the dependencies array is empty
+    []
+  );
+
+  function updateDuplications(items) {
+    if (!listDuplicationIsUpdated) {
+      updateListDuplication(items);
+      setListDuplicationIsUpdated(true);
+    }
+  }
+
+  return (
+    <ReadingHistoryProvider>
+      {readingHistory => (
+        <ListInner
+          listData={listData}
+          viewProps={viewProps}
+          updateListDuplication={updateDuplications}
+          variables={{
+            listId: listData.contentId,
+            history: [ ...readingHistory, ...(listDuplicationIds || []), ],
+          }}
+        />
+      )}
+    </ReadingHistoryProvider>
+  );
+}
