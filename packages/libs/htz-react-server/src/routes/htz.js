@@ -29,24 +29,15 @@ export default function htz(app, server, DEV) {
 
   /* Article Page */
   server.get([ /^.*(1\.\d+){1}$/, ], (req, res) => {
-    if (DEV) {
-      console.trace(
-        'captured an article at  req.path: ',
-        req.path,
-        ' req.params[0]: ',
-        req.params[0]
-      );
-    }
     if (!req.params[0].startsWith('/')) {
       req.params[0] = `/${req.params[0]}`;
     }
     const query = {
-      path: req.params[0],
+      path: req.path,
     };
-    console.log('path from htz routing ', req.path);
+    console.log(`Article page on path from htz routing: ${req.path}`);
 
     if (req.path.indexOf('RECIPE-') >= 0) {
-      console.log('found recipe, rendering recipe page');
       return app.render(req, res, '/recipeArticle', query);
     }
     if (req.path.indexOf('REVIEW-') >= 0) {

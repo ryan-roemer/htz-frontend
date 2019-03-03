@@ -185,7 +185,7 @@ class ArticleLayout extends React.Component {
                         articleId: this.props.url.query.path,
                         slots,
                         pageType,
-                        path: lineage[0].url || this.props.url.query.path,
+                        path: this.props.url.query.path,
                       })}
                     </FelaComponent>
                     <WelcomePage />
