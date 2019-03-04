@@ -1,12 +1,15 @@
 // @flow
 
+import type {
+  ComponentPropResponsiveObject,
+  StyleProps,
+} from '@haaretz/htz-css-tools';
 import * as React from 'react';
-import { FelaComponent, } from 'react-fela';
-import type { ComponentPropResponsiveObject, StyleProps, } from '@haaretz/htz-css-tools';
 
 import type { ClickTrackerBannerType, } from '../../flowTypes/ClickTrackerBannerType';
 import type { TeaserDataType, } from '../../flowTypes/TeaserDataType';
 import type { attrFlowType, } from '../../flowTypes/attrTypes';
+import { BlockLinkInner, } from '../BlockLink/BlockLink';
 import { isClickTracker, } from '../../utils/validateType';
 import Card from '../Card/Card';
 import Debug from '../Debug/Debug';
@@ -143,28 +146,10 @@ export default function Teaser({
       >
         {children}
       </Grid>
-      <FelaComponent
-        style={{
-          backgroundColor: 'transparent',
-          bottom: '0',
-          left: '0',
-          position: 'absolute',
-          right: '0',
-          top: '0',
-          zIndex: '0',
-        }}
-        render={({ className: linkClassName, }) => (
-          <HtzLink
-            className={linkClassName}
-            href={isClickTracker(data) ? data.link : data.path}
-            target={data.linkTarget}
-            onClick={onClick}
-            attrs={{
-              tabIndex: '-1',
-              'aria-hidden': true,
-            }}
-          />
-        )}
+      <BlockLinkInner
+        href={isClickTracker(data) ? data.link : data.path}
+        target={data.linkTarget}
+        onClick={onClick}
       />
     </Card>
   );
@@ -174,9 +159,11 @@ export default function Teaser({
 //                               UTILS                                //
 // /////////////////////////////////////////////////////////////////////
 
-type StackingOpts = 'column' | 'row';
+type StackingOpts = "column" | "row";
 type StackingSettings = {
-  flexDirection: StackingOpts | Array<{ from: ?string, until: ?string, value: StackingOpts, }>,
+  flexDirection:
+    | StackingOpts
+    | Array<{ from: ?string, until: ?string, value: StackingOpts, }>,
 };
 
 function setStacking(options: IsStackedType): StackingSettings {
