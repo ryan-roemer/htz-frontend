@@ -1,0 +1,79 @@
+query PageLayout($input: PageInput!) {
+  page(input: $input) {
+    pageType
+    ...PageBreadcrumbs
+    pageDateTimeString
+    articleData {
+      articleType
+      header {
+        exclusive
+        mobileExclusive
+        mobileSubtitle
+        mobileTitle
+        modDate
+        pubDate
+        reportingFrom
+        subtitle
+        title
+      }
+      mainElement {
+        ... on Image {
+          contentId
+        }
+        ... on ImageGallery {
+          contentId
+        }
+      }
+      commentsElementId
+      contentId
+      contentName
+      inputTemplate
+      isPremiumContent
+      reviewStars
+      ... on RegularArticleData {
+        body {
+          ... on Paragraph {
+            tag
+          }
+        }
+      }
+    }
+    slots {
+      preHeader
+      header
+      postHeader
+      article {
+        inputTemplate
+        contentId
+        contentName
+        properties
+      }
+      postMain
+      footer
+    }
+    dfpConfig {
+      adSlotConfig
+      adManagerConfig {
+        network
+        adUnitBase
+      }
+      conflictManagementConfig
+      impressionManagerConfig
+      googleGlobalSettings {
+        enableSingleRequest
+        enableAsyncRendering
+        breakpointType
+      }
+    }
+    jsonld
+  }
+}
+
+fragment PageBreadcrumbs on Page {
+  lineage {
+    contentId
+    name
+    pathSegment
+    url
+  }
+}

@@ -1,5 +1,5 @@
-interface ArticleData {
-  articleType: String,
+type RegularArticleData implements ArticleData {
+  articleType: String!,
   header: ArticleHeader,
   mainElement: HeadlineElement,
   tags: [Tag],

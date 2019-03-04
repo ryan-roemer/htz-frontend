@@ -4,7 +4,7 @@ const types = new Map([
   [ 'com.htz.magazineArticleDfpBannerElement', 'DfpBanner', ],
   [ 'com.polobase.ClickTrackerBannersWrapper', 'ClickTrackerBannersWrapper', ],
   [ 'com.polobase.DfpBannerElement', 'DfpBanner', ],
-  [ 'com.polobase.quickNewsletterRegistration', 'MobileQuickRegistrationType', ],
+  [ 'com.polobase.quickNewsletterRegistration', 'MobileQuickRegistration', ],
   [ 'com.polobase.whtzMobileSiteListsWrapper', 'MobileListWrapper', ],
   [ 'com.tm.BlogImage', 'Image', ],
   [ 'com.tm.element.List', 'List', ],

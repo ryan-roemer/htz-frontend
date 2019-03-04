@@ -1,0 +1,11 @@
+type ArticleHeader {
+  exclusive: String,
+  mobileExclusive: String,
+  mobileSubtitle: String,
+  mobileTitle: String,
+  modDate: Date,
+  pubDate: Date,
+  reportingFrom: String,
+  subtitle: String,
+  title: String,
+}

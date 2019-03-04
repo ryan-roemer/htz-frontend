@@ -1,0 +1,27 @@
+type TaxonomyItem {
+  pathSegment: ID,
+  contentId: ID!,
+  name: String!,
+  url: String!,
+}
+
+type Page {
+  pageType: String!,
+  contentId: ID!,
+  contentName: String,
+  lineage: [TaxonomyItem],
+  seoData: SeoData,
+  pageDateTimeString: [String],
+  articleData: ArticleData,
+  slots: Slots,
+  dfpConfig: DfpConfig,
+  jsonld: [String],
+}
+
+input PageInput {
+  path: String!,
+}
+
+extend type Query {
+  page(input: PageInput!): Page!
+}

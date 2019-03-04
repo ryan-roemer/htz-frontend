@@ -7,6 +7,7 @@ import dataSources from './mockSources';
 // Queries
 import listQuery from './queries/listQuery.graphql';
 import footerQuery from './queries/footerQuery.graphql';
+import regularArticleQuery from './queries/regularArticleQuery.graphql';
 
 const { typeDefs, resolvers, } = gqlServerConfig();
 
@@ -30,6 +31,14 @@ it('fetch a list', async () => {
 it('fetch a footer', async () => {
   // // run query against the server and snapshot the output
   const { errors, data, } = await testServer.query({ query: footerQuery, variables: { input: { listId: 'footer', }, }, });
+
+  expect(errors).toBeUndefined();
+  expect(data).toMatchSnapshot();
+});
+
+it('fetch a regular article', async () => {
+  // // run query against the server and snapshot the output
+  const { errors, data, } = await testServer.query({ query: regularArticleQuery, variables: { input: { path: 'regularArticle', }, }, });
 
   expect(errors).toBeUndefined();
   expect(data).toMatchSnapshot();

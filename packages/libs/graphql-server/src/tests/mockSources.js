@@ -1,7 +1,10 @@
 import listMock from './mocks/list';
+import pageMock from './mocks/page';
 
 export default () => ({
-  PageAPI: {},
+  PageAPI: {
+    getPage: args => pageMock(args),
+  },
   PapiAPI: {
     getList: args => listMock(args),
   },

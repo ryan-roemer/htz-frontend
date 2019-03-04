@@ -1,0 +1,14 @@
+type SeoData {
+  canonicalUrl: String,
+  amphtml: String,
+  metaDescription: String,
+  metaImage: String,
+  metaKeywords: String,
+  metaTitle: String,
+  obTitle: String,
+  ogImage: Image,
+  ogTitle: String,
+  ogDescription: String,
+  socialDescription: String,
+  socialTitle: String,
+}

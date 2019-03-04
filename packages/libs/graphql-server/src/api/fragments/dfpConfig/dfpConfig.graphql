@@ -1,0 +1,18 @@
+type AdManagerConfig {
+  network: String,
+  adUnitBase: String,
+}
+
+type GoogleGlobalSettings {
+  enableSingleRequest: Boolean,
+  enableAsyncRendering: Boolean,
+  breakpointType: String,
+}
+
+type DfpConfig {
+  adSlotConfig: JSON,
+  adManagerConfig: AdManagerConfig,
+  conflictManagementConfig: JSON,
+  impressionManagerConfig: JSON,
+  googleGlobalSettings: GoogleGlobalSettings,
+}

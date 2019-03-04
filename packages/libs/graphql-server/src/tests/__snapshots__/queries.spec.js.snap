@@ -726,3 +726,2864 @@ Object {
   },
 }
 `;
+
+exports[`fetch a regular article 1`] = `
+Object {
+  "page": Object {
+    "articleData": Object {
+      "articleType": "regularArticle",
+      "body": Array [
+        Object {
+          "tag": "p",
+        },
+        Object {},
+        Object {},
+        Object {
+          "tag": "p",
+        },
+        Object {},
+        Object {
+          "tag": "ul",
+        },
+        Object {
+          "tag": "p",
+        },
+        Object {},
+        Object {
+          "tag": "p",
+        },
+        Object {},
+        Object {
+          "tag": "p",
+        },
+        Object {},
+        Object {
+          "tag": "h3",
+        },
+        Object {
+          "tag": "p",
+        },
+        Object {},
+        Object {},
+        Object {
+          "tag": "p",
+        },
+        Object {
+          "tag": "p",
+        },
+        Object {},
+        Object {
+          "tag": "p",
+        },
+      ],
+      "commentsElementId": "7.7827660",
+      "contentId": "1.6651560",
+      "contentName": "משלחת של האו\\"ם ומצרים תגיע מחר לעזה; דיווח: הפלסטינים נענו לפנייה מצרית להפסקת אש",
+      "header": Object {
+        "exclusive": null,
+        "mobileExclusive": null,
+        "mobileSubtitle": null,
+        "mobileTitle": "משלחת של האו\\"ם ומצרים תגיע מחר לעזה; דיווח: הפלסטינים נענו להפסקת אש",
+        "modDate": "2019-01-27T08:58:08.163Z",
+        "pubDate": "2019-01-27T08:58:05.967Z",
+        "reportingFrom": null,
+        "subtitle": "אדם נהרג ושתי נשים נפצעו אנוש וקשה מפגיעת רקטה באשקלון ■ יותר מ-400 רקטות ופצצות מרגמה נורו ליישובי הדרום ביממה האחרונה, כיפת ברזל יירטה עשרות ■ הפלסטינים מדווחים על שבעה הרוגים ■ ישראל לא משתפת פעולה עם מאמצי התיווך של מצרים והאו\\"ם. מקור דיפלומטי זר: לא הופסקו המגעים",
+        "title": "משלחת של האו\\"ם ומצרים תגיע מחר לעזה; דיווח: הפלסטינים נענו לפנייה מצרית להפסקת אש",
+      },
+      "inputTemplate": "com.htz.StandardArticle",
+      "isPremiumContent": false,
+      "mainElement": Object {
+        "contentId": "1.6644761",
+      },
+      "reviewStars": -1,
+    },
+    "dfpConfig": Object {
+      "adManagerConfig": Object {
+        "adUnitBase": "haaretz.co.il",
+        "network": "9401",
+      },
+      "adSlotConfig": Object {
+        "haaretz.co.il.billboard.desktop": Object {
+          "adSizeMapping": Array [
+            Array [
+              970,
+              250,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                728,
+                90,
+              ],
+              Array [
+                970,
+                90,
+              ],
+              Array [
+                970,
+                250,
+              ],
+            ],
+            "m": Array [
+              Array [
+                728,
+                90,
+              ],
+            ],
+            "s": Array [
+              Array [
+                468,
+                60,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                728,
+                90,
+              ],
+              Array [
+                970,
+                90,
+              ],
+              Array [
+                970,
+                250,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                728,
+                90,
+              ],
+              Array [
+                970,
+                90,
+              ],
+              Array [
+                970,
+                250,
+              ],
+              Array [
+                1280,
+                200,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.billboard.mobile": Object {
+          "adSizeMapping": Array [
+            Array [
+              360,
+              120,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "m": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "s": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                360,
+                120,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.blogs.banner": Object {
+          "adSizeMapping": Array [
+            Array [
+              300,
+              600,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                120,
+                600,
+              ],
+            ],
+            "m": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "s": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                300,
+                600,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                300,
+                600,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.editors.banner": Object {
+          "adSizeMapping": Array [
+            Array [
+              160,
+              600,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                970,
+                90,
+              ],
+            ],
+            "m": Array [
+              Array [
+                468,
+                60,
+              ],
+            ],
+            "s": Array [
+              Array [
+                468,
+                60,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                160,
+                600,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                160,
+                600,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.float.halfpage.desktop": Object {
+          "adSizeMapping": Array [
+            Array [
+              300,
+              601,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "m": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "s": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                300,
+                601,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.guides.banner": Object {
+          "adSizeMapping": Array [
+            Array [
+              300,
+              250,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "m": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "s": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.headline.box.desktop": Object {
+          "adSizeMapping": Array [
+            Array [
+              300,
+              250,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "m": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "s": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.headline.box.mobile": Object {
+          "adSizeMapping": Array [
+            Array [
+              0,
+              0,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "m": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "s": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.headline.native.mobile": Object {
+          "adSizeMapping": Array [
+            Array [
+              108,
+              108,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "m": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "s": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                108,
+                108,
+              ],
+              Array [
+                350,
+                110,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.health.banner": Object {
+          "adSizeMapping": Array [
+            Array [
+              300,
+              250,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                160,
+                600,
+              ],
+            ],
+            "m": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "s": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.inread.1.desktop": Object {
+          "adSizeMapping": Array [
+            Array [
+              300,
+              250,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                336,
+                280,
+              ],
+              Array [
+                1,
+                1,
+              ],
+              Array [
+                300,
+                150,
+              ],
+              Array [
+                108,
+                108,
+              ],
+            ],
+            "m": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                336,
+                280,
+              ],
+              Array [
+                1,
+                1,
+              ],
+              Array [
+                300,
+                150,
+              ],
+              Array [
+                108,
+                108,
+              ],
+            ],
+            "s": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                336,
+                280,
+              ],
+              Array [
+                1,
+                1,
+              ],
+              Array [
+                300,
+                150,
+              ],
+              Array [
+                108,
+                108,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                336,
+                280,
+              ],
+              Array [
+                1,
+                1,
+              ],
+              Array [
+                300,
+                150,
+              ],
+              Array [
+                108,
+                108,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                336,
+                280,
+              ],
+              Array [
+                1,
+                1,
+              ],
+              Array [
+                300,
+                150,
+              ],
+              Array [
+                108,
+                108,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.inread.1.mobile": Object {
+          "adSizeMapping": Array [
+            Array [
+              300,
+              250,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "m": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "s": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                300,
+                100,
+              ],
+              Array [
+                320,
+                350,
+              ],
+              Array [
+                108,
+                108,
+              ],
+              Array [
+                300,
+                150,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.inread.2.desktop": Object {
+          "adSizeMapping": Array [
+            Array [
+              300,
+              250,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                336,
+                280,
+              ],
+              Array [
+                1,
+                1,
+              ],
+              Array [
+                300,
+                150,
+              ],
+              Array [
+                108,
+                108,
+              ],
+            ],
+            "m": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                336,
+                280,
+              ],
+              Array [
+                1,
+                1,
+              ],
+              Array [
+                300,
+                150,
+              ],
+              Array [
+                108,
+                108,
+              ],
+            ],
+            "s": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                336,
+                280,
+              ],
+              Array [
+                1,
+                1,
+              ],
+              Array [
+                300,
+                150,
+              ],
+              Array [
+                108,
+                108,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                336,
+                280,
+              ],
+              Array [
+                1,
+                1,
+              ],
+              Array [
+                300,
+                150,
+              ],
+              Array [
+                108,
+                108,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                336,
+                280,
+              ],
+              Array [
+                1,
+                1,
+              ],
+              Array [
+                300,
+                150,
+              ],
+              Array [
+                108,
+                108,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.inread.2.mobile": Object {
+          "adSizeMapping": Array [
+            Array [
+              300,
+              250,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "m": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "s": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                300,
+                100,
+              ],
+              Array [
+                320,
+                350,
+              ],
+              Array [
+                108,
+                108,
+              ],
+              Array [
+                300,
+                150,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.inread.3.desktop": Object {
+          "adSizeMapping": Array [
+            Array [
+              300,
+              250,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                336,
+                280,
+              ],
+              Array [
+                1,
+                1,
+              ],
+              Array [
+                300,
+                150,
+              ],
+              Array [
+                108,
+                108,
+              ],
+            ],
+            "m": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                336,
+                280,
+              ],
+              Array [
+                1,
+                1,
+              ],
+              Array [
+                300,
+                150,
+              ],
+              Array [
+                108,
+                108,
+              ],
+            ],
+            "s": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                336,
+                280,
+              ],
+              Array [
+                1,
+                1,
+              ],
+              Array [
+                300,
+                150,
+              ],
+              Array [
+                108,
+                108,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                336,
+                280,
+              ],
+              Array [
+                1,
+                1,
+              ],
+              Array [
+                300,
+                150,
+              ],
+              Array [
+                108,
+                108,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                336,
+                280,
+              ],
+              Array [
+                1,
+                1,
+              ],
+              Array [
+                300,
+                150,
+              ],
+              Array [
+                108,
+                108,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.inread.3.mobile": Object {
+          "adSizeMapping": Array [
+            Array [
+              300,
+              250,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "m": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "s": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                300,
+                250,
+              ],
+              Array [
+                300,
+                100,
+              ],
+              Array [
+                320,
+                350,
+              ],
+              Array [
+                108,
+                108,
+              ],
+              Array [
+                300,
+                150,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.interstitial.desktop": Object {
+          "adSizeMapping": Array [
+            Array [
+              2,
+              1,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                2,
+                1,
+              ],
+            ],
+            "m": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "s": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                2,
+                1,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                2,
+                1,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.musaf.banner": Object {
+          "adSizeMapping": Array [
+            Array [
+              300,
+              600,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                120,
+                600,
+              ],
+            ],
+            "m": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "s": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                300,
+                600,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                300,
+                600,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.native.1.desktop": Object {
+          "adSizeMapping": Array [
+            Array [
+              178,
+              130,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                178,
+                130,
+              ],
+            ],
+            "m": Array [
+              Array [
+                178,
+                130,
+              ],
+            ],
+            "s": Array [
+              Array [
+                178,
+                130,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                178,
+                130,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                178,
+                130,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.native.2.desktop": Object {
+          "adSizeMapping": Array [
+            Array [
+              178,
+              130,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                178,
+                130,
+              ],
+            ],
+            "m": Array [
+              Array [
+                178,
+                130,
+              ],
+            ],
+            "s": Array [
+              Array [
+                178,
+                130,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                178,
+                130,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                178,
+                130,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.news.native.desktop": Object {
+          "adSizeMapping": Array [
+            Array [
+              300,
+              250,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                178,
+                130,
+              ],
+            ],
+            "m": Array [
+              Array [
+                178,
+                130,
+              ],
+            ],
+            "s": Array [
+              Array [
+                178,
+                130,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                178,
+                130,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                178,
+                130,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.news.native.mobile": Object {
+          "adSizeMapping": Array [
+            Array [
+              108,
+              108,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "m": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "s": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                108,
+                108,
+              ],
+              Array [
+                350,
+                110,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.popular.banner": Object {
+          "adSizeMapping": Array [
+            Array [
+              300,
+              250,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                970,
+                90,
+              ],
+            ],
+            "m": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "s": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.themarker.banner": Object {
+          "adSizeMapping": Array [
+            Array [
+              0,
+              0,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "m": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "s": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.themarker.native.desktop": Object {
+          "adSizeMapping": Array [
+            Array [
+              178,
+              131,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "m": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "s": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                178,
+                131,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                178,
+                131,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+        "haaretz.co.il.travel.banner": Object {
+          "adSizeMapping": Array [
+            Array [
+              300,
+              250,
+            ],
+          ],
+          "fluid": false,
+          "priority": "normal",
+          "responsive": true,
+          "responsiveAdSizeMapping": Object {
+            "l": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "m": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "s": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xs": Array [
+              Array [
+                300,
+                250,
+              ],
+            ],
+            "xxl": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+            "xxs": Array [
+              Array [
+                0,
+                0,
+              ],
+            ],
+          },
+        },
+      },
+      "conflictManagementConfig": Object {},
+      "googleGlobalSettings": Object {
+        "breakpointType": "type4",
+        "enableAsyncRendering": true,
+        "enableSingleRequest": true,
+      },
+      "impressionManagerConfig": Object {
+        "haaretz.co.il.mobile_web.maavaron1_all": Object {
+          "frequency": "4/1hour",
+          "id": "haaretz.co.il.mobile_web.maavaron1",
+          "target": "all",
+        },
+        "haaretz.co.il.mobile_web.splash_all": Object {
+          "frequency": "4/1hour",
+          "id": "haaretz.co.il.mobile_web.splash",
+          "target": "all",
+        },
+        "haaretz.co.il.mobile_web.top_all": Object {
+          "frequency": "3/1hour",
+          "id": "haaretz.co.il.mobile_web.top",
+          "target": "all",
+        },
+        "haaretz.co.il.web.halfpage.floating_x_homepage": Object {
+          "frequency": "10/1day",
+          "id": "haaretz.co.il.web.halfpage.floating_x",
+          "target": "homepage",
+        },
+        "haaretz.co.il.web.halfpage.floating_x_section": Object {
+          "frequency": "10/1day",
+          "id": "haaretz.co.il.web.halfpage.floating_x",
+          "target": "section",
+        },
+        "haaretz.co.il.web.maavaron._all": Object {
+          "frequency": "7/1hour",
+          "id": "haaretz.co.il.web.maavaron.",
+          "target": "all",
+        },
+        "haaretz.co.il.web.popunder_all": Object {
+          "frequency": "0/4hour",
+          "id": "haaretz.co.il.web.popunder",
+          "target": "all",
+        },
+        "haaretz.co.il.web.ruler_homepage": Object {
+          "frequency": "0/1day",
+          "id": "haaretz.co.il.web.ruler",
+          "target": "homepage",
+        },
+        "haaretz.co.il.web.ruler_section": Object {
+          "frequency": "0/1day",
+          "id": "haaretz.co.il.web.ruler",
+          "target": "section",
+        },
+        "haaretz.co.il.web.slider_all": Object {
+          "frequency": "1/1day",
+          "id": "haaretz.co.il.web.slider",
+          "target": "all",
+        },
+      },
+    },
+    "jsonld": Array [
+      "{\\"@context\\":\\"http://schema.org\\",\\"@type\\":\\"NewsArticle\\",\\"name\\":\\"משלחת של האו\\\\\\"ם ומצרים תגיע מחר לעזה; דיווח: הפלסטינים נענו לפנייה מצרית להפסקת אש\\",\\"headline\\":\\"משלחת של האו\\\\\\"ם ומצרים תגיע מחר לעזה; דיווח: הפלסטינים נענו לפנייה מצרית להפסקת אש\\",\\"publisher\\":{\\"@type\\":\\"Organization\\",\\"name\\":\\"הארץ\\",\\"url\\":\\"http://www.haaretz.co.il\\",\\"sameAs\\":[\\"https://he.wikipedia.org/wiki/%D7%94%D7%90%D7%A8%D7%A5\\",\\"https://www.facebook.com/haaretz/\\",\\"https://twitter.com/haaretz\\",\\"https://www.youtube.com/user/haaretzdaily\\",\\"https://plus.google.com/+haaretzcoil\\"],\\"logo\\":\\"https://www.haaretz.co.il/htz/images/logos/htz-logo-icon.png\\"},\\"mainEntityOfPage\\":{\\"@type\\":\\"WebPage\\",\\"@id\\":\\"http://pre.haaretz.co.il/news/politics/1.6651560\\"},\\"url\\":\\"http://pre.haaretz.co.il/news/politics/1.6651560\\",\\"author\\":[{\\"@type\\":\\"Person\\",\\"name\\":\\"אלמוג בן זכרי 5\\",\\"sameAs\\":\\"http://pre.haaretz.co.il/misc/writers/WRITER-1.2737690\\"},{\\"@type\\":\\"Person\\",\\"name\\":\\"יניב קובוביץ\\",\\"sameAs\\":\\"http://pre.haaretz.co.il/misc/writers/WRITER-1.681402\\"},{\\"@type\\":\\"Person\\",\\"name\\":\\"נעה לנדאו\\",\\"sameAs\\":\\"http://pre.haaretz.co.il/misc/writers/WRITER-1.1606340\\"},{\\"@type\\":\\"Person\\",\\"name\\":\\"ג\\\\u0027קי חורי\\",\\"sameAs\\":\\"http://pre.haaretz.co.il/misc/writers/WRITER-1.641\\"},{\\"@type\\":\\"Person\\",\\"name\\":\\"יהושע (ג\\\\u0027וש) בריינר\\",\\"sameAs\\":\\"http://pre.haaretz.co.il/misc/writers/WRITER-1.4401159\\"},{\\"@type\\":\\"Person\\",\\"name\\":\\"עידו אפרתי\\",\\"sameAs\\":\\"http://pre.haaretz.co.il/misc/writers/WRITER-1.935802\\"},\\"אבי קאופמן\\"],\\"description\\":\\"אדם נהרג ושתי נשים נפצעו אנוש וקשה מפגיעת רקטה באשקלון ■ יותר מ-400 רקטות ופצצות מרגמה נורו ליישובי הדרום ביממה האחרונה, כיפת ברזל יירטה עשרות ■ הפלסטינים מדווחים על שבעה הרוגים ■ ישראל לא משתפת פעולה עם מאמצי התיווך של מצרים והאו\\\\\\"ם. מקור דיפלומטי זר: לא הופסקו המגעים\\",\\"datePublished\\":\\"2019-01-27T10:58:05+0200\\",\\"dateModified\\":\\"2019-02-26T10:58:00+0200\\",\\"isAccessibleForFree\\":\\"false\\",\\"hasPart\\":{\\"@type\\":\\"WebPageElement\\",\\"isAccessibleForFree\\":\\"false\\",\\"cssSelector\\":\\".paywall\\"},\\"image\\":{\\"@type\\":\\"ImageObject\\",\\"name\\":\\"Hoppers restaurant\\",\\"caption\\":\\"Hoppers restaurant\\",\\"description\\":\\"Hoppers restaurant\\",\\"url\\":\\"https://images.haarets.co.il/image/upload/v1542027976/1.6644761.4157488854.jpg\\"}}",
+    ],
+    "lineage": Array [
+      Object {
+        "contentId": "1.6651560",
+        "name": "משלחת של האו\\"ם ומצרים תגיע מחר לעזה; דיווח: הפלסטינים נענו לפנייה מצרית להפסקת אש",
+        "pathSegment": null,
+        "url": "/news/politics/1.6651560",
+      },
+      Object {
+        "contentId": "2.410",
+        "name": "מדיני ביטחוני",
+        "pathSegment": "politics",
+        "url": "/news/politics",
+      },
+      Object {
+        "contentId": "2.409",
+        "name": "חדשות",
+        "pathSegment": "news",
+        "url": "/news",
+      },
+      Object {
+        "contentId": "2.385",
+        "name": "הארץ",
+        "pathSegment": "haaretz",
+        "url": "/",
+      },
+    ],
+    "pageDateTimeString": Array [
+      "יום שני",
+      "כ״ז אדר א׳ תשע״ט",
+      "04.03.2019",
+      "18:25",
+    ],
+    "pageType": "regularArticle",
+    "slots": Object {
+      "article": Array [
+        Object {
+          "contentId": "7.3550774",
+          "contentName": "Section Page Title",
+          "inputTemplate": "com.tm.PageTitle",
+          "properties": Object {},
+        },
+        Object {
+          "contentId": "7.3550773",
+          "contentName": "Article Element",
+          "inputTemplate": "com.htz.ArticleHeaderElement",
+          "properties": Object {},
+        },
+        Object {
+          "contentId": "1.6651560",
+          "contentName": "משלחת של האו\\"ם ומצרים תגיע מחר לעזה; דיווח: הפלסטינים נענו לפנייה מצרית להפסקת אש",
+          "inputTemplate": "com.htz.StandardArticle",
+          "properties": Object {},
+        },
+        Object {
+          "contentId": "7.3539480",
+          "contentName": "haaretz.co.il.web.textlink.1",
+          "inputTemplate": "com.polobase.DfpBannerElement",
+          "properties": Object {
+            "audianceTarget": "all",
+            "className": "ad--d h-hidden h-tar",
+            "hideOnSite": false,
+            "id": "haaretz.co.il.web.textlink.1",
+          },
+        },
+        Object {
+          "contentId": "7.7709519",
+          "contentName": "המלצות קריאה (מובייל)",
+          "inputTemplate": "com.polobase.whtzMobileSiteListsWrapper",
+          "properties": Object {
+            "lists": Array [
+              Object {
+                "contentId": "7.7709523",
+                "contentName": "כתבות מומלצות מובייל ריאקט",
+                "hasPagination": false,
+                "inputTemplate": "com.tm.element.List",
+                "isLazyloadImages": true,
+                "items": Array [
+                  Object {
+                    "authors": Array [
+                      Object {
+                        "contentId": "1.652",
+                        "contentName": "גידי וייץ",
+                        "inputTemplate": "com.tm.Author",
+                      },
+                    ],
+                    "contentId": "1.6652341",
+                    "image": Object {
+                      "accessibility": "עוטף עזה, היום",
+                      "contentId": "1.6652706",
+                      "contentName": "עוטף עזה, היום",
+                      "credit": "אליהו הרשקוביץ, רויטרס ואי-פי",
+                      "imageType": "image",
+                      "imgArray": Array [
+                        Object {
+                          "aspects": Object {
+                            "full": Object {
+                              "height": 766,
+                              "width": 1200,
+                            },
+                            "headline": Object {
+                              "height": 698,
+                              "width": 1200,
+                              "x": 0,
+                              "y": 27,
+                            },
+                            "landscape": Object {
+                              "height": 517,
+                              "width": 1200,
+                              "x": 0,
+                              "y": 114,
+                            },
+                            "regular": Object {
+                              "height": 766,
+                              "width": 1020,
+                              "x": 68,
+                              "y": 0,
+                            },
+                            "square": Object {
+                              "height": 766,
+                              "width": 765,
+                              "x": 232,
+                              "y": 0,
+                            },
+                          },
+                          "imgName": "image/1246802457.gif",
+                          "version": "1542116568",
+                        },
+                      ],
+                      "inputTemplate": "com.tm.Image",
+                      "kind": "image",
+                      "photographer": "none",
+                      "title": "עוטף עזה, היום",
+                    },
+                    "inputTemplate": "com.tm.TeaserData",
+                    "kind": "teaser",
+                    "lastUpdate": 1542107634267,
+                    "path": "/news/local/.premium-1.6652098",
+                    "publishDate": 1547538845829,
+                    "representedContent": "1.6652098",
+                    "representedContentType": "regularArticle",
+                    "title": "\\"אני כלוא אצלו\\": ההקלטות שמספרות על יחסו של ליאון ל\\"בוס\\" ליברמן",
+                    "titleMobile": "\\"אני כלוא אצלו\\": ההקלטות שמספרות על יחסו של ליאון ל\\"בוס\\" ליברמן",
+                  },
+                  Object {
+                    "authors": Array [
+                      Object {
+                        "contentId": "1.681402",
+                        "contentName": "יניב קובוביץ",
+                        "inputTemplate": "com.tm.Author",
+                      },
+                    ],
+                    "contentId": "1.6652435",
+                    "image": Object {
+                      "accessibility": "בתים הרוסים בעזה",
+                      "contentId": "1.6651736",
+                      "contentName": "בתים הרוסים בעזה",
+                      "credit": "AFP",
+                      "imageType": "image",
+                      "imgArray": Array [
+                        Object {
+                          "aspects": Object {
+                            "belgrade": Object {
+                              "height": 676,
+                              "width": 2150,
+                              "x": 50,
+                              "y": 679,
+                            },
+                            "full": Object {
+                              "height": 1420,
+                              "width": 2200,
+                            },
+                            "headline": Object {
+                              "height": 1247,
+                              "width": 2147,
+                              "x": 38,
+                              "y": 169,
+                            },
+                            "landscape": Object {
+                              "height": 921,
+                              "width": 2139,
+                              "x": 38,
+                              "y": 449,
+                            },
+                            "regular": Object {
+                              "height": 1405,
+                              "width": 1874,
+                              "x": 192,
+                              "y": 15,
+                            },
+                            "square": Object {
+                              "height": 1374,
+                              "width": 1375,
+                              "x": 403,
+                              "y": 38,
+                            },
+                            "vertical": Object {
+                              "height": 1359,
+                              "width": 1160,
+                              "x": 449,
+                              "y": 61,
+                            },
+                          },
+                          "imgName": "image/2574910017.jpg",
+                          "version": "1542092798",
+                        },
+                      ],
+                      "inputTemplate": "com.tm.Image",
+                      "kind": "image",
+                      "photographer": "none",
+                      "title": "בתים הרוסים בעזה",
+                    },
+                    "inputTemplate": "com.tm.TeaserData",
+                    "kind": "teaser",
+                    "lastUpdate": 1542110545848,
+                    "path": "/news/politics/1.6652284",
+                    "publishDate": 1547539555285,
+                    "representedContent": "1.6652284",
+                    "representedContentType": "regularArticle",
+                    "title": "צה\\"ל תוקף בלב עזה, אך מנסה שלא לפגוע באזרחים כדי להימנע ממלחמה",
+                    "titleMobile": "צה\\"ל תוקף בלב עזה, אך מנסה שלא לפגוע באזרחים כדי להימנע ממלחמה",
+                  },
+                  Object {
+                    "authors": Array [
+                      Object {
+                        "contentName": "האזינו לפודקאסט",
+                      },
+                    ],
+                    "contentId": "7.7828637",
+                    "image": Object {
+                      "accessibility": "מרדכי קרמניצר (מימין) ואביגדור פלדמן מתארחים בפודקאסט השבועי",
+                      "contentId": "1.6652472",
+                      "contentName": "מרדכי קרמניצר (מימין) ואביגדור פלדמן מתארחים בפודקאסט השבועי",
+                      "imageType": "image",
+                      "imgArray": Array [
+                        Object {
+                          "aspects": Object {
+                            "full": Object {
+                              "height": 1080,
+                              "width": 1920,
+                            },
+                            "headline": Object {
+                              "height": 662,
+                              "width": 1141,
+                              "x": 732,
+                              "y": 292,
+                            },
+                            "landscape": Object {
+                              "height": 528,
+                              "width": 1225,
+                              "x": 689,
+                              "y": 301,
+                            },
+                            "regular": Object {
+                              "height": 817,
+                              "width": 1088,
+                              "x": 759,
+                              "y": 245,
+                            },
+                            "square": Object {
+                              "height": 487,
+                              "width": 487,
+                              "x": 709,
+                              "y": 359,
+                            },
+                          },
+                          "imgName": "image/3400479215.jpg",
+                          "version": "1542111679",
+                        },
+                      ],
+                      "inputTemplate": "com.tm.Image",
+                      "kind": "image",
+                      "photographer": "none",
+                      "title": "מרדכי קרמניצר (מימין) ואביגדור פלדמן מתארחים בפודקאסט השבועי",
+                    },
+                    "inputTemplate": "com.tm.TeaserData",
+                    "kind": "teaser",
+                    "lastUpdate": 1547538879368,
+                    "path": "/digital/podcast/.premium-1.6652100",
+                    "publishDate": 1547538877820,
+                    "representedContent": "1.6652100",
+                    "representedContentType": "regularArticle",
+                    "title": "אביגדור פלדמן: עם כל הכבוד לדרוקר - אין ראיה אחת שמרשיעה את זדורוב",
+                    "titleMobile": "אביגדור פלדמן: עם כל הכבוד לדרוקר - אין ראיה אחת שמרשיעה את זדורוב",
+                  },
+                  Object {
+                    "authors": Array [
+                      Object {
+                        "contentId": "1.2544012",
+                        "contentName": "אריאנה מלמד",
+                        "inputTemplate": "com.tm.Author",
+                      },
+                    ],
+                    "contentId": "7.7828690",
+                    "image": Object {
+                      "accessibility": "צילומי פגיעת הטיל באוטובוס",
+                      "contentId": "1.6652357",
+                      "contentName": "חדשות עשר פגיעה באוטובוס",
+                      "credit": "צילום מסך ערוץ עשר",
+                      "imageType": "image",
+                      "imgArray": Array [
+                        Object {
+                          "aspects": Object {
+                            "belgrade": Object {
+                              "height": 555,
+                              "width": 1762,
+                              "x": 85,
+                              "y": 525,
+                            },
+                            "full": Object {
+                              "height": 1080,
+                              "width": 1920,
+                            },
+                            "headline": Object {
+                              "height": 1019,
+                              "width": 1750,
+                              "x": 88,
+                              "y": 61,
+                            },
+                            "landscape": Object {
+                              "height": 610,
+                              "width": 1412,
+                              "x": 82,
+                              "y": 470,
+                            },
+                            "regular": Object {
+                              "height": 1080,
+                              "width": 1438,
+                              "x": 85,
+                              "y": 0,
+                            },
+                            "square": Object {
+                              "height": 960,
+                              "width": 960,
+                              "x": 528,
+                              "y": 120,
+                            },
+                          },
+                          "imgName": "image/1905031139.jpg",
+                          "version": "1542108130",
+                        },
+                      ],
+                      "inputTemplate": "com.tm.Image",
+                      "kind": "image",
+                      "photographer": "none",
+                      "title": "צילומי פגיעת הטיל באוטובוס. תמונת ראווה וניצחון בהפקת חמאס",
+                    },
+                    "inputTemplate": "com.tm.TeaserData",
+                    "kind": "teaser",
+                    "lastUpdate": 1548264533131,
+                    "path": "/gallery/television/.premium-1.6652358",
+                    "publishDate": 1548264533131,
+                    "representedContent": "1.6652358",
+                    "representedContentType": "regularArticle",
+                    "title": "בדיקת כתבה לא מאופרבת על ההומפייג'",
+                    "titleMobile": "בדיקת כתבה לא מאופרבת על ההומפייג'",
+                  },
+                  Object {
+                    "authors": Array [
+                      Object {
+                        "contentId": "1.6312047",
+                        "contentName": "דניאל צ'צ'יק",
+                        "inputTemplate": "com.tm.Author",
+                      },
+                    ],
+                    "contentId": "1.6652640",
+                    "image": Object {
+                      "accessibility": "ד",
+                      "contentId": "1.6637773",
+                      "contentName": "לשימוש בלוג הצילם בלבד",
+                      "imageType": "image",
+                      "imgArray": Array [
+                        Object {
+                          "aspects": Object {
+                            "full": Object {
+                              "height": 1068,
+                              "width": 1600,
+                            },
+                          },
+                          "imgName": "image/527728288.jpg",
+                          "version": "1541912238",
+                        },
+                      ],
+                      "inputTemplate": "com.tm.Image",
+                      "kind": "image",
+                      "photographer": "none",
+                    },
+                    "inputTemplate": "com.tm.TeaserData",
+                    "kind": "teaser",
+                    "lastUpdate": 1542115453607,
+                    "path": "/blogs/photoblog/MAGAZINE-1.6637761",
+                    "publishDate": 1542018013498,
+                    "representedContent": "1.6637761",
+                    "representedContentType": "magazineArticle",
+                    "title": "הבריחה הגדולה: שום דבר לא זז, רק הנוף משתנה",
+                    "titleMobile": "הבריחה הגדולה: שום דבר לא זז, רק הנוף משתנה",
+                  },
+                  Object {
+                    "authors": Array [
+                      Object {
+                        "contentId": "1.693",
+                        "contentName": "הארץ",
+                        "inputTemplate": "com.tm.Author",
+                      },
+                    ],
+                    "contentId": "1.23456",
+                    "exclusive": "",
+                    "exclusiveMobile": "",
+                    "image": Object {
+                      "accessibility": "Haaretz",
+                      "contentId": "1.1087122",
+                      "contentName": "Haaretz",
+                      "imageType": "image",
+                      "imgArray": Array [
+                        Object {
+                          "aspects": Object {
+                            "full": Object {
+                              "height": 1495,
+                              "width": 2674,
+                            },
+                          },
+                          "imgName": "image/3694361761.png",
+                          "version": "1502953267",
+                        },
+                      ],
+                      "inputTemplate": "com.tm.Image",
+                      "kind": "image",
+                      "photographer": "none",
+                    },
+                    "inputTemplate": "com.tm.TeaserData",
+                    "kind": "teaser",
+                    "lastUpdate": 0,
+                    "path": "/",
+                    "publishDate": 0,
+                    "representedContent": "UNDEFINED.UNDEFINED",
+                    "representedContentType": "unknown",
+                    "title": "",
+                    "titleMobile": "",
+                  },
+                ],
+                "loadPriority": "ssr",
+                "title": "כתבות מומלצות",
+                "view": "Bender",
+              },
+            ],
+            "loadPriority": "ssr",
+          },
+        },
+        Object {
+          "contentId": "7.7668307",
+          "contentName": "outbrain REACT BETA",
+          "inputTemplate": "com.polobase.OutbrainElement",
+          "properties": Object {},
+        },
+        Object {
+          "contentId": "7.7669246",
+          "contentName": "תוכן מקודם- עמוד כתבה- מתחת לאאוטבריין (ריאקט)",
+          "inputTemplate": "com.polobase.ClickTrackerBannersWrapper",
+          "properties": Object {
+            "banners": Array [
+              Object {
+                "advertiserCamp": "גינדי",
+                "chance": 100,
+                "clicktrackerimage": Object {
+                  "accessibility": "הדמיה",
+                  "contentId": "1.6624194",
+                  "contentName": "הדמיה",
+                  "credit": "באדיבות גינדי",
+                  "imageType": "image",
+                  "imgArray": Array [
+                    Object {
+                      "aspects": Object {
+                        "full": Object {
+                          "height": 650,
+                          "width": 950,
+                        },
+                      },
+                      "imgName": "image/1238820658.jpg",
+                      "version": "1541425838",
+                    },
+                  ],
+                  "inputTemplate": "com.tm.Image",
+                  "kind": "image",
+                  "photographer": "none",
+                  "title": "TLV ROOFTOP - גינדי",
+                },
+                "contentId": "7.7832604",
+                "contentName": "גינדי - TEST",
+                "departments": Array [
+                  "all",
+                ],
+                "inputTemplate": "com.polobase.ClickTrackerBannerElement",
+                "kind": "clickTrackerBanner",
+                "link": "https://www.themarker.com/realestate/realestate-labels/gindi-tlv",
+                "linkTarget": "_blank",
+                "percentage": 100,
+                "priority": 1,
+                "replaceDomainForAdBlocker": false,
+                "text": "דירה בגינדי ",
+              },
+            ],
+            "totalPercentage": 100,
+            "viewModes": Object {
+              "viewModeHtz": "resp282",
+              "viewModeHtzMobile": "tadmitMobile",
+              "viewModeJson": "narrowCommercial",
+              "viewModeTmMobile": "tadmitMobile",
+            },
+          },
+        },
+        Object {
+          "contentId": "7.3551319",
+          "contentName": "Comments",
+          "inputTemplate": "com.tm.ArticleCommentsElement",
+          "properties": Object {},
+        },
+        Object {
+          "contentId": "7.4157079",
+          "contentName": "Haaretz.co.il.Mobile_web.Box4.Article",
+          "inputTemplate": "com.polobase.DfpBannerElement",
+          "properties": Object {
+            "audianceTarget": "all",
+            "className": "ad",
+            "hideOnSite": false,
+            "id": "haaretz.co.il.mobile_web.box4.article",
+          },
+        },
+        Object {
+          "contentId": "7.3539487",
+          "contentName": "Haaretz.co.il.Web.LargeRectangle.1",
+          "inputTemplate": "com.polobase.DfpBannerElement",
+          "properties": Object {
+            "audianceTarget": "all",
+            "className": "ad h-hidden",
+            "hideOnSite": false,
+            "id": "haaretz.co.il.web.largerectangle.1",
+          },
+        },
+        Object {
+          "contentId": "7.7224911",
+          "contentName": "תוכן מקודם מובייל - מתחת לתגובות ",
+          "inputTemplate": "com.polobase.whtzMobileSiteListsWrapper",
+          "properties": Object {
+            "lists": Array [
+              Object {
+                "contentId": "7.7552198",
+                "contentName": "תוכן מקודם מובייל- מדדים- מתחת לתגובות",
+                "hasPagination": false,
+                "inputTemplate": "com.tm.element.List",
+                "isLazyloadImages": false,
+                "items": Array [
+                  Object {
+                    "contentId": "7.7823840",
+                    "image": Object {
+                      "accessibility": "חיילים",
+                      "contentId": "1.6637914",
+                      "contentName": "חיילים",
+                      "credit": "קסם מדדים",
+                      "imageType": "image",
+                      "imgArray": Array [
+                        Object {
+                          "aspects": Object {
+                            "full": Object {
+                              "height": 210,
+                              "width": 280,
+                            },
+                          },
+                          "imgName": "image/632454059.jpg",
+                          "version": "1541919778",
+                        },
+                      ],
+                      "inputTemplate": "com.tm.Image",
+                      "kind": "image",
+                      "photographer": "none",
+                    },
+                    "inputTemplate": "com.tm.TeaserData",
+                    "kind": "teaser",
+                    "linkTarget": "1",
+                    "path": "https://rmkz.themarker.com/gampad/clk?id=4858785536&iu=/9401/ClickTracker.Marketing/ClickTracker.Marketing.All",
+                    "representedContent": "7.7823840",
+                    "representedContentType": "externalContent",
+                    "title": "5 תוצאות ששינו את העולם לאחר מלחמת העולם הראשונה",
+                    "titleMobile": "תוצאות ששינו את העולם",
+                  },
+                  Object {
+                    "contentId": "7.7819200",
+                    "image": Object {
+                      "accessibility": "בחירות",
+                      "contentId": "1.6633505",
+                      "contentName": "בחירות",
+                      "credit": "מדדים של קסם",
+                      "imageType": "image",
+                      "imgArray": Array [
+                        Object {
+                          "aspects": Object {
+                            "full": Object {
+                              "height": 210,
+                              "width": 280,
+                            },
+                          },
+                          "imgName": "image/2043024607.jpg",
+                          "version": "1541600076",
+                        },
+                      ],
+                      "inputTemplate": "com.tm.Image",
+                      "kind": "image",
+                      "photographer": "none",
+                    },
+                    "inputTemplate": "com.tm.TeaserData",
+                    "kind": "teaser",
+                    "linkTarget": "1",
+                    "path": "https://rmkz.themarker.com/gampad/clk?id=4854000891&iu=/9401/ClickTracker.Marketing/ClickTracker.Marketing.All",
+                    "representedContent": "7.7819200",
+                    "representedContentType": "externalContent",
+                    "title": "5 לקחים ממערכת הבחירות הנוכחית",
+                    "titleMobile": "5 לקחים ממערכת הבחירות הנוכחית",
+                  },
+                  Object {
+                    "contentId": "7.7813956",
+                    "image": Object {
+                      "accessibility": "נגן סקסופון",
+                      "contentId": "1.6619078",
+                      "contentName": "נגן סקסופון",
+                      "credit": "Rogelio A. Galaviz C.",
+                      "imageType": "image",
+                      "imgArray": Array [
+                        Object {
+                          "aspects": Object {
+                            "full": Object {
+                              "height": 210,
+                              "width": 280,
+                            },
+                          },
+                          "imgName": "image/481928322.jpg",
+                          "version": "1541410330",
+                        },
+                      ],
+                      "inputTemplate": "com.tm.Image",
+                      "kind": "image",
+                      "photographer": "none",
+                    },
+                    "inputTemplate": "com.tm.TeaserData",
+                    "kind": "teaser",
+                    "linkTarget": "1",
+                    "path": "https://rmkz.themarker.com/gampad/clk?id=4851177081&iu=/9401/ClickTracker.Marketing/ClickTracker.Marketing.All",
+                    "representedContent": "7.7813956",
+                    "representedContentType": "externalContent",
+                    "title": "12 להיטי סקסופון על זמניים",
+                    "titleMobile": "12 להיטי סקסופון על זמניים",
+                  },
+                ],
+                "loadPriority": "ssr",
+                "title": "תוכן מקודם",
+                "view": "Clampazzo",
+              },
+            ],
+            "loadPriority": "ssr",
+          },
+        },
+      ],
+      "footer": Array [
+        Object {
+          "contentId": "7.1283189",
+          "contentName": "Haaretz Footer",
+          "inputTemplate": "com.tm.FooterElement",
+        },
+      ],
+      "header": Array [
+        Object {
+          "contentId": "7.7539983",
+          "contentName": "New - Responsive Homepage Navigation Haaretz",
+          "inputTemplate": "com.htz.EditableNavigationElement",
+        },
+        Object {
+          "contentId": "7.7675873",
+          "contentName": "ClickTracker for Osaka (react)",
+          "inputTemplate": "com.tm.GridElementGroup",
+          "items": Array [
+            Object {
+              "content": Object {
+                "banners": Array [
+                  Object {
+                    "advertiserCamp": "מפעל הפיס",
+                    "chance": 100,
+                    "clicktrackerimage": Object {
+                      "accessibility": "קאפקייקס על רקע ורוד",
+                      "contentId": "1.6555355",
+                      "contentName": "קאפקייקס על רקע ורוד",
+                      "credit": "פרסומת",
+                      "imageType": "image",
+                      "imgArray": Array [
+                        Object {
+                          "aspects": Object {
+                            "full": Object {
+                              "height": 1632,
+                              "width": 2448,
+                            },
+                          },
+                          "imgName": "image/2768761444.jpg",
+                          "version": "1539594862",
+                        },
+                      ],
+                      "inputTemplate": "com.tm.Image",
+                      "kind": "image",
+                      "photographer": "none",
+                    },
+                    "contentId": "7.7779805",
+                    "contentName": "מפעל הפיס - 6 צעדים לאחריות",
+                    "departments": Array [
+                      "all",
+                    ],
+                    "inputTemplate": "com.polobase.ClickTrackerBannerElement",
+                    "kind": "clickTrackerBanner",
+                    "link": "http://pubads.g.doubleclick.net/gampad/clk?id=4827916771&iu=/9401/ClickTracker.Marketing/ClickTracker.Marketing.All",
+                    "linkTarget": "_blank",
+                    "percentage": 100,
+                    "priority": 1,
+                    "replaceDomainForAdBlocker": false,
+                    "text": "שישה טיפים שיעזרו לכם להיפטר מההרגלים הרעים שלכם",
+                  },
+                ],
+                "contentId": "7.7438652",
+                "contentName": "תוכן מקודם- אוסקה- עמוד כתבה החדש הארץ ",
+                "inputTemplate": "com.polobase.ClickTrackerBannersWrapper",
+                "totalPercentage": 100,
+                "viewModes": Object {
+                  "viewModeHtz": "geneva140x140",
+                  "viewModeHtzMobile": "tadmitMobile",
+                  "viewModeJson": "narrowCommercial",
+                  "viewModeTmMobile": "tadmitMobile",
+                },
+              },
+              "width": Array [
+                Object {
+                  "until": "s",
+                  "value": 1,
+                },
+                Object {
+                  "from": "s",
+                  "value": 1,
+                },
+              ],
+            },
+          ],
+          "loadPriority": "ssr",
+        },
+      ],
+      "postHeader": Array [
+        Object {
+          "audianceTarget": "all",
+          "className": " js-dfp-resp-refresh h-dib js-plazma placeholder--90--m-to-xl placeholder--60--s",
+          "contentId": "7.3539502",
+          "contentName": "Haaretz.co.il.Web.Plazma - Section",
+          "hideOnSite": false,
+          "id": "haaretz.co.il.web.plazma",
+          "inputTemplate": "com.polobase.DfpBannerElement",
+        },
+      ],
+      "postMain": Array [
+        Object {
+          "contentId": "7.7651118",
+          "contentName": "כתבות שאולי פספסתם (ריאקט)",
+          "hasPagination": false,
+          "inputTemplate": "com.tm.element.List",
+          "isLazyloadImages": false,
+          "items": Array [
+            Object {
+              "contentId": "7.3747659",
+              "image": Object {
+                "contentId": "1.2712160",
+                "contentName": "פסטה קרבונרה חזירים מהים והיבשה",
+                "credit": "מוטי מילרוד",
+                "imageType": "image",
+                "imgArray": Array [
+                  Object {
+                    "aspects": Object {
+                      "full": Object {
+                        "height": 1633,
+                        "width": 2449,
+                      },
+                    },
+                    "imgName": "image/862654947.jpg",
+                  },
+                ],
+                "inputTemplate": "com.tm.Image",
+                "kind": "image",
+                "photographer": "none",
+                "title": "פסטה קרבונרה חזירים מהים והיבשה",
+              },
+              "inputTemplate": "com.tm.TeaserData",
+              "kind": "teaser",
+              "linkTarget": "1",
+              "path": "http://www.haaretz.co.il/gallery/recipes/pasta",
+              "representedContent": "7.3747659",
+              "representedContentType": "externalContent",
+              "title": "פסטה ואיטלקי",
+              "titleMobile": "פסטה ואיטלקי",
+            },
+            Object {
+              "contentId": "7.3980135",
+              "image": Object {
+                "contentId": "1.2510298",
+                "contentName": "סופגניות",
+                "credit": "לימור לניאדו תירו",
+                "imageType": "image",
+                "imgArray": Array [
+                  Object {
+                    "aspects": Object {
+                      "full": Object {
+                        "height": 1632,
+                        "width": 2448,
+                      },
+                    },
+                    "imgName": "image/952153309.jpg",
+                  },
+                ],
+                "inputTemplate": "com.tm.Image",
+                "kind": "image",
+                "photographer": "none",
+                "title": "סופגניות מהמטבח היהודי",
+              },
+              "inputTemplate": "com.tm.TeaserData",
+              "kind": "teaser",
+              "linkTarget": "1",
+              "path": "http://www.haaretz.co.il/food/hanukkah-recipes",
+              "representedContent": "7.3980135",
+              "representedContentType": "externalContent",
+              "title": "מתכונים לחנוכה",
+              "titleMobile": "מתכונים לחנוכה",
+            },
+            Object {
+              "contentId": "7.3747652",
+              "image": Object {
+                "contentId": "1.2501906",
+                "contentName": "עוגות בחושות בלי מיקסר",
+                "credit": "לימור לניאדו תירו",
+                "imageType": "image",
+                "imgArray": Array [
+                  Object {
+                    "aspects": Object {
+                      "full": Object {
+                        "height": 900,
+                        "width": 1350,
+                      },
+                    },
+                    "imgName": "image/3738277137.jpg",
+                  },
+                ],
+                "inputTemplate": "com.tm.Image",
+                "kind": "image",
+                "photographer": "none",
+                "title": "עוגת שוקולד בחמש דקות",
+              },
+              "inputTemplate": "com.tm.TeaserData",
+              "kind": "teaser",
+              "linkTarget": "1",
+              "path": "http://www.haaretz.co.il/gallery/recipes/sweets",
+              "representedContent": "7.3747652",
+              "representedContentType": "externalContent",
+              "title": "עוגות וקינוחים",
+              "titleMobile": "עוגות וקינוחים",
+            },
+            Object {
+              "contentId": "7.3747672",
+              "image": Object {
+                "contentId": "1.2367373",
+                "contentName": "שקשוקה",
+                "credit": "לימור לניאדו תירוש",
+                "imageType": "image",
+                "imgArray": Array [
+                  Object {
+                    "aspects": Object {
+                      "full": Object {
+                        "height": 1632,
+                        "width": 2448,
+                      },
+                    },
+                    "imgName": "image/1750800976.jpg",
+                  },
+                ],
+                "inputTemplate": "com.tm.Image",
+                "kind": "image",
+                "photographer": "none",
+                "title": "שקשוקה לבנה",
+              },
+              "inputTemplate": "com.tm.TeaserData",
+              "kind": "teaser",
+              "linkTarget": "1",
+              "path": "http://www.haaretz.co.il/gallery/recipes/breakfast",
+              "representedContent": "7.3747672",
+              "representedContentType": "externalContent",
+              "title": "מתכונים לארוחת בוקר",
+              "titleMobile": "מתכונים לארוחת בוקר",
+            },
+            Object {
+              "contentId": "7.3747602",
+              "image": Object {
+                "contentId": "1.2526376",
+                "contentName": "דגים עלולים להיות מזוהמים בקדמיום",
+                "credit": "לימור לניאדו תירו",
+                "imageType": "image",
+                "imgArray": Array [
+                  Object {
+                    "aspects": Object {
+                      "full": Object {
+                        "height": 1468,
+                        "width": 2200,
+                      },
+                    },
+                    "imgName": "image/2225623215.jpg",
+                  },
+                ],
+                "inputTemplate": "com.tm.Image",
+                "kind": "image",
+                "photographer": "none",
+                "title": "דגים עלולים להיות מזוהמים בקדמיום",
+              },
+              "inputTemplate": "com.tm.TeaserData",
+              "kind": "teaser",
+              "linkTarget": "1",
+              "path": "http://www.haaretz.co.il/gallery/recipes/fish-and-seafood",
+              "representedContent": "7.3747602",
+              "representedContentType": "externalContent",
+              "title": "דגים",
+              "titleMobile": "דגים",
+            },
+            Object {
+              "contentId": "7.3747663",
+              "image": Object {
+                "contentId": "1.2623817",
+                "contentName": "אורז שחור",
+                "credit": "לימור לניאדו תירו",
+                "imageType": "image",
+                "imgArray": Array [
+                  Object {
+                    "aspects": Object {
+                      "full": Object {
+                        "height": 1365,
+                        "width": 2048,
+                      },
+                    },
+                    "imgName": "image/1872927056.jpg",
+                  },
+                ],
+                "inputTemplate": "com.tm.Image",
+                "kind": "image",
+                "photographer": "none",
+              },
+              "inputTemplate": "com.tm.TeaserData",
+              "kind": "teaser",
+              "linkTarget": "1",
+              "path": "http://www.haaretz.co.il/gallery/recipes/vegetarian",
+              "representedContent": "7.3747663",
+              "representedContentType": "externalContent",
+              "title": "מתכונים טבעונים וצמחונים",
+              "titleMobile": "מתכונים טבעונים וצמחונים",
+            },
+          ],
+          "loadPriority": "ssr",
+          "title": "כתבות שאולי פספסתם",
+          "view": "Bender",
+        },
+      ],
+      "preHeader": null,
+    },
+  },
+}
+`;

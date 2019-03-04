@@ -1,9 +1,11 @@
-import resolveType from '../../utils/resolveType';
+const articleType = new Map([
+  [ 'regularArticle', 'RegularArticleData', ],
+]);
 
 export default {
-  PolopolyObj: {
-    __resolveType(value) {
-      return resolveType(value.kind || value.inputTemplate);
+  ArticleData: {
+    __resolveType(articleData) {
+      return articleType.get(articleData.articleType);
     },
   },
 };
