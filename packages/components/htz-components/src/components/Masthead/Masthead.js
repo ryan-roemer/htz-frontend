@@ -30,9 +30,10 @@ Masthead.defaultProps = { rowBgc: null, containerBgc: null, };
 export default function Masthead(props: MastheadProps): React.Node {
   const { contentId, } = props;
   const { y, velocity, } = useScrollYPosition({ throttle: 100, });
+  const velocityThreshold = 0;
   const initialState: State = {
     isScrolled: y > 100,
-    shouldDisplay: y < 200 || velocity < -5,
+    shouldDisplay: y < 200 || velocity < velocityThreshold,
   };
   const [ { isScrolled, shouldDisplay, }, setState, ] = React.useState(
     initialState
@@ -46,22 +47,12 @@ export default function Masthead(props: MastheadProps): React.Node {
         // $FlowFixMe
         setState({
           isScrolled: y > 100,
-          shouldDisplay: y < 200 || velocity < -1,
+          shouldDisplay: y < 200 || velocity < velocityThreshold,
         });
       }
     },
     [ y, velocity, ]
   );
-
-  // console.log(
-  //   [
-  //     '!!!!\n\n\n',
-  //     `y: ${y}`,
-  //     `velocity: ${velocity}`,
-  //     `shouldDisplay: ${shouldDisplay}`,
-  //     `isScrolled: ${isScrolled}`,
-  //   ].join('\n')
-  // );
 
   return (
     <React.Fragment>
@@ -100,8 +91,8 @@ const BottomMobileNav = React.memo(
           theme.getDelay('transition', -1),
           theme.getDuration('transition', -1),
           theme.getTimingFunction('transition', 'linear'),
-          theme.mq({ until: 's', misc: 'vertical', }, { display: 'initial', }),
-          theme.mq({ until: 'm', misc: 'vertical', }, { display: 'initial', }),
+          theme.mq({ until: 's', }, { display: 'initial', }),
+          theme.mq({ until: 'm', misc: 'landscape', }, { display: 'initial', }),
         ],
       })}
     >
