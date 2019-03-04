@@ -7,6 +7,9 @@ import type {
   StyleProps,
 } from '@haaretz/htz-css-tools';
 
+import { BlockLinkInner, } from '../BlockLink/BlockLink';
+import { isClickTracker, } from '../../utils/validateType';
+
 import CardContent from '../CardContent/CardContent';
 import CardFooter from '../CardFooter/CardFooter';
 import GridItem from '../Grid/GridItem';
@@ -29,6 +32,15 @@ type TeaserContentType = {
    */
   gutter: number,
   gridItemMiscStyles: ?StyleProps,
+  /**
+   * pass an `onClick` event to the blockLink.
+   * Useful for bi actions and events
+   *
+   * Should also be passed to underlying links, e.g.,
+   * around the title and image
+   */
+  onClick: ?(evt: SyntheticMouseEvent<HTMLElement>) => void,
+
   // main content block props
   attrs: ?attrFlowType,
   backgroundColor: ?ColorType,
@@ -56,6 +68,7 @@ type TeaserContentType = {
    */
   width: ?number | ComponentPropResponsiveObject<number>[],
   miscStyles: ?StyleProps,
+
   // footer block props
   footerAttrs: ?attrFlowType,
   footerBackgroundColor: ?ColorType,
@@ -63,8 +76,7 @@ type TeaserContentType = {
   footerPadding: ?PaddingType,
   footerSeperator: ?CardContentSeperator,
   footerMiscStyles: ?StyleProps,
-  /** Forces the footer to the bottom using absolute positioning */
-  footerIsAbsolute: boolean | ComponentPropResponsiveObject<boolean>[],
+
   // render props
   renderContent: <T: TeaserDataType | ClickTrackerBannerType>(
     data: T
@@ -78,12 +90,15 @@ TeaserContent.defaultProps = {
   isStacked: false,
   gutter: 0,
   gridItemMiscStyles: null,
+  onClick: null,
+
   attrs: null,
   backgroundColor: null,
   color: null,
   padding: null,
   width: null,
   miscStyles: null,
+
   // footer block props
   footerAttrs: null,
   footerBackgroundColor: null,
@@ -91,7 +106,7 @@ TeaserContent.defaultProps = {
   footerPadding: null,
   footerSeperator: null,
   footerMiscStyles: null,
-  footerIsAbsolute: false,
+
   // render props
   renderFooter: null,
 };
@@ -101,6 +116,8 @@ export default function TeaserContent({
   isStacked,
   gutter,
   gridItemMiscStyles,
+  onClick,
+
   // main content block props
   attrs,
   backgroundColor,
@@ -108,6 +125,7 @@ export default function TeaserContent({
   padding,
   width,
   miscStyles,
+
   // footer block props
   footerAttrs,
   footerBackgroundColor,
@@ -115,7 +133,7 @@ export default function TeaserContent({
   footerPadding,
   footerSeperator,
   footerMiscStyles,
-  footerIsAbsolute,
+
   // render props
   renderContent,
   renderFooter,
@@ -127,10 +145,16 @@ export default function TeaserContent({
         gutter={gutter}
         stretchContent
         miscStyles={{
+          position: 'relative',
           ...setStacking(isStacked),
           ...(gridItemMiscStyles || {}),
         }}
       >
+        <BlockLinkInner
+          href={isClickTracker(data) ? data.link : data.path}
+          target={data.linkTarget}
+          onClick={onClick}
+        />
         <CardContent
           {...{ attrs, backgroundColor, color, padding, miscStyles, }}
         >
@@ -147,12 +171,7 @@ export default function TeaserContent({
                 color={footerColor}
                 padding={footerPadding}
                 seperator={footerSeperator}
-                miscStyles={{
-                  ...(footerIsAbsolute
-                    ? setFooterPosition(footerIsAbsolute)
-                    : {}),
-                  ...(footerMiscStyles || {}),
-                }}
+                miscStyles={footerMiscStyles}
               >
                 {renderFooter(data)}
               </CardFooter>
@@ -169,62 +188,6 @@ export default function TeaserContent({
 // /////////////////////////////////////////////////////////////////////
 //                               Utils                                //
 // /////////////////////////////////////////////////////////////////////
-
-type FooterPositionValue = { position: "absolute", bottom: "0", };
-
-type BpOpts = {
-  from?: string,
-  until?: string,
-  misc?: string,
-  type?: string,
-};
-
-type FooterPositionBpOpts = {
-  ...BpOpts,
-  value: boolean,
-};
-
-type FooterPositionBpValue<T: "absolute" | "0"> = {
-  ...BpOpts,
-  value: T,
-};
-
-type RetObjType = {
-  position: Array<FooterPositionBpValue<"absolute">>,
-  bottom: Array<FooterPositionBpValue<"0">>,
-};
-
-function setFooterPosition(
-  value: boolean | Array<FooterPositionBpOpts>
-): FooterPositionValue | RetObjType {
-  if (Array.isArray(value)) {
-    return value.reduce(
-      (result, item) => {
-        result.position.push({
-          from: item.from,
-          until: item.until,
-          misc: item.misc,
-          type: item.type,
-          value: 'absolute',
-        });
-        result.bottom.push({
-          from: item.from,
-          until: item.until,
-          misc: item.misc,
-          type: item.type,
-          value: '0',
-        });
-
-        return result;
-      },
-      { position: [], bottom: [], }
-    );
-  }
-  return {
-    position: 'absolute',
-    bottom: '0',
-  };
-}
 
 type BpOptions = Array<{ from: ?string, until: ?string, value: ?string, }>;
 

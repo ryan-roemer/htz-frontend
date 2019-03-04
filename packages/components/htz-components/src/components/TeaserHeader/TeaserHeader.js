@@ -195,10 +195,16 @@ export default function TeaserHeader({
   return (
     <FelaComponent
       rule={({ theme, }) => ({
+        display: 'block',
         extend: [
           ...[
             isCentered
-              ? parseComponentProp<IsCenteredType>('textAlign', isCentered, theme.mq, centerText) // eslint-disable-line space-infix-ops, no-mixed-operators
+              ? parseComponentProp<IsCenteredType>(
+                'textAlign',
+                isCentered,
+                theme.mq,
+                centerText
+              ) // eslint-disable-line space-infix-ops, no-mixed-operators
               : {},
           ],
           // Set font-size and line-height
@@ -208,38 +214,56 @@ export default function TeaserHeader({
       render={({ className: wrapperClassName, }) => (
         <AboveBlockLink>
           {({ className: AboveBlockLinkClassName, }) => (
-            <div className={`${AboveBlockLinkClassName} ${wrapperClassName}`}>
-              <HtzLink href={path} onClick={onClick} target={linkTarget}>
-                {showKicker && (exclusive || exclusiveMobile) && (
-                  <Kicker
-                    {...(kickerIsBlock ? { isBlock: kickerIsBlock, } : {})}
-                    {...(kickerTypeScale ? { fontSize: kickerTypeScale, } : {})}
-                    {...(kickerMiscStyles ? { miscStyles: kickerMiscStyles, } : {})}
-                    {...(kickerInnerMiscStyles ? { innerMiscStyles: kickerInnerMiscStyles, } : {})}
-                  >
-                    <TeaserResponsiveText text={exclusive} mobileText={exclusiveMobile} />
-                  </Kicker>
-                )}
-                {countdownObj
-                  ? (
-                    <Countdown {...countdownObj} miscStyles={{ marginBottom: '2rem', }} />
-                  )
-                  : null
-                }
-                <FelaComponent
-                  isBlock={kickerIsBlock}
-                  color={color}
-                  typeScale={typeScale}
-                  miscStyles={miscStyles}
-                  rule={style}
-                  render={({ className, }) => (
-                    <H className={className} isH1={isH1} offset={offset} {...attrs || {}}>
-                      <TeaserResponsiveText text={title} mobileText={titleMobile} />
-                    </H>
-                  )}
+            <HtzLink
+              href={path}
+              onClick={onClick}
+              target={linkTarget}
+              className={`${AboveBlockLinkClassName} ${wrapperClassName}`}
+            >
+              {showKicker && (exclusive || exclusiveMobile) && (
+                <Kicker
+                  {...(kickerIsBlock ? { isBlock: kickerIsBlock, } : {})}
+                  {...(kickerTypeScale ? { fontSize: kickerTypeScale, } : {})}
+                  {...(kickerMiscStyles
+                    ? { miscStyles: kickerMiscStyles, }
+                    : {})}
+                  {...(kickerInnerMiscStyles
+                    ? { innerMiscStyles: kickerInnerMiscStyles, }
+                    : {})}
+                >
+                  <TeaserResponsiveText
+                    text={exclusive}
+                    mobileText={exclusiveMobile}
+                  />
+                </Kicker>
+              )}
+              {countdownObj ? (
+                <Countdown
+                  {...countdownObj}
+                  miscStyles={{ marginBottom: '2rem', }}
                 />
-              </HtzLink>
-            </div>
+              ) : null}
+              <FelaComponent
+                isBlock={kickerIsBlock}
+                color={color}
+                typeScale={typeScale}
+                miscStyles={miscStyles}
+                rule={style}
+                render={({ className, }) => (
+                  <H
+                    className={className}
+                    isH1={isH1}
+                    offset={offset}
+                    {...attrs || {}}
+                  >
+                    <TeaserResponsiveText
+                      text={title}
+                      mobileText={titleMobile}
+                    />
+                  </H>
+                )}
+              />
+            </HtzLink>
           )}
         </AboveBlockLink>
       )}
