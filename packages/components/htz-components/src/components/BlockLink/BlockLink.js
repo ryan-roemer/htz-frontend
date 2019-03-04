@@ -45,7 +45,7 @@ BlockLink.defaultProps = {
   target: null,
 };
 
-const blockLinkStyle = ({ theme, miscStyles, }) => ({
+const blockLinkWrapperStyle = ({ theme, miscStyles, }) => ({
   position: 'relative',
 
   extend: [
@@ -53,6 +53,15 @@ const blockLinkStyle = ({ theme, miscStyles, }) => ({
     ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
   ],
 });
+export const blockLinkInnerStyle = {
+  backgroundColor: 'transparent',
+  bottom: '0',
+  left: '0',
+  position: 'absolute',
+  right: '0',
+  top: '0',
+  zIndex: '0',
+};
 
 export default function BlockLink({
   attrs,
@@ -66,39 +75,46 @@ export default function BlockLink({
   return (
     <FelaComponent
       miscStyles={miscStyles}
-      rule={blockLinkStyle}
+      rule={blockLinkWrapperStyle}
       render={({ theme, className, }) => {
         const BlockLinkWrapper = tagName;
 
         return (
           <BlockLinkWrapper className={className} {...attrs}>
             {children}
-            <FelaComponent
-              style={{
-                backgroundColor: 'transparent',
-                bottom: '0',
-                left: '0',
-                position: 'absolute',
-                right: '0',
-                top: '0',
-                zIndex: '0',
-              }}
-              render={({ className, }) => (
-                <HtzLink
-                  className={className}
-                  href={href}
-                  target={target}
-                  onClick={onClick}
-                  target={target}
-                  attrs={{
-                    tabIndex: '-1',
-                    'aria-hidden': true,
-                  }}
-                />
-              )}
-            />
+            <BlockLinkInner href={href} target={target} onClick={onClick} />
           </BlockLinkWrapper>
         );
+      }}
+    />
+  );
+}
+
+BlockLinkInner.propTypes = {
+  /**
+   * A url to be assigned to the DOM element, converts the button to an `'<a>'`
+   * DOM element inside a Wrapped Next JS `<HtzLink />`
+   */
+  href: PropTypes.string.isRequired,
+  /** Basic HTML target (destination window) */
+  target: PropTypes.string,
+  /** An onClick function */
+  onClick: PropTypes.func,
+};
+BlockLinkInner.defaultProps = {
+  target: null,
+  onClick: null,
+};
+export function BlockLinkInner({ href, target, onClick, }) {
+  return (
+    <HtzLink
+      href={href}
+      target={target}
+      onClick={onClick}
+      attrs={{
+        tabIndex: '-1',
+        'aria-hidden': true,
+        style: blockLinkInnerStyle,
       }}
     />
   );
