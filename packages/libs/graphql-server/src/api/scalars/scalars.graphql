@@ -1,3 +1,4 @@
 scalar JSON
 scalar ImageAspects
 scalar Date
+scalar Timestamp

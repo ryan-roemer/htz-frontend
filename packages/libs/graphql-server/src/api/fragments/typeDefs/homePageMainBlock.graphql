@@ -1,0 +1,9 @@
+type HomePageMainBlock {
+  contentId: ID!,
+  inputTemplate: String!,
+  contentName:String,
+  slotA: List,
+  slotB: DfpBanner,
+  slotC: List,
+  mainBlockComponents: [MainBlockComponent]
+}

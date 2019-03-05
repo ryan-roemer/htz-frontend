@@ -1,4 +1,6 @@
 module.exports = {
+  testURL: 'http://localhost',
+  coveragePathIgnorePatterns: [ '/node_modules/', '/src/dataSources.js', ],
   coverageThreshold: {
     global: {
       branches: 100,

@@ -1,0 +1,15 @@
+type NewsItem {
+  href: String,
+  isCommercial: Boolean,
+  contentId: ID!,
+  inputTemplate: String!,
+  contentName:String,
+}
+
+type HeaderNewsGroup {
+  contentLists: [NewsItem],
+  hideOnSite: Boolean,
+  contentId: ID!,
+  inputTemplate: String!,
+  contentName:String,
+}

@@ -1,0 +1,20 @@
+type GridElementItemWidth {
+  from: String,
+  until: String,
+  value: Float,
+}
+
+type GridElementItem {
+  width: [GridElementItemWidth],
+  miscStyles: JSON,
+  content: GridElementItemContent
+}
+
+type GridElementGroup {
+  inputTemplate: String!,
+  contentName: String,
+  title: String,
+  contentId: ID!,
+  loadPriority: LoadPriority,
+  items: [GridElementItem],
+}

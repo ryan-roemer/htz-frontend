@@ -13,7 +13,7 @@ type Page {
   seoData: SeoData,
   pageDateTimeString: [String],
   articleData: ArticleData,
-  slots: Slots,
+  slots: ArticleSlots,
   dfpConfig: DfpConfig,
   jsonld: [String],
 }

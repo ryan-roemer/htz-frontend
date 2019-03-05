@@ -1,0 +1,33 @@
+type ViewModes {
+  viewModeHtzMobile: String,
+  viewModeTmMobile: String,
+  viewModeHtz: String,
+  viewModeJson: String,
+}
+
+type ClickTrackerBanner {
+  contentName: String,
+  contentId: ID!,
+  inputTemplate: String!,
+  priority: Int,
+  text: String,
+  link: String,
+  linkTarget: String,
+  departments: [String],
+  replaceDomainForAdBlocker: Boolean,
+  clicktrackerimage: Image,
+  advertiserCamp: String,
+  percentage: Int,
+  minRange: Int,
+  maxRange: Int,
+  chance: Float,
+}
+
+type ClickTrackerWrapper {
+  contentName: String,
+  contentId: ID!,
+  inputTemplate: String!,
+  totalPercentage: Int,
+  viewModes: ViewModes,
+  banners: [ClickTrackerBanner],
+}

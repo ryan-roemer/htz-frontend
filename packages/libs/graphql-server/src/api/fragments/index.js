@@ -1,63 +1,75 @@
 import merge from 'lodash/merge';
 
-import articleBodyTypeDef from './articleBody/articleBody.graphql';
-import articleHeaderTypeDef from './articleHeader/articleHeader.graphql';
-import authorTypeDef from './author/author.graphql';
-import clickTrackerWrapperTypeDef from './clickTrackerWrapper/clickTrackerWrapper.graphql';
-import contentTypeDef from './content/content.graphql';
-import dfpTypeDef from './dfp/dfp.graphql';
-import dfpConfigTypeDef from './dfpConfig/dfpConfig.graphql';
-import elementGroupTypeDef from './elementGroup/elementGroup.graphql';
-import embedTypeDef from './embed/embed.graphql';
-import headlineElementTypeDef from './headlineElement/headlineElement.graphql';
-import htmlElementTypeDef from './htmlElement/htmlElement.graphql';
-import imageTypeDef from './image/image.graphql';
-import imageGalleryTypeDef from './imageGallery/imageGallery.graphql';
-import interactiveTypeDef from './interactive/interactive.graphql';
-import linkTypeDef from './link/link.graphql';
-import marketingTeaserTypeDef from './marketingTeaser/marketingTeaser.graphql';
-import mediaTypeDef from './media/media.graphql';
-import mobileQuickRegistrationTypeDef from './mobileQuickRegistration/mobileQuickRegistration.graphql';
-import newsLetterTypeDef from './newsLetter/newsLetter.graphql';
-import nullFallbackTypeDef from './nullFallback/nullFallback.graphql';
-import paragraphTypeDef from './paragraph/paragraph.graphql';
-import quoteTypeDef from './quote/quote.graphql';
-import regularArticleDataTypeDef from './articleData/regularArticleData.graphql';
-import relatedArticlesTypeDef from './relatedArticles/relatedArticles.graphql';
-import seoDataTypeDef from './seoData/seoData.graphql';
-import seriesOrBlockArticlesTypeDef from './seriesOrBlockArticles/seriesOrBlockArticles.graphql';
-import slotsTypeDef from './slots/slots.graphql';
-import tableScoreTypeDef from './tableScore/tableScore.graphql';
-import tagsTypeDef from './tags/tags.graphql';
-import teaserTypeDef from './teaser/teaser.graphql';
-import videoTypeDef from './video/video.graphql';
+import articleHeaderTypeDef from './typeDefs/articleHeader.graphql';
+import articleSlotsTypeDef from './typeDefs/articleSlots.graphql';
+import authorTypeDef from './typeDefs/author.graphql';
+import changeableElementGroupTypeDef from './typeDefs/changeableElementGroup.graphql';
+import clickTrackerWrapperTypeDef from './typeDefs/clickTrackerWrapper.graphql';
+import contentTypeDef from './typeDefs/content.graphql';
+import countdownTypeDef from './typeDefs/countdown.graphql';
+import dfpTypeDef from './typeDefs/dfp.graphql';
+import dfpConfigTypeDef from './typeDefs/dfpConfig.graphql';
+import elementGroupTypeDef from './typeDefs/elementGroup.graphql';
+import embedTypeDef from './typeDefs/embed.graphql';
+import gridElementGroupTypeDef from './typeDefs/gridElementGroup.graphql';
+import headerNewsGroupTypeDef from './typeDefs/headerNewsGroup.graphql';
+import homePageMainBlockTypeDef from './typeDefs/homePageMainBlock.graphql';
+import homePageSlotsTypeDef from './typeDefs/homePageSlots.graphql';
+import htmlElementTypeDef from './typeDefs/htmlElement.graphql';
+import imageTypeDef from './typeDefs/image.graphql';
+import imageGalleryTypeDef from './typeDefs/imageGallery.graphql';
+import interactiveTypeDef from './typeDefs/interactive.graphql';
+import linkTypeDef from './typeDefs/link.graphql';
+import marketingTeaserTypeDef from './typeDefs/marketingTeaser.graphql';
+import middleRullerTypeDef from './typeDefs/middleRuller.graphql';
+import mobileListWrapperTypeDef from './typeDefs/mobileListWrapper.graphql';
+import mobileQuickRegistrationTypeDef from './typeDefs/mobileQuickRegistration.graphql';
+import newsLetterTypeDef from './typeDefs/newsLetter.graphql';
+import nullFallbackTypeDef from './typeDefs/nullFallback.graphql';
+import paragraphTypeDef from './typeDefs/paragraph.graphql';
+import quoteTypeDef from './typeDefs/quote.graphql';
+import regularArticleDataTypeDef from './typeDefs/regularArticleData.graphql';
+import relatedArticlesTypeDef from './typeDefs/relatedArticles.graphql';
+import rssFeedTypeDef from './typeDefs/rssFeed.graphql';
+import seoDataTypeDef from './typeDefs/seoData.graphql';
+import seriesOrBlockArticlesTypeDef from './typeDefs/seriesOrBlockArticles.graphql';
+import tableScoreTypeDef from './typeDefs/tableScore.graphql';
+import tabsElementTypeDef from './typeDefs/tabsElement.graphql';
+import tagsTypeDef from './typeDefs/tags.graphql';
+import teaserTypeDef from './typeDefs/teaser.graphql';
+import videoTypeDef from './typeDefs/video.graphql';
 
-import articleBodyResolver from './articleBody/articleBody.resolvers';
-import articleDataResolver from './articleData/articleData.resolvers';
-import contentResolver from './content/content.resolvers';
-import headlineElementResolver from './headlineElement/headlineElement.resolvers';
-import interactiveResolver from './interactive/interactive.resolvers';
-import mediaResolver from './media/media.resolvers';
+import articleDataResolver from './resolvers/articleData.resolvers';
+import changeableElementGroupResolver from './resolvers/changeableElementGroup.resolvers';
+import contentResolver from './resolvers/content.resolvers';
+import homePageSlotsResolver from './resolvers/homePageSlots.resolvers';
+import interactiveResolver from './resolvers/interactive.resolvers';
 
 export default {
   typeDefs: [
-    articleBodyTypeDef,
     articleHeaderTypeDef,
+    articleSlotsTypeDef,
     authorTypeDef,
+    changeableElementGroupTypeDef,
     clickTrackerWrapperTypeDef,
     contentTypeDef,
+    countdownTypeDef,
     dfpTypeDef,
     dfpConfigTypeDef,
     elementGroupTypeDef,
     embedTypeDef,
-    headlineElementTypeDef,
+    gridElementGroupTypeDef,
+    headerNewsGroupTypeDef,
+    homePageMainBlockTypeDef,
+    homePageSlotsTypeDef,
     htmlElementTypeDef,
     imageTypeDef,
     imageGalleryTypeDef,
     interactiveTypeDef,
     linkTypeDef,
     marketingTeaserTypeDef,
-    mediaTypeDef,
+    middleRullerTypeDef,
+    mobileListWrapperTypeDef,
     mobileQuickRegistrationTypeDef,
     newsLetterTypeDef,
     nullFallbackTypeDef,
@@ -65,21 +77,21 @@ export default {
     quoteTypeDef,
     regularArticleDataTypeDef,
     relatedArticlesTypeDef,
+    rssFeedTypeDef,
     seoDataTypeDef,
     seriesOrBlockArticlesTypeDef,
-    slotsTypeDef,
     tableScoreTypeDef,
+    tabsElementTypeDef,
     tagsTypeDef,
     teaserTypeDef,
     videoTypeDef,
   ].join(' '),
 
   resolvers: merge({},
-    articleBodyResolver,
     articleDataResolver,
+    changeableElementGroupResolver,
     contentResolver,
-    headlineElementResolver,
+    homePageSlotsResolver,
     interactiveResolver,
-    mediaResolver,
   ),
 };

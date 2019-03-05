@@ -1,0 +1,9 @@
+type ArticleSlots {
+  preHeader: [JSON],
+  header: [JSON],
+  postHeader: [JSON],
+  aside: [SideBar],
+  article: [Content],
+  postMain: [JSON],
+  footer: [JSON],
+}

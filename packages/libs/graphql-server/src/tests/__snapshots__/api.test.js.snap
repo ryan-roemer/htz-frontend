@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create API on SUCCESS 1`] = `
+Object {
+  "cookies": Cookies {
+    "HAS_DOCUMENT_COOKIE": true,
+    "changeListeners": Array [],
+    "cookies": Object {},
+    "hooks": undefined,
+  },
+  "functionService": "https://ms-apps.haaretz.co.il/htz-function",
+  "headers": "www.haaretz.co.il",
+  "msSportResults": "https://ms-apps-dev.themarker.com/ms-sport-results",
+  "newSsoService": "https://ms-apps.haaretz.co.il/sso",
+  "otpService": "https://ms-apps.haaretz.co.il/otp",
+  "polopolyPromotionsPage": "promotions-page-react",
+  "preview": undefined,
+  "previewUserId": undefined,
+  "serviceBase": "https://pre.haaretz.co.il",
+  "ssoService": "https://sso.haaretz.co.il",
+}
+`;

@@ -1,0 +1,7 @@
+type MiddleRuller {
+  contentId: ID!,
+  inputTemplate: String!,
+  contentName:String,
+  text: String,
+  actionUrl: String,
+}

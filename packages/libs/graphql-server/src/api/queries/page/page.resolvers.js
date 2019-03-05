@@ -5,24 +5,26 @@ export default {
     page,
   },
   Page: {
-    contentId: ({ lineage, }) => lineage[0].contentId,
-    contentName: ({ lineage, }) => lineage[0].contentName,
+    contentId({ lineage, }) {
+      return lineage[0].contentId;
+    },
+    contentName({ lineage, }) {
+      return lineage[0].name;
+    },
     articleData({ slots: { article, }, }) {
       let result = null;
-      if (article) {
-        article.find((item, index) => {
-          if (item.articleType) {
-            article[index] = {
-              inputTemplate: item.inputTemplate,
-              contentId: item.contentId,
-              contentName: item.contentName,
-            };
-            result = item;
-            return true;
-          }
-          return false;
-        });
-      }
+      article.find((item, index) => {
+        if (item.articleType) {
+          article[index] = {
+            inputTemplate: item.inputTemplate,
+            contentId: item.contentId,
+            contentName: item.contentName,
+          };
+          result = item;
+          return true;
+        }
+        return false;
+      });
       return result;
     },
   },

@@ -1,0 +1,7 @@
+type Interactive {
+  contentName: String,
+  contentId: ID!,
+  inputTemplate: String!,
+  properties: JSON,
+  kind: String!,
+}

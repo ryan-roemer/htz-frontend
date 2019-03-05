@@ -1,0 +1,26 @@
+query Scalars($input: PageInput!) {
+  homePage {
+    slots {
+      main {
+        ... on HomePageMainBlock {
+          mainBlockComponents {
+            ... on Countdown {
+              inputTemplate
+              contentId
+              endOfTime
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+  page(input: $input) {
+    articleData {
+      header {
+        modDate
+        pubDate
+      }
+    }
+  }
+}

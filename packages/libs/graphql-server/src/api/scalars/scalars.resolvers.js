@@ -4,8 +4,12 @@ import { Kind, } from 'graphql/language';
 import { GraphQLError, } from 'graphql/error';
 
 const toString = Object.prototype.toString;
+
 // eslint-disable-next-line no-restricted-globals
 const isDate = value => toString.call(value) === '[object Date]' && !isNaN(value.valueOf());
+
+// eslint-disable-next-line no-restricted-globals
+const isTimestamp = value => typeof value === 'number' && !isNaN(value.valueOf());
 
 const coerceDate = value => {
   const date = new Date(value);
@@ -16,6 +20,14 @@ const coerceDate = value => {
   return date;
 };
 
+const coerceTimestamp = value => {
+  const date = new Date(value).getTime();
+  if (!isTimestamp(date)) {
+    const message = `Date can't represent non-date value: ${value}`;
+    throw new TypeError(message);
+  }
+  return date;
+};
 
 export default {
   JSON: GraphQLJSON,
@@ -48,6 +60,31 @@ export default {
         default:
       }
       if (!isDate(date)) {
+        throw new GraphQLError(`Expected date value but got: ${value}`, [
+          valueNode,
+        ]);
+      }
+      return date;
+    },
+  }),
+  Timestamp: new GraphQLScalarType({
+    name: 'Timestamp',
+    serialize: value => coerceTimestamp(value),
+    parseValue: coerceTimestamp,
+    parseLiteral(valueNode) {
+      const { kind, value, } = valueNode;
+      let date;
+      switch (kind) {
+        case Kind.INT:
+        case Kind.FLOAT:
+          date = new Date(+value);
+          break;
+        case Kind.STRING:
+          date = new Date(value);
+          break;
+        default:
+      }
+      if (!isTimestamp(date)) {
         throw new GraphQLError(`Expected date value but got: ${value}`, [
           valueNode,
         ]);

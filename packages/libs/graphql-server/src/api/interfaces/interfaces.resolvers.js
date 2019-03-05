@@ -4,8 +4,9 @@ const articleType = new Map([
 
 export default {
   ArticleData: {
-    __resolveType(articleData) {
-      return articleType.get(articleData.articleType);
+    __resolveType(articleData, context, info) {
+      const type = articleType.get(articleData.articleType);
+      return info.schema.getType(type);
     },
   },
 };

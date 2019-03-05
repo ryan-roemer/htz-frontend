@@ -1,0 +1,18 @@
+type RssFeedItem {
+  title: String,
+  creator: String,
+  author: String,
+  imageUrl: [String],
+  link: String,
+  description: String,
+  publishedDate: String,
+}
+
+type RssFeed {
+  contentId: ID!,
+  inputTemplate: String!,
+  contentName:String,
+  title: String,
+  loadPriority: LoadPriority,
+  items: [RssFeedItem],
+}

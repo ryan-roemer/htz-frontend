@@ -1,0 +1,19 @@
+union ArticleBodyItem = Content | DfpBanner | ElementGroup | Embed | HtmlElement | Image | ImageGallery | Interactive | Link | MobileQuickRegistration | NewsLetter | Paragraph | RelatedArticles | SeriesOrBlockArticles | Quote | Tags | Video | TableScore | NullFallback
+
+union ElementGroupItemContent = GridElementGroup | Content | DfpBanner | List
+
+union GridElementItemContent = ClickTrackerWrapper | Content | DfpBanner | List | TabsElement
+
+union HeadlineElement = Embed | HtmlElement | Image | ImageGallery | Video
+
+union HomePageElement = HeaderNewsGroup | HomePageMainBlock | List | GridElementGroup | ElementGroup | MiddleRuller | TabsElement | DfpBanner | ClickTrackerWrapper | MobileListWrapper | RssFeed | Content | NullFallback
+
+union MainBlockComponent = Countdown | Content
+
+union Media = Image | Embed | ImageGallery
+
+union MobileListWrapperItems = List | Content
+
+union SideBar = Content | ChangeableElementGroup
+
+union TabElementItem = ClickTrackerWrapper | Content | DfpBanner | List

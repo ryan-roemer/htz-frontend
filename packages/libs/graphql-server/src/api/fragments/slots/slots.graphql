@@ -1,9 +1,0 @@
-type Slots {
-  preHeader: [JSON],
-  header: [JSON],
-  postHeader: [JSON],
-  aside: [JSON],
-  article: [Content],
-  postMain: [JSON],
-  footer: [JSON],
-}

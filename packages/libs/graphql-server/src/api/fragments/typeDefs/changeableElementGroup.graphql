@@ -1,0 +1,13 @@
+type ElementGroupItem {
+  displayDuration: Int,
+  content: ElementGroupItemContent,
+}
+
+type ChangeableElementGroup {
+  contentLists: [ElementGroupItem]!,
+  hideOnSite: Boolean,
+  inputTemplate: String!,
+  contentName: String,
+  contentId: ID!,
+  totalDisplay: Int,
+}

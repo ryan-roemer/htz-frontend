@@ -1,0 +1,392 @@
+query HomePageLayout {
+  homePage {
+    pageType
+    globalLazyload
+    seoData {
+      metaTitle
+      metaDescription
+      canonicalUrl
+    }
+    pageDateTimeString
+    slots {
+      preHeader
+      header
+      postHeader
+      postMain
+      footer
+      main {
+        ... on HeaderNewsGroup {
+          contentId
+          contentName
+          inputTemplate
+          newsItems: contentLists {
+            href
+            isCommercial
+            contentId
+            inputTemplate
+            contentName
+          }
+        }
+        ... on HomePageMainBlock {
+          contentId
+          inputTemplate
+          slotA {
+            view
+            inputTemplate
+            loadPriority
+            isLazyloadImages
+            title
+            contentId
+            items {
+              ...ItemInList
+            }
+          }
+          slotB {
+            ...DfpBanner
+          }
+          slotC {
+            view
+            inputTemplate
+            loadPriority
+            isLazyloadImages
+            title
+            contentId
+            items {
+              ...ItemInList
+            }
+          }
+          mainBlockComponents {
+            ... on Countdown {
+              inputTemplate
+              contentId
+              endOfTime
+              title
+            }
+          }
+        }
+        ... on List {
+          ...HomePageList
+        }
+        ... on DfpBanner {
+          ...DfpBanner
+        }
+        ... on ElementGroup {
+          ...ElementGroup
+        }
+        ... on ClickTrackerWrapper {
+          ...ClickTrackerWrapper
+        }
+        ... on GridElementGroup {
+          ...GridElementGroup
+        }
+        ... on TabsElement {
+          ...TabsElement
+        }
+        ... on MobileListWrapper {
+          contentName
+          contentId
+          inputTemplate
+          loadPriority
+          lists {
+            ... on Content {
+              ...Content
+            }
+            ... on List {
+              ...HomePageList
+            }
+          }
+        }
+        ... on RssFeed {
+          inputTemplate
+          loadPriority
+          title
+          items {
+            title
+            creator
+            author
+            imageUrl
+            link
+            description
+            publishedDate
+          }
+        }
+        ... on MiddleRuller {
+          inputTemplate
+          text
+          actionUrl
+          contentId
+          contentName
+        }
+        ... on NullFallback {
+          message
+          errorCode
+          kind
+        }
+        ... on Content {
+          ...Content
+        }
+      }
+    }
+  }
+}
+
+fragment ItemInList on Teaser {
+  commentsCounts
+  contentId
+  representedContent
+  representedContentType
+  exclusive
+  exclusiveMobile
+  firstParagraph
+  inputTemplate
+  lastUpdate
+  path
+  publishDate
+  rank
+  subtitle
+  subtitleMobile
+  title
+  titleMobile
+  authors {
+    contentName
+  }
+  authorImage {
+    ...Image
+  }
+  image {
+    ...Image
+  }
+  media {
+    ... on Image {
+      ...Image
+    }
+    ... on Embed {
+      ...Embed
+    }
+    ... on ImageGallery {
+      ...ImageGallery
+    }
+  }
+  relatedArticles {
+    title
+    path
+    contentId
+  }
+}
+
+fragment HomePageList on List {
+  contentId
+  description
+  inputTemplate
+  isLazyloadImages
+  loadPriority
+  title
+  url
+  urlDescription
+  view
+  clickTrackers {
+    ...ClickTrackerWrapper
+  }
+  commercialLinks {
+    href
+    contentName
+    contentId
+  }
+  dfp {
+    ...DfpBanner
+  }
+  extraLinks {
+    href
+    contentName
+    contentId
+  }
+  items {
+    ...ItemInList
+  }
+  marketingTeaser {
+    title
+    subtitle
+    href
+    cta
+  }
+}
+
+fragment GridElementGroup on GridElementGroup {
+  inputTemplate
+  contentName
+  contentId
+  title
+  loadPriority
+  items {
+    width {
+      from
+      until
+      value
+    }
+    miscStyles
+    content {
+      ... on ClickTrackerWrapper {
+        ...ClickTrackerWrapper
+      }
+      ... on DfpBanner {
+        ...DfpBanner
+      }
+      ... on List {
+        ...HomePageList
+      }
+      ... on TabsElement {
+        ...TabsElement
+      }
+    }
+  }
+}
+
+fragment TabsElement on TabsElement {
+  inputTemplate
+  contentId
+  contentName
+  title
+  type
+  viewMode
+  loadPriority
+  elements {
+    ... on ClickTrackerWrapper {
+      ...ClickTrackerWrapper
+    }
+    ... on DfpBanner {
+      ...DfpBanner
+    }
+    ... on List {
+      ...HomePageList
+    }
+  }
+}
+
+fragment ClickTrackerWrapper on ClickTrackerWrapper {
+  inputTemplate
+  contentName
+  contentId
+  totalPercentage
+  viewModes {
+    viewModeHtzMobile
+    viewModeTmMobile
+    viewModeHtz
+    viewModeJson
+  }
+  banners {
+    ...ClickTrackerBanner
+  }
+}
+
+fragment ClickTrackerBanner on ClickTrackerBanner {
+  inputTemplate
+  contentName
+  contentId
+  priority
+  text
+  link
+  linkTarget
+  departments
+  ...ClickTrackerImage
+  replaceDomainForAdBlocker
+  advertiserCamp
+  percentage
+  minRange
+  maxRange
+  chance
+}
+
+fragment ClickTrackerImage on ClickTrackerBanner {
+  clicktrackerimage {
+    inputTemplate
+    viewMode
+    imageUrlLinkGroup
+    imageUrlLinkGroupTarget
+    accessibility
+    title
+    credit
+    aspects
+    isAnimated
+    contentId
+    imgArray {
+      imgName
+      version
+      aspects
+    }
+    imageType
+    kind
+    contentName
+  }
+}
+
+fragment DfpBanner on DfpBanner {
+  audianceTarget
+  className
+  contentId
+  contentName
+  hideOnSite
+  id
+  inputTemplate
+  miscStyles
+}
+
+fragment ElementGroup on ElementGroup {
+  contentLists
+  hideOnSite
+  inputTemplate
+  contentName
+  contentId
+}
+
+fragment Embed on Embed {
+  source: content
+  caption
+  credit
+  embedType
+  kind
+  contentId
+  contentName
+  inputTemplate
+  settings
+}
+
+fragment Image on Image {
+  inputTemplate
+  viewMode
+  imageUrlLinkGroup
+  imageUrlLinkGroupTarget
+  accessibility
+  title
+  credit
+  aspects
+  isAnimated
+  contentId
+  imgArray {
+    imgName
+    version
+    aspects
+  }
+  imageType
+  kind
+  contentName
+}
+
+fragment ImageGallery on ImageGallery {
+  images {
+    ...Image
+  }
+  accessibility
+  name
+  showTitle
+  contentId
+  contentName
+  kind
+  inputTemplate
+}
+
+fragment Content on Content {
+  contentId
+  contentName
+  inputTemplate
+  properties
+}

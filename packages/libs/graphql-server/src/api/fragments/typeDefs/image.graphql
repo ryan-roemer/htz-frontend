@@ -1,0 +1,24 @@
+type Img {
+  imgName: String,
+  version: String,
+  aspects: ImageAspects,
+}
+
+type Image {
+  contentName: String,
+  contentId: ID!,
+  inputTemplate: String!,
+  viewMode: String,
+  photographer: String,
+  imageUrlLinkGroup: String,
+  imageUrlLinkGroupTarget: String,
+  position: String,
+  accessibility: String,
+  title: String,
+  credit: String,
+  aspects: ImageAspects,
+  isAnimated: Boolean,
+  imgArray: [Img],
+  imageType: String,
+  kind: String!,
+}

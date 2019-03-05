@@ -1,0 +1,8 @@
+type HomePageSlots {
+  preHeader: [JSON],
+  header: [JSON],
+  postHeader: [JSON],
+  main: [HomePageElement],
+  postMain: [JSON],
+  footer: [JSON],
+}

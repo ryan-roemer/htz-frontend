@@ -1,0 +1,13 @@
+type HomePage {
+  pageType: String!,
+  globalLazyload: Int!,
+  lineage: [TaxonomyItem],
+  seoData: SeoData,
+  pageDateTimeString: [String],
+  slots: HomePageSlots,
+  dfpConfig: DfpConfig,
+}
+
+extend type Query {
+  homePage: HomePage!
+}

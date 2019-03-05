@@ -1,0 +1,7 @@
+type Countdown {
+  contentId: ID!,
+  inputTemplate: String!,
+  contentName:String,
+  endOfTime: Timestamp,
+  title: String,
+}

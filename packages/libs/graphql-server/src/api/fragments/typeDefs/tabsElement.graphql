@@ -1,0 +1,10 @@
+type TabsElement {
+  title: String,
+  type: String,
+  viewMode: String,
+  elements: [TabElementItem]
+  inputTemplate: String!,
+  contentId: ID!,
+  contentName: String,
+  loadPriority: LoadPriority,
+}

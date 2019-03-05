@@ -1,0 +1,7 @@
+type MobileListWrapper {
+  contentId: ID!,
+  inputTemplate: String!,
+  contentName:String,
+  loadPriority: LoadPriority,
+  lists: [MobileListWrapperItems],
+}

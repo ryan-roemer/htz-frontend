@@ -1,0 +1,13 @@
+type Embed {
+  contentName: String,
+  contentId: ID!,
+  inputTemplate: String!,
+  kind: String!,
+  content: String,
+  caption: String,
+  credit: String,
+  embedType: String,
+  settings: JSON,
+  viewMode: String,
+  position: String,
+}

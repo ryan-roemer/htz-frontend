@@ -1,6 +1,9 @@
 query PageLayout($input: PageInput!) {
   page(input: $input) {
     pageType
+    contentId
+    contentName
+    ...SeoData
     ...PageBreadcrumbs
     pageDateTimeString
     articleData {
@@ -16,27 +19,93 @@ query PageLayout($input: PageInput!) {
         subtitle
         title
       }
-      mainElement {
+      headlineElement: mainElement {
+        ... on Embed {
+          ...Embed
+        }
+        ... on HtmlElement {
+          ...HtmlElement
+        }
         ... on Image {
-          contentId
+          ...Image
         }
         ... on ImageGallery {
-          contentId
+          ...ImageGallery
+        }
+        ... on Video {
+          ...Video
         }
       }
-      commentsElementId
-      contentId
-      contentName
+      authors {
+        ...Author
+      }
+      body {
+        ... on Content {
+          ...Content
+        }
+        ... on DfpBanner {
+          ...DfpBanner
+        }
+        ... on ElementGroup {
+          ...ElementGroup
+        }
+        ... on Embed {
+          ...Embed
+        }
+        ... on TableScore {
+          ...TableScore
+        }
+        ... on HtmlElement {
+          ...HtmlElement
+        }
+        ... on Image {
+          ...Image
+        }
+        ... on ImageGallery {
+          ...ImageGallery
+        }
+        ... on Interactive {
+          ...Interactive
+        }
+        ... on Link {
+          ...Link
+        }
+        ... on MobileQuickRegistration {
+          ...MobileQuickRegistration
+        }
+        ... on NewsLetter {
+          ...NewsLetter
+        }
+        ... on Paragraph {
+          ...Paragraph
+        }
+        ... on RelatedArticles {
+          ...RelatedArticles
+        }
+        ... on SeriesOrBlockArticles {
+          ...SeriesOrBlockArticles
+        }
+        ... on Quote {
+          ...Quote
+        }
+        ... on Tags {
+          ...Tags
+        }
+        ... on Video {
+          ...Video
+        }
+        ... on NullFallback {
+          message
+          errorCode
+          kind
+        }
+      }
+      tags {
+        url
+        contentName
+      }
       inputTemplate
-      isPremiumContent
-      reviewStars
-      ... on RegularArticleData {
-        body {
-          ... on Paragraph {
-            tag
-          }
-        }
-      }
+      commentsElementId
     }
     slots {
       preHeader
@@ -47,6 +116,11 @@ query PageLayout($input: PageInput!) {
         contentId
         contentName
         properties
+      }
+      aside {
+        ... on ChangeableElementGroup {
+          ...ChangeableElementGroup
+        }
       }
       postMain
       footer
@@ -69,6 +143,377 @@ query PageLayout($input: PageInput!) {
   }
 }
 
+fragment Author on Author {
+  ...AuthorImage
+  contentId
+  contentName
+  authorType
+  email
+  biography {
+    ... on Paragraph {
+      ...Paragraph
+    }
+  }
+  facebook
+  gplus
+  hasEmailAlerts
+  hasPushAlerts
+  inputTemplate
+  twitter
+  url
+}
+
+fragment AuthorImage on Author {
+  image {
+    inputTemplate
+    viewMode
+    imageUrlLinkGroup
+    imageUrlLinkGroupTarget
+    accessibility
+    title
+    credit
+    aspects
+    isAnimated
+    contentId
+    imgArray {
+      imgName
+      version
+      aspects
+    }
+    imageType
+    kind
+    contentName
+  }
+}
+
+fragment Paragraph on Paragraph {
+  attributes {
+    key
+    value
+  }
+  tag
+  content
+}
+
+fragment ChangeableElementGroup on ChangeableElementGroup {
+  contentLists {
+    displayDuration
+    content {
+      ... on Content {
+        ...Content
+      }
+      ... on DfpBanner {
+        ...DfpBanner
+      }
+      ... on GridElementGroup {
+        ...GridElementGroup
+      }
+      ... on List {
+        ...ListInGroup
+      }
+    }
+  }
+  hideOnSite
+  inputTemplate
+  contentName
+  contentId
+  totalDisplay
+}
+
+fragment Content on Content {
+  contentId
+  contentName
+  inputTemplate
+  properties
+}
+
+fragment DfpBanner on DfpBanner {
+  audianceTarget
+  className
+  contentId
+  contentName
+  hideOnSite
+  id
+  inputTemplate
+  miscStyles
+}
+
+fragment GridElementGroup on GridElementGroup {
+  inputTemplate
+  contentName
+  contentId
+  loadPriority
+  title
+  items {
+    width {
+      from
+      until
+      value
+    }
+    miscStyles
+    content {
+      ... on ClickTrackerWrapper {
+        ...ClickTrackerWrapper
+      }
+      ... on DfpBanner {
+        ...DfpBanner
+      }
+      ... on List {
+        ...ListInGroup
+      }
+      ... on TabsElement {
+        ...TabsElement
+      }
+    }
+  }
+}
+
+fragment ClickTrackerWrapper on ClickTrackerWrapper {
+  inputTemplate
+  contentName
+  contentId
+  totalPercentage
+  viewModes {
+    viewModeHtzMobile
+    viewModeTmMobile
+    viewModeHtz
+    viewModeJson
+  }
+  banners {
+    ...ClickTrackerBanner
+  }
+}
+
+fragment ClickTrackerBanner on ClickTrackerBanner {
+  inputTemplate
+  contentName
+  contentId
+  priority
+  text
+  link
+  linkTarget
+  departments
+  ... ClickTrackerImage
+  replaceDomainForAdBlocker
+  advertiserCamp
+  percentage
+  minRange
+  maxRange
+  chance
+}
+
+fragment ClickTrackerImage on ClickTrackerBanner {
+  clicktrackerimage {
+    inputTemplate
+    viewMode
+    imageUrlLinkGroup
+    imageUrlLinkGroupTarget
+    accessibility
+    title
+    credit
+    aspects
+    isAnimated
+    contentId
+    imgArray {
+      imgName
+      version
+      aspects
+    }
+    imageType
+    kind
+    contentName
+  }
+}
+
+fragment ListInGroup on List {
+  title
+  contentName
+  contentId
+  inputTemplate
+  hasPagination
+  loadPriority
+  view
+}
+
+fragment TabsElement on TabsElement {
+  inputTemplate
+  contentId
+  contentName
+  title
+  type
+  viewMode
+  loadPriority
+  elements {
+    ... on ClickTrackerWrapper {
+      ...ClickTrackerWrapper
+    }
+    ... on DfpBanner {
+      ...DfpBanner
+    }
+    ... on List {
+      ...ListInGroup
+    }
+  }
+}
+
+fragment ElementGroup on ElementGroup {
+  contentLists
+  hideOnSite
+  inputTemplate
+  contentName
+  contentId
+}
+
+fragment Embed on Embed {
+  source: content
+  caption
+  credit
+  embedType
+  kind
+  contentId
+  contentName
+  inputTemplate
+  settings
+}
+
+fragment HtmlElement on HtmlElement {
+  code
+  hideOnSite
+  contentId
+  contentName
+  inputTemplate
+}
+
+fragment Image on Image {
+  inputTemplate
+  viewMode
+  imageUrlLinkGroup
+  imageUrlLinkGroupTarget
+  accessibility
+  title
+  credit
+  aspects
+  isAnimated
+  contentId
+  imgArray {
+    imgName
+    version
+    aspects
+  }
+  imageType
+  kind
+  contentName
+}
+
+fragment ImageGallery on ImageGallery {
+  images {
+    ...Image
+  }
+  accessibility
+  name
+  showTitle
+  contentId
+  contentName
+  kind
+  inputTemplate
+}
+
+fragment Interactive on Interactive {
+  kind
+  contentId
+  contentName
+  inputTemplate
+  properties
+}
+
+fragment Link on Link {
+  contentId
+  contentName
+  inputTemplate
+  href
+  toolTip
+  linkText
+}
+
+fragment MobileQuickRegistration on MobileQuickRegistration {
+  contentId
+  teaserBody
+  doubleOptIn
+  mailto
+  mailSubject
+  mailBody
+  teaserButton
+  inputTemplate
+}
+
+fragment NewsLetter on NewsLetter {
+  segmentId
+  segmentName
+  inputTemplate
+  contentId
+  contentName
+  renderFrequency
+}
+
+fragment Quote on Quote {
+  position
+  text
+  credit
+  afterParagraph
+  ...QuoteImage
+  contentId
+  contentName
+  inputTemplate
+}
+
+fragment QuoteImage on Quote {
+  imagesList {
+    inputTemplate
+    viewMode
+    imageUrlLinkGroup
+    imageUrlLinkGroupTarget
+    accessibility
+    title
+    credit
+    aspects
+    isAnimated
+    contentId
+    imgArray {
+      imgName
+      version
+      aspects
+    }
+    imageType
+    kind
+    contentName
+  }
+}
+
+fragment RelatedArticles on RelatedArticles {
+  articles {
+    ...TeaserForRelatedArticles
+  }
+  kind
+}
+
+fragment TeaserForRelatedArticles on Teaser {
+  title
+  path
+  inputTemplate
+  authors {
+    ...Author
+  }
+}
+
+fragment TableScore on TableScore {
+  inputTemplate
+  tableType
+  coastType
+  league
+  number
+  isOpen
+}
+
 fragment PageBreadcrumbs on Page {
   lineage {
     contentId
@@ -76,4 +521,78 @@ fragment PageBreadcrumbs on Page {
     pathSegment
     url
   }
+}
+
+fragment SeoData on Page {
+  seoData {
+    metaTitle
+    metaDescription
+    metaKeywords
+    canonicalUrl
+    amphtml
+    ...SeoImage
+    ogTitle
+    ogDescription
+  }
+}
+
+fragment SeoImage on SeoData {
+  ogImage {
+    inputTemplate
+    viewMode
+    imageUrlLinkGroup
+    imageUrlLinkGroupTarget
+    accessibility
+    title
+    credit
+    aspects
+    isAnimated
+    contentId
+    imgArray {
+      imgName
+      version
+      aspects
+    }
+    imageType
+    kind
+    contentName
+  }
+}
+
+fragment SeriesOrBlockArticles on SeriesOrBlockArticles {
+  articles {
+    ...TeaserForRelatedArticles
+  }
+  seriesTitle
+  sort
+  itemsPerPage
+  usePagination
+  inputTemplate
+  contentId
+  contentName
+  kind
+}
+
+fragment Tags on Tags {
+  kind
+  tagsList {
+    ...Tag
+  }
+}
+
+fragment Tag on Tag {
+  url
+  inputTemplate
+  contentName
+  contentId
+}
+
+fragment Video on Video {
+  videoType
+  title
+  credit
+  contentId
+  videoContent
+  inputTemplate
+  kind
 }
