@@ -39,8 +39,12 @@ import IconPrint from '../Icon/icons/IconPrint';
 import IconReading from '../Icon/icons/IconReading';
 import IconTwitter from '../Icon/icons/IconTwitter';
 import IconWhatsapp from '../Icon/icons/IconWhatsapp';
+import IconClose from '../Icon/icons/IconClose';
 import IconZen from '../Icon/icons/IconZen';
 import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
+import A11yDialog from '../A11yDialog/A11yDialog';
+import ZenAstronaut from '../Zen/ZenAstronaut';
+
 // import Tooltip from '../Tooltip/Tooltip';
 import Media from '../Media/Media';
 import ClickArea from '../ClickArea/ClickArea';
@@ -649,51 +653,107 @@ const Zen: StatelessFunctionalComponent<ZenButtonProps> = ({
   elementUrl,
   ...props
 }): Node => (
-  <Mutation mutation={TOGGLE_ZEN}>
-    {toggleZen => (
-      <FelaTheme
-        render={theme => (
-          <ActionButton
-            render={({ platform, biAction, biActionMapper, zenMode, }) => (
-              <Button
-                {...props}
-                miscStyles={
-                  !zenMode
-                    ? {}
-                    : {
-                      color: theme.color('secondary'),
-                    }
-                }
-                onClick={() => {
-                  toggleZen();
-                  biAction({
-                    actionCode: biActionMapper.get('zen_mode'),
-                    additionalInfo: {
-                      platform,
-                      ...(buttonText ? { NumOfTalkbacks: buttonText, } : {}),
-                    },
-                  });
-                  return false;
-                }}
-              >
-                <FelaComponent
-                  style={{
-                    marginEnd: '1rem',
-                    paddingBlockStart: '0.3rem',
-                    color: theme.color('neutral', '-3'),
-                  }}
-                  render={({ className, theme: { zenTextI18n, }, }) => (
-                    <span className={className}>{zenTextI18n}</span>
+  <ApolloConsumer>
+    {client => {
+      const { user, } = client.readQuery({
+        query: gql`
+          query GetUserType {
+            user @client {
+              type
+            }
+          }
+        `,
+      });
+      console.warn('!!!user', user);
+      const isPayingUser = user && user.type && user.type === 'paying';
+      return (
+        <Mutation mutation={TOGGLE_ZEN}>
+          {toggleZen => (
+            <FelaTheme
+              render={theme => (
+                <ActionButton
+                  render={({ platform, biAction, biActionMapper, zenMode, }) => (
+                    <div>
+                      <Button
+                        {...props}
+                        miscStyles={
+                          !zenMode
+                            ? {}
+                            : {
+                              color: theme.color('secondary'),
+                            }
+                        }
+                        onClick={() => {
+                          toggleZen();
+                          biAction({
+                            actionCode: biActionMapper.get('zen_mode'),
+                            additionalInfo: {
+                              platform,
+                              ...(buttonText ? { NumOfTalkbacks: buttonText, } : {}),
+                            },
+                          });
+                          return false;
+                        }}
+                      >
+                        <FelaComponent
+                          style={{
+                            marginEnd: '1rem',
+                            paddingBlockStart: '0.3rem',
+                            color: theme.color('neutral', '-3'),
+                          }}
+                          render={({ className, theme: { zenTextI18n, }, }) => (
+                            <span className={className}>{zenTextI18n}</span>
+                          )}
+                        />
+                        <IconZen size={size} miscStyles={iconStyles} />
+                      </Button>
+                      {isPayingUser ? null : (
+                        <A11yDialog
+                          appendTo="zen_modal"
+                          elementToHide="pageRoot"
+                          isVisible={zenMode}
+                          containerMiscStyles={{ outline: 'none', }}
+                          // onClose={toggleZen()}
+                          isModal
+                          render={({ isVisible, handleClose, }) => (
+                            <FelaComponent
+                              style={{
+                                paddingInlineEnd: '8rem',
+                                paddingInlineStart: '6rem',
+                                paddingBottom: '5rem',
+                                outline: 'none',
+                              }}
+                            >
+                              {/* <Button
+                                isFlat
+                                boxModel={{ hp: 1, vp: 1, }}
+                                onClick={handleClose && toggleZen}
+                                variant="inverse"
+                                miscStyles={{
+                                  display: 'inline-block',
+                                  position: 'absolute',
+                                  left: '0',
+                                  top: '10%',
+                                  // paddingTop: '0',
+                                }}
+                              >
+                                <IconClose size={7} color="white" tabIndex="0" />
+                              </Button> */}
+                              <ZenAstronaut onClose={handleClose && toggleZen} />
+                            </FelaComponent>
+                          )}
+                        />
+                      )}
+                    </div>
                   )}
                 />
-                <IconZen size={size} miscStyles={iconStyles} />
-              </Button>
-            )}
-          />
-        )}
-      />
-    )}
-  </Mutation>
+              )}
+            />
+          )}
+        </Mutation>
+      );
+    }}
+  </ApolloConsumer>
 );
 
 const getAction = (iconName: string) => {

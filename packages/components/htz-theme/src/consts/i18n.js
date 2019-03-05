@@ -438,3 +438,9 @@ export const btnOptions = Object.freeze({
 export const survey = Object.freeze({
   button: 'לכל הסקרים',
 });
+
+export const zenNonPayingUsers = Object.freeze({
+  title: 'קריאת זן זמינה למנויים בלבד',
+  subTitle: 'ללא פרסמות ובהגשה נוחה לקריאה',
+  button: 'לרכישת מנוי',
+});

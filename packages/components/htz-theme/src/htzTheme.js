@@ -69,6 +69,7 @@ import {
   nbaHeaders,
   groupBarTabs,
   btnOptions,
+  zenNonPayingUsers,
 } from './consts/i18n';
 
 // methods
@@ -156,6 +157,7 @@ const htzTheme = Object.freeze({
   selectAriaLabel,
   marketingTools,
   survey,
+  zenNonPayingUsers,
   // Methods
   color: getColor,
   getDelay,
