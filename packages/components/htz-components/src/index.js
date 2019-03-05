@@ -89,6 +89,7 @@ import RssFeed from './components/RssFeed/RssFeed';
 import Section from './components/AutoLevels/Section';
 import Select from './components/Select/Select';
 import SeriesArticles from './components/RelatedArticles/SeriesArticles';
+import SideBoxPromotion from './components/MarketingTools/SideBoxPromotion';
 import SpecialPromotions from './components/SpecialPromotions/SpecialPromotions';
 import TabElement from './components/TabElement/TabElement';
 import TableScore from './components/TableScore/TableScore';
@@ -338,6 +339,7 @@ export {
   Section,
   Select,
   SeriesArticles,
+  SideBoxPromotion,
   SpecialPromotions,
   TabElement,
   TableScore,

@@ -326,6 +326,19 @@ export const shareBar = Object.freeze({
   whatsappTooltip: 'שתפו וחבריכם יקראו את הכתבה ללא תשלום',
 });
 
+export const sideBoxPromotionI18n = Object.freeze({
+  anonymousUser: Object.freeze({
+    text: 'נרשמים ל"הארץ" בדיגיטל ונהנים מ-6 כתבות בחודש',
+    buttonVariant: 'primary',
+    buttonText: 'להרשמה',
+  }),
+  registeredUser: Object.freeze({
+    text: 'לקרוא ללא הגבלה, רק עם מינוי דיגיטלי בהארץ',
+    buttonVariant: 'salesOpaque',
+    buttonText: 'לרכישה',
+  }),
+});
+
 export const mobileUserMenuI18n = Object.freeze({
   noUserData: 'כניסה',
   userLoggedIn: 'יציאה',
@@ -413,7 +426,7 @@ export const marketingTools = Object.freeze({
 });
 
 export const footballHeaders = Object.freeze({
-  headers: [ 'קבוצה', 'מש\'', 'נצ\'', 'הפ\'', 'תי\'', 'הפרש', 'נק\'', ],
+  headers: [ 'קבוצה', "מש'", "נצ'", "הפ'", "תי'", 'הפרש', "נק'", ],
 });
 
 export const groupBarTabs = Object.freeze({
