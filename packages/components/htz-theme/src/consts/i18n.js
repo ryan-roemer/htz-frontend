@@ -329,7 +329,7 @@ export const shareBar = Object.freeze({
 export const sideBoxPromotionI18n = Object.freeze({
   anonymousUser: Object.freeze({
     text: 'נרשמים ל"הארץ" בדיגיטל ונהנים מ-6 כתבות בחודש',
-    buttonVariant: 'primary',
+    buttonVariant: 'primaryOpaque',
     buttonText: 'להרשמה',
   }),
   registeredUser: Object.freeze({

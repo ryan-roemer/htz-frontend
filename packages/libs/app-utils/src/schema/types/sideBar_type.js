@@ -3,15 +3,18 @@ import { GraphQLList, GraphQLUnionType, } from 'graphql';
 
 import content from './content_type';
 import changeableElementGroup from './changeable_element_group_type';
+import MarketingToolSideBox from './marketing_tools_side_box_type';
 import getInputTemplate from '../getInputTemplate';
 
 const SideBar = new GraphQLList(
   new GraphQLUnionType({
     name: 'SideBar',
-    types: [ content, changeableElementGroup, ],
+    types: [ content, changeableElementGroup, MarketingToolSideBox, ],
     resolveType: value => (value.inputTemplate === getInputTemplate('ChangeableElementGroup')
       ? changeableElementGroup
-      : content),
+      : value.inputTemplate === getInputTemplate('MarketingToolSideBox')
+        ? MarketingToolSideBox
+        : content),
   })
 );
 

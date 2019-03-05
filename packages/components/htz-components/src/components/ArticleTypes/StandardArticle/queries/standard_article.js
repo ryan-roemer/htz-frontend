@@ -35,6 +35,21 @@ export default gql`
           ... on ChangeableElementGroup {
             ...ChangeableElementGroup
           }
+          ... on MarketingToolSideBox {
+            anonymous {
+              text
+              actionText
+              actionUrl
+            }
+            registered {
+              text
+              actionText
+              actionUrl
+            }
+            inputTemplate
+            contentName
+            contentId
+          } 
         }
         article {
           ... on Content {

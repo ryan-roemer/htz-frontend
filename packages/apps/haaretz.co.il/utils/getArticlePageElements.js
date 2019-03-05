@@ -32,6 +32,7 @@ import {
   RelatedArticles,
   RssFeed,
   SeriesArticles,
+  SideBoxPromotion,
   SpecialPromotions,
   TableScore,
   Tags,
@@ -77,6 +78,7 @@ const elements = new Map([
   [ 'com.polobase.quickNewsletterRegistration', MobileQuickRegistration, ],
   [ 'relatedArticles', RelatedArticles, ],
   [ 'relatedArticleSeries', SeriesArticles, ],
+  [ 'com.polobase.SideBoxMarketingElement', SideBoxPromotion, ],
   [ 'com.tm.Link', SpecialPromotions, ],
   /*
    * This is only a temporary solution to avoid hitting preformance, and SHOULD BE AVOIDED as much as possible.

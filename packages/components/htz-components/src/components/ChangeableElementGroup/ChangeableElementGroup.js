@@ -11,7 +11,7 @@ import type { ContentType, } from '../../flowTypes/ContentType';
 
 import useGetComponent from '../../hooks/GetComponentContext/useGetComponent';
 import ToggleFade from '../Transitions/ToggleFade';
-
+import SideBoxPromotion from '../MarketingTools/SideBoxPromotion';
 
 export type ItemType = {
   displayDuration: number,
@@ -33,8 +33,7 @@ export type State = {
 
 export type ElementGroupProps = Props & {
   getComponent: string => ComponentType<any>,
-}
-
+};
 
 class ChangeableElementGroup extends React.Component<ElementGroupProps, State> {
   state = {
@@ -49,10 +48,7 @@ class ChangeableElementGroup extends React.Component<ElementGroupProps, State> {
     const getElementIndex: () => ?number = () => {
       const posY: number = scrollY % totalDisplay;
       let prev: number = 0;
-      for (const [ index, item, ]: [
-        number,
-        ItemType,
-      ] of contentLists.entries()) {
+      for (const [ index, item, ]: [number, ItemType, ] of contentLists.entries()) {
         if (posY > item.displayDuration + prev) {
           prev += item.displayDuration;
         }
@@ -83,13 +79,12 @@ class ChangeableElementGroup extends React.Component<ElementGroupProps, State> {
   render(): Node {
     const { contentLists, getComponent, } = this.props;
     const { elementIndex, someoneIsAnimating, maxIndex, } = this.state;
+    console.warn('!!! elementIndex ChangeableElementGroup', elementIndex);
 
     return (
       <Fragment>
         {contentLists.map(({ content: element, }, index) => {
-          const Element: ComponentType<any> = getComponent(
-            element.inputTemplate
-          );
+          const Element: ComponentType<any> = getComponent(element.inputTemplate);
           const show: boolean = elementIndex === index;
 
           // delayRender will cause list components to render once,
@@ -123,7 +118,12 @@ class ChangeableElementGroup extends React.Component<ElementGroupProps, State> {
                         display: !show && !someoneIsAnimating ? 'none' : 'block',
                       }}
                     >
-                      {delayRender ? null : (
+                      {delayRender ? null : elementIndex === 0 ? (
+                        <Fragment>
+                          <Element {...element} />
+                          <SideBoxPromotion />
+                        </Fragment>
+                      ) : (
                         <Element {...element} />
                       )}
                     </FelaComponent>
@@ -140,7 +140,5 @@ class ChangeableElementGroup extends React.Component<ElementGroupProps, State> {
 
 export default (props: Props) => {
   const getComponent = useGetComponent();
-  return (
-    <ChangeableElementGroup {...props} getComponent={getComponent} />
-  );
+  return <ChangeableElementGroup {...props} getComponent={getComponent} />;
 };
