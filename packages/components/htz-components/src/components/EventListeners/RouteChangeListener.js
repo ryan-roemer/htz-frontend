@@ -1,10 +1,11 @@
 // @flow
+/* global permutive */
 import * as React from 'react';
 import Router from 'next/router';
 import { clearTeasersInPage, } from '../List/ListDuplication';
-// import PropTypes from 'prop-types';
-// import { UPDATE_SCROLL, } from './ScrollStoreMutator';
 // import Mutation from '../ApolloBoundary/Mutation';
+
+declare var permutive: any;
 
 export default function RoutChangeLiatener(): null {
   React.useEffect(() => {
@@ -13,6 +14,7 @@ export default function RoutChangeLiatener(): null {
       // to a new page on the client side, so that duplication
       // checks are cleared and aren't based on the old page
       clearTeasersInPage();
+      typeof permutive !== 'undefined' && permutive.addon('web', {});
     };
 
     return () => { Router.onRouteChangeStart = null; };

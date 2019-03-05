@@ -23,6 +23,7 @@ import IdxNielsen from '../Scripts/IdxNielsen';
 import CrazyEgg from '../Scripts/CrazyEgg';
 import OutbrainTVR from '../Scripts/OutbrainTVR';
 import ChartBeat from '../Scripts/ChartBeat';
+import Permutive from '../Scripts/Permutive';
 
 const GET_FOOTER_ITEMS = gql`
   query FooterQuery($listId: String!) {
@@ -227,6 +228,7 @@ class Footer extends React.Component {
         <ChartBeat shouldRender={shouldRenderScripts} />
         <UniversitiesPush />
         <FirstImpression />
+        <Permutive />
         <FirstImpressionPlaceHolder />
         <IdxNielsen shouldRender={shouldRenderScripts} />
         <CrazyEgg shouldRender={shouldRenderScripts} />
