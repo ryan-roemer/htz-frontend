@@ -5,7 +5,7 @@ WORKDIR /workspace/
 ENV NEXT_BUILD_ID=${NEXT_BUILD_ID}
 #ENV BUILD_ID $(git rev-parse --verify HEAD)
 RUN rm -f /etc/localtime; ln -s /usr/share/zoneinfo/Asia/Jerusalem /etc/localtime
-RUN yarn && yarn bootstrap
+RUN yarn && yarn workspace @haaretz/haaretz.co.il build:deploy
 #RUN yarn test:deploy
 EXPOSE 3000
 WORKDIR /workspace/
