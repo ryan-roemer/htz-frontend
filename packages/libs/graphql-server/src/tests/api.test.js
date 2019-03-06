@@ -25,7 +25,7 @@ describe('create API', async () => {
   test('Return empty object when request is empty', async () => {
     process.env.NODE_ENV = 'development';
 
-    await expect(gqlServerConfig().context({req:null}))
+    await expect(gqlServerConfig().context({ req: null, }))
       .resolves.toEqual({});
   });
 
@@ -42,8 +42,8 @@ describe('create API', async () => {
 
     await expect(
       gqlServerConfig().context(null)
-    ).rejects.toThrow('Your request object is "null"\n' +
-      'Are you running outside an Apollo context?'
+    ).rejects.toThrow('Your request object is "null"\n'
+      + 'Are you running outside an Apollo context?'
     );
   });
 });

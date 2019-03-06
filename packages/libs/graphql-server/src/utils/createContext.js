@@ -7,6 +7,7 @@ export default function createContext(headers) {
     ? config.get('polopolyPromotionsPagePath')
     : 'promotions-page-react';
   const isDev = process.env.NODE_ENV === 'development';
+  const cookies = headers ? new Cookies(headers.cookie) : null;
   const defaultHostname = isDev ? 'local.haaretz.co.il' : headers.hostname;
   const hostname = headers.hostname || defaultHostname; //  when using graphql playground in local env;
   const ssoService = config.get('service.sso');
@@ -15,7 +16,6 @@ export default function createContext(headers) {
   const functionService = config.get('service.htzFunction');
   const msSportResults = config.get('service.msSportResults');
   const serviceBase = switchToDomain(hostname, config.get('service.base'));
-  const cookies = headers ? new Cookies(headers.cookie) : null;
   const preview = headers.preview;
   const previewUserId = headers.previewuserid;
   return {

@@ -23,7 +23,7 @@ const coerceDate = value => {
 const coerceTimestamp = value => {
   const date = new Date(value).getTime();
   if (!isTimestamp(date)) {
-    const message = `Date can't represent non-date value: ${value}`;
+    const message = `Timestamp can't represent non-date value: ${value}`;
     throw new TypeError(message);
   }
   return date;

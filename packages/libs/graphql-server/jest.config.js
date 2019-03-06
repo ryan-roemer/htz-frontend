@@ -1,6 +1,10 @@
 module.exports = {
   testURL: 'http://localhost',
-  coveragePathIgnorePatterns: [ '/node_modules/', '/src/dataSources.js', ],
+  coveragePathIgnorePatterns: [
+    '/node_modules/',
+    '/src/dataSources.js',
+    '/src/api/schema/scalars/scalars.resolvers.js',
+  ],
   coverageThreshold: {
     global: {
       branches: 100,

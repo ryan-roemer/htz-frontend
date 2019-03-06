@@ -1,5 +1,6 @@
 const articleType = new Map([
   [ 'regularArticle', 'RegularArticleData', ],
+  [ 'mouseRegularArticle', 'MouseRegularArticleData', ],
 ]);
 
 export default {

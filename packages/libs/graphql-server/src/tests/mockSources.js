@@ -1,18 +1,20 @@
 import listMock from './mocks/list';
 import homePageMock from './mocks/homePage';
-import regularArticle from './mocks/regularArticle';
-import scalarsMock from './mocks/scalars';
+import regularArticleMock from './mocks/regularArticle';
+import mouseStoryMock, { withoutMain, } from './mocks/mouseStory';
 
 export default () => ({
   PageAPI: {
     getPage: args => {
       switch (args) {
-        case '/':
-          return homePageMock;
-        case 'scalars':
-          return scalarsMock.article;
+        case 'regularArticle':
+          return regularArticleMock;
+        case 'mouseStory':
+          return mouseStoryMock;
+        case 'mouseStoryWithoutMainElement':
+          return withoutMain;
         default:
-          return regularArticle;
+          return homePageMock;
       }
     },
   },

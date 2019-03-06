@@ -19,36 +19,63 @@ const TestServer = new ApolloServer({
 });
 
 const testServer = createTestClient(TestServer);
+describe('Run Queries', async () => {
+  it('fetch a list', async () => {
+    // // run query against the server and snapshot the output
+    const { errors, data, } = await testServer.query({ query: listQuery, variables: { input: { listId: 'list', }, }, });
 
-it('fetch a list', async () => {
-  // // run query against the server and snapshot the output
-  const { errors, data, } = await testServer.query({ query: listQuery, variables: { input: { listId: 'list', }, }, });
-
-  expect(errors).toBeUndefined();
-  expect(data).toMatchSnapshot();
-});
+    expect(errors).toBeUndefined();
+    expect(data).toMatchSnapshot();
+  });
 
 
-it('fetch a footer', async () => {
-  // // run query against the server and snapshot the output
-  const { errors, data, } = await testServer.query({ query: footerQuery, variables: { input: { listId: 'footer', }, }, });
+  it('fetch a footer', async () => {
+    // // run query against the server and snapshot the output
+    const { errors, data, } = await testServer.query({
+      query: footerQuery,
+      variables: { input: { listId: 'footer', }, },
+    });
 
-  expect(errors).toBeUndefined();
-  expect(data).toMatchSnapshot();
-});
+    expect(errors).toBeUndefined();
+    expect(data).toMatchSnapshot();
+  });
 
-it('fetch homePage', async () => {
-  // // run query against the server and snapshot the output
-  const { errors, data, } = await testServer.query({ query: homePageQueryQuery, });
+  it('fetch homePage', async () => {
+    // // run query against the server and snapshot the output
+    const { errors, data, } = await testServer.query({ query: homePageQueryQuery, });
 
-  expect(errors).toBeUndefined();
-  expect(data).toMatchSnapshot();
-});
+    expect(errors).toBeUndefined();
+    expect(data).toMatchSnapshot();
+  });
 
-it('fetch a regular article', async () => {
-  // // run query against the server and snapshot the output
-  const { errors, data, } = await testServer.query({ query: regularArticleQuery, variables: { input: { path: 'regularArticle', }, }, });
+  it('fetch a regular article', async () => {
+    // // run query against the server and snapshot the output
+    const { errors, data, } = await testServer.query({
+      query: regularArticleQuery,
+      variables: { input: { path: 'regularArticle', }, },
+    });
 
-  expect(errors).toBeUndefined();
-  expect(data).toMatchSnapshot();
+    expect(errors).toBeUndefined();
+    expect(data).toMatchSnapshot();
+  });
+
+  it('fetch a mouse story', async () => {
+    // // run query against the server and snapshot the output
+    const { errors, data, } = await testServer.query({
+      query: regularArticleQuery,
+      variables: { input: { path: 'mouseStory', }, },
+    });
+    expect(errors).toBeUndefined();
+    expect(data).toMatchSnapshot();
+  });
+
+  it('fetch a mouse story without main element', async () => {
+    // // run query against the server and snapshot the output
+    const { errors, data, } = await testServer.query({
+      query: regularArticleQuery,
+      variables: { input: { path: 'mouseStoryWithoutMainElement', }, },
+    });
+    expect(errors).toBeUndefined();
+    expect(data).toMatchSnapshot();
+  });
 });

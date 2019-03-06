@@ -45,6 +45,6 @@ module.exports = {
   logLevel: 'error',
   assetPrefix: '',
   enableHttpLogging: false,
-  configName: 'production',
+  configName: 'test',
   msServiceDomain: 'ms-apps',
 };

@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
 
+import articleDataTypeDef from './typeDefs/articleData.graphql';
 import articleHeaderTypeDef from './typeDefs/articleHeader.graphql';
 import articleSlotsTypeDef from './typeDefs/articleSlots.graphql';
 import authorTypeDef from './typeDefs/author.graphql';
@@ -28,7 +29,6 @@ import newsLetterTypeDef from './typeDefs/newsLetter.graphql';
 import nullFallbackTypeDef from './typeDefs/nullFallback.graphql';
 import paragraphTypeDef from './typeDefs/paragraph.graphql';
 import quoteTypeDef from './typeDefs/quote.graphql';
-import regularArticleDataTypeDef from './typeDefs/regularArticleData.graphql';
 import relatedArticlesTypeDef from './typeDefs/relatedArticles.graphql';
 import rssFeedTypeDef from './typeDefs/rssFeed.graphql';
 import seoDataTypeDef from './typeDefs/seoData.graphql';
@@ -47,6 +47,7 @@ import interactiveResolver from './resolvers/interactive.resolvers';
 
 export default {
   typeDefs: [
+    articleDataTypeDef,
     articleHeaderTypeDef,
     articleSlotsTypeDef,
     authorTypeDef,
@@ -75,7 +76,6 @@ export default {
     nullFallbackTypeDef,
     paragraphTypeDef,
     quoteTypeDef,
-    regularArticleDataTypeDef,
     relatedArticlesTypeDef,
     rssFeedTypeDef,
     seoDataTypeDef,

@@ -1,12 +1,12 @@
 import merge from 'lodash/merge';
 import { mergeSchemas, makeExecutableSchema, } from 'apollo-server';
 
-import fragments from './fragments';
-import queries from './queries';
-import scalars from './scalars';
-import unions from './unions';
-import interfaces from './interfaces';
-import enums from './enums.graphql';
+import fragments from './schema/fragments';
+import queries from './schema/queries';
+import scalars from './schema/scalars';
+import unions from './schema/unions';
+import interfaces from './schema/interfaces';
+import enums from './schema/enums.graphql';
 
 import createContext from '../utils/createContext';
 import dataSources from '../dataSources';

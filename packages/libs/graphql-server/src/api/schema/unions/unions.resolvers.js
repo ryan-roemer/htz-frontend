@@ -1,4 +1,4 @@
-import resolveType from '../../utils/resolveType';
+import resolveType from '../../../utils/resolveType';
 
 // eslint-disable-next-line no-underscore-dangle
 function __resolveType(item, context, info) {

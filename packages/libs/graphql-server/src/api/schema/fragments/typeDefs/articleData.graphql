@@ -1,0 +1,30 @@
+type RegularArticleData implements ArticleData {
+  articleType: String!,
+  header: ArticleHeader,
+  mainElement: HeadlineElement,
+  tags: [Tag],
+  authors: [Author],
+  body: [ArticleBodyItem],
+  commentsElementId: ID,
+  contentId: ID!,
+  contentName: String,
+  inputTemplate: String!,
+  isPremiumContent: Boolean,
+  reviewStars: Float,
+}
+
+type MouseRegularArticleData implements ArticleData {
+  articleType: String!,
+  header: ArticleHeader,
+  mainElement: HeadlineElement,
+  tags: [Tag],
+  authors: [Author],
+  body: [ArticleBodyItem],
+  commentsElementId: ID,
+  contentId: ID!,
+  contentName: String,
+  inputTemplate: String!,
+  isPremiumContent: Boolean,
+  reviewStars: Float,
+  isReview: Boolean,
+}

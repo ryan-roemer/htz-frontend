@@ -20,7 +20,7 @@
     "gc": "htz-scripts commitizen",
     "prepare": "npm run build",
     "postinstall": "htz-scripts fixStyledJsx",
-    "test": "rm -rf ./.jest && htz-scripts test",
+    "test": "rm -rf ./.jest && htz-scripts test --coverage",
     "test:watch": "rm -rf ./.jest && htz-scripts test --watch",
     "update-scripts": "htz-scripts update-scripts"
   },
