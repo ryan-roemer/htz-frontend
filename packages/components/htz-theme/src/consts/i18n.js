@@ -441,6 +441,7 @@ export const survey = Object.freeze({
 
 export const zenNonPayingUsers = Object.freeze({
   title: 'קריאת זן זמינה למנויים בלבד',
-  subTitle: 'ללא פרסמות ובהגשה נוחה לקריאה',
-  button: 'לרכישת מנוי',
+  subTitle: 'ללא פרסומות ובהגשה נוחה לקריאה',
+  button: 'לרכישת מינוי',
+  buttonUrl: 'https://promotions.haaretz.co.il/promotions-page/product',
 });

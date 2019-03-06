@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 /* global window, fetch, Headers  */
 import React from 'react';
+import dynamic from 'next/dynamic';
 import type { StatelessFunctionalComponent, Node, } from 'react';
 import { FelaComponent, FelaTheme, } from 'react-fela';
 import gql from 'graphql-tag';
@@ -39,12 +40,9 @@ import IconPrint from '../Icon/icons/IconPrint';
 import IconReading from '../Icon/icons/IconReading';
 import IconTwitter from '../Icon/icons/IconTwitter';
 import IconWhatsapp from '../Icon/icons/IconWhatsapp';
-import IconClose from '../Icon/icons/IconClose';
 import IconZen from '../Icon/icons/IconZen';
 import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 import A11yDialog from '../A11yDialog/A11yDialog';
-import ZenAstronaut from '../Zen/ZenAstronaut';
-
 // import Tooltip from '../Tooltip/Tooltip';
 import Media from '../Media/Media';
 import ClickArea from '../ClickArea/ClickArea';
@@ -664,8 +662,16 @@ const Zen: StatelessFunctionalComponent<ZenButtonProps> = ({
           }
         `,
       });
-      console.warn('!!!user', user);
-      const isPayingUser = user && user.type && user.type === 'paying';
+      const userType = user && user.type;
+      const notPayingUser = userType && userType !== 'paying';
+
+      const ZenAstronaut = notPayingUser
+        ? dynamic(() => import('../Zen/ZenAstronaut'), {
+          loading: () => null,
+          ssr: false,
+        })
+        : () => null;
+
       return (
         <Mutation mutation={TOGGLE_ZEN}>
           {toggleZen => (
@@ -707,43 +713,29 @@ const Zen: StatelessFunctionalComponent<ZenButtonProps> = ({
                         />
                         <IconZen size={size} miscStyles={iconStyles} />
                       </Button>
-                      {isPayingUser ? null : (
+                      {notPayingUser ? (
                         <A11yDialog
                           appendTo="zen_modal"
                           elementToHide="pageRoot"
                           isVisible={zenMode}
                           containerMiscStyles={{ outline: 'none', }}
-                          // onClose={toggleZen()}
+                          closeOnOutsideClick
+                          onClose={zenMode && toggleZen}
                           isModal
                           render={({ isVisible, handleClose, }) => (
                             <FelaComponent
                               style={{
                                 paddingInlineEnd: '8rem',
                                 paddingInlineStart: '6rem',
-                                paddingBottom: '5rem',
+                                paddingBottom: '4rem',
                                 outline: 'none',
                               }}
                             >
-                              {/* <Button
-                                isFlat
-                                boxModel={{ hp: 1, vp: 1, }}
-                                onClick={handleClose && toggleZen}
-                                variant="inverse"
-                                miscStyles={{
-                                  display: 'inline-block',
-                                  position: 'absolute',
-                                  left: '0',
-                                  top: '10%',
-                                  // paddingTop: '0',
-                                }}
-                              >
-                                <IconClose size={7} color="white" tabIndex="0" />
-                              </Button> */}
                               <ZenAstronaut onClose={handleClose && toggleZen} />
                             </FelaComponent>
                           )}
                         />
-                      )}
+                      ) : null}
                     </div>
                   )}
                 />

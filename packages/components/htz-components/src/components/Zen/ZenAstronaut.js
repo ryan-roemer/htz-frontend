@@ -13,9 +13,8 @@ const textWrapperStyle = ({ theme, }) => ({
   right: '0',
   marginInlineStart: 'auto',
   marginInlineEnd: 'auto',
-  marginBlockStart: '5rem',
-  maxWidth: '40rem',
-  extend: [ theme.mq({ until: 'm', }, { maxWidth: '30rem', }), ],
+  marginBlockStart: '6rem',
+  maxWidth: '35rem',
 });
 
 // eslint-disable-next-line react/prop-types
@@ -36,11 +35,11 @@ function ZenAstronaut({ onClose, }) {
                 left: '0',
                 top: '10%',
               }}
+              attrs={{ id: 'myButton', }}
             >
               <IconClose
                 size={7}
                 color="white"
-                //  tabIndex="0"
               />
             </Button>
             <Astronaut
@@ -49,7 +48,7 @@ function ZenAstronaut({ onClose, }) {
                 { until: 's', value: 60, },
                 { from: 's', until: 'm', value: 70, },
                 { from: 'm', until: 'l', value: 80, },
-                { from: 'l', value: 90, },
+                { from: 'l', value: 85, },
               ]}
             />
             <FelaComponent rule={textWrapperStyle}>
@@ -81,7 +80,11 @@ function ZenAstronaut({ onClose, }) {
                   <p>{theme.zenNonPayingUsers.subTitle}</p>
                 </FelaComponent>
               </Section>
-              <Button boxModel={{ hp: 3, vp: 1, }} variant="salesOpaque">
+              <Button
+                href={theme.zenNonPayingUsers.buttonUrl}
+                boxModel={{ hp: 3, vp: 1, }}
+                variant="salesOpaque"
+              >
                 {theme.zenNonPayingUsers.button}
               </Button>
             </FelaComponent>
