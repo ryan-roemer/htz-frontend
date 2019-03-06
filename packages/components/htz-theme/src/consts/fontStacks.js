@@ -1,58 +1,35 @@
 const fallbackFont = '"Helvetica Neue",Helvetica,Arial,sans-serif';
 
 const fontStacks = Object.freeze({
-  // FOFT font loading strategy - https://www.zachleat.com/web/comprehensive-webfonts/#critical-foft
-  // when loaded the critical font will be applied to the 'applyToSelector' with the base font as fallback
-  criticalFont: {
-    // WOFF2 files must always precede other formats in the subset and variations arrays
-    name: '"Open Sans Hebrew"',
-    applyToSelector: 'body',
-    subset: {
-      files: [
-        '/static/fonts/subset/OpenSansHebrewRegularSubset.woff2',
-        '/static/fonts/subset/OpenSansHebrewRegularSubset.woff',
+  webfonts: [
+    [
+      'Open Sans Hebrew',
+      [
+        '/static/fonts/OpenSansHebrewLight.woff2',
+        '/static/fonts/OpenSansHebrewLight.woff',
       ],
-      properties: {
-        unicodeRange: 'U+05D0-U+05EA',
-      },
-    },
-    variations: [
-      {
-        files: [
-          '/static/fonts/OpenSansHebrewLight.woff2',
-          '/static/fonts/OpenSansHebrewLight.woff',
-        ],
-        properties: {
-          fontWeight: 200,
-          fontDisplay: 'swap',
-        },
-      },
-      {
-        files: [
-          '/static/fonts/OpenSansHebrewRegular.woff2',
-          '/static/fonts/OpenSansHebrewRegular.woff',
-        ],
-        properties: {
-          fontWeight: 400,
-          fontDisplay: 'swap',
-        },
-      },
-      {
-        files: [
-          '/static/fonts/OpenSansHebrewBold.woff2',
-          '/static/fonts/OpenSansHebrewBold.woff',
-        ],
-        properties: {
-          fontWeight: 700,
-          fontDisplay: 'swap',
-        },
-      },
+      { fontWeight: 200, fontDisplay: 'swap', },
     ],
-  },
-  base: fallbackFont,
+    [
+      'Open Sans Hebrew',
+      [
+        '/static/fonts/OpenSansHebrewRegular.woff2',
+        '/static/fonts/OpenSansHebrewRegular.woff',
+      ],
+      { fontWeight: 400, fontDisplay: 'swap', },
+    ],
+    [
+      'Open Sans Hebrew',
+      [
+        '/static/fonts/OpenSansHebrewBold.woff2',
+        '/static/fonts/OpenSansHebrewBold.woff',
+      ],
+      { fontWeight: 700, fontDisplay: 'swap', },
+    ],
+  ],
+  base: `"Open Sans Hebrew",${fallbackFont}`,
   alt: fallbackFont,
-  commercial: '"Helvetica Neue",Helvetica,Arial,sans-serif',
+  commercial: fallbackFont,
 });
 
-// TODO: test data structure
 export default fontStacks;

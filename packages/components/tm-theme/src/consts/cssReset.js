@@ -45,7 +45,7 @@ const styles = '*,'
   + 'cursor:default;' // 3
   + `font-family:${fontStacks.base};` // 5
   + 'min-height:100%;' // 5
-  + 'overflowAnchor:auto;' // 6
+  + 'overflow-anchor:auto;' // 6
   + 'overflow-x:hidden;' // 7
   + '-ms-text-size-adjust:100%;' // 8
   + '-webkit-text-size-adjust:100%;' // 8
@@ -60,13 +60,6 @@ const styles = '*,'
    * Typographic styles for `body` element based on the pre-defined typographic scale.
    */
   + `${bodyTypographyRulesAsString}`
-  /*
-   * Reduce content jumping when elements (such as ads) are loading outside
-   * the viewport.
-   */
-  + 'body{'
-  + 'overflowAnchor:auto;'
-  + '}'
   /**
    * Block elements
    * Set the correct display in Edge, IE, and Firefox.
@@ -247,10 +240,10 @@ const styles = '*,'
   + 'top:-.5em;'
   + '}'
   /*
- * selection pseudo element
- * Remove the text shadow on text selections
- * 1. Restore the coloring undone by defining the text shadow
- */
+   * selection pseudo element
+   * Remove the text shadow on text selections
+   * 1. Restore the coloring undone by defining the text shadow
+   */
   + '::-moz-selection{'
   + `background-color:${getColor('primary', '-3')};` // 1
   + `color:${getColor('bodyText')};` // 1
@@ -494,15 +487,15 @@ const styles = '*,'
   + 'cursor:progress;'
   + '}'
   /*
- * [aria-controls]
- * Change the cursor on control elements (opinionated).
- */
+   * [aria-controls]
+   * Change the cursor on control elements (opinionated).
+   */
   + '[aria-controls]{'
   + 'cursor:pointer;'
   + '}'
   /*
- * Make [hidden][aria-hidden="false"] visually hidden instead of `display:none`
- */
+   * Make [hidden][aria-hidden="false"] visually hidden instead of `display:none`
+   */
   + '[aria-hidden="false"][hidden]:not(:focus){'
   + 'border:0;'
   + 'clip:rect(0 0 0 0);'
@@ -516,9 +509,9 @@ const styles = '*,'
   + 'whiteSpace:nowrap;'
   + '}'
   /*
-  * [aria-disabled]
-  * Change the cursor on disabled elements.
-  */
+   * [aria-disabled]
+   * Change the cursor on disabled elements.
+   */
   + '[disabled]:not([disabled="false"]),'
   + '[aria-disabled]{'
   + 'cursor:not-allowed;'

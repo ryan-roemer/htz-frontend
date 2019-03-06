@@ -45,7 +45,7 @@ const styles = '*,'
   + 'cursor:default;' // 3
   + `font-family:${fontStacks.base};` // 5
   + 'min-height:100%;' // 5
-  + 'overflowAnchor:auto;' // 6
+  + 'overflow-anchor:auto;' // 6
   + 'overflow-x:hidden;' // 7
   + '-ms-text-size-adjust:100%;' // 8
   + '-webkit-text-size-adjust:100%;' // 8
@@ -60,13 +60,6 @@ const styles = '*,'
    * Typographic styles for `body` element based on the pre-defined typographic scale.
    */
   + `${bodyTypographyRulesAsString}`
-  /*
-   * Reduce content jumping when elements (such as ads) are loading outside
-   * the viewport.
-   */
-  + 'body{'
-  + 'overflowAnchor:auto;'
-  + '}'
   /**
    * Block elements
    * Set the correct display in Edge, IE, and Firefox.

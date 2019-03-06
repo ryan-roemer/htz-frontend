@@ -6,7 +6,6 @@ import config from 'config';
 import serialize from 'serialize-javascript';
 import { breakUrl, } from '@haaretz/app-utils';
 import SEO from './components/SEO/SEO';
-import criticalFontLoader from './utils/criticalFontLoader';
 // import ChartBeat from './components/Scripts/ChartBeat';
 
 const polyfillSrc = 'https://cdn.polyfill.io/v3/polyfill.min.js?features=default,Object.entries,Array.prototype.entries,fetch,IntersectionObserver,Array.prototype.find,Array.prototype.findIndex,Array.prototype.includes,Function.name,Array.prototype.@@iterator&flags=gated&flags=gated&unknown=polyfill';
@@ -44,11 +43,19 @@ const createDocument = ({
   static getInitialProps({ renderPage, req, }) {
     const host = req.hostname.match(/^(?:.*?\.)?(.*)/i)[1];
     const validatedTheme = hasToggleableTheme ? theme(host) : theme;
-    const varifiedStaticRules = hasToggleableTheme ? staticRules(host) : staticRules;
+    const varifiedStaticRules = hasToggleableTheme
+      ? staticRules(host)
+      : staticRules;
+
+    if (fontStacks && fontStacks.webfonts) {
+      fontStacks.webfonts.forEach(fontFamilyRule => styleRenderer.renderFont(...fontFamilyRule)
+      );
+    }
 
     if (varifiedStaticRules) {
       Array.isArray(varifiedStaticRules)
-        ? varifiedStaticRules.forEach(rule => styleRenderer.renderStatic(rule))
+        ? varifiedStaticRules.forEach(rule => styleRenderer.renderStatic(rule)
+        )
         : styleRenderer.renderStatic(varifiedStaticRules);
     }
 
@@ -61,9 +68,6 @@ const createDocument = ({
     const sheetList = renderToSheetList(styleRenderer);
     styleRenderer.clear();
 
-    // console.log('[cretaeDocument] fontStacks: ', JSON.stringify(fontStacks));
-    const criticalFontElements = criticalFontLoader(fontStacks.criticalFont, fontStacks.base);
-
     return {
       ...page,
       sheetList,
@@ -72,21 +76,22 @@ const createDocument = ({
       lang,
       host,
       url: req.url,
-      criticalFontElements,
     };
   }
 
   renderStyles() {
-    return this.props.sheetList.map(({ type, rehydration, support, media, css, }) => (
-      <style
-        dangerouslySetInnerHTML={{ __html: css, }}
-        data-fela-rehydration={rehydration}
-        data-fela-support={support}
-        data-fela-type={type}
-        key={`${type}-${media}`}
-        media={media}
-      />
-    ));
+    return this.props.sheetList.map(
+      ({ type, rehydration, support, media, css, }) => (
+        <style
+          dangerouslySetInnerHTML={{ __html: css, }}
+          data-fela-rehydration={rehydration}
+          data-fela-support={support}
+          data-fela-type={type}
+          key={`${type}-${media}`}
+          media={media}
+        />
+      )
+    );
   }
 
     chartbeatConfig = isMobile => (
@@ -138,7 +143,6 @@ const createDocument = ({
     }
 
     render() {
-      const criticalFont = this.props.criticalFontElements;
       const { path, } = breakUrl(this.props.url);
 
       return (
@@ -146,14 +150,18 @@ const createDocument = ({
           <Head>
             <meta charSet="utf-8" />
             <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1, minimum-scale=1"
+            />
             {/* dont add link to manifest on purchase-page app  */}
-            {hasToggleableTheme ? null : <link rel="manifest" href="/manifest.json" />}
-            {criticalFont.preload}
+            {hasToggleableTheme ? null : (
+              <link rel="manifest" href="/manifest.json" />
+            )}
+
             {/* ************************* *
              *       STYLE ELEMENTS      *
              * ************************* */}
-            {criticalFont.style}
             {this.renderStyles()}
             {/* TODO: This should be in the theme's static rules */}
             <style
@@ -169,7 +177,6 @@ const createDocument = ({
             {/* ************************* *
              *      SCRIPT ELEMENTS      *
              * ************************* */}
-            {criticalFont.script}
 
             {/* ChartBeat scripts should only render on homepage */}
             {path !== '/' ? null : this.chartbeatConfig(this.props.isMobile)}

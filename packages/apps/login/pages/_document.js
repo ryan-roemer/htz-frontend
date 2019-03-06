@@ -8,7 +8,6 @@ const loginDocument = createDocument({
   styleRenderer,
   FelaProvider: StyleProvider,
   theme: loginTheme,
-  // fontRules: fonts,
   fontStacks,
   staticRules: cssReset,
   isRtl: true,

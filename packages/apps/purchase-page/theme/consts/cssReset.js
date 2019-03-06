@@ -35,20 +35,23 @@ const styles = host => {
      * 2. Set the default color to that of body text elmenets.
      * 3. Add the default cursor in all browsers.
      * 4. Ensure the page fills at least the full height of the viewport.
-     * 5. Set the default font stack, so that it is inherited.
-     * 6. Prevent the page from exhibiting horizontal scroll-bars when an included
+     * 5. Set the base font stack, so that it can be enhanced performantly with FOFT.
+     * 6. Reduce content jumping when elements (such as ads) are loading outside
+     *    the viewport.
+     * 7. Prevent the page from exhibiting horizontal scroll-bars when an included
      *    element exceeds the screen width.
-     * 7. Prevent font size adjustments after orientation changes in IE and iOS.
+     * 8. Prevent font size adjustments after orientation changes in IE and iOS.
      */
     + 'html{'
     + 'box-sizing:border-box;' // 1
-    + `color:${colors('bodyText')};` // 2
+    + `color:${getColor('bodyText')};` // 2
     + 'cursor:default;' // 3
-    + `font-family:${fontStacks.base};` // 4
+    + `font-family:${fontStacks.base};` // 5
     + 'min-height:100%;' // 5
-    + 'overflow-x:hidden;' // 6
-    + '-ms-text-size-adjust:100%;' // 7
-    + '-webkit-text-size-adjust:100%;' // 7
+    + 'overflow-anchor:auto;' // 6
+    + 'overflow-x:hidden;' // 7
+    + '-ms-text-size-adjust:100%;' // 8
+    + '-webkit-text-size-adjust:100%;' // 8
     + '}'
     /*
      * Establish a vertical rhythm by setting the 'font-size' of the `html` element,
@@ -240,10 +243,10 @@ const styles = host => {
     + 'top:-.5em;'
     + '}'
     /*
-   * selection pseudo element
-   * Remove the text shadow on text selections
-   * 1. Restore the coloring undone by defining the text shadow
-   */
+     * selection pseudo element
+     * Remove the text shadow on text selections
+     * 1. Restore the coloring undone by defining the text shadow
+     */
     + '::-moz-selection{'
     + `background-color:${colors('primary', '-3')};` // 1
     + `color:${colors('bodyText')};` // 1
@@ -487,15 +490,15 @@ const styles = host => {
     + 'cursor:progress;'
     + '}'
     /*
-   * [aria-controls]
-   * Change the cursor on control elements (opinionated).
-   */
+     * [aria-controls]
+     * Change the cursor on control elements (opinionated).
+     */
     + '[aria-controls]{'
     + 'cursor:pointer;'
     + '}'
     /*
-   * Make [hidden][aria-hidden="false"] visually hidden instead of `display:none`
-   */
+     * Make [hidden][aria-hidden="false"] visually hidden instead of `display:none`
+     */
     + '[aria-hidden="false"][hidden]:not(:focus){'
     + 'border:0;'
     + 'clip:rect(0 0 0 0);'
@@ -509,9 +512,9 @@ const styles = host => {
     + 'whiteSpace:nowrap;'
     + '}'
     /*
-    * [aria-disabled]
-    * Change the cursor on disabled elements.
-    */
+     * [aria-disabled]
+     * Change the cursor on disabled elements.
+     */
     + '[disabled]:not([disabled="false"]),'
     + '[aria-disabled]{'
     + 'cursor:not-allowed;'
