@@ -12,7 +12,7 @@ const { BUNDLE_ANALYZE, NEXT_BUILD_ID, } = process.env;
  */
 const baseNextConfig = {
   transpileModules: [
-    ...getPackagesToTranspile({ exclude: 'commitlint-config', }),
+    ...getPackagesToTranspile({ exclude: [ 'commitlint-config', ], }),
   ],
 
   // Dealing with multi-server deployment
