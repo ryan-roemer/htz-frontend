@@ -60,7 +60,6 @@
     "lodash": "^4.17.10",
     "moize": "^5.4.1",
     "next": "^8.0.1",
-    "next-plugin-transpile-modules": "^1.0.0",
     "polished": "^2.3.0",
     "prop-types": "^15.6.1",
     "react": "^16.8.2",

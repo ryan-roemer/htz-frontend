@@ -55,7 +55,6 @@
     "isomorphic-unfetch": "^2.1.1",
     "lodash": "^4.17.10",
     "next": "^8.0.1",
-    "next-plugin-transpile-modules": "^1.0.0",
     "polished": "^1.9.2",
     "prop-types": "^15.6.1",
     "react": "^16.8.2",
