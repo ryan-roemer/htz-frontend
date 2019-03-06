@@ -20,17 +20,20 @@ const offerStyle = ({ theme, isRecommended = false, }) => ({
   ...(isRecommended
     ? {
       width: '54rem',
-      height: '54rem',
       backgroundColor: theme.color('offerPage', 'bgHighlighted'),
       boxShadow: '1px 1px 6px 0 rgba(0, 0, 0, 0.2)',
     }
     : {
       width: '46rem',
-      height: '48rem',
       backgroundColor: theme.color('offerPage', 'bg'),
     }),
   extend: [
-    border('1px', 4, 'solid', theme.color('offerPage', 'borderHighlighted')),
+    border(
+      '1px',
+      isRecommended ? 4 : 3,
+      'solid',
+      theme.color('offerPage', 'borderHighlighted')
+    ),
     theme.mq(
       { until: 's', },
       {
@@ -61,9 +64,8 @@ const offerStyle = ({ theme, isRecommended = false, }) => ({
         ...(isRecommended
           ? {
             width: '50rem',
-            height: '50rem',
           }
-          : { width: '45rem', height: '47rem', }),
+          : { width: '45rem', }),
       }
     ),
   ],
@@ -274,10 +276,10 @@ const DesktopOffer = ({
                 </StyledOfferTitle>
                 <StyledPrice isRecommended={offer.isRecommended}>{offer.price}</StyledPrice>
                 {(offer.text || offer.originalPrice)
-                  && [ offer.originalPrice, ...(offer.text ? [ offer.text, ] : []), ].map(
+                  && [ offer.originalPrice, ...(offer.text || []), ].map(
                     (text, textIndex) => (
                       <StyledOfferText
-                        key={Math.random()}
+                        key={text}
                         isRecommended={offer.isRecommended}
                         isFirst={textIndex === 0}
                       >
