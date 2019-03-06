@@ -4701,7 +4701,57 @@ Object {
         },
       ],
       "aside": Array [
-        Object {},
+        Object {
+          "contentId": "7.7642537",
+          "contentLists": Array [
+            Object {
+              "content": null,
+              "displayDuration": null,
+            },
+            Object {
+              "content": Object {
+                "audianceTarget": "all",
+                "className": "ad h-hidden js-dfp-resp-refresh",
+                "contentId": "7.7832290",
+                "contentName": "Haaretz.co.il.side.HalfPage.1",
+                "hideOnSite": false,
+                "id": "haaretz.co.il.side.halfpage.1",
+                "inputTemplate": "com.polobase.DfpBannerElement",
+                "miscStyles": null,
+              },
+              "displayDuration": 1700,
+            },
+            Object {
+              "content": Object {
+                "audianceTarget": "all",
+                "className": "ad h-hidden js-dfp-resp-refresh",
+                "contentId": "7.7786112",
+                "contentName": "Haaretz.co.il.Web.side.HalfPage.1 ",
+                "hideOnSite": false,
+                "id": "haaretz.co.il.web.side.halfpage.1",
+                "inputTemplate": "com.polobase.DfpBannerElement",
+                "miscStyles": null,
+              },
+              "displayDuration": 1700,
+            },
+            Object {
+              "content": Object {
+                "contentId": "7.7680792",
+                "contentName": "עןד מומלצות (ריאקט - לא לגעת)",
+                "hasPagination": false,
+                "inputTemplate": "com.tm.element.List",
+                "loadPriority": "client",
+                "title": null,
+                "view": "Zoidberg",
+              },
+              "displayDuration": 1700,
+            },
+          ],
+          "contentName": "Left Side Box",
+          "hideOnSite": false,
+          "inputTemplate": "com.tm.element.group",
+          "totalDisplay": null,
+        },
       ],
       "footer": Array [
         Object {

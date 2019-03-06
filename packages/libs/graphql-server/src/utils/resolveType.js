@@ -8,7 +8,7 @@ const types = new Map([
   [ 'com.polobase.whtzMobileSiteListsWrapper', 'MobileListWrapper', ],
   [ 'com.tm.BlogImage', 'Image', ],
   [ 'com.tm.Countdown', 'Countdown', ],
-  // [ 'com.tm.element.group', 'ChangeableElementGroup', ],
+  [ 'com.tm.element.group', 'ChangeableElementGroup', ],
   [ 'com.tm.element.List', 'List', ],
   [ 'com.tm.ElementGroup', 'ElementGroup', ],
   [ 'com.tm.GridElementGroup', 'GridElementGroup', ],

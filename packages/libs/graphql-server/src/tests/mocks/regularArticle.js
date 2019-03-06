@@ -178,36 +178,13 @@ export default {
       {
         contentLists: [
           {
-            displayDuration: 1700,
-            content: {
-              contentLists: [ {
-                view: 'Zoidberg',
-                loadPriority: 'client',
-                isLazyloadImages: false,
-                hasPagination: false,
-                inputTemplate: 'com.tm.element.List',
-                contentId: '7.7607515',
-                contentName: 'המומלצות (ריאקט - לא לגעת)',
-              }, {
-                anonymous: {
-                  text: 'נרשמים ל"הארץ" בדיגיטל, ונהנים מ-6 כתבות בחודש',
-                  actionText: 'להרשמה',
-                  actionUrl: 'https://login.haaretz.co.il/',
-                },
-                registered: {
-                  text: 'לקרוא ללא הגבלה, רק עם מינוי דיגיטלי להארץ',
-                  actionText: 'לרכישה',
-                  actionUrl: 'https://promotions.haaretz.co.il/promotions-page',
-                },
-                inputTemplate: 'com.polobase.SideBoxMarketingElement',
-                contentId: '7.7832922',
-                contentName: 'אלמנט שיווק צד',
-              }, ],
-              hideOnSite: false,
-              inputTemplate: 'com.tm.ElementGroup',
-              contentId: '7.7832923',
-              contentName: 'הכתבות המומלצות',
-            },
+            view: 'Zoidberg',
+            loadPriority: 'client',
+            isLazyloadImages: false,
+            hasPagination: false,
+            inputTemplate: 'com.tm.element.List',
+            contentId: '7.7607515',
+            contentName: 'המומלצות (ריאקט - לא לגעת)',
           }, {
             displayDuration: 1700,
             content: {
