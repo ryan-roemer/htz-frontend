@@ -39,7 +39,9 @@ class GaDimensions extends React.Component {
     articlePaywallMode && ReactGA.ga('set', 'dimension3', articlePaywallMode);
     pageType && ReactGA.ga('set', 'dimension4', `${pageType}-REACT`);
     if (typeof window !== 'undefined' && withPageView) {
-      ReactGA.pageview(window.location.pathname + window.location.search);
+      setTimeout(() => {
+        ReactGA.pageview(window.location.pathname + window.location.search);
+      }, 3000);
     }
   }
 

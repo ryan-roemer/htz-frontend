@@ -1,7 +1,7 @@
 export const Strip = {
-  name: 'סטריפ עליון',
+  name: 'Header - Blue Strip',
   id: 'hp-header-blue-strip',
-  position: 'Header',
+  position: 'HomePage-Header',
 };
 
 

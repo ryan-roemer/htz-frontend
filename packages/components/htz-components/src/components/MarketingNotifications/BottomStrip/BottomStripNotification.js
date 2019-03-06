@@ -83,11 +83,12 @@ export default function BottomStripNotification(props: Props): React.Node {
       documentHeight,
       shouldRender: y > documentHeight - 1200,
     });
-    ReactGA.ga('ec:addPromo', {
-      name: 'Header - Blue Strip',
-      id: 'hp-header-blue-strip',
-      position: 'Header',
-    });
+
+    // ReactGA.ga('ec:addPromo', {
+    //   name: 'Header - Blue Strip',
+    //   id: 'hp-header-blue-strip',
+    //   position: 'Header',
+    // });
 
     return clearTimeout(shrinkTimer);
   }, []);

@@ -14,14 +14,12 @@ import type { ListExtraLinkType, } from '../../flowTypes/ListExtraLinkType';
 import type { ListMarketingTeaserType, } from '../../flowTypes/ListMarketingTeaserType';
 import type { ListBiActionType, } from '../../flowTypes/ListBiActionType';
 
-import Button from '../Button/Button';
 import H from '../AutoLevels/H';
 import HtzLink from '../HtzLink/HtzLink';
-import IconAlefLogoTransparent from '../Icon/icons/IconAlefLogoTransparent';
 import IconBack from '../Icon/icons/IconBack';
-import Section from '../AutoLevels/Section';
 import setColor from '../../utils/setColor';
 import { getUser, } from './getUser';
+import MarketingTeaserView from './MarketingTeaserView';
 
 type BackgroundColorType =
   | string
@@ -267,34 +265,7 @@ export default function ListViewHeader({
                     if (loading) return null;
                     if (error) return null;
                     if (data && data.user.type !== 'paying') {
-                      return (
-                        <Section>
-                          <IconAlefLogoTransparent color="secondary" size={3} />
-                          <FelaComponent
-                            style={{ color: theme.color('secondary'), }}
-                            render={({ className: marketingHeaderClassName, }) => (
-                              <H className={marketingHeaderClassName}>{marketingTeaser.title}</H>
-                            )}
-                          />
-
-                          <FelaComponent
-                            style={{
-                              color: theme.color('secondary'),
-                              extend: [ theme.type(-1), ],
-                            }}
-                          >
-                            {marketingTeaser.subtitle}
-                          </FelaComponent>
-                          <Button
-                            variant="salesOpaque"
-                            boxModel={{ hp: 4, vp: 0.5, }}
-                            miscStyles={{ marginTop: '2rem', type: -1, }}
-                            href={marketingTeaser.href}
-                          >
-                            {marketingTeaser.cta}
-                          </Button>
-                        </Section>
-                      );
+                      return <MarketingTeaserView marketingTeaser={marketingTeaser} />;
                     }
                     return null;
                   }}
