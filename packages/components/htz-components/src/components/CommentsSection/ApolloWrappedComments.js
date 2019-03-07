@@ -6,6 +6,7 @@ import Mutation from '../ApolloBoundary/Mutation';
 import CommentSection from './CommentsSection';
 import GET_ID from './queries/getId';
 import FETCH_COMMENTS from './queries/fetchComments';
+import GET_LINEAGE from './queries/getLineage';
 import SUBMIT_NEW_COMMENT from './mutations/submitNewComment';
 import SUBMIT_NEW_VOTE from './mutations/submitNewVote';
 import SUBMIT_NOTIFICATION_EMAIL from './mutations/submitNotificationEmail';
@@ -102,11 +103,11 @@ class CommentsWithApollo extends React.Component {
     const { contentId, } = this.props;
     return (
       <Query
-        query={FETCH_COMMENTS}
+        query={GET_LINEAGE}
         variables={{
-          path: `${contentId}?composite=true&limited=true`,
           articlePath: `/${this.props.articleId}`,
         }}
+        partialRefetch
       >
         {({ data, loading, error, fetchMore, /* client, */ }) => {
           if (loading) {
@@ -117,64 +118,89 @@ class CommentsWithApollo extends React.Component {
             return null;
           }
           if (!data) return null;
-          const { commentsElement, } = data;
 
           // Create page lineage string to be send it to initVote function
           // to be used in rateComment function in dataSources.js
           const lineageStr = data.page
-          && data.page.lineage
-          && data.page.lineage
-            .slice()
-            .reverse()
-            .reduce((pathFragment, item) => `${pathFragment}%2F${item.contentId}`, '');
-
-          // check if lineageStr is 'string'
+            && data.page.lineage
+            && data.page.lineage
+              .slice()
+              .reverse()
+              .reduce((pathFragment, item) => `${pathFragment}%2F${item.contentId}`, '');
           const lineageString = lineageStr || this.props.articleId;
 
           return (
-            <Mutation mutation={REPORT_ABUSE}>
-              {reportAbuse => (
-                <Mutation mutation={SUBMIT_NOTIFICATION_EMAIL}>
-                  {submitNotificationEmail => (
-                    <Mutation mutation={SUBMIT_NEW_VOTE}>
-                      {submitNewVote => (
-                        <Mutation mutation={SUBMIT_NEW_COMMENT}>
-                          {submitNewComment => (
-                            <CommentSection
-                              initVote={(commentId, group) => {
-                                this.initVote(commentId, group, lineageString, submitNewVote);
-                              }}
-                              reportAbuse={(commentId, captchaKey) => {
-                                this.initReportAbuse(commentId, captchaKey, reportAbuse);
-                              }}
-                              initNewComment={(commentAuthor, commentText, parentCommentId) => {
-                                this.initNewComment(
-                                  commentAuthor,
-                                  commentText,
-                                  parentCommentId,
-                                  submitNewComment
-                                );
-                              }}
-                              signUpNotification={email => this.initSignUpNotificationEmail(email, submitNotificationEmail)
-                              }
-                              loadAllComments={() => this.handleLoadAllComments(fetchMore)}
-                              comments={commentsElement ? commentsElement.comments : []}
-                              commentsPlusRate={
-                                commentsElement ? commentsElement.commentsPlusRate : null
-                              }
-                              commentsMinusRate={
-                                commentsElement ? commentsElement.commentsMinusRate : null
-                              }
-                              totalHits={commentsElement ? commentsElement.totalHits : 0}
-                            />
-                          )}
-                        </Mutation>
-                      )}
-                    </Mutation>
-                  )}
-                </Mutation>
-              )}
-            </Mutation>
+            <Query
+              query={FETCH_COMMENTS}
+              variables={{
+                path: `${contentId}?composite=true&limited=true`,
+              }}
+              partialRefetch
+            >
+              {({ data, loading, error, fetchMore, /* client, */ }) => {
+                if (loading) {
+                  return null;
+                }
+                if (error) {
+                  console.error(error);
+                  return null;
+                }
+                if (!data) return null;
+                const { commentsElement, } = data;
+                return (
+                  <Mutation mutation={REPORT_ABUSE}>
+                    {reportAbuse => (
+                      <Mutation mutation={SUBMIT_NOTIFICATION_EMAIL}>
+                        {submitNotificationEmail => (
+                          <Mutation mutation={SUBMIT_NEW_VOTE}>
+                            {submitNewVote => (
+                              <Mutation mutation={SUBMIT_NEW_COMMENT}>
+                                {submitNewComment => (
+                                  <CommentSection
+                                    initVote={(commentId, group) => {
+                                      this.initVote(commentId, group, lineageString, submitNewVote);
+                                    }}
+                                    reportAbuse={(commentId, captchaKey) => {
+                                      this.initReportAbuse(commentId, captchaKey, reportAbuse);
+                                    }}
+                                    initNewComment={(
+                                      commentAuthor,
+                                      commentText,
+                                      parentCommentId
+                                    ) => {
+                                      this.initNewComment(
+                                        commentAuthor,
+                                        commentText,
+                                        parentCommentId,
+                                        submitNewComment
+                                      );
+                                    }}
+                                    signUpNotification={email => this.initSignUpNotificationEmail(
+                                      email,
+                                      submitNotificationEmail
+                                    )
+                                    }
+                                    loadAllComments={() => this.handleLoadAllComments(fetchMore)}
+                                    comments={commentsElement ? commentsElement.comments : []}
+                                    commentsPlusRate={
+                                      commentsElement ? commentsElement.commentsPlusRate : null
+                                    }
+                                    commentsMinusRate={
+                                      commentsElement ? commentsElement.commentsMinusRate : null
+                                    }
+                                    totalHits={commentsElement ? commentsElement.totalHits : 0}
+                                  />
+                                )}
+                              </Mutation>
+                            )}
+                          </Mutation>
+                        )}
+                      </Mutation>
+                    )}
+                  </Mutation>
+                );
+              }}
+            </Query>
           );
         }}
       </Query>
