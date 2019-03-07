@@ -18,7 +18,7 @@ const defaultProps = {
 
 const template = new Map([
   [ 'com.interactive.beforeafter', BeforeAndAfter, ],
-  [ 'com.tm.ArticleInteractiveHtmlElement', Survey, ],
+  // [ 'com.tm.ArticleInteractiveHtmlElement', Survey, ],
 ]);
 
 function InteractiveElement(props) {
