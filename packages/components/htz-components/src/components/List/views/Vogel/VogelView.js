@@ -16,7 +16,7 @@ type VogelViewPropTypes = {
 };
 
 VogelView.defaultProps = {
-  isLazyloadImages: false,
+  isLazyloadImages: true,
 };
 
 export default function VogelView({
