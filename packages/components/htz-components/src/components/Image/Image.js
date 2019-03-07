@@ -17,7 +17,13 @@ const ImgWrapperStyle = ({ bgc, height, theme, width, miscStyles, }) => ({
   position: 'relative',
   width: '100%',
   extend: [
-    parseComponentProp('backgroundColor', bgc || [ 'image', 'bgc', ], theme.mq, setColor, theme.color),
+    parseComponentProp(
+      'backgroundColor',
+      bgc || [ 'image', 'bgc', ],
+      theme.mq,
+      setColor,
+      theme.color
+    ),
     // Trump all other styles with those defined in `miscStyles`
     ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
   ],
@@ -61,8 +67,10 @@ const imageOptionsType = PropTypes.shape({
    * the `src` attribute, and then all items will be used in
    * constructing the `srcset` attribute.
    */
-  transforms: PropTypes.oneOfType([ ImgTransfromOptions, PropTypes.arrayOf(ImgTransfromOptions), ])
-    .isRequired,
+  transforms: PropTypes.oneOfType([
+    ImgTransfromOptions,
+    PropTypes.arrayOf(ImgTransfromOptions),
+  ]).isRequired,
 });
 
 Image.propTypes = {
@@ -146,21 +154,32 @@ Image.defaultProps = {
 };
 
 function Image(props) {
-  const { data, imgOptions, } = props;
+  const { data, imgOptions, isExternal, } = props;
   if (data == null) {
     const { transforms, } = imgOptions;
-    const { aspect, width, height, } = Array.isArray(transforms) ? transforms[0] : transforms;
+    const { aspect, width, height, } = Array.isArray(transforms)
+      ? transforms[0]
+      : transforms;
     return <DefaultImage transforms={{ aspect, width, height, }} />;
   }
 
-  const { attrs, bgcolor, isPresentational, lazyLoad, miscStyles, hasWrapper, } = props;
+  const {
+    attrs,
+    bgcolor,
+    isPresentational,
+    lazyLoad,
+    miscStyles,
+    hasWrapper,
+  } = props;
   const { accessibility, alt, title, credit, isAnimatedGif, } = data || {};
   const { sizes, } = imgOptions || {};
 
   const isPicture = data.imgArray.length > 1;
   if (isPicture) {
     console.error(
-      `The data structure of the "${data.contentId}" image is of a picture element, not an image.
+      `The data structure of the "${
+        data.contentId
+      }" image is of a picture element, not an image.
 Please use the "<Picture />" component`
     );
 
@@ -173,7 +192,7 @@ Please use the "<Picture />" component`
     );
   }
   const { height, width, } = getDimensions(props);
-  const sources = getSources(props);
+  const sources = isExternal ? [ data.imgArray[0].imgName, ] : getSources(props);
   const src = sources[0];
   const srcSet = sources[1];
   const webpSources = isAnimatedGif ? getSources(props, true) : undefined;
@@ -197,7 +216,9 @@ Please use the "<Picture />" component`
             {...(srcSet ? { srcSet, } : {})}
             {...(sizes ? { sizes, } : {})}
             title={`${title || ''}${title && credit ? ', ' : ''}${
-              credit ? `${theme.creditPrefixI18n.imageCreditPrefix}: ${credit}` : ''
+              credit
+                ? `${theme.creditPrefixI18n.imageCreditPrefix}: ${credit}`
+                : ''
             }`}
             attrs={
                 isPresentational
@@ -215,7 +236,9 @@ Please use the "<Picture />" component`
           alt={alt || accessibility}
           hasWrapper={hasWrapper}
           title={`${title || ''}${title && credit ? ', ' : ''}${
-            credit ? `${theme.creditPrefixI18n.imageCreditPrefix}: ${credit}` : ''
+            credit
+              ? `${theme.creditPrefixI18n.imageCreditPrefix}: ${credit}`
+              : ''
           }`}
           src={src}
           {...(srcSet ? { srcSet, } : {})}
@@ -237,7 +260,12 @@ Please use the "<Picture />" component`
 
   if (!lazyLoad) {
     return hasWrapper ? (
-      <StyledImgWrapper width={width} height={height} bgc={bgcolor} miscStyles={miscStyles}>
+      <StyledImgWrapper
+        width={width}
+        height={height}
+        bgc={bgcolor}
+        miscStyles={miscStyles}
+      >
         {Sources}
       </StyledImgWrapper>
     ) : (
@@ -246,7 +274,12 @@ Please use the "<Picture />" component`
   }
 
   return hasWrapper ? (
-    <StyledImgWrapper width={width} height={height} bgc={bgcolor} miscStyles={miscStyles}>
+    <StyledImgWrapper
+      width={width}
+      height={height}
+      bgc={bgcolor}
+      miscStyles={miscStyles}
+    >
       <Observer triggerOnce rootMargin="1000px">
         {inView => (inView ? Sources : null)}
       </Observer>
@@ -287,7 +320,9 @@ function getSources(
   const hasSrcset = transformsArray.length > 1;
   const imageNameFromData = imgArray[0].imgName;
 
-  const imgName = isAnimatedGif && isWebP ? `${imageNameFromData.split('.')[0]}.webp` : imageNameFromData;
+  const imgName = isAnimatedGif && isWebP
+    ? `${imageNameFromData.split('.')[0]}.webp`
+    : imageNameFromData;
 
   // Always use the first image in the imageArray
   const imgVersion = imgArray[0].version;

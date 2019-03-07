@@ -11,17 +11,16 @@ import Grid from '../../../Grid/Grid';
 import GridItem from '../../../Grid/GridItem';
 import ListView from '../../../ListView/ListView';
 import StickyListViewHeader from '../../../ListViewHeader/StickyListViewHeader';
-import Picture from '../../../Image/Picture';
+import Image from '../../../Image/Image';
 import Section from '../../../AutoLevels/Section';
 import Teaser from '../../../Teaser/Teaser';
 import TeaserContent from '../../../TeaserContent/TeaserContent';
 import TeaserHeader from '../../../TeaserHeader/TeaserHeader';
 import TeaserMedia from '../../../TeaserMedia/TeaserMedia';
-import getPictureAssets from '../../../../utils/getPictureAssets';
 
 type SalPropsType = {
   list: ListDataType,
-  lazyLoadImages: boolean,
+  isLazyloadImages: boolean,
   biAction: ?ListBiActionType,
   gaAction: ?() => void,
 };
@@ -29,12 +28,12 @@ type SalPropsType = {
 Sal.defaultProps = {
   biAction: null,
   gaAction: null,
-  lazyLoadImages: true,
+  isLazyloadImages: true,
 };
 
 export default function Sal({
   list,
-  lazyLoadImages,
+  isLazyloadImages,
   biAction,
   gaAction,
 }: SalPropsType): React.Node {
@@ -72,7 +71,7 @@ export default function Sal({
                 { from: 'xl', value: 4 / 12, },
               ]}
             >
-              <Teaser1 data={teaser1Data} biAction={biAction} />
+              <Teaser124 data={teaser1Data} biAction={biAction} />
             </GridItem>
 
             {/* Item 2 */}
@@ -85,7 +84,11 @@ export default function Sal({
                 { from: 'xl', value: 3 / 12, },
               ]}
             >
-              <Teaser234 data={teaser2Data} biAction={biAction} />
+              <Teaser124
+                data={teaser2Data}
+                biAction={biAction}
+                hideImageUntilXl
+              />
             </GridItem>
 
             {/* Item 3 */}
@@ -98,7 +101,7 @@ export default function Sal({
                 { from: 'xl', value: 2 / 12, },
               ]}
             >
-              <Teaser234 data={teaser3Data} biAction={biAction} />
+              <Teaser3 data={teaser3Data} biAction={biAction} />
             </GridItem>
 
             {/* Item 4 */}
@@ -110,7 +113,11 @@ export default function Sal({
                 { from: 'xl', value: 3 / 12, },
               ]}
             >
-              <Teaser234 data={teaser4Data} biAction={biAction} />
+              <Teaser124
+                data={teaser4Data}
+                biAction={biAction}
+                hideImageUntilXl
+              />
             </GridItem>
           </Grid>
         </Section>
@@ -125,18 +132,25 @@ export default function Sal({
 
 type TeaserPropsType = {
   data: TeaserDataType,
-  lazyLoadImages?: boolean,
+  isLazyloadImages: boolean,
   biAction: ?ListBiActionType,
+  hideImageUntilXl: boolean,
 };
 
 const teaserDefaultProps = {
-  lazyLoadImages: true,
+  isLazyloadImages: true,
   biAction: null,
+  hideImageUntilXl: false,
 };
 
-Teaser1.defaultProps = teaserDefaultProps;
+Teaser124.defaultProps = teaserDefaultProps;
 
-function Teaser1({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.Node {
+function Teaser124({
+  data,
+  isLazyloadImages,
+  biAction,
+  hideImageUntilXl,
+}: TeaserPropsType): React.Node {
   return (
     <FelaTheme
       render={theme => (
@@ -144,7 +158,9 @@ function Teaser1({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.No
           data={data}
           gutter={0}
           onClick={
-            biAction ? () => biAction({ index: 0, articleId: data.representedContent, }) : null
+            biAction
+              ? () => biAction({ index: 0, articleId: data.representedContent, })
+              : null
           }
           gridMiscStyles={{ flexWrap: 'nowrap', }}
         >
@@ -154,42 +170,32 @@ function Teaser1({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.No
               { until: 's', value: 18, },
               { from: 's', until: 'l', value: 28, },
               { from: 'l', until: 'xl', value: 2 / 7, },
-              { from: 'xl', value: 1 / 2, },
+              { from: 'xl', value: 22, },
             ]}
             onClick={
-              biAction ? () => biAction({ index: 0, articleId: data.representedContent, }) : null
+              biAction
+                ? () => biAction({ index: 0, articleId: data.representedContent, })
+                : null
+            }
+            miscStyles={
+              hideImageUntilXl
+                ? { display: [ { until: 'xl', value: 'none', }, ], }
+                : null
             }
           >
-            <Picture
-              lazyLoad={lazyLoadImages}
-              {...getPictureAssets({
-                bps: theme.bps,
-                imgData: data.image,
-                defaultImgOptions: {
-                  sizes: [ { size: '108px', }, ],
-                  aspect: 'square',
-                  widths: [ 108, 216, ],
-                },
-                sources: [
-                  {
-                    aspect: 'regular',
-                    from: 's',
-                    sizes: [
-                      { from: 'xl', size: '192px', },
-                      { from: 'l', size: '160px', },
-                      { from: 's', size: '168px', },
-                    ],
-                    widths: [ 320, 192, 168, ],
-                  },
-                ],
-              })}
+            <Image
+              lazyLoad={isLazyloadImages}
+              data={data.image}
+              imgOptions={{
+                transforms: { width: '168', aspect: 'regular', },
+              }}
+              isExternal
             />
           </TeaserMedia>
           <TeaserContent
             data={data}
             padding={[ 1, 1, 0, ]}
-            footerPadding={[ 1, 1, ]}
-            width={[ { from: 'l', until: 'xl', value: 5 / 7, }, { from: 'xl', value: 1 / 2, }, ]}
+            width={[ { from: 'l', until: 'xl', value: 5 / 7, }, ]}
             renderContent={() => (
               <TeaserHeader
                 onClick={
@@ -200,12 +206,12 @@ function Teaser1({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.No
                     })
                     : null
                 }
-                typeScale={[ { until: 'xl', value: 0, }, { from: 'xl', value: -1, }, ]}
+                typeScale={[
+                  { until: 'xl', value: 0, },
+                  { from: 'xl', value: -1, },
+                ]}
                 {...data}
               />
-            )}
-            renderFooter={() => (
-              <CommentsCount commentsCount={data.commentsCounts} miscStyles={{ type: -3, }} />
             )}
           />
         </Teaser>
@@ -214,13 +220,21 @@ function Teaser1({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.No
   );
 }
 
-Teaser234.defaultProps = teaserDefaultProps;
-function Teaser234({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.Node {
+Teaser3.defaultProps = teaserDefaultProps;
+function Teaser3({
+  data,
+  isLazyloadImages,
+  biAction,
+}: TeaserPropsType): React.Node {
   return (
     <Teaser
       data={data}
       gutter={0}
-      onClick={biAction ? () => biAction({ index: 1, articleId: data.contentId, }) : null}
+      onClick={
+        biAction
+          ? () => biAction({ index: 1, articleId: data.contentId, })
+          : null
+      }
     >
       <TeaserContent
         data={data}
@@ -228,16 +242,8 @@ function Teaser234({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.
         padding={[
           { until: 'l', value: [ 1, 2, 0, ], },
           { from: 'l', until: 'xl', value: [ 1, 1, 0, ], },
-          { from: 'xl', value: [ 2, 2, 0, ], },
+          { from: 'xl', value: [ 1, 2, 0, ], },
         ]}
-        footerPadding={[
-          { until: 'l', value: [ 1, 2, ], },
-          { from: 'l', until: 'xl', value: [ 1, 1, ], },
-          { from: 'xl', value: [ 2, 2, ], },
-        ]}
-        footerMiscStyles={{
-          type: [ { until: 'xl', value: -2, }, { from: 'xl', value: -3, }, ],
-        }}
         renderContent={() => (
           <TeaserHeader
             typeScale={[
@@ -247,15 +253,12 @@ function Teaser234({ data, lazyLoadImages, biAction, }: TeaserPropsType): React.
               { from: 'xl', value: -1, },
             ]}
             onClick={
-              biAction ? () => biAction({ index: 1, articleId: data.representedContent, }) : null
+              biAction
+                ? () => biAction({ index: 1, articleId: data.representedContent, })
+                : null
             }
             {...data}
           />
-        )}
-        renderFooter={() => (
-          <React.Fragment>
-            <CommentsCount commentsCount={data.commentsCounts} />
-          </React.Fragment>
         )}
       />
     </Teaser>

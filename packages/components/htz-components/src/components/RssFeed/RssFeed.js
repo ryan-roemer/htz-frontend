@@ -63,8 +63,8 @@ function rssItemImageToImage(rssImage) {
           imgName: rssImage[0],
           aspects: {
             full: {
-              width: 192,
-              height: 144,
+              width: 168,
+              height: 126,
             },
           },
         },
