@@ -46,7 +46,7 @@ export default class Survey extends React.Component {
 
       // eslint-disable-next-line array-callback-return
       this.xls.surveys.map(item => {
-        unsortedItems.map(v => this.partiesValues[v].push(parseInt(item[v], 10)));
+        unsortedItems.map(v => this.partiesValues[v].push(+(+item[v]).toFixed(1)));
       });
 
       this.items = orderBy(unsortedItems, v => this.partiesValues[v][0], [ 'desc', ]);
