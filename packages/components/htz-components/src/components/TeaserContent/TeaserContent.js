@@ -2,7 +2,10 @@
 
 import * as React from 'react';
 import { FelaTheme, } from 'react-fela';
-import type { ComponentPropResponsiveObject, StyleProps, } from '@haaretz/htz-css-tools';
+import type {
+  ComponentPropResponsiveObject,
+  StyleProps,
+} from '@haaretz/htz-css-tools';
 
 import CardContent from '../CardContent/CardContent';
 import CardFooter from '../CardFooter/CardFooter';
@@ -11,7 +14,11 @@ import GridItem from '../Grid/GridItem';
 import type { attrFlowType, } from '../../flowTypes/attrTypes';
 import type { IsStackedType, } from '../Teaser/Teaser';
 import type { TeaserDataType, } from '../../flowTypes/TeaserDataType';
-import type { ColorType, PaddingType, CardContentSeperator, } from '../CardContent/cardContentStyle';
+import type {
+  ColorType,
+  PaddingType,
+  CardContentSeperator,
+} from '../CardContent/cardContentStyle';
 import type { ClickTrackerBannerType, } from '../../flowTypes/ClickTrackerBannerType';
 
 type TeaserContentType = {
@@ -59,8 +66,12 @@ type TeaserContentType = {
   /** Forces the footer to the bottom using absolute positioning */
   footerIsAbsolute: boolean | ComponentPropResponsiveObject<boolean>[],
   // render props
-  renderContent: <T: TeaserDataType | ClickTrackerBannerType>(data: T) => React.Node,
-  renderFooter: ?<T: TeaserDataType | ClickTrackerBannerType>(data: T) => React.Node,
+  renderContent: <T: TeaserDataType | ClickTrackerBannerType>(
+    data: T
+  ) => React.Node,
+  renderFooter: ?<T: TeaserDataType | ClickTrackerBannerType>(
+    data: T
+  ) => React.Node,
 };
 
 TeaserContent.defaultProps = {
@@ -120,8 +131,10 @@ export default function TeaserContent({
           ...(gridItemMiscStyles || {}),
         }}
       >
-        <CardContent {...{ attrs, backgroundColor, color, padding, miscStyles, }}>
-          {Math.random()}
+        <CardContent
+          {...{ attrs, backgroundColor, color, padding, miscStyles, }}
+        >
+          {data.text || data.titleMobile || data.title}
         </CardContent>
 
         {renderFooter && (
@@ -135,7 +148,9 @@ export default function TeaserContent({
                 padding={footerPadding}
                 seperator={footerSeperator}
                 miscStyles={{
-                  ...(footerIsAbsolute ? setFooterPosition(footerIsAbsolute) : {}),
+                  ...(footerIsAbsolute
+                    ? setFooterPosition(footerIsAbsolute)
+                    : {}),
                   ...(footerMiscStyles || {}),
                 }}
               >
@@ -155,7 +170,7 @@ export default function TeaserContent({
 //                               Utils                                //
 // /////////////////////////////////////////////////////////////////////
 
-type FooterPositionValue = { position: 'absolute', bottom: '0', };
+type FooterPositionValue = { position: "absolute", bottom: "0", };
 
 type BpOpts = {
   from?: string,
@@ -169,14 +184,14 @@ type FooterPositionBpOpts = {
   value: boolean,
 };
 
-type FooterPositionBpValue<T: 'absolute' | '0'> = {
+type FooterPositionBpValue<T: "absolute" | "0"> = {
   ...BpOpts,
   value: T,
 };
 
 type RetObjType = {
-  position: Array<FooterPositionBpValue<'absolute'>>,
-  bottom: Array<FooterPositionBpValue<'0'>>,
+  position: Array<FooterPositionBpValue<"absolute">>,
+  bottom: Array<FooterPositionBpValue<"0">>,
 };
 
 function setFooterPosition(
