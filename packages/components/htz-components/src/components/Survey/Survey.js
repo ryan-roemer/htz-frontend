@@ -6,6 +6,10 @@ import Observer from 'react-intersection-observer';
 import style from './style';
 import Button from '../Button/Button';
 
+function roundToDecimalPrecision(num, precision = 0) {
+  const multiplier = 10 ** precision;
+  return Math.round(num * multiplier) / multiplier;
+}
 // eslint-disable-next-line react/prop-types
 export default class Survey extends React.Component {
   constructor(props) {
@@ -46,7 +50,7 @@ export default class Survey extends React.Component {
 
       // eslint-disable-next-line array-callback-return
       this.xls.surveys.map(item => {
-        unsortedItems.map(v => this.partiesValues[v].push(+(+item[v]).toFixed(1)));
+        unsortedItems.forEach(v => this.partiesValues[v].push(roundToDecimalPrecision(item[v], 1)));
       });
 
       this.items = orderBy(unsortedItems, v => this.partiesValues[v][0], [ 'desc', ]);
