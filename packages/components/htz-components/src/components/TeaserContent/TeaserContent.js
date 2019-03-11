@@ -111,7 +111,8 @@ TeaserContent.defaultProps = {
   renderFooter: null,
 };
 
-export default function TeaserContent({
+export default () => null;
+function TeaserContent({
   data,
   isStacked,
   gutter,
