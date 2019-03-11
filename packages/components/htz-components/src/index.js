@@ -77,6 +77,7 @@ import Osaka from './components/Osaka/OsakaController';
 import Outbrain from './components/Outbrain/Outbrain';
 import PageSchema from './components/PageSchema/PageSchema';
 import Paragraph from './components/Paragraph/Paragraph';
+import PromotedArticleContent from './components/PromotedArticleContent/PromotedArticleContent';
 import Portal from './components/Portal/Portal';
 import PremiumContentMeta from './components/PremiumContentMeta/PremiumContentMeta';
 import Query from './components/ApolloBoundary/Query';
@@ -326,6 +327,7 @@ export {
   Outbrain,
   PageSchema,
   Paragraph,
+  PromotedArticleContent,
   Portal,
   PremiumContentMeta,
   Query,
