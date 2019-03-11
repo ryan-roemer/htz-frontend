@@ -334,17 +334,35 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
                                     <span className={className}>{`${anObjectMapped.label}: `}</span>
                                   )}
                                 />
-                                <FelaComponent
-                                  style={{
-                                    extend: [
+                                {anObjectMapped.url ? (
+                                  <TextLink
+                                    tagName="span"
+                                    href={anObjectMapped.url}
+                                    content={anObjectMapped.value}
+                                    miscStyles={
                                       anObjectMapped.type === 'strong'
-                                        && theme.mq({ from: 'l', }, { display: 'inline-block', }),
-                                    ],
-                                  }}
-                                  render={({ className, }) => (
-                                    <span className={className}>{anObjectMapped.value}</span>
-                                  )}
-                                />
+                                        ? {
+                                          ...theme.mq(
+                                            { from: 'l', },
+                                            { display: 'inline-block', backgroundColor: 'yellow', }
+                                          ),
+                                        }
+                                        : {}
+                                    }
+                                  />
+                                ) : (
+                                  <FelaComponent
+                                    style={{
+                                      extend: [
+                                        anObjectMapped.type === 'strong'
+                                          && theme.mq({ from: 'l', }, { display: 'inline-block', }),
+                                      ],
+                                    }}
+                                    render={({ className, }) => (
+                                      <span className={className}>{anObjectMapped.value}</span>
+                                    )}
+                                  />
+                                )}
                               </Fragment>
                             )}
                           </div>
