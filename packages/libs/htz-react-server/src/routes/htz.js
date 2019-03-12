@@ -32,7 +32,7 @@ export default function htz(app, server, DEV) {
     const query = {
       path: req.path,
     };
-    return app.render(req, res, '/smadar_test_', query);
+    return app.render(req, res, '/', query);
   });
 
   /* Article Page */

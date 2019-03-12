@@ -28,9 +28,9 @@ const GaHomePage = dynamic(
   }
 );
 
-function HomePageLayout({ render, }: { render: Function, }): React.Node {
+function HomePageLayout({ render, path, }: { render: Function, path: string, }): React.Node {
   return (
-    <Query query={HOMEPAGE_LAYOUT}>
+    <Query query={HOMEPAGE_LAYOUT} variables={{ path, }}>
       {({ loading, error, data, client, }) => {
         if (loading) return null;
         if (error) console.error(error);

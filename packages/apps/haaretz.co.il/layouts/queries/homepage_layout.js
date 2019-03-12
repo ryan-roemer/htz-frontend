@@ -10,8 +10,8 @@ import {
 } from '@haaretz/app-utils';
 
 export default gql`
-  query HomePageLayout {
-    homePage {
+  query HomePageLayout ($path: String!){
+    homePage (path: $path){
       pageType
       globalLazyload
       seoData {

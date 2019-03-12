@@ -105,15 +105,9 @@ const RootQuery = new GraphQLObjectType({
     },
     homePage: {
       type: HomePage,
-      resolve(parentValue, args, { dataSources, }) {
-        return dataSources.PageAPI.getPage('/');
-      },
-    },
-    testPage: {
-      type: HomePage,
-      resolve(parentValue, args, { dataSources, }) {
-        const pageData = dataSources.PageAPI.getPage('/smadar');
-        return pageData;
+      args: { path: { type: new GraphQLNonNull(GraphQLString), }, },
+      resolve(parentValue, { path, }, { dataSources, }) {
+        return dataSources.PageAPI.getPage(path);
       },
     },
 
