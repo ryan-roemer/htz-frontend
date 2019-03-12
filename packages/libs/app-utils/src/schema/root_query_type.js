@@ -6,7 +6,8 @@ import {
   GraphQLString,
   GraphQLList,
   GraphQLInt,
-  GraphQLID, GraphQLEnumType,
+  GraphQLID,
+  GraphQLEnumType,
 } from 'graphql';
 import GraphQLJSON from 'graphql-type-json';
 import CommentsElement from './types/comments_element_type';
@@ -106,6 +107,13 @@ const RootQuery = new GraphQLObjectType({
       type: HomePage,
       resolve(parentValue, args, { dataSources, }) {
         return dataSources.PageAPI.getPage('/');
+      },
+    },
+    testPage: {
+      type: HomePage,
+      resolve(parentValue, args, { dataSources, }) {
+        const pageData = dataSources.PageAPI.getPage('/smadar');
+        return pageData;
       },
     },
 
@@ -263,22 +271,29 @@ const RootQuery = new GraphQLObjectType({
     tableScore: {
       type: TableScoreGraph,
       args: {
-        tableType: { type: new GraphQLNonNull(new GraphQLEnumType({
-          name: 'TableType',
-          values: {
-            football: { value: 'football', },
-            nba: { value: 'nba', },
-
-          },
-        })), },
-        subType: { type: new GraphQLNonNull(new GraphQLEnumType({
-          name: 'TableSubType',
-          values: {
-            coast: { value: 'coast', },
-            leagues: { value: 'leagues', },
-            groups: { value: 'groups', },
-          },
-        })), },
+        tableType: {
+          type: new GraphQLNonNull(
+            new GraphQLEnumType({
+              name: 'TableType',
+              values: {
+                football: { value: 'football', },
+                nba: { value: 'nba', },
+              },
+            })
+          ),
+        },
+        subType: {
+          type: new GraphQLNonNull(
+            new GraphQLEnumType({
+              name: 'TableSubType',
+              values: {
+                coast: { value: 'coast', },
+                leagues: { value: 'leagues', },
+                groups: { value: 'groups', },
+              },
+            })
+          ),
+        },
         identifier: { type: new GraphQLNonNull(GraphQLString), },
       },
       resolve(parentValue, { tableType, subType, identifier, }, { dataSources, }) {

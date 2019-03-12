@@ -183,7 +183,6 @@ class PageAPI extends RESTDataSource {
 
   async getPage(path) {
     const fetchPath = this.context.preview || `papi${path}`;
-
     return this.get(
       fetchPath,
       {},

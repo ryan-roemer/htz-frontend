@@ -27,6 +27,14 @@ export default function htz(app, server, DEV) {
     return app.render(req, res, '/', query);
   });
 
+  /* test smadar page(homepage test) */
+  server.get('/smadar', (req, res) => {
+    const query = {
+      path: req.path,
+    };
+    return app.render(req, res, '/smadar_test_', query);
+  });
+
   /* Article Page */
   server.get([ /^.*(1\.\d+){1}$/, ], (req, res) => {
     if (!req.params[0].startsWith('/')) {
