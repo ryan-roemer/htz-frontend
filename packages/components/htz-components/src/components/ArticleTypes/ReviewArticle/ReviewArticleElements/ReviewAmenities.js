@@ -336,7 +336,6 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
                                 />
                                 {anObjectMapped.url ? (
                                   <TextLink
-                                    tagName="span"
                                     href={anObjectMapped.url}
                                     content={anObjectMapped.value}
                                     miscStyles={
@@ -344,7 +343,7 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
                                         ? {
                                           ...theme.mq(
                                             { from: 'l', },
-                                            { display: 'inline-block', backgroundColor: 'yellow', }
+                                            { display: 'inline-block', }
                                           ),
                                         }
                                         : {}
