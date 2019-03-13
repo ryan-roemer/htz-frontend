@@ -1,7 +1,7 @@
 /* global window, document,  googletag */
 import isEqual from 'lodash/isEqual';
 import { UserTypes, CookieUtils, } from '@haaretz/htz-user-utils';
-import dispatchEvent from 'htz-dispatch-event';
+import dispatchEvent from '@haaretz/app-utils';
 import DfpUser from './user';
 import ConflictResolver from './conflictResolver';
 import AdSlot from './adSlot';
@@ -24,9 +24,7 @@ const handleSsoGroupTargeting = (pubads, ssoUserId, isDebugMode) => {
     }
     else {
       if (isDebugMode) {
-        console.log(
-          '[dfp] fetching ssoGroupKey of this user for later use'
-        );
+        console.log('[dfp] fetching ssoGroupKey of this user for later use');
       }
       storeSsoGroupKey(ssoUserId);
     }
@@ -566,7 +564,11 @@ export default class AdManager {
         if (id.toLowerCase().indexOf('inread') >= 0) {
           const element = document.getElementById(id);
           if (element) {
-            dispatchEvent(element, 'inreadBannerSlotRendered', { id, isEmpty: event.isEmpty, size: event.size, });
+            dispatchEvent(element, 'inreadBannerSlotRendered', {
+              id,
+              isEmpty: event.isEmpty,
+              size: event.size,
+            });
           }
         }
         this.DEBUG
@@ -579,7 +581,9 @@ export default class AdManager {
 
         if (this.adSlots && this.adSlots.has(id)) {
           const adSlot = this.adSlots.get(id);
-          this.user.impressionManager.registerImpression(`${adSlot.id}${this.config.department}`);
+          this.user.impressionManager.registerImpression(
+            `${adSlot.id}${this.config.department}`
+          );
           this.user.impressionManager.registerImpression(`${adSlot.id}_all`);
           adSlot.lastResolvedSize = resolvedSize;
           adSlot.lastResolvedWithBreakpoint = getBreakpoint(breakpoints);

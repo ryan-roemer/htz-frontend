@@ -8970,13 +8970,6 @@ https-proxy-agent@^2.2.1:
     agent-base "^4.1.0"
     debug "^3.1.0"
 
-htz-dispatch-event@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/htz-dispatch-event/-/htz-dispatch-event-1.1.2.tgz#b124bc32042f428d19fb65e798dc90eb1be2482c"
-  integrity sha512-iUOgETUB4e2rhwSA5EOwSy6R43vKkNNR5EH49ih9XQompCNXjrg4osCVMnZsr/h3VNz1VYoW2gr9Kikg5nQrwQ==
-  dependencies:
-    babel-runtime "^6.22.0"
-
 husky-interactive@^0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/husky-interactive/-/husky-interactive-0.1.2.tgz#29f22b369a2b2cf8f8a99fcd8e29167bddfa63b9"

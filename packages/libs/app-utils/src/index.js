@@ -2,6 +2,7 @@ import withData from './apollo/withData';
 import pagePropTypes from './apollo/pagePropTypes';
 import schema from './schema/schema';
 import breakUrl from './utils/breakUrl';
+import dispatchEvent from './utils/dispatchEvent';
 import switchToDomain from './utils/switchToDomain';
 import jsonGenerator from './jsonGenerator/jsonGenerator';
 import intersperse from './utils/intersperse';
@@ -114,4 +115,5 @@ export {
   video,
   switchToDomain,
   breakUrl,
+  dispatchEvent,
 };
