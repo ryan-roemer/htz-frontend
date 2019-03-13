@@ -26,18 +26,17 @@ export default function List(props: ListProps) {
     <ListInner
       listData={listData}
       viewProps={viewProps}
-      updateListDuplication={updateTeasersInPage}
+      updateListDuplication={()=>{return null;}}
       variables={{
         listId: contentId,
-        history: getTeasersInPage(),
+        history: null,
       }}
     />
   ) : (
     <ClientSideList
-      getListDuplication={getTeasersInPage}
-      viewProps={viewProps}
+    updateListDuplication={()=>{return null;}}
+    viewProps={viewProps}
       listData={listData}
-      updateListDuplication={updateTeasersInPage}
       ListInner={ListInner}
     />
   );
@@ -60,44 +59,19 @@ function ClientSideList({
   viewProps,
   ListInner,
 }: ClientSideListProps) {
-  const [
-    listDuplicationIds: Array<?string>,
-    setListDuplicationsIds,
-  ] = React.useState([]);
-  const [
-    listDuplicationIsUpdated: boolean,
-    setListDuplicationIsUpdated,
-  ] = React.useState(false);
-
-  React.useEffect(
-    () => {
-      setListDuplicationsIds(getListDuplication());
-    },
-    // we want this to run just once when the components is first
-    // rendered, which is why the dependencies array is empty
-    []
-  );
+  //const [ listDuplicationIds: Array<?string>, setListDuplicationsIds, ] = React.useState([]);
+  //const [ listDuplicationIsUpdated: boolean, setListDuplicationIsUpdated, ] = React.useState(false);
 
   function updateDuplications(items) {
     if (!listDuplicationIsUpdated) {
-      updateListDuplication(items);
-      setListDuplicationIsUpdated(true);
+      //  updateListDuplication(items);
+      //  setListDuplicationIsUpdated(true);
     }
   }
 
   return (
-    <ReadingHistoryProvider>
-      {readingHistory => (
-        <ListInner
-          listData={listData}
-          viewProps={viewProps}
-          updateListDuplication={updateDuplications}
-          variables={{
-            listId: listData.contentId,
-            history: [ ...readingHistory, ...(listDuplicationIds || []), ],
-          }}
-        />
-      )}
-    </ReadingHistoryProvider>
+    <div>
+      <p />
+    </div>
   );
 }

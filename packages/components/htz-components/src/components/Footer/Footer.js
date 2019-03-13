@@ -133,11 +133,11 @@ class Footer extends React.Component {
   };
 
   render() {
-    const { expanded, } = this.state;
-    const { contentId, shouldRenderScripts, } = this.props;
+    //const { expanded, } = this.state;
+    //const { contentId, shouldRenderScripts, } = this.props;
     return (
       <Fragment>
-        <FirstImpressionPlaceHolder />
+        {/* <FirstImpressionPlaceHolder />
         <FelaTheme
           render={theme => {
             const {
@@ -231,7 +231,7 @@ class Footer extends React.Component {
         <IdxNielsen shouldRender={shouldRenderScripts} />
         <CrazyEgg shouldRender={shouldRenderScripts} />
         <OutbrainTVR />
-        <OutbrainPlaceholder />
+        <OutbrainPlaceholder /> */}
       </Fragment>
     );
   }

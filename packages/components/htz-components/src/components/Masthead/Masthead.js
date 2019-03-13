@@ -10,9 +10,7 @@ import HomePageMasthead from './HomePageMasthead';
 import MobileNavigation from '../MobileNavigationMenu/MobileNavigationMain';
 
 type ColorBaseType = string | [string, ] | [string, string, ];
-export type ColorType =
-  | ColorBaseType
-  | ComponentPropResponsiveObject<ColorBaseType>[];
+export type ColorType = ColorBaseType | ComponentPropResponsiveObject<ColorBaseType>[];
 
 type MastheadProps = {
   pageType: string,
@@ -30,29 +28,8 @@ Masthead.defaultProps = { rowBgc: null, containerBgc: null, };
 export default function Masthead(props: MastheadProps): React.Node {
   const { contentId, } = props;
   const { y, velocity, } = useScrollYPosition({ throttle: 100, });
-  const initialState: State = {
-    isScrolled: y > 100,
-    shouldDisplay: y < 200 || velocity < -5,
-  };
-  const [ { isScrolled, shouldDisplay, }, setState, ] = React.useState(
-    initialState
-  );
-
-  React.useEffect(
-    () => {
-      // only relevant on mobile
-      // eslint-disable-next-line no-undef
-      if (matchMedia('(max-width: 37.5em)').matches) {
-        // $FlowFixMe
-        setState({
-          isScrolled: y > 100,
-          shouldDisplay: y < 200 || velocity < -1,
-        });
-      }
-    },
-    [ y, velocity, ]
-  );
-
+  const isScrolled=false;
+  const shouldDisplay=false;
   // console.log(
   //   [
   //     '!!!!\n\n\n',
@@ -61,25 +38,17 @@ export default function Masthead(props: MastheadProps): React.Node {
   //     `shouldDisplay: ${shouldDisplay}`,
   //     `isScrolled: ${isScrolled}`,
   //   ].join('\n')
-  // );
+  // );analyzeOriginalValue
 
   return (
     <React.Fragment>
-      <MastheadComponent
-        isScrolled={isScrolled}
-        shouldDisplay={shouldDisplay}
-        {...props}
-      />
+      <MastheadComponent isScrolled={isScrolled} shouldDisplay={shouldDisplay} {...props} />
       <BottomMobileNav shouldDisplay={shouldDisplay} contentId={contentId} />
     </React.Fragment>
   );
 }
 
-const MastheadComponent = React.memo(({ pageType, ...props }) => (pageType === 'homepage' ? (
-  <HomePageMasthead {...props} />
-) : (
-  <ArticlePageMasthead {...props} />
-))
+const MastheadComponent = React.memo(({ pageType, ...props }) => (pageType === 'homepage' ? <HomePageMasthead {...props} /> : <ArticlePageMasthead {...props} />)
 );
 const BottomMobileNav = React.memo(
   ({ shouldDisplay, contentId, }): React.Node => (

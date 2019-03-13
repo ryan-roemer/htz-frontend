@@ -131,11 +131,9 @@ export default function TeaserContent({
           ...(gridItemMiscStyles || {}),
         }}
       >
-        <CardContent
-          {...{ attrs, backgroundColor, color, padding, miscStyles, }}
-        >
-          {data.text || data.titleMobile || data.title}
-        </CardContent>
+        <CardContent {...{ attrs, backgroundColor, color, padding, miscStyles, }}>
+                  {renderContent && renderContent(data)}
+                </CardContent>
 
         {renderFooter && (
           <FelaTheme

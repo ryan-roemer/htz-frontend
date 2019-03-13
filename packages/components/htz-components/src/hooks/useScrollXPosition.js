@@ -22,23 +22,9 @@ export default function useScrollXPosition({
     velocity: 0,
   };
 
-  const [ { x, velocity, }, setScroll, ] = React.useState(initialState);
-
-  const handle = throttleFn(() => {
-    const newX: number = window.pageXOffset;
-    setScroll(preveState => ({
-      x: newX,
-      velocity: (newX - preveState.x) / (throttle || 1),
-    }));
-  }, throttle);
-
-  React.useEffect(() => {
-    window.addEventListener('scroll', handle);
-
-    return () => {
-      window.removeEventListener('scroll', handle);
-    };
-  }, []);
+  // const [ { x, velocity, }, setScroll, ] = React.useState(initialState);
+  const x = 0;
+  const velocity = 0;
 
   return { x, velocity, };
 }
