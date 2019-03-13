@@ -19,6 +19,7 @@ import {
   borderHorizontal,
   borderVertical,
 } from './border';
+import { startPerfTiming, endPerfTiming, } from './helpers/userTiming.js';
 import autospace from './mixins/autospace';
 import createColorGetter, {
   type ColorPalette,
@@ -66,18 +67,19 @@ import visuallyHidden from './mixins/visuallyHidden';
 export {
   autospace,
   border,
-  borderTop,
-  borderEnd,
-  borderRight,
   borderBottom,
-  borderStart,
-  borderLeft,
+  borderEnd,
   borderHorizontal,
+  borderLeft,
+  borderRight,
+  borderStart,
+  borderTop,
   borderVertical,
   createColorGetter,
   createMqFunc,
   createRemFunction,
   createTypesetter,
+  endPerfTiming,
   getLengthProps,
   getMqString,
   getRemFromPx,
@@ -89,8 +91,9 @@ export {
   parseTypographyProp,
   pxTo,
   pxToEm,
-  rgba,
   rgbStringToArray,
+  rgba,
+  startPerfTiming,
   stripUnit,
   visuallyHidden,
 };

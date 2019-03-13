@@ -1,4 +1,5 @@
 module.exports = {
+  // collectCoverage: true,
   coverageThreshold: {
     global: {
       branches: 100,
@@ -7,4 +8,9 @@ module.exports = {
       statements: 100,
     },
   },
+  collectCoverageFrom: [
+    'src/**/*.js',
+    '!src/index.js',
+    '!src/helpers/userTiming.js',
+  ],
 };
