@@ -3,6 +3,7 @@
 import { type ComponentPropResponsiveObject, } from '@haaretz/htz-css-tools';
 import { FelaComponent, } from 'react-fela';
 import * as React from 'react';
+import dispatchEvent from '@haaretz/app-utils';
 
 import useScrollYPosition from '../../hooks/useScrollYPosition';
 import ArticlePageMasthead from './ArticlePageMasthead';
@@ -53,15 +54,15 @@ export default function Masthead(props: MastheadProps): React.Node {
     [ y, velocity, ]
   );
 
-  // console.log(
-  //   [
-  //     '!!!!\n\n\n',
-  //     `y: ${y}`,
-  //     `velocity: ${velocity}`,
-  //     `shouldDisplay: ${shouldDisplay}`,
-  //     `isScrolled: ${isScrolled}`,
-  //   ].join('\n')
-  // );
+  React.useEffect(
+    () => {
+      // eslint-disable-next-line no-undef
+      dispatchEvent(document, 'mastheadVisibility', {
+        isVisible: shouldDisplay,
+      });
+    },
+    [ shouldDisplay, ]
+  );
 
   return (
     <React.Fragment>
