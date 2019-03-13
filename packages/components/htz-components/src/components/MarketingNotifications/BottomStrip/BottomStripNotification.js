@@ -2,7 +2,7 @@
 //
 /* global document */
 import * as React from 'react';
-import { FelaComponent, } from 'react-fela';
+import { FelaComponent, FelaTheme, } from 'react-fela';
 import ReactGA from 'react-ga';
 import * as style from './BottomStripStyle';
 import Button from '../../Button/Button';
@@ -17,7 +17,7 @@ type Props = {
   text1: ?string,
   text2: ?string,
   buttonUrl: ?string,
-  color: "yellow" | "blue" | "lightblue",
+  color: 'yellow' | 'blue' | 'lightblue',
   onSubmit: ?() => void,
 };
 
@@ -26,7 +26,7 @@ type State = {
   shouldRender: boolean,
 };
 
-type ModeState = "regular" | "small";
+type ModeState = 'regular' | 'small';
 
 type ContentProps = Props & { shouldRender: boolean, mode: ModeState, };
 
@@ -76,10 +76,7 @@ export default function BottomStripNotification(props: Props): React.Node {
 
   React.useEffect(() => {
     const shrinkTimer = setTimeout(() => setMode('small'), 10000);
-    const documentHeight = (document
-        && document.documentElement
-        && document.documentElement.scrollHeight)
-      || 0;
+    const documentHeight = (document && document.documentElement && document.documentElement.scrollHeight) || 0;
     setState({
       documentHeight,
       shouldRender: y > documentHeight - 1200,
@@ -108,67 +105,56 @@ export default function BottomStripNotification(props: Props): React.Node {
       const isSmall = mode === 'small';
 
       return (
-        <FelaComponent
-          isSmall={isSmall}
-          color={colors[color]}
-          rule={style.wrapper}
-          render={({ theme, className, }) => (
-            <div className={className}>
-              <FelaComponent
-                isSmall={isSmall}
-                color={colors[color]}
-                rule={style.innerWrapper}
-                render="span"
-              >
-                {isSmall ? null : (
-                  <ClickArea
-                    miscStyles={style.closeButton(theme, isSmall)}
-                    onClick={() => setMode('small')}
-                  >
-                    <IconClose />
-                  </ClickArea>
-                )}
-                <FelaComponent isSmall={isSmall} color={colors[color]}>
-                  <IconAlefLogoTransparent
-                    miscStyles={style.icon(theme, isSmall, colors[color])}
-                  />
-                </FelaComponent>
+        <FelaTheme
+          render={theme => (
+            <BlockLink
+              href={buttonUrl}
+              miscStyles={style.wrapper({ isSmall, theme, color: colors[color], })}
+            >              
                 <FelaComponent
                   isSmall={isSmall}
                   color={colors[color]}
-                  rule={style.textWrapper}
+                  rule={style.innerWrapper}
+                  render="span"
                 >
                   {isSmall ? null : (
+                    <ClickArea
+                      miscStyles={style.closeButton(theme, isSmall)}
+                      onClick={() => setMode('small')}
+                    >
+                      <IconClose />
+                    </ClickArea>
+                  )}
+                  <FelaComponent isSmall={isSmall} color={colors[color]}>
+                    <IconAlefLogoTransparent
+                      miscStyles={style.icon(theme, isSmall, colors[color])}
+                    />
+                  </FelaComponent>
+                  <FelaComponent isSmall={isSmall} color={colors[color]} rule={style.textWrapper}>
+                    {isSmall ? null : (
+                      <FelaComponent isSmall={isSmall} color={colors[color]} rule={style.text1}>
+                        {text1}
+                      </FelaComponent>
+                    )}
                     <FelaComponent
                       isSmall={isSmall}
                       color={colors[color]}
-                      rule={style.text1}
+                      rule={style.text2}
+                      render={({ className, }) => (
+                        <div className={className} dangerouslySetInnerHTML={{ __html: text2, }} />
+                      )}
+                    />
+                    <Button
+                      variant={style.buttonVariant}
+                      href={buttonUrl}
+                      onClick={onSubmit}
+                      miscStyles={style.button(theme, isSmall)}
                     >
-                      {text1}
-                    </FelaComponent>
-                  )}
-                  <FelaComponent
-                    isSmall={isSmall}
-                    color={colors[color]}
-                    rule={style.text2}
-                    render={({ className, }) => (
-                      <div
-                        className={className}
-                        dangerouslySetInnerHTML={{ __html: text2, }}
-                      />
-                    )}
-                  />
-                  <Button
-                    variant={style.buttonVariant}
-                    href={buttonUrl}
-                    onClick={onSubmit}
-                    miscStyles={style.button(theme, isSmall)}
-                  >
-                    {buttonText}
-                  </Button>
+                      {buttonText}
+                    </Button>
+                  </FelaComponent>
                 </FelaComponent>
-              </FelaComponent>
-            </div>
+            </BlockLink>
           )}
         />
       );
