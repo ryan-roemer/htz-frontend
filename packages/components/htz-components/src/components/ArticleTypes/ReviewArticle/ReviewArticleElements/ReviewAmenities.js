@@ -172,9 +172,11 @@ ImageElement.defaultProps = ImageElementDefaultProps;
 
 const propTypes = {
   // amenities items from polopoly.
-  amenitiesItems: PropTypes.arrayOf(
+  amenities: PropTypes.arrayOf(
     PropTypes.shape({
-      // Amenity object key label.
+      // Amenity Object key.
+      key: PropTypes.string,
+      // Amenity object label.
       label: PropTypes.string,
       // Amenity object value.
       value: PropTypes.string,
@@ -204,15 +206,15 @@ const defaultProps = {
   miscStyles: null,
 };
 
-function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewType, miscStyles, }) {
+function ReviewAmenities({ amenities, reviewImgData, reviewStars, reviewType, miscStyles, }) {
   // some amenities passed for internal data use and not for display.
-  const displayItems = amenitiesItems.filter(value => value.display && value.value);
+  const displayedAmenities = amenities.filter(value => value.display && value.value);
 
   // check amenities count to determine style in medium break.
-  const isAmenitiesDivisibleByTwo = displayItems.length % 2 === 0;
+  const isEvenAmenities = displayedAmenities.length % 2 === 0;
 
   // check if the amenity id image should be visible. Hide if false.
-  const displayIdImg = reviewType !== 'restaurant' && reviewImgData;
+  const displayImg = reviewType !== 'restaurant' && reviewImgData;
 
   return (
     <Grid miscStyles={miscStyles}>
@@ -258,7 +260,7 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
                   order: [ { until: 'm', value: 1, }, ],
                 }}
               >
-                <ImageElement imageData={reviewImgData} imgIsHidden={!displayIdImg} />
+                <ImageElement imageData={reviewImgData} imgIsHidden={!displayImg} />
               </GridItem>
               <GridItem
                 width={[
@@ -266,12 +268,12 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
                   {
                     from: 'm',
                     until: 'l',
-                    value: displayIdImg ? 3 / 4 : 1,
+                    value: displayImg ? 3 / 4 : 1,
                   },
                   { from: 'l', value: 1, },
                 ]}
                 miscStyles={{
-                  ...(!displayIdImg
+                  ...(!displayImg
                     ? {
                       marginTop: [
                         { from: 'l', value: '5rem', },
@@ -291,16 +293,11 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
                     : {}),
                 }}
               >
-                <Grid
-                  tagName="ul"
-                  gutter={{
-                    onServerRender: 2,
-                    queries: [ { until: 'l', value: 0, }, ],
-                  }}
-                >
-                  {displayItems.map((anObjectMapped, i) => (
+                <Grid tagName="ul" gutter={0}>
+                  {displayedAmenities.map((amenity, i) => (
                     <GridItem
                       tagName="li"
+                      key={`${amenity.key}-${i}`}
                       width={[
                         { until: 'm', value: 1, },
                         { from: 'm', until: 'l', value: 1 / 2, },
@@ -309,17 +306,17 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
                     >
                       <FelaComponent
                         displayBorderInMBreak={
-                          isAmenitiesDivisibleByTwo
-                          || (!isAmenitiesDivisibleByTwo && displayItems.length !== i + 1)
+                          isEvenAmenities
+                          || (!isEvenAmenities && displayedAmenities.length !== i + 1)
                         }
                         itemBorderTop={i === 0}
                         rule={itemStyle}
                         render={({ className, }) => (
                           <div className={className}>
-                            {anObjectMapped.type === 'link' ? (
+                            {amenity.type === 'link' ? (
                               <TextLink
-                                href={anObjectMapped.value}
-                                content={anObjectMapped.label}
+                                href={amenity.value}
+                                content={amenity.label}
                                 miscStyles={{
                                   fontWeight: [ { from: 'm', until: 'l', value: 'bold', }, ],
                                 }}
@@ -331,20 +328,17 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
                                     fontWeight: 'bold',
                                   }}
                                   render={({ className, }) => (
-                                    <span className={className}>{`${anObjectMapped.label}: `}</span>
+                                    <span className={className}>{`${amenity.label}: `}</span>
                                   )}
                                 />
-                                {anObjectMapped.url ? (
+                                {amenity.url ? (
                                   <TextLink
-                                    href={anObjectMapped.url}
-                                    content={anObjectMapped.value}
+                                    href={amenity.url}
+                                    content={amenity.value}
                                     miscStyles={
-                                      anObjectMapped.type === 'strong'
+                                      amenity.type === 'strong'
                                         ? {
-                                          ...theme.mq(
-                                            { from: 'l', },
-                                            { display: 'inline-block', }
-                                          ),
+                                          ...theme.mq({ from: 'l', }, { display: 'inline-block', }),
                                         }
                                         : {}
                                     }
@@ -353,12 +347,12 @@ function ReviewAmenities({ amenitiesItems, reviewImgData, reviewStars, reviewTyp
                                   <FelaComponent
                                     style={{
                                       extend: [
-                                        anObjectMapped.type === 'strong'
+                                        amenity.type === 'strong'
                                           && theme.mq({ from: 'l', }, { display: 'inline-block', }),
                                       ],
                                     }}
                                     render={({ className, }) => (
-                                      <span className={className}>{anObjectMapped.value}</span>
+                                      <span className={className}>{amenity.value}</span>
                                     )}
                                   />
                                 )}

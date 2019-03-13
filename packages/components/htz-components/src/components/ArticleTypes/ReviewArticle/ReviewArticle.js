@@ -153,7 +153,7 @@ function ReviewArticle({ articleId, slots, path, }) {
                                         <ReviewAmenities
                                           reviewImgData={bookCover}
                                           reviewType={reviewType}
-                                          amenitiesItems={amenities}
+                                          amenities={amenities}
                                           reviewStars={reviewStars}
                                           miscStyles={{
                                             marginBottom: [ { until: 'l', value: '5rem', }, ],
