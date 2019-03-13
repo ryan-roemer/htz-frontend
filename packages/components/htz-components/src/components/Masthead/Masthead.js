@@ -3,7 +3,7 @@
 import { type ComponentPropResponsiveObject, } from '@haaretz/htz-css-tools';
 import { FelaComponent, } from 'react-fela';
 import * as React from 'react';
-import dispatchEvent from '@haaretz/app-utils';
+import { dispatchEvent, } from '@haaretz/app-utils';
 
 import useScrollYPosition from '../../hooks/useScrollYPosition';
 import ArticlePageMasthead from './ArticlePageMasthead';

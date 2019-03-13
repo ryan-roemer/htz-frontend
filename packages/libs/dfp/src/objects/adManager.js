@@ -1,7 +1,7 @@
 /* global window, document,  googletag */
 import isEqual from 'lodash/isEqual';
 import { UserTypes, CookieUtils, } from '@haaretz/htz-user-utils';
-import dispatchEvent from '@haaretz/app-utils';
+import { dispatchEvent, } from '@haaretz/app-utils';
 import DfpUser from './user';
 import ConflictResolver from './conflictResolver';
 import AdSlot from './adSlot';
