@@ -50,6 +50,7 @@ class AdSlotBase extends Component {
             render={({ className, }) => (
               <FelaComponent
                 style={theme => ({
+                  overflow: 'hidden',
                   extend: [
                     ...(miscStyles ? parseStyleProps(miscStyles, theme.mq, theme.type) : []),
                   ],
