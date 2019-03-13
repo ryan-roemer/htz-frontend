@@ -45,7 +45,7 @@ export default function Quote({ text, credit, imagesList, }) {
   const quoteType = hasImage ? 'image' : hasCredit ? 'quote' : 'border';
 
   return (
-    <FadeinViewport threshold={1} mediaQuery={{ until: 'l', }}>
+    <FadeinViewport threshold={0.5} mediaQuery={{ until: 'l', }}>
       <FelaTheme
         render={theme => (
           <FelaComponent
