@@ -4,9 +4,10 @@ import dynamic from 'next/dynamic';
 import { FelaComponent, FelaTheme, } from 'react-fela';
 import { parseStyleProps, } from '@haaretz/htz-css-tools';
 import gql from 'graphql-tag';
+import { Query, } from '@haaretz/htz-components';
+
 import type { Node, ComponentType, } from 'react';
 import type { DocumentNode, } from 'graphql/language/ast';
-import { Query, } from '@haaretz/htz-components';
 
 const GraphQuery: DocumentNode = gql`
   query FinanceGraph($type: GraphType!, $time: PeriodType!, $assetId: String!) {

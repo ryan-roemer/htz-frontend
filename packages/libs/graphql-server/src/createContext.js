@@ -12,6 +12,7 @@ export default function createContext(headers) {
   const ssoService = config.get('service.sso');
   const newSsoService = config.get('service.newSso');
   const otpService = config.get('service.otp.base');
+  const staticD3 = config.get('service.d3');
   const functionService = config.get('service.htzFunction');
   const msSportResults = config.has('service.msSportResults') ? config.get('service.msSportResults') : '';
   const serviceBase = switchToDomain(hostname, config.get('service.base'));
@@ -29,6 +30,7 @@ export default function createContext(headers) {
     polopolyPromotionsPage,
     preview,
     previewUserId,
+    staticD3,
     msSportResults,
   };
 }
