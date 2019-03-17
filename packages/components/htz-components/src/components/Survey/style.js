@@ -1,5 +1,5 @@
 export default {
-  wrapper: { padding: '3rem', },
+  wrapper: { padding: '0', },
   surveyWrapper: ({ theme, mode, }) => ({
     width: '100%',
     extend: [
@@ -12,14 +12,15 @@ export default {
         },
     ],
   }),
-  legendsWrapper: theme => ({ textAlign: 'center', marginBottom: '2rem', }),
+  legendsWrapper: theme => ({ textAlign: 'start', marginBottom: '2rem', }),
   legend: theme => ({
     margin: '2rem',
+    marginInlineStart: '0',
     display: 'inline-block',
     extend: [
       theme.mq(
         { until: 'm', },
-        { width: '100%', textAlign: 'start', paddingInlineStart: '5%', margin: '0.3rem', }
+        { paddingInlineStart: '0', margin: '0.3rem', }
       ),
     ],
   }),
@@ -27,7 +28,7 @@ export default {
     margin: '2rem',
   }),
   legendcolor: ({ theme, color, }) => ({
-    background: theme.color(...color),
+    background: Array.isArray(color) ? theme.color(...color) : color,
     display: 'inline-block',
     width: '2rem',
     height: '2rem',
@@ -66,7 +67,7 @@ export default {
       mode === 'horizental'
         ? {
           textAlign: 'end',
-          flexBasis: '28%',
+          flexBasis: '11rem',
           justifyContent: 'flex-end',
           alignItems: 'center',
           marginInlineEnd: '2%',
@@ -80,6 +81,8 @@ export default {
           transform: 'rotate(-72deg)',
           ...theme.type(-2),
         },
+      // theme.mq({ from: 'm', until: 'l', }, { flexBasis: '10%', }),
+      // theme.mq({ until: 'm', }, { flexBasis: '28%', }),
     ],
   }),
   barsWrapper: ({ theme, mode, }) => ({
@@ -123,7 +126,7 @@ export default {
   }),
   bar: ({ theme, value, barColor, mode, load, }) => ({
     background: theme.color(...barColor),
-    width: !load ? '0' : `${(Math.max(value, 1) / 40) * 100}% `,
+    width: !load ? '0' : `${value}% `,
     marginTop: '0rem',
     ...theme.getDelay('transition', 1),
     ...theme.getDuration('transition', 1),

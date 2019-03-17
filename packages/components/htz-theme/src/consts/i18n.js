@@ -439,6 +439,13 @@ export const survey = Object.freeze({
   button: 'לכל הסקרים',
 });
 
+export const surveyPie = Object.freeze({
+  title: 'מפת הגושים',
+  redLegend: 'ימין ודתיים',
+  blueLegend: 'שמאל, מרכז וערבים',
+  
+});
+
 export const zenNonPayingUsers = Object.freeze({
   title: 'קריאת זן זמינה למנויים בלבד',
   subTitle: 'ללא פרסומות ובהגשה נוחה לקריאה',

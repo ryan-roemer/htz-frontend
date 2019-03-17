@@ -48,6 +48,7 @@ import {
   osakaI18n,
   ratingI18n,
   survey,
+  surveyPie,
   readingListMenuI18n,
   recipeIngredientsI18n,
   recipeInstructionsI18n,
@@ -157,6 +158,7 @@ const htzTheme = Object.freeze({
   selectAriaLabel,
   marketingTools,
   survey,
+  surveyPie,
   zenNonPayingUsers,
   // Methods
   color: getColor,
