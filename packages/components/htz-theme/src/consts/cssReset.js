@@ -33,11 +33,9 @@ const styles = '*,'
    * 3. Add the default cursor in all browsers.
    * 4. Ensure the page fills at least the full height of the viewport.
    * 5. Set the base font stack, so that it can be enhanced performantly with FOFT.
-   * 6. Reduce content jumping when elements (such as ads) are loading outside
-   *    the viewport.
-   * 7. Prevent the page from exhibiting horizontal scroll-bars when an included
+   * 6. Prevent the page from exhibiting horizontal scroll-bars when an included
    *    element exceeds the screen width.
-   * 8. Prevent font size adjustments after orientation changes in IE and iOS.
+   * 7. Prevent font size adjustments after orientation changes in IE and iOS.
    */
   + 'html{'
   + 'box-sizing:border-box;' // 1
@@ -46,9 +44,9 @@ const styles = '*,'
   + `font-family:${fontStacks.base};` // 5
   + 'min-height:100%;' // 5
   + 'overflow-anchor:auto;' // 6
-  + 'overflow-x:hidden;' // 7
-  + '-ms-text-size-adjust:100%;' // 8
-  + '-webkit-text-size-adjust:100%;' // 8
+  + 'overflow-x:hidden;' // 6
+  + '-ms-text-size-adjust:100%;' // 7
+  + '-webkit-text-size-adjust:100%;' // 7
   + '}'
   /*
    * Establish a vertical rhythm by setting the 'font-size' of the `html` element,
