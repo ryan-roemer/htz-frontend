@@ -1,5 +1,5 @@
 // @flow
-export type AssetType = 'crypto' | 'bonds' | 'stocks' | 'options' | 'mtf' | 'etf' | 'exchange' | 'indices';
+export type AssetType = 'crypto' | 'bond' | 'stock' | 'options' | 'mtf' | 'etf' | 'exchange' | 'indices';
 export type Asset = {
   name: string,
   id: string,
@@ -13,9 +13,10 @@ export type Asset = {
   mtfComponents: Array<Asset>,
   relatedAssets: Array<Asset>,
   shareHolders: Array<{
-    shareHolderName: string,
-    equityHolderPercentage: number,
-    holdingMarketCap: number,
+    SecurityName: string,
+    PercentInTik: number,
+    Monetary: number,
+
   }>,
   eventsPrediction: Array<{
     paymentDate: number,

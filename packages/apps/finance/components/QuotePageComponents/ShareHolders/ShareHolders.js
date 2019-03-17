@@ -7,9 +7,9 @@ import StaticTable from '../../StaticTable/StaticTable';
 
 type Props = {
   data: {
-    shareHolderName: string,
-    equityHolderPercentage: number,
-    holdingMarketCap: number,
+    SecurityName: string,
+    PercentInTik: number,
+    Monetary: number,
   }[],
 };
 
@@ -23,7 +23,7 @@ const ShareHolders = ({ data, }: Props): Node => (
     data={data}
     columns={[
       {
-        name: 'shareHolderName',
+        name: 'SecurityName',
         title: 'שם',
         styles: {
           paddingStart: '2rem',
@@ -33,7 +33,7 @@ const ShareHolders = ({ data, }: Props): Node => (
         render: value => value,
       },
       {
-        name: 'equityHolderPercentage',
+        name: 'PercentInTik',
         title: '% החזקה בהון',
         styles: {
           paddingStart: '2rem',
@@ -43,7 +43,7 @@ const ShareHolders = ({ data, }: Props): Node => (
         render: value => `${numToString(value)}%`,
       },
       {
-        name: 'holdingMarketCap',
+        name: 'Monetary',
         title: 'שווי שוק',
         styles: {
           paddingStart: '2rem',

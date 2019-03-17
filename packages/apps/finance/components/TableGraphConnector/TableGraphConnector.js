@@ -120,7 +120,7 @@ class TableGraphConnector extends React.Component<Props, State> {
               />
             </GridItem>
             <GridItem width={2 / 3}>
-              <GraphController selectedStockId={id} />
+              <GraphController assetId={id} />
               <SectionLink
                 href={{
                   pathname: `/asset/${type || ''}`,
@@ -132,8 +132,7 @@ class TableGraphConnector extends React.Component<Props, State> {
                 as={`/${type || ''}/${id || ''}`}
               >
                 <span>
-                  למידע נוסף על
-                  {name}
+                  {`למידע נוסף על ${name}`}
                 </span>
               </SectionLink>
             </GridItem>

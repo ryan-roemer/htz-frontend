@@ -282,7 +282,7 @@ function money({ url: { query: { section, }, asPath, }, }: Props): Node {
                                 {
                                   name: 'name',
                                   display: 'מדד',
-                                  sortingOrder: 'ascend',
+                                  sortingOrder: 'asc',
                                   style: () => ({
                                     fontWeight: '700',
                                     maxWidth: '17rem',
@@ -295,7 +295,7 @@ function money({ url: { query: { section, }, asPath, }, }: Props): Node {
                                 {
                                   name: 'indexYield',
                                   display: '% תשואות המדד',
-                                  sortingOrder: 'descend',
+                                  sortingOrder: 'desc',
                                   style: ({ indexYield, }) => ({
                                     color: indexYield < 0
                                       ? theme.color('negative')
@@ -314,13 +314,13 @@ function money({ url: { query: { section, }, asPath, }, }: Props): Node {
                                 {
                                   name: 'mtfBeat',
                                   display: 'קרנות שהיכו',
-                                  sortingOrder: 'descend',
+                                  sortingOrder: 'desc',
                                   value: ({ mtfBeat, }) => mtfBeat,
                                 },
                                 {
                                   name: 'mtfYield',
                                   display: '% תשואה הקרנות',
-                                  sortingOrder: 'descend',
+                                  sortingOrder: 'desc',
                                   style: ({ mtfYield, }) => ({
                                     color: mtfYield < 0
                                       ? theme.color('negative')

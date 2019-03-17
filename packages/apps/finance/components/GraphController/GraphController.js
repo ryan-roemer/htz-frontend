@@ -213,11 +213,11 @@ class GraphController extends React.Component<Props, State> {
                       graphType={this.state.selectedGraph.value}
                       render={({ changeStats, }) => (assetId ? (
                         <Fragment>
-                          <StaticGraph
-                            type={this.state.selectedGraph.value}
-                            indexId={assetId}
-                            time={selectedPeriod}
-                          />
+                          {/*<StaticGraph*/}
+                            {/*type={this.state.selectedGraph.value}*/}
+                            {/*indexId={assetId}*/}
+                            {/*time={selectedPeriod}*/}
+                          {/*/>*/}
                           <Graph
                             type={this.state.selectedGraph.value}
                             indexId={assetId}

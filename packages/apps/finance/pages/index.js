@@ -147,6 +147,7 @@ function index({ url: { asPath, }, }: Props): Node {
                         },
                       ]}
                       initialSort="value"
+                      count={5}
                     />
                   </RowItem>
                 </GridItem>
@@ -237,6 +238,7 @@ function index({ url: { asPath, }, }: Props): Node {
                         },
                       ]}
                       initialSort="value"
+                      count={5}
                     />
                   </RowItem>
                 </GridItem>
@@ -298,6 +300,7 @@ function index({ url: { asPath, }, }: Props): Node {
                         },
                       ]}
                       initialSort="arbGap"
+                      count={5}
                     />
                   </RowItem>
                 </GridItem>
@@ -480,6 +483,7 @@ function index({ url: { asPath, }, }: Props): Node {
                         },
                       ]}
                       initialSort="arbGap"
+                      count={5}
                     />
                   </RowItem>
                 </GridItem>
@@ -540,6 +544,7 @@ function index({ url: { asPath, }, }: Props): Node {
                         },
                       ]}
                       initialSort="value"
+                      count={5}
                     />
                   </RowItem>
                 </GridItem>
