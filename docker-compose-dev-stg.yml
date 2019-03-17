@@ -9,6 +9,7 @@ services:
     image: 'nexus-ng.themarker.com/htz-front-app:${version:-latest}'
     ports:
       - 2211:2211
+    command: ['yarn', 'workspace', '@haaretz/finance', 'start:next']
     environment:
       - NODE_ENV=production
       - CONNECTION_PRESET=stage

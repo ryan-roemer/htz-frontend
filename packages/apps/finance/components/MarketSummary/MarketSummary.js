@@ -20,6 +20,7 @@ const MarketSummaryQuery: DocumentNode = gql`
       id
       type
     }
+      
   }
 `;
 

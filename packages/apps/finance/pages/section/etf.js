@@ -1,5 +1,5 @@
 // @flow
-import React, { Fragment } from 'react';
+import React, { Fragment, } from 'react';
 import { FelaTheme, } from 'react-fela';
 import { Grid, GridItem, GeneralAdSlot, } from '@haaretz/htz-components';
 
@@ -35,7 +35,7 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
       { display: 'ממונף לונג', value: { queryString: 'longLeverage', }, },
       { display: 'ממונף שורט', value: { queryString: 'shortLeverage', }, },
       { display: 'מורכבת', value: { queryString: 'complex', }, },
-      ],
+    ],
   };
 
   return (
@@ -73,6 +73,7 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
                       loadMore
                       {
                         ...filters.reduce((obj, item) => {
+                          // eslint-disable-next-line no-param-reassign
                           obj[item.key] = item.value.toString();
                           return obj;
                         }, {})
@@ -89,7 +90,7 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם תעודה',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -102,13 +103,13 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'value',
                           display: 'שער אחרון',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ value, }) => numToString(value),
                         },
                         {
                           name: 'yearlyYield',
                           display: '% שינוי',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: ({ yearlyYield, }) => ({
                             color: yearlyYield < 0
                               ? theme.color('negative')
@@ -127,13 +128,13 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'numeralChange',
                           display: 'שינוי באגורות',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ volume, }) => numToString(volume),
                         },
                         {
                           name: 'volume',
                           display: 'מחזור (א׳ ש״ח)',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ volume, }) => numToString(volume),
                         },
                       ]}
@@ -170,7 +171,7 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם הקרן',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -184,7 +185,7 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'yearlyYield',
                           display: 'תשואה',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: ({ yearlyYield, }) => ({
                             color: yearlyYield < 0
                               ? theme.color('negative')
@@ -221,7 +222,7 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם הקרן',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -235,7 +236,7 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'yearlyYield',
                           display: 'תשואה',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: ({ yearlyYield, }) => ({
                             color: yearlyYield < 0
                               ? theme.color('negative')
@@ -276,7 +277,7 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם הקרן',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -290,7 +291,7 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'managementFee',
                           display: 'דמי ניהול',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           value: ({ managementFee, }) => numToString(managementFee),
                         },
                       ]}
@@ -314,7 +315,7 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם הקרן',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -328,7 +329,7 @@ function etf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'managementFee',
                           display: 'דמי ניהול',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ managementFee, }) => numToString(managementFee),
                         },
                       ]}

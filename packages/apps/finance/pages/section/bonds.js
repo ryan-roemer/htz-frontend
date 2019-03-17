@@ -8,7 +8,6 @@ import type { Node, } from 'react';
 
 import MainLayout from '../../layouts/MainLayout';
 import PageRow from '../../components/PageRow/PageRow';
-import MarketSummary from '../../components/MarketSummary/MarketSummary';
 import RowItem from '../../components/RowItem/RowItem';
 import TableGraphConnector from '../../components/TableGraphConnector/TableGraphConnector';
 import SortableTable from '../../components/SortableTable/SortableTable';
@@ -30,7 +29,7 @@ type Props = {
 
 type State = {
   bonds: string,
-  assetSubSection: string,
+  subSection: string,
   index: number,
 };
 
@@ -53,34 +52,31 @@ const tabRule: Object => Object = ({ theme, }) => ({
   },
 });
 
-const numToString: number => string = num => num.toLocaleString('he', {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-});
+const numToString: (number | string) => string = num => (typeof num === 'number'
+  ? num.toLocaleString('he', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
+  : num);
 
 class Bonds extends React.Component<Props, State> {
   state = {
     bonds: 'up',
-    assetSubSection: '0',
+    subSection: '0',
     index: 0,
   };
 
-  changeSelectedTime: State => void = ({ bonds, assetSubSection, index, }) => {
+  changeSelectedTime: State => void = ({ bonds, subSection, index, }) => {
     this.setState({
       bonds,
-      assetSubSection,
+      subSection,
       index,
     });
   };
 
   render(): Node {
-    const { bonds, assetSubSection, index, } = this.state;
-    const {
-      url: {
-        query: { section, },
-        asPath,
-      },
-    } = this.props;
+    const { bonds, subSection, index, } = this.state;
+    const { url: { query: { section, }, asPath, }, } = this.props;
     return (
       <MainLayout
         section={section}
@@ -91,9 +87,6 @@ class Bonds extends React.Component<Props, State> {
         <FelaTheme
           render={theme => (
             <Fragment>
-              <PageRow>
-                <MarketSummary marketId="3" miscStyles={{ flexGrow: '1', }} />
-              </PageRow>
               <PageRow>
                 <RowItem title="מדדי אג״ח">
                   <TableGraphConnector
@@ -139,7 +132,7 @@ class Bonds extends React.Component<Props, State> {
                             rule={tabRule}
                             onClick={() => this.changeSelectedTime({
                               bonds: 'up',
-                              assetSubSection: '0',
+                              subSection: '602',
                               index: 0,
                             })
                             }
@@ -154,7 +147,7 @@ class Bonds extends React.Component<Props, State> {
                             rule={tabRule}
                             onClick={() => this.changeSelectedTime({
                               bonds: 'up',
-                              assetSubSection: '1',
+                              subSection: '6003',
                               index: 1,
                             })
                             }
@@ -169,7 +162,7 @@ class Bonds extends React.Component<Props, State> {
                             rule={tabRule}
                             onClick={() => this.changeSelectedTime({
                               bonds: 'up',
-                              assetSubSection: '2',
+                              subSection: '2',
                               index: 2,
                             })
                             }
@@ -184,7 +177,7 @@ class Bonds extends React.Component<Props, State> {
                             rule={tabRule}
                             onClick={() => this.changeSelectedTime({
                               bonds: 'up',
-                              assetSubSection: '3',
+                              subSection: '3',
                               index: 3,
                             })
                             }
@@ -199,7 +192,7 @@ class Bonds extends React.Component<Props, State> {
                             rule={tabRule}
                             onClick={() => this.changeSelectedTime({
                               bonds: 'up',
-                              assetSubSection: '4',
+                              subSection: '4',
                               index: 4,
                             })
                             }
@@ -221,8 +214,9 @@ class Bonds extends React.Component<Props, State> {
                                 theme.color('neutral', '-6')
                               ),
                             }}
-                            assetSubSection={assetSubSection}
+                            subSection={subSection}
                             loadMore
+                            section="index"
                             type="bonds"
                             fragment="
                               name
@@ -236,7 +230,7 @@ class Bonds extends React.Component<Props, State> {
                               {
                                 name: 'name',
                                 display: 'שם',
-                                sortingOrder: 'ascend',
+                                sortingOrder: 'asc',
                                 style: () => ({
                                   fontWeight: '700',
                                   maxWidth: '17rem',
@@ -249,13 +243,13 @@ class Bonds extends React.Component<Props, State> {
                               {
                                 name: 'value',
                                 display: 'שער',
-                                sortingOrder: 'descend',
+                                sortingOrder: 'desc',
                                 value: ({ value, }) => numToString(value),
                               },
                               {
                                 name: 'changePercentage',
                                 display: '% שינוי',
-                                sortingOrder: 'descend',
+                                sortingOrder: 'desc',
                                 style: ({ changePercentage, }) => ({
                                   color:
                                     changePercentage < 0
@@ -277,13 +271,13 @@ class Bonds extends React.Component<Props, State> {
                               {
                                 name: 'volume',
                                 display: 'מחזור',
-                                sortingOrder: 'descend',
+                                sortingOrder: 'desc',
                                 value: ({ volume, }) => numToString(volume),
                               },
                               {
                                 name: 'redemptionYield',
                                 display: '% תשואה לפדיון',
-                                sortingOrder: 'descend',
+                                sortingOrder: 'desc',
                                 style: ({ redemptionYield, }) => ({
                                   color:
                                     redemptionYield < 0
@@ -305,7 +299,7 @@ class Bonds extends React.Component<Props, State> {
                               {
                                 name: 'avgDuration',
                                 display: 'מח״מ',
-                                sortingOrder: 'descend',
+                                sortingOrder: 'desc',
                                 value: ({ avgDuration, }) => numToString(avgDuration),
                               },
                             ]}

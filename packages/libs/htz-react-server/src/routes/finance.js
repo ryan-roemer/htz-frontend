@@ -17,12 +17,12 @@ export default function finance(app, server) {
   /* ASSET PAGES */
 
   /* Bond Quote */
-  server.get('/bonds/:id', (req, res) => {
+  server.get('/bond/:id', (req, res) => {
     const query = {
       assetId: req.params.id,
       section: 'bonds',
     };
-    return app.render(req, res, '/asset/bonds', query);
+    return app.render(req, res, '/asset/bond', query);
   });
 
   /* Crypto Quote */
@@ -80,12 +80,12 @@ export default function finance(app, server) {
   });
 
   /* Stock Quote */
-  server.get('/stocks/:id', (req, res) => {
+  server.get('/stock/:id', (req, res) => {
     const query = {
       assetId: req.params.id,
       section: 'stocks',
     };
-    return app.render(req, res, '/asset/stocks', query);
+    return app.render(req, res, '/asset/stock', query);
   });
 
   /* SECTION PAGES */
