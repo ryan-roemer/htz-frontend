@@ -62,6 +62,11 @@ async function run() {
     context: async req => {
       try {
         // this request and the headers on it are passed from create client in app-utils
+        console.warn(
+          '!!! console.warn: req.req.headers , file: index.js, package: graphql-server. !!! :',
+          req.req.headers
+        );
+
         const context = await createContext(req.req.headers);
         return context;
       }
