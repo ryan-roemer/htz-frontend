@@ -456,8 +456,7 @@ class SortableTable extends React.Component<Props, State> {
               ? 'asc'
               : 'desc'
           : prevState.sortOrder;
-        const {
-          query, variables, } = TableQuery({
+        const { query, variables, } = TableQuery({
           queryPrefix,
           fragment,
           subSection,
@@ -560,13 +559,8 @@ export default (props: any) => {
     section,
     assetsId,
     count,
-    assetSubSection,
     fragment,
-    expirationBenchmarkDate,
-    mtfCategory,
-    mtfCategoryExposure,
-    etfCategory,
-    etfCategoryPosition,
+    queryPrefix,
   } = props;
 
   const getSortOrder: () => ?('asc' | 'desc') = () => {
@@ -587,24 +581,21 @@ export default (props: any) => {
     );
   }
 
+  const { query, variables, } = TableQuery({
+    queryPrefix,
+    fragment,
+    subSection,
+    section,
+    assetsId,
+    count,
+    sortBy,
+    sortOrder,
+  });
+
   return (
     <Query
-      query={TableQuery(fragment)}
-      variables={{
-        subSection,
-        section,
-        assetsId,
-        count: assetsId ? assetsId.length : (count || 5),
-        sortBy,
-        sortOrder,
-        assetSubSection,
-        offset: 0,
-        expirationBenchmarkDate,
-        mtfCategory,
-        mtfCategoryExposure,
-        etfCategory,
-        etfCategoryPosition,
-      }}
+      query={query}
+      variables={variables}
     >
       {({ loading, error, data, fetchMore, client, }) => {
         if (error) return null;

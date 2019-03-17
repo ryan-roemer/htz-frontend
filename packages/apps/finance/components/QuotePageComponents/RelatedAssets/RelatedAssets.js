@@ -17,7 +17,7 @@ const RelatedAssets = ({ assets, miscStyles, }: Props): Node => (
     style={theme => ({
       ...theme.type(-2),
       ':before': {
-        content: '"ני"ע קשורים:"',
+        content: '"ני\\"ע קשורים"',
         marginEnd: '1rem',
         fontWeight: '700',
       },

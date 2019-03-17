@@ -81,7 +81,7 @@ function exchange({ url: { query: { section, }, asPath, }, }: Props): Node {
           title={crypto ? 'מטבעות מתעוררים' : 'שערים יציגים'}
         >
           <TableGraphConnector
-            assetsId={[ '20', '1420', '1370', '-20000', '1640', '1430', '1670', '1450', '1490', ]}
+            assetsId={[ '9001', '2004', '2005', '9003', '9302', '9300', '9301', '9303', '9304', ]}
             exchange
           />
         </RowItem>

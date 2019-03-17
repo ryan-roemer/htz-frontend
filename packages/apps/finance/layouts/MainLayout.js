@@ -10,7 +10,6 @@ import {
   DeviceTypeInjector,
   LayoutContainer,
   RouteChangeListener,
-  ScrollListener,
   UserInjector,
   GeneralAdSlot,
   Grid,
@@ -64,7 +63,6 @@ function MainLayout({ children, section, assetId, title, description, path, }: P
           href={canonicalUrl}
         />
       </Head>
-      <ScrollListener />
       <RouteChangeListener />
       <Dfp />
       <GoogleAnalytics />
@@ -99,28 +97,28 @@ function MainLayout({ children, section, assetId, title, description, path, }: P
                   title="הכתבות הנקראות היום באתר"
                 >
                   <Grid gutter={2}>
-                    <GridItem width={1 /4}>
+                    <GridItem width={1 / 4}>
                       <GeneralAdSlot
                         id="Finance.TheMarker.com.Native1"
                         contentName="Finance.TheMarker.com.Native1"
                         audianceTarget="all"
                       />
                     </GridItem>
-                    <GridItem width={1 /4}>
+                    <GridItem width={1 / 4}>
                       <GeneralAdSlot
                         id="Finance.TheMarker.com.Native2"
                         contentName="Finance.TheMarker.com.Native2"
                         audianceTarget="all"
                       />
                     </GridItem>
-                    <GridItem width={1 /4}>
+                    <GridItem width={1 / 4}>
                       <GeneralAdSlot
                         id="Finance.TheMarker.com.Native3"
                         contentName="Finance.TheMarker.com.Native3"
                         audianceTarget="all"
                       />
                     </GridItem>
-                    <GridItem width={1 /4}>
+                    <GridItem width={1 / 4}>
                       <GeneralAdSlot
                         id="Finance.TheMarker.com.Native4"
                         contentName="Finance.TheMarker.com.Native4"

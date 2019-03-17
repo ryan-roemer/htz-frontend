@@ -77,6 +77,7 @@ class HotMoneyGraph extends React.Component<Props, State> {
 
   render(): Node {
     const { assets, headers, period, } = this.props;
+    const { selectedIndex, graphData, } = this.state;
     const time = period === 2 ? 'month' : period === 3 ? 'year1' : 'quarterly';
     return (
       <FelaTheme

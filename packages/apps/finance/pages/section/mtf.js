@@ -74,6 +74,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                       loadMore
                       {
                         ...filters.reduce((obj, item) => {
+                          // eslint-disable-next-line no-param-reassign
                           obj[item.key] = item.value.toString();
                           return obj;
                         }, {})
@@ -88,7 +89,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם אופציה',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -101,7 +102,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'dailyAvgMtfYield',
                           display: '% שינוי יומי',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: ({ dailyAvgMtfYield, }) => ({
                             color: dailyAvgMtfYield < 0
                               ? theme.color('negative')
@@ -120,7 +121,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'yearlyAvgMtfYield',
                           display: '% שינוי שנתי',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: ({ yearlyAvgMtfYield, }) => ({
                             color: yearlyAvgMtfYield < 0
                               ? theme.color('negative')
@@ -170,7 +171,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם הקרן',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -184,7 +185,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'yearlyYield',
                           display: 'תשואה',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: ({ yearlyYield, }) => ({
                             color: yearlyYield < 0
                               ? theme.color('negative')
@@ -221,7 +222,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם הקרן',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -235,7 +236,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'yearlyYield',
                           display: 'תשואה',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: ({ yearlyYield, }) => ({
                             color: yearlyYield < 0
                               ? theme.color('negative')
@@ -276,7 +277,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם הקרן',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -290,7 +291,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'managementFee',
                           display: 'דמי ניהול',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           value: ({ managementFee, }) => numToString(managementFee),
                         },
                       ]}
@@ -314,7 +315,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם הקרן',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -328,7 +329,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'managementFee',
                           display: 'דמי ניהול',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ managementFee, }) => numToString(managementFee),
                         },
                       ]}
@@ -365,7 +366,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם הקרן',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -379,7 +380,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'yearlyinflows',
                           display: 'סך הגיוסים',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           value: ({ yearlyinflows, }) => numToString(yearlyinflows),
                         },
                       ]}
@@ -403,7 +404,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם הקרן',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -417,7 +418,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'yearlyoutflows',
                           display: 'סך פדיונות',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           value: ({ yearlyoutflows, }) => numToString(yearlyoutflows),
                         },
                       ]}
@@ -445,7 +446,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם הקרן',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -459,7 +460,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'assetsUnderManagement',
                           display: 'סך נכסים',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           value: ({ assetsUnderManagement, }) => numToString(assetsUnderManagement),
                         },
                       ]}
@@ -483,7 +484,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'name',
                           display: 'שם הקרן',
-                          sortingOrder: 'descend',
+                          sortingOrder: 'desc',
                           style: () => ({
                             fontWeight: '700',
                             maxWidth: '17rem',
@@ -497,7 +498,7 @@ function mtf({ url: { query: { section, }, asPath, }, }: Props): Node {
                         {
                           name: 'assetsUnderManagement',
                           display: 'סך נכסים',
-                          sortingOrder: 'ascend',
+                          sortingOrder: 'asc',
                           value: ({ assetsUnderManagement, }) => numToString(assetsUnderManagement),
                         },
                       ]}

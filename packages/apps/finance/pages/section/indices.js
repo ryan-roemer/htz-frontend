@@ -55,7 +55,7 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
                   {
                     name: 'name',
                     display: 'שם נייר',
-                    sortingOrder: 'ascend',
+                    sortingOrder: 'asc',
                     style: () => ({
                       fontWeight: '700',
                       maxWidth: '17rem',
@@ -68,13 +68,13 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
                   {
                     name: 'value',
                     display: 'שער אחרון',
-                    sortingOrder: 'descend',
+                    sortingOrder: 'desc',
                     value: ({ value, }) => numToString(value),
                   },
                   {
                     name: 'changePercentage',
                     display: '%שינוי',
-                    sortingOrder: 'descend',
+                    sortingOrder: 'desc',
                     style: ({ changePercentage, }) => ({
                       color: changePercentage < 0
                         ? theme.color('negative')
@@ -93,7 +93,7 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
                   {
                     name: 'weeklyYield',
                     display: 'תשואה שבועית',
-                    sortingOrder: 'descend',
+                    sortingOrder: 'desc',
                     style: ({ weeklyYield, }) => ({
                       color: weeklyYield < 0
                         ? theme.color('negative')
@@ -112,7 +112,7 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
                   {
                     name: 'monthlyYield',
                     display: 'תשואה חודשית',
-                    sortingOrder: 'descend',
+                    sortingOrder: 'desc',
                     style: ({ monthlyYield, }) => ({
                       color: monthlyYield < 0
                         ? theme.color('negative')
@@ -131,7 +131,7 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
                   {
                     name: 'quarterlyYield',
                     display: 'תשואה רבעונית',
-                    sortingOrder: 'descend',
+                    sortingOrder: 'desc',
                     style: ({ quarterlyYield, }) => ({
                       color: quarterlyYield < 0
                         ? theme.color('negative')
@@ -150,7 +150,7 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
                   {
                     name: 'yearlyYield',
                     display: 'תשואה שנתית',
-                    sortingOrder: 'descend',
+                    sortingOrder: 'desc',
                     style: ({ yearlyYield, }) => ({
                       color: yearlyYield < 0
                         ? theme.color('negative')
@@ -169,7 +169,7 @@ function indices({ url: { query: { section, }, asPath, }, }: Props): Node {
                   {
                     name: 'threeYearsYield',
                     display: 'תשואה 3 שנים',
-                    sortingOrder: 'descend',
+                    sortingOrder: 'desc',
                     style: ({ threeYearsYield, }) => ({
                       color: threeYearsYield < 0
                         ? theme.color('negative')
