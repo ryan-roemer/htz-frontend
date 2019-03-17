@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import SalView from '../List/views/Sal/SalView';
+import Debug from '../Debug/Debug';
 
 import type { RssFeedType, } from '../../flowTypes/RssFeedType';
 import type { ListDataType, } from '../../flowTypes/ListDataType';
@@ -82,8 +83,7 @@ function rssItemImageToImage(rssImage) {
 
 export default function RssFeed(props: RssFeedType) {
   const dataAsList: ListDataType = rssDataToListData(props);
-
-  return (
+  return dataAsList.items.length >= 4 ? (
     <SalView
       {...{
         list: dataAsList,
@@ -92,5 +92,10 @@ export default function RssFeed(props: RssFeedType) {
         gaAction: null,
       }}
     />
+  ) : (
+    <Debug>
+      <p>{`element of type ${props.inputTemplate} not rendered`}</p>
+      <p>{`Expected at least 4 items but got ${dataAsList.items.length}`}</p>
+    </Debug>
   );
 }
