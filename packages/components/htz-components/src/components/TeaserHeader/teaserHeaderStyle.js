@@ -15,7 +15,10 @@ import type {
 import setColor from '../../utils/setColor';
 
 type StyleTypes = {
+  /** make the teaser header a block element */
   isBlock: boolean,
+  /** make the entire teaser area linkable */
+  hasBlockLink: boolean,
   /**
    * The font-size and line height of the headline
    * Can be:
@@ -74,6 +77,7 @@ type StyleTypes = {
 
 export default function style({
   isBlock,
+  hasBlockLink = true,
   typeScale,
   color,
   theme,
@@ -82,6 +86,19 @@ export default function style({
   return {
     display: isBlock ? 'block' : 'inline',
     fontWeight: '700',
+    '&:after': hasBlockLink
+      ? {
+        content: '""',
+        bottom: '0',
+        height: '100%',
+        left: '0',
+        position: 'absolute',
+        right: '0',
+        top: '0',
+        width: '100%',
+        zIndex: '0',
+      }
+      : undefined,
     extend: [
       // Set background-color
       ...[

@@ -13,7 +13,6 @@ import {
 import type { attrFlowType, } from '../../flowTypes/attrTypes';
 import type { CountdownType, } from '../../flowTypes/CountdownType';
 
-import AboveBlockLink from '../BlockLink/AboveBlockLink';
 import H from '../AutoLevels/H';
 import HtzLink from '../HtzLink/HtzLink';
 import Kicker from '../ArticleHeader/Kicker';
@@ -24,9 +23,7 @@ import Countdown from '../Countdown/Countdown';
 type IsCenteredType = boolean | Array<ComponentPropResponsiveObject<boolean>>;
 
 type TeaserHeaderProps = {
-  /**
-   * attributes to be passed to the DOM element
-   */
+  /** attributes to be passed to the DOM element */
   attrs: ?attrFlowType,
   /**
    * The offset of the `h` element from the calculated heading level.
@@ -92,6 +89,8 @@ type TeaserHeaderProps = {
     | [string, ]
     | [string, string, ]
     | ComponentPropResponsiveObject<string | [string, ] | [string, string, ]>[],
+  /** make the entire teaser area linkable */
+  hasBlockLink: boolean,
   /**
    * A special property holding miscellaneous CSS values that
    * trump all default values. Processed by
@@ -147,50 +146,52 @@ type TeaserHeaderProps = {
 
 TeaserHeader.defaultProps = {
   attrs: null,
-  offset: 0,
+  countdownObj: null,
   isH1: false,
+  offset: 0,
+  onClick: null,
   // data props
-  titleMobile: null,
   exclusive: null,
   exclusiveMobile: null,
+  linkTarget: null,
+  titleMobile: null,
   // style props
-  typeScale: null,
   color: null,
-  miscStyles: null,
-  showKicker: true,
-  kickerMiscStyles: null,
+  hasBlockLink: true,
+  isCentered: false,
   kickerInnerMiscStyles: null,
   kickerIsBlock: false,
+  kickerMiscStyles: null,
   kickerTypeScale: null,
-  isCentered: false,
-  onClick: null,
-  linkTarget: null,
-  countdownObj: null,
+  miscStyles: null,
+  showKicker: true,
+  typeScale: null,
 };
 
 export default function TeaserHeader({
   attrs,
-  offset,
+  countdownObj,
   isH1,
+  offset,
+  onClick,
   // data props
-  title,
-  titleMobile,
   exclusive,
   exclusiveMobile,
-  path,
   linkTarget,
+  path,
+  title,
+  titleMobile,
   // style props
-  typeScale,
   color,
-  miscStyles,
-  showKicker,
-  kickerMiscStyles,
+  hasBlockLink,
+  isCentered,
   kickerInnerMiscStyles,
   kickerIsBlock,
+  kickerMiscStyles,
   kickerTypeScale,
-  isCentered,
-  onClick,
-  countdownObj,
+  miscStyles,
+  showKicker,
+  typeScale,
 }: TeaserHeaderProps): React.Node {
   return (
     <FelaComponent
@@ -198,7 +199,12 @@ export default function TeaserHeader({
         extend: [
           ...[
             isCentered
-              ? parseComponentProp<IsCenteredType>('textAlign', isCentered, theme.mq, centerText) // eslint-disable-line space-infix-ops, no-mixed-operators
+              ? parseComponentProp<IsCenteredType>(
+                'textAlign',
+                isCentered,
+                theme.mq,
+                centerText
+              ) // eslint-disable-line space-infix-ops, no-mixed-operators
               : {},
           ],
           // Set font-size and line-height
@@ -206,42 +212,49 @@ export default function TeaserHeader({
         ],
       })}
       render={({ className: wrapperClassName, }) => (
-        <AboveBlockLink>
-          {({ className: AboveBlockLinkClassName, }) => (
-            <div className={`${AboveBlockLinkClassName} ${wrapperClassName}`}>
-              <HtzLink href={path} onClick={onClick} target={linkTarget}>
-                {showKicker && (exclusive || exclusiveMobile) && (
-                  <Kicker
-                    {...(kickerIsBlock ? { isBlock: kickerIsBlock, } : {})}
-                    {...(kickerTypeScale ? { fontSize: kickerTypeScale, } : {})}
-                    {...(kickerMiscStyles ? { miscStyles: kickerMiscStyles, } : {})}
-                    {...(kickerInnerMiscStyles ? { innerMiscStyles: kickerInnerMiscStyles, } : {})}
-                  >
-                    <TeaserResponsiveText text={exclusive} mobileText={exclusiveMobile} />
-                  </Kicker>
-                )}
-                {countdownObj
-                  ? (
-                    <Countdown {...countdownObj} miscStyles={{ marginBottom: '2rem', }} />
-                  )
-                  : null
-                }
-                <FelaComponent
-                  isBlock={kickerIsBlock}
-                  color={color}
-                  typeScale={typeScale}
-                  miscStyles={miscStyles}
-                  rule={style}
-                  render={({ className, }) => (
-                    <H className={className} isH1={isH1} offset={offset} {...attrs || {}}>
-                      <TeaserResponsiveText text={title} mobileText={titleMobile} />
-                    </H>
-                  )}
+        <div className={`${wrapperClassName}`}>
+          <HtzLink href={path} onClick={onClick} target={linkTarget}>
+            {showKicker && (exclusive || exclusiveMobile) && (
+              <Kicker
+                {...(kickerIsBlock ? { isBlock: kickerIsBlock, } : {})}
+                {...(kickerTypeScale ? { fontSize: kickerTypeScale, } : {})}
+                {...(kickerMiscStyles ? { miscStyles: kickerMiscStyles, } : {})}
+                {...(kickerInnerMiscStyles
+                  ? { innerMiscStyles: kickerInnerMiscStyles, }
+                  : {})}
+              >
+                <TeaserResponsiveText
+                  text={exclusive}
+                  mobileText={exclusiveMobile}
                 />
-              </HtzLink>
-            </div>
-          )}
-        </AboveBlockLink>
+              </Kicker>
+            )}
+            {countdownObj ? (
+              <Countdown
+                {...countdownObj}
+                miscStyles={{ marginBottom: '2rem', }}
+              />
+            ) : null}
+            <FelaComponent
+              isBlock={kickerIsBlock}
+              hasBlockLink={hasBlockLink}
+              color={color}
+              typeScale={typeScale}
+              miscStyles={miscStyles}
+              rule={style}
+              render={({ className, }) => (
+                <H
+                  className={className}
+                  isH1={isH1}
+                  offset={offset}
+                  {...attrs || {}}
+                >
+                  <TeaserResponsiveText text={title} mobileText={titleMobile} />
+                </H>
+              )}
+            />
+          </HtzLink>
+        </div>
       )}
     />
   );

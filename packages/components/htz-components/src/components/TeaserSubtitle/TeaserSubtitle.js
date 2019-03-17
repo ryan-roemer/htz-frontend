@@ -105,6 +105,8 @@ export default function TeaserSubtitle({
   return subtitle || subtitleMobile ? (
     <FelaComponent
       color={color}
+      isBlock
+      hasBlockLink={false}
       typeScale={typeScale}
       miscStyles={miscStyles}
       rule={style}
