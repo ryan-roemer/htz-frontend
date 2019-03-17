@@ -31,9 +31,10 @@ Masthead.defaultProps = { rowBgc: null, containerBgc: null, };
 export default function Masthead(props: MastheadProps): React.Node {
   const { contentId, } = props;
   const { y, velocity, } = useScrollYPosition({ throttle: 100, });
+  const velocityThreshold = 0;
   const initialState: State = {
-    isScrolled: y > 100,
-    shouldDisplay: y < 200 || velocity < -5,
+    isScrolled: y > 250,
+    shouldDisplay: y < 200 || velocity < velocityThreshold,
   };
   const [ { isScrolled, shouldDisplay, }, setState, ] = React.useState(
     initialState
@@ -46,8 +47,11 @@ export default function Masthead(props: MastheadProps): React.Node {
       if (matchMedia('(max-width: 37.5em)').matches) {
         // $FlowFixMe
         setState({
-          isScrolled: y > 100,
-          shouldDisplay: y < 200 || velocity < -1,
+          isScrolled: y > 250,
+          shouldDisplay:
+            (shouldDisplay && velocity <= 0)
+            || y < 200
+            || velocity < velocityThreshold,
         });
       }
     },
@@ -57,7 +61,7 @@ export default function Masthead(props: MastheadProps): React.Node {
   React.useEffect(
     () => {
       // eslint-disable-next-line no-undef
-      dispatchEvent(document, 'mastheadVisibility', {
+      dispatchEvent(window, 'mastheadVisibility', {
         isVisible: shouldDisplay,
       });
     },
@@ -94,15 +98,13 @@ const BottomMobileNav = React.memo(
         start: '50%',
         bottom: '0',
         width: '100%',
-        // TODO: This is wrong, it means that modals will be covered
-        //       which they never should.
-        zIndex: theme.getZIndex('modal', 1),
+        zIndex: theme.getZIndex('masthead', 1),
         extend: [
           theme.getDelay('transition', -1),
           theme.getDuration('transition', -1),
           theme.getTimingFunction('transition', 'linear'),
-          theme.mq({ until: 's', misc: 'vertical', }, { display: 'initial', }),
-          theme.mq({ until: 'm', misc: 'vertical', }, { display: 'initial', }),
+          theme.mq({ until: 's', }, { display: 'initial', }),
+          theme.mq({ until: 'm', misc: 'landscape', }, { display: 'initial', }),
         ],
       })}
     >
