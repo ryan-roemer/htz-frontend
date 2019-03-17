@@ -91,7 +91,7 @@ function options({
                               {
                                 name: 'name',
                                 display: 'שם אופציה',
-                                sortingOrder: 'ascend',
+                                sortingOrder: 'asc',
                                 style: () => ({
                                   fontWeight: '700',
                                   maxWidth: '17rem',
@@ -104,13 +104,13 @@ function options({
                               {
                                 name: 'value',
                                 display: 'שער',
-                                sortingOrder: 'descend',
+                                sortingOrder: 'desc',
                                 value: ({ value, }) => numToString(value),
                               },
                               {
                                 name: 'changePercentage',
                                 display: '% שינוי',
-                                sortingOrder: 'descend',
+                                sortingOrder: 'desc',
                                 style: ({ changePercentage, }) => ({
                                   color:
                                     changePercentage < 0
@@ -130,19 +130,19 @@ function options({
                               {
                                 name: 'volume',
                                 display: 'מחזור (א׳ ש״ח)',
-                                sortingOrder: 'descend',
+                                sortingOrder: 'desc',
                                 value: ({ volume, }) => numToString(volume),
                               },
                               {
                                 name: 'openPositions',
                                 display: 'פוזיציות פתוחות',
-                                sortingOrder: 'descend',
+                                sortingOrder: 'desc',
                                 value: ({ openPositions, }) => numToString(openPositions),
                               },
                               {
                                 name: 'openPositionsChangeRate',
                                 display: 'שינוי\nפוזיציות פתוחות',
-                                sortingOrder: 'descend',
+                                sortingOrder: 'desc',
                                 style: ({ openPositionsChangeRate, }) => ({
                                   color:
                                     openPositionsChangeRate < 0
@@ -164,13 +164,13 @@ function options({
                               {
                                 name: 'assetNumber',
                                 display: 'מס׳ ני״ע',
-                                sortingOrder: 'descend',
+                                sortingOrder: 'desc',
                                 value: ({ assetNumber, }) => assetNumber,
                               },
                               {
                                 name: 'putCallRatio',
                                 display: 'יחס P/C',
-                                sortingOrder: 'descend',
+                                sortingOrder: 'desc',
                                 value: ({ putCallRatio, }) => numToString(putCallRatio),
                               },
                             ]}

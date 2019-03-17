@@ -120,7 +120,6 @@ class Line extends React.Component<Props, State> {
   getAssetFromMouseEvent: () => Asset = () => {
     const { xScale, } = this.state;
     const { data, } = this.props;
-    console.log('lineData: ', data);
     /* Get the X value of the item that occupies the same X as the mouse position */
     const x: number = xScale.invert(d3.mouse(this.overlayRef)[0]);
 

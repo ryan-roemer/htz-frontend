@@ -71,7 +71,7 @@ const numToString: number => string = num => (
   num.toLocaleString('he', { minimumFractionDigits: 2, maximumFractionDigits: 2, })
 );
 
-function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node {
+function bond({ url: { query: { assetId, section, }, asPath, }, }: Props): Node {
   return (
     <Query
       query={BondQuery}
@@ -437,4 +437,4 @@ function bonds({ url: { query: { assetId, section, }, asPath, }, }: Props): Node
   );
 }
 
-export default bonds;
+export default bond;

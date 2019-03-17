@@ -1,26 +1,26 @@
-version: '3.3'
+version: '3.4'
 services:
-  htz_react:
-    hostname: htz-front-app
+  tm_finance_react:
+    hostname: tm-finance-app
     build:
       context: .
+      dockerfile: Dockerfile-finance
       args:
         NEXT_BUILD_ID: ${version:-latest}
-    image: 'nexus-ng.themarker.com/htz-front-app:${version:-latest}'
+    image: 'nexus-ng.themarker.com/tm-finance-app:${version:-latest}'
     ports:
-      - 2211:2211
-    command: ['yarn', 'workspace', '@haaretz/finance', 'start:next']
+      - 6034:6034
     environment:
       - NODE_ENV=production
       - CONNECTION_PRESET=stage
       - NEXT_BUILD_ID=${NEXT_BUILD_ID:-latest}
       # the following environment is optional
-      - PORT=2211
-      - BIND_ADDRESS=react-dev-stg
-      - HOSTNAME=react-dev-stg
+      - PORT=6034
+      - BIND_ADDRESS=finance-dev
+      - HOSTNAME=finance-dev
       - GRAPHQL_USE_SSL=true
       - GRAPHQL_EXPOSE_PORT=false
-      - GRAPHQL_SUB_DOMAIN=graphql-dev-stg
+      - GRAPHQL_SUB_DOMAIN=graphql-dev
 
     networks:
       - dev03

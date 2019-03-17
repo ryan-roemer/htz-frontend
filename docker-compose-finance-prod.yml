@@ -1,0 +1,37 @@
+version: "3.4"
+services:
+  tm_finance_react:
+    hostname: tm-finance-app
+    build:
+      context: .
+      dockerfile: Dockerfile-finance
+      args:
+        NEXT_BUILD_ID: ${version:-latest}
+    image: 'nexus-ng.themarker.com/tm-finance-app:${version:-latest}'
+    ports:
+      - 6004:6004
+    environment:
+      - NODE_ENV=production
+      - CONNECTION_PRESET=prod
+      - NEXT_BUILD_ID=${NEXT_BUILD_ID:-latest}
+      # the following environment is optional
+      - PORT=6004
+      - BIND_ADDRESS=finance
+      - HOSTNAME=finance
+      - GRAPHQL_USE_SSL=true
+      - GRAPHQL_EXPOSE_PORT=false
+      - GRAPHQL_SUB_DOMAIN=graphql
+    networks:
+      - production
+    deploy:
+      replicas: 5
+      update_config:
+        parallelism: 5
+        delay: 30s
+        order: start-first
+      restart_policy:
+        condition: on-failure
+
+networks:
+  production:
+    external: true
