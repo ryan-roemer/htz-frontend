@@ -132,7 +132,11 @@ export default function TeaserContent({
         }}
       >
         <CardContent
-          {...{ attrs, backgroundColor, color, padding, miscStyles, }}
+          attrs={attrs}
+          backgroundColor={backgroundColor}
+          color={color}
+          padding={padding}
+          miscStyles={miscStyles}
         >
           {renderContent && renderContent(data)}
         </CardContent>

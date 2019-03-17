@@ -24,9 +24,7 @@ import Countdown from '../Countdown/Countdown';
 type IsCenteredType = boolean | Array<ComponentPropResponsiveObject<boolean>>;
 
 type TeaserHeaderProps = {
-  /**
-   * attributes to be passed to the DOM element
-   */
+  /** attributes to be passed to the DOM element */
   attrs: ?attrFlowType,
   /**
    * The offset of the `h` element from the calculated heading level.
@@ -198,7 +196,12 @@ export default function TeaserHeader({
         extend: [
           ...[
             isCentered
-              ? parseComponentProp<IsCenteredType>('textAlign', isCentered, theme.mq, centerText) // eslint-disable-line space-infix-ops, no-mixed-operators
+              ? parseComponentProp<IsCenteredType>(
+                'textAlign',
+                isCentered,
+                theme.mq,
+                centerText
+              ) // eslint-disable-line space-infix-ops, no-mixed-operators
               : {},
           ],
           // Set font-size and line-height
@@ -206,42 +209,48 @@ export default function TeaserHeader({
         ],
       })}
       render={({ className: wrapperClassName, }) => (
-        <AboveBlockLink>
-          {({ className: AboveBlockLinkClassName, }) => (
-            <div className={`${AboveBlockLinkClassName} ${wrapperClassName}`}>
-              <HtzLink href={path} onClick={onClick} target={linkTarget}>
-                {showKicker && (exclusive || exclusiveMobile) && (
-                  <Kicker
-                    {...(kickerIsBlock ? { isBlock: kickerIsBlock, } : {})}
-                    {...(kickerTypeScale ? { fontSize: kickerTypeScale, } : {})}
-                    {...(kickerMiscStyles ? { miscStyles: kickerMiscStyles, } : {})}
-                    {...(kickerInnerMiscStyles ? { innerMiscStyles: kickerInnerMiscStyles, } : {})}
-                  >
-                    <TeaserResponsiveText text={exclusive} mobileText={exclusiveMobile} />
-                  </Kicker>
-                )}
-                {countdownObj
-                  ? (
-                    <Countdown {...countdownObj} miscStyles={{ marginBottom: '2rem', }} />
-                  )
-                  : null
-                }
-                <FelaComponent
-                  isBlock={kickerIsBlock}
-                  color={color}
-                  typeScale={typeScale}
-                  miscStyles={miscStyles}
-                  rule={style}
-                  render={({ className, }) => (
-                    <H className={className} isH1={isH1} offset={offset} {...attrs || {}}>
-                      <TeaserResponsiveText text={title} mobileText={titleMobile} />
-                    </H>
-                  )}
+        <div className={`${wrapperClassName}`}>
+          <HtzLink href={path} onClick={onClick} target={linkTarget}>
+            {showKicker && (exclusive || exclusiveMobile) && (
+              <Kicker
+                {...(kickerIsBlock ? { isBlock: kickerIsBlock, } : {})}
+                {...(kickerTypeScale ? { fontSize: kickerTypeScale, } : {})}
+                {...(kickerMiscStyles ? { miscStyles: kickerMiscStyles, } : {})}
+                {...(kickerInnerMiscStyles
+                  ? { innerMiscStyles: kickerInnerMiscStyles, }
+                  : {})}
+              >
+                <TeaserResponsiveText
+                  text={exclusive}
+                  mobileText={exclusiveMobile}
                 />
-              </HtzLink>
-            </div>
-          )}
-        </AboveBlockLink>
+              </Kicker>
+            )}
+            {countdownObj ? (
+              <Countdown
+                {...countdownObj}
+                miscStyles={{ marginBottom: '2rem', }}
+              />
+            ) : null}
+            <FelaComponent
+              isBlock={kickerIsBlock}
+              color={color}
+              typeScale={typeScale}
+              miscStyles={miscStyles}
+              rule={style}
+              render={({ className, }) => (
+                <H
+                  className={className}
+                  isH1={isH1}
+                  offset={offset}
+                  {...attrs || {}}
+                >
+                  <TeaserResponsiveText text={title} mobileText={titleMobile} />
+                </H>
+              )}
+            />
+          </HtzLink>
+        </div>
       )}
     />
   );

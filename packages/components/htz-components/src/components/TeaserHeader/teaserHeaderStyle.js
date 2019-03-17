@@ -82,6 +82,16 @@ export default function style({
   return {
     display: isBlock ? 'block' : 'inline',
     fontWeight: '700',
+    '&:after': {
+      bottom: '0',
+      height: '100%',
+      left: '0',
+      position: 'absolute',
+      right: '0',
+      top: '0',
+      width: '100%',
+      zIndex: '0',
+    },
     extend: [
       // Set background-color
       ...[
