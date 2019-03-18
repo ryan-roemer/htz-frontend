@@ -69,6 +69,7 @@ import {
   nbaHeaders,
   groupBarTabs,
   btnOptions,
+  timeLabels,
   zenNonPayingUsers,
 } from './consts/i18n';
 
@@ -157,6 +158,7 @@ const htzTheme = Object.freeze({
   selectAriaLabel,
   marketingTools,
   survey,
+  timeLabels,
   zenNonPayingUsers,
   // Methods
   color: getColor,

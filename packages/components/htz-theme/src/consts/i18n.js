@@ -413,7 +413,7 @@ export const marketingTools = Object.freeze({
 });
 
 export const footballHeaders = Object.freeze({
-  headers: [ 'קבוצה', 'מש\'', 'נצ\'', 'הפ\'', 'תי\'', 'הפרש', 'נק\'', ],
+  headers: [ 'קבוצה', "מש'", "נצ'", "הפ'", "תי'", 'הפרש', "נק'", ],
 });
 
 export const groupBarTabs = Object.freeze({
@@ -439,6 +439,10 @@ export const survey = Object.freeze({
   button: 'לכל הסקרים',
 });
 
+export const timeLabels = Object.freeze({
+  pubDateText: 'פורסם ב- ',
+  modDateText: 'עודכן ב- ',
+});
 export const zenNonPayingUsers = Object.freeze({
   title: 'קריאת זן זמינה למנויים בלבד',
   subTitle: 'ללא פרסומות ובהגשה נוחה לקריאה',

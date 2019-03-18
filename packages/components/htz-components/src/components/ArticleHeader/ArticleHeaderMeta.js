@@ -132,9 +132,17 @@ class ArticleHeaderMeta extends React.Component {
           ...(variationMq.c ? [ theme.mq(variationMq.c, {}), ] : []),
         ],
       })}
-    >
-      <TeaserTime publishDate={publishDate} lastUpdate={modifiedDate} className={className} />
-    </FelaComponent>
+      render={({ theme, className: displayDatesStyle, }) => (
+        <div className={displayDatesStyle}>
+          <TeaserTime
+            publishDate={publishDate}
+            lastUpdate={modifiedDate}
+            className={className}
+            labels={theme.timeLabels}
+          />
+        </div>
+      )}
+    />
   );
 
   toggleAuthorAlertsForm = (biAction, platform) => {

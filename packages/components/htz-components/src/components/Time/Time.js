@@ -169,7 +169,7 @@ function getFormatting(time, format) {
   return selectedFormat;
 }
 
-function Time({ render, tagName, time, format, className, }) {
+function Time({ render, tagName, time, format, className, label, }) {
   const parsedTime = parse(time);
   if (isValid(parsedTime)) {
     let userFormat = getFormatting(parsedTime, format);
@@ -185,6 +185,7 @@ function Time({ render, tagName, time, format, className, }) {
         {...(tagName === 'time' ? { dateTime: machineFormattedTime, } : {})}
         className={className}
       >
+        {label}
         {render ? render(formattedTime) : formattedTime}
       </Tag>
     );
