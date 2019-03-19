@@ -45,6 +45,7 @@ import {
   Farnsworth,
   Leela,
   Zoidberg,
+  Clampazzo,
 } from '@haaretz/htz-components';
 
 const tagsFromTagElement = ({ tagsList, }) => tagsList.map(x => x.contentName);
@@ -126,6 +127,7 @@ const elements = new Map([
   [ 'Farnsworth', Farnsworth, ],
   [ 'Leela', Leela, ],
   [ 'Zoidberg', Zoidberg, ],
+  [ 'Clampazzo', Clampazzo, ],
 ]);
 
 // eslint-disable-next-line react/prop-types
