@@ -10,7 +10,7 @@
     contentId="Masthead"
     Logo={() => <div>Logo</div>}
     includeMadorimNavigation
-    mastheadFullWidthBorder
+    mastheadFullWidth
   />
 </div>
 ```

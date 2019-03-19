@@ -54,7 +54,7 @@ function MagazineArticle({ articleId, slots, path, }) {
       articleId={articleId}
       slots={slots}
       rowBgc="white"
-      mastheadFullWidthBorder
+      mastheadFullWidth
       renderPostHeader={false}
     >
       <Query query={MAGAZINE_ARTICLE_QUERY} partialRefetch variables={{ path, }}>
@@ -236,10 +236,12 @@ function MagazineArticle({ articleId, slots, path, }) {
                         <LayoutContainer
                           miscStyles={{
                             paddingInlineEnd: [
-                              { from: 's', value: '30rem', },
+                              { from: 'm', until: 'l', value: '16rem', },
+                              { from: 'l', value: '30rem', },
                             ],
                             paddingInlineStart: [
-                              { from: 's', value: '30rem', },
+                              { from: 'm', until: 'l', value: '16rem', },
+                              { from: 'l', value: '30rem', },
                             ],
                           }}
                         >
@@ -267,10 +269,12 @@ function MagazineArticle({ articleId, slots, path, }) {
                       <LayoutContainer
                         miscStyles={{
                           paddingInlineEnd: [
-                            { from: 's', value: '30rem', },
+                            { from: 'm', until: 'l', value: '16rem', },
+                            { from: 'l', value: '30rem', },
                           ],
                           paddingInlineStart: [
-                            { from: 's', value: '30rem', },
+                            { from: 'm', until: 'l', value: '16rem', },
+                            { from: 'l', value: '30rem', },
                           ],
                         }}
                       >

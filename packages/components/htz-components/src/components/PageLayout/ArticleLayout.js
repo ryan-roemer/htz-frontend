@@ -33,7 +33,7 @@ const propTypes = {
    */
   rowBgc: PropTypes.string,
   /** should the masthead border bottom be full width */
-  mastheadFullWidthBorder: PropTypes.bool,
+  mastheadFullWidth: PropTypes.bool,
   /**
    * Article's slots content.
    */
@@ -56,7 +56,7 @@ const propTypes = {
 
 const defaultProps = {
   rowBgc: null,
-  mastheadFullWidthBorder: false,
+  mastheadFullWidth: false,
   renderPostHeader: true,
 };
 
@@ -65,7 +65,7 @@ const ArticlePageLayout = ({
   articleId,
   children,
   rowBgc,
-  mastheadFullWidthBorder,
+  mastheadFullWidth,
   renderPostHeader,
 }) => {
   const getComponent = useGetComponent();
@@ -93,6 +93,7 @@ const ArticlePageLayout = ({
         content={header}
         logo={IconHaaretzLogo}
         articleId={articleId}
+        mastheadFullWidth={mastheadFullWidth}
       />
       {postHeader && renderPostHeader ? (
         <LayoutRow bgc={rowBgc}>

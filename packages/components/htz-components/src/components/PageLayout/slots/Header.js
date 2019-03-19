@@ -22,14 +22,16 @@ const propTypes = {
    */
   rowBgc: PropTypes.string,
   logo: PropTypes.element.isRequired,
+  mastheadFullWidth: PropTypes.bool,
 };
 
 const defaultProps = {
   rowBgc: null,
+  mastheadFullWidth: false,
 };
 
 
-function Header({ pageType, content, articleId, rowBgc, logo, }) {
+function Header({ pageType, content, articleId, rowBgc, logo, mastheadFullWidth, }) {
   const getComponent = useGetComponent();
   return (
     <Fragment>
@@ -44,6 +46,7 @@ function Header({ pageType, content, articleId, rowBgc, logo, }) {
               {...element}
               {...(element.inputTemplate === 'com.htz.EditableNavigationElement'
                 ? {
+                  mastheadFullWidth,
                   pageType,
                   rowBgc,
                   logo,

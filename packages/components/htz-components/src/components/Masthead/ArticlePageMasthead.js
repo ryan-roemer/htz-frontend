@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
-import { FelaTheme, } from 'react-fela';
+import { FelaComponent, FelaTheme, } from 'react-fela';
+import { parseStyleProps, } from '@haaretz/htz-css-tools';
 import MastheadWrapper from './MastheadWrapper';
 import LayoutContainer from '../PageLayout/LayoutContainer';
 import LayoutRow from '../PageLayout/LayoutRow';
@@ -14,6 +15,7 @@ type ArticlePageMastheadProps = {
   logo: React.ElementType,
   rowBgc: ?ColorType,
   shouldDisplay: boolean,
+  mastheadFullWidth: boolean,
 };
 
 const mastheadWrapperMiscStyles = ({ theme, shouldDisplay, }) => ({
@@ -31,13 +33,15 @@ const mastheadWrapperMiscStyles = ({ theme, shouldDisplay, }) => ({
   borderBottom: [ '1px', 1, 'solid', theme.color('primary'), ],
 });
 
-ArticlePageMasthead.defaultProps = { rowBgc: null, };
+ArticlePageMasthead.defaultProps = { rowBgc: null, mastheadFullWidth: false, };
 export default function ArticlePageMasthead({
   contentId,
   logo,
   rowBgc,
   shouldDisplay,
+  mastheadFullWidth,
 }: ArticlePageMastheadProps): React.Node {
+  const MastheadContainer = mastheadFullWidth ? FelaComponent : LayoutContainer;
   return (
     <FelaTheme
       render={theme => (
@@ -57,34 +61,36 @@ export default function ArticlePageMasthead({
             zIndex: theme.getZIndex('masthead'),
           }}
         >
-          <LayoutContainer
-            miscStyles={mastheadWrapperMiscStyles({ theme, shouldDisplay, })}
+          <MastheadContainer
+            {...(mastheadFullWidth ? {
+              style: { extend: parseStyleProps(mastheadWrapperMiscStyles({ theme, shouldDisplay, }), theme.mq, theme.type), },
+            } : {
+              miscStyles: mastheadWrapperMiscStyles({ theme, shouldDisplay, }),
+            })}
           >
-            <React.Fragment>
-              <MastheadWrapper
-                logo={logo}
-                disableDatetime
-                logoSize={3.5}
-                logoMiscStyles={{
-                  display: 'block',
-                  transform: [ { from: 's', value: 'translateY(-0.5rem)', }, ],
-                }}
-                disablePanels="bottom"
-                panelsResponsiveHiding={[ { until: 's', value: 'sides', }, ]}
-                renderStartPanel={(toggleOther, toggleMe) => (
-                  <React.Fragment>
-                    <NavigationMenu contentId={contentId} />
-                    <HeaderSearch onClick={toggleOther} />
-                  </React.Fragment>
-                )}
-                renderEndPanel={(toggleOther, toggleMe) => (
-                  <React.Fragment>
-                    <MastheadUserTools />
-                  </React.Fragment>
-                )}
-              />
-            </React.Fragment>
-          </LayoutContainer>
+            <MastheadWrapper
+              logo={logo}
+              disableDatetime
+              logoSize={3.5}
+              logoMiscStyles={{
+                display: 'block',
+                transform: [ { from: 's', value: 'translateY(-0.5rem)', }, ],
+              }}
+              disablePanels="bottom"
+              panelsResponsiveHiding={[ { until: 's', value: 'sides', }, ]}
+              renderStartPanel={(toggleOther, toggleMe) => (
+                <React.Fragment>
+                  <NavigationMenu contentId={contentId} />
+                  <HeaderSearch onClick={toggleOther} />
+                </React.Fragment>
+              )}
+              renderEndPanel={(toggleOther, toggleMe) => (
+                <React.Fragment>
+                  <MastheadUserTools />
+                </React.Fragment>
+              )}
+            />
+          </MastheadContainer>
         </LayoutRow>
       )}
     />
