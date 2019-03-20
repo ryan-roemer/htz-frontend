@@ -6,6 +6,7 @@
 
 const path = require('path');
 const StatsPlugin = require('stats-webpack-plugin');
+const { StatsWriterPlugin, } = require('webpack-stats-plugin');
 const { DuplicatesPlugin, } = require('inspectpack/plugin');
 
 // ////////////////// //
@@ -48,7 +49,10 @@ module.exports = function configWebpack(
     config.plugins.push(
       new DuplicatesPlugin({
         verbose: true,
-        emitHandler: report => console.log(report),
+      }),
+      new StatsWriterPlugin({
+        filename: `stats-${isServer ? "server" : "client"}.json`,
+        fields: ["assets", "modules"],
       })
     );
   }
